@@ -1,0 +1,48 @@
+<canvas id="canvas" width=600 height=400 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+
+<script>
+
+var rt=[], k=0, num=6;
+
+function setup()
+{	
+  size(200, 200);
+  
+  RiText.setDefaultColor(255);
+  RiText.setDefaultAlignment(CENTER);
+  RiText.defaultFont("Arial",36);
+  
+  for (var i=0; i< num; i++) {
+    for (var j=0; j< num; j++, k++) {
+      var c = String.fromCharCode(65+k);            // letters
+      rt[k] = new RiText(65+k, 24+j*30, 32+i*30);
+      if (k < 26) {    
+          
+          if ("AEIOU".indexOf(c) >= 0) {  // vowels
+            rt[k].fadeColor([204], 1);
+          }
+      } 
+      else {
+          rt[k].setText(k+22);  // numbers
+          rt[k].fill(153);
+      } 
+    }
+  }
+}
+
+function draw() {
+    
+  RiText.background(0);
+  RiText.drawAll();
+}
+
+function onRiTaEvent(re) {
+    
+  re.getSource().colorTo
+      ([Math.floor(random(100,255)), Math.floor(random(100,255)), 0, 255], 1);
+}
+
+
+</script>

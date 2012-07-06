@@ -1,0 +1,38 @@
+<canvas id="canvas" width=400 height=100 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+<script>
+
+var ctx = RiText.graphics();
+var y, numWords, txt = "The dog ate the cat.";
+
+window.onload = function(){
+  
+  RiText.showBoundingBoxes(true);
+  RiText.defaultFont({name:"arial",size:30});  
+  
+  line1 = new RiText(txt, 64, 50); 
+  numWords = txt.split(" ").length; 
+
+  drawIt();
+}
+
+drawIt = function() {
+    
+  RiText.background(200);
+  line1.draw();
+
+  ctx.strokeStyle='#fff';
+  for (var i = 0; i < txt.length; i++) {
+      y = line1.charOffset(i);
+      RiText.line(y, 28, y, RiText.height());
+  }
+
+  ctx.strokeStyle='red';
+  for (var i = 0; i < numWords; i++) {
+      y = line1.wordOffset(i);
+      RiText.line(y, 0, y, 55);
+  }
+}
+
+</script>

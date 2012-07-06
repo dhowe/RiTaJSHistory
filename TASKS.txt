@@ -1,0 +1,270 @@
+--------------------------------------------------------------------------------------------------
+	
+VERSION 1 (June 21, pre-alpha, soft launch):
+	[DONE] yah!
+	
+---------------------------------------------------
+
+VERSION 2 (July 18, alpha1 public):
+
+	Cross-browser compatibility *** - INFO on GDOCS
+
+	Verify conjugator
+	
+	Stroke-only, shadow, etc. options for text
+	Add WordNet and WordNet-Lemmatizer(see Python NLTK)
+	Break into multiple files (one per class?) to be combined by closure-compiler
+	
+	ANDROID ????
+	
+	Implementation of Markov models [DONE]
+	Add LTS engine [DONE]
+	And Syllabifier [DONE]
+	Remove expects/checks [DONE] (and BAD tests) 
+	
+---------------------------------------------------
+	
+VERSION 3 (beta?, tbd):
+
+	Test inside ProcessingIDE
+	RiGoogleSearch?
+	Translate webpage to Chinese (kenny!)
+	Implementation of LTSEngine ***
+	Implementation of remote file loading (jquery?)
+	Re-add RiGrammarEditor func?
+	Integration with Node ? 
+	Font-face loading like Processing
+	Inflector, Sentence-Analyzer, Mutone, Soundex, stop-words (from Python NLTK)
+	
+	Integrated website, RiTa and RiTaJS, RiTaWordnet, (Include RiTaJS.WN inside) and RitaBox2D?
+	
+-----------------------------------------
+	
+Kenny: 
+
+	MAKE a list (or fill in) any/all methods still missing docs (there seem to be many statics in RiText, for example)	- On Progress
+	TODO: Verify there is at least one test for each API method	(if not, make one) - On Progress
+	TODO: Test RiText.forEach() with several different non-graphical cases
+	TODO: Tests (with many cases) for pluralize, singularize, and conjugate (fix conjugate implementation?) 
+	
+	TODO: Make sure all private methods with an _underscore -80% (DH: DONT CHANGE ANY MORE OF THESE)
+
+	TODO: Check Every button/link on website (still some problems, contact, etc) -DONE except GITHUB button
+	
+	TODO: Make sure all RiString methods are included and tested (and listed in the functions test) in RiText ***
+	
+	NEXT: Get all tests working (or adds notes) in RiString and RiText ***
+		for all RiString methods (doX) in RiText, just call: this._rs.doX();	  
+		
+	------------------------DONE-------------------------
+	
+	// ----RiString
+	getPos -> pos - DONE 
+	getPosAt -> posAt - DONE
+	getWordAt -> wordAt - DONE
+	getwordCount -> WordCount - DONE
+	getwords -> Words - DONE
+	contains -> containsWord - DONE
+	
+	UPDATE docs for methods with multiple return options {object | string} -DONE
+	
+	Next: Website completion and staging [DONE]	
+	Generate and clean JS-docs [DONE]
+	
+	JSDOCS: remove _global_ link, make font smaller on index page to minimize the v-scroll -DONE
+	Rerun renderer tests across browser, note any errors - INFO on GDOCS
+		
+	------CHANGE to PUBLIC-------
+	
+	// ----RiText: [text,center,align,removeCharAt,frameCount,defaultMotionType,drawAll] -DONE
+	// ----RiString: match,concat, -DONE
+	// ----RiGrammar: execDisabled, setGrammar -DONE
+	Implementation, Javadocs, Tests (RiLexicon, RiString, RiTa, RiText) [DONE]
+
+--------------------------------------------------------------------------------------------------
+
+Daniel:
+ 
+	Finish build process
+	
+	Post Library on GitHub,Integrate Aptana
+	
+	------------------- methods--------------------
+
+	// ----RiString
+	replaceLast()
+	 
+	// ----RiTa
+	RiTa.getInlinePosTags()
+	
+	// ----RiText
+	RiText.defaultFontSize() [DONE]
+	RiText.defaultVisibility() [DONE]
+	stopBehavior()
+	stopBehaviors()
+
+	--------------------------------------------------------
+
+	RiTaJS examples
+	Pick example for home page
+
+	Test Build/publish script
+	Remove dependency on JQuery ***
+	Add Docs at top of RiTa (FIRST_PERSON...)
+	
+	BUG: mouse-tracking(gestures?)
+	BUG: rotate(),
+	BUG: top alignments in createX in canvas/p5 are not the same
+
+	TEST: removal of behavior(s)
+	TEST: RiGrammar.exec, expandWith
+	TEST: RiText.noLoop(), foreach()
+
+	Implementation (or comment) of RiGrammar.expandWith
+	Implementation (or comment) of RiMarkov.getCompletions
+	
+	Write to Processing guys...
+	
+	Do exports through Google tool
+	Split rita.js into separate files to be combined with closure-compiler ?
+	
+	Figure out _underscores in member variables (consistency)
+	
+	API.index: make each method link to its test?
+	
+	Should similarBySound,similarBySoundAndLetter be RiTa methods (LTS???)
+		or should RiLexicon be private? (no...)
+	
+	-------------------------------------
+	Next items: RiWordnet ***
+	-------------------------------------
+	
+	RIGHT/CENTER alignments [DONE]
+	Fix  return values for xTo methods [DONE] 
+	Copy: timer and random to RiTa [DONE]
+	Implementation of RiText (for P5 and canvas) - DONE
+	Implementation of 1 or more Stemmers - DONE
+	Implementation RiGrammar.exec (DONE)
+	Remove get prefixs from RiTa/RiLexicon ?? [DONE]
+	RiTa.P5_COMPATIBLE: @private [DONE]
+	match() [DONE]
+	concat() [DONE]
+	gettext -> text [DONE]
+	Structure: change __init__ to 'construct' [DONE]
+
+	expects.regexp is broken?? (check test) [DONE]
+	
+		TEST: lib in Processing IDE (not ready)
+
+////////////////////////// OLD NOTES (from questions.txt) ///////////////////////////////////
+	
+THE BIG PICTURE:
+
+-- Namespaces (and structure for private/public/static vars, constants, methods)  
+-- Subclassing from external .js files
+-- File-loading (reduce # of files to load from html?)
+-- Grammars, support loading multiple grammars (by name)
+
+RiText:
+    
+  -- Animations: 
+  	  -- there is a strange bug where the interpolation causes a big jump in values and a flash **
+      -- Need to add delay to animations
+      
+RiGrammar:
+
+  -- We need to be able to load multiple grammars in one sketch
+  
+  -- Would be great to only specify the file name in one place (not sure if we can do this)
+  
+  -- Can we dynamically create a variable (named) from a string passed into the constructor?  
+  
+General:  
+
+  -- What about putting the constants in RiTa, instead of RC? 
+     So Users type RiTa.FOO_BAR (See move-to.js)                  
+               
+  -- Private methods: where should these go? Feels weird to put them at the top
+     level closure, when they apply only to one class...     
+       
+       
+-------------
+
+  -- Where do RiText's go when no position is specified, can we center them in the window?   FIXED (DH)
+  
+  -- Multiple sets of TextBehaviors ?
+  
+  -- fadeIn() seems to be broken ??													FIXED (DH)
+  
+  -- setColor()/fill() is broken on 1 & 2 arguments                 				FIXED (DH)
+  
+  -- motion-types are not passed to move behaviors                 				  	FIXED (DH)
+  
+RiLexicon:
+  -- Won't load  ("rita_dict_json.js:5023SyntaxError: Parse error")					FIXED(DH)
+  
+
+	DOCS TO ADD:
+
+	  /** Specifies person as one of (first, scond or third) */
+	  public static final int FIRST_PERSON = 1;
+	  
+	  /** Specifies person as one of (first, scond or third) */
+	  public static final int SECOND_PERSON = 2;
+	  
+	  /** Specifies person as one of (first, scond or third) */
+	  public static final int THIRD_PERSON = 3;
+	  
+	  /** Specifies tense as one of (past, present or future) */
+	  public static final int PAST_TENSE = 4;
+	  
+	  /** Specifies tense as one of (past, present or future) */
+	  public static final int PRESENT_TENSE = 5;
+	  
+	  /** Specifies tense as one of (past, present or future) */
+	  public static final int FUTURE_TENSE = 6;
+	  
+	  /** Specifies agreement as one of (singular or plural) */
+	  public static final int SINGULAR = 7;  
+	  
+	  /** Specifies agreement as one of (singular or plural) */
+	  public static final int PLURAL = 8;
+
+	CHANGE: RiText.protoype.visible() -> RiText.protoype.isVisible() [DONE]
+	   
+	/* FROM RITA.js file */
+  TODO:
+ 
+  -- remove dependency for 1 function (getMetrics()) on jquery...
+            
+    -- add memoizing of functions: textWidth, textAscent, textDescent, getBoundingBox, etc
+        -- fonts and bounds
+    
+    -- re-add requestAnimationFrame?
+ 
+   RiTa:
+        splitSentences(): Can't use the lib from java for sentence parsing.
+            Implemented a simple regex. What's a better alternative?
+
+    RiText: 
+
+        Make sure that color() takes numbers AND strings (e.g., 'black' or '#ffee23');
+        Add: rotateTo(radians, sec) 
+
+    RiLexicon:
+        Need to better deal with words not found in dictionary (getStresses, getPhonemes, getSyllables)
+        Finish: Get-random-word-by-part-of-speech
+
+    Conjugator:
+        Why are irregulars not accurate? Sleep is returning "sleeped" not "slept"
+            Why is it apparently only reaching two types of rules?
+            
+    Add: RiHTMLParser / Google Search / MsNgramClient
+        fetch()
+        fetchImage()
+        Google search
+
+        Id: rita.js,v 1.146 2012/06/24 07:56:48 dev Exp 
+
+ */
+  
