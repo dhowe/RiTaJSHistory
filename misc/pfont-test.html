@@ -1,0 +1,28 @@
+<script src="../src/processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+void setup()
+{
+  size(200,200);
+  noLoop();
+  textFont(createFont("Batang",32));
+}
+
+void draw()
+{
+  background(255);
+  String t = "P.js";
+  float tw = textWidth(t);
+  console.log("textWidth="+tw);
+  fill(0);
+  line(50, 50, 50+tw, 50);
+  line(50, 50, 50, 50-textAscent());
+
+  text(t, 50, 50);
+  text("tw="+tw, 50, 90);
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas"></canvas>

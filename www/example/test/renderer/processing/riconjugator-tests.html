@@ -1,0 +1,74 @@
+<script src="../../../../lib/processing-1.3.6.js"></script>
+<script src="../../../rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing ===============================
+
+var s1 ="swim";
+var s2 ="need";
+var s3 ="open";
+var s4 ="special";
+var s5 = null;
+var s6 = undefined;
+var s7 = "";
+
+var a1 = ["s","w","u","m",",","b","e","i","n","g",",","b","e","e","n"]; 
+var a2 = ["n","e","e","d","e","d",",","b","e","i","n","g",",","b","e","e","n"];
+var a3 = ["o","p","e","n","e","d",",","b","e","i","n","g",",","b","e","e","n"];
+var a4 = ["s","p","e","c","i","a","l"]; 
+var a5 = []; 
+var a6 = [];
+
+var tests = [s1,s2,s3,s4,s5]; 
+var answers = [a1,a2,a3,a4,a5]; 
+var passed = true;
+
+RiConjugator rc = new RiConjugator(this);
+rc.setNumber("plural");
+rc.setPerson("2nd");
+rc.setTense("past");
+rc.setPassive(true);
+rc.setPerfect(true);
+rc.setProgressive(true);
+var c = rc.conjugate("swim");
+
+println("result="+c);
+
+if (false) {
+
+	
+	OUT: for ( var i = 0; i < tests.length; i++) 
+	{
+		console.log(i+" start");
+		var result = rc.conjugate(tests[i]);
+		console.log("result="+result);
+		if (isNull(result) || result.length != answers[i].length) {
+			console.error("Sentence #"+i+"\nExpected: =" + answers[i] + " but got "+result);
+			passed = false;
+		//	break OUT;
+		}
+	
+		console.log(i+") result="+result);
+		for ( var j = 0; j < answers.length; j++) {
+			
+			if (result[j] != answers[i][j]) {
+				passed = false;
+				console.error("Sentence #"+i+"\nExpected: ["+answers[i]+"]\nBut got: ["+result+"]");
+				break OUT;
+			}
+			console.log(i+" ok");
+		}
+			
+	}
+	console.log(passed ? "TEST OK" : " TEST FAILED");
+
+
+}
+
+
+
+// ============================ End Processing =================================
+function isNull(obj) {
+	return (typeof obj === 'undefined' || obj===null);
+}
+</script>
+<canvas id="mycanvas"></canvas>

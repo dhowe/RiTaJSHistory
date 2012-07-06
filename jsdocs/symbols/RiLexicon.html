@@ -1,0 +1,1392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - RiLexicon</title>
+
+		<style type="text/css">
+			/* default.css */
+body
+{
+	font: 12px "Lucida Grande", Tahoma, Arial, Helvetica, sans-serif;
+	width: 800px;
+}
+
+.header
+{
+	clear: both;
+	background-color: #ccc;
+	padding: 8px;
+}
+
+h1
+{
+	font-size: 150%;
+	font-weight: bold;
+	padding: 0;
+	margin: 1em 0 0 .3em;
+}
+
+hr
+{
+	border: none 0;
+	border-top: 1px solid #7F8FB1;
+	height: 1px;
+}
+
+pre.code
+{
+	display: block;
+	padding: 8px;
+	border: 1px dashed #ccc;
+}
+
+#index
+{
+	margin-top: 24px;
+	float: left;
+	width: 160px;
+	position: absolute;
+	left: 8px;
+	background-color: #F3F3F3;
+	padding: 8px;
+}
+
+#content
+{
+	margin-left: 190px;
+	width: 600px;
+}
+
+.classList
+{
+	list-style-type: none;
+	padding: 0;
+	margin: 0 0 0 8px;
+	font-family: arial, sans-serif;
+	font-size: 1em;
+	overflow: auto;
+}
+
+.classList li
+{
+	padding: 0;
+	margin: 0 0 8px 0;
+}
+
+.summaryTable { width: 100%; }
+
+h1.classTitle
+{
+	font-size:170%;
+	line-height:130%;
+}
+
+h2 { font-size: 110%; }
+caption, div.sectionTitle
+{
+	background-color: #7F8FB1;
+	color: #fff;
+	font-size:130%;
+	text-align: left;
+	padding: 2px 6px 2px 6px;
+	border: 1px #7F8FB1 solid;
+}
+
+div.sectionTitle { margin-bottom: 8px; }
+.summaryTable thead { display: none; }
+
+.summaryTable td
+{
+	vertical-align: top;
+	padding: 4px;
+	border-bottom: 1px #7F8FB1 solid;
+	border-right: 1px #7F8FB1 solid;
+}
+
+/*col#summaryAttributes {}*/
+.summaryTable td.attributes
+{
+	border-left: 1px #7F8FB1 solid;
+	width: 140px;
+	text-align: right;
+}
+
+td.attributes, .fixedFont
+{
+	line-height: 15px;
+	color: #002EBE;
+	font-family: "Courier New",Courier,monospace;
+	font-size: 13px;
+}
+
+.summaryTable td.nameDescription
+{
+	text-align: left;
+	font-size: 13px;
+	line-height: 15px;
+}
+
+.summaryTable td.nameDescription, .description
+{
+	line-height: 15px;
+	padding: 4px;
+	padding-left: 4px;
+}
+
+.summaryTable { margin-bottom: 8px; }
+
+ul.inheritsList
+{
+	list-style: square;
+	margin-left: 20px;
+	padding-left: 0;
+}
+
+.detailList {
+	margin-left: 20px; 
+	line-height: 15px;
+}
+.detailList dt { margin-left: 20px; }
+
+.detailList .heading
+{
+	font-weight: bold;
+	padding-bottom: 6px;
+	margin-left: 0;
+}
+
+.light, td.attributes, .light a:link, .light a:visited
+{
+	color: #777;
+	font-style: italic;
+}
+
+.fineprint
+{
+	text-align: right;
+	font-size: 10px;
+}
+		</style>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+
+<!-- ============================== classes index ============================ -->
+		<div id="index">
+			<!-- begin publish.classesIndex -->
+			<div align="center"><a href="../index.html">Class Index</a></div>
+<!--| <a href="../files.html">File Index</a></div-->
+<hr />
+<h2>Classes</h2>
+<ul class="classList">
+	
+	<li><a href="../symbols/_global_.html">_global_</a></li>
+	
+	<li><a href="../symbols/RiGrammar.html">RiGrammar</a></li>
+	
+	<li><a href="../symbols/RiLexicon.html">RiLexicon</a></li>
+	
+	<li><a href="../symbols/RiMarkov.html">RiMarkov</a></li>
+	
+	<li><a href="../symbols/RiString.html">RiString</a></li>
+	
+	<li><a href="../symbols/RiTa.html">RiTa</a></li>
+	
+	<li><a href="../symbols/RiTaEvent.html">RiTaEvent</a></li>
+	
+	<li><a href="../symbols/RiText.html">RiText</a></li>
+	
+</ul>
+<hr />
+			<!-- end publish.classesIndex -->
+		</div>
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h1 class="classTitle">
+				
+				Class RiLexicon
+			</h1>
+
+<!-- ============================== class summary ========================== -->			
+			<p class="description">
+				
+				
+			
+				Represents the core 'dictionary' (or lexicon) for the RiTa tools. 
+It contains ~35,000 words augmented with phonemic and syllabic data, as well as a list of valid parts-of-speech for each. 
+The lexicon can be extended and/or customized for additional words, usages, or pronunciations.
+
+<p> Additionally the lexicon is equipped with implementations of a variety of matching algorithms 
+(min-edit-distance, soundex, mutone, anagrams, alliteration, rhymes, looks-like, etc.) 
+based on combinations of letters, syllables and phonemes.
+<p>
+Note: For performance, the data for RiLexicon is shared in a single location for ALL created instances (static)
+<p> 
+Note: If you wish to modify or customize the lexicon (e.g., add words, or change pronunciations) 
+you can do so directly, by editing the 'rita_dict.js' file, or programatically, via addWord() and removeWord()
+				
+				
+					<br /><i>Defined in: </i> <a href="../symbols/src/src_rita.js.html">rita.js</a>.
+				
+			</p>
+
+<!-- ============================== constructor summary ==================== -->			
+			
+			<table class="summaryTable" cellspacing="0" summary="A summary of the constructor documented in the class RiLexicon.">
+				<caption>Class Summary</caption>
+				<thead>
+					<tr>
+						<th scope="col">Constructor Attributes</th>
+						<th scope="col">Constructor Name and Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="attributes">&nbsp;</td>
+						<td class="nameDescription" >
+							<div class="fixedFont">
+								<b><a href="../symbols/RiLexicon.html#constructor">RiLexicon</a></b>()
+							</div>
+							<div class="description"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+
+<!-- ============================== properties summary ===================== -->
+			
+
+<!-- ============================== methods summary ======================== -->
+			
+				
+				
+				<table class="summaryTable" cellspacing="0" summary="A summary of the methods documented in the class RiLexicon.">
+					<caption>Method Summary</caption>
+					<thead>
+						<tr>
+							<th scope="col">Method Attributes</th>
+							<th scope="col">Method Name and Description</th>
+						</tr>
+					</thead>
+					<tbody>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#addWord">addWord</a></b>(word, pronunciationData, posData)
+								</div>
+								<div class="description">Adds a word to the current lexicon (not permanent)</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">RiLexicon.<b><a href="../symbols/RiLexicon.html#.clear">clear</a></b>()
+								</div>
+								<div class="description">Clears the whole lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#constructs">constructs</a></b>()
+								</div>
+								<div class="description">Constructs an instance of the RiLexicon class.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#containsWord">containsWord</a></b>(word)
+								</div>
+								<div class="description">Returns true if the word exists in the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getAlliterations">getAlliterations</a></b>(word)
+								</div>
+								<div class="description">Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getLexicalData">getLexicalData</a></b>()
+								</div>
+								<div class="description">Returns the raw dictionary data used to create the default lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getRandomWord">getRandomWord</a></b>(pos, syllableCount)
+								</div>
+								<div class="description">Returns a random word from the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getRhymes">getRhymes</a></b>(word)
+								</div>
+								<div class="description">Two words rhyme if their final stressed vowel and all following phonemes are identical.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getWords">getWords</a></b>(regex, randomize)
+								</div>
+								<div class="description">Returns the array of all words in the lexicon or those matching a specific regex.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#isAlliteration">isAlliteration</a></b>(word1, word2)
+								</div>
+								<div class="description">Returns true if the first stressed consonant of the two words match, else false.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#isRhyme">isRhyme</a></b>(word1, word2)
+								</div>
+								<div class="description">Returns true if the two words rhyme, that is, if their final stressed phoneme 
+and all following phonemes are identical, else false.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#lookupRaw">lookupRaw</a></b>(word)
+								</div>
+								<div class="description">Returns the raw dictionary entry for the given word (isn't necessary in typical usage)</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#removeWord">removeWord</a></b>(word)
+								</div>
+								<div class="description">Removes a word from the current lexicon (not permanent)</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#setLexicalData">setLexicalData</a></b>(dictionaryDataObject)
+								</div>
+								<div class="description">Allows one to set the raw dictionary data used to create the default lexicon.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#similarByLetter">similarByLetter</a></b>(word, minAllowedDist, preserveLength)
+								</div>
+								<div class="description">Compares the characters of the input string  (using a version of the min-edit distance algorithm)
+to each word in the lexicon, returning the set of closest matches.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#similarBySound">similarBySound</a></b>(input, minEditDist)
+								</div>
+								<div class="description">Compares the phonemes of the input string 
+(using a version of the min-edit distance algorithm)
+to each word in the lexicon, returning the set of closest matches.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#similarBySoundAndLetter">similarBySoundAndLetter</a></b>(word, minEditDist)
+								</div>
+								<div class="description">First calls similarBySound(), then filters the result set by the algorithm 
+used in similarByLetter(); (useful when similarBySound() returns too large a result set)</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#substrings">substrings</a></b>(word, minLength)
+								</div>
+								<div class="description">Returns all valid substrings of the input word in the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#superstrings">superstrings</a></b>(word)
+								</div>
+								<div class="description">Returns all valid superstrings of the input word in the lexicon</div>
+							</td>
+						</tr>
+					
+					</tbody>
+				</table>
+				
+				
+				
+			
+<!-- ============================== events summary ======================== -->
+			
+
+<!-- ============================== constructor details ==================== -->		
+			
+			<div class="details"><a name="constructor"> </a>
+				<div class="sectionTitle">
+					Class Detail
+				</div>
+				
+				<div class="fixedFont">
+						<b>RiLexicon</b>()
+				</div>
+				
+				<div class="description">
+					
+					
+				</div>
+				
+				
+				
+				<pre class="code">        lex = new RiLexicon(this);
+        similars = lex.similarBySound("cat");
+        rhymes = lex.getSimpleRhymes("cat");
+        // etc.</pre>
+				
+				
+				
+				
+					
+					
+					
+					
+					
+					
+					
+
+			</div>
+			
+
+<!-- ============================== field details ========================== -->		
+			
+
+<!-- ============================== method details ========================= -->		
+			
+				<div class="sectionTitle">
+					Method Detail
+				</div>
+				
+					<a name="addWord"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{object}</span>
+					<b>addWord</b>(word, pronunciationData, posData)
+					
+					</div>
+					<div class="description">
+						Adds a word to the current lexicon (not permanent)
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">lexicon.addWord('abandon','ax-b ae1-n-d ax-n','vb nn vbp');</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>pronunciationData</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>posData</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> this RiLexicon</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name=".clear"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">RiLexicon.</span><b>clear</b>()
+					
+					</div>
+					<div class="description">
+						Clears the whole lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="constructs"> </a>
+					<div class="fixedFont">
+					
+					
+					<b>constructs</b>()
+					
+					</div>
+					<div class="description">
+						Constructs an instance of the RiLexicon class.
+<p> 
+Note: For performance, the data for all RiLexicon instances
+is shared (there is only 1 copy)
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
+					<a name="containsWord"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>containsWord</b>(word)
+					
+					</div>
+					<div class="description">
+						Returns true if the word exists in the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> </dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getAlliterations"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>getAlliterations</b>(word)
+					
+					</div>
+					<div class="description">
+						Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd>input</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> strings of alliterations</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getLexicalData"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{object}</span>
+					<b>getLexicalData</b>()
+					
+					</div>
+					<div class="description">
+						Returns the raw dictionary data used to create the default lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> dictionary mapping words to their pronunciation/pos data</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getRandomWord"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{string}</span>
+					<b>getRandomWord</b>(pos, syllableCount)
+					
+					</div>
+					<div class="description">
+						Returns a random word from the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>pos</b>
+									
+								</dt>
+								<dd>(optional)</dd>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>syllableCount</b>
+									
+								</dt>
+								<dd>(optional)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> random word</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getRhymes"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>getRhymes</b>(word)
+					
+					</div>
+					<div class="description">
+						Two words rhyme if their final stressed vowel and all following phonemes are identical.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> strings of the rhymes for a given word, or empty array if none are found</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="getWords"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>getWords</b>(regex, randomize)
+					
+					</div>
+					<div class="description">
+						Returns the array of all words in the lexicon or those matching a specific regex. If specified,
+the order of the result array is randomized before return.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{regex}</span> <b>regex</b>
+									
+								</dt>
+								<dd>(string or object) pattern to match (optional)</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>randomize</b>
+									
+								</dt>
+								<dd>randomizes the order (default=false)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> words in the RiLexicon</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="isAlliteration"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>isAlliteration</b>(word1, word2)
+					
+					</div>
+					<div class="description">
+						Returns true if the first stressed consonant of the two words match, else false.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word2</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> true if word1.equals(word2) and false if either (or both) are null;</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="isRhyme"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{boolean}</span>
+					<b>isRhyme</b>(word1, word2)
+					
+					</div>
+					<div class="description">
+						Returns true if the two words rhyme, that is, if their final stressed phoneme 
+and all following phonemes are identical, else false.
+<p>
+Note: returns false if word1.equals(word2) or if either (or both) are null;
+<p>
+Note: at present doesn't use letter-to-sound engine if either word is not found in the lexicon, 
+but instead just returns false.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word1</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word2</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{boolean}</span> true if the two words rhyme, else false.</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="lookupRaw"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>lookupRaw</b>(word)
+					
+					</div>
+					<div class="description">
+						Returns the raw dictionary entry for the given word (isn't necessary in typical usage)
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> a 2-element array of strings, 
+the first is the stress and syllable data, 
+the 2nd is the pos data
+or null if not found</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="removeWord"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{object}</span>
+					<b>removeWord</b>(word)
+					
+					</div>
+					<div class="description">
+						Removes a word from the current lexicon (not permanent)
+						
+						
+					</div>
+					
+					
+					
+					<pre class="code">removeWord('abandon');</pre>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> this RiLexicon</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="setLexicalData"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{object}</span>
+					<b>setLexicalData</b>(dictionaryDataObject)
+					
+					</div>
+					<div class="description">
+						Allows one to set the raw dictionary data used to create the default lexicon.
+See RiLexicon.addWord() for data format
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>dictionaryDataObject</b>
+									
+								</dt>
+								<dd>mapping words to their pronunciation/pos data</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> this RiLexicon</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="similarByLetter"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>similarByLetter</b>(word, minAllowedDist, preserveLength)
+					
+					</div>
+					<div class="description">
+						Compares the characters of the input string  (using a version of the min-edit distance algorithm)
+to each word in the lexicon, returning the set of closest matches.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>minAllowedDist</b>
+									
+								</dt>
+								<dd>minimum edit distance for matches (optional, default=1)</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>preserveLength</b>
+									
+								</dt>
+								<dd>whether to return only words that match the length of the input word (optional, default=true)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> matching words</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="similarBySound"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>similarBySound</b>(input, minEditDist)
+					
+					</div>
+					<div class="description">
+						Compares the phonemes of the input string 
+(using a version of the min-edit distance algorithm)
+to each word in the lexicon, returning the set of closest matches.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>input</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>minEditDist</b>
+									
+								</dt>
+								<dd>(optional) minimum edit distance for matches</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> matching words</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="similarBySoundAndLetter"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>similarBySoundAndLetter</b>(word, minEditDist)
+					
+					</div>
+					<div class="description">
+						First calls similarBySound(), then filters the result set by the algorithm 
+used in similarByLetter(); (useful when similarBySound() returns too large a result set)
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>minEditDist</b>
+									
+								</dt>
+								<dd>(optional) minimum edit distance for both matches</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> matching words</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="substrings"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>substrings</b>(word, minLength)
+					
+					</div>
+					<div class="description">
+						Returns all valid substrings of the input word in the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>minLength</b>
+									
+								</dt>
+								<dd>(optional, default=4) minimum length of return word</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> matching words</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="superstrings"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>superstrings</b>(word)
+					
+					</div>
+					<div class="description">
+						Returns all valid superstrings of the input word in the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd></dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> matching words</dd>
+							
+							</dl>
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= -->		
+			
+			
+			<hr />
+		</div>
+
+		
+<!-- ============================== footer ================================= -->
+		<div class="fineprint" style="clear:both">
+			
+			Documentation generated by <a href="http://code.google.com/p/jsdoc-toolkit/" target="_blank">JsDoc Toolkit</a> 2.4.0 on Wed Jun 20 2012 19:10:09 GMT+0800 (HKT)
+		</div>
+	</body>
+</html>

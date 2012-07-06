@@ -1,0 +1,68 @@
+<html>
+	<head>
+	
+	<script type="text/javascript">
+		var testDir = ".";
+		var tests = [
+		    new Test("simple-ritext.html"),
+			new Test("bounding-box.html"),
+		 	new Test("colors.html", 1), 
+		 	new Test("create-letters.html"),
+		 	new Test("create-lines-chars.html"),
+		 	new Test("create-lines-rect.html"),
+		 	new Test("create-words.html"),
+		 	new Test("default-centering.html"),
+		 	new Test("default-font.html"),
+		 	new Test("delete-ritexts.html"),
+		 	new Test("fadeout.html",1),
+//		 	new Test("grammar-haiku.html"), 
+//		 	new Test("grammar-strings.html"), 
+//          new Test("grammar-expandFrom.html"), 
+//		 	new Test("grammar-expandWith.html", 1),
+//		 	new Test("grammar-multi.html", 1), 
+		 	new Test("interpolator.html",1),
+		 	new Test("interpolator-multi.html",1),
+		 	new Test("move-to.html",1),
+		 	new Test("pixel-x-positions.html"),
+		 	//new Test("riconjugator-tests.html",1),
+		 	new Test("rita-events.html",1),
+		 	//new Test("split-sentences.html",1),
+		 	new Test("text-font.html"), 
+		 	new Test("text-width.html"), 
+		 	new Test("words-letters-lines.html"),
+		];
+	
+		function Test(url, fail) {
+			this.url = url;
+			this.fail = typeof fail !== 'undefined' ? fail : false;
+		}
+    
+	</script>
+		
+	<style type="text/css">
+		a {color: #006600; }
+		a.fail {color: #dd3333;}
+		a:hover{ color : black;}
+		a:link{ text-decoration: none; }
+	</style> 
+   
+   	</head>
+	<body>
+	
+	 <br><h2>RiTaJS (Processing Renderer)</h2>
+	 
+	 <script type="text/javascript">
+	    
+	 var body = "";
+	    for ( var i = 0; i < tests.length; i++) {
+	      body += "<a ";
+	      if (tests[i].fail) body += "class=fail ";
+	      body += "href=\""+testDir+"/"+tests[i].url+"\">["+tests[i].url+"]</a><br>";
+	    }
+	    document.writeln(body);
+	    
+	 </script>
+	
+	</body>
+
+</html>

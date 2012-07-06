@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<!-- $Log: MinEdit-tests.html,v $
+<!-- Revision 1.1  2012/06/19 20:33:12  dev
+<!-- *** empty log message ***
+<!--
+<!-- Revision 1.2  2012/06/04 11:19:50  dev
+<!-- *** empty log message ***
+<!--
+<!-- Revision 1.1  2012/06/04 08:39:04  dev
+<!-- *** empty log message ***
+<!-- -->
+
+    <head>
+        <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen"/>
+        <script type="text/javascript" src="../../lib/jquery.js"></script>
+        <script type="text/javascript" src="../../lib/qunit-git.js"></script>
+        <script type="text/javascript" src="../rita.js"></script>
+        <script type="text/javascript" src="../med.js"></script>
+        <script>
+        
+            $(document).ready(function () {
+                
+                // TODO: add test for existence of all functions in api 
+                
+                test("MinEditDist()", function () {
+                    ok(typeof MinEditDist.computeRaw==='function');
+                });
+                
+                test("MinEditDist.computeRaw()", function () {
+                    
+                    var a = '';
+                    var b = '';
+                    equal(MinEditDist.computeRaw(a,b),0);
+                    
+                    var a = 'dog';
+                    var b = 'cat';
+                    equal(MinEditDist.computeRaw(a,b),3);
+             
+                    var a = 'dat';
+                    var b = 'cat';
+                    equal(MinEditDist.computeRaw(a,b),1);
+   
+                    var a = 'c';
+                    var b = 'cat';
+                    equal(MinEditDist.computeRaw(a,b),2);
+
+                    var a = 'cart';
+                    var b = 'cat';
+                    equal(MinEditDist.computeRaw(a,b),1);
+                    
+   
+                });
+                
+               test("MinEditDist.computeAdjusted()", function () {
+                    
+                    var a = 'dogness';
+                    var b = 'cat';
+                    equal(MinEditDist.computeAdjusted(a,b),0.7);
+             
+                    var a = 'daxt';
+                    var b = 'cat';
+                    equal(MinEditDist.computeAdjusted(a,b),0.2857142857142857);
+   
+                    var a = 'casdf';
+                    var b = 'casdfat';
+                    equal(MinEditDist.computeAdjusted(a,b),0.16666666666666666);
+
+                    var a = 'caadsfrt';
+                    var b = 'c';
+                    equal(MinEditDist.computeAdjusted(a,b),0.7777777777777778 );
+                    
+                    var a = '';
+                    var b = '';
+                    equal(MinEditDist.computeAdjusted(a,b),0);
+                    
+                }); 
+               
+               test("MinEditDist.computeRaw([])", function () {
+                   
+                   var a = 'dogness'.split('');
+                   var b = 'cat'.split('');
+                   equal(MinEditDist.computeRaw(a,b),7);
+            
+                   var a = 'daxt'.split('');
+                   var b = 'cat'.split('');
+                   equal(MinEditDist.computeRaw(a,b),2);
+  
+                   var a = 'casdf'.split('');
+                   var b = 'casdfat'.split('');
+                   equal(MinEditDist.computeRaw(a,b),2);
+
+                   var a = 'caadsfrt'.split('');
+                   var b = 'c'.split('');
+                   equal(MinEditDist.computeRaw(a,b),7);
+                   
+                   var a = ''.split('');
+                   var b = ''.split('');
+                   equal(MinEditDist.computeRaw(a,b),0);
+                   
+               });
+               
+              test("MinEditDist.computeAdjusted([])", function () {
+                   
+                  var a = 'dogness'.split('');
+                  var b = 'cat'.split('');
+                  equal(MinEditDist.computeAdjusted(a,b),0.7);
+           
+                  var a = 'daxt'.split('');
+                  var b = 'cat'.split('');
+                  equal(MinEditDist.computeAdjusted(a,b),0.2857142857142857);
+ 
+                  var a = 'casdf'.split('');
+                  var b = 'casdfat'.split('');
+                  equal(MinEditDist.computeAdjusted(a,b), 0.16666666666666666);
+
+                  var a = 'caadsfrt'.split('');
+                  var b = 'c'.split('');
+                  equal(MinEditDist.computeAdjusted(a,b),0.7777777777777778);
+                  
+                  var a = ''.split('');
+                  var b = ''.split('');
+                  equal(MinEditDist.computeAdjusted(a,b),0);
+                   
+               }); 
+            });
+
+        </script>
+    </head>
+    
+    <body>
+        <h1 id="qunit-header">MinEditDist tests</h1>
+        <h2 id="qunit-banner"></h2>
+        <div id="qunit-testrunner-toolbar"></div>
+        <h2 id="qunit-userAgent"></h2>
+        <ol id="qunit-tests"></ol>
+        <div id="qunit-fixture">test markup, will be hidden</div>
+        <p>&nbsp; &nbsp;
+            <a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+    </body>
+
+</html>

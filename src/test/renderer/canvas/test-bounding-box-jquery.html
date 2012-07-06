@@ -1,0 +1,81 @@
+<html>
+<body>
+<canvas id="canvas" width=600 height=400 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script>
+
+window.onload = function(){
+
+    var ctx = document.getElementsByTagName("canvas")[0].getContext("2d")
+
+    var font = 'normal 36px Times',  message = 'Bounding', x = 20, y = 60;
+
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'alphabetic'; // important!
+    ctx.font = font;
+    ctx.fillText(message, x, y);
+
+    ctx.strokeStyle = 'black';
+    var bb = getBoundingBox(ctx, message, font);
+    console.log(x+bb.x, y+bb.y, bb.width, bb.height);
+    ctx.strokeRect(x+bb.x, y+bb.y, bb.width, bb.height);
+
+    var w = ctx.measureText(message).width;
+    var h = getTextHeight(font, message);
+    testLine(ctx, x, y, w, 'red');
+    testLine(ctx, x, y + h.descent, w, 'gray'); 
+    testLine(ctx, x, y - ((y+h.ascent)-(y + h.descent)), w, 'yellow');  
+};
+
+var getBoundingBox = function(ctx,str,font,metrics) {
+    var w = ctx.measureText(str).width;
+    metrics = metrics || getTextHeight(font, str);
+    return { x: 0, y: metrics.descent, width: w, height: -metrics.ascent };
+};
+
+var getTextHeight = function(font, str) {
+
+    var text = $('<span style="font: ' + font + '">'+str+'</span>');
+    var block = $('<div style="display: inline-block; width: 1px; height: 0px;"></div>');
+
+    var div = $('<div></div>');
+    div.append(text, block);
+
+    var body = $('body');
+    body.append(div);
+
+    try {
+
+        var result = {};
+
+        block.css({ verticalAlign: 'baseline' });
+        result.ascent = block.offset().top - text.offset().top;
+
+        block.css({ verticalAlign: 'bottom' });
+        var height = block.offset().top - text.offset().top;
+
+        result.descent = (height - result.ascent) - 1;
+
+    } finally {
+        div.remove();
+    }
+
+    console.log(result);
+    return result;
+};
+
+var testLine = function(ctx, x, y, len, style) {
+    ctx.strokeStyle = style; 
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + len, y);
+    ctx.closePath();
+    ctx.stroke();
+};
+  
+</script>
+</body>
+</html>
+
+

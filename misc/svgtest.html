@@ -1,0 +1,23 @@
+
+<script src="../src/processing.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+PShape bot;
+
+void setup() {
+  size(640, 360);
+  smooth();
+  // The file "bot1.svg" must be in the data folder
+  bot = loadShape("../src/data/bot1.svg");
+  noLoop(); 
+} 
+
+void draw(){
+  background(102);
+  shape(bot, 110, 90, 100, 100);  // Draw at coordinate (10, 10) at size 100 x 100
+  shape(bot, 280, 40);            // Draw at coordinate (70, 60) at the default size
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas"></canvas>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../lib/jquery.js"></script>
+
+    <script>
+
+      var tests = [ 'LibraryStructure-tests.html'];//, 'RiString-Tests.html' ];
+      
+      $(document).ready(function(){
+          
+          for ( var i = 0; i < tests.length; i++) {
+              document.location.href = tests[i]+"?nextPage=RiString-Tests.html";
+          }
+          
+      });
+      
+      QUnit.done = function (result) {  
+          //alert(getParameterByName("runAll"));
+          //document.location.href="http://google.com";
+       }
+      
+      function getParameterByName(name)
+      {
+        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+        var regexS = "[\\?&]" + name + "=([^&#]*)";
+        var regex = new RegExp(regexS);
+        var results = regex.exec(window.location.search);
+        if(results == null)
+          return "";
+        else
+          return decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+      
+    </script>
+
+  </head>
+  <body>
+    <h1 id="qunit-header">Run-All-Tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+    <p>&nbsp; &nbsp;<a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a><br>
+    We should be able to run all tests at once in /src/tests/ by creating<br>
+    a function that iterates over all the tests, creates an iframe with the<br>
+    src = the link's href, and watches that iframe for an event. That event<br>
+    should be fired on QUnit.done - so each page needs to include a new file <br>
+    which will fire this event.<br>
+  </body>
+</html>
