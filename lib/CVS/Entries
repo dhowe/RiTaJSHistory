@@ -1,8 +1,13 @@
 /.cvsignore/1.1/Mon Apr 23 23:48:38 2012//
+<<<<<<< HEAD
 /activation.jar/1.1/Mon Jul 30 06:22:58 2012/-kb/
 /jquery.js/1.2/Mon May 28 14:33:40 2012//
 D/jsdoc-toolkit////
 /mail.jar/1.1/Mon Jul 30 06:22:58 2012/-kb/
+=======
+/jquery.js/1.2/Mon May 28 14:33:40 2012//
+D/jsdoc-toolkit////
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 /processing-1.3.6.js/1.2/Fri May 18 12:51:02 2012//
 /qunit-git.css/1.1/Sat Apr 14 13:25:05 2012//
 /qunit-git.js/1.1/Sat Apr 14 13:25:03 2012//

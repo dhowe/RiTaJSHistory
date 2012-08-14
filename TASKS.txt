@@ -5,6 +5,7 @@ VERSION 1 (June 21, pre-alpha, soft launch):
 	
 ---------------------------------------------------
 
+<<<<<<< HEAD
 VERSION 2 (Sept1, alpha-public):
 
 	GIThub ***
@@ -20,16 +21,37 @@ VERSION 2 (Sept1, alpha-public):
 	Add LTS engine [DONE]
 	And Syllabifier [DONE]
 	Remove expects/checks [DONE]
+=======
+VERSION 2 (July 18, alpha1 public):
+
+	Cross-browser compatibility *** - INFO on GDOCS
+
+	Verify conjugator
+	
+	Stroke-only, shadow, etc. options for text
+	Add WordNet and WordNet-Lemmatizer(see Python NLTK)
+	Break into multiple files (one per class?) to be combined by closure-compiler
+	
+	ANDROID ????
+	
+	Implementation of Markov models [DONE]
+	Add LTS engine [DONE]
+	And Syllabifier [DONE]
+	Remove expects/checks [DONE] (and BAD tests) 
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	
 ---------------------------------------------------
 	
 VERSION 3 (beta?, tbd):
 
+<<<<<<< HEAD
 	ANDROID ????
 	Break into multiple files (one per class?)
 	Stroke-only, shadow, etc. options for text
 	Add WordNet and WordNet-Lemmatizer(see Python NLTK)
 	 
+=======
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	Test inside ProcessingIDE
 	RiGoogleSearch?
 	Translate webpage to Chinese (kenny!)
@@ -46,6 +68,7 @@ VERSION 3 (beta?, tbd):
 	
 Kenny: 
 
+<<<<<<< HEAD
 	------------------------PRIORITY-----------------------
 	
 	
@@ -73,6 +96,21 @@ Kenny:
 	DONE : Get all tests working (or adds notes) in RiString and RiText ***	
 	DONE : Check Every button/link on website (still some problems, contact, etc) 
 	-80% (DH: DONT CHANGE ANY MORE OF THESE): Make sure all private methods with an _underscore 
+=======
+	MAKE a list (or fill in) any/all methods still missing docs (there seem to be many statics in RiText, for example)	- On Progress
+	TODO: Verify there is at least one test for each API method	(if not, make one) - On Progress
+	TODO: Test RiText.forEach() with several different non-graphical cases
+	TODO: Tests (with many cases) for pluralize, singularize, and conjugate (fix conjugate implementation?) 
+	
+	TODO: Make sure all private methods with an _underscore -80% (DH: DONT CHANGE ANY MORE OF THESE)
+
+	TODO: Check Every button/link on website (still some problems, contact, etc) -DONE except GITHUB button
+	
+	TODO: Make sure all RiString methods are included and tested (and listed in the functions test) in RiText ***
+	
+	NEXT: Get all tests working (or adds notes) in RiString and RiText ***
+		for all RiString methods (doX) in RiText, just call: this._rs.doX();	  
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 		
 	------------------------DONE-------------------------
 	
@@ -97,7 +135,10 @@ Kenny:
 	// ----RiText: [text,center,align,removeCharAt,frameCount,defaultMotionType,drawAll] -DONE
 	// ----RiString: match,concat, -DONE
 	// ----RiGrammar: execDisabled, setGrammar -DONE
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	Implementation, Javadocs, Tests (RiLexicon, RiString, RiTa, RiText) [DONE]
 
 --------------------------------------------------------------------------------------------------
@@ -106,6 +147,7 @@ Daniel:
  
 	Finish build process
 	
+<<<<<<< HEAD
 	Post Library on GitHub
 	Switch over to GIT
 	Break into multiple files
@@ -113,6 +155,9 @@ Daniel:
 	Start using an issue-tracker
 	
 	Continuous Integration: put tests on cron 
+=======
+	Post Library on GitHub,Integrate Aptana
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	
 	------------------- methods--------------------
 
@@ -120,7 +165,11 @@ Daniel:
 	replaceLast()
 	 
 	// ----RiTa
+<<<<<<< HEAD
 	RiTa.getInlinePosTags() [DONE]
+=======
+	RiTa.getInlinePosTags()
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	
 	// ----RiText
 	RiText.defaultFontSize() [DONE]
@@ -155,8 +204,11 @@ Daniel:
 	
 	Figure out _underscores in member variables (consistency)
 	
+<<<<<<< HEAD
 	Figure out how to automate a single VERSION 
 	
+=======
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	API.index: make each method link to its test?
 	
 	Should similarBySound,similarBySoundAndLetter be RiTa methods (LTS???)
