@@ -1,0 +1,76 @@
+<canvas id="canvas" style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+<script>
+
+// TODO: MOUSE-HANDLING 
+
+window.onload = setup;
+//window.onmouseup   = mouseReleased;
+//window.onmousedown = mousePressed;
+//window.onmousemove = mouseMoved;
+
+// *** SLUGGISH  ***
+
+// TODO: implement non-event based mouse-tracking?
+
+var mx=-1, my=-1, xOff, yOff, mDown, current, txt = "A huge lizard";
+
+function setup() {
+    
+    RiText.size(400, 400);
+    RiText.defaults.boundingBoxFill = { r:100,g:0,b:0,a:64 };
+    RiText.defaultFont({ name:"Georgia", size:16, leading:20 });
+    RiText.createWords(txt, 20, 20, 360, 360);
+    RiText.loop();
+}
+
+function draw() {
+
+    RiText.background();
+    var prt = RiText.picked(mx,my);
+    for ( var i = 0; i < RiText.instances.length; i++) {
+        var rt = RiText.instances[i];
+        rt.showBoundingBox(prt[0] == rt);
+        rt.draw();
+    }
+}
+//
+//function mousePressed(e) {
+//    
+//    mDown = true;
+//    var mp = RiText.mouse(e), mx = mp.x, my = mp.y;
+//    var picks = RiText.picked(mx, my);
+//    
+//    if (picks[0]) {
+//        current = picks[0];
+//        console.log("picked: "+current);
+//        current = current.showBoundingBox(true);
+//        xOff = mx - current.x
+//        yOff = my - current.y;
+//    }
+//    else {
+//        
+//        for ( var i = 0; i < RiText.instances.length; i++) {
+//            RiText.instances[i].showBoundingBox(false);
+//        }
+//    }
+// 
+//}
+//
+//function mouseReleased(e) {
+//    mDown = false;
+//    current = null;
+//}
+//
+//function mouseMoved(e) {
+//    
+//    var mp = RiText.mouse(e), mx = mp.x, my = mp.y;
+//
+//    if (mDown && current) {
+//        current.x = mx - xOff;
+//        current.y = my - yOff;
+//    }   
+//}
+
+</script>

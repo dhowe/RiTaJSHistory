@@ -1,0 +1,13 @@
+/.cvsignore/1.2/Mon Jul 30 05:40:13 2012//
+/make-docs.sh/1.6/Sun Jul 29 21:01:48 2012//
+/make-lib.sh/1.4/Sun Jul 29 21:00:11 2012//
+/make-www.sh/1.1/Wed Jun 20 14:19:12 2012//
+/minimize.sh/1.6/Fri Jul 20 21:33:16 2012//
+/phantomjs/1.1/Sun Jul 29 20:18:19 2012/-kb/
+/pub-js.sh/1.1/Wed Jun 20 13:12:30 2012//
+/pub-www.sh/1.3/Wed Jun 20 14:25:33 2012//
+/run-all-tests.pl/1.5/Fri Aug 10 18:01:32 2012//
+/run-all-tests.xml/1.5/Fri Aug 10 18:08:51 2012//
+/run-qunit.js/1.1/Sun Jul 29 20:16:25 2012//
+/send-mail.xml/1.4/Mon Jul 30 06:31:06 2012//
+/testdict.min.js/1.1/Wed Jun 20 11:44:10 2012//

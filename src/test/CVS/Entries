@@ -1,0 +1,18 @@
+/.cvsignore/1.1/Mon Apr 16 13:36:28 2012//
+/KnownIssues-tests.html/1.2/Sun Aug 12 02:51:07 2012//
+/LibraryStructure-tests.html/1.23/Sun Aug 12 00:05:30 2012//
+/RiGrammar-tests.html/1.17/Sun Aug 12 00:05:42 2012//
+/RiLexicon-tests.html/1.39/Sun Aug 12 00:05:54 2012//
+/RiMarkov-tests.html/1.15/Sun Aug 12 00:43:32 2012//
+/RiString-tests.html/1.61/Sun Aug 12 00:43:32 2012//
+/RiTa-tests.html/1.71/Sun Aug 12 02:51:07 2012//
+/RiTaEvent-tests.html/1.7/Sun Aug 12 00:43:32 2012//
+/RiText-tests.html/1.16/Sun Aug 12 00:07:35 2012//
+/RiTextStructure-Canvas.html/1.4/Sun Aug 12 00:06:38 2012//
+/RiTextStructure-P5.html/1.2/Sun Aug 12 00:06:53 2012//
+D/core////
+D/examples////
+D/graphic////
+D/imgs////
+D/renderer////
+/rita-test.css/1.1/Tue Apr 17 10:18:37 2012//

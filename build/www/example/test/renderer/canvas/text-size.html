@@ -1,0 +1,26 @@
+<canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+<script>
+
+var rt;
+
+// this was changed somehow, revert to old test (see p5 version)...
+
+function setup()
+{
+  rt = new RiText("This is not the Text");
+}
+
+function draw()
+{
+  background(255);
+  
+  rt.draw();
+
+  if (++rt.y == height())  
+      rt.y = 0;
+}
+
+</script>
+

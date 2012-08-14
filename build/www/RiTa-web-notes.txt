@@ -1,0 +1,55 @@
+RiTa-website notes:
+----------------------
+
+** change page title: just 'the RiTa toolkit' (add author to 'meta' section **)DONE
+
+**change text to:DONE
+Rita is easy-to-use toolkit designed to facilitate experiments in natural language and generative literature. It is currently available in 2 'flavors': Javascript (with rendering via the HTML5 Canvas or ProcessingJS) and Java (with rendering via Processing). Some of the optional packages available include RiTaWordNet (integrating with the WordNet ontological database) and RiTaBox (integrating with the Box2D Physics library). All RiTa tools are free and open-source (licensed under the XX license). Features include:
+
+**make text column a bit narrower: DONE
+
+** change bullet points to:  DONE
+--Text-generation via Context-Free Grammars and Markov-chains
+--Analysis of Syllables, Phonemes, Stress, Part-of-Speech, etc.
+--Support for verb conjugation, pluralization, and stemming
+--A user-customizable Lexicon with letter-to-sound phoneme generation
+--A standard set of 'easing' effects for animation & textual effects
+--Real-time unigram, bigram & weighted-bigram measures *
+--Integration with the Processing/JS rendering engine
+
+
+** Change font in header: "a software toolkit for generative literature" DONE
+make less squat/fat
+
+Change 'Ackowledgments' to 'Acknowledgments': ** DONE
+
+Change names under **Acknowledgments to: DONE
+Kenny Wong | John Cayley
+Braxon Soderman | Ian Hatcher
+Matthew Stone | Ken Perlin
+Mary Choueiter | Mini Ham
+
+** Make mouse-over menus a bit LESS transparent 
+
+
+----------------------
+
+Move everything up (to avoid long vertical scroll) - DONE (Combine Download and Installation as One Page)
+Remove 'Tested', move to individual library pages -DONE (removed for now)
+Add 'Acknowledgments' under Meta  -DONE (and added credit: Oliver Steele(JWordNet) under download of RiTa.Wordnet)
+Make the font-leading (vertical spacing) smaller throughout  -DONE
+	-- especially on the gallery page)   -DONE
+Remove vertical bars on each side of 'Gallery'  -DONE
+Home button for Logo - DONE
+
+
+RESOURCE TO ADD:
+----------------------
+
+Reference Page for rita.wordnet
+Reference Page for rita.js
+Reference Page for rita
+Examples for rita.js
+Revise on text in Meta, Introduction, Download 
+
+

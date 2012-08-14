@@ -1,0 +1,39 @@
+<script src="../../../../lib/processing-1.3.6.js"></script>
+<script src="../../../rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+/*
+ * @desc Using RiTa timers to generate callbacks 
+ */
+
+RiText rt;
+int count = 0; // utf-8 chars too
+//String[] txt = {"GOD", "DÖG"}; // broken for now
+String[] txt = {"GOD", "DOG"}; // 
+
+void setup() {  
+    
+  size(200,100);
+  rt = new RiText(txt[0], 10, 80);
+  rt.font("Courier", 100);
+  
+   // set timer to call onRiTaEvent ever half  sec.
+  RiText.timer(.5f);
+}  
+
+void onRiTaEvent(RiTaEvent re) {
+    
+  rt.setText(count++%2==0 ? txt[1]:txt[0]);
+  background(221,221,204);
+  rt.draw();
+}
+
+
+
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
