@@ -1,7 +1,11 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
+<<<<<<< HEAD
 <!-- $Id: RiString-tests.html,v 1.59 2012/07/29 20:46:48 dev Exp $ -->
+=======
+<!-- $Id: RiString-tests.html,v 1.50 2012/07/01 00:28:54 dev Exp $ -->
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
     <head>
         <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen"/>
@@ -18,7 +22,12 @@
 							"endsWith", 
 							"equals", 
 							"equalsIgnoreCase", 
+<<<<<<< HEAD
 							//"get",
+=======
+							"get",
+							"getWords",
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 							"indexOf", 
 							"insertWordAt", 
 							"lastIndexOf", 
@@ -44,7 +53,10 @@
 							"trim", 
 							"wordAt", 
 							"wordCount",  
+<<<<<<< HEAD
 							"words",
+=======
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                          ];
         
             $(document).ready(function () {
@@ -141,12 +153,43 @@
                         lex1 = RiLexicon._getInstance()._getRawPhones(word);
                         phones = lex1.replace(/ /g,'-');
                         lex2 = RiString("").syllabify(phones);
+<<<<<<< HEAD
                         //console.log('Lex: '+lex1+' Lts: '+lex2);
                         equal(lex1, lex2);
                     }
                 });
 				
 				test("RiString()", function () {
+=======
+                        console.log('Lex: '+lex1);
+                        console.log('Lts: '+lex2);
+                        equal(lex1, lex2);
+                    }
+                });
+                
+                test("RiString.analyze()", function () {
+                    
+                    var rs = RiString("The laggin dragon");
+                    rs.analyze();
+                    ok(rs.features);
+                    equal(rs.features.phonemes,"dh-ax l-ae-g-ih-n d-r-ae-g-ax-n");
+                    equal(rs.features.syllables,"dh-ax l-ae/g-ih-n d-r-ae-g/ax-n");
+                    equal(rs.features.stresses,"0 1/1 1/0");
+                });
+                
+                test("RiString.get()", function () {
+                    
+                    var rs = RiString("The laggin dragon").analyze();
+                    var ph = rs.get(RiTa.PHONEMES);
+                    var sy = rs.get(RiTa.SYLLABLES);
+                    var st = rs.get(RiTa.STRESSES);
+                    equal(ph,"dh-ax l-ae-g-ih-n d-r-ae-g-ax-n");
+                    equal(sy,"dh-ax l-ae/g-ih-n d-r-ae-g/ax-n");
+                    equal(st,"0 1/1 1/0");
+                });
+
+                test("RiString()", function () {
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                     
                     ok(RiString('hello'));
                     ok(new RiString('hello'));
@@ -173,6 +216,7 @@
                         });
                     }
                 });
+<<<<<<< HEAD
                 
                 test("RiString.analyze()", function () {
                     
@@ -213,6 +257,42 @@
                 });
 				
 				test("RiString.charAt()", function () {
+=======
+
+                test("RiString.removeCharAt()", function () {
+                    
+                    var rs = new RiString("The dog was white");
+                    var result = rs.removeCharAt(1);
+                    equal(rs.text(), "Te dog was white");
+                    
+                    var rs = new RiString("The dog was white");
+                    var result = rs.removeCharAt(rs.length()-1);
+                    equal(rs.text(), "The dog was whit");
+                    
+                    var rs = new RiString("The dog was white");
+                    var result = rs.removeCharAt(rs.length());
+                    equal(rs.text(), "The dog was white");
+                    
+                    var rs = new RiString("The dog was white");
+                    var result = rs.removeCharAt(0);
+                    equal(rs.text(), "he dog was white");
+                    
+                    var rs = new RiString("The dog was white");
+                    var result = rs.removeCharAt(-1);
+                    equal(rs.text(), "The dog was white");
+                    
+                    var rs = new RiString("The dog was white");
+                    var result = rs.removeCharAt(1000);
+                    equal(rs.text(), "The dog was white");
+                    
+                    var rs = new RiString("The dog was white.");
+                    var result = rs.removeCharAt(rs.length()-1);
+                    equal(rs.text(), "The dog was white");
+                });
+                    
+                    
+                test("RiString.charAt()", function () {
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  
                     var rs = new RiString("The dog was white");
                     
@@ -228,6 +308,7 @@
                     var result = rs.charAt(200); //out of range character
                     equal(result, "");
                 });
+<<<<<<< HEAD
 				
 				test("RiString.concat()", function () { //TODO
 
@@ -248,6 +329,11 @@
 				
                 });
                 
+=======
+
+
+
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                 test("RiString.containsWord", function () {
 
                     // check that these are ok --- ------------
@@ -260,7 +346,12 @@
                     ok(!rs.containsWord("brown"));
                 });
 
+<<<<<<< HEAD
 				test("RiString.endsWith()", function () {
+=======
+
+                test("RiString.endsWith()", function () {
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
                     // check that these are ok --------------
 
@@ -282,7 +373,49 @@
 
                 });
 
+<<<<<<< HEAD
 				test("RiString.equals()", function () { // compare Object
+=======
+
+                test("RiString.trim()", function () {
+
+                    // check that these are ok ---------------
+                    var rs = new RiString("Start at first character. ");
+                    equal(rs.trim().text(), "Start at first character.");
+
+                    var rs = new RiString(" Start at first character.");
+                    equal(rs.trim().text(), "Start at first character.");
+
+                    var rs = new RiString("     Start at first character.   "); // tabs
+                    equal(rs.trim().text(), "Start at first character.");
+
+                    var rs = new RiString("     Start at first character.    "); // spaces/tabs
+                    equal(rs.trim().text(), "Start at first character.");
+
+                    //TODO: add tests for 'hard' tabs
+                    // no error checks needed
+
+                });
+
+                test("RiString.substring()", function () {
+
+                    // check that these are ok --- ------------
+                    var rs = new RiString("Start at first character.");
+                    equal(rs.substring(1, 5).text(), "tart");
+
+                    var rs = new RiString("Start at first character.");
+                    equal(rs.substring(0, 1).text(), "S");
+
+                    var rs = new RiString("Start at first character.");
+                    equal(rs.substring(0, 1).text(), "S");
+
+                    var rs = new RiString("Start at first character.");
+                    equal(rs.substring(3).text(), "rt at first character.");
+                });
+
+
+                test("RiString.equals()", function () { // compare Object
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 	
                     // check that these are ok ---------------
 
@@ -360,9 +493,180 @@
 
 
                 });
+<<<<<<< HEAD
 			
               
 				test("RiString.indexOf()", function () {
+=======
+
+                test("RiString.pos()", function () {
+                    
+	                // check that these are ok ---------------
+                 
+                    var txt = "The dog"; // tmp: move to RiTa.tests
+                    var words = RiTa.tokenize(txt); 
+                    deepEqual(words,["The","dog"]);
+                    
+                    var words = RiTa.tokenize("closed"); // tmp: move to RiTa.tests 
+                    deepEqual(words,["closed"]);
+                    
+                    var rs = new RiString("asdfaasd");
+                    var result = rs.pos();
+                    deepEqual(result, ["nn"]);
+                    
+                    var rs = new RiString("clothes");
+                    var result = rs.pos();
+                    deepEqual(result, ["nns"]);
+                   
+                    var rs = new RiString("There is a cat.");
+                    var result = rs.pos();
+                    deepEqual([  "ex","vbz","dt", "nn", "."], result);
+                    
+                    var rs = new RiString("The boy, dressed in red, ate an apple.");
+                    var result = rs.pos();
+                    deepEqual(  
+                        [
+                         "dt",
+                         "nn",
+                         ",",
+                         "vbn",
+                         "in",
+                         "jj",
+                         ",",
+                         "vbd",
+                         "dt",
+                         "nn",
+                         "."
+                         ], result);
+                    
+
+                });
+
+                test("RiString.posAt()", function () { 
+	
+	                // check that these are ok ---------------
+                    
+                    var rs = new RiString("The emperor had no clothes on.");
+                    var result = rs.posAt(4);
+                    equal("nns", result);
+
+                    var rs = new RiString("There is a cat.");
+                    var result = rs.posAt(3);
+                    equal("nn", result);
+                });
+
+                test("RiString.text()", function () {
+
+                    // check that these are ok ---------------
+                    var rs = new RiString("this door is closed");
+                    var result = rs.text();
+                    equal(result, "this door is closed");
+
+                    var rs = new RiString("this door, is closed.*&)*^");
+                    var result = rs.text();
+                    equal(result, "this door, is closed.*&)*^");
+
+                    var rs = new RiString("   this door    , is closed.");
+                    var result = rs.text();
+                    equal(result, "   this door    , is closed.");
+
+                    var rs = new RiString("this Door is closed");
+                    var result = rs.text();
+                    notEqual(result, "this door is closed");
+
+                    var rs = new RiString("");
+                    var result = rs.text();
+                    equal(result, "");
+
+                    // no error checks needed ------------
+
+                });
+
+                test("RiString.getWords()", function () { 
+
+                    // check that these are ok ---------------
+                    var rs = new RiString("Returns the array of words.");
+                    var result = rs.getWords();
+                    var answer = ["Returns", "the", "array", "of", "words", "."];
+                    deepEqual(result, answer);
+
+                    var rs = new RiString("The boy, dressed in red, ate an array.");
+                    var result = rs.getWords();
+                    var answer = ["The", "boy", ",", "dressed", "in", "red", ",", "ate", "an", "array", "."];
+                    deepEqual(result, answer);
+                    
+                    var rs = new RiString("Returns the array of words .");
+                    var result = rs.getWords();
+                    var answer = ["Returns", "the", "array", "of", "words", "."];
+                    deepEqual(result, answer);
+
+                    var rs = new RiString("The boy, dressed in red , ate an array?");
+                    var result = rs.getWords();
+                    var answer = ["The", "boy", ",", "dressed", "in", "red", ",", "ate", "an", "array", "?"];
+                    deepEqual(result, answer);
+
+                    var rs = new RiString("");
+                    var result = rs.getWords();
+                    var answer = [""];
+                    deepEqual(result, answer);
+
+                    // no error checks needed
+                });
+
+                test("RiString.wordAt()", function () {
+
+                    // check that these are ok ---------------
+
+                    var rs = new RiString("Returns the word at wordIdx using the default WordTokenizer.");
+                    var result = rs.wordAt(0);
+                    equal(result, "Returns");
+
+                    var result = rs.wordAt(1);
+                    equal(result, "the");
+
+                    var result = rs.wordAt(9);
+                    equal(result, ".");
+
+                    var result = rs.wordAt(500);
+                    equal(result, "");
+
+                    var result = rs.wordAt(-5);
+                    equal(result, "");
+
+                    var rs = new RiString("");
+                    var result = rs.wordAt(0); 
+                    equal(result, "");
+
+                });
+                
+                test("RiString.wordCount()", function () { 
+                    
+                    // check that these are ok --- ------------
+                    var rs = new RiString("Returns the word at wordIdx using the default WordTokenizer.");
+                    var result = rs.wordCount();
+                    equal(result, 10); // correct, according to WordTokenizer, need to try with RegexTokenizer
+
+                    var rs = new RiString("Returns the word.Returns the word. Returns the word .");
+                    var result = rs.wordCount();
+                    equal(result, 12);
+
+                    var rs = new RiString("   Returns the word at wordIdx , using the default WordTokenizer."); //space
+                    var result = rs.wordCount();
+                    equal(result, 11);
+
+                    var rs = new RiString("	Returns the word at wordIdx , using the default WordTokenizer.	"); //tab space
+                    var result = rs.wordCount();
+                    equal(result, 11);
+
+                    var rs = new RiString("");
+                    var result = rs.wordCount();
+                    equal(result, 0);
+
+                });
+
+
+                test("RiString.indexOf()", function () {
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
                     // check that these are ok ---------------
                     var rs = new RiString("Returns the array of words.");
@@ -551,6 +855,7 @@
                     equal(result, 0);
 
                     // no error checks needed
+<<<<<<< HEAD
 
                 });
 				
@@ -812,6 +1117,13 @@
                 });
                 
 				test("RiString.replaceAll()", function () { 
+=======
+
+                });
+
+
+                test("RiString.replaceAll()", function () { 
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 					//replaceAll(regex, replacement);
                     var rs = new RiString("Who are you? Who is he? Who is it?");             
                     equal(rs.replaceAll("e", "E").text(), "Who arE you? Who is hE? Who is it?");
@@ -842,6 +1154,7 @@
 
                 });
 
+<<<<<<< HEAD
 				test("RiString.replaceWordAt()", function () {
 
                     var rs = new RiString("Who are you?");
@@ -868,6 +1181,81 @@
                 });
 				
 				test("RiString.slice()", function () { //very similar with substring
+=======
+                test("RiString.replaceCharAt()", function () {
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(2, "");
+                    equal(rs.text(), "Wh are you?");
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(2, "e");
+                    equal(rs.text(), "Whe are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(2, "ere");
+                    equal(rs.text(), "Where are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(11, "!!");
+                    equal(rs.text(), "Who are you!!");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(0, "me");
+                    equal(rs.text(), "meho are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(-1, "me");
+                    equal(rs.text(), "Who are you?");
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceCharAt(10000, "me");
+                    equal(rs.text(), "Who are you?");
+
+                });
+
+                test("RiString.replaceFirst()", function () { 
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("e", "E");
+                    equal(rs.text(), "Who arE you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("o", "O");
+                    equal(rs.text(), "WhO are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("Who", "Where");
+                    equal(rs.text(), "Where are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("notExist", "Exist");
+                    equal(rs.text(), "Who are you?");
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("Who are", "Dare");
+                    equal(rs.text(), "Dare you?");
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("Who aRe", "Dare");
+                    equal(rs.text(), "Who are you?");
+                   
+                    var rs = new RiString("Who are you? Who are you?");
+                    rs.replaceFirst("Who are", "Dare");
+                    equal(rs.text(), "Dare you? Who are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("?", "?!");
+                    equal(rs.text(), "Who are you?!");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceFirst("", "");
+                    equal(rs.text(), "Who are you?");
+
+                  
+                });
+
+                test("RiString.slice()", function () { //very similar with substring
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                 	
                         var rs = new RiString("The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");
                         equal(rs.slice(1, 3).text(), "he");
@@ -904,8 +1292,14 @@
             
                       
                 });
+<<<<<<< HEAD
 				
 				test("RiString.split()", function () { 
+=======
+
+
+                test("RiString.split()", function () { 
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                 	
                     var rs = new RiString("Who are you?");
                     var result = rs.split();
@@ -995,6 +1389,11 @@
                     
 					var rs = new RiString("The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");
                     ok(rs.startsWith("")); // fail here should not be true -- DCH: this is ok -- everything matches ""
+<<<<<<< HEAD
+=======
+                    
+					
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
                 });
 
@@ -1019,6 +1418,7 @@
 
                     var rs = new RiString("!@#$%^&**()");
                     equal(rs.substring(2, 5).text(), "#$%");
+<<<<<<< HEAD
 					
                     var rs = new RiString("Start at first character.");
                     equal(rs.substring(1, 5).text(), "tart");
@@ -1031,6 +1431,9 @@
 
                     var rs = new RiString("Start at first character.");
                     equal(rs.substring(3).text(), "rt at first character.");
+=======
+
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
                 });
 
@@ -1055,6 +1458,7 @@
                     equal(rs.substr(2, 5).text(), "#$%^&");
 
                 });
+<<<<<<< HEAD
 				
 				
 				test("RiString.text()", function () {
@@ -1085,6 +1489,10 @@
                 });
 
 				test("RiString.toCharArray()", function () {
+=======
+
+                test("RiString.toCharArray()", function () {
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                     
                     var rs = new RiString("The Australian Pavilion.");
                     var result = rs.toCharArray();
@@ -1111,6 +1519,7 @@
                     // no error checks needed
 
                 });
+<<<<<<< HEAD
 				
 				test("RiString.toUpperCase()", function () { 
                     
@@ -1249,6 +1658,10 @@
                 
 
                 test("RiString.toString()", function () { //TODO not in API
+=======
+
+                test("RiString.toString()", function () {
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                     
                     var rs = new RiString("The Australian Pavilion.");
 					rs.toString();
@@ -1278,9 +1691,48 @@
 
                 });
 
+<<<<<<< HEAD
                 
                 
                 
+=======
+                test("RiString.toUpperCase()", function () { 
+                    
+                    var rs = new RiString("The Australian Pavilion.");
+                    equal("THE AUSTRALIAN PAVILION.", rs.toUpperCase().text());
+
+                   var rs = new RiString(")(*(&^%%$!#$$%%^))");
+					rs.toUpperCase();
+                    equal(")(*(&^%%$!#$$%%^))", rs.text());
+
+                    // no error checks needed
+                });
+                
+                test("RiString.replaceWordAt()", function () {
+
+                    var rs = new RiString("Who are you?");
+                    equal("Who are What?", rs.replaceWordAt(2,"What").text());
+                    
+                    var rs = new RiString("Who are you?");
+                    equal(rs.replaceWordAt(0,"What").text(), "What are you?");
+
+                    var rs = new RiString("Who are you?");
+                    rs.replaceWordAt(3,"!!"); //
+                    equal(rs.text(), "Who are you!!"); // nice! this is a strange one...
+          
+                    var rs = new RiString("Who are you?");
+                    rs.replaceWordAt(-1,"asfasf");   
+                    equal(rs.text(), "Who are you?");
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceWordAt(20,"asfasf");   
+                    equal(rs.text(), "Who are you?");
+                    
+                    var rs = new RiString("Who are you?");
+                    rs.replaceWordAt(2,"");    // nice! this too...
+                    equal(rs.text(), "Who are ?");  
+                });
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
                 
             });
         </script>

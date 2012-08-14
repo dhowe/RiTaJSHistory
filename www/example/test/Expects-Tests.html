@@ -1,0 +1,410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+  <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen" />
+  <script type="text/javascript" src="../../lib/jquery.js"></script>
+  <script type="text/javascript" src="../../lib/qunit-git.js"></script>
+  <script type="text/javascript" src="../rita.js"></script>
+  <script>
+  
+        var N = 'number', S = 'string', O = 'object', A = 'array', B = 'boolean', R = 'regexp', F='function';
+       
+        /////////////////////////////////////////////////////////////////////////////////
+
+        $(document).ready(function(){ 
+            
+            test("sigMatch.basic", function() {
+                
+                var rs = new RiString("The dog was white");
+    
+                var result = rs.charAt("w"); // TODO: WHY DOESNT THIS FAIL??
+                equal(result, "T");
+            });
+            
+            test("sigMatch.single", function() {
+                
+                //ok("private switch"); return;
+                
+                var sigMatch = Type.sigMatch;
+                
+                raises(function () { // fails
+                    try {
+                        sigMatch();
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                raises(function () { // fails
+                    try {
+                        sigMatch([S,N]);
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                // no-match
+                ok(!sigMatch([S,N],["s"])); 
+                ok(!sigMatch([S,N],["s","1"]));
+                ok(!sigMatch([S],["s","1"]));
+                ok(!sigMatch([S,N],["s",1,1]));
+                ok(!sigMatch([N],["s"]))
+                
+                // no-match (bad input)
+                ok(!sigMatch([N],"s"));
+                ok(!sigMatch([N],"1"));
+                ok(!sigMatch([N],undefined));
+                ok(!sigMatch([N],null));
+                ok(!sigMatch([N],[undefined]));
+                ok(!sigMatch([N],[null]));
+ 
+                // match
+                ok(sigMatch([N],[1]));
+                ok(sigMatch([N],[0]));
+                ok(sigMatch([N],[1000]));
+                ok(sigMatch([A],[["S"]]));
+                ok(sigMatch([S,B,S],["s",false,"k"]));
+                ok(sigMatch([S,N],["s",1]));  
+                ok(sigMatch([S,B,S],["s",false,"s"]));  
+                ok(sigMatch([S],["s"]));
+                ok(sigMatch([O],[this]));
+                ok(sigMatch([B],[true]));
+                ok(sigMatch([B],[false]));
+                ok(sigMatch([],[]));
+                
+                // regex
+                ok(sigMatch([R], [ new RegExp("regex") ] ));
+                ok(sigMatch([R],[/regex/g]));
+                
+                // allow numbers for booleans 
+                ok(sigMatch([B],[1]));
+                ok(sigMatch([B],[0]));
+                ok(sigMatch([B],[100])); 
+            });
+            
+            test("sigMatch.multi", function() { 
+              
+                var sigMatch = Type.sigMatch; 
+                
+                ok(sigMatch([S,N],[O],["s",1]));
+                ok(sigMatch([S,N],[O],[ {s:"s",t:1} ] ));
+                ok(!sigMatch([S,N],[O],[ {s:"s",t:1}, "s" ] )); 
+                
+                var obj = {s:"s",t:1};
+                
+                ok(sigMatch([O],[S,B,S],[obj]));
+                ok(sigMatch([O],[S,B,S],["s",false,"k"]));
+                
+                ok(sigMatch([S],[B], ["s"]));
+                ok(sigMatch([S],[B], [false]));
+                
+                ok(sigMatch([B],[S], ["s"]));
+                ok(sigMatch([B],[S], [false]));
+                
+                ok(sigMatch([O],[S,B,S], [B], [obj]));
+                ok(sigMatch([O],[S,B,S], [B], [false]));
+                ok(sigMatch([O],[S,B,S], [B], ["k",false,"hello"]));
+                
+                // regex
+                ok(sigMatch([S,R],[S,S], [ 'str', new RegExp("regex") ] ));
+                ok(sigMatch([S,R],[S,S], [ 'str', /regex/g ] ));
+                ok(sigMatch([S,R],[S,S], [ 'str', "regex" ] ));                          
+                
+            });
+            
+ 
+            test("expects.single", function() {
+                
+                // should FAIL??
+                var f1 = function(s,n) {
+                    return "hello";            
+                }.expects([S,N]).returns(S);
+        
+                equal("hello",f1("s",1));
+                
+                var f2 = function(s) {
+                    return "hello";            
+                }.expects([S]).returns(S);
+                
+                equal("hello", f2("s"));
+                
+                var f3 = function(n) {
+                    return "hello";            
+                }.expects([N]).returns(S);
+               
+                equal("hello", f3(1));
+                
+                
+                ///////////////////////////////////
+                
+                raises(function () { 
+                    try {
+                        f3("s");
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                raises(function () { 
+                    try {
+                        f2("s",1);
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                raises(function () { 
+                    try {
+                        f2();
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                raises(function () { 
+                    try {
+                        f2(false);
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                var f2 = function() {
+                    return "hello";            
+                }.expects([B]).returns(S);
+                
+                equal("hello",f2(false));
+                equal("hello",f2(1)); 
+                equal("hello",f2(0));
+                equal("hello",f2(1000));
+                
+                raises(function () { 
+                    try {
+                        f2("1");
+                    } catch (e) {
+                        throw e;
+                    }
+                })
+                
+                var f2 = function() {
+                    return "hello";            
+                }.expects([R],[S]).returns(S);
+                
+                equal("hello",f2(/regex/g));
+                equal("hello",f2("regex")); 
+                equal("hello",f2(new RegExp('regex')));
+                
+                var f2 = function(regex) {
+                    return "hello";            
+                }.expects([R],[S]).returns(S);
+                
+                equal("hello",f2(/regex/g));
+                equal("hello",f2("regex")); 
+                equal("hello",f2(new RegExp('regex')));
+            });
+          
+            test("expects.multi", function() {
+             
+                var obj = {s:"s",t:1}
+                
+                var f0 = function() {
+                    return "hello";            
+                }.expects().returns(S); // f1(bool,string)
+                
+                ok(f0());
+                
+ 
+                var f1 = function() {
+                    return "hello";            
+                }.expects([]).returns(S); // f1(bool,string)
+                
+                ok(f1());
+                
+                var f2 = function() {
+                    return "hello";            
+                }.expects([B,S]).returns(S); // f2(bool,string)
+                
+                ok(f2(false,"s"));
+            
+               
+             
+                var f3 = function() {
+                    return "hello";            
+                }.expects([B,S],[O]).returns(S); // f3(bool,string) || f3(object)
+                
+                
+                
+                ok(f3(false,"s"));
+                ok(f3(obj));
+                
+                raises(function () {  // neither matches
+                    try {
+                        f3();
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                
+                var f4 = function() {
+                    return "hello";            
+                }.expects([B,S],[]).returns(S); // f4(bool,string) || f4()
+                
+
+                ok(f4(false,"s"));
+                ok(f4());
+                
+                raises(function () {  // neither matches
+                    try {
+                        f3(false);
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+                
+                var x = function() {
+                    return "hello";            
+                }.expects([B,S]); 
+                
+                ok(x(false,"hello"));
+                
+                x = function() {
+                    return "hello";            
+                }.expects([B]);
+                
+                ok(x(false));
+                
+                var f3 = function(regex) {
+                    return ["hello"];      
+                }.expects([S],[S,R],[S,S]).returns(A);
+                
+                var BADS = [null, undefined, 1];
+                for ( var i = 0; i < BADS.length; i++) {
+
+                    raises(function () {  // neither matches
+                        try {
+                            f3(BADS[i]);
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
+                }
+             });
+            
+            test("expects.arrays", function() {
+                
+                var f1 = function(words) {
+                    
+                    return words.join(":");
+                    
+                }.expects(A).returns(S);
+                
+                ok( f1(['The','dog']));
+                
+                var BADS = [null, undefined, "1", 1];
+                for ( var i = 0; i < BADS.length; i++) {
+
+                    raises(function () {  // neither matches
+                        try {
+                            f1(BADS[i]);
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
+                }
+                
+            }); 
+        
+            
+            test("expects.regexp", function() {
+
+                var words = 'The dog ate the boy';
+                var f1 = function(regex) {
+                    
+                    return words.split(regex);
+                    
+                }.expects([R]).returns(A);
+                
+                var re = new RegExp(/ /g);
+                ok( f1(re));
+                
+                var f2 = function(regex) {
+                    return "regex";            
+                }.expects([R],[S]).returns(S);
+                
+                equal("regex",f2(/regex/g));
+                equal("regex",f2("regex")); 
+                equal("regex",f2(new RegExp('regex')));
+                
+                var f3 = function(regex) {
+                    return "regex";            
+                }.expects([R]).returns(S);
+                
+                var BADS = [null, undefined, "1", 1];
+                for ( var i = 0; i < BADS.length; i++) {
+
+                    raises(function () {  // neither matches
+                        try {
+                            f3(BADS[i]);
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
+                }
+            
+            });
+            
+            test("expects.string(number)", function() {
+               
+                var f3 = function(inp) {
+                    
+                    if (!inp.length) return 0;
+                    
+                    return inp.length;
+                    
+                }.expects([S]).returns(N);
+                
+                equal(f3("hello"),5);
+              
+                var BADS = [null, undefined, 1234];
+                for ( var i = 0; i < BADS.length; i++) {
+
+                    raises(function () {  // neither matches
+                        try {
+                            f3(BADS[i]);
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
+                }
+                
+            });
+
+        });
+
+        function L(msg) { console.log(msg); }
+        function asList(array) {
+            var s="[";
+            for ( var i = 0; i < array.length; i++) {
+                var el = array[i];
+                if (array[i] instanceof Array)
+                    el = asList(array[i]);
+                s += el;
+                if (i < array.length-1) s += ", ";
+            }
+            return s+"]";
+        }
+    </script>
+    
+  </head>
+  <body>
+  <h1 id="qunit-header">Expects tests</h1>
+  <h2 id="qunit-banner"></h2>
+  <div id="qunit-testrunner-toolbar"></div>
+  <h2 id="qunit-userAgent"></h2>
+  <ol id="qunit-tests"></ol>
+  <div id="qunit-fixture">test markup, will be hidden</div>
+  <p>&nbsp; &nbsp;<a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+
+</body>
+</html>

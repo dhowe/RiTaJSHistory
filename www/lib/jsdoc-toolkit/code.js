@@ -92,4 +92,8 @@ RiTa.prototype.tokenize = function(words) {
 
                 return trim(words).split(" ");
             }
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
