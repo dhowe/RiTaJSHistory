@@ -1,0 +1,36 @@
+<script src="../../../../lib/processing-1.3.6.js"></script>
+<script src="../../../rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+var rt,tw,th,scale = 1.4;
+
+void setup()
+{
+  size(200,200);
+  
+  rt = new RiText("This is not the Text", 20, 55);
+  rt.scale(scale);
+  
+  tw = rt.textWidth() * scale;
+  th = rt.textHeight() * scale;
+  
+  //console.log('[P5] tw='+tw+" th="+th);
+}
+
+void draw()
+{
+  background(255);
+  
+  rt.draw();
+
+  line(rt.x,rt.y+2,rt.x+tw,rt.y+2);
+
+  if (++rt.y == height) rt.y = 0;
+}
+
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

@@ -1,0 +1,33 @@
+<html>
+<body>
+<canvas id="canvas" width=600 height=600 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+<script>
+
+window.onload = function() {
+
+  RiText.size(200,200);
+ 
+  var pf = { name:"Batang",size:48 };
+ 
+  rt1 = new RiText("Bigger", 20, 50);
+  rt1.textFont(pf);
+  
+  rt2 = new RiText("Smaller", 20, 100);
+  rt2.textFont(pf);  
+  rt2.scale(32/pf.size);
+  
+  var pf2 = { name:"Batang", size:10 };
+  
+  rt3 = new RiText("Smallest", 20, 140);
+  rt3.textFont(pf2);    
+  
+  rt4 = new RiText("Default", 20, 180);
+
+  RiText.drawAll();
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas"></canvas>

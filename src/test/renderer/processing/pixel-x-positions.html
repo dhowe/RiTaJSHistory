@@ -1,0 +1,45 @@
+<script src="../../../../lib/processing-1.3.6.js"></script>
+<script src="../../../rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+var numWords, txt = "The dog ate the cat.";
+
+void setup() 
+{          
+  size(400, 100);
+  
+  RiText.showBoundingBoxes(true);
+  RiText.defaultFont(createFont("arial",30));  
+  
+  line1 = new RiText(txt, 64, 50); 
+  numWords = txt.split(" ").length;
+  
+  drawIt();
+}
+
+void drawIt() 
+{
+  background(200);
+  
+  line1.draw();
+
+  stroke(#ffffff);
+  for (var i = 0; i < txt.length; i++) {
+      var y = line1.charOffset(i);
+      RiText.line(y, 28, y, RiText.height());
+  }
+  
+  stroke(#ff0000);
+  for (var i = 0; i < numWords; i++) {
+      var y = line1.wordOffset(i);
+      RiText.line(y, 0, y, 55);
+  }
+}
+
+
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

@@ -1,0 +1,27 @@
+<script src="../../../../lib/processing-1.3.6.js"></script>
+<script src="../../../rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+
+void setup()
+{
+  size(200,200);
+  noLoop();
+  textFont(createFont("Batang",32));
+}
+
+void draw()
+{
+  background(255);
+  String t = "textWidth1";
+  float tw = textWidth(t);
+  fill(0);
+  text(t, 10, 50);
+  line(10,50,10+tw,50);
+}
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

@@ -1,0 +1,34 @@
+<canvas id="canvas" width=400 height=100 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+<script>
+
+window.onload=setup;
+window.onmouseup=mouseClicked;
+
+// seems to be broken!!!
+
+var rt, clicks=0, txt = [ "Click To Fade", "Fade On Click" ];
+
+function setup()
+{
+    rt = RiText(txt[0], 10, 70, {name:"Arial", size: 60});
+    RiText.loop();
+}  
+  
+ function draw() {
+   RiText.background();
+   rt.draw();
+ } 
+ 
+ function mouseClicked() 
+ { 
+   // swap texts
+   var newText = (clicks++ % 2 == 0) ? txt[1] : txt[0];
+   
+   // fade to the new over 4 secs
+   rt.fadeToText(newText, 4); 
+ }
+
+
+</script>

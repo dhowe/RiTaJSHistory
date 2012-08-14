@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project default="qunit-tests"> 
+
+ <target name="qunit-tests">
+
+  <property name="output.file" value="run-all-tests.html"/>
+  <!--property name="phantomjs.cmd" value="/Users/dhowe/bin/phantomjs" /-->
+  <property name="qunit.js.file" location="run-qunit.js" />
+  <property name="phantomjs.cmd" value="./phantomjs" />
+
+  <!--apply executable="${phantomjs.cmd}" output="${output.file}" failonerror="false"-->
+
+  <apply executable="${phantomjs.cmd}" failonerror="false">
+
+   <arg value="${qunit.js.file}" />
+
+   <fileset dir="../src/test/">
+    <include name="Ri*-tests.html" />
+    <include name="*Structure-*.html" />
+   </fileset>
+
+  </apply>
+ </target>
+ 
+ <target name="sendmail">
+   <mail
+      tolist="dh254@nyu.edu, dhowe@risd.edu"
+      from="daniel.c.howe@gmail.com"
+      subject="Results of nightly build"
+      mailhost="smtp.gmail.com"
+      mailport="465" ssl="true"
+      user="daniel.c.howe@gmail.com"
+      password="elsa9768">
+      
+      <message>The ${buildname} nightly build has completed</message>
+        
+      <attachments>
+        <fileset dir=".">
+          <include name="errors.txt"/>
+        </fileset>
+      </attachments>
+      
+   </mail>
+</target>
+
+</project>

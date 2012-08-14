@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../../lib/jquery.js"></script>
+    <script type="text/javascript" src="../../lib/qunit-git.js"></script>
+    <script type="text/javascript" src="../rita.js"></script>
+
+    <script>
+    
+      // NOTE: Instances of RiLExicon & RiText are not available on this page
+
+      $(document).ready(function(){
+
+        test("Public Objects", function() {
+        	          
+          ok(RiTa.VERSION>0);
+          
+          ok(typeof RiTa        != undefined);
+          ok(typeof RiString    != undefined);
+          ok(typeof RiLexicon   != undefined);
+          ok(typeof RiGrammar   != undefined); 
+          ok(typeof RiMarkov    != undefined); 
+          ok(typeof RiText      != undefined); 
+        });
+
+        test("Member Functions", function() {
+
+            var rx = new RiString("hello");
+            equal(typeof rx.charAt,     'function');
+            var rs = RiString("hello");
+            equal(typeof rs.charAt,     'function');
+            var rg = RiMarkov(3);
+            equal(typeof rg.loadTokens,     'function');
+            var rg = new RiMarkov(2);
+            equal(typeof rg.loadTokens,     'function');
+        });
+        
+        test("Member Variables", function() {
+            
+        	ok(RiString("x").text);
+            ok(new RiString("x").text);
+            ok(RiGrammar()._rules);
+            ok(new RiGrammar()._rules);
+        });
+
+        test("Public Statics", function() {
+            
+        	equal(typeof RiTa.splitSentences,'function');
+        	equal(typeof RiTa.getPhonemes,'function');
+        	equal(typeof RiTa.timer,'function');
+        	equal(typeof RiTa.random,'function');
+        	equal(typeof RiText.random,'function');
+        	equal(typeof RiText.timer,'function');
+        });
+
+        test("Public Constants", function() {
+        	
+            ok(RiTa.VERSION);
+            ok(RiTa.PRESENT_TENSE);
+            ok(RiTa.SECOND_PERSON);
+            ok(RiGrammar.START_RULE);
+        });
+
+        test("Internal Classes", function() {
+        	
+            equal(typeof Conjugator,'undefined','Conjugator');
+            equal(typeof MinEditDist,'undefined','MinEditDist');
+        	equal(typeof PosTagger,'undefined','PosTagger');
+        	equal(typeof RegexRule,'undefined','RegexRule');
+        	equal(typeof Easing,'undefined','Easing');
+        	equal(typeof Interpolation,'undefined','Interpolation');
+        	equal(typeof TextBehavior,'undefined','TextBehavior');
+        	equal(typeof RiText_Canvas,'undefined','RiText_Canvas');
+        	equal(typeof RiText_P5,'undefined','RiText_P5');
+        });
+        
+        test("Private Constants", function() {
+            
+            equal(typeof SP, 'undefined');
+            equal(typeof A, 'undefined');
+        	equal(typeof SECOND_PERSON, 'undefined');        	
+        	equal(typeof PLURAL_RULES, 'undefined');
+        	equal(typeof PAST_PARTICIPLE_RULESET, 'undefined');
+        });
+
+        test("Constructors", function() {
+            
+            equal(typeof RiString, 'function'); // pub
+            equal(typeof RiGrammar, 'function'); 
+            equal(typeof RiLexicon, 'function'); 
+            equal(typeof RiText, 'function'); 
+
+            notEqual(typeof RiTa, 'function'); // prv
+            
+            var rx = new RiString("hello");
+            equal(typeof rx, 'object');
+            
+            var rs = RiString("hello");
+            equal(typeof rx, 'object');
+   
+            var lr = RiGrammar();
+            equal(typeof lr, 'object');
+           
+            var lg = new RiGrammar();
+            equal(typeof lg, 'object');
+            
+            raises(function() {
+                try {
+                    new RiTa();
+                }
+                catch(e) {
+                    throw Error("no constructor");
+                }    
+            });
+            
+            raises(function() {
+                try {
+                    RiTa();
+                }
+                catch(e) {
+                    throw Error("no constructor");
+                }
+            });
+        });
+        
+        test("Private Functions", function() {
+            
+            equal(typeof startsWith, 'undefined');
+            equal(typeof isNull, 'undefined');
+            equal(typeof makeClass, 'undefined');
+            equal(typeof handleLeading, 'undefined');
+            equal(typeof disposeOne, 'undefined');
+            equal(typeof sigsMatch, 'undefined');
+            equal(typeof getType, 'undefined');
+            equal(typeof Function.expects, 'undefined', 'TODO: FIX ME');
+            equal(typeof Function.returns, 'undefined', 'TODO: FIX ME');
+        });
+
+      });
+
+      var props = [ "failed", "passed", "total", "runtime" ];
+      
+      QUnit.done = function (result) {  
+          var next = getParameterByName("nextPage");
+          if (next) {
+              var qStr = "?";
+              for ( var i = 0; i < props.length; i++) 
+                  qStr += props[i] + "="+result[props[i]]; 
+              var nextUrl = next + qStr;
+              alert("next="+nextUrl);
+              document.location.href=nextUrl;
+          }
+      }
+
+      function getParameterByName(name)
+      {
+          name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+          var regexS = "[\\?&]" + name + "=([^&#]*)";
+          var regex = new RegExp(regexS);
+          var results = regex.exec(window.location.search);
+          if(results == null)
+              return "";
+          else
+              return decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+      
+    </script>
+
+  </head>
+  <body>
+    <h1 id="qunit-header">Library Structure tests</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests"></ol>
+    <div id="qunit-fixture">test markup, will be hidden</div>
+    <p>&nbsp; &nbsp;<a href="../../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+
+  </body>
+</html>

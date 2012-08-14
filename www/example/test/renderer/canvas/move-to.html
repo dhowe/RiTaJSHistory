@@ -1,0 +1,51 @@
+<canvas id="canvas" width=400 height=400 style="border: 1px solid #000000;"></canvas>
+<script src="../../../../lib/jquery.js"></script>
+<script src="../../../rita.js"></script>
+
+<script>
+
+window.onload = setup;
+       
+// 2 RiTexts, moving to random spots
+function setup()
+{
+    RiText.defaultFont({name:"Georgia",size:30});  
+    
+    var rt1 = new RiText("ZIG");
+    var rt2 = new RiText("ZAG", 300, 300);
+    
+    rt2.motionType(RiText.EASE_IN_OUT); 
+    
+    moveToRandom(rt1);
+    moveToRandom(rt2);
+    
+    RiText.loop();
+}
+
+function draw()
+{
+    RiText.background(255, 100);
+    RiText.drawAll();
+}
+
+//called by RiTa whenever a 'moveTo' behavior finishes
+function onRiTaEvent(e)
+{
+    if (e.getType() == 'moveToCompleted') 
+        moveToRandom(e.getSource());
+}
+
+// pick a new random location to go to
+function moveToRandom(rt)
+{
+    var newX = RiText.random(RiText.width() - rt.textWidth()); // broken??
+    var newY = RiText.random(rt.textHeight(), RiText.height() - 10);
+    var dst = RiText.distance(rt.x, rt.y, newX, newY);
+    rt.moveTo(newX,newY,dst / RiText.width());
+}
+
+
+
+</script>
+
+

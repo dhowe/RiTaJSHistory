@@ -1,0 +1,72 @@
+ <script src="processing.js"></script>
+<script src="rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+ 
+ 
+RiText rt;
+
+// Global variables
+float radius = 50.0;
+int X, Y;
+int nX, nY;
+int delay = 16;
+
+// Setup the Processing Canvas
+void setup(){
+  size( 200, 200 );
+  
+  rt = new RiText("RiText", 130, 130);
+  rt.fill(255);
+  
+  strokeWeight( 10 );
+  frameRate( 15 );
+  X = width / 2;
+  Y = height / 2;
+  nX = X;
+  nY = Y;  
+}
+
+// Main draw loop
+void draw(){
+  
+  radius = radius + sin( frameCount / 4 );
+  
+  // Track circle to new destination
+  X+=(nX-X)/delay;
+  Y+=(nY-Y)/delay;
+  
+  rt.x = X-35;
+  rt.y = Y;
+  
+  //rt.scaleX = radius/40.0;
+  rt.scale(radius/25.0);
+  //rt.scaleY = radius/40.0;
+  
+  // Fill canvas grey
+  background( 100 );
+  
+  // Set fill-color to blue
+  fill( 0, 121, 184 );
+  
+  // Set stroke-color white
+  stroke(255); 
+  
+  // Draw circle
+  ellipse( X, Y, radius, radius );
+  
+  rt.draw();
+}
+
+
+// Set circle's next destination
+void mouseMoved(){
+  nX = mouseX;
+  nY = mouseY;  
+}
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas"></canvas>
