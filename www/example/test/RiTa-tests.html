@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-<!-- $Id: RiTa-tests.html,v 1.69 2012/07/17 14:27:49 dev Exp $ -->
-=======
-<!-- $Id: RiTa-tests.html,v 1.59 2012/07/02 05:02:27 dev Exp $ -->
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
+<!-- $Id: RiTa-tests.html,v 1.71 2012/08/12 02:51:07 dev Exp $ -->
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 
@@ -12,48 +8,45 @@
 <script type="text/javascript" src="../../lib/qunit-git.js"></script>
 
 <script type="text/javascript" src="../rita_dict.js"></script>
+<script type="text/javascript" src="../rita_lts.js"></script>
 <script type="text/javascript" src="../rita.js"></script>
 <script>
 
-var functions = [
-    "isAbbreviation"
-    , "isQuestion"
-    , "isSentenceEnd"
-    , "isW_Question"
-    , "randomOrdering"
-    , "removeRandom"
-    , "splitSentences"
-    , "stripPunctuation"
-    , "trimPunctuation"
-    , "isPunctuation"
-    , "tokenize"
-    , "trim"
-    , "distance"
-    , "random"
-    , "getPhonemes"
-    , "getPosTags"
-    , "getPosTagsInline"
-    , "getStresses"
-    , "getSyllables"
-    , "getWordCount"
-    , "posToWordNet"
-    , "conjugate"
-    , "getPastParticiple"
-    , "getPresentParticiple"
-    , "stem"
-    , "pluralize"
-    , "singularize"
-    , "timer" 
-    , "random"
-    , "p5Compatible"
-<<<<<<< HEAD
-    , "untokenize" 
-=======
-    , "untokenizes" 
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-];
-
 $(document).ready(function () {
+    
+    var functions = [
+        "isAbbreviation"
+        , "isQuestion"
+        , "isSentenceEnd"
+        , "isW_Question"
+        , "randomOrdering"
+        , "removeRandom"
+        , "splitSentences"
+        , "stripPunctuation"
+        , "trimPunctuation"
+        , "isPunctuation"
+        , "tokenize"
+        , "trim"
+        , "distance"
+        , "random"
+        , "getPhonemes"
+        , "getPosTags"
+        , "getPosTagsInline"
+        , "getStresses"
+        , "getSyllables"
+        , "getWordCount"
+        , "posToWordNet"
+        , "conjugate"
+        , "getPastParticiple"
+        , "getPresentParticiple"
+        , "stem"
+        , "pluralize"
+        , "singularize"
+        , "timer" 
+        , "random"
+        , "p5Compatible"
+        , "untokenize" 
+    ];
 
     test("RiTa.functions", function () {
         for (var i = 0; i < functions.length; i++) {
@@ -120,21 +113,7 @@ $(document).ready(function () {
         ok(!RiTa.isQuestion("?"));
         ok(!RiTa.isQuestion(""));
 
-<<<<<<< HEAD
         });
-=======
-        var BAD = [null, undefined, 1];
-        for (var i = 0; i < BAD.length; i++) {
-            raises(function () {
-                try {
-                    RiTa.isQuestion(BAD[i]);
-                } catch (e) {
-                    throw e;
-                }
-            });
-        }
-    });
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
  test("RiTa.isSentenceEnd()", function () {
 
@@ -144,12 +123,6 @@ $(document).ready(function () {
      ok(!RiTa.isSentenceEnd(words[6], words[7])); // false
      ok(!RiTa.isSentenceEnd('','')); // false
 
-<<<<<<< HEAD
-=======
-     var BAD = [null, undefined, 1];
-     for (var i = 0; i < BAD.length; i++) 
-        ok(!RiTa.isSentenceEnd(BAD[i],"hello."));
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
 
  test("RiTa.isW_Question()", function () {
@@ -166,19 +139,6 @@ $(document).ready(function () {
      ok(!RiTa.isW_Question("Are you done?")); 
      ok(!RiTa.isW_Question("")); 
      
-<<<<<<< HEAD
-=======
-     var BAD = [null, undefined,1];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.isW_Question(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
 
  test("RiTa.randomOrdering()", function () {
@@ -189,22 +149,10 @@ $(document).ready(function () {
      var result = RiTa.randomOrdering(50);
      equal(result.length,50);
 
-<<<<<<< HEAD
      var obj = {};
      for (var i = 0; i < result.length; i++) {
          ok(!obj.hasOwnProperty(i+''));
          obj[i+''] = i+'';    
-=======
-     var BAD = [null, undefined, 0, -1];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.randomOrdering(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
      }
  });
 
@@ -219,19 +167,6 @@ $(document).ready(function () {
      RiTa.removeRandom(result);
      equal(result.length , input.length - 1);
 
-<<<<<<< HEAD
-=======
-     var BAD = [null, undefined, ""];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.removeRandom(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
 
  test("RiTa.splitSentences()", function () {
@@ -273,88 +208,67 @@ $(document).ready(function () {
      // always do these three
      deepEqual(RiTa.splitSentences(""), [""]);
 
-<<<<<<< HEAD
    
-=======
-     var BAD = [null, undefined, 1234];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.splitSentences(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
 
  test("RiTa.stripPunctuation()", function () {
 
-     //strip/trimPunctuation "þýœâþýþý™âþý`',;:!?)([].#\"\\!@$%&}<>|+=-_\\/*{^
+     //strip/trimPunctuation "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`',;:!?)([].#\"\\!@$%&}<>|+=-_\\/*{^
      var res = RiTa.stripPunctuation("$%He%^&ll,o,");
      equal(res, "Hello");
 
-<<<<<<< HEAD
-     deepEqual(RiTa.stripPunctuation(""), [""]);
-
-=======
-     // always do these three
-     deepEqual(RiTa.stripPunctuation(""), [""]);
-
-     var BAD = [null, undefined, 1234];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.stripPunctuation(BAD[i], []);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-     var res = RiTa.stripPunctuation("þýœâþýþý™âþý`',;:!?)He,;:!?)([].#l\"\\!@$%&}<>|+$%&}<>|+=-_\\o}<>|+=-_\\/*{^");
-     equal(res, "Hello"); // TODO: recheck
-
+     equal(RiTa.stripPunctuation(""), "");
+     
+     equal(RiTa.stripPunctuation("Hel_lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel;lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel:lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel'lo"),  "Hello");     
+     equal(RiTa.stripPunctuation("Hel/lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel\"lo"), "Hello");
+     equal(RiTa.stripPunctuation("Hel-lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel`lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel?lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel.lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel+lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel*lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel&lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel$lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel(lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel)lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel@lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel[lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel]lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel{lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel}lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel\\lo"), "Hello");
+     equal(RiTa.stripPunctuation("Hel%lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel~lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel:lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel;lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel<lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel>lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel^lo"),  "Hello");
+     equal(RiTa.stripPunctuation("Hel|lo"),  "Hello");
+     
+     var res = RiTa.stripPunctuation("\"\\!@$%&}<>|+=-_\\/*{^He&^ll,o\!@$%&}<>|+=-_\\/*{^");
+     equal(res, "Hello");
+     
  });
 
  test("RiTa.trimPunctuation()", function () {
 
-     //strip/trimPunctuation "þýœâþýþý™âþý`',;:!?)([].#\"\\!@$%&}<>|+=-_\\/*{^
      var res = RiTa.trimPunctuation("$%He&^ll,o,");
      equal(res, "He&^ll,o");
 
-     var res = RiTa.trimPunctuation("þýœâþýþý™âþý`He&^ll,o\!@$%&}<>|+=-_\\/*{^");
+     var res = RiTa.trimPunctuation("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`He&^ll,o\!@$%&}<>|+=-_\\/*{^");
      equal(res, "He&^ll,o");
 
      var res = RiTa.trimPunctuation("\"\\!@$%&}<>|+=-_\\/*{^He&^ll,o\!@$%&}<>|+=-_\\/*{^");
      equal(res, "He&^ll,o");
 
-<<<<<<< HEAD
      deepEqual(RiTa.trimPunctuation(""), "");
      
      deepEqual(RiTa.trimPunctuation(1234), 1234); 
-=======
-     // always do these three
-     deepEqual(RiTa.trimPunctuation(""), "");
-     
-     deepEqual(RiTa.trimPunctuation(1234), 1234); // hmmm? really? TODO: should throw error?
-
-     var BAD = [null, undefined];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.trimPunctuation(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
  });
 
  test("RiTa.isPunctuation()", function () {
@@ -389,12 +303,12 @@ $(document).ready(function () {
      }
 
      // TODO: also test multiple characters strings here ****
-     var punct = "\"¡§¡¨¡¦¡¥`'";
+     var punct = "\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`'";
      for (var i = 0; i < punct.length; i++) {
          ok(RiTa.isPunctuation(punct[i]), punct[i]);
      }
 
-     var punct = "\"¡§¡¨¡¦¡¥`',;:!?)([].#\"\\!@$%&}<>|+=-_\\/*{^";
+     var punct = "\"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½`',;:!?)([].#\"\\!@$%&}<>|+=-_\\/*{^";
      for (var i = 0; i < punct.length; i++) {
          ok(RiTa.isPunctuation(punct[i]), punct[i]);
      }
@@ -408,13 +322,6 @@ $(document).ready(function () {
 
      ok(!RiTa.isPunctuation(""));
 
-<<<<<<< HEAD
-=======
-     var BAD = [null, undefined, 1];
-     for (var i = 0; i < BAD.length; i++) {
-         ok(!RiTa.isPunctuation(BAD[i]));
-     }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
 
  test("RiTa.tokenize()", function () {
@@ -457,28 +364,11 @@ $(document).ready(function () {
          deepEqual(result, outputs[i]);
      }
 
-<<<<<<< HEAD
      deepEqual(RiTa.tokenize(""), [""]);
 
-=======
-     // always do these three
-     deepEqual(RiTa.tokenize(""), [""]);
-
-     var BAD = [null, undefined, 1234]
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.tokenize(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-     
-     var input = "Dr. Chan is talking slowly with Mr. Cheng, and they're friends.";
-     //'Where is one word here, same result as Processing (TODO: CHECK THIS, DON'T WE MATCH ABBREVIATIONS??)
-     var expected = ["Dr.", "Chan", "is", "talking", "slowly", "with", "Mr.", "Cheng", ",", "and", "they're", "friends", "."];
+     var input = "Dr. Chan is talking slowly with Mr. Cheng, and they're friends."; // strange but same as RiTa-java
+     //var expected = ["Dr.", "Chan", "is", "talking", "slowly", "with", "Mr.", "Cheng", ",", "and", "they're", "friends", "."];
+     var expected = ["Dr",".", "Chan", "is", "talking", "slowly", "with", "Mr",".", "Cheng", ",", "and", "they're", "friends", "."];
      var output = RiTa.tokenize(input);
      deepEqual(output, expected);
  });
@@ -495,7 +385,6 @@ $(document).ready(function () {
      equal(RiTa.trim("'hello	"), "'hello"); //tab
      equal(RiTa.trim("  hello  "), "hello"); //multiple
      equal(RiTa.trim(" 	hello	 "), "hello"); //mixed
-<<<<<<< HEAD
     
  });
 
@@ -514,20 +403,6 @@ $(document).ready(function () {
 		ok(answer2 <=1, answer2);
         
     });
-=======
-     var BAD = [null, undefined, 1234]
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.trim(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
- });
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  
  test("RiTa.getPhonemes()", function () { 
 
@@ -546,12 +421,16 @@ $(document).ready(function () {
      var result = RiTa.getPhonemes("The boy ran to the store.");
      var answer = "dh-ax b-oy r-ae-n t-uw dh-ax s-t-ao-r";
      equal(result, answer);
+     
+     var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
+     var result = RiTa.getPhonemes(txt);
+     var answer = "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er";
+     equal(result, answer);
 
      var result = RiTa.getPhonemes("");
      var answer = "";
      equal(result, answer);
 
-<<<<<<< HEAD
      raises(function () {
          try {
              RiTa.getPhonemes(1234);
@@ -559,22 +438,6 @@ $(document).ready(function () {
              throw e;
          }
      });
-=======
-     var result = RiTa.getPhonemes(1234);
-     equal(result, ""); // TODO: check
-
-     
-     var BAD = [null, undefined];
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 RiTa.getPhonemes(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
  });
 
@@ -596,12 +459,33 @@ $(document).ready(function () {
      var result = RiTa.getPosTags("The boy, dressed in red, ate an apple.");
      var answer = ["dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "."];
      deepEqual(result, answer);
+     
+     var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
+     var result = RiTa.getPosTags(txt);
+     var answer = [
+        "dt",
+        "nn",
+        "vbd",
+        "rbr",
+        "in",
+        "dt",
+        "jj",
+        "nn",
+        ".",
+        "cc",
+        "dt",
+        "jj",
+        "nn",
+        "vbd",
+        "jjr",
+        "."
+        ];
+     deepEqual(result, answer);
 
      var result = RiTa.getPosTags("");
      var answer = [];
      deepEqual(result, answer);
 
-<<<<<<< HEAD
  });
 
  test("RiTa.getPosTagsInline()", function () { 
@@ -620,56 +504,18 @@ $(document).ready(function () {
 
      var result = RiTa.getPosTagsInline("The boy, dressed in red, ate an apple.");
      var answer = "The/dt boy/nn , dressed/vbn in/in red/jj , ate/vbd an/dt apple/nn .";
-=======
-//     var BAD = [null, undefined, 1234]
-//     for (var i = 0; i < BAD.length; i++) {
-//         raises(function () {
-//             try {
-//                 var result = RiTa.getPosTags(BAD[i]);
-//             } catch (e) {
-//                 throw e;
-//             }
-//         });
-//     }
-
- });
-
- test("RiTa.getPosTagsInline()", function () { 
-     var result = RiTa.getPosTagsInline("asdfaasd");
-     var answer = "nn";
      deepEqual(result, answer);
-
-     var result = RiTa.getPosTagsInline("clothes");
-     var answer = "nns";
-     deepEqual(result, answer);
-
-     var result = RiTa.getPosTagsInline("There is a cat.");
-     var answer = "ex vbz dt nn .";
-     deepEqual(result, answer);
-
-     var result = RiTa.getPosTagsInline("The boy, dressed in red, ate an apple.");
-     var answer = "dt nn , vbn in jj , vbd dt nn .";
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-     deepEqual(result, answer);
+     
+     var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
+     var result = RiTa.getPosTagsInline(txt);
+     var answer = "The/dt dog/nn ran/vbd faster/rbr than/in the/dt other/jj dog/nn . But/cc the/dt other/jj dog/nn was/vbd prettier/jjr .";
+     equal(result, answer);
+     
 
      var result = RiTa.getPosTagsInline("");
      var answer = "";
      deepEqual(result, answer);
 
-<<<<<<< HEAD
-=======
-     var BAD = [null, undefined, 1234]
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 var result = RiTa.getPosTagsInline(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
 
  test("RiTa.getStresses()", function () {
@@ -693,108 +539,33 @@ $(document).ready(function () {
      var result = RiTa.getStresses("to present, to export, to decide, to begin");
      var answer = "1 0/1 1 0/1 1 0/1 1 0/1";
      equal(result, answer);
+     
+     var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
+     var result = RiTa.getStresses(txt);
+     var answer = "0 1 1 1/0 1 0 1/0 1 1 0 1/0 1 1 1/0/0";
+     equal(result, answer);
 
      var result = RiTa.getStresses("");
      var answer = "";
      equal(result, answer);
 
-<<<<<<< HEAD
-=======
-     var BAD = [null, undefined, 1234]
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 var result = RiTa.getStresses(BAD[i]);
-             } catch (e) {
-                 //console.log("res="+result);
-                 throw e;
-             }
-         });
-     }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
  });
-
-/*
- test("RiTa.getStressesAt()", function () {
-
-     var result = RiTa.getStressesAt("The emperor had no clothes on.", 1);
-     var answer = "1";
-     equal(result, answer);
-
-     var result = RiTa.getStressesAt("The emperor had no clothes on. The King is fat.", 0);
-     var answer = "0";
-     deepEqual(result, answer);
-
-     var result = RiTa.getStressesAt("to preSENT, to exPORT, to deCIDE, to beGIN", 500);
-     var answer = "";
-     deepEqual(result, answer);
-
-     var result = RiTa.getStressesAt("to present, to export, to decide, to begin", -1);
-     var answer = "";
-     deepEqual(result, answer);
-
-     var result = RiTa.getStressesAt("");
-     var answer = "";
-     equal(result, answer);
-
-     var result = RiTa.getStressesAt(null);
-     var answer = "";
-     equal(result, answer);
-
-     var result = RiTa.getStressesAt(undefined);
-     var answer = "";
-     equal(result, answer);
-
-
-<<<<<<< HEAD
- });
-  */
- 
     
-     test("RiTa.getSyllables()", function () {
-    
-         var txt = "The emperor had no clothes on.";
-         var result = RiTa.getSyllables(txt);
-         var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
-         equal(result, answer);
-
-         var result = RiTa.getSyllables("@#$%&*()");
-         var answer = "";
-         equal(result, answer);
-    
-         var result = RiTa.getSyllables("");
-         var answer = "";
-         equal(result, answer);
-         
-         var txt = "The emperor had no clothes on.";
-         var result = RiTa.getSyllables(txt.split(' '));
-         equal(result, answer);
-     });
-=======
-     var BAD = [null, undefined, 1234]
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 //var result = RiTa.getStressesAt(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
-
- });
-  */
- 
  test("RiTa.getSyllables()", function () {
 
+     var txt = "The dog ran faster than the other dog. But the other dog was prettier.";
+     var result = RiTa.getSyllables(txt);
+     var answer = "dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er";
+     equal(result, answer);
+     
      var txt = "The emperor had no clothes on.";
      var result = RiTa.getSyllables(txt);
      var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
      equal(result, answer);
      
-     var txt = "The emperor had no clothes on.";
-     var result = RiTa.getSyllables(txt.split(' '));
+     var txt = "The Laggin Dragon";
+     var result = RiTa.getSyllables(txt);
+     var answer = "dh-ax l-ae/g-ih-n d-r-ae-g/ax-n";
      equal(result, answer);
 
      var result = RiTa.getSyllables("@#$%&*()");
@@ -804,20 +575,7 @@ $(document).ready(function () {
      var result = RiTa.getSyllables("");
      var answer = "";
      equal(result, answer);
-
-     var BAD = [null, undefined, 1234] 
-     for (var i = 0; i < BAD.length; i++) {
-         raises(function () {
-             try {
-                 var result = RiTa.getSyllables(BAD[i]);
-             } catch (e) {
-                 throw e;
-             }
-         });
-     }
-
  });
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 
 
 
@@ -845,20 +603,6 @@ $(document).ready(function () {
       deepEqual(result, 15);
 
 
-<<<<<<< HEAD
-=======
-      var BAD = [null, undefined, 1234]
-      for (var i = 0; i < BAD.length; i++) {
-          raises(function () {
-              try {
-                  var result = RiTa.getWordCount(BAD[i]);
-              } catch (e) {
-                  throw e;
-              }
-          });
-      }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
   });
 
   test("RiTa.posToWordNet()", function () {
@@ -902,26 +646,11 @@ $(document).ready(function () {
       var result = RiTa.posToWordNet("");
       equal("", result);
 
-<<<<<<< HEAD
  
-=======
-      var BAD = [null, undefined, 1234]
-      for (var i = 0; i < BAD.length; i++) {
-          raises(function () {
-              try {
-                  RiTa.posToWordNet(BAD[i]);
-              } catch (e) {
-                  throw e;
-              }
-          });
-      }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
   });
 
   //---From RiConjugator---
   test("RiTa.conjugate", function () {
-<<<<<<< HEAD
 
   ///////////////////////////////////////////////////////////////////////////
       
@@ -977,26 +706,12 @@ $(document).ready(function () {
       
       ok(a.length === s.length);
       
-=======
-    
-      var args = {
-          number: RiTa.PLURAL,
-          person: RiTa.SECOND_PERSON,
-          tense: RiTa.PRESENT_TENSE
-      };
-      var s = ["swim", "need", "open",  ""];
-      var a = ["swim", "need", "open", ""];
-      ok(a.length === s.length);
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       for (var i = 0; i < s.length; i++) {
           var c = RiTa.conjugate(s[i], args);
           equal(c, a[i]);
       }
-<<<<<<< HEAD
         
       equal("swum", RiTa.getPastParticiple("swim"));
-=======
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       
       var args = {
           number: RiTa.PLURAL,
@@ -1007,20 +722,12 @@ $(document).ready(function () {
       var a = ["swam", "needed", "opened", ""];
       ok(a.length === s.length);
       
-<<<<<<< HEAD
       
-=======
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       for (var i = 0; i < s.length; i++) {
           var c = RiTa.conjugate(s[i], args);
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-      return;
-      
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           number: RiTa.PLURAL,
           person: RiTa.SECOND_PERSON,
@@ -1034,23 +741,6 @@ $(document).ready(function () {
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-
-      var args = {
-          tense: RiTa.PRESENT_TENSE,
-          number: RiTa.SINGULAR,
-          person: RiTa.THIRD_PERSON
-      };
-      a = ["swims", "needs", "opens", ""];
-      ok(a.length === s.length);
-      for (var i = 0; i < s.length; i++) {
-          c = RiTa.conjugate(s[i], args);
-          equal(c, a[i]);
-      }
-
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           tense: RiTa.PAST_TENSE,
           number: RiTa.SINGULAR,
@@ -1063,10 +753,6 @@ $(document).ready(function () {
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           tense: RiTa.PAST_TENSE,
           number: RiTa.SINGULAR,
@@ -1080,10 +766,6 @@ $(document).ready(function () {
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           tense: RiTa.PAST_TENSE,
           number: RiTa.SINGULAR,
@@ -1097,22 +779,6 @@ $(document).ready(function () {
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-
-      var args = {
-          tense: RiTa.PRESENT_TENSE,
-          passive: true,
-          actualModal: false
-      };
-      a = ["be swum", "be needed", "be opened", ""];
-      ok(a.length === s.length);
-      for (var i = 0; i < s.length; i++) {
-          c = RiTa.conjugate(s[i], args);
-          equal(c, a[i]);
-      }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           tense: RiTa.PRESENT_TENSE,
           number: RiTa.SINGULAR,
@@ -1127,10 +793,6 @@ $(document).ready(function () {
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           tense: RiTa.PRESENT_TENSE,
           number: RiTa.SINGULAR,
@@ -1145,10 +807,6 @@ $(document).ready(function () {
           equal(c, a[i]);
       }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
       var args = {
           number: RiTa.PLURAL,
           person: RiTa.SECOND_PERSON,
@@ -1156,7 +814,6 @@ $(document).ready(function () {
       };
       equal(RiTa.conjugate("barter", args), "bartered");
       equal(RiTa.conjugate("run", args), "ran");
-<<<<<<< HEAD
       
       s = ["compete", "complete", "eject"];
       a = ["competed","completed","ejected"];
@@ -1167,29 +824,6 @@ $(document).ready(function () {
       }
   });
 
-=======
-
-
-      var BAD = [null, undefined, 1234]
-      for (var i = 0; i < BAD.length; i++) {
-          raises(function () {
-              try {
-                  RiTa.conjugate(BAD[i], args);
-              } catch (e) {
-                  throw e;
-              }
-          });
-      }
-  });
-
-  /*
-		    test("RiTa.conjugateAll()", function () { // conjugateAll(verb); conjugateAll(verb, result); TODO
-		    	equal(RiTa.conjugateAll("swim"), "");
-		        equal(RiTa.conjugateAll("run"), "");
-
-		    });
-   */
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
   test("RiTa.getPastParticiple()", function () { //failed becasue of stem() is not implemented
       equal(RiTa.getPastParticiple("swim"), "swum");
       equal(RiTa.getPastParticiple("run"), "ran"); // TODO: check this one!
@@ -1211,20 +845,6 @@ $(document).ready(function () {
       equal(RiTa.getPastParticiple("	study"), "studied"); //tab space
       equal(RiTa.getPastParticiple(""), "");
 
-<<<<<<< HEAD
-=======
-      var BAD = [null, undefined, 1234]
-      for (var i = 0; i < BAD.length; i++) {
-          raises(function () {
-              try {
-                  RiTa.getPastParticiple(BAD[i]);
-              } catch (e) {
-                  throw e;
-              }
-          });
-      }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
   });
 
 
@@ -1250,34 +870,13 @@ $(document).ready(function () {
       equal(RiTa.getPresentParticiple("	study"), "studying"); //tab space
       equal(RiTa.getPresentParticiple(""), "");
 
-<<<<<<< HEAD
        });
     
   test("RiTa.stem(lancaster)", function () { 
-=======
-      var BAD = [null, undefined, 1234]
-      for (var i = 0; i < BAD.length; i++) {
-          raises(function () {
-              try {
-                  RiTa.getPresentParticiple(BAD[i]);
-              } catch (e) {
-                  throw e;
-              }
-          });
-      }
-  });
-
- 
- 
-    test("RiTa.stem()", function () { //not existed TODO
-
-        ok('Separate Test File for Stemmers');
-    });
-    
-    test("RiTa.stem(lancaster)", function () { 
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
         
-        var type = 'Lancaster';
+        var type = 'Lancaster'; // default
+        
+        equal(RiTa.stem("cakes", type), "cak");
         
         var tests = ["run", "runs", "running"];
         for (var i = 0; i < tests.length; i++) {
@@ -1298,6 +897,8 @@ $(document).ready(function () {
         
         var type = 'Porter';
         
+        equal(RiTa.stem("cakes",type), "cake");
+        
         var tests = ["run", "runs", "running"];
         for (var i = 0; i < tests.length; i++) {
             equal(RiTa.stem(tests[i],type), "run");
@@ -1313,163 +914,6 @@ $(document).ready(function () {
         equal(RiTa.stem(test,type), result);
     });
            
-    
-    //---From RiPluralizer---   
-<<<<<<< HEAD
-    test("RiTa.pluralize()", function () { 
-        
-        //From RiTa docsReturns the regular or irregular plural form of noun.
-=======
-    test("RiTa.pluralize()", function () { //From RiTa docsReturns the regular or irregular plural form of noun. Note: this method requires a pre-stemmed noun (see RiStemmer) for proper function.
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-        equal("dogs", RiTa.pluralize("dog"));
-        equal("feet", RiTa.pluralize("foot"));
-        equal("men", RiTa.pluralize("man"));
-        equal("mice", RiTa.pluralize("mouse"));//wrong
-        equal("beautifuls", RiTa.pluralize("beautiful")); 
-        equal("teeth", RiTa.pluralize("tooth"));
-        equal("cakes", RiTa.pluralize("cake"));
-        equal("kisses", RiTa.pluralize("kiss"));
-        equal("children", RiTa.pluralize("child"));
-<<<<<<< HEAD
-
-      	equal("children", RiTa.pluralize("children"));
-    	equal("", RiTa.pluralize("randomword"));
-        equal("lice", RiTa.pluralize("louse"));
-        equal("oxen", RiTa.pluralize("ox"));
-        equal("deer", RiTa.pluralize("deer"));
-        equal("sheep", RiTa.pluralize("sheep"));
-        equal("shrimps", RiTa.pluralize("shrimp"));
-        equal("series", RiTa.pluralize("series"));  
-        
-                
-        equal("", RiTa.pluralize(""));
-
-    });
-
-
-
-    test("RiTa.singularize()", function () { 
-    	
-=======
-        equal("", RiTa.pluralize(""));
-
-        // always do these three
-        var BAD = [null, undefined]
-        for (var i = 0; i < BAD.length; i++) {
-            raises(function () {
-                try {
-                    RiTa.pluralize(BAD[i]);
-                } catch (e) {
-                    throw e;
-                }
-            });
-        }
-
-    });
-
-    test("RiTa.pluralize()", function () { //From RiTa docsReturns the regular or irregular plural form of noun. Note: this method requires a pre-stemmed noun (see RiStemmer) for proper function.
-
-        equal("dogs", RiTa.pluralize("dog"));
-        equal("feet", RiTa.pluralize("foot"));
-        equal("men", RiTa.pluralize("man"));
-        equal("mice", RiTa.pluralize("mouse"));//wrong
-        equal("beautifuls", RiTa.pluralize("beautiful")); 
-        equal("teeth", RiTa.pluralize("tooth"));
-        equal("cakes", RiTa.pluralize("cake"));
-        equal("kisses", RiTa.pluralize("kiss"));
-        equal("children", RiTa.pluralize("child"));
-        equal("", RiTa.pluralize(""));
-
-        // always do these three
-        var BAD = [null, undefined]
-        for (var i = 0; i < BAD.length; i++) {
-            raises(function () {
-                try {
-                    RiTa.pluralize(BAD[i]);
-                } catch (e) {
-                    throw e;
-                }
-            });
-        }
-
-    });
-
-    test("RiTa.singularize()", function () { //From RiTa docsReturns the regular or irregular plural form of noun. Note: this method requires a pre-stemmed noun (see RiStemmer) for proper function.
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-        equal("dog", RiTa.singularize("dogs"));
-        equal("foot", RiTa.singularize("feet"));
-        equal("man", RiTa.singularize("men"));
-        equal("mouse", RiTa.singularize("mice"));//wrong
-        equal("", RiTa.singularize("beautifuls")); 
-        equal("tooth", RiTa.singularize("teeth"));
-        equal("cake", RiTa.singularize("cakes"));
-        equal("kiss", RiTa.singularize("kisses"));
-        equal("child", RiTa.singularize("children"));
-<<<<<<< HEAD
-        
-        equal("child", RiTa.singularize("child"));
-    	equal("", RiTa.singularize("randomword"));
-        equal("louse", RiTa.singularize("lice"));
-        equal("ox", RiTa.singularize("oxen"));
-        equal("deer", RiTa.singularize("deer"));
-        equal("sheep", RiTa.singularize("sheep"));
-        equal("shrimp", RiTa.singularize("shrimps"));
-    	equal("series", RiTa.singularize("series"));  
-        
-        
-        equal("", RiTa.singularize(""));
-
-        });
-
-	test("RiTa.timer()", function () { //TODO: how to use it 
-    	
-        equal("", RiTa.timer("dogs"));
-    });
-	
-   //TODO random is repeated in API
-	    
-    test("RiTa.p5Compatible()", function () { //TODO: how to test it
-    	
-        equal(RiTa.p5Compatible(1), "need more detailed test");
-		equal(RiTa.p5Compatible(0), "need more detailed test");
-    	
-
-    });
-	
-	test("RiTa.untokenize()", function () { 
-        equal(RiTa.untokenize(["need more detailed test"]),"need more detailed test");
-		equal(RiTa.untokenize(["need more", "detailed test"]), "need more detailed test");
-		equal(RiTa.untokenize(["need more, detailed test!"]),"need more, detailed test!");
-		equal(RiTa.untokenize(["need more,", "detailed test!"]),"need more, detailed test!");
-		equal(RiTa.untokenize(["need", "more,", "detailed test!"]),"need more, detailed test!");
-		equal(RiTa.untokenize(["need ", " more,", "detailed test! "]),"need   more, detailed test! ");
-		equal(RiTa.untokenize([""]),"");
-
-     
-    });
-    
-=======
-        equal("", RiTa.singularize(""));
-
-        // always do these three
-        var BAD = [null, undefined]
-        for (var i = 0; i < BAD.length; i++) {
-            raises(function () {
-                try {
-                    RiTa.singularize(BAD[i]);
-                } catch (e) {
-                    throw e;
-                }
-            });
-        }
-
-    });
-    
-    
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
     test("RiTa.LTSEngine", function () {
 
         //getPhonemes
@@ -1477,28 +921,13 @@ $(document).ready(function () {
         var answer = "ae-s-d-f-g-ax-s-d-ae-s-d-ae-s-d-ae-s-d-s-ao-d-ae-s-f";
         equal(result, answer);
         
-<<<<<<< HEAD
         var result = RiTa.getPhonemes("HTERE ^%&*^ IS ^(*^*() fsfa");
-        var answer = "t-ih-r     ih-z      f-s-f-ax";
-=======
-        return;
-
-        var result = RiTa.getPhonemes("HTERE ^%&*^ IS ^(*^*() fsfa");
-        var answer = "";
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
+        var answer = "t-ih-r ih-z f-s-f-ax";
         equal(result, answer);
 
         //getStresses
         var result = RiTa.getStresses("deMOcracy, dependaBIlity, phoTOgraphy, geOLogy");
-<<<<<<< HEAD
-        var answer = "0/1/0/0  0/1/0/1/0/0  0/1/0/0  0/1/0/0";
-=======
         var answer = "0/1/0/0 0/1/0/1/0/0 0/1/0/0 0/1/0/0";
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-        equal(result, answer);
-
-        var result = RiTa.getStresses("123213");
-        var answer = "1 1/0 1/0 1 1/0 1 1/0 1/1";
         equal(result, answer);
 
         var result = RiTa.getStresses("@#$%^&*()");
@@ -1510,407 +939,115 @@ $(document).ready(function () {
         equal(result, answer);
 
         var result = RiTa.getStresses("HTERE ^%&*^ IS ^(*^*() fsfa");
-<<<<<<< HEAD
-        var answer = "1     1      0";
-=======
-        var answer = "";
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
+        var answer = "1 1 0";
         equal(result, answer);
 
         //getSyllables
         var result = RiTa.getSyllables("one two three four five"); // numbers are not working also
-        var answer = "w-ah-n t-uw t-iy f-ao-r f-ay-v";
+        var answer = "w-ah-n t-uw th-r-iy f-ao-r f-ay-v";
+        equal(result, answer);
+
+        var result = RiTa.getSyllables("12345"); // numbers are not working also
+        var answer = "w-ah-n/t-uw/th-r-iy/f-ao-r/f-ay-v";
+        equal(result, answer);
+        
+        var result = RiTa.getSyllables("1 2 3 4 5 "); // numbers are not working also
+        var answer = "w-ah-n t-uw th-r-iy f-ao-r f-ay-v";
+        equal(result, answer);
+        
+        var result = RiTa.getPosTags("2"); // numbers are not working also
+        var answer = "cd";
         equal(result, answer);
 
         var result = RiTa.getSyllables("The three emperor had no clothes on.");
-        var answer = "dh-ax t-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
+        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
         equal(result, answer);
 
         var result = RiTa.getSyllables("The 3 emperor had no clothes on.");
-        var answer = "dh-ax t-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
+        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
         equal(result, answer);
 
         var result = RiTa.getSyllables("The 3 emperor! Had no clothes, on.");
-        var answer = "dh-ax t-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
-        equal(result, answer);
-
-        var result = RiTa.getSyllables("123123");
-        var answer = "w-ah-n hh-ah-n-d/r-ax-d t-w-eh-n-t/iy t-iy th-aw-s/ax-n-d w-ah-n hh-ah-n-d/r-ax-d t-w-eh-n-t/iy t-iy";
+        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
         equal(result, answer);
 
         var result = RiTa.getSyllables("asdfgasdasdasdasdsadasf");
-        var answer = "ae-s-d-f/g-ax-s/d-ae-s/d-ae-s/d-ae-s-d-s/ao-d/ae-s-f";
+        var answer = "ae-s-d-f/g-ax-s/d-ae-s/d-ae-s/d-ae-s-d/s-ao/d-ae-s-f";
         equal(result, answer);
 
         var result = RiTa.getSyllables("HTERE ^%&*^ IS ^(*^*() fsfa");
-<<<<<<< HEAD
-        var answer = "t-ih-r     ih-z      f-s-f-ax";
-=======
-        var answer = "";
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
+        var answer = "t-ih-r ih-z f-s-f-ax";
         equal(result, answer);
 
     });
 
-
-  
-    /*
-		        test("RiTa.isStopWord()", function () {
-
-		            ok(!RiTa.isStopWord("Usually, but not always, it consists of a letter or group of letters taken from the word or phrase."));
-		            ok(!RiTa.isStopWord("Usually,"));
-		            ok(RiTa.isStopWord("he"));
-		            ok(RiTa.isStopWord("is"));
-		            ok(RiTa.isStopWord("at"));
-		            ok(RiTa.isStopWord("at"));
-		            ok(RiTa.isStopWord("which"));
-		            ok(RiTa.isStopWord("on"));
-
-		            ok(RiTa.isStopWord("on ")); //space
-		            ok(RiTa.isStopWord(" on")); //space
-		            ok(RiTa.isStopWord("on  ")); //double space
-		            ok(RiTa.isStopWord("  on")); //double space
-		            ok(RiTa.isStopWord("on	")); //tab space
-		            ok(RiTa.isStopWord("	on")); //tab space
-
-		            ok(!RiTa.isStopWord(""));
-		            ok(!RiTa.isStopWord(null));
-		            ok(!RiTa.isStopWord(undefined));
-
-<<<<<<< HEAD
-=======
-		            var BAD = [null, undefined, "", 1];
-		            for (var i = 0; i < BAD.length; i++) {
-		                raises(function () {
-		                    try {
-		                        //   RiTa.isStopWord(BAD[i]);
-		                    } catch (e) {
-		                        throw e;
-		                    }
-		                });
-		            }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-		        });
-
-
-		        test("RiTa.posTag()", function () {
-		            var result = RiTa.posTag(["mother", "father", "fat", "haha", "girl", "girly", "good", "goods"]);
-		            var answer = ["nn", "nn", "jj", "nn", "nn", "rb", "jj", "nns"];
-		            equal(result, answer);
-
-		            var result = RiTa.posTag([""]);
-		            var answer = [""]; //processing rita output "cd"
-		            equal(result, answer);
-
-		            var result = RiTa.posTag(null);
-		            var answer = [""];
-		            equal(result, answer);
-
-		            var result = RiTa.posTag(undefined);
-		            var answer = [""];
-		            equal(result, answer);
-<<<<<<< HEAD
-=======
-
-		            var BAD = [null, undefined, "", 1];
-		            for (var i = 0; i < BAD.length; i++) {
-		                raises(function () {
-		                    try {
-		                        //   RiTa.posTag(BAD[i]);
-		                    } catch (e) {
-		                        throw e;
-		                    }
-		                });
-		            }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-		        });
-     */
-
-   
-    /*
-<<<<<<< HEAD
-=======
-		    test("RiTa.getPhonemesAt()", function () { //TODO
-		        var result = RiTa.getPhonemesAt();
-		        var answer = "TODO";
-		        deepEqual(result, answer);
-
-		    });
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-		        test("RiTa.getPos()", function () {
-
-		            var result = RiTa.getPos("asdfaasd");
-		            var answer = ["nn"];
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPos("clothes");
-		            var answer = ["nns"];
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPos("There is a cat.");
-		            var answer = ["ex", "vbz", "dt", "nn", "."];
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPos("The boy, dressed in red, ate an apple.");
-		            var answer = ["dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "."];
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPos("");
-		            var answer = [];
-		            equal(result, answer);
-
-		            var result = RiTa.getPos(null);
-		            var answer = [];
-		            equal(result, answer);
-
-		            var result = RiTa.getPos(undefined);
-		            var answer = [];
-		            equal(result, answer);
-
-<<<<<<< HEAD
-=======
-		            var BAD = [null, undefined, 1234]
-		            for (var i = 0; i < BAD.length; i++) {
-		                raises(function () {
-		                    try {
-		                        //var result = RiTa.getPos(BAD[i]);
-		                    } catch (e) {
-		                        throw e;
-		                    }
-		                });
-		            }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-		        });
-
-		        test("RiTa.getPosAt()", function () {
-
-		            var result = RiTa.getPosAt("The emperor had no clothes on.", 4);
-		            var answer = "nns";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt("There is a cat.", 3);
-		            var answer = "nn";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt("The emperor had no clothes on.", 54);
-		            var answer = "";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt("The emperor had no clothes on.", -4);
-		            var answer = "";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt("", 0);
-		            var answer = "";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt("");
-		            var answer = "";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt(null);
-		            var answer = "";
-		            deepEqual(result, answer);
-
-		            var result = RiTa.getPosAt(undefined);
-		            var answer = "";
-		            deepEqual(result, answer);
-
-<<<<<<< HEAD
-=======
-		            var BAD = [null, undefined, 1234]
-		            for (var i = 0; i < BAD.length; i++) {
-		                raises(function () {
-		                    try {
-		                        //var result = RiTa.getPosAt(BAD[i]);
-		                    } catch (e) {
-		                        throw e;
-		                    }
-		                });
-		            }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-		        });
-     */
-
-
-    /*
-<<<<<<< HEAD
-
-=======
-		    test("RiTa.getText()", function () {
-
-		        var result = RiTa.getText("TODO");
-		        var answer = "";
-		        deepEqual(result, answer);
-
-		        var BAD = [null, undefined, 1234]
-		        for (var i = 0; i < BAD.length; i++) {
-		            raises(function () {
-		                try {
-		                    //var result = RiTa.getText(BAD[i]);
-		                } catch (e) {
-		                    throw e;
-		                }
-		            });
-		        }
-
-		    });
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-		    test("RiTa.getTokens()", function () {
-
-
-		        var input = "The boy, dressed in red, ate an apple.";
-		        var expected = ["The", "boy", "dressed", "in", "red", "ate", "an", "apple"];
-		        var output = RiTa.getTokens(input);
-		        deepEqual(output, expected);
-
-		        var input = "The boy screamed, 'Where is my apple?'";
-		        var expected = ["The", "boy", "screamed", "Where", "is", "my", "apple"];
-		        var output = RiTa.getTokens(input);
-		        deepEqual(output, expected);
-
-		        var input = "why? Me?huh?!";
-		        var expected = ["why", "Me", "huh"];
-		        var output = RiTa.getTokens(input);
-		        deepEqual(output, expected);
-
-		        var input = "Dr.Chan is talking slowly with Mr.Cheng, and they're friends.";
-		        var expected = ["Dr", "Chan", "is", "talking", "slowly", "with", "Mr", "Cheng", "and", "they", "re", "friends", ];
-		        var output = RiTa.getTokens(input);
-		        deepEqual(output, expected); //TODO special case
-		        var input = "123 123 1 2 3 1,1 1.1 23.45.67 22/05/2012 12th May,2012";
-		        var expected = ["123", "123", "1", "2", "3", "1", "1", "1.1", "23.45.67", "22/05/2012", "12th", "May", "2012"];
-		        var output = RiTa.getTokens(input);
-		        deepEqual(output, expected);
-
-		            // TODO: check Penn-Treebank tokenizer rules
-		            var inputs = ["A simple sentence.", "that's why this is our place).", "McDonald's - it cannot happen", "McDonald's, it cannot happen", "2"];
-		            var outputs = [
-		                ["A", "simple", "sentence", "."],
-		                ["that's,", "why", "this", "is", "our", "place)."],
-		                ["?"],
-		                ["?"],
-		                ["2"]
-		            ];
-		            var output = RiTa.getTokens(input);
-		            deepEqual(output, expected);
-
-<<<<<<< HEAD
-=======
-		        var BAD = [null, undefined, 1234]
-		        for (var i = 0; i < BAD.length; i++) {
-		            raises(function () {
-		                try {
-		                    //var result = RiTa.getTokens(BAD[i]);
-		                } catch (e) {
-		                    throw e;
-		                }
-		            });
-		        }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-		    });
-
-		        test("RiTa.rhymeScheme()", function () {
-
-		            var result = RiTa.rhymeScheme();
-		            var answer = "";
-		            deepEqual(result, answer);
-
-<<<<<<< HEAD
-		         
-=======
-		            var BAD = [null, undefined, 1234]
-		            for (var i = 0; i < BAD.length; i++) {
-		                raises(function () {
-		                    try {
-		                        //var result = RiTa.rhymeScheme(BAD[i]);
-		                    } catch (e) {
-		                        throw e;
-		                    }
-		                });
-		            }
-
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-		        });
-
-		        test("RiTa.tokenAt()", function () {
-
-		            var result = RiTa.tokenAt();
-		            var answer = "";
-		            deepEqual(result, answer);
-
-<<<<<<< HEAD
-		 
-=======
-		            var BAD = [null, undefined, 1234]
-		            for (var i = 0; i < BAD.length; i++) {
-		                raises(function () {
-		                    try {
-		                        //var result = RiTa.tokenAt(BAD[i]);
-		                    } catch (e) {
-		                        throw e;
-		                    }
-		                });
-		            }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-		        });
-     */
-   
-    //---From RiPosTagger---
-    /*
-		    test("RiTa.tagForWordNet()", function () {
-
-		        var result = RiTa.tagForWordNet(["The", "teenage", "boy", ",", "stricken", " with", "fear", ",", "cried", "sadly", "like", "a", "little", "baby"]);
-		        var answer = ["-", "a", "n", "-", "v", "n", "n", "-", "v", "r", "-", "-", "a", "n"];
-		        deepEqual(result, answer);
-
-		        var result = RiTa.tagForWordNet(["213", "2.3", "14/50", "#$%^&*&", "photo.jpg"]);
-		        var answer = ["-", "-", "n", "n", "n"];
-		        deepEqual(result, answer);
-
-		        var result = RiTa.tagForWordNet([""]);
-		        var answer = [""];
-		        deepEqual(result, answer);
-
-		        var result = RiTa.tagForWordNet("");
-		        var answer = [""];
-		        deepEqual(result, answer);
-
-		        var result = RiTa.tagForWordNet(null);
-		        var answer = [""];
-		        deepEqual(result, answer);
-
-		        var result = RiTa.tagForWordNet(undefined);
-		        var answer = [""];
-		        deepEqual(result, answer);
-
-<<<<<<< HEAD
-		     
-=======
-		        var BAD = [null, undefined, 1234]
-		        for (var i = 0; i < BAD.length; i++) {
-		            raises(function () {
-		                try {
-		                    //var result = RiTa.tagForWordNet(BAD[i]);
-		                } catch (e) {
-		                    throw e;
-		                }
-		            });
-		        }
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-
-		    });
-     */
+    test("RiTa.pluralize()", function () { 
+        
+        // TODO: reverse all these... 
+        equal("dogs", RiTa.pluralize("dog"));
+        equal("feet", RiTa.pluralize("foot"));
+        equal("men", RiTa.pluralize("man"));
+
+        equal("beautifuls", RiTa.pluralize("beautiful")); 
+        equal("teeth", RiTa.pluralize("tooth"));
+        equal("cakes", RiTa.pluralize("cake"));
+        equal("kisses", RiTa.pluralize("kiss"));
+        equal("children", RiTa.pluralize("child"));
+
+    	equal("randomwords", RiTa.pluralize("randomword"));
+        equal("lice", RiTa.pluralize("louse"));
+        
+        equal("sheep", RiTa.pluralize("sheep"));
+        equal("shrimps", RiTa.pluralize("shrimp"));
+        equal("series", RiTa.pluralize("series"));
+        equal("mice", RiTa.pluralize("mouse"));  
+        
+        equal("", RiTa.pluralize(""));
+        
+        //////////////////////////////////
+        equal(RiTa.pluralize("tomato"), "tomatoes");
+        equal(RiTa.pluralize("toe"), "toes");
+        
+                
+        equal(RiTa.pluralize("deer"), "deer");
+        equal(RiTa.pluralize("ox"), "oxen");
+    });
+
+    test("RiTa.singularize()", function () { 
+    	
+    	equal(RiTa.singularize("cakes"), "cake");
+    	
+        // TODO: reverse all these...
+        equal("dog", RiTa.singularize("dogs"));
+        equal("foot", RiTa.singularize("feet"));
+        equal("tooth", RiTa.singularize("teeth"));
+        equal("kiss", RiTa.singularize("kisses"));
+        equal("child", RiTa.singularize("child"));
+    	equal("randomword", RiTa.singularize("randomwords"));
+        equal("deer", RiTa.singularize("deer"));
+        equal("sheep", RiTa.singularize("sheep"));
+        equal("shrimp", RiTa.singularize("shrimps"));
+        equal("", RiTa.singularize(""));
+        equal(RiTa.singularize("tomatoes"), "tomato");
+        
+        
+        // TODO: add exceptions to method (reverse-eng from RE-rules in pluralize)
+        equal(RiTa.singularize("toes"), "toe");
+        equal("series", RiTa.singularize("series"));  
+        equal("ox", RiTa.singularize("oxen"));
+        equal("man", RiTa.singularize("men"));
+        equal("mouse", RiTa.singularize("mice"));
+        equal("louse", RiTa.singularize("lice"));
+        equal("child", RiTa.singularize("children"));
+    });
     
-    
-   });
+    test("RiTa.untokenize()", function () { 
+        
+        equal(RiTa.untokenize(["reverse the tokenize tests"]),"need more detailed test");
+        equal(RiTa.untokenize([""]),"");
+    });
+
+});
 </script>
 </head>
 
@@ -1921,8 +1058,8 @@ $(document).ready(function () {
 <h2 id="qunit-userAgent"></h2>
 <ol id="qunit-tests"></ol>
 <div id="qunit-fixture">test markup, will be hidden</div>
-<p>&nbsp; &nbsp;
-<a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+    <p>&nbsp; &nbsp;<a href="../../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+
 </body>
 
 </html>

@@ -1,28 +1,16 @@
-<<<<<<< HEAD
-/.cvsignore/1.4/Sun Jul 29 20:43:24 2012//
-D/.externalToolBuilders////
-/.project/1.2/Fri Jul  6 19:03:51 2012//
-D/.settings////
-D/Render Test on rita.js 1.146////
-/TASKS.txt/1.69/Sun Aug 12 00:29:12 2012//
-=======
 /.cvsignore/1.2/Wed Jun  6 07:25:24 2012//
 D/.externalToolBuilders////
 /.project/1.1/Mon Feb 27 11:24:11 2012//
 D/.settings////
 D/Render Test on rita.js 1.146////
 /TASKS.txt/1.47/Mon Jul  2 05:01:36 2012//
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 D/js////
 D/jsdocs////
 D/lib////
 D/misc////
-<<<<<<< HEAD
 D/render-tests////
 /rita-api.css/1.1/Fri May 18 14:15:48 2012//
 /rita-api.html/1.3/Fri Aug 10 18:10:23 2012//
-=======
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
 D/scripts////
 D/src////
 D/tools////
