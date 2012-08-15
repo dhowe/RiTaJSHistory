@@ -3,3 +3,5 @@
 *.pyo
 misc
 render-tests
+Render*
+TASKS.txt
