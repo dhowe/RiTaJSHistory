@@ -31,7 +31,7 @@ SRC=../src/rita.js
 ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ../src/rita.js"
 
 DOWNLOAD_DIR=../www/download
-VERSIONS_DIR=../versions
+DIST_DIR=../dist
 REF_DIR=../www/reference
 RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
@@ -44,8 +44,8 @@ echo Building RiTaJS v$VERSION ------------------------------
 ###COMPILE############################################################
 
 # clean the target dir first
-mv $DOWNLOAD_DIR/*.js $VERSIONS_DIR
-mv $DOWNLOAD_DIR/*.zip $VERSIONS_DIR
+mv $DOWNLOAD_DIR/*.js $DIST_DIR
+mv $DOWNLOAD_DIR/*.zip $DIST_DIR
 
 echo "Combining rita-*.js as ${RITA_CODE}"; 
 rm -f $RITA_CODE
