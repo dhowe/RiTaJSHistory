@@ -1,21 +1,13 @@
-<<<<<<< HEAD
-/.cvsignore/1.2/Mon Jul 30 05:40:13 2012//
-/make-docs.sh/1.6/Sun Jul 29 21:01:48 2012//
-/make-lib.sh/1.4/Sun Jul 29 21:00:11 2012//
-/make-www.sh/1.1/Wed Jun 20 14:19:12 2012//
-/minimize.sh/1.6/Fri Jul 20 21:33:16 2012//
-/phantomjs/1.1/Sun Jul 29 20:18:19 2012/-kb/
-/pub-js.sh/1.1/Wed Jun 20 13:12:30 2012//
-/pub-www.sh/1.3/Wed Jun 20 14:25:33 2012//
-/run-all-tests.pl/1.5/Fri Aug 10 18:01:32 2012//
-/run-all-tests.xml/1.5/Fri Aug 10 18:08:51 2012//
+/.cvsignore/1.3/Sun Aug 26 02:23:48 2012//
+/make-docs.sh/1.8/Sun Aug 26 20:47:37 2012//
+/make-lib.sh/1.12/Sun Sep  2 14:02:33 2012//
+/make-www.sh/1.1/Sat Aug 25 19:06:17 2012//
+/minimize.sh/1.9/Sat Aug 25 23:09:42 2012//
+/pub-js.sh/1.3/Sun Aug 26 20:10:00 2012//
+/pub-www.sh/1.7/Mon Aug 27 22:21:41 2012//
+/run-all-tests.xml/1.6/Sat Aug 25 18:54:26 2012//
+/run-phantom-tests.pl/1.2/Mon Sep  3 06:55:44 2012//
 /run-qunit.js/1.1/Sun Jul 29 20:16:25 2012//
-/send-mail.xml/1.4/Mon Jul 30 06:31:06 2012//
-=======
-/make-docs.sh/1.3/Wed Jun 20 14:05:47 2012//
-/make-www.sh/1.1/Wed Jun 20 14:19:12 2012//
-/minimize.sh/1.3/Wed Jun 20 13:56:17 2012//
-/pub-js.sh/1.1/Wed Jun 20 13:12:30 2012//
-/pub-www.sh/1.3/Wed Jun 20 14:25:33 2012//
->>>>>>> 333adb8c05f2add16a5abb95e4aada7b2c2f4a8e
-/testdict.min.js/1.1/Wed Jun 20 11:44:10 2012//
+/run-tests.sh/1.3/Mon Sep  3 06:44:59 2012//
+/send-mail.xml/1.5/Sat Aug 25 21:21:18 2012//
+/testdict.min.js/1.1/Tue Aug 14 06:08:55 2012//

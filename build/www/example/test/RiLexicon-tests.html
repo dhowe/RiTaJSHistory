@@ -6,11 +6,10 @@
         />
         <script type="text/javascript" src="../../lib/jquery.js"></script>
         <script type="text/javascript" src="../../lib/qunit-git.js"></script>
-        <!-- MUST LOAD DICTIONARY HERE -->
         <script type="text/javascript" src="../rita_dict.js"></script>
+        <script type="text/javascript" src="../rita_lts.js"></script>
         <script type="text/javascript" src="../rita.js"></script>
         <script>
-        
         
             // Called after each test finishes...
             QUnit.testStart = function(test, failed, passed, total)  {
@@ -36,6 +35,7 @@
 				             "similarByLetter", 
 				             "similarBySound", 
 				             "similarBySoundAndLetter",
+				             "size",
 				             "substrings", 
 				             "superstrings"];
 
@@ -100,7 +100,6 @@
                     equal(output3, expected3);
                     
                 });
-
 				
 				test("RiLexicon.addWord()", function () {
                     
@@ -123,30 +122,31 @@
 
                     var lex = new RiLexicon();
                     lex.addWord("", "", "");
-
-
+                    
+                    lex.clear();
                 });
 				
+
 				test("RiLexicon.clear()", function () {  
-                    
- 					ok(!RiLexicon || typeof RiLexicon.data=='undefined');
-                   
-                    var lex = new RiLexicon();
-                    
+
+                    var lex = new RiLexicon();                    
                     ok(lex.containsWord("banana"));
                     lex.removeWord("banana");
-                    console.log(lex._lookupRaw("banana"));
-                    ok(!lex.containsWord("banana"));
-                    lex.clear();      
-                    var lex = new RiLexicon();
-                    ok(lex.containsWord("banana"));        // still cannot find this word after clear()            
-                    ok(lex.containsWord("funny"));
                     
+                    ok(!lex.containsWord("banana"));
+                    
+                    lex.clear();    
+                    lex = new RiLexicon();
+
+                    ok(lex.containsWord("banana"));                   
+                    ok(lex.containsWord("funny"));
+
                     var obj = [];
                     obj["wonderfullyy"] = ["w-ah1-n-d er-f ax-l iy", "rb"];
                     var result = lex.setLexicalData(obj);
                     deepEqual(result, obj);
                     ok(lex.containsWord("wonderfullyy"));  
+                    
                     lex.clear();
                     var lex = new RiLexicon();
                     ok(!lex.containsWord("wonderfullyy"));
@@ -155,13 +155,13 @@
                 	var lex = new RiLexicon();
                     var result = lex.getLexicalData();
                     ok(Object.keys(result).length > 1000);
+                    
                     lex.clear();
-                     var lex = new RiLexicon();
-                     ok(Object.keys(result).length > 1000);
-                   
-
+                    var lex = new RiLexicon();
+                    ok(Object.keys(result).length > 1000);
                 });
 
+				
                 test("RiLexicon.containsWord()", function () {
 
                     ok(!RiLexicon || typeof RiLexicon.data=='undefined');
@@ -337,31 +337,32 @@
                     
                 });
 				
-				                test("RiLexicon().isAdverb()", function () {
+			test("RiLexicon().isAdverb()", function () {
                     
                     ok(!RiLexicon().isAdverb("swim"));
                     ok(!RiLexicon().isAdverb("walk"));
                     ok(!RiLexicon().isAdverb("walker"));
                     ok(!RiLexicon().isAdverb("beautiful"));
-                    ok(!RiLexicon().isAdverb("dance")); //"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(!RiLexicon().isAdverb("dance")); 
                     ok(!RiLexicon().isAdverb("dancing"));
                     ok(!RiLexicon().isAdverb("dancer"));
+                    
                     //verb
-                    ok(!RiLexicon().isAdverb("wash"));//"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(!RiLexicon().isAdverb("wash"));
                     ok(!RiLexicon().isAdverb("walk"));
                     ok(!RiLexicon().isAdverb("play"));
                     ok(!RiLexicon().isAdverb("throw"));
-                    ok(!RiLexicon().isAdverb("drink"));//"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(!RiLexicon().isAdverb("drink"));
                     ok(!RiLexicon().isAdverb("eat"));
                     ok(!RiLexicon().isAdverb("chew"));
+                    
                     //adj
-                    ok(!RiLexicon().isAdverb("hard"));
                     ok(!RiLexicon().isAdverb("wet"));
-                    ok(!RiLexicon().isAdverb("hard"));
-                    ok(!RiLexicon().isAdverb("dry"));
+                    ok(!RiLexicon().isAdverb("dry")); 
                     ok(!RiLexicon().isAdverb("furry")); 
                     ok(!RiLexicon().isAdverb("sad"));
                     ok(!RiLexicon().isAdverb("happy"));
+                    
                     //n
                     ok(!RiLexicon().isAdverb("dogs"));
                     ok(!RiLexicon().isAdverb("wind"));
@@ -370,68 +371,55 @@
                     ok(!RiLexicon().isAdverb("ducks")); 
                     ok(!RiLexicon().isAdverb("flowers"));
                     ok(!RiLexicon().isAdverb("fish"));
+                    
                     //adv
                     ok(RiLexicon().isAdverb("truthfully"));
                     ok(RiLexicon().isAdverb("kindly"));
                     ok(RiLexicon().isAdverb("bravely"));
-                    ok(RiLexicon().isAdverb("scarily"));
+                    ok(RiLexicon().isAdverb("doggedly")); 
                     ok(RiLexicon().isAdverb("sleepily")); 
                     ok(RiLexicon().isAdverb("excitedly"));
                     ok(RiLexicon().isAdverb("energetically"));
-                    /*
-            		     ok(RiLexicon().isAdverb("rb"));
-            		     ok(RiLexicon().isAdverb("rbr"));
-            		     ok(RiLexicon().isAdverb("rbs"));
-
-            		     ok(RiLexicon().isAdverb("RBS"));
-
-            		     ok(!RiLexicon().isAdverb("rbs ")); //space
-            		     ok(!RiLexicon().isAdverb(" rbs")); //space          
-            		     ok(!RiLexicon().isAdverb("  rbs")); //double space
-            		     ok(!RiLexicon().isAdverb(" rbs  ")); //double space
-            		     ok(!RiLexicon().isAdverb("	rbs")); //tab space
-            		     ok(!RiLexicon().isAdverb("	rbs	")); //tab space
-            		     ok(!RiLexicon().isAdverb("rbj"));
-            		     ok(!RiLexicon().isAdverb("jjr"));
-            		     ok(!RiLexicon().isAdverb("jjs"));
-            		     ok(!RiLexicon().isAdverb("nn"));
-            		     ok(!RiLexicon().isAdverb("nns"));
-            		     ok(!RiLexicon().isAdverb("nNs"));
-            		     ok(!RiLexicon().isAdverb("nNs!"));
-            		     ok(!RiLexicon().isAdverb("dt"));
-            		     ok(!RiLexicon().isAdverb("vbz"));
-            		     ok(!RiLexicon().isAdverb("md"));
-                     */
+                    ok(RiLexicon().isAdverb("hard"));  // +adj
+         
                     ok(!RiLexicon().isAdverb(""));
 
-                   
+                    raises(function () {
+                        try {
+                            ok(RiLexicon().isAdverb("banana split"));
+    
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
                 });
 
                 test("RiLexicon().isNoun()", function () {
 
-                    ok(!RiLexicon().isNoun("swim"));
-                    ok(!RiLexicon().isNoun("walk"));
+                    ok(RiLexicon().isNoun("swim"));
+                    ok(RiLexicon().isNoun("walk"));
                     ok(RiLexicon().isNoun("walker"));
-                    ok(!RiLexicon().isNoun("beautiful"));
-                    ok(RiLexicon().isNoun("dance")); //"also false in processing -> nn" shoulbe be both Verb and Noun
-                    ok(!RiLexicon().isNoun("dancing"));
+                    ok(RiLexicon().isNoun("dance"));
+                    ok(RiLexicon().isNoun("dancing"));
                     ok(RiLexicon().isNoun("dancer"));
+                    
                     //verb
-                    ok(RiLexicon().isNoun("wash"));//"also false in processing -> nn" shoulbe be both Verb and Noun
-                    ok(!RiLexicon().isNoun("walk"));
-                    ok(!RiLexicon().isNoun("play"));
-                    ok(!RiLexicon().isNoun("throw"));
-                    ok(RiLexicon().isNoun("drink"));//"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(RiLexicon().isNoun("wash"));//"TODO:also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(RiLexicon().isNoun("walk"));
+                    ok(RiLexicon().isNoun("play"));
+                    ok(RiLexicon().isNoun("throw"));
+                    ok(RiLexicon().isNoun("drink"));//TODO:"also false in processing -> nn" shoulbe be both Verb and Noun
                     ok(!RiLexicon().isNoun("eat"));
                     ok(!RiLexicon().isNoun("chew"));
+                    
                     //adj
-                    ok(!RiLexicon().isNoun("hard"));
-                    ok(!RiLexicon().isNoun("wet"));
                     ok(!RiLexicon().isNoun("hard"));
                     ok(!RiLexicon().isNoun("dry"));
                     ok(!RiLexicon().isNoun("furry")); 
                     ok(!RiLexicon().isNoun("sad"));
                     ok(!RiLexicon().isNoun("happy"));
+                    ok(!RiLexicon().isNoun("beautiful"));
+                    
                     //n
                     ok(RiLexicon().isNoun("dogs"));
                     ok(RiLexicon().isNoun("wind"));
@@ -440,6 +428,8 @@
                     ok(RiLexicon().isNoun("ducks")); 
                     ok(RiLexicon().isNoun("flowers"));
                     ok(RiLexicon().isNoun("fish"));
+                    ok(RiLexicon().isNoun("wet")); //+v/adj
+                    
                     //adv
                     ok(!RiLexicon().isNoun("truthfully"));
                     ok(!RiLexicon().isNoun("kindly"));
@@ -448,60 +438,56 @@
                     ok(!RiLexicon().isNoun("sleepily")); 
                     ok(!RiLexicon().isNoun("excitedly"));
                     ok(!RiLexicon().isNoun("energetically"));
-                    /*
-            		     ok(RiLexicon().isNoun("nn"));
-            		     ok(RiLexicon().isNoun("nns"));
-            		     ok(RiLexicon().isNoun("nNs"));
-            		     ok(RiLexicon().isNoun("nNs ")); //space
-            		     ok(RiLexicon().isNoun(" nNs")); //space          
-            		     ok(RiLexicon().isNoun("  nNs")); //double space
-            		     ok(RiLexicon().isNoun(" nNs  ")); //double space
-            		     ok(RiLexicon().isNoun("	nNs")); //tab space
-            		     ok(RiLexicon().isNoun("	nNs	")); //tab space
-            		     ok(!RiLexicon().isNoun("nNs!"));
-            		     ok(!RiLexicon().isNoun("dt"));
-            		     ok(!RiLexicon().isNoun("vbz"));
-            		     ok(!RiLexicon().isNoun("md"));
-                     */		
+
                     ok(!RiLexicon().isNoun(""));
-
-                   
-
+                    
+                    raises(function () {
+                        try {
+                            ok(RiLexicon().isNoun("banana split"));
+    
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
                 });
 
                 test("RiLexicon().isVerb()", function () {
-
+                                       
+                    ok(RiLexicon().isVerb("dance"));  
                     ok(RiLexicon().isVerb("swim"));
                     ok(RiLexicon().isVerb("walk"));
                     ok(!RiLexicon().isVerb("walker"));
                     ok(!RiLexicon().isVerb("beautiful"));
-                    ok(RiLexicon().isVerb("dance")); //"also false in processing -> nn" shoulbe be both Verb and Noun
+                    
                     ok(RiLexicon().isVerb("dancing"));
                     ok(!RiLexicon().isVerb("dancer"));
+                    
                     //verb
-                    ok(RiLexicon().isVerb("wash"));//"also false in processing -> nn" shoulbe be both Verb and Noun
-                    ok(RiLexicon().isVerb("walk"));
-                    ok(RiLexicon().isVerb("play"));
-                    ok(RiLexicon().isVerb("throw"));
-                    ok(RiLexicon().isVerb("drink"));//"also false in processing -> nn" shoulbe be both Verb and Noun
                     ok(RiLexicon().isVerb("eat"));
                     ok(RiLexicon().isVerb("chew"));
+                    
+                    ok(RiLexicon().isVerb("throw")); // +n 
+                    ok(RiLexicon().isVerb("walk"));  // +n 
+                    ok(RiLexicon().isVerb("wash"));  // +n 
+                    ok(RiLexicon().isVerb("drink")); // +n 
+                    ok(RiLexicon().isVerb("ducks")); // +n
+                    ok(RiLexicon().isVerb("fish")); // +n
+                    ok(RiLexicon().isVerb("dogs")); // +n
+                    ok(RiLexicon().isVerb("wind")); // +n
+                    ok(RiLexicon().isVerb("wet")); // +adj
+                    ok(RiLexicon().isVerb("dry")); // +adj
+                    
                     //adj
                     ok(!RiLexicon().isVerb("hard"));
-                    ok(!RiLexicon().isVerb("wet"));
-                    ok(!RiLexicon().isVerb("hard"));
-                    ok(!RiLexicon().isVerb("dry"));
                     ok(!RiLexicon().isVerb("furry")); 
                     ok(!RiLexicon().isVerb("sad"));
                     ok(!RiLexicon().isVerb("happy"));
+                    
                     //n
-                    ok(!RiLexicon().isVerb("dogs"));
-                    ok(!RiLexicon().isVerb("wind"));
                     ok(!RiLexicon().isVerb("dolls"));
                     ok(!RiLexicon().isVerb("frogs"));
-                    ok(!RiLexicon().isVerb("ducks")); 
                     ok(!RiLexicon().isVerb("flowers"));
-                    ok(!RiLexicon().isVerb("fish"));
+            
                     //adv
                     ok(!RiLexicon().isVerb("truthfully"));
                     ok(!RiLexicon().isVerb("kindly"));
@@ -510,26 +496,16 @@
                     ok(!RiLexicon().isVerb("sleepily")); 
                     ok(!RiLexicon().isVerb("excitedly"));
                     ok(!RiLexicon().isVerb("energetically"));
-
-                    /*  ok(RiLexicon().isVerb("vbg"));
-            		     ok(RiLexicon().isVerb("vbd"));
-            		     ok(RiLexicon().isVerb("vbp"));
-            		     ok(RiLexicon().isVerb("vbz"));
-            		     ok(RiLexicon().isVerb("vbz ")); //space
-            		     ok(RiLexicon().isVerb(" vbz")); //space          
-            		     ok(RiLexicon().isVerb("  vbz")); //double space
-            		     ok(RiLexicon().isVerb(" vbz  ")); //double space
-            		     ok(RiLexicon().isVerb("	vbz")); //tab space
-            		     ok(RiLexicon().isVerb(" vbz	")); //tab space
-            		     ok(!RiLexicon().isVerb("rb"));
-            		     ok(!RiLexicon().isVerb("rbs"));
-            		     ok(!RiLexicon().isVerb("rbj"));
-            		     ok(!RiLexicon().isVerb("jjr"));
-            		     ok(!RiLexicon().isVerb("jjs"));
-            		     ok(!RiLexicon().isVerb("nn"));
-            		     ok(!RiLexicon().isVerb("nns"));
-            		     ok(!RiLexicon().isVerb("nNs"));
-            	*/
+                    
+                    raises(function () {
+                        try {
+                            ok(RiLexicon().isVerb("banana split"));
+    
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
+   
                 });
                 
 				
@@ -539,25 +515,28 @@
                     ok(!RiLexicon().isAdjective("walk"));
                     ok(!RiLexicon().isAdjective("walker"));
                     ok(RiLexicon().isAdjective("beautiful"));
-                    ok(!RiLexicon().isAdjective("dance")); //"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(!RiLexicon().isAdjective("dance")); 
                     ok(!RiLexicon().isAdjective("dancing"));
                     ok(!RiLexicon().isAdjective("dancer"));
+                    
                     //verb
-                    ok(!RiLexicon().isAdjective("wash"));//"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(!RiLexicon().isAdjective("wash"));
                     ok(!RiLexicon().isAdjective("walk"));
                     ok(!RiLexicon().isAdjective("play"));
                     ok(!RiLexicon().isAdjective("throw"));
-                    ok(!RiLexicon().isAdjective("drink"));//"also false in processing -> nn" shoulbe be both Verb and Noun
+                    ok(!RiLexicon().isAdjective("drink"));
                     ok(!RiLexicon().isAdjective("eat"));
                     ok(!RiLexicon().isAdjective("chew"));
+                    
                     //adj
                     ok(RiLexicon().isAdjective("hard"));
                     ok(RiLexicon().isAdjective("wet"));
-                    ok(RiLexicon().isAdjective("hard"));
                     ok(RiLexicon().isAdjective("dry"));
                     ok(RiLexicon().isAdjective("furry")); 
                     ok(RiLexicon().isAdjective("sad"));
                     ok(RiLexicon().isAdjective("happy"));
+                    ok(RiLexicon().isAdjective("kindly")); //+adv
+                    
                     //n
                     ok(!RiLexicon().isAdjective("dogs"));
                     ok(!RiLexicon().isAdjective("wind"));
@@ -566,38 +545,24 @@
                     ok(!RiLexicon().isAdjective("ducks")); 
                     ok(!RiLexicon().isAdjective("flowers"));
                     ok(!RiLexicon().isAdjective("fish"));
+                    
                     //adv
                     ok(!RiLexicon().isAdjective("truthfully"));
-                    ok(!RiLexicon().isAdjective("kindly"));
                     ok(!RiLexicon().isAdjective("bravely"));
                     ok(!RiLexicon().isAdjective("scarily"));
                     ok(!RiLexicon().isAdjective("sleepily")); 
                     ok(!RiLexicon().isAdjective("excitedly"));
                     ok(!RiLexicon().isAdjective("energetically"));
-                    /*
-            		     ok(RiLexicon().isAdjective("jj"));
-            		     ok(RiLexicon().isAdjective("jjr"));
-            		     ok(RiLexicon().isAdjective("jjs"));
 
-            		     ok(RiLexicon().isAdjective("JJ"));
-            		     ok(RiLexicon().isAdjective("JJR"));
-            		     ok(RiLexicon().isAdjective("JJS"));
-
-            		     ok(!RiLexicon().isAdjective("jj ")); //space
-            		     ok(!RiLexicon().isAdjective(" jj")); //space          
-            		     ok(!RiLexicon().isAdjective("  jj")); //double space
-            		     ok(!RiLexicon().isAdjective(" jj  ")); //double space
-            		     ok(!RiLexicon().isAdjective("	jj")); //tab space
-            		     ok(!RiLexicon().isAdjective("	jj	")); //tab space
-            		     ok(!RiLexicon().isAdjective("nn"));
-            		     ok(!RiLexicon().isAdjective("nns"));
-            		     ok(!RiLexicon().isAdjective("nNs"));
-            		     ok(!RiLexicon().isAdjective("nNs!"));
-            		     ok(!RiLexicon().isAdjective("dt"));
-            		     ok(!RiLexicon().isAdjective("vbz"));
-            		     ok(!RiLexicon().isAdjective("md"));
-                     */
-                   
+                    
+                    raises(function () {
+                        try {
+                            ok(RiLexicon().isAdjective("banana split"));
+    
+                        } catch (e) {
+                            throw e;
+                        }
+                    });
                 });
 
 				test("RiLexicon.isAlliteration()", function () {
@@ -628,14 +593,20 @@
                     
                     var lex = new RiLexicon();
                     
-                    ok(!lex.isRhyme("solo ", "tomorrow")); // Word with space
+                    ok(!lex.isRhyme("solo ", "tomorrow"));
                     ok(!lex.isRhyme("apple", "polo"));
                     ok(!lex.isRhyme("this", "these"));
+                    
                     ok(lex.isRhyme("solo", "tomorrow"));
-                    ok(lex.isRhyme("tomorrow", "solo")); // swap position
-                    ok(lex.isRhyme("SOLO", "tomorrow")); // CAPITAL LETTERS
-                    ok(lex.isRhyme("solo", "TomorRow")); // CAPITAL LETTERS
-                    ok(lex.isRhyme("soLo", "toMORrow")); // CAPITAL LETTERS
+                    ok(lex.isRhyme("tomorrow", "solo")); 
+                    ok(lex.isRhyme("SOLO", "tomorrow")); 
+                    ok(lex.isRhyme("solo", "TomorRow")); 
+                    ok(lex.isRhyme("soLo", "toMORrow")); 
+                    
+                    ok(lex.isRhyme("cat", "hat"));
+                    ok(lex.isRhyme("yellow", "mellow"));
+                    ok(lex.isRhyme("toy", "boy"));
+                    ok(lex.isRhyme("sieve", "give"));
                        
                     ok(!lex.isRhyme("solo	", "tomorrow")); // Word with tab space
                     ok(!lex.isRhyme("solo", "yoyo"));
@@ -652,31 +623,21 @@
                     
                     ok(lex.containsWord("banana"));
                     lex.removeWord("banana");
-                    console.log(lex._lookupRaw("banana"));
                     ok(!lex.containsWord("banana"));
-                    
-                    return;
-    
+                        
                     lex.removeWord("a");
                     ok(!lex.containsWord("a"));
-                    ok(lex.containsWord("are")); //check that other words are still there
+                    ok(lex.containsWord("are")); //check that others r still there
                     lex.removeWord("aaa");
                     ok(!lex.containsWord("aaa"));
     
                     lex.removeWord("");
-    
-                    raises(function () {
-                        try {
-                            ok(lex._getPhonemes("banana"));
-    
-                        } catch (e) {
-                            throw e;
-                        }
-                    });
+                    
+                    ok(!lex._getPhonemes("banana"));
                 }); 
                         
 				
-				test("RiLexicon.setLexicalData()", function () { //  TODO  //setLexicalData(lexicalData);
+				test("RiLexicon.setLexicalData()", function () { 
                     
                     ok(!RiLexicon || typeof RiLexicon.data=='undefined');
                     
@@ -701,6 +662,7 @@
 
                 });
 
+				// TODO: clear() failing may be killing this test
                 test("RiLexicon.similarByLetter()", function () {
                     
                     ok(!RiLexicon || typeof RiLexicon.data=='undefined');
@@ -771,35 +733,81 @@
 
  				    var lex = new RiLexicon();
 
-                    var result = lex.similarBySound("123");
-                    var answer = ["awe", "owe", "eye", "aye"]; // is this correct output? TODO:
-                    deepEqual(result, answer);
-                    
                     var result = lex.similarBySound("tornado");
                     var answer = ["torpedo"];
                     deepEqual(result, answer);
-                    
-                    //TODO: add a few more from RiTa-java
-           
+        
                     var result = lex.similarBySound("try");
                     var answer = ["cry","dry","fry","pry","rye","tie","tray","tree","tribe","tried","tries","tripe","trite","true","wry"];
                     deepEqual(result, answer);
                     
-                    var result = lex.similarBySound("try", 2);
-                    var answer = ["cry","dry","fry","pry","rye","tie","tray","tree","tribe","tried","tries","tripe","trite","true","wry"];
-                    ok(result.length>20);
+                    var result = lex.similarBySound("try", 1); // same
+                    deepEqual(result,answer);
                     
-
-                    
+                    var result = lex.similarBySound("try", 2); 
+                    ok(result.length > answer.length);          // more
+                      
                     var result = lex.similarBySound("worngword");
                     var answer = ["watchword","wayward","wormwood"];
                     deepEqual(result, answer);
                     
+                    var result = lex.similarBySound("happy");
+                    var answer = ["happier","hippie"];
+                    deepEqual(result, answer);
+                    
+                    var result = lex.similarBySound("happy",1); // same
+                    deepEqual(result, answer);
+                    
+                    var result = lex.similarBySound("happy",2);
+                    ok(result.length > answer.length);          // more
+                    
+                    var result = lex.similarBySound("cat");
+                    var answer = [
+                                  "at",
+                                  "bat",
+                                  "cab",
+                                  "cache",
+                                  "calf",
+                                  "can",
+                                  "cant",
+                                  "cap",
+                                  "capped",
+                                  "cash",
+                                  "cashed",
+                                  "cast",
+                                  "caste",
+                                  "catch",
+                                  "catty",
+                                  "caught",
+                                  "chat",
+                                  "coat",
+                                  "cot",
+                                  "curt",
+                                  "cut",
+                                  "fat",
+                                  "hat",
+                                  "kit",
+                                  "kite",
+                                  "mat",
+                                  "matt",
+                                  "matte",
+                                  "pat",
+                                  "rat",
+                                  "sat",
+                                  "tat",
+                                  "that"
+                                ];
+                    deepEqual(result, answer);
+
+                    var result = lex.similarBySound("cat",1);
+                    ok(result.length == answer.length);      // same     
+                    
+                    var result = lex.similarBySound("cat",2);
+                    ok(result.length > answer.length);          
+                    
                     var result = lex.similarBySound("");
                     var answer = [];
                     deepEqual(result, answer);
-
-                    ok(0,"NEED TESTS THAT PASS MIN-EDIT-DIST AS ARGUMENT!!!!"); //TODO:
                 });
                 
                 test("RiLexicon.similarBySoundAndLetter()", function () {
@@ -819,6 +827,10 @@
                     deepEqual(result, answer);
                     
                     var lex = new RiLexicon();
+                    var result = lex.similarBySoundAndLetter("daddy" ,1);
+                    deepEqual(result, answer);
+                                        
+                    var lex = new RiLexicon();
                     var result = lex.similarBySoundAndLetter("daddy" ,2);
                     var answer = ["dad","dally","dowdy"];
                     ok(result.length > 10);
@@ -830,21 +842,34 @@
                     var result = lex.similarBySoundAndLetter("tornado");
                     var answer = ["torpedo"];
                     deepEqual(result, answer);
+                    
+                    var result = lex.similarBySoundAndLetter("tornado",2);
+                    var answer = ["torpedo"];
+                    deepEqual(result, answer);
+                    
+                    var result = lex.similarBySoundAndLetter("tornado",3);
+                    ok(result.length > answer.length); // more
+                    var answer = [
+                                  "horned",
+                                  "ornate",
+                                  "tirade",
+                                  "torn",
+                                  "torpid",
+                                  "torrid",
+                                  "torso",
+                                  "trade"
+                                ];
+                    deepEqual(result, answer);
+                    
 
                     var lex = new RiLexicon();
                     var result = lex.similarBySoundAndLetter("worngword");
-                    var answer = [];
-                    deepEqual(result, answer);
-
-                    var result = lex.similarBySoundAndLetter("123");
-                    var answer = []; 
+                    var answer = ["wormwood"];
                     deepEqual(result, answer);
 
                     var result = lex.similarBySoundAndLetter("");
                     var answer = [];
                     deepEqual(result, answer);
-                    
-                    ok(0,"NEED TESTS THAT PASS MIN-EDIT-DIST AS ARGUMENT!!!!"); //TODO:
                 });
 				
 				test("RiLexicon.substrings()", function () {
@@ -899,12 +924,6 @@
                     ok(result.length > 1000);
 
                 });
-
-				
-				
-				
-				//------------------------NOT IN API----------------------
-				
 
                 test("RiLexicon.getPosData()", function () {
                     
@@ -1075,7 +1094,6 @@
                   
                 });
 
-                //For RiTa.getSyllables()
                 test("RiLexicon.getSyllables()", function () {
                     
                     ok(!RiLexicon || typeof RiLexicon.data=='undefined');
@@ -1085,7 +1103,6 @@
                     var result = lex._getSyllables("The emperor had no clothes on.");
                     var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
                     equal(result, answer);
-
 
                     var result = lex._getSyllables("@#$%&*()");
                     var answer = "";
@@ -1097,93 +1114,7 @@
 
                   
                 });
-                
-            	
-                /*
 
-            test("RiLexicon.getPosStr()", function () {
-                    
-                    ok(!RiLexicon || typeof RiLexicon.data=='undefined');
-                    
-
-                var lex = new RiLexicon();
-                var result = lex.getPosStr("box");
-                equal(result, "nn vb".split(" "));
-
-                var lex = new RiLexicon();
-                var result = lex.getPosStr("there");
-                equal(result, "ex rb uh".split(" "));
-
-                var lex = new RiLexicon();
-                var result = lex.getPosStr("is");
-                equal(result, "vbz rb nns vbp".split(" "));
-
-                var lex = new RiLexicon();
-                var result = lex.getPosStr("a");
-                equal(result, ["dt"]);
-
-                var lex = new RiLexicon();
-                var result = lex.getPosStr("beautiful");
-                equal(result, ["jj"]);
-
-                var lex = new RiLexicon();
-                var result = lex.getPosStr("box");
-                equal(result, "nn vb".split(" "));
-
-                var result = lex.getPosStr("dog");
-                equal(result, "nn vbp".split(" "));
-
-               
-            });
-
-                
-                
-
-                
-                
-
-            test("RiLexicon.getFeatures()", function () { //Returns java.util.Map
-                                
-                    ok(!RiLexicon || typeof RiLexicon.data=='undefined');
-                    
-                var lex = new RiLexicon();
-                var result = lex.getFeatures("cat");
-                var answer = "{'phonemes':k-ae-t, 'syllables':k-ae-t, 'poslist':nn, 'stresses':1}";
-                deepEqual(result, answer);
-
-                var result = lex.getFeatures("goo");
-                var answer = "{'phonemes':g-uw, 'syllables':g-uw, 'poslist':nn, 'stresses':1}";
-                deepEqual(result, answer);
-
-                var result = lex.getFeatures("wq");
-                var answer = null;
-                deepEqual(result, answer);
-
-                var result = lex.getFeatures("1");
-                var answer = null;
-                deepEqual(result, answer);
-
-                var result = lex.getFeatures("");
-                var answer = null;
-                deepEqual(result, answer);
-
-                // check that these throw errors ------------
-                var BAD = [null, undefined];
-
-                for (var i = 0; i < BAD.length; i++) {
-                    raises(function () {
-                        try {
-
-                        } catch (e) {
-                            throw e;
-                        }
-                    });
-                }
-            });
-*/
-
-
-        
             });
              
         </script>
@@ -1196,8 +1127,7 @@
         <h2 id="qunit-userAgent"></h2>
         <ol id="qunit-tests"></ol>
         <div id="qunit-fixture">test markup, will be hidden</div>
-        <p>&nbsp; &nbsp;
-            <a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+            <p>&nbsp; &nbsp;<a href="../../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
     </body>
 
 </html>

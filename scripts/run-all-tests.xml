@@ -7,7 +7,7 @@
   <property name="output.file" value="run-all-tests.html"/>
   <!--property name="phantomjs.cmd" value="/Users/dhowe/bin/phantomjs" /-->
   <property name="qunit.js.file" location="run-qunit.js" />
-  <property name="phantomjs.cmd" value="./phantomjs" />
+  <property name="phantomjs.cmd" value="../tools/phantomjs" />
 
   <!--apply executable="${phantomjs.cmd}" output="${output.file}" failonerror="false"-->
 

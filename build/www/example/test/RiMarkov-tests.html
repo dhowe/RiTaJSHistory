@@ -1,4 +1,5 @@
-<!-- $Id: RiMarkov-tests.html,v 1.14 2012/07/09 10:23:04 dev Exp $ -->
+<!-- $Id: RiMarkov-tests.html,v 1.17 2012/08/22 10:49:20 dev Exp $ -->
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     
@@ -17,13 +18,27 @@
 		                "numTokens", 
 		                "loadTokens", 
 		                "loadText", 
-		                "ignoreCase", 
+//		                "ignoreCase", 
 		                "print", 
 		                "useSmoothing"
 		                ];
 		
-        var sample = "One reason people lie is to achieve personal power. Achieving personal power is helpful for one who pretends to be more confident than he really is. For example, one of my friends threw a party at his house last month. He asked me to come to his party and bring a date. However, I didn't have a girlfriend. One of my other friends, who had a date to go to the party with, asked me about my date. I didn't want to be embarrassed, so I claimed that I had a lot of work to do. I said I could easily find a date even better than his if I wanted to. I also told him that his date was ugly. I achieved power to help me feel confident; however, I embarrassed my friend and his date. Although this lie helped me at the time, since then it has made me look down on myself.",SP=' ',E=' ';
-		
+        var sample = "One reason people lie is to achieve personal power. Achieving personal power is helpful for one who pretends to be more confident than he really is. For example, one of my friends threw a party at his house last month. He asked me to come to his party and bring a date. However, I did not have a girlfriend. One of my other friends, who had a date to go to the party with, asked me about my date. I did not want to be embarrassed, so I claimed that I had a lot of work to do. I said I could easily find a date even better than his if I wanted to. I also told him that his date was ugly. I achieved power to help me feel confident; however, I embarrassed my friend and his date. Although this lie helped me at the time, since then it has made me look down on myself.",SP=' ',E=' ';
+
+        var sample2 = "One reason people lie is to achieve personal power. " +
+        "Achieving personal power is helpful for one who pretends to " +
+        "be more confident than he really is. For example, one of my " +
+        "friends threw a party at his house last month. He asked me to " +
+        "come to his party and bring a date. However, I did not have a " +
+        "girlfriend. One of my other friends, who had a date to go to the " +
+        "party with, asked me about my date. I did not want to be embarrassed, " +
+        "so I claimed that I had a lot of work to do. I said I could easily find" +
+        " a date even better than his if I wanted to. I also told him that his " +
+        "date was ugly. I achieved power to help me feel confident; however, I " +
+        "embarrassed my friend and his date. Although this lie helped me at the " +
+        "time, since then it has made me look down on myself. After all, I did " +
+        "occasionally want to be embarrassed.";
+
         $(document).ready(function () {
 			
 	         test("RiMarkov-functions", function () {
@@ -73,9 +88,9 @@
                  var i = root.addChild("I");
                  var i2 = root.addChild("I");
                  var j = root.addChild("J");
-                 equal(i.probability(),2/3);
+                 equal(i.probability(),  2/3);
                  equal(i2.probability(), 2/3);
-                 equal(j.probability(),1/3);
+                 equal(j.probability(),  1/3);
                  raises(function () {
                      try {
                          root.probability();
@@ -85,7 +100,7 @@
                  });
              });
     	         
-             test("RiMarkov", function () { //not existed TODO
+             test("RiMarkov", function () {
                  
                  ok(RiMarkov(4));
                  ok(new RiMarkov(3));
@@ -132,8 +147,8 @@
                  rm.loadTokens(tokens);
                  ok(rm.root.count==tokens.length);
                  ok(rm.numTokens()==tokens.length);
-                 //rm.print();
              });
+
 
              test("RiMarkov.findNode", function () {
                  
@@ -177,9 +192,7 @@
                  equal(s.probability(), 1);
                  //console.log(s.toString());
              });
-             
-			 
-			 
+	 
 			 //------------------------API TESTS--------------------------
 			 
 			 
@@ -245,14 +258,6 @@
                  
              });
 			 
-			 
-			 test("RiMarkov.getCompletions()", function () { //TODO
-                 
-                 var rm = new RiMarkov(3);
-                 rm.loadTokens(RiTa.tokenize(sample));
-                 
-             });
-			 
 			 test("RiMarkov.getN() nFactor", function () { //TODO
                  
                  for ( var i = 1; i <10; i++) {
@@ -262,36 +267,40 @@
              });
 			 
 			  // WORKING HERE
+
              test("RiMarkov.getProbabilities[single]", function () {
                  
                  var rm = new RiMarkov(3);
                  rm.loadTokens(RiTa.tokenize(sample));
+                 
                  var checks = ["reason", "people", "personal", "the", "is"];
-                 var expec = [ {people:1.0}, {lie:1.0},{power:1.0},{time:0.5, party:0.5},{to:0.33333334, '.':0.33333334, helpful:0.33333334}];
-                 var keys = [ ['people'], ['lie'],['power'], ['time', 'party'], [ 'to', "." , 'helpful' ] ];
+                 var expec = [ { people:1.0}, {lie:1.0},{power:1.0},{time:0.5, party:0.5},{to:0.33333334, '.':0.33333334, helpful:0.33333334} ];
+                 
+                 var keys = Object.keys(expec);
     
                  for ( var i = 0; i < checks.length; i++) {
+                     
                      var res = rm.getProbabilities(checks[i]);
+                     console.log(checks[i]+":");     
                      
                      equal(Object.keys(res).length, Object.keys(expec[i]).length);
     
                      var answer = [];
                      for (var key in res) {
                          answer.push(key);
+                         console.log("  "+key+" -> "+res[key]);
                      }
-                     deepEqual(Object.keys(res),answer);
-                     
+                     deepEqual(Object.keys(res), answer);
                  }
                  
                  var res = rm.getProbabilities("XXX");
-                 //console.log(res);
                  deepEqual(res,{});
              });
                  
              test("RiMarkov.getProbabilities[array]", function () {
                  
                  var rm = new RiMarkov(4);
-                 rm.loadTokens(RiTa.tokenize(sample));
+                 rm.loadTokens(RiTa.tokenize(sample2));
                  
                  var res = rm.getProbabilities("the".split(" "));
                  var expec = {time:0.5, party:0.5};
@@ -322,8 +331,12 @@
                  var res = rm.getProbabilities(["personal", "XXX"]);
                  var expec = {};
                  deepEqual(res,expec);
+                 
+                 var res = rm.getProbabilities(['I','did']);
+                 var expec = {"not": 0.6666666666666666, "occasionally": 0.3333333333333333};
+                 deepEqual(res,expec);
+                 
              });   
-             
 
              test("RiMarkov.getProbability[single]", function () {
                  
@@ -351,10 +364,10 @@
              });
              
              test("RiMarkov.getProbability[array]", function () {
-                 
+
                  var rm = new RiMarkov(3);
                  rm.loadTokens(RiTa.tokenize(sample));
-                 
+
                  var check = 'personal power is'.split(SP);
                  equal( rm.getProbability(check), 1/3);
                  
@@ -363,6 +376,7 @@
                  
                  check = 'someone who pretends'.split(SP);
                  equal( rm.getProbability(check),1/2);
+                 
                  
                  equal( rm.getProbability([]), 0);
              });
@@ -376,43 +390,95 @@
                  ok(rm.root.count==tokens.length);
                  ok(rm.numTokens()==tokens.length);
             });
-             
+            
+            test("RiMarkov.getCompletions(a)", function () { //TODO 
 
-             
+                var rm = new RiMarkov(4);
+                rm.loadTokens(RiTa.tokenize(sample));
+                
+                var res = rm.getCompletions("people lie is".split(' '));
+                deepEqual(res, ["to"]);
+                
+                var res = rm.getCompletions("One reason people lie is".split(' '));
+                deepEqual(res, ["to"]);
+                
+                
+                var res = rm.getCompletions("personal power".split(' '));
+                deepEqual(res,[ '.', 'is' ]);
+                
+                var res = rm.getCompletions(['to', 'be', 'more']);
+                deepEqual(res,['confident']);
+                
+                var res = rm.getCompletions("I"); // testing the sort
+                var expec = ["did", "claimed", "had", "said", "could", "wanted", "also", "achieved", "embarrassed"];
+                deepEqual(res,expec);
+                
+                var res = rm.getCompletions("XXX");
+                deepEqual(res,[]);
+            });
+            
+            test("RiMarkov.getCompletions(b)", function () { //TODO
+
+                var rm = new RiMarkov(4);
+                rm.loadTokens(RiTa.tokenize(sample2));
+                
+                var res = rm.getCompletions(['I'],['not']);
+                deepEqual(res, ["did"]);
+                
+                var res = rm.getCompletions(['achieve'],['power']);
+                deepEqual(res, ["personal"]);
+                
+                var res = rm.getCompletions(['to','achieve'],['power']);
+                deepEqual(res, ["personal"]);
+                
+                var res = rm.getCompletions(['achieve'],['power']);
+                deepEqual(res, ["personal"]);
+                
+                var res = rm.getCompletions(['I','did']);
+                deepEqual(res, ["not","occasionally" ]); // sort
+                
+                //////////////////////
+                var res = rm.getCompletions(['I','did'],['want']);
+                deepEqual(res, ["not","occasionally"]);
+            });
   
-             test("RiMarkov.loadTokens {ignoreCase()}", function () { //TODO: revise tests
+             test("RiMarkov.loadTokens", function () { //TODO: revise tests
                  
                  var words = 'The dog ate the cat'.split(' ');
                  
-                 var rm = new RiMarkov(3,false);
+                 var rm = new RiMarkov(3);
                  rm.loadTokens(words); 
-                 equal(rm.getProbability("The"), 0.4);
+                 equal(rm.getProbability("The"), 0.2);
                  
-                 var rm = new RiMarkov(3,true);
+                 var rm = new RiMarkov(3);
                  rm.loadTokens(words);
                  equal(rm.getProbability("The"), 0.2);
                  
-                 var rm = new RiMarkov(3,false);
+                 var rm = new RiMarkov(3);
                  rm.loadTokens(words); 
-                 equal(rm.getProbability("the"), 0.4);
+                 equal(rm.getProbability("the"), 0.2);
                  
-                 var rm = new RiMarkov(3,true);
+                 var rm = new RiMarkov(3);
                  rm.loadTokens(words);
                  equal(rm.getProbability("the"), 0.2);
                  
-                 var rm2 = new RiMarkov(3, false);
+                 var rm2 = new RiMarkov(3);
                  rm2.loadTokens(RiTa.tokenize(sample));
                  notEqual(rm2.getProbability("One"), rm.getProbability("one"));
              });    
              
 			 test("RiMarkov.loadText()", function () { //TODO: revise tests
                  
-                 var words = 'The dog ate the cat'.split(' ');
+                 var words = 'The dog ate the cat';
                  
-                 var rm = new RiMarkov(3,false);
+                 var rm = new RiMarkov(3);
                  rm.loadText(words); 
-                 equal(rm.getProbability("The"), 0.4);
+                 equal(rm.getProbability("The"), 0.2);
                  
+                 words = 'the dog ate the cat';
+                 var rm = new RiMarkov(3);
+                 rm.loadText(words); 
+                 equal(rm.getProbability("the"), 0.4);
              });    
 			 
 			              
@@ -435,57 +501,75 @@
 
               */
 			 
-			 test("RiMarkov.ignoreCase()", function () {
-                 
-                 var words = 'The dog ate the cat'.split(' ');
-                 
-                 var rm = new RiMarkov(3,false);
-                 rm.loadTokens(words); 
-                 equal(rm.getProbability("The"), 0.4);
-                 
-                 var rm = new RiMarkov(3,true);
-                 rm.loadTokens(words);
-                 equal(rm.getProbability("The"), 0.2);
-                 
-                 var rm = new RiMarkov(3,false);
-                 rm.loadTokens(words); 
-                 equal(rm.getProbability("the"), 0.4);
-                 
-                 var rm = new RiMarkov(3,true);
-                 rm.loadTokens(words);
-                 equal(rm.getProbability("the"), 0.2);
-                 
-                 var rm2 = new RiMarkov(3, false);
-                 rm2.loadTokens(RiTa.tokenize(sample));
-                 notEqual(rm2.getProbability("One"), rm.getProbability("one"));
-             });    
-			 
+//			 test("RiMarkov.ignoreCase()", function () {
+//                 
+//                 var words = 'The dog ate the cat'.split(' ');
+//                 
+//                 var rm = new RiMarkov(3);
+//                 rm.loadTokens(words); 
+//                 equal(rm.getProbability("The"), 0.4);
+//                 
+//                 var rm = new RiMarkov(3);
+//                 rm.loadTokens(words);
+//                 equal(rm.getProbability("The"), 0.2);
+//                 
+//                 var rm = new RiMarkov(3);
+//                 rm.loadTokens(words); 
+//                 equal(rm.getProbability("the"), 0.4);
+//                 
+//                 var rm = new RiMarkov(3);
+//                 rm.loadTokens(words);
+//                 equal(rm.getProbability("the"), 0.2);
+//                 
+//                 var rm2 = new RiMarkov(3);
+//                 rm2.loadTokens(RiTa.tokenize(sample));
+//                 notEqual(rm2.getProbability("One"), rm.getProbability("one"));
+//             });    */
+		 
 			 test("RiMarkov.print()", function () { //TODO: revise tests
                  
                  var words = 'The dog ate the cat'.split(' ');
-                 
-                 var rm = new RiMarkov(3,false);
-                 rm.print(words); 
-                 equal(rm.getProbability("The"), 0.4);
-                 
+                 var rm = new RiMarkov(3);
+                 rm.loadTokens(words);
+                 rm.print(); 
+                 equal(rm.getProbability("The"), 0.2);
              });    
 			 
              test("RiMarkov.useSmoothing()", function () {
                  
-                 var rm = new RiMarkov(3, true, false);
+                 var rm = new RiMarkov(3, false);
                  rm.loadTokens(RiTa.tokenize(sample));
 
-                 var rm2 = new RiMarkov(3, true, true);
+                 var rm2 = new RiMarkov(3, true);
                  rm2.loadTokens(RiTa.tokenize(sample));
                  notEqual(rm2.getProbability("one"), rm.getProbability("one"));
                  
-                 // add more tests...
+                 var rm2 = new RiMarkov(3, true);
+                 rm2.loadTokens(RiTa.tokenize(sample));
+                 notEqual(rm2.getProbability("personal"), rm.getProbability("personal"));
+                 
+                 // more tests??
              });
-             
         });
 
 	    function L(str) { console.log(str); }
+	    function D(obj) {
 
+	        var properties = "";
+	        for ( var propertyName in obj) {
+
+	            properties += propertyName + ": ";
+
+	            // Check if its NOT a function
+	            if (!(obj[propertyName] instanceof Function)) {
+	                properties += obj.propertyName;
+	            } else {
+	                properties += "function()";
+	            }
+	            properties += ", ";
+	        }
+	        return properties;
+	    }
 	    </script>
     </head>
     
@@ -496,8 +580,8 @@
         <h2 id="qunit-userAgent"></h2>
         <ol id="qunit-tests"></ol>
         <div id="qunit-fixture">test markup, will be hidden</div>
-        <p>&nbsp; &nbsp;
-            <a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+    <p>&nbsp; &nbsp;<a href="../../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+
     </body>
 
 </html>

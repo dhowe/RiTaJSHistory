@@ -1,5 +1,11 @@
 processing-js-1.3.6-examples.zip
+src/experi
+src/experimental
 CanvasTextEffects.zip
 .gitignore
+build/*
 build
 .git
+*-old
+*/.DS_STORE
+node_modules

@@ -25,36 +25,36 @@ LTSFILE=../src/rita_lts.js
 DICTFILE=../src/rita_dict.js
 SRCFILES="${SRCFILE} ${DICTFILE} ${LTSFILE}"
 
-DSTFILE=$DEST/www/download/rita-$VERSION.min.js
+DSTFILE=$DEST/www/download/rita-core-$VERSION.min.js
 DICTDST=$DEST/www/download/rita_dict-$VERSION.min.js
-FULLDST=$DEST/www/download/rita_full-$VERSION.min.js
+FULLDST=$DEST/www/download/rita-$VERSION.min.js
 
 #filename="${fullfile##*/}"
 
 ##### just print     #####
-#echo "compiling rita-lib to ${DSTFILE}" 
+#echo "Compiling rita-lib to ${DSTFILE}" 
 #echo "java -jar $LIB/compiler.jar --js $SRCFILE  \
 #    --js_output_file $DSTFILE  --summary_detail_level 3  \
 #    --compilation_level SIMPLE_OPTIMIZATIONS"
 
 ##### just rita.js     #####
-#echo "compiling rita-lib to ${DSTFILE}" 
+#echo "Compiling rita-lib to ${DSTFILE}" 
 #java -jar $LIB/compiler.jar --js $SRCFILE  \
 #    --js_output_file $DSTFILE  --summary_detail_level 3  \
 #    --compilation_level SIMPLE_OPTIMIZATIONS
 
 ##### just rita dict      #####
 
-#echo "compiling rita-dict to ${DICTDST}"; java -jar $LIB/compiler.jar --js $DICTFILE \
+#echo "Compiling rita-dict to ${DICTDST}"; java -jar $LIB/compiler.jar --js $DICTFILE \
 #    --js_output_file $DICTDST  --summary_detail_level 3 \
 #   --compilation_level SIMPLE_OPTIMIZATIONS
 
 
 ##### combine the 3 (core,dict,ls) #####
 
-echo "compiling rita-full to ${FULLDST}"; java -jar $LIB/compiler.jar --js  ${SRCFILES} \
+echo "Compiling rita (full) to ${FULLDST}"; java -jar $LIB/compiler.jar --js  ${SRCFILES} \
   --js_output_file $FULLDST --summary_detail_level 3 \
-  --compilation_level SIMPLE_OPTIMIZATIONS
+  --compilation_level SIMPLE_OPTIMIZATIONS -D="phase:Alpha" -D="version:"
 
 ##### output help/options #####
 #java -jar $LIB/compiler.jar --help
