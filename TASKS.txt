@@ -1,3 +1,5 @@
+Idonethis?
+
 --------------------------------------------------------------------------------------------------
 	
 VERSION 1 (June 21, pre-alpha, soft launch):
@@ -7,15 +9,33 @@ VERSION 1 (June 21, pre-alpha, soft launch):
 
 VERSION 2 (Sept1, alpha-public):
 
-	GIThub ***
+	GitHub ***
+
+    NodeJS tests ?
 	
-	Finish tests and known-issue tests ***
+	Make test .html files take conditional includes
+		 (need to test with raw files and compiled)
 	
-	Continuous Tests [implemented, need to start]
+	Docs: 
+		Constructors aren't showing options
+		Methods (full-listing) is formatted strangely?
+		
+	Structure: MOVE DICT and LTS *INSIDE* closure ?
+	
+	Continuous Tests [implemented, need to hook-into-checkins]
 
 	Cross-browser compatibility * - INFO on GDOCS
-
-
+	
+	Render-Tests: 
+		create-with-breaks.html
+		pick-and-drag/slot-machine (canvas/mouse-handling)
+		 
+		fade-to-text.html [DONE]
+		letter-grid.html [DONE]
+		text-size.html	[DONE}
+	
+	Remove jquery code * [DONE]	
+	Finish tests and known-issue tests *** [DONE]
 	Break into 3 files to be combined by closure-compiler [DONE]
 	Implementation of Markov models [DONE]
 	Add LTS engine [DONE]
@@ -27,6 +47,8 @@ VERSION 2 (Sept1, alpha-public):
 VERSION 3 (beta?, tbd):
 
 	ANDROID ????
+	Mouse-handling ?
+	WebGL testing?
 	Break into multiple files (one per class?)
 	Stroke-only, shadow, etc. options for text
 	Add WordNet and WordNet-Lemmatizer(see Python NLTK)

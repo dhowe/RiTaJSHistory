@@ -34,7 +34,14 @@
               '<noun>':           'woman | man',
               '<verb>':           'shoots'
       }
+      
+      var uniqueNouns = {
 
+          '<start>': 'The `store("<noun>")` chased the `unique("<noun>");`',
+          '<noun>': 'dog | cat | mouse'
+      }
+
+      var rg; // the grammar
       
       //console.log(JSON.stringify(grammarObj));
       
@@ -50,16 +57,12 @@
         test("RiGrammar.init", function() {
             
             var rg = RiGrammar();
-            ok(rg._rules);
-            
+            ok(rg._rules); // empty
             ok(typeof rg._rules['<start>']==='undefined');
-         
             ok(typeof rg._rules['<noun_phrase>']==='undefined');
 
             var rg1 = new RiGrammar(grammarObj);
-            
             ok(rg1._rules);
-            rg1.print();
             ok(rg1._rules['<start>']);
            
             ok(rg1._rules['<noun_phrase>']);
@@ -70,18 +73,17 @@
             ok(rg2._rules['<noun_phrase>']);
             
             deepEqual(rg1, rg2);
- 
-//            var BAD = [null];//, undefined, 1, "hello", 0];
-//            for (var i = 0; i < BAD.length; i++) {
-//                raises(function () {
-//                    try {
-//                        RiGrammar(BAD[i]);
-//                    } catch (e) {
-//                        throw e;
-//                    }
-//                });
-//            }
             
+            var BAD = [null, undefined, "hello", 1, 0];
+            for (var i = 0; i < BAD.length; i++) {
+                raises(function () {
+                    try {
+                        RiGrammar(BAD[i])
+                    } catch (e) {
+                        throw e;
+                    }
+                });
+            }
         }); 
         
 		test("RiGrammar.addRule", function() {
@@ -97,17 +99,6 @@
             ok(rg._rules["<start>"]);
             ok(rg.getRule("<start>"));
             ok(rg.getRule("start"))
-            
-            var BAD = [null, undefined, "", "hello", 1, 0];
-            for (var i = 0; i < BAD.length; i++) {
-                raises(function () {
-                    try {
-                        rg.addRule(BAD[i])
-                    } catch (e) {
-                        throw e;
-                    }
-                });
-            }
         }); 
 		
 		test("RiGrammar.clone", function() {
@@ -125,13 +116,12 @@
             var rg2 = rg1.clone();
             deepEqual(rg1._rules.length, rg2._rules.length);
             
-            return;
+        //    return;
             
             deepEqual(rg1._rules, rg2._rules);
             deepEqual(rg1, rg2);
             
             rg2.removeRule("pet");
-            rg1.print();
             ok(rg1.hasRule("pet"));
             ok(!rg2.hasRule("pet"));
             
@@ -158,7 +148,7 @@
             ok(!good);
         });  
         
-		test("RiGrammar.expand", function() {
+		test("RiGrammar.expand()", function() {
             
             var rg = new RiGrammar();
             rg.reset();
@@ -216,9 +206,6 @@
             ok(d<80,d+"");
             ok(g>20,g+"");
             ok(g<40,g+"");
-            
-            //equal("NEED MORE TESTS", "NEEDS IMPLEMENTATION");
-            
         });	 
  
         test("RiGrammar.expandFrom", function() {
@@ -237,57 +224,7 @@
                 var res = rg.expandFrom("<bird>");
                 ok(res ==="hawk" || res === 'crow');
             }
-            
-            var BAD = [null, undefined, "", 1, 0];
-            for (var i = 0; i < BAD.length; i++) {
-                raises(function () {
-                    try {
-                        rg.addRule(BAD[i])
-                    } catch (e) {
-                        throw e;
-                    }
-                });
-            }
         }); 
-        
-		test("RiGrammar.expandWith", function() {
-
-            var rg = new RiGrammar();
-
-            rg.reset();
-            
-            rg.addRule("<start>","the <pet> | the <action> of the <pet>");
-            rg.addRule("<pet>","<bird> | <mammal>");
-            rg.addRule("<bird>","hawk | crow | screams");
-            rg.addRule("<mammal>","dog");
-            rg.addRule("<action>","cries | screams | falls");
-
-            var r = rg.expandWith("screams", "<action>");
-
-            var str ="", missed = false; 
-            for ( var i = 0; i < 100; i++) {
-                var r = rg.expandWith("screams", "<action>");
-                if (r.indexOf("screams")<1) {
-                    str = r;
-                    console.log("error: "+r);
-                    missed = true;
-                }
-            }
-            equal(missed,false);
-
-//            var BAD = [null, undefined, "", 1, 0, "XXX"];
-//            for (var i = 0; i < BAD.length; i++) {
-//                raises(function () {
-//                    try {
-//                        rg.expandWith("screams", BAD[i]);
-//                    } catch (e) {
-//                        throw e;
-//                    }
-//                });
-//            }
-
-        });
-		
 		
 		test("RiGrammar.getRule", function() {
             
@@ -297,7 +234,6 @@
             rg.addRule("<rule1>","<pet>");
             ok(rg.getRule("<rule1>"));
             ok(rg.getRule("rule1"));
-            
             
             rg.reset();
             rg.addRule("<rule1>","cat", .4);
@@ -317,29 +253,18 @@
                     rg.getRule("<start>");
                 }
                 catch(e) {
-                    throw Error("no rule");
+                    throw e;
                 }    
             });
-            
             raises(function() {
                 try {
                     rg.getRule("start");
                 }
                 catch(e) {
-                    throw Error("no rule");
+                    throw e;
                 }    
             });
             
-            var BAD = [null, undefined, "", 1, 0];
-            for (var i = 0; i < BAD.length; i++) {
-                raises(function () {
-                    try {
-                        rg.addRule(BAD[i])
-                    } catch (e) {
-                        throw e;
-                    }
-                });
-            }
         }); 
    
         test("RiGrammar.getRules", function() {
@@ -391,23 +316,6 @@
             ok(!rg.hasRule(undefined));
             ok(!rg.hasRule(1));
         }); 
-        
-		test("RiGrammar.print", function() {//TODO
-            
-         
-        }); 
-		
-		test("RiGrammar.removeRule", function() {//TODO
-            
-         
-        }); 
-		
-		
-		
-		
-		
-		
-		
 		
 		
         test("RiGrammar.reset", function() {
@@ -434,27 +342,80 @@
             ok(typeof rg._rules['<noun_phrase>']!=='undefined');
             
             //deepEqual(rg,rg1);
-        
-//            var BAD = [null, undefined, "", "hello", 1, 0];
-//            for (var i = 0; i < BAD.length; i++) {
-//                raises(function () {
-//                    try {
-//                        rg.addRule(BAD[i])
-//                    } catch (e) {
-//                        throw e;
-//                    }
-//                });
-//            }
         });
         
         
+        test("RiGrammar.removeRule", function() {
+           
+            var rg1 = new RiGrammar(grammarObj);
+            
+            ok(rg1._rules['<start>']);
+            ok(rg1._rules['<noun_phrase>']);
+            
+            rg1.removeRule('<noun_phrase>');
+            ok(!rg1._rules['<noun_phrase>']);
+            
+            rg1.removeRule('<start>');
+            ok(!rg1._rules['<start>']);
+            
+            rg1.removeRule('');
+            rg1.removeRule('bad-name');
+            rg1.removeRule(null);
+            rg1.removeRule(undefined);
+        }); 
         
+        test("RiGrammar.print", function() {
+            var rg = new RiGrammar();
+            rg.reset();
+            rg.addRule("<start>","<first> | <second>");
+            rg.addRule("<first>","the <pet> <action> were `adj()`");
+            rg.addRule("second","the <action> of the `adj()` <pet>");
+            rg.addRule("<pet>","<bird> | <mammal>");
+            rg.addRule("<bird>","hawk | crow");
+            rg.addRule("<mammal>","dog");
+            rg.addRule("<action>","cries | screams | falls");
+            ok(typeof rg.print === 'function'); // how to test?
+        }); 
         
-        
-        
-        //////////////////////////////////////////
+        test("RiGrammar.expandWith", function() {
 
-        
+            var rg = new RiGrammar();
+
+            rg.reset();
+            
+            rg.addRule("<start>","the <pet> | the <action> of the <pet>");
+            rg.addRule("<pet>","<bird> | <mammal>");
+            rg.addRule("<bird>","hawk | crow | screamer");
+            rg.addRule("<mammal>","dog");
+            rg.addRule("<action>","cries | screams | falls");
+
+            var r = rg.expandWith("screams", "<action>");
+
+            var str ="", missed = false; 
+            for ( var i = 0; i < 100; i++) {
+                var r = rg.expandWith("screams", "<action>");
+                if (r.indexOf("screams")<1) {
+                    str = r;
+                    console.log("error: "+r);
+                    missed = true;
+                }
+            }
+            equal(missed,false);
+            
+            str ="", missed = false; 
+            for ( var i = 0; i < 100; i++) {
+                var r = rg.expandWith("dog", "<pet>");
+                if (r.indexOf("dog")<1) {
+                    str = r;
+                    console.log("error: "+r);
+                    missed = true;
+                }
+            }
+            equal(missed,false);
+            
+            
+            //equal("TODO: MORE TESTS HERE");
+        });
         
             
         test("RiGrammar-exec", function() {
@@ -472,10 +433,9 @@
             
             for (var i = 0; i < 10; i++) {
                 var res = rg.expand();
-                console.log("1: "+res);
+                //console.log("1: "+res);
                 ok(res && res.length && !res.match("`"));
             }
-            
   
             rg.reset();
             
@@ -493,17 +453,64 @@
                 ok(res && res.length && res.match("adj()"));
             }
             
-            equal("NEED MORE TESTS", "EVAL WITH ARGUMENT");
-        });
+            window.grammar = rg = new RiGrammar(uniqueNouns);    
+            for ( var i = 0; i < 30; i++) {
+              var res = rg.expand();
+              ok(res);
+              var dc = res.match(/dog/g);
+              var cc = res.match(/cat/g);
+              var mc = res.match(/mouse/g);
+              ok(!dc || dc.length < 2);
+              ok(!cc || cc.length < 2);
+              ok(!mc || mc.length < 2);
+            }
             
-        
-            
+        });  
       });	
       
       function adj() { // tmp
+          
           return Math.random()<.5 ? 'hot' : 'cold';
       }
+
+      // unique methods...
       
+      var saved = {};
+      
+      function store(word) { // tmp
+          
+          saved[word] = 1;
+          return word;
+      }
+      
+      function unique(word) { 
+          
+          while (saved[word]) {
+
+              word = grammar.expandFrom('<noun>');
+          }
+          saved = {};
+          
+          return word;
+      }
+      
+      function dump(obj) {
+
+          var properties = "";
+          for ( var propertyName in obj) {
+
+              properties += propertyName + ": ";
+
+              // Check if its NOT a function
+              if (!(obj[propertyName] instanceof Function)) {
+                  properties += obj.propertyName;
+              } else {
+                  properties += "function()";
+              }
+              properties += ", ";
+          }
+          return properties;
+      }
     </script>
 
   </head>
@@ -514,7 +521,7 @@
     <h2 id="qunit-userAgent"></h2>
     <ol id="qunit-tests"></ol>
     <div id="qunit-fixture">test markup, will be hidden</div>
-    <p>&nbsp; &nbsp;<a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+    <p>&nbsp; &nbsp;<a href="../../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
 
   </body>
 </html>

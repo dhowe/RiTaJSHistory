@@ -15,14 +15,25 @@
 
         test("Public Objects", function() {
         	          
-          ok(RiTa.VERSION>0);
-          
-          ok(typeof RiTa        != undefined);
-          ok(typeof RiString    != undefined);
-          ok(typeof RiLexicon   != undefined);
-          ok(typeof RiGrammar   != undefined); 
-          ok(typeof RiMarkov    != undefined); 
-          ok(typeof RiText      != undefined); 
+          ok(RiTa.VERSION > 0);
+          ok(typeof RiTa      != 'undefined');
+          ok(typeof RiString  != 'undefined');
+          ok(typeof RiLexicon != 'undefined');
+          ok(typeof RiGrammar != 'undefined');
+          ok(typeof RiMarkov  != 'undefined');
+          ok(typeof RiTaEvent != 'undefined');
+          ok(typeof RiText    != 'undefined');   
+        });
+        
+        test("Private Statics", function() {
+
+            equal(typeof RiText._handleLeading, 'function');
+            equal(typeof RiText._disposeOne, 'function');
+            
+            equal(typeof _wordOffsetFor, 'undefined');
+            equal(typeof _handleLeading, 'undefined');
+            equal(typeof _disposeOne, 'undefined');
+
         });
 
         test("Member Functions", function() {
@@ -132,10 +143,6 @@
             equal(typeof makeClass, 'undefined');
             equal(typeof handleLeading, 'undefined');
             equal(typeof disposeOne, 'undefined');
-            equal(typeof sigsMatch, 'undefined');
-            equal(typeof getType, 'undefined');
-            equal(typeof Function.expects, 'undefined', 'TODO: FIX ME');
-            equal(typeof Function.returns, 'undefined', 'TODO: FIX ME');
         });
 
       });
@@ -176,7 +183,7 @@
     <h2 id="qunit-userAgent"></h2>
     <ol id="qunit-tests"></ol>
     <div id="qunit-fixture">test markup, will be hidden</div>
-    <p>&nbsp; &nbsp;<a href="../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
+    <p>&nbsp; &nbsp;<a href="../../rita-api.html"><img src="imgs/rita-loading.gif" width=40></a>
 
   </body>
 </html>

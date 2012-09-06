@@ -4,12 +4,51 @@
 <head>
 <title>RiTa Docs</title>
 <link href="rita-api.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="lib/jquery.js"></script>
+<script>
+
+var srcType = "local";
+
+$(document).ready(function() {
+
+    var type = paramByName("srcType"); 
+    if (type && type==='remote') 
+        srcType = type;
+    
+    var url = testUrl("RiTa-Tests");
+    console.log(url);
+    $('RiTa-Tests').href = url;
+    console.log($('RiTa-Tests').href);
+});
+
+function testUrl(testName, globals)
+{
+    var s = "test/"+testName+".html?";
+    if (!globals)
+        s += "noglobals=true&";
+    return (s + "type="+srcType);
+}
+
+function paramByName(name)
+{
+  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+  var regexS = "[\\?&]" + name + "=([^&#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.search);
+  if(results == null)
+    return "";
+  else
+    return decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+</script>
 </head>
 <body>
 <table width="1300" height="100%"  border="0" cellpadding="1" cellspacing="1">
 <tr>
   <td valign=top>
-    <a class=head href="src/test/RiTa-tests.html?noglobals=true">[RiTa]</a><br>
+      <!-- src/test/RiTa-tests.html?noglobals=true -->
+    <a class=head id="RiTa-Tests" href="src/test/RiTa-tests.html?noglobals=true">[RiTa]</a><br>
 <br><a href=""><em>VERSION</em></a>
 <br>
 
@@ -26,7 +65,6 @@
 <br><a href=""><em>RiTa.tokenize()</em></a>
 <br><a href=""><em>RiTa.trim()</em></a>
 <br><a href=""><em>RiTa.distance()</em></a>
-<br><a href=""><em>RiTa.random()</em></a>
 <br><a href=""><em>RiTa.getPhonemes()</em></a>
 <br><a href=""><em>RiTa.getPosTags(useWordnetTags)</em></a>
 <br><a href=""><em>RiTa.getPosTagsInline()</em> </a>
@@ -175,7 +213,8 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 <br></td> <td valign=top width=150>
 
 
-<a class=head href="src/test/RiGrammar-tests.html?noglobals=true">[RiGrammar]</a><p>
+<!-- allowing globals here for now -->
+<a class=head href="src/test/RiGrammar-tests.html">[RiGrammar]</a><p>
 <a href="">RiGrammar()</a>
 <p><a href="">addRule()</a>
 <br><a href="">allowExec()</a>
@@ -225,6 +264,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 <br><a href="">similarByLetter()</a>
 <br><a href="">similarBySound()</a>
 <br><a href="">similarBySoundAndLetter()</a>
+<br><a href="">size()</a>
 <br><a href="">substrings()</a>
 <br><a href="">superstrings()</a>
 
@@ -384,15 +424,16 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 <td valign=top>
 
 <a class=head href="src/test/LibraryStructure-tests.html?noglobals=true">[RiTa-Structure]</a><p>
-<a class=head href="src/test/RiTextStructure-canvas.html?noglobals=true">[RiText-Structure(Ctx)]</a><p>
-<a class=head href="src/test/RiTextStructure-p5.html?noglobals=true">[RiText-Structure(p5)]</a><p>
+<a class=head href="src/test/RiTextStructure-canvas.html">[RiText-Structure(Ctx)]</a><p>
+<a class=head href="src/test/RiTextStructure-p5.html">[RiText-Structure(p5)]</a><p>
 <a class=head href="src/test/renderer/index.html">[RiText-Renderers]</a><p>
-<a class=head href="src/test/Expects-tests.html?noglobals=true">[Expects-Tests]</a><p>
-
-<!--a class=head href="src/test/Run-All-Tests.html">[Run-All-Tests]</a><p-->
-<a class=head href="http://www.rednoise.org/rita/documentation/docs.htm">[RiTa-Javadocs]</a><p>
-<a class=head href="src/test/RiLetterToSound-tests.html?noglobals=true">[RiLetterToSound]</a><p>
 <a class=head href="src/test/KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><p>
+<a class=head href="http://www.rednoise.org/rita/documentation/docs.htm">[RiTa-Javadocs]</a><p>
+
+
+<!--a class=head href="src/test/Expects-tests.html?noglobals=true">[Expects-Tests]</a><p>
+<a class=head href="src/test/RiLetterToSound-tests.html?noglobals=true">[RiLetterToSound]</a><p>
+a class=head href="src/test/Run-All-Tests.html">[Run-All-Tests]</a><p-->
 
 </td>
 </tr>

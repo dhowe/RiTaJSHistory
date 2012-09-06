@@ -18,7 +18,7 @@
    <mail
       tolist="dh254@nyu.edu, dhowe@risd.edu"
       from="daniel.c.howe@gmail.com"
-      subject="Results of nightly build"
+      subject="Results of RiTaJS build"
       mailhost="smtp.gmail.com"
       mailport="465" ssl="true"
       user="daniel.c.howe@gmail.com"

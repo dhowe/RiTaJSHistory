@@ -1,4 +1,6 @@
 *.class
+.DS_STORE
+CVS
 *.pyc
 *.pyo
 misc

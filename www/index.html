@@ -6,24 +6,10 @@
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="css/syntax.css" type="text/css" />
     <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link rel="shortcut icon" type="image/x-icon" href="http://rednoise.org/rita/rita.ico"/>
     <script src="js/processing.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
-    <script src="http://cdn.webglstats.com/stat.js" defer="defer" async="async"></script>
     <script type="text/javascript" src="./mailto.js"></script>
-    <script type="text/javascript">
-      // Only do tracking on the actual site
-      if (document.location.host === "rednoise.org") {
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', 'UA-32749746-1']);
-          _gaq.push(['_trackPageview']);
-
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-      }
-    </script>
   </head>
   <body>
     <div class="container">
@@ -68,26 +54,42 @@
 </div>
 <div class="intro">
 <h2>RiTa.js</h2>
-<p>RiTa<sup>†</sup> is easy-to-use toolkit designed to facilitate experiments in natural language and generative literature. It is currently available in 2 'flavors': Javascript (with rendering via the HTML5 Canvas or ProcessingJS) and Java (with rendering via Processing). Some of the optional packages available include RiTaWordNet (integrating with the WordNet ontological database) and RiTaBox (integrating with the Box2D Physics library). All RiTa tools are free and open-source (licensed under the XX license). Features include:
+<p>
+<p>RiTaJS<sup>†</sup> is an easy-to-use toolkit designed to facilitate experiments in 
+natural language and generative literature, based on the <a href="http://rednoise.org/rita/">RiTa</a>
+library for Java. Like the original RiTa, RiTaJS works alone or in conjunction with Processing(JS). 
+and/or with its own Canvas renderer, and/or as a <a href="http://rednoise.org/rita/">NodeJS</a> module.  
+All RiTa and RiTaJS tools are free and open-source (licensed under the <a href="">XX</a> license). 
+</p>
+
+<p>Some of the features include:
 
       <li>Text-generation via Context-Free Grammars and Markov-chains</li>
-          <li>Analysis of Syllables, Phonemes, Stress, Part-of-Speech, etc. </li>
-          <li>Support for verb conjugation, pluralization, and stemming </li>
-          <li>A user-customizable Lexicon with letter-to-sound phoneme generation </li>
-          <li>A standard set of 'easing' effects for animation & textual effects
-</li>
-          <li>Real-time unigram, bigram & weighted-bigram measures *
-</li>
-          <li>Integration with the Processing/JS rendering engine</li>
-   <br/>
-<p><strong>†</strong> from the old Norse, meaning to mark, scratch, or scribble</p> 
-      <br/>
+      <li>Analysis of Syllables, Phonemes, Stress, Part-of-Speech, etc. </li>
+      <li>Support for verb conjugation, pluralization, and stemming </li>
+      <li>A user-customizable Lexicon with letter-to-sound phoneme generation </li>
+      <li>A standard set of 'easing' effects for animation & textual effects</li>
+      <!--li>Real-time unigram, bigram & weighted-bigram measures</li-->
+      <li>Integration with the Processing/JS rendering engine</li>
+
+<br/>
+
+<!--p>Browse the full API <a href="./reference/index.html">here</a-->
+    
+
+<p>&nbsp;<p/>
+<p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <sup>†</sup> from the old Norse, meaning to mark, scratch, or scribble
+</p>
+
+<br/>
+
  <!--     <h2>RiTa.js Example</h2>
 <canvas width="575" height="480" data-processing-sources="">
   <img width="300" height="480" src="">
 </canvas> -->
          <br/>
-         
         </p>
 </div>
 
@@ -96,7 +98,7 @@
         </div>
         <div class="sidebar span4">
        		<h3>Downloads</h3>
-	          <p> <a href="../download/index.html">Download the latest version of RiTa.js!</a></p>
+	          <p> <a href="./download/index.html">Download the latest version of RiTa.js!</a></p>
           <!-- <h3><a href="articles/index.html">Meta</a></h3>
           <p> <strong>Keywords</strong>. ##library.keywords##<br />
             <strong>Reference</strong>. Have a look at the javadoc reference <a href="./reference/index.html" target="_blank">here</a>. A 		copy of the reference is included in the .zip as well.<br />
@@ -122,19 +124,7 @@ Mary Choueiter | Mini Ham          </p>
         <a href="https://github.com/dhowe/RiTaJS/">
       <img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme-right-orange.png" alt="Fork me on GitHub">
     </a>
-    <script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-32749746-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
   </body>
   
 </html>
