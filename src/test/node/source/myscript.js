@@ -1,0 +1,3 @@
+exports.myObj = {
+      a: true
+}

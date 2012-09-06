@@ -1,0 +1,588 @@
+Buildfile: /Users/dhowe/Documents/javascript-workspace/RiTaLibraryJS/scripts/run-all-tests.xml
+
+qunit-tests:
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting LibraryStructure-tests.html
+    [apply] 'waitFor()' finished in 200ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] Public Objects (0, 8, 8)
+    [apply] 
+    [apply] Private Statics (0, 5, 5)
+    [apply] 
+    [apply] Member Functions (0, 4, 4)
+    [apply] 
+    [apply] Member Variables (0, 4, 4)
+    [apply] 
+    [apply] Public Statics (0, 6, 6)
+    [apply] 
+    [apply] Public Constants (0, 4, 4)
+    [apply] 
+    [apply] Internal Classes (0, 10, 10)
+    [apply] 
+    [apply] Private Constants (0, 5, 5)
+    [apply] 
+    [apply] Constructors (0, 11, 11)
+    [apply] 
+    [apply] Private Functions (0, 5, 5)
+    [apply] 
+    [apply] Tests completed in 23 milliseconds.
+    [apply] 62 tests of 62 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiGrammar-tests.html
+    [apply] [object DOMWindow]
+    [apply] [object DOMWindow]
+    [apply] 'waitFor()' finished in 201ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] RiGrammar.functions (0, 12, 12)
+    [apply] 
+    [apply] RiGrammar.init (0, 15, 15)
+    [apply] 
+    [apply] RiGrammar.addRule (0, 6, 6)
+    [apply] 
+    [apply] RiGrammar.clone (0, 7, 7)
+    [apply] 
+    [apply] RiGrammar.expand() (0, 113, 113)
+    [apply] 
+    [apply] RiGrammar.expandFrom (0, 101, 101)
+    [apply] 
+    [apply] RiGrammar.getRule (0, 8, 8)
+    [apply] 
+    [apply] RiGrammar.getRules (0, 7, 7)
+    [apply] 
+    [apply] RiGrammar.hasRule (0, 13, 13)
+    [apply] 
+    [apply] RiGrammar.reset (0, 3, 3)
+    [apply] 
+    [apply] RiGrammar.setGrammar (0, 6, 6)
+    [apply] 
+    [apply] RiGrammar.removeRule (0, 4, 4)
+    [apply] 
+    [apply] RiGrammar.print (0, 1, 1)
+    [apply] 
+    [apply] RiGrammar.expandWith (0, 2, 2)
+    [apply] 
+    [apply] RiGrammar-exec (0, 140, 140)
+    [apply] 
+    [apply] Tests completed in 77 milliseconds.
+    [apply] 438 tests of 438 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] Starting RiLexicon-tests.html
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [object DOMWindow]
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [object DOMWindow]
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [object DOMWindow]
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [object DOMWindow]
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] 'waitFor()' timeout
+    [apply] Result: 1
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiMarkov-tests.html
+    [apply] [object DOMWindow]
+    [apply] [object DOMWindow]
+    [apply] [object DOMWindow]
+    [apply] reason:
+    [apply]   people -> 1
+    [apply] people:
+    [apply]   lie -> 1
+    [apply] personal:
+    [apply]   power -> 1
+    [apply] the:
+    [apply]   party -> 0.5
+    [apply]   time -> 0.5
+    [apply] is:
+    [apply]   to -> 0.3333333333333333
+    [apply]   helpful -> 0.3333333333333333
+    [apply]   . -> 0.3333333333333333
+    [apply] ROOT {
+    [apply]   'The' [1,p=0.200]->{
+    [apply]     'dog' [1,p=1.000]->{
+    [apply]       'ate' [1,p=1.000]->{
+    [apply]     }
+    [apply]   }
+    [apply]   'dog' [1,p=0.200]->{
+    [apply]     'ate' [1,p=1.000]->{
+    [apply]       'the' [1,p=1.000]->{
+    [apply]     }
+    [apply]   }
+    [apply]   'ate' [1,p=0.200]->{
+    [apply]     'the' [1,p=1.000]->{
+    [apply]       'cat' [1,p=1.000]->{
+    [apply]     }
+    [apply]   }
+    [apply]   'the' [1,p=0.200]->{
+    [apply]     'cat' [1,p=1.000]->{
+    [apply]       'null' [1,p=1.000]->{
+    [apply]     }
+    [apply]   }
+    [apply]   'cat' [1,p=0.200]->{
+    [apply]     'null' [1,p=1.000]->{
+    [apply]   }
+    [apply] }
+    [apply] 'waitFor()' finished in 810ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] RiMarkov-functions (0, 11, 11)
+    [apply] 
+    [apply] TextNode.lookup (0, 2, 2)
+    [apply] 
+    [apply] TextNode.childCount (0, 1, 1)
+    [apply] 
+    [apply] TextNode.siblingCount (0, 4, 4)
+    [apply] 
+    [apply] TextNode.probability (0, 4, 4)
+    [apply] 
+    [apply] RiMarkov (0, 8, 8)
+    [apply] 
+    [apply] RiMarkov.isRoot (0, 2, 2)
+    [apply] 
+    [apply] RiMarkov.isLeaf (0, 3, 3)
+    [apply] 
+    [apply] RiMarkov.loadTokens (0, 2, 2)
+    [apply] 
+    [apply] RiMarkov.findNode (0, 9, 9)
+    [apply] 
+    [apply] RiMarkov.generateTokens(a) (0, 10, 10)
+    [apply] 
+    [apply] RiMarkov.generateTokens(b) (0, 50, 50)
+    [apply] 
+    [apply] RiMarkov.generateUntil() (0, 97, 97)
+    [apply] 
+    [apply] RiMarkov.getN() nFactor (0, 9, 9)
+    [apply] 
+    [apply] RiMarkov.getProbabilities[single] (0, 11, 11)
+    [apply] 
+    [apply] RiMarkov.getProbabilities[array] (0, 8, 8)
+    [apply] 
+    [apply] RiMarkov.getProbability[single] (0, 7, 7)
+    [apply] 
+    [apply] RiMarkov.getProbability[array] (0, 4, 4)
+    [apply] 
+    [apply] RiMarkov.numTokens (0, 2, 2)
+    [apply] 
+    [apply] RiMarkov.getCompletions(a) (0, 6, 6)
+    [apply] 
+    [apply] RiMarkov.getCompletions(b) (0, 6, 6)
+    [apply] 
+    [apply] RiMarkov.loadTokens (0, 5, 5)
+    [apply] 
+    [apply] RiMarkov.loadText() (0, 2, 2)
+    [apply] 
+    [apply] RiMarkov.print() (0, 1, 1)
+    [apply] 
+    [apply] RiMarkov.useSmoothing() (0, 2, 2)
+    [apply] 
+    [apply] Tests completed in 715 milliseconds.
+    [apply] 266 tests of 266 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiString-tests.html
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Used LTS-rules for 'laggin'
+    [apply] [RiTa] Used LTS-rules for 'laggin'
+    [apply] 'waitFor()' finished in 592ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] RiString.functions (0, 35, 35)
+    [apply] 
+    [apply] RiString._stringify (0, 1, 1)
+    [apply] 
+    [apply] RiString._syllabify(string) (0, 1, 1)
+    [apply] 
+    [apply] RiString._syllabify(array) (0, 1, 1)
+    [apply] 
+    [apply] RiString._syllabify(batch1) (0, 35, 35)
+    [apply] 
+    [apply] RiString() (0, 10, 10)
+    [apply] 
+    [apply] RiString.analyze() (0, 20, 20)
+    [apply] 
+    [apply] RiString.charAt() (0, 4, 4)
+    [apply] 
+    [apply] RiString.concat() (0, 3, 3)
+    [apply] 
+    [apply] RiString.containsWord (0, 5, 5)
+    [apply] 
+    [apply] RiString.endsWith() (0, 4, 4)
+    [apply] 
+    [apply] RiString.equals() (0, 8, 8)
+    [apply] 
+    [apply] RiString.equalsIgnoreCase() (0, 6, 6)
+    [apply] 
+    [apply] RiString.indexOf() (0, 13, 13)
+    [apply] 
+    [apply] RiString.insertWordAt() (0, 10, 10)
+    [apply] 
+    [apply] RiString.lastIndexOf() (0, 6, 6)
+    [apply] 
+    [apply] RiString.length() (0, 10, 10)
+    [apply] 
+    [apply] RiString.match() (0, 4, 4)
+    [apply] 
+    [apply] RiString.pos() (0, 6, 6)
+    [apply] 
+    [apply] RiString.posAt() (0, 2, 2)
+    [apply] 
+    [apply] RiString.removeCharAt() (0, 7, 7)
+    [apply] 
+    [apply] RiString.replaceCharAt() (0, 7, 7)
+    [apply] 
+    [apply] RiString.replaceFirst() (0, 13, 13)
+    [apply] 
+    [apply] RiString.replaceLast() (0, 17, 17)
+    [apply] 
+    [apply] RiString.replaceAll() (0, 7, 7)
+    [apply] 
+    [apply] RiString.replaceWordAt() (0, 6, 6)
+    [apply] 
+    [apply] RiString.slice() (0, 11, 11)
+    [apply] 
+    [apply] RiString.split() (0, 10, 10)
+    [apply] 
+    [apply] RiString.startsWith() (0, 8, 8)
+    [apply] 
+    [apply] RiString.substring() (0, 11, 11)
+    [apply] 
+    [apply] RiString.substr() (0, 6, 6)
+    [apply] 
+    [apply] RiString.text() (0, 5, 5)
+    [apply] 
+    [apply] RiString.toCharArray() (0, 1, 1)
+    [apply] 
+    [apply] RiString.toLowerCase() (0, 3, 3)
+    [apply] 
+    [apply] RiString.toUpperCase() (0, 2, 2)
+    [apply] 
+    [apply] RiString.trim() (0, 4, 4)
+    [apply] 
+    [apply] RiString.wordAt() (0, 6, 6)
+    [apply] 
+    [apply] RiString.wordCount() (0, 5, 5)
+    [apply] 
+    [apply] RiString.words() (0, 5, 5)
+    [apply] 
+    [apply] RiString.get() (0, 3, 3)
+    [apply] 
+    [apply] Tests completed in 497 milliseconds.
+    [apply] 321 tests of 321 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiTa-tests.html
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Used LTS-rules for 'Laggin'
+    [apply] [WARN] vbz! is not a valid pos-tag
+    [apply] [WARN] aa is not a valid pos-tag
+    [apply] [WARN] rb  is not a valid pos-tag
+    [apply] [WARN]  rb  is not a valid pos-tag
+    [apply] [WARN]  rb   is not a valid pos-tag
+    [apply] [WARN]   rb is not a valid pos-tag
+    [apply] [WARN] rb     is not a valid pos-tag
+    [apply] [WARN]   rb is not a valid pos-tag
+    [apply] [RiTa] Used LTS-rules for 'asdfgasdasdasdasdsadasf'
+    [apply] [RiTa] Used LTS-rules for 'HTERE'
+    [apply] [RiTa] Used LTS-rules for 'fsfa'
+    [apply] [RiTa] Used LTS-rules for 'dependaBIlity'
+    [apply] [RiTa] Used LTS-rules for 'asdfgasdasdasdasdsadasf'
+    [apply] [RiTa] Used LTS-rules for 'HTERE'
+    [apply] [RiTa] Used LTS-rules for 'fsfa'
+    [apply] [RiTa] Used LTS-rules for 'five'
+    [apply] [RiTa] Used LTS-rules for 'asdfgasdasdasdasdsadasf'
+    [apply] [RiTa] Used LTS-rules for 'HTERE'
+    [apply] [RiTa] Used LTS-rules for 'fsfa'
+    [apply] 'waitFor()' finished in 2353ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] RiTa.functions (0, 31, 31)
+    [apply] 
+    [apply] RiTa.constants (0, 1, 1)
+    [apply] 
+    [apply] RiTa.isAbbreviation() (0, 25, 25)
+    [apply] 
+    [apply] RiTa.isQuestion() (0, 16, 16)
+    [apply] 
+    [apply] RiTa.isSentenceEnd() (0, 4, 4)
+    [apply] 
+    [apply] RiTa.isW_Question() (0, 10, 10)
+    [apply] 
+    [apply] RiTa.randomOrdering() (0, 52, 52)
+    [apply] 
+    [apply] RiTa.removeRandom() (0, 2, 2)
+    [apply] 
+    [apply] RiTa.splitSentences() (0, 8, 8)
+    [apply] 
+    [apply] RiTa.stripPunctuation() (0, 33, 33)
+    [apply] 
+    [apply] RiTa.trimPunctuation() (0, 5, 5)
+    [apply] 
+    [apply] RiTa.isPunctuation() (0, 197, 197)
+    [apply] 
+    [apply] RiTa.tokenize() (0, 9, 9)
+    [apply] 
+    [apply] RiTa.trim() (0, 10, 10)
+    [apply] 
+    [apply] RiTa.distance() (0, 4, 4)
+    [apply] 
+    [apply] RiTa.random() (0, 2, 2)
+    [apply] 
+    [apply] RiTa.getPhonemes() (0, 7, 7)
+    [apply] 
+    [apply] RiTa.getPosTags() (0, 6, 6)
+    [apply] 
+    [apply] RiTa.getPosTagsInline() (0, 6, 6)
+    [apply] 
+    [apply] RiTa.getStresses() (0, 7, 7)
+    [apply] 
+    [apply] RiTa.getSyllables() (0, 5, 5)
+    [apply] 
+    [apply] RiTa.getWordCount() (0, 7, 7)
+    [apply] 
+    [apply] RiTa.posToWordNet() (0, 13, 13)
+    [apply] 
+    [apply] RiTa.stem(lancaster) (0, 9, 9)
+    [apply] 
+    [apply] RiTa.stem(porter) (0, 9, 9)
+    [apply] 
+    [apply] RiTa.stem(pling) (0, 7, 7)
+    [apply] 
+    [apply] RiTa.LTSEngine (0, 15, 15)
+    [apply] 
+    [apply] RiTa.pluralize() (0, 27, 27)
+    [apply] 
+    [apply] RiTa.singularize() (0, 48, 48)
+    [apply] 
+    [apply] RiTa.getPastParticiple() (0, 25, 25)
+    [apply] 
+    [apply] RiTa.getPresentParticiple() (0, 26, 26)
+    [apply] 
+    [apply] RiTa.untokenize() (0, 9, 9)
+    [apply] 
+    [apply] RiTa.conjugate (0, 54, 54)
+    [apply] 
+    [apply] Tests completed in 2205 milliseconds.
+    [apply] 689 tests of 689 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiTaEvent-tests.html
+    [apply] 'waitFor()' finished in 201ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] RiTaEvent-functions (0, 2, 2)
+    [apply] 
+    [apply] RiTaEvent() (0, 10, 10)
+    [apply] 
+    [apply] RiTaEvent.getSource() (0, 4, 4)
+    [apply] 
+    [apply] RiTaEvent.getType() (0, 4, 4)
+    [apply] 
+    [apply] Tests completed in 20 milliseconds.
+    [apply] 20 tests of 20 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiText-tests.html
+    [apply] [RiTa] Loaded lexicon data...
+    [apply] [RiTa] Used LTS-rules for 'laggin'
+    [apply] TEST! RiText.createFont()
+    [apply] TEST! RiText.createWords()
+    [apply] TEST! RiText.createLetters()
+    [apply] TEST! RiText.createLines()
+    [apply] TEST! RiText.drawAll()
+    [apply] 'waitFor()' finished in 608ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] RiText.functions (0, 97, 97)
+    [apply] 
+    [apply] RiText() (0, 13, 13)
+    [apply] 
+    [apply] RiText.analyze() (0, 16, 16)
+    [apply] 
+    [apply] RiText.charAt() (0, 4, 4)
+    [apply] 
+    [apply] RiText.concat() (0, 3, 3)
+    [apply] 
+    [apply] RiText.containsWord (0, 5, 5)
+    [apply] 
+    [apply] RiText.endsWith() (0, 4, 4)
+    [apply] 
+    [apply] RiText.equals() (0, 8, 8)
+    [apply] 
+    [apply] RiText.equalsIgnoreCase() (0, 6, 6)
+    [apply] 
+    [apply] RiText.indexOf() (0, 12, 12)
+    [apply] 
+    [apply] RiText.insertWordAt() (0, 10, 10)
+    [apply] 
+    [apply] RiText.lastIndexOf() (0, 6, 6)
+    [apply] 
+    [apply] RiText.length() (0, 10, 10)
+    [apply] 
+    [apply] RiText.match() (0, 3, 3)
+    [apply] 
+    [apply] RiText.pos() (0, 6, 6)
+    [apply] 
+    [apply] RiText.posAt() (0, 2, 2)
+    [apply] 
+    [apply] RiText.removeCharAt() (0, 7, 7)
+    [apply] 
+    [apply] RiText.replaceCharAt() (0, 7, 7)
+    [apply] 
+    [apply] RiText.replaceFirst() (0, 9, 9)
+    [apply] 
+    [apply] RiText.replaceLast() (0, 9, 9)
+    [apply] 
+    [apply] RiText.replaceAll() (0, 7, 7)
+    [apply] 
+    [apply] RiText.replaceWordAt() (0, 5, 5)
+    [apply] 
+    [apply] RiText.slice() (0, 11, 11)
+    [apply] 
+    [apply] RiText.split() (0, 10, 10)
+    [apply] 
+    [apply] RiText.startsWith() (0, 9, 9)
+    [apply] 
+    [apply] RiText.substring() (0, 11, 11)
+    [apply] 
+    [apply] RiText.substr() (0, 6, 6)
+    [apply] 
+    [apply] RiText.text() (0, 5, 5)
+    [apply] 
+    [apply] RiText.toCharArray() (0, 1, 1)
+    [apply] 
+    [apply] RiText.toLowerCase() (0, 3, 3)
+    [apply] 
+    [apply] RiText.toUpperCase() (0, 2, 2)
+    [apply] 
+    [apply] RiText.trim() (0, 4, 4)
+    [apply] 
+    [apply] RiText.wordAt() (0, 6, 6)
+    [apply] 
+    [apply] RiText.wordCount() (0, 5, 5)
+    [apply] 
+    [apply] RiText.words() (0, 5, 5)
+    [apply] 
+    [apply] RiText.createFont() (0, 2, 2)
+    [apply] 
+    [apply] RiText.createWords() (0, 1, 1)
+    [apply] 
+    [apply] RiText.createLetters() (0, 1, 1)
+    [apply] 
+    [apply] RiText.createLines() (0, 1, 1)
+    [apply] 
+    [apply] RiText.drawAll() (0, 1, 1)
+    [apply] 
+    [apply] Tests completed in 516 milliseconds.
+    [apply] 333 tests of 333 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] Starting RiTextStructure-Canvas.html
+    [apply] false
+    [apply] false
+    [apply] false
+    [apply] false
+    [apply] false
+    [apply] 'waitFor()' finished in 201ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] Constructors (0, 5, 5)
+    [apply] 
+    [apply] Member Functions (0, 4, 4)
+    [apply] 
+    [apply] Public Constants (0, 3, 3)
+    [apply] 
+    [apply] Public Statics (0, 6, 6)
+    [apply] 
+    [apply] Member Variables (0, 6, 6)
+    [apply] 
+    [apply] RiText.dispose[single] (0, 4, 4)
+    [apply] 
+    [apply] RiText.dispose[array] (0, 6, 6)
+    [apply] 
+    [apply] RiText.dispose[all] (0, 4, 4)
+    [apply] 
+    [apply] Private Objects (0, 5, 5)
+    [apply] 
+    [apply] Member Functions[compat] (0, 5, 5)
+    [apply] 
+    [apply] Member Functions[!compat] (0, 5, 5)
+    [apply] 
+    [apply] Global Objects[compat] (0, 3, 3)
+    [apply] 
+    [apply] Global Objects[!compat] (0, 3, 3)
+    [apply] 
+    [apply] Public Statics[compat] (0, 2, 2)
+    [apply] 
+    [apply] Public Statics[!compat] (0, 2, 2)
+    [apply] 
+    [apply] Tests completed in 36 milliseconds.
+    [apply] 63 tests of 63 passed, 0 failed.
+    [apply] [INFO] RiTaJS.version [0.20a]
+    [apply] true
+    [apply] true
+    [apply] true
+    [apply] true
+    [apply] true
+    [apply] Starting RiTextStructure-P5.html
+    [apply] 'waitFor()' finished in 200ms.
+    [apply] 
+    [apply] Test name (failed, passed, total)
+    [apply] 
+    [apply] Constructors (0, 5, 5)
+    [apply] 
+    [apply] Member Functions (0, 4, 4)
+    [apply] 
+    [apply] Public Constants (0, 3, 3)
+    [apply] 
+    [apply] Public Statics (0, 6, 6)
+    [apply] 
+    [apply] Member Variables (0, 6, 6)
+    [apply] 
+    [apply] RiText.dispose[single] (0, 4, 4)
+    [apply] 
+    [apply] RiText.dispose[array] (0, 6, 6)
+    [apply] 
+    [apply] RiText.dispose[all] (0, 4, 4)
+    [apply] 
+    [apply] Private Objects (0, 5, 5)
+    [apply] 
+    [apply] Member Functions[compat] (0, 5, 5)
+    [apply] 
+    [apply] Member Functions[!compat] (0, 5, 5)
+    [apply] 
+    [apply] Global Objects[compat] (0, 3, 3)
+    [apply] 
+    [apply] Global Objects[!compat] (0, 3, 3)
+    [apply] 
+    [apply] Public Statics[compat] (0, 2, 2)
+    [apply] 
+    [apply] Public Statics[!compat] (0, 2, 2)
+    [apply] 
+    [apply] Tests completed in 1625 milliseconds.
+    [apply] 63 tests of 63 passed, 0 failed.
+
+BUILD SUCCESSFUL
+Total time: 41 seconds
