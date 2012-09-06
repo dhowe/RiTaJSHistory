@@ -1,3 +1,7 @@
+build
+.project
+.settings
+.externalToolBuilders
 *.class
 .DS_STORE
 CVS
