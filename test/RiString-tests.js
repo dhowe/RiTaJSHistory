@@ -6,7 +6,6 @@ var runtests = function() {
         "analyze",
         "charAt",
         "concat",
-        "containsWord",
         "endsWith",
         "equals",
         "equalsIgnoreCase",
@@ -186,18 +185,6 @@ var runtests = function() {
         var result = rs.concat(rs2);
         equal(result, "#$#@#$@#The dog was not white ");
 
-    });
-
-    test("RiString.containsWord", function() {
-
-        // check that these are ok --- ------------
-        var rs = new RiString("The dog was white");
-
-        ok(rs.containsWord("dog"));
-        ok(rs.containsWord(""));
-        ok(!rs.containsWord("*"));
-        ok(!rs.containsWord("."));
-        ok(!rs.containsWord("brown"));
     });
 
     test("RiString.endsWith()", function() {

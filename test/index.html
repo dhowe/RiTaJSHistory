@@ -1,54 +1,55 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>RiTa Docs</title>
 <link href="rita-api.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../lib/jquery.js"></script>
+<script type="text/javascript" src="./rita-test.js"></script>
 <script>
 
-var srcType = "local";
+
 
 $(document).ready(function() {
 
+    var tests = {
+                 "RiTa-tests",
+                 "RiText-tests",
+                 "RiString-tests",
+                 "RiMarkov-tests",
+                 "RiGrammar-tests",
+                 "RiTaEvent-tests",
+                 "RiLexicon-tests",
+                 "RiTextStructure-canvas",
+                 "RiTextStructure-p5",
+                 "KnownIssues-tests"
+                 // renderer
+    };
+    
+    var srcType = "src";
     var type = paramByName("srcType"); 
-    if (type && type==='remote') 
+    if (type && (type==='src' || type==='lib')) 
         srcType = type;
     
-    var url = testUrl("RiTa-Tests");
-    console.log(url);
-    $('RiTa-Tests').href = url;
-    //console.log($('RiTa-Tests').href);
+    for (var i = 0; i < tests.length; i++) {
+
+        //var url = testUrl(tests[i], srcType);
+        var div = $('#'+tests[i])[0];
+        div.href += "&type="+srcType;
+        console.log(i+"] "+div.href);
+    }
 });
 
-function testUrl(testName, globals)
-{
-    var s = "test/"+testName+".html?";
-    if (!globals)
-        s += "noglobals=true&";
-    return (s + "type="+srcType);
-}
-
-function paramByName(name)
-{
-  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-  var regexS = "[\\?&]" + name + "=([^&#]*)";
-  var regex = new RegExp(regexS);
-  var results = regex.exec(window.location.search);
-  if(results == null)
-    return "";
-  else
-    return decodeURIComponent(results[1].replace(/\+/g, " "));
-}
 
 </script>
 </head>
+
+
 <body>
 <table width="1300" height="100%"  border="0" cellpadding="1" cellspacing="1">
 <tr>
   <td valign=top>
       <!-- src/test/RiTa-tests.html?noglobals=true -->
-    <a class=head id="RiTa-Tests" href="RiTa-tests.html?noglobals=true">[RiTa]</a><br>
+    <a id="RiTa-tests" class=head href="RiTa-tests.html?noglobals=true">[RiTa]</a><br>
 <br><a href=""><em>VERSION</em></a>
 <br>
 
@@ -97,7 +98,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top>
 
-<a class=head href="RiText-tests.html?noglobals=true">[RiText]</a><p>
+<a id="RiText-tests"  class=head href="RiText-tests.html?noglobals=true">[RiText]</a><p>
 
 <a href="">RiText()</a>
 <p><a href="">[ALL FROM RiString]</a>
@@ -138,7 +139,10 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 <br><a href="">stopBehaviors()</a>
 <br><a href="">textTo()</a>
 
+
 <p>
+
+
 <a href=""><em>RiText.createFont()</em></a>
 <br><a href=""><em>RiText.createLetters()</em></a>
 <br><a href=""><em>RiText.createWords()</em></a>
@@ -173,12 +177,11 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top width=150>
 
-<a class=head href="RiString-tests.html?noglobals=true">[RiString]</a><p>
+<a id="RiString-tests" class=head href="RiString-tests.html?noglobals=true">[RiString]</a><p>
 <a href="">RiString()</a>
 <p><a href="">analyze()</a>
 <br><a href="">charAt()</a>
 <br><a href="">concat()</a>
-<br><a href="">containsWord()</a>
 <br><a href="">endsWith()</a>
 <br><a href="">equals()</a>
 <br><a href="">equalsIgnoreCase()</a>
@@ -214,7 +217,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 
 <!-- allowing globals here for now -->
-<a class=head href="RiGrammar-tests.html">[RiGrammar]</a><p>
+<a id="RiGrammar-tests" class=head href="RiGrammar-tests.html">[RiGrammar]</a><p>
 <a href="">RiGrammar()</a>
 <p><a href="">addRule()</a>
 <br><a href="">allowExec()</a>
@@ -232,7 +235,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 <!--br><a href="">toString()</a-->
 <p>&nbsp;<p>
 
-<a class=head href="RiTaEvent-tests.html?noglobals=true">[RiTaEvent]</a><p>
+<a id="RiTaEvent-tests" class=head href="RiTaEvent-tests.html?noglobals=true">[RiTaEvent]</a><p>
 <a href="">RiTaEvent()</a>
 <!--p><a href="">fire()</a-->
 <p><a href="">getSource()</a>
@@ -243,7 +246,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top>
 
-<a class=head href="RiLexicon-tests.html?noglobals=true">[RiLexicon]</a><p>
+<a id="RiLexicon-tests" class=head href="RiLexicon-tests.html?noglobals=true">[RiLexicon]</a><p>
 <a href="">RiLexicon()</a>
 <p><a href="">addWord()</a>
 <br><a href="">clear()</a>
@@ -290,7 +293,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top>
 
-<a class=head href="RiMarkov-tests.html?noglobals=true">[RiMarkov]</a><p>
+<a id="RiMarkov-tests" class=head href="RiMarkov-tests.html?noglobals=true">[RiMarkov]</a><p>
 <a href="">RiMarkov()</a><p>
 <a href="">generateTokens()</a>
 <br><a href="">generateUntil()</a>
@@ -423,11 +426,11 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <td valign=top>
 
-<a class=head href="LibraryStructure-tests.html?noglobals=true">[RiTa-Structure]</a><p>
-<a class=head href="RiTextStructure-canvas.html">[RiText-Structure(Ctx)]</a><p>
-<a class=head href="RiTextStructure-p5.html">[RiText-Structure(p5)]</a><p>
-<a class=head href="renderer/index.html">[RiText-Renderers]</a><p>
-<a class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><p>
+<a id="LibraryStructure-tests" class=head href="LibraryStructure-tests.html?noglobals=true">[RiTa-Structure]</a><p>
+<a id="RiTextStructure-canvas" class=head href="RiTextStructure-canvas.html">[RiText-Structure(Ctx)]</a><p>
+<a id="RiTextStructure-p5" class=head href="RiTextStructure-p5.html">[RiText-Structure(p5)]</a><p>
+<a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><p>
+<a id="Renderer-tests" class=head href="renderer/index.html">[RiText-Renderers]</a><p>
 
 
 <!--a class=head href="src/test/Expects-tests.html?noglobals=true">[Expects-Tests]</a><p>
