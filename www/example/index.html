@@ -30,13 +30,11 @@
         new Test("fade-to-text"),
         new Test("font-scaling"),
         new Test("get-picked"),
-
         new Test("grammar-haiku"), 
-//      new Test("grammar-strings"), 
-//      new Test("grammar-expandFrom"), 
-//      new Test("grammar-expandWith"),
-//      new Test("grammar-multi"), 
-        
+        //new Test("grammar-strings"), 
+        //new Test("grammar-expandFrom"), 
+        //new Test("grammar-expandWith"),
+        //new Test("grammar-multi"), 
         new Test("letter-grid"),
         new Test("move-to"),
         new Test("pick-and-drag"),
@@ -85,7 +83,7 @@
 
 var body = "<table><tr>";
    for ( var i = 0; i < tests.length; i++) {
-     body += "<td>"+tests[i].url+":</td>";//http://localhost/~dhowe/RiTaLibraryJS/src/test/renderer/multitest.html?test=simple-ritext
+     body += "<td>"+tests[i].url+":</td>";
      body += "<td><a href=\""+testDir+"/processing/"+tests[i].url+".html\">[processing]</a></td>";
      body += "<td><a href=\""+testDir+"/canvas/"+tests[i].url+".html\">[canvas]</a></td>";
      body += "<td><a href=\""+testDir+"/multitest.html?test="+tests[i].url+"\">[compare]</a></td></tr>";
