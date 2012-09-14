@@ -4,14 +4,15 @@
 <title>RiTa Docs</title>
 <link href="rita-api.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../lib/jquery.js"></script>
-<script type="text/javascript" src="./rita-test.js"></script>
+<script type="text/javascript" src="./rita-loader.js"></script>
 <script>
 
 
 
 $(document).ready(function() {
 
-    var tests = {
+    var tests = [
+        
                  "RiTa-tests",
                  "RiText-tests",
                  "RiString-tests",
@@ -21,20 +22,19 @@ $(document).ready(function() {
                  "RiLexicon-tests",
                  "RiTextStructure-canvas",
                  "RiTextStructure-p5",
-                 "KnownIssues-tests"
+                 "KnownIssues-tests",
+                 "LibraryStructure-tests",
+                 "Renderer-tests"
                  // renderer
-    };
+    ];
     
-    var srcType = "src";
-    var type = paramByName("srcType"); 
-    if (type && (type==='src' || type==='lib')) 
-        srcType = type;
+    var srcType = "lib";
+    var type = param("src"); 
+    if (type) srcType = type;
     
     for (var i = 0; i < tests.length; i++) {
-
-        //var url = testUrl(tests[i], srcType);
         var div = $('#'+tests[i])[0];
-        div.href += "&type="+srcType;
+        div.href += "&src="+srcType;
         console.log(i+"] "+div.href);
     }
 });
@@ -177,7 +177,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top width=150>
 
-<a id="RiString-tests" class=head href="RiString-tests.html?noglobals=true">[RiString]</a><p>
+<a id="RiString-tests" class=head href="RiString-tests.html?noglobals=true&data=1">[RiString]</a><p>
 <a href="">RiString()</a>
 <p><a href="">analyze()</a>
 <br><a href="">charAt()</a>
@@ -217,7 +217,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 
 <!-- allowing globals here for now -->
-<a id="RiGrammar-tests" class=head href="RiGrammar-tests.html">[RiGrammar]</a><p>
+<a id="RiGrammar-tests" class=head href="RiGrammar-tests.html?">[RiGrammar]</a><p>
 <a href="">RiGrammar()</a>
 <p><a href="">addRule()</a>
 <br><a href="">allowExec()</a>
@@ -246,7 +246,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top>
 
-<a id="RiLexicon-tests" class=head href="RiLexicon-tests.html?noglobals=true">[RiLexicon]</a><p>
+<a id="RiLexicon-tests" class=head href="RiLexicon-tests.html?noglobals=true&data=1">[RiLexicon]</a><p>
 <a href="">RiLexicon()</a>
 <p><a href="">addWord()</a>
 <br><a href="">clear()</a>
@@ -427,11 +427,10 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 <td valign=top>
 
 <a id="LibraryStructure-tests" class=head href="LibraryStructure-tests.html?noglobals=true">[RiTa-Structure]</a><p>
-<a id="RiTextStructure-canvas" class=head href="RiTextStructure-canvas.html">[RiText-Structure(Ctx)]</a><p>
-<a id="RiTextStructure-p5" class=head href="RiTextStructure-p5.html">[RiText-Structure(p5)]</a><p>
+<a id="RiTextStructure-canvas" class=head href="RiTextStructure-canvas.html?">[RiText-Structure(Ctx)]</a><p>
+<a id="RiTextStructure-p5" class=head href="RiTextStructure-p5.html?">[RiText-Structure(p5)]</a><p>
 <a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><p>
-<a id="Renderer-tests" class=head href="renderer/index.html">[RiText-Renderers]</a><p>
-
+<a id="Renderer-tests" class=head href="renderer/index.html?">[RiText-Renderers]</a><p>
 
 <!--a class=head href="src/test/Expects-tests.html?noglobals=true">[Expects-Tests]</a><p>
 <a class=head href="http://www.rednoise.org/rita/documentation/docs.htm">[RiTa-Javadocs]</a><p>

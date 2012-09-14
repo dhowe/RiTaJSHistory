@@ -4,10 +4,10 @@
     <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen" />
     <script type="text/javascript" src="../lib/jquery-min.js"></script>
     <script type="text/javascript" src="../lib/qunit.js"></script>
+    <script type="text/javascript" src="./rita-loader.js"></script>
     <script type="text/javascript" src="./LibraryStructure-tests.js"></script>
     <script>
-        var tag = '<script src="../src/rita.js"><'+'/script>';
-        document.write(tag);
+        loadLibrary('RiTa');
         $(document).ready(runtests);
     </script>
   </head>

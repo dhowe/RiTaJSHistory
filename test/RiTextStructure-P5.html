@@ -5,12 +5,13 @@
     <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen" />
     <script type="text/javascript" src="../lib/jquery-min.js"></script>
     <script type="text/javascript" src="../lib/qunit.js"></script>
+    <script type="text/javascript" src="./rita-loader.js"></script>
     <script type="text/javascript" src="../lib/processing-min.js"></script>
-    <script type="text/javascript" src="../src/rita.js"></script>
     <script type="text/javascript" src="./RiTextStructure-P5.js"></script>
+    <script>loadLibrary('RiTa');</script>
+
     <script type="text/processing" data-processing-target="mycanvas">
     <script>
-    
         void setup() {
             
             size(200,200);

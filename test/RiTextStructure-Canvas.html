@@ -16,14 +16,13 @@
     
     <script type="text/javascript" src="../lib/jquery-min.js"></script>
     <script type="text/javascript" src="../lib/qunit.js"></script>
-    <script type="text/javascript" src="../src/rita.js"></script>
+    <script type="text/javascript" src="./rita-loader.js"></script>      
     <script type="text/javascript" src="./RiTextStructure-Canvas.js"></script>
+    <script>loadLibrary('RiTa');</script>
+    
     <script>
-  
     RiText("Hello from RiTa[Canvas]").draw();
-
     $(document).ready(runtests);
-
     </script>
 
 </html>
