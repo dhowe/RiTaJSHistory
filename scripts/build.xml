@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<project default="tests">
+
+ <!--taskdef resource="net/sf/antcontrib/antlib.xml"/-->
+
+  <target name="tests">
+
+  <property name="output.file" value="run-all-tests.html"/>
+  <property name="qunit.js.file" location="run-qunit.js" />
+  <property name="phantomjs.cmd" value="../tools/phantomjs" />
+
+  <property name="../test/RiTa-tests.html?a=b"     value="file1"/>
+  <property name="../test/RiString-tests.html?a=b" value="file1"/>
+
+  <propertyset id="html.tests">
+    <propertyref prefix="../test"/>
+  </propertyset>
+
+  <echo message="${toString:html.files}" />
+
+  <apply executable="${phantomjs.cmd}" verbose="true" failonerror="false">
+      <arg value="${qunit.js.file}" />
+      <srcfile/>
+      <propertyset refid="html.tests"/>
+  </apply>
+
+</target>
+</project>

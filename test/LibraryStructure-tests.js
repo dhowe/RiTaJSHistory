@@ -74,7 +74,9 @@ var runtests = function() {
 
     test("Internal Classes", function() {
 
-        equal(typeof Type, 'undefined', 'Type');
+        equal(typeof Type, 'undefined', 'Type is visible!');
+        equal(typeof Phones, 'undefined', 'Phones is visible!');
+        
         equal(typeof Conjugator, 'undefined', 'Conjugator');
         equal(typeof MinEditDist, 'undefined', 'MinEditDist');
         equal(typeof PosTagger, 'undefined', 'PosTagger');

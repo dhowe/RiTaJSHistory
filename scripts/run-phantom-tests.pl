@@ -2,7 +2,7 @@
 
 # TO-RUN: ./run-phantom-tests.pl 2> err.txt
 
-# TODO: do checkout/update, run,  mail, on cron
+# TODO: do checkout/update, run, mail, on cron
 
 use strict;
 
@@ -32,10 +32,6 @@ my @output = split(/\n/,`$ANT -f $BUILD_XML 2>&1`);
 
 foreach my $line (@output) {
 
-    #if ($line =~ /\[apply\] Starting ([^\-]*)-tests.html/) {
-    #    $name = $1;
-    #}
-    
     if ($line =~ /\[apply\] Starting ([^\.]*).html/) {
         $name = $1;
         $name =~ s/Structure//;

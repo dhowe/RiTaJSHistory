@@ -71,13 +71,13 @@ If you've worked with javascript before and have both of these ready-to-go, skip
         You can download RiTa.js at <a href="http://rednoise.org/rita/js/download">the download
             page</a>. The library comes in a number of forms, for example:</p>
     <ul>
-        <li>RiTaJS-1.0.0.zip</li>
-        <li>rita-1.0.0.js </li>
-        <li>rita-1.0.0.min.js *</li>
+        <li>rita-full-0.18.zip</li>
+        <li>rita-0.18.js </li>
+        <li>rita-0.18.min.js *</li>
     </ul>
     <p> 
         The version numbers may be different as you read this, but note the file extensions.
-        The RiTaJS zip package includes everything -- the source, reference, examples, tutorials, etc. 
+        The rita-full zip package includes everything -- the source, reference, examples, tutorials, etc. 
         The other two versions, ending in .js, are the core javascript code files. <p>
         
         <!--  move to footnote -->
@@ -98,13 +98,12 @@ If you've worked with javascript before and have both of these ready-to-go, skip
 	 <pre><code class="html">
 	 
 &lt;canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"&gt;&lt;/canvas&gt;
-&lt;script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"&gt;&lt;/script&gt;
-&lt;script src="http://rednoise.org/rita/rita-0.14a.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://rednoise.org/rita/js/download/rita-0.18a.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 
 // code goes here:
 
-new RiText("This is not the Text").draw();
+RiText("This is not the Text").draw();
 
 &lt;/script&gt;
 	
