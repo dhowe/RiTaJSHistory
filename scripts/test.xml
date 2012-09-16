@@ -1,0 +1,10 @@
+    <for list="RiTa-tests.html?a=b;RiText-tests.html;RiString-tests.html;RiMarkov-tests.html;RiGrammar-tests.html;RiTaEvent-tests.html;RiLexicon-tests.html;RiTextStructure-canvas.html;RiTextStructure-p5.html;KnownIssues-tests.html;LibraryStructure-tests.html" delimiter=";" param = "val">
+        <sequential>
+        <echo message = "val = @{val}"/>
+        </sequential>
+    </for>
+
+
+ </target>
+
+</project>

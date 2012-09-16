@@ -1,18 +1,21 @@
 function loadLibrary(name)
 {
-     var loc = '../src/rita.js', srcloc = param('src'), data = param('data');
-    
-    if (srcloc && srcloc != 'lib') { 
-        loc = srcloc;
-    }
+
+    var loc = '../src/rita.js', srcloc = param('src'), data = param('data');
+
+    srcloc && (srcloc != 'lib') && (loc = srcloc);
+
     var srcTag = '<script src="'+loc+'"><'+'/script>', dataStr = '';
-    if (!srcloc && data && data != 'f' && data != '0'){
+    
+    if ((!srcloc || srcloc == 'lib') && data && data != 'f' && data != '0') {
+        
        srcTag += '\n<script src="'+loc.replace('rita.js','rita_lts.js')+'"><'+'/script>';
        srcTag += '\n<script src="'+loc.replace('rita.js','rita_dict.js')+'"><'+'/script>';
        dataStr = ' (+data/lts)'
     }
     
     console.log('[TEST] Loading '+name+' from ' + loc + dataStr);
+    
     document.write(srcTag);
 }
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+
+<project default="qunit-tests"> 
+
+ <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+ <target name="qunit-tests">
+
+    <for list="RiTa-tests.html?a=b;RiText-tests.html;RiString-tests.html;RiMarkov-tests.html;RiGrammar-tests.html;RiTaEvent-tests.html;RiLexicon-tests.html;RiTextStructure-canvas.html;RiTextStructure-p5.html;KnownIssues-tests.html;LibraryStructure-tests.html" delimiter=";" param = "val">
+        <sequential>
+          <!--echo message = "val = @{val}"/-->
+          <apply executable="ls" failonerror="false">
+          <propertyset pathelement path="${@val}"/>
+          </apply>
+        </sequential>
+    </for>
+
+    
+    <fileset id="files" dir="../test/">
+                 <include name="RiTa-tests.html?a=b" />
+                 <include name="RiText-tests.html" />
+                 <include name="RiString-tests.html" />
+                 <include name="RiMarkov-tests.html" />
+                 <include name="RiGrammar-tests.html" />
+                 <include name="RiTaEvent-tests.html" />
+                 <include name="RiLexicon-tests.html" />
+                 <include name="RiTextStructure-canvas.html" />
+                 <include name="RiTextStructure-p5.html" />
+                 <include name="KnownIssues-tests.html" />
+                 <include name="LibraryStructure-tests.html" />
+    </fileset>
+
+    <pathconvert pathsep="${line.separator}" property="sounds" refid="files"/>
+
+    <echo message="${toString:files}" />
+    <echo message="${sounds}" />
+
+
+    <for list="10.10.10.1;10.10.10.2" delimiter=";" param = "val">
+        <sequential>
+        <echo message = "val = @{val}"/>
+        </sequential>
+    </for>
+
+
+ </target>
+
+</project>
