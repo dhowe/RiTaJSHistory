@@ -28,14 +28,16 @@ $(document).ready(function() {
                  // renderer
     ];
     
-    var srcType = "lib";
-    var type = param("src"); 
-    if (type) srcType = type;
+    var src = param("src"); 
     
-    for (var i = 0; i < tests.length; i++) {
-        var div = $('#'+tests[i])[0];
-        div.href += "&src="+srcType;
-        console.log(i+"] "+div.href);
+    if (src) {
+
+        for (var i = 0; i < tests.length; i++) {
+            
+            var div = $('#'+tests[i])[0];
+            div.href += "&src=" + src;
+            console.log(i+"] "+div.href);
+        }
     }
 });
 
@@ -43,13 +45,12 @@ $(document).ready(function() {
 </script>
 </head>
 
-
 <body>
 <table width="1300" height="100%"  border="0" cellpadding="1" cellspacing="1">
 <tr>
   <td valign=top>
       <!-- src/test/RiTa-tests.html?noglobals=true -->
-    <a id="RiTa-tests" class=head href="RiTa-tests.html?noglobals=true">[RiTa]</a><br>
+    <a id="RiTa-tests" class=head href="RiTa-tests.html?noglobals=true&data=1">[RiTa]</a><br>
 <br><a href=""><em>VERSION</em></a>
 <br>
 
@@ -98,7 +99,7 @@ pbr><a href=""><em>RiTa.stopCallbackTimer()</em></a>
 
 <br></td> <td valign=top>
 
-<a id="RiText-tests"  class=head href="RiText-tests.html?noglobals=true">[RiText]</a><p>
+<a id="RiText-tests"  class=head href="RiText-tests.html?noglobals=true&data=1">[RiText]</a><p>
 
 <a href="">RiText()</a>
 <p><a href="">[ALL FROM RiString]</a>

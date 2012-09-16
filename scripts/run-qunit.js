@@ -48,11 +48,20 @@ page.onConsoleMessage = function(msg) {
  
 page.open(phantom.args[0], function(status){
     if (status !== "success") {
+
         console.log("Unable to access network for "+phantom.args[0]);
         phantom.exit(1);
+
     } else {
-        var parts = phantom.args[0].split("/");
+
+        var testUrl = phantom.args[0];
+        var queryStr = testUrl.split("?");
+        if (queryStr.length > 0) testUrl = queryStr[0];
+        var parts = testUrl.split("/");
+
+        console.log("parts="+parts);
         console.log("Starting "+parts[parts.length-1]);
+
         waitFor(function(){
             return page.evaluate(function(){
                 var el = document.getElementById('qunit-testresult');
