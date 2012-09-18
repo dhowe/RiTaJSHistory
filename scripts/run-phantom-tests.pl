@@ -29,10 +29,7 @@ $src = $ARGV[0] if (scalar(@ARGV)>0);
 
 print "\nRunning tests in PhantomJS...\n\n" if ($VERBOSE);
 
-#my @output = split(/\n/,`$ANT -Dsrc.loc="lib" -f $BUILD_XML 2>&1`); 
-#my @output = split(/\n/,`$ANT -Dsrc.loc="../dist/rita-0.20a.js"  -f $BUILD_XML 2>&1`); 
 my @output = split(/\n/,`$ANT -Dsrc.loc=$src -f $BUILD_XML 2>&1`); 
-
 
 ##### compile results          ############################
 
