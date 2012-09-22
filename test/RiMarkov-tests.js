@@ -1,7 +1,10 @@
 var runtests = function () {
+	
+		    QUnit.module("RiMarkov", {
+			    setup: function () {},
+			    teardown: function () {}
+			}); 
     
-            RiTa.SILENT = 1;
-            
             var functions =["generateTokens", 
                             "generateUntil", 
                             "getCompletions", 
@@ -59,38 +62,46 @@ var runtests = function () {
              
              test("TextNode.siblingCount", function () {
                  
-                 var root = RiMarkov(3).root;
-                 var i = root.addChild("I");
-                 var i2 = root.addChild("I");
-                 var j = root.addChild("J");
-                 equal(i.siblingCount(), 3);
-                 equal(i2.siblingCount(), 3);
-                 equal(j.siblingCount(), 3);
-                 
-                 throws(function () {
-                     try {
-                         root.siblingCount();
-                     } catch (e) {
-                         throw e;
-                     }
-                 });
+		
+				var root = RiMarkov(3).root;
+				var i = root.addChild("I");
+				var i2 = root.addChild("I");
+				var j = root.addChild("J");
+				equal(i.siblingCount(), 3);
+				equal(i2.siblingCount(), 3);
+				equal(j.siblingCount(), 3);
+		
+				throws(function() {
+					RiTa.SILENT = 1;
+					try {
+						root.siblingCount();
+					} catch (e) {
+						throw e;
+					}
+					RiTa.SILENT = 0;
+				}); 
+
              });
              
              test("TextNode.probability", function () {
-                 var root = RiMarkov(3).root;
-                 var i = root.addChild("I");
-                 var i2 = root.addChild("I");
-                 var j = root.addChild("J");
-                 equal(i.probability(),  2/3);
-                 equal(i2.probability(), 2/3);
-                 equal(j.probability(),  1/3);
-                 throws(function () {
-                     try {
-                         root.probability();
-                     } catch (e) {
-                         throw e;
-                     }
-                 });
+		
+				var root = RiMarkov(3).root;
+				var i = root.addChild("I");
+				var i2 = root.addChild("I");
+				var j = root.addChild("J");
+				equal(i.probability(), 2 / 3);
+				equal(i2.probability(), 2 / 3);
+				equal(j.probability(), 1 / 3);
+				throws(function() {
+					RiTa.SILENT = 1;
+					try {
+						root.probability();
+					} catch (e) {
+						throw e;
+					}
+					RiTa.SILENT = 0;
+				}); 
+
              });
                  
              test("RiMarkov", function () {
@@ -101,18 +112,22 @@ var runtests = function () {
                  var BAD = [null, undefined, "1"];
                  for (var i = 0; i < BAD.length; i++) {
                      throws(function () {
+                     	 RiTa.SILENT = 1;
                          try {
                              new RiMarkov(BAD[i]);
                          } catch (e) {
                              throw e;
                          }
+                         RiTa.SILENT = 0;v
                      });
                      throws(function () {
+                     	 RiTa.SILENT = 1;
                          try {
                              RiMarkov(BAD[i]);                                
                          } catch (e) {
                              throw e;
                          }
+                         RiTa.SILENT = 0;
                      });
                  }
              });
@@ -274,14 +289,14 @@ var runtests = function () {
                  for ( var i = 0; i < checks.length; i++) {
                      
                      var res = rm.getProbabilities(checks[i]);
-                     console.log(checks[i]+":");     
+                     //console.log(checks[i]+":");     
                      
                      equal(Object.keys(res).length, Object.keys(expec[i]).length);
     
                      var answer = [];
                      for (var key in res) {
                          answer.push(key);
-                         console.log("  "+key+" -> "+res[key]);
+                         //console.log("  "+key+" -> "+res[key]);
                      }
                      deepEqual(Object.keys(res), answer);
                  }
@@ -524,7 +539,7 @@ var runtests = function () {
                  var words = 'The dog ate the cat'.split(' ');
                  var rm = new RiMarkov(3);
                  rm.loadTokens(words);
-                 rm.print(); 
+                 ok(typeof rm.print == 'function'); 
                  equal(rm.getProbability("The"), 0.2);
              });    
              

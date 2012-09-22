@@ -21,7 +21,7 @@
   "scripts": {
         "test": ""
   },
-  "dependencies": {},
+  "dependencies": { "vm" },
   "devDependencies": {},
   "optionalDependencies": {}
 }

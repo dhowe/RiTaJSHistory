@@ -48,6 +48,8 @@ options = exports.options = {
  * @param {Function} callback
  */
 function runOne(opts, callback) {
+
+
     var child;
 
     child = cp.fork(
@@ -57,11 +59,17 @@ function runOne(opts, callback) {
     );
     
     child.on('message', function(msg) {
+
         if (msg.event === 'assertionDone') {
+
             log.assertion(msg.data);
+
         } else if (msg.event === 'testDone') {
+
             log.test(msg.data);
+
         } else if (msg.event === 'done') {
+
             msg.data.code = opts.code.path;
             
             // DH: print test-name instead of code-name
@@ -127,6 +135,7 @@ function absPaths(files) {
  * @param {Function} callback optional
  */
 exports.run = function(files, callback) {
+
     
     var filesCount = 0;
 
@@ -135,12 +144,14 @@ exports.run = function(files, callback) {
     }
 
     files.forEach(function(file) {
+
         var opts =  _.extend({}, options, file);
 
         !opts.log && (opts.log = {});
         opts.deps = absPaths(opts.deps);
         opts.code = absPath(opts.code);
         opts.tests = absPaths(opts.tests);
+        opts.testNum = absPaths(opts.testNum);
 
         function finished(stat) {
             filesCount++;

@@ -1,8 +1,11 @@
 
 var runtests = function() {
-    
-    RiTa.SILENT = 1;
-    
+	
+    QUnit.module("RiTaEvent", {
+	    setup: function () {},
+	    teardown: function () {}
+	});
+	
     var functions = [ "getSource", "getType" ];
 
     test("RiTaEvent-functions", function() {
@@ -22,45 +25,50 @@ var runtests = function() {
         ok(new RiTaEvent(this, "test"));
 
         throws(function() {
-
+			RiTa.SILENT = 1;
             try {
+            	
                 new RiTaEvent();
             }
             catch (e) {
                 throw e;
             }
+            RiTa.SILENT = 0;
         });
 
         throws(function() {
-
+			RiTa.SILENT = 1;
             try {
                 RiTaEvent();
             }
             catch (e) {
                 throw e;
             }
+            RiTa.SILENT = 0;
         });
 
         var BAD = [ null, undefined ];
 
         for ( var i = 0; i < BAD.length; i++) {
             throws(function() {
-
+				RiTa.SILENT = 1;
                 try {
                     new RiTaEvent(BAD[i]);
                 }
                 catch (e) {
                     throw e;
                 }
+                RiTa.SILENT = 0;
             }, BAD[i]);
             throws(function() {
-
+				RiTa.SILENT = 1;
                 try {
                     RiTaEvent(BAD[i]);
                 }
                 catch (e) {
                     throw e;
                 }
+                RiTa.SILENT = 0;
             }, BAD[i]);
         }
 

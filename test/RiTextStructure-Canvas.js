@@ -1,7 +1,5 @@
 var runtests = function() {
 
-    RiTa.SILENT = 1;
-    
     test("Constructors", function() {
 
         equal(typeof RiText, 'function');

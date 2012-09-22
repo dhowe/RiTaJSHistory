@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <!--
-	THAS BEEN MOVED TO run-all-tests.html 
+	THIS HAS BEEN MOVED TO build-all-tests.html 
 -->
 
 <project default="sendmail">
@@ -21,8 +21,8 @@
       subject="Results of RiTaJS build"
       mailhost="smtp.gmail.com"
       mailport="465" ssl="true"
-      user="daniel.c.howe@gmail.com"
-      password="elsa9768">
+      user=""
+      password="">
       
       <message>The ${buildname} nightly build has completed</message>
         
