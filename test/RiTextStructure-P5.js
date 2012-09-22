@@ -1,6 +1,4 @@
 var runtests = function() {
-
-    RiTa.SILENT = 1;
     
     test("Constructors", function() {
 

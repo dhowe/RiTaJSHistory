@@ -1,7 +1,8 @@
 var runtests = function() {
-    
-    RiTa.SILENT = 1;
-    
+    QUnit.module("RiText", {
+	    setup: function () {},
+	    teardown: function () {}
+	});
     var statics = [
                    "createFont",
                    "createLetters",

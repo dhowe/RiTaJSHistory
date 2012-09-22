@@ -1,7 +1,10 @@
  var runtests = function () {
-    
-     RiTa.SILENT = 1;
-     
+ 	
+    QUnit.module("RiTa", {
+	    setup: function () {},
+	    teardown: function () {}
+	});
+	
     var functions = [
         "isAbbreviation"
         , "isQuestion"
@@ -422,11 +425,13 @@
      equal(result, answer);
 
      throws(function () {
+     	RiTa.SILENT = 1;
          try {
              RiTa.getPhonemes([]);
          } catch (e) {
              throw e;
          }
+         RiTa.SILENT = 0;
      });
 
  });

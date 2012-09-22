@@ -3,9 +3,10 @@
 var qunit = require('qunit');
 
 var args = process.argv.splice(2);
-var testDir = '../../../src/test/';
-var codeDir = '../../../src/';
+var testDir = '../../test/';
+var codeDir = '../../src/';
 
+// No RiText*
 var testFiles = [
     'RiMarkov',
     'RiGrammar',
@@ -19,7 +20,19 @@ var testFiles = [
 var theTests = [];
 if (args.length && testFiles.indexOf(args[0]) > -1) {
 
-    theTests.push(testDir + args[0] + '-tests.js');    
+    var testNum = 0;
+    if (args.length >= 2)  {
+
+        try {
+            testNum = parseInt(args[1]);
+        }
+        catch(e) {
+            console.err('Ignoring non-numeric arg: '+arg[1]);
+        }
+    }
+    var theTest = testDir + args[0] + '-tests.js';    
+    //if (testNum) theTest += '&testNumber='+testNum;
+    theTests.push(theTest);
 }
 else {
     for(var i=0, len=testFiles.length; i < len; i++){
@@ -42,9 +55,9 @@ qunit.setup({
 });
 
 qunit.run({
-
     deps: [ codeDir+'rita_dict.js', codeDir+'rita_lts.js' ],
     code: codeDir+'rita.js',
+    testNum: testNum, // added DCH
     tests: theTests
 
 }, function() {});

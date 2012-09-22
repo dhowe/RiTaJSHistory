@@ -1,8 +1,11 @@
 
 var runtests = function() {
-
-    RiTa.SILENT = 1;
     
+    QUnit.module("RiGrammar", {
+	    setup: function () {},
+	    teardown: function () {}
+	}); 
+
     // TODO: add separate test file (same tests), for remote loaded grammars
 
     var functions = [ "addRule", "clone", "expand", "expandFrom", "expandWith", "getRule", "getRules", "hasRule", "print", "removeRule", "reset", "setGrammar" ];
@@ -14,6 +17,59 @@ var runtests = function() {
     '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' }
 
     var rg; // the grammar
+    
+    test("RiGrammar-exec", function() {
+  
+        var rg = new RiGrammar();
+
+        rg.addRule("<start>", "<first> | <second>");
+        rg.addRule("<first>", "the <pet> <action> were 'adj()'");
+        rg.addRule("second", "the <action> of the 'adj()' <pet>");
+        rg.addRule("<pet>", "<bird> | <mammal>");
+        rg.addRule("<bird>", "hawk | crow");
+        rg.addRule("<mammal>", "dog");
+        rg.addRule("<action>", "cries | screams | falls");
+
+        for ( var i = 0; i < 10; i++) {
+            var res = rg.expand();
+            ok(res && res.length && res.match("adj()"));
+        }
+        
+        // tmp for exec
+        var fun = "function adj() { return Math.random() < .5 ? 'hot' : 'cold'; }";
+		        
+		rg.reset();
+        rg.addRule("<start>", "<first> | <second>");
+        rg.addRule("<first>", "the <pet> <action> were `adj()`");
+        rg.addRule("second", "the <action> of the `adj()` <pet>");
+        rg.addRule("<pet>", "<bird> | <mammal>");
+        rg.addRule("<bird>", "hawk | crow");
+        rg.addRule("<mammal>", "dog");
+        rg.addRule("<action>", "cries | screams | falls");
+
+		//for ( var i = 0; i < 10; i++) {
+        for ( var i = 0; i < 10; i++) {
+            var res = rg.expand(fun);
+            //console.log("1: "+res);
+            ok(res && res.length && !res.match("`"));
+        }
+
+        if (typeof window != 'undefined') { // skipped in node?
+        	
+            window.grammar = rg = new RiGrammar(uniqueNouns);
+            for ( var i = 0; i < 30; i++) {
+                var res = rg.expand();
+                ok(res);
+                var dc = res.match(/dog/g);
+                var cc = res.match(/cat/g);
+                var mc = res.match(/mouse/g);
+                ok(!dc || dc.length < 2);
+                ok(!cc || cc.length < 2);
+                ok(!mc || mc.length < 2);
+            }
+        }
+
+    });
 
     test("RiGrammar.functions", function() {
 
@@ -221,12 +277,15 @@ var runtests = function() {
         ok(rg.getRule("rule1"));
 
         rg.reset();
+        
+		RiTa.SILENT = 1;
         throws(function() {
 
             try {
                 rg.getRule("<start>");
             }
             catch (e) {
+
                 throw e;
             }
         });
@@ -239,7 +298,7 @@ var runtests = function() {
                 throw e;
             }
         });
-
+		RiTa.SILENT = 0;
     });
 
     test("RiGrammar.getRules", function() {
@@ -392,63 +451,6 @@ var runtests = function() {
 
         //equal("TODO: MORE TESTS HERE");
     });
-
-
-    test("RiGrammar-exec", function() {
-
-        var rg = new RiGrammar();
-
-        rg.reset();
-        rg.addRule("<start>", "<first> | <second>");
-        rg.addRule("<first>", "the <pet> <action> were `adj()`");
-        rg.addRule("second", "the <action> of the `adj()` <pet>");
-        rg.addRule("<pet>", "<bird> | <mammal>");
-        rg.addRule("<bird>", "hawk | crow");
-        rg.addRule("<mammal>", "dog");
-        rg.addRule("<action>", "cries | screams | falls");
-
-        for ( var i = 0; i < 10; i++) {
-            var res = rg.expand();
-            //console.log("1: "+res);
-            ok(res && res.length && !res.match("`"));
-        }
-
-        rg.reset();
-
-        rg.addRule("<start>", "<first> | <second>");
-        rg.addRule("<first>", "the <pet> <action> were 'adj()'");
-        rg.addRule("second", "the <action> of the 'adj()' <pet>");
-        rg.addRule("<pet>", "<bird> | <mammal>");
-        rg.addRule("<bird>", "hawk | crow");
-        rg.addRule("<mammal>", "dog");
-        rg.addRule("<action>", "cries | screams | falls");
-
-        var res = rg.expand();
-        for ( var i = 0; i < 10; i++) {
-            var res = rg.expand();
-            ok(res && res.length && res.match("adj()"));
-        }
-
-        if (typeof window != 'undefined') {
-            window.grammar = rg = new RiGrammar(uniqueNouns);
-            for ( var i = 0; i < 30; i++) {
-                var res = rg.expand();
-                ok(res);
-                var dc = res.match(/dog/g);
-                var cc = res.match(/cat/g);
-                var mc = res.match(/mouse/g);
-                ok(!dc || dc.length < 2);
-                ok(!cc || cc.length < 2);
-                ok(!mc || mc.length < 2);
-            }
-        }
-
-    });
-}
-
-function adj() { // tmp
-
-    return Math.random() < .5 ? 'hot' : 'cold';
 }
 
 // unique methods...

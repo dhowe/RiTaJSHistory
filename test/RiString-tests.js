@@ -1,7 +1,8 @@
 var runtests = function() {
-
-    RiTa.SILENT = 1;
-    
+    QUnit.module("RiString", {
+	    setup: function () {},
+	    teardown: function () {}
+	}); 
     var functions = [
         "analyze",
         "charAt",

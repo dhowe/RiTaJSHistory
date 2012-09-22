@@ -1,7 +1,10 @@
 var runtests = function() {
     
-    RiTa.SILENT = 1;
-    
+    QUnit.module("LibraryStructure", {
+	    setup: function () {},
+	    teardown: function () {}
+	});
+	
     // NOTE: Instances of RiLexicon & RiText are not available on this page
 
     test("Public Objects", function() {
@@ -124,23 +127,25 @@ var runtests = function() {
         }
 
         throws(function() {
-
+			RiTa.SILENT = 1;
             try {
                 new RiTa();
             }
             catch (e) {
                 throw Error("no constructor");
             }
+            RiTa.SILENT = 0;
         });
 
         throws(function() {
-
+			RiTa.SILENT = 1;
             try {
                 RiTa();
             }
             catch (e) {
                 throw Error("no constructor");
             }
+            RiTa.SILENT = 0;
         });
     });
 
