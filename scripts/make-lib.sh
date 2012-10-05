@@ -2,25 +2,25 @@
 
 if [ $# -lt "1"  ]
 then
-  echo
+    echo
     echo "tag or version required"
-  echo "usage: pub-lib.sh [tag]"
-  exit
+    echo "usage: pub-lib.sh [tag]"
+    exit
 fi
 
 VERSION=$1
-INCLUDE_DOCS=1
+INCLUDE_DOCS=0
+MINIMIZE_SRC=0
 
 while [ $# -ge 1 ]; do
-      case $1 in
-          -d)  INCLUDE_DOCS=0  ;;
-            esac
-              shift
-              done
+    case $1 in
+        -d)  INCLUDE_DOCS=0  ;;
+    esac
+    shift
+done
 echo "DOCS=$INCLUDE_DOCS"
 
-
-
+##############################################################
 
 BUILD=../build
 COMPILE="java -jar ../tools/compiler-latest/compiler.jar"
@@ -51,9 +51,14 @@ echo "Combining rita-*.js as ${RITA_CODE}";
 rm -f $RITA_CODE
 cat $ALL_SRC >> $RITA_CODE
 
-echo "Compiling rita-*.js as ${RITA_CODE_MIN}"; 
-$COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level 3 \
-  --compilation_level SIMPLE_OPTIMIZATIONS 
+if [ $MINIMIZE_SRC = 1 ]
+then
+    echo "Compiling rita-*.js as ${RITA_CODE_MIN}"; 
+    $COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level 3 \
+                  --compilation_level SIMPLE_OPTIMIZATIONS 
+else
+    echo Skipping minimization
+fi
 
 #echo "Compiling rita-*.js as ${RITA_CODE_MIN}_adv.js"; 
 #$COMPILE --js  ${ALL_SRC} --js_output_file "${RITA_CODE_MIN}_adv.js" --summary_detail_level 3 \
@@ -63,14 +68,23 @@ $COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level
 
 if [ $INCLUDE_DOCS = 1 ]
 then
-
-echo Building js-docs...
-rm -rf $REF_DIR/*
-java -Xmx512m -jar $JSDOC/jsrun.jar $JSDOC/app/run.js -d=$REF_DIR -a \
-    -t=$JSDOC/templates/ritajs -D="status:alpha" -D="version:$VERSION" $SRC > docs-err.txt 
+    echo Building js-docs...
+    rm -rf $REF_DIR/*
+    java -Xmx512m -jar $JSDOC/jsrun.jar $JSDOC/app/run.js -d=$REF_DIR -a \
+        -t=$JSDOC/templates/ritajs -D="status:alpha" -D="version:$VERSION" $SRC > docs-err.txt 
 else
     echo Skipping docs...
 fi
+
+###EXAMPLES ##########################################################
+
+echo Copying examples
+cd .
+pwd
+pwd
+cp -r ../test/renderer/multitest.html ../www/example/
+cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
+exit
 
 ###ZIP###############################################################
 
