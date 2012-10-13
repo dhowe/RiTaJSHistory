@@ -1,5 +1,5 @@
 
-## RiTaJS: The RiTa generative language toolkit, for JavaScript
+## RiTaJS: A RiTa generative language toolkit for JavaScript
 
 
 <a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/js/img/RiTa-logo2.png"/></a>

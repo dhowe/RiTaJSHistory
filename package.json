@@ -1,7 +1,7 @@
 {
-  "author": "Daniel C. Howe <daniel.c.howe@gmail.com> (http://mrl.nyu.edu/~dhowe)",
+  "author": "Daniel C. Howe <daniel.c.howe@gmail.com>",
   "name": "RiTaJS",
-  "description": "The RiTa generative language toolkit (JavasSript)",
+  "description": "RiTaJS: A generative language toolkit for JavaScript",
   "homepage": "http://rednoise.org/rita/js",
   "repository": {
     "type": "git",
