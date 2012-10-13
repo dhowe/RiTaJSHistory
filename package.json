@@ -1,8 +1,7 @@
 {
   "author": "Daniel C. Howe <daniel.c.howe@gmail.com> (http://mrl.nyu.edu/~dhowe)",
   "name": "RiTaJS",
-  "description": "The RiTa generative language toolkit (javascript)",
-  "version": "0.21",
+  "description": "The RiTa generative language toolkit (JavasSript)",
   "homepage": "http://rednoise.org/rita/js",
   "repository": {
     "type": "git",
@@ -13,7 +12,7 @@
     "node": ">=0.4"
   }, 
   "maintainers" : [
-        { "name" : "Daniel C. Howe Phillips", "email" : "daniel.c.howe@gmail.com" }
+        { "name" : "Daniel C. Howe", "email" : "daniel.c.howe@gmail.com" }
   ],
   "bugs": { 
         "mail": "daniel.c.howe@gmail.com", "url": "https://github.com/dhowe/RiTaJS/issues" 
@@ -21,7 +20,7 @@
   "scripts": {
         "test": ""
   },
-  "dependencies": { "vm" },
+  "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {}
 }
