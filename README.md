@@ -1,11 +1,8 @@
 
 # RiTaJS
 
-&nbsp;
-
 ------
 
-&nbsp;
 
 ## The RiTa generative language toolkit, for JavaScript
 
@@ -20,12 +17,9 @@ works alone or in conjunction with Processing(JS) and/or with
 its own Canvas renderer, and/or as a NodeJS module.  All RiTaJS tools
 are free and open-source.
 
- 
-&nbsp;
 
 ------
- 
-&nbsp;
+
 
 ## Can I contribute?
 
