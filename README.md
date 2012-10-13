@@ -1,10 +1,7 @@
 
-# RiTaJS
+## RiTaJS: The RiTa generative language toolkit, for JavaScript
 
-------
-
-
-## The RiTa generative language toolkit, for JavaScript
+----
 
 <a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/js/img/RiTa-logo2.png"/></a>
 
@@ -18,7 +15,7 @@ its own Canvas renderer, and/or as a NodeJS module.  All RiTaJS tools
 are free and open-source.
 
 
-------
+----
 
 
 ## Can I contribute?
