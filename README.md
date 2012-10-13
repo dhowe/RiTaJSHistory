@@ -12,7 +12,7 @@
 
 RiTaJS is an easy-to-use toolkit designed to facilitate experiments 
 in natural language and generative literature, based on the RiTa 
-(rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
+(http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
 works alone or in conjunction with Processing(JS) and/or with 
 its own Canvas renderer, and/or as a NodeJS module.  All RiTaJS tools
 are free and open-source.
@@ -23,7 +23,7 @@ are free and open-source.
 
 ## Can I contribute?
 
-Sure! Just press *Fork* at the top of this github page and get coding. Active contributors might be asked to join the core team, and given the ability to merge pull requests.
+Sure! Just press *Fork* at the top of this github page and start coding. Active contributors might be asked to join the core team, and given the ability to merge pull requests.
 
 If you don't feel like coding but still want to contribute, please join the discussion on the issuetracker and ritajs-dev group.
 
