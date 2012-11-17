@@ -1,0 +1,35 @@
+<html>
+<body>
+<canvas id="canvas" width=600 height=800 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script>
+
+window.onload = setup;
+
+var x=50,y=50,w=380,h=620;
+
+var ctx = document.getElementById("canvas").getContext("2d");
+var font, mDown, rts, txt = ["A huge lizard was discovered drinking out of the","fountain today. It was not menacing anyone, it was","just very thirsty. A small crowd gathered and","whispered to one another, as though the lizard","would understand them if they spoke in normal","voices. The lizard seemed not even a little perturbed","by their gathering. It drank and drank, its long","forked tongue was like a red river hypnotizing the","people, keeping them in a trance-like state. 'It's like","a different town,' one of them whispered. 'Change is","good,' the other one whispered back.","    A huge lizard was discovered drinking out of the","fountain today. It was not menacing anyone, it was","just very thirsty. A small crowd gathered and","whispered to one another, as though the lizard","would understand them if they spoke in normal","voices. The lizard seemed not even a little perturbed","by their gathering. It drank and drank, its long","forked tongue was like a red river hypnotizing the","people, keeping them in a trance-like state. 'It's like","a different town,' one of them whispered. 'Change is","good,' the other one whispered back."];
+
+function setup() {
+
+    RiText.defaults.paragraphLeading = 5;
+    RiText.setDefaultFont({name:"Georgia", size:16, leading:18});
+    
+    var tmp = new RiText('_',0,0), textH = tmp.textHeight();
+    console.log('textH='+textH);
+
+    rts = RiText._createLinesByCharCountFromArray(txt, x, y); 
+    
+    RiText.loop();
+}
+
+function draw() {
+
+    RiText.background(250);
+    ctx.strokeStyle = 'black';
+    ctx.strokeRect(x, y, w, h);
+    RiText.drawAll();
+}
+
+</script>

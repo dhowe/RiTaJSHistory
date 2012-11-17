@@ -18,7 +18,7 @@ var runtests = function() {
 
     var rg; // the grammar
     
-    test("RiGrammar-exec", function() {
+    test("RiGrammar-exec1", function() {
   
         var rg = new RiGrammar();
 
@@ -34,7 +34,12 @@ var runtests = function() {
             var res = rg.expand();
             ok(res && res.length && res.match("adj()"));
         }
-        
+    });
+    
+    test("RiGrammar-exec2", function() {
+  
+        var rg = new RiGrammar();
+    
         // tmp for exec
         var fun = "function adj() { return Math.random() < .5 ? 'hot' : 'cold'; }";
 		        
@@ -47,14 +52,20 @@ var runtests = function() {
         rg.addRule("<mammal>", "dog");
         rg.addRule("<action>", "cries | screams | falls");
 
-		//for ( var i = 0; i < 10; i++) {
         for ( var i = 0; i < 10; i++) {
+        	
+        	// TODO: fails in phantomJS
+        	
             var res = rg.expand(fun);
-            //console.log("1: "+res);
             ok(res && res.length && !res.match("`"));
         }
+    });
+    
+    
+    // TODO: fails in phantomJS
+    test("RiGrammar-exec3", function() {
 
-        if (typeof window != 'undefined') { // skipped in node?
+        if (typeof window != 'undefined') {  // why are we skipping this for node?
         	
             window.grammar = rg = new RiGrammar(uniqueNouns);
             for ( var i = 0; i < 30; i++) {
@@ -67,6 +78,9 @@ var runtests = function() {
                 ok(!cc || cc.length < 2);
                 ok(!mc || mc.length < 2);
             }
+        }
+        else {
+        	ok(1); // for node only
         }
 
     });
@@ -203,7 +217,8 @@ var runtests = function() {
                 found1 = true;
             else if (res === "dog")
                 found2 = true;
-            else if (res === "boy") found3 = true;
+            else if (res === "boy") 
+            	found3 = true;
         }
         ok(found1);
         ok(found2);
@@ -231,10 +246,12 @@ var runtests = function() {
             if (r == 'dog') d++;
             if (r == 'cat') g++;
         }
-        ok(d > 60, d + "");
-        ok(d < 80, d + "");
-        ok(g > 20, g + "");
-        ok(g < 40, g + "");
+        
+        // delta=20%
+        ok(d > 50 && d < 100, d + "%  (dog =~ 70%)");
+        ok(d < 90 && d > 0,   d + "% (dog =~ 70%)");
+        ok(g > 10 && g < 100, g + "% (cat =~ 30%)");
+        ok(g < 50 && g > 0,   g + "% (cat =~ 30%)");
     });
 
     test("RiGrammar.expandFrom", function() {
