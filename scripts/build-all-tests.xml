@@ -8,14 +8,14 @@
 
 	  <property name="dir" value="../test"/>
 	  <property name="buildname" value="RiTaJS"/>
-	
-	  <property name="${dir}/RiTa-tests.html?src=${src.loc}"                 value="file1"/>
-	  <property name="${dir}/RiText-tests.html?src=${src.loc}"               value="file2"/>
+
+	  <property name="${dir}/RiTa-tests.html?src=${src.loc}&amp;data=1"      value="file1"/>
+	  <property name="${dir}/RiText-tests.html?src=${src.loc}&amp;data=1"    value="file2"/>
+	  <property name="${dir}/RiLexicon-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
 	  <property name="${dir}/RiGrammar-tests.html?src=${src.loc}"            value="file4"/>
 	  <property name="${dir}/RiMarkov-tests.html?src=${src.loc}"             value="file5"/>
 	  <property name="${dir}/RiTaEvent-tests.html?src=${src.loc}"            value="file6"/>
 	  <property name="${dir}/RiString-tests.html?src=${src.loc}&amp;data=1"  value="file7"/>
-	  <property name="${dir}/RiLexicon-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
 	  <property name="${dir}/LibraryStructure-tests.html?src=${src.loc}"     value="file8"/>
 	  <property name="${dir}/RiTextStructure-p5.html?src=${src.loc}"         value="file9"/>
 	  <property name="${dir}/RiTextStructure-canvas.html?src=${src.loc}"     value="file10"/>
@@ -30,12 +30,13 @@
 	  <property name="qunit.js.file" location="run-qunit.js" />
 	  <property name="phantomjs.cmd" value="../tools/phantomjs" />
 	
-	
-	  <apply executable="${phantomjs.cmd}" failonerror="false">
-	
-	   <arg value="${qunit.js.file}" />
-	   <srcfile/>
-	   <propertyset refid="html.tests"/>
+	  <apply executable="${phantomjs.cmd}" failonerror="false" verbose="true">
+	 
+	  <arg value="${qunit.js.file}"/>
+	  
+	  <srcfile/>
+	  
+	  <propertyset refid="html.tests"/>
 	
 	  </apply>
 

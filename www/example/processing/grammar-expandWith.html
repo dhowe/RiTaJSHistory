@@ -1,0 +1,43 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+<script src="../data/haiku.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+
+var rts = [];
+
+void setup()
+{
+    size(650, 200);
+
+    RiText.setDefaultFont(createFont("arial",30));  
+    RiText.setDefaultAlignment(CENTER);
+
+    rts[0] = new RiText("click to", width / 2, 75);
+    rts[1] = new RiText("generate", width / 2, 110);
+    rts[2] = new RiText("a haiku", width / 2, 145); 
+
+    grammar = new RiGrammar();
+}
+
+void draw()
+{
+    background(230,240, 255);
+    for ( var k = 0; k < rts.length; k++)
+        rts[k].draw();
+}
+
+void mouseClicked()
+{
+    var result = grammar.expandWith("<5>", "And Five Syllables");
+    var lines =  result.split("%");
+    for ( var int = 0; int < rts.length; int++) {
+        rts[int].setText(lines[int]);
+    }
+}
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

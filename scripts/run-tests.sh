@@ -1,11 +1,19 @@
 #!/bin/sh
 
-# usage: run-tests.sh [-p (phantom) || -n (node) ] 
+# usage: run-tests.sh [-p (phantom=default) || -n (node) ]
+#
+# calls run-[env]-tests
+# 	 phantom -> ant build-all-tests.xml 
+#    node    -> run-in-qunit.js
+#
 
 if [[ "$#" == 1 && $1 =~ ^-n$ ]]; then 
-    shift
-    ./run-node-tests.sh $@
-    exit
+shift
+./run-node-tests.sh $@
+exit
 fi
 
+
 ./run-phantom-tests.pl 2> tests-err.txt $@
+
+echo Wrote errors to tests-err.txt

@@ -1,0 +1,22 @@
+<html><body>
+
+<!-- try commenting out the following line -->
+<!--script src="../../../rita.js"></script-->
+
+
+<script type="text/javascript">
+  if (!window.RiTa)
+  {
+    alert("writing");
+    document.write('<script src="../../../lib/processing.js"><\/script>');
+    document.write('<script src="../../../src/rita.js" type="text/javascript"><\/script>');
+  }
+</script>
+
+<div id="write_me"></div>
+
+<script type="text/javascript">
+  document.getElementById('write_me').innerHTML = RiTa.VERSION;
+</script>
+
+</body></html>

@@ -59,7 +59,7 @@ page.open(phantom.args[0], function(status){
         if (queryStr.length > 0) testUrl = queryStr[0];
         var parts = testUrl.split("/");
 
-        console.log("parts="+parts);
+        //console.log("parts="+parts);
         console.log("Starting "+parts[parts.length-1]);
 
         waitFor(function(){
@@ -71,7 +71,7 @@ page.open(phantom.args[0], function(status){
                 return false;
             });
         }, function(){
-            var failedNum = page.evaluate(function(){
+                var failedNum = page.evaluate(function(){
  
                 var tests = document.getElementById("qunit-tests").childNodes;
                 console.log("\nTest name (failed, passed, total)\n");
