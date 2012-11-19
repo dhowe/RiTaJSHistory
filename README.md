@@ -16,12 +16,14 @@ are free and open-source.
 
 About the project
 --------
-* License:           MIT (see included LICENSE file for full license)
 * Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
-* Maintainers:       See included AUTHORS file for contributor list
 * Web Site:          http://rednoise.org/rita/js
 * Github Repo:       https://github.com/dhowe/RiTaJS/
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
+<!--
+* License:           MIT (see included LICENSE file for full license)
+* Maintainers:       See included AUTHORS file for contributor list
+-->
 
 
 
