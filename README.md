@@ -14,9 +14,19 @@ its own Canvas renderer, and/or as a NodeJS module.  All RiTaJS tools
 are free and open-source.
 
 
+About the project
+--------
+* License:           MIT (see included LICENSE file for full license)
+* Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
+* Maintainers:       See included AUTHORS file for contributor list
+* Web Site:          http://rednoise.org/rita/js
+* Github Repo:       https://github.com/dhowe/RiTaJS/
+* Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
 
-### Can I contribute?
 
+
+Can I contribute?
+--------
 Sure! Just press *Fork* at the top of this github page and start coding. Active contributors might be asked to join the core team, and given the ability to merge pull requests.
 
 If you don't feel like coding but still want to contribute, please join the discussion on the issuetracker and ritajs-dev group.
