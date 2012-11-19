@@ -20,10 +20,6 @@ About the project
 * Web Site:          http://rednoise.org/rita/js
 * Github Repo:       https://github.com/dhowe/RiTaJS/
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
-<!--
-* License:           MIT (see included LICENSE file for full license)
-* Maintainers:       See included AUTHORS file for contributor list
--->
 
 
 
