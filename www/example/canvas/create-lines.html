@@ -1,5 +1,5 @@
-<html>
-
+<canvas id="canvas" width=600 height=800 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
 <script>
 
 // setup mouse-handling
@@ -13,7 +13,7 @@ var x=90, y=50, w=380, h=500, ctx = document.getElementById("canvas").getContext
 
 function setup() {
 
-    RiText.defaults.paragraphLeading = 5;
+    RiText.defaults.paragraphLeading = 15;
     RiText.defaultFont({name:"Georgia", size:16, leading:18});
 
     for (var i = 0; i < 1; i++)
@@ -34,7 +34,9 @@ function mouseReleased(e) {
 	
     mDown = false;
     RiText.disposeAll();
-    rts = RiText.createLines(txt, x, y, w, h);;
+    rts = RiText.createLines(txt, x, y, w, h);
+   	for ( var i = 0; i < rts.length; i++) 
+      rts[i].color(RiText.randomColor()); 
 }
 
 function mousePressed(e) {
