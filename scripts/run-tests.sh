@@ -13,6 +13,10 @@ shift
 exit
 fi
 
+if [[ "$#" == 1 && $1 =~ ^-p$ ]]; then
+shift
+fi
+
 ./run-phantom-tests.pl 2> tests-err.txt $@
 
 echo Wrote errors to tests-err.txt

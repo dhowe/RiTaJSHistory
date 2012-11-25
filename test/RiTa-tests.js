@@ -250,7 +250,9 @@
 
      var res = RiTa.trimPunctuation("$%He&^ll,o,");
      equal(res, "He&^ll,o");
-
+     
+     
+     // fix these strange characters
      var res = RiTa.trimPunctuation("����������`He&^ll,o\!@$%&}<>|+=-_\\/*{^");
      equal(res, "He&^ll,o");
 

@@ -1,8 +1,10 @@
 var runtests = function() {
+    
     QUnit.module("RiString", {
 	    setup: function () {},
 	    teardown: function () {}
 	}); 
+	
     var functions = [
         "analyze",
         "charAt",

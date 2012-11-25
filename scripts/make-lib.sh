@@ -9,8 +9,8 @@ then
 fi
 
 VERSION=$1
-INCLUDE_DOCS=0
-MINIMIZE_SRC=0
+INCLUDE_DOCS=1
+MINIMIZE_SRC=1
 
 while [ $# -ge 1 ]; do
     case $1 in

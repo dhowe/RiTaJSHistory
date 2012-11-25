@@ -30,7 +30,6 @@ var runtests = function() {
                    "picked",
                    "timer",
                    "random",
-                   "foreach",
                    "frameCount"
                    ];
   
