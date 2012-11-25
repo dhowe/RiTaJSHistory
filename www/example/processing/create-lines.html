@@ -1,4 +1,5 @@
-<html>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
+
 <script src="../../../lib/processing.js"></script>
 <script src="../../../src/rita.js"></script>
 
@@ -11,7 +12,7 @@ void setup() {
 
   size(600, 800);  
   
-  RiText.defaults.paragraphLeading = 5;
+  RiText.defaults.paragraphLeading = 15;
   RiText.defaultFont(createFont("Georgia", 16));
   
   for (var i = 0; i < 1; i++)
@@ -40,8 +41,8 @@ void mouseDragged() {
 void mouseReleased() {
   RiText.disposeAll();
   rts = RiText.createLines(txt, x, y, w, h); 
+  for ( var i = 0; i < rts.length; i++) 
+      rts[i].color(RiText.randomColor()); 
 }
 
 </script>
-<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
-</html>

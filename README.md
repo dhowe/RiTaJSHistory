@@ -11,13 +11,14 @@ in natural language and generative literature, based on the RiTa
 (http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
 works alone or in conjunction with Processing(JS) and/or with 
 its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
-are free and open-source according to the GPL license http://www.gnu.org/licenses/gpl.txt.
+are free, gratis, and open-source according to the GPL license http://www.gnu.org/licenses/gpl.txt.
 
 
 About the project
 --------
 * Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
 * License: 			 GPL (see included LICENSE file for full license)
+* Maintainers:       See included AUTHORS file for contributor list
 * Web Site:          http://rednoise.org/rita/js
 * Github Repo:       https://github.com/dhowe/RiTaJS/
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
