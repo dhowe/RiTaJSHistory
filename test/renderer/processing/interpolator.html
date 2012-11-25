@@ -1,0 +1,27 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+
+size(200,200);
+
+var done = false;
+var e = new Interpolator(1, 0, 1000, 2000, RC.LINEAR);
+var startTime = Date.now();
+console.log("startTime: "+startTime+"ms");
+
+window.setInterval(function() {
+	if (!e.isCompleted()) {    
+		e.update();
+		console.log((Date.now()-startTime)+": "+e.getValue());
+	}
+	else if (!done )
+	{
+		done = true;
+		console.log("DONE: after "+(Date.now()-startTime)+"ms");
+	}
+}, 10);
+
+// ============================ End  =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

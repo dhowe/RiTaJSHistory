@@ -1,0 +1,28 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+
+  var rt, clicks, txt = [ "Click To Fade", "Fade On Click" ];
+  
+  void setup() {  
+    size(400,100);
+    rt = RiText(txt[0], 10, 70, createFont("Arial", 60));
+  }  
+  
+  void draw() {
+    background(255);
+	rt.draw();
+  } 
+  
+  void mouseClicked() 
+  { 
+    // swap texts
+    var newText = clicks++%2 == 0 ? txt[1] : txt[0];
+    
+    // fade to the new over 2 secs
+    rt.textTo(newText, 2f); 
+  }
+
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

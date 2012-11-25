@@ -1,0 +1,41 @@
+<canvas id="canvas" style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script>
+
+window.onload = setup;
+window.onmousemove = mouseMoved;
+
+// *** SLUGGISH  ***
+
+// BROKEN 
+
+// TODO: implement non-event based mouse-tracking?
+
+var txt = "A huge lizard was discovered drinking out of the fountain today. It was not menacing anyone, it was just very thirsty. A small crowd gathered and whispered to one another, as though the lizard would understand them if they spoke in normal voices. The lizard seemed not even a little perturbed by their gathering. It drank and drank, its long forked tongue was like a red river hypnotizing the people, keeping them in a trance-like state. 'It's like a different town,' one of them whispered. 'Change is good,' the other one whispered back.";
+
+function setup() {
+    
+    RiText.size(400, 400);  
+    RiText.defaults.boundingBoxFill = {r:100,g:0,b:0,a:64};
+    RiText.defaultFont({ name:"Georgia", size:16, leading:20 });
+    RiText.createWords(txt, 20, 20, 360, 360);
+    RiText.loop();
+}
+
+function draw() {
+
+    RiText.background();
+    RiText.drawAll();
+}
+
+function mouseMoved(e) {
+
+    var mp = RiText.mouse(e);
+    var picks = RiText.picked(mp.x, mp.y);
+    for ( var i = 0; i < RiText.instances.length; i++) {
+        var r = RiText.instances[i];
+        r.showBoundingBox(r==picks[0]);
+    }
+}
+
+</script>

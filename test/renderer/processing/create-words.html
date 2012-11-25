@@ -1,0 +1,47 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+
+var x=50,y=50,w=400,h=500;
+var rts, txt = "A huge lizard was discovered drinking out of the fountain today. It was not menacing anyone, it was just very thirsty. A small crowd gathered and whispered to one another, as though the lizard would understand them if they spoke in normal voices. The lizard seemed not even a little perturbed by their gathering. It drank and drank, its long forked tongue was like a red river hypnotizing the people, keeping them in a trance-like state. 'It's like a different town,' one of them whispered. 'Change is good,' the other one whispered back.";
+
+void setup()
+{
+	size(600, 800);  
+	RiText.defaultFont(createFont("Georgia", 16));
+	txt += "</p>" + txt;   // add a paragraph
+	mouseReleased();
+}
+
+void draw() {
+	background(255);
+	noFill();
+	rect(x, y, w, h);
+	RiText.drawAll();
+}
+
+void mousePressed() {
+  x = mouseX;
+  y = mouseY;
+}
+
+void mouseDragged() {
+  w = abs(mouseX-x);
+  h = abs(mouseY-y);
+}
+
+void mouseReleased() {
+  RiText.disposeAll();
+  rts = RiText.createWords(txt, x, y, w, h);
+  console.length("RTS: "+rts.length);
+  for ( var i = 0; i < rts.length; i++) 
+	  rts[i].color(RiText.randomColor());	
+}
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
