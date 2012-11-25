@@ -1,0 +1,34 @@
+<canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script>
+
+RiTa.p5Compatible(true);
+
+var rt,tw,th,scale = 1.4;
+
+function setup()
+{
+  size(200,200);
+  
+  rt = new RiText("This is not the Text", 20, 55);
+  rt.scale(scale);
+  
+  tw = rt.textWidth() * scale;
+  th = rt.textHeight() * scale;
+  
+  //console.log('[Ctx] tw='+tw+" th="+th);
+}
+
+function draw()
+{
+  background(255);
+  
+  rt.draw();
+
+  line(rt.x,rt.y+2,rt.x+tw,rt.y+2);
+
+  if (++rt.y == height()) rt.y = 0;
+}
+
+</script>
+

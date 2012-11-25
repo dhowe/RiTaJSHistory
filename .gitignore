@@ -6,6 +6,7 @@ build
 *.class
 .DS_STORE
 CVS
+*/CVS
 *.pyc
 *.pyo
 misc

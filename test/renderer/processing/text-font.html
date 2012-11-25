@@ -1,0 +1,39 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+void setup()
+{
+  size(200,200);
+  noLoop();
+ 
+  var pf = createFont("Batang",48)
+ 
+  rt1 = new RiText("Bigger", 20, 50);
+  rt1.textFont(pf);
+  
+  rt2 = new RiText("Smaller", 20, 100);
+  rt2.textFont(pf);  
+  rt2.scale(32/48);
+  
+  var pf2 = createFont("Batang",10)
+  
+  rt3 = new RiText("Smallest", 20, 140);
+  rt3.textFont(pf2);    
+  
+  rt4 = new RiText("Default", 20, 180);
+}
+
+void draw()
+{
+  background(255);
+  rt1.draw();
+  rt2.draw();
+  rt3.draw();
+  rt4.draw();
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

@@ -1,0 +1,52 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+<script>
+</script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+// 2 RiTexts, moving to random spots
+void setup()
+{
+    size(400, 400);
+    
+    RiText.defaultFont(createFont("Georgia",30));  
+    
+    rt1 = new RiText("ZIG");
+    rt2 = new RiText("ZAG", 100, 300);
+    
+    rt2.motionType(RiText.EASE_IN_OUT); 
+    
+    moveToRandom(rt1);
+    moveToRandom(rt2);
+}
+
+void draw()
+{
+    fill(255, 100); // leave trails
+    rect(0, 0 , width, height);
+    
+    rt1.draw();
+    rt2.draw();
+}
+
+// called by RiTa whenever a 'moveTo' behavior finishes
+void onRiTaEvent(e)
+{
+    if (e.getType() == 'moveToCompleted') 
+       moveToRandom(e.getSource());
+}
+
+// pick a new random location to go to
+void moveToRandom(rt)
+{
+    var newX = random(width - rt.textWidth()); // broken??
+    var newY = random(rt.textHeight(), height - 7);
+    var dst = dist(rt.x, rt.y, newX, newY);
+    rt.moveTo(newX, newY, dst / width);
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
+

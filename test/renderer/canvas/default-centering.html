@@ -1,0 +1,28 @@
+<canvas id="canvas" width=300 height=200 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script>
+
+var ctx = document.getElementById("canvas").getContext("2d");
+var width = ctx.canvas.width;
+var height = ctx.canvas.height;
+
+RiText.showBoundingBoxes(true);
+
+rt1 = new RiText("This text should be auto-centered");
+tw = rt1.textWidth();
+
+rt2 = new RiText("this is manual"); 
+rt2.font({name:"Batang",size:18});
+rt2.x = width/2-rt2.textWidth()/2;
+rt2.y += 50;
+
+RiText.background();
+
+rt1.draw();
+rt2.draw();
+
+RiText.line(width/2, 0, width/2, height);
+RiText.line(width/2-tw/2, 0, width/2-tw/2, height);
+RiText.line(width/2+tw/2, 0, width/2+tw/2, height);
+
+</script>
