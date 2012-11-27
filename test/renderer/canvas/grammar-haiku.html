@@ -2,8 +2,6 @@
 <script src="../../../src/rita.js"></script>
 <script>
 
-window.onmouseup = mouseClicked;
-
 RiTa.p5Compatible(1);
 
 haikuGrammar = { 
@@ -32,7 +30,6 @@ function setup()
 
     grammar = new RiGrammar(haikuGrammar);
     
-    RiText.loop();
 }
 
 function draw()
