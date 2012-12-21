@@ -11,7 +11,7 @@ in natural language and generative literature, based on the RiTa
 (http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
 works alone or in conjunction with Processing(JS) and/or with 
 its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
-are free, gratis, and open-source according to the GPL license http://www.gnu.org/licenses/gpl.txt.
+are free, gratis, and open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
 About the project
@@ -24,6 +24,43 @@ About the project
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
 
 
+A Simple Sketch
+--------------------------
+Here is a simple sketch to get you going. Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
+
+  <html>
+  <canvas id="canvas" width=200 height=200></canvas>
+  <script src="http://rednoise.org/rita/js/rita-latest.min.js"></script>
+  <script>
+
+    window.onload = function() {
+    
+      // create a RiText and draw it
+      
+      RiText("HelloWorld").draw();
+      
+	};
+
+  </script>
+  <html>
+  
+
+If you want to use RiTaJS with Processing, you can do so like this (assuming you've downloaded both libraries to the current directory):
+
+  <html>
+  <script src="processing-min.js"></script>
+  <script src="rita-min.js"></script>
+  <script type="text/processing" data-processing-target="mycanvas">
+
+	size(200,200);
+	background(255);
+	
+	RiText("SIMPLE").color(200,100,0).draw();
+
+  </script>
+  <canvas id="mycanvas"></canvas>
+  <html>
+  
 
 Can I contribute?
 --------
