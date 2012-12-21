@@ -28,10 +28,10 @@ A Simple Sketch
 --------------------------
 Here is a simple sketch to get you going. Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
 
-  <html>
-  <canvas id="canvas" width=200 height=200></canvas>
-  <script src="http://rednoise.org/rita/js/rita-latest.min.js"></script>
-  <script>
+  &lt;html&gt;
+  &lt;canvas id="canvas" width=200 height=200&gt;&lt;/canvas&gt;
+  &lt;script src="http://rednoise.org/rita/js/rita-latest.min.js"&gt;&lt;/script&gt;
+  &lt;script&gt;
 
     window.onload = function() {
     
@@ -41,25 +41,25 @@ Here is a simple sketch to get you going. Create a new file on your desktop call
       
 	};
 
-  </script>
-  <html>
+  &lt;/script&gt;
+  &lt;html&gt;
   
 
 If you want to use RiTaJS with Processing, you can do so like this (assuming you've downloaded both libraries to the current directory):
 
-  <html>
-  <script src="processing-min.js"></script>
-  <script src="rita-min.js"></script>
-  <script type="text/processing" data-processing-target="mycanvas">
+  &lt;html&gt;
+  &lt;script src="processing-min.js"&gt;&lt;/script&gt;
+  &lt;script src="rita-min.js"&gt;&lt;/script&gt;
+  &lt;script type="text/processing" data-processing-target="mycanvas"&gt;
 
 	size(200,200);
 	background(255);
 	
 	RiText("SIMPLE").color(200,100,0).draw();
 
-  </script>
-  <canvas id="mycanvas"></canvas>
-  <html>
+  &lt;/script&gt;
+  &lt;canvas id="mycanvas"&gt;&lt;/canvas&gt;
+  &lt;html&gt;
   
 
 Can I contribute?
