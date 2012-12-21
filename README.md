@@ -24,10 +24,11 @@ About the project
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
 
 
-A Simple Sketch
---------------------------
-Here is a simple sketch to get you going. Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
 
+A Simple Sketch
+--------
+Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
+<pre>
   &lt;html&gt;
   &lt;canvas id="canvas" width=200 height=200&gt;&lt;/canvas&gt;
   &lt;script src="http://rednoise.org/rita/js/rita-latest.min.js"&gt;&lt;/script&gt;
@@ -43,7 +44,7 @@ Here is a simple sketch to get you going. Create a new file on your desktop call
 
   &lt;/script&gt;
   &lt;html&gt;
-  
+</pre>  
 
 If you want to use RiTaJS with Processing, you can do so like this (assuming you've downloaded both libraries to the current directory):
 <pre>
@@ -61,6 +62,9 @@ If you want to use RiTaJS with Processing, you can do so like this (assuming you
   &lt;canvas id="mycanvas"&gt;&lt;/canvas&gt;
   &lt;html&gt;
 </pre>  
+
+
+
 
 Can I contribute?
 --------
