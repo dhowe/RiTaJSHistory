@@ -46,7 +46,7 @@ Here is a simple sketch to get you going. Create a new file on your desktop call
   
 
 If you want to use RiTaJS with Processing, you can do so like this (assuming you've downloaded both libraries to the current directory):
-
+<pre>
   &lt;html&gt;
   &lt;script src="processing-min.js"&gt;&lt;/script&gt;
   &lt;script src="rita-min.js"&gt;&lt;/script&gt;
@@ -60,7 +60,7 @@ If you want to use RiTaJS with Processing, you can do so like this (assuming you
   &lt;/script&gt;
   &lt;canvas id="mycanvas"&gt;&lt;/canvas&gt;
   &lt;html&gt;
-  
+</pre>  
 
 Can I contribute?
 --------
