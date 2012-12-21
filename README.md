@@ -50,7 +50,7 @@ If you want to use RiTaJS with Processing, you can do so like this (assuming you
 <pre>
   &lt;html&gt;
   &lt;script src="processing-min.js"&gt;&lt;/script&gt;
-  &lt;script src="rita-min.js"&gt;&lt;/script&gt;
+  &lt;script src="rita-020a.min.js"&gt;&lt;/script&gt;
   &lt;script type="text/processing" data-processing-target="mycanvas"&gt;
 
 	size(200,200);
