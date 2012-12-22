@@ -4,7 +4,9 @@ if [ $# -lt "1"  ]
 then
     echo
     echo "tag or version required"
-    echo "usage: pub-lib.sh [tag]"
+    echo "usage: make-lib.sh [tag] [-d] "
+    echo "       make-lib.sh 0.63a -d"
+    echo "       -d = without-docs"
     exit
 fi
 
@@ -37,7 +39,7 @@ RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 
 ZIP_TMP=/tmp/rita-$VERSION
-ZIP_FILE=RiTaJS-$VERSION.zip
+ZIP_FILE=rita-full-$VERSION.zip
 
 echo Building RiTaJS v$VERSION ------------------------------
 
@@ -76,15 +78,15 @@ else
     echo Skipping docs...
 fi
 
+
 ###EXAMPLES ##########################################################
 
 echo Copying examples
 cd .
-pwd
-pwd
+# TODO: need to fix these 
 cp -r ../test/renderer/multitest.html ../www/example/
 cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
-exit
+echo
 
 ###ZIP###############################################################
 
@@ -100,6 +102,7 @@ jar cf $ZIP_FILE *
 cd -
 mv $ZIP_TMP/$ZIP_FILE $DOWNLOAD_DIR
 rm -rf $ZIP_TMP
+echo
 
 ###COPY##############################################################
 
@@ -113,6 +116,6 @@ ls -l $BUILD/www/download
 ####################################################################
 
 echo
-echo Done [use pub-js.sh or pub-www.sh to publish]
+echo Done [use pub-js.sh or pub-lib.sh to publish]
 
 #pub-www.sh
