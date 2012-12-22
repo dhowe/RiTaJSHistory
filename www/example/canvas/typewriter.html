@@ -1,0 +1,44 @@
+<canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script>
+
+RiTa.p5Compatible(true);
+
+var idx, rt, curs;
+
+function setup() 
+{ 
+  size(500,100);
+ 
+  RiText.defaultFont("Courier", 24);
+
+  rt = new RiText("A line of text with a cursor.");
+  curs = new RiText("|");
+  
+  RiTa.timer("blink", .5);
+  RiTa.timer("move",   2);
+  
+  moveCursor();
+  
+  RiText.loop();
+}
+
+function onRiTaEvent(re) { 
+  if (re.getTag().equals("blink"))
+    curs.setVisible(!curs.isVisible()); 
+  else
+    moveCursor(); // "move"
+}
+
+function moveCursor() {
+  if (++idx == rt.length()) idx = 0;
+  var x = rt.boundingBox().x;
+  x += curs.textWidth()/-2 + idx*curs.textWidth();
+  curs.position(x+2, rt.y); 
+}
+
+function draw() {
+  background(255);
+}
+
+</script>

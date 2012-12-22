@@ -21,7 +21,7 @@ var runtests = function() {
         }
     });
 
-    test("Private Statics", function() {
+    test("Private Statics (funs)", function() {
 
         if (typeof window != 'undefined') {
             equal(typeof RiText._handleLeading, 'function');
@@ -30,7 +30,15 @@ var runtests = function() {
         equal(typeof _wordOffsetFor, 'undefined');
         equal(typeof _handleLeading, 'undefined');
         equal(typeof _disposeOne, 'undefined');
-
+        equal(typeof is, 'undefined');
+    });
+    
+    test("Private Statics (vars)", function() {
+			
+        equal(typeof _VERSION_, 'undefined');
+        equal(typeof RiTa._VERSION_, 'undefined');
+        equal(typeof timers, 'undefined');
+        equal(typeof RiTa.timers, 'undefined');
     });
 
     test("Member Functions", function() {
@@ -78,8 +86,8 @@ var runtests = function() {
     test("Internal Classes", function() {
 
         equal(typeof Type, 'undefined', 'Type is visible!');
+        equal(typeof Timer, 'undefined', 'Timer is visible!');
         equal(typeof Phones, 'undefined', 'Phones is visible!');
-        
         equal(typeof Conjugator, 'undefined', 'Conjugator');
         equal(typeof MinEditDist, 'undefined', 'MinEditDist');
         equal(typeof PosTagger, 'undefined', 'PosTagger');

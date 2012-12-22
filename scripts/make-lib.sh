@@ -18,7 +18,7 @@ while [ $# -ge 1 ]; do
     esac
     shift
 done
-echo "DOCS=$INCLUDE_DOCS"
+#echo "DOCS=$INCLUDE_DOCS"
 
 ##############################################################
 

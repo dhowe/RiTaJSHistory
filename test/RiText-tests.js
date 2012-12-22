@@ -30,7 +30,10 @@ var runtests = function() {
                    "picked",
                    "timer",
                    "random",
-                   "frameCount"
+                   "frameCount",
+                   "timer",
+                   "pauseTimer",
+                   "stopTimer",
                    ];
   
     var functions = [ 
