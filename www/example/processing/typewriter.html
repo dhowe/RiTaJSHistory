@@ -1,41 +1,46 @@
 <script src="../../../lib/processing.js"></script>
 <script src="../../../src/rita.js"></script>
+
 <script type="text/processing" data-processing-target="mycanvas">
-	
-var idx, rt, curs;
+
+RiText rt;
+int idx, tid, y = 30;	
+String s = "This is a typewriter typing a line.";
+bell = new Audio("../bell.wav"), key = new Audio("../key.wav"); 
 
 void setup() 
 { 
-  size(500,100);
- 
-  RiText.defaultFont("Courier", 24);
+  size(550,550);
 
-  rt = new RiText("A line of text with a cursor.");
-  curs = new RiText("|");
-  
-  RiTa.timer("blink", .5f);
-  RiTa.timer("move",   2f);
-  
-  moveCursor();
+  RiText.defaultFont("courier", 24);
+  rt = new RiText("", 20, y);
+  tid = RiText.timer(.1);
 }
 
-void onRiTaEvent(RiTaEvent re) { 
-  if (re.getTag().equals("blink"))
-    curs.setVisible(!curs.isVisible()); 
-  else
-    moveCursor(); // "move"
-}
-
-void moveCursor() {
-  if (++idx == rt.length()) idx = 0;
-  var x = rt.boundingBox().x;
-  x += curs.textWidth()/-2f + idx*curs.textWidth();
-  curs.position(x+2, rt.y); 
+void onRiTaEvent(re) { 
+	
+  rt.text(s.substring(0, idx));
+  
+  if (idx++ == s.length) { // a new line
+  	
+    RiText.pauseTimer(tid, .8);
+    
+    y = rt.y + 30;
+    rt = new RiText("", 20, y);
+    bell.play();
+    idx = 0;
+  }   
+  else if (!rt.endsWith(" ")) 
+    key.play();    
 }
 
 void draw() {
   background(255);
+  RiText.drawAll();
 }
 
+
+
 </script>
+
 <canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

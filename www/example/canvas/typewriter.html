@@ -1,44 +1,41 @@
-<canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"></canvas>
-<script src="../../../src/rita.js"></script>
-<script>
+<canvas id="canvas" width=400 height=400 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script><script>
+
+
+var rt, idx=0, tid, y = 30, s = "This is a typewriter typing a line.",
+	bell = new Audio("../bell.wav"), key = new Audio("../key.wav"); 
 
 RiTa.p5Compatible(true);
 
-var idx, rt, curs;
-
 function setup() 
 { 
-  size(500,100);
- 
-  RiText.defaultFont("Courier", 24);
+  size(550,550);
 
-  rt = new RiText("A line of text with a cursor.");
-  curs = new RiText("|");
-  
-  RiTa.timer("blink", .5);
-  RiTa.timer("move",   2);
-  
-  moveCursor();
-  
-  RiText.loop();
+  RiText.defaultFont("courier", 24);
+  rt = new RiText("", 20, y);
+  tid = RiText.timer(.1);
 }
 
 function onRiTaEvent(re) { 
-  if (re.getTag().equals("blink"))
-    curs.setVisible(!curs.isVisible()); 
-  else
-    moveCursor(); // "move"
-}
-
-function moveCursor() {
-  if (++idx == rt.length()) idx = 0;
-  var x = rt.boundingBox().x;
-  x += curs.textWidth()/-2 + idx*curs.textWidth();
-  curs.position(x+2, rt.y); 
+	
+  rt.text(s.substring(0, idx));
+  
+  if (idx++ == s.length) { // a new line
+  	
+    RiText.pauseTimer(tid, .8);
+    
+    y = rt.y + 30;
+    rt = new RiText("", 20, y);
+    bell.play();
+    idx = 0;
+  }   
+  else if (!rt.endsWith(" ")) 
+    key.play();    
 }
 
 function draw() {
   background(255);
+  RiText.drawAll();
 }
 
 </script>
