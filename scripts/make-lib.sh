@@ -3,20 +3,28 @@
 if [ $# -lt "1"  ]
 then
     echo
-    echo "tag or version required"
-    echo "usage: make-lib.sh [tag] [-d] "
-    echo "       make-lib.sh 0.63a -d"
-    echo "       -d = without-docs"
+    echo "  error:   tag or version required"
+    echo
+    echo "  usage:   make-lib.sh [tag] [-d -p] "
+    echo "           make-lib.sh 0.63a -d -p"
+    echo
+    echo "  options:"
+    echo "       -p = publish-after-build "
+    echo "       -d = dont-regenerate-docs"
     exit
 fi
 
 VERSION=$1
+DO_PUBLISH=0
 INCLUDE_DOCS=1
 MINIMIZE_SRC=1
 
 while [ $# -ge 1 ]; do
     case $1 in
         -d)  INCLUDE_DOCS=0  ;;
+    esac
+    case $1 in
+        -p)  DO_PUBLISH=1  ;;
     esac
     shift
 done
@@ -83,8 +91,8 @@ fi
 
 echo Copying examples
 cd .
-# TODO: need to fix these 
 cp -r ../test/renderer/multitest.html ../www/example/
+cp -r ../test/renderer/*.wav ../www/example/  # ???? 
 cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
 echo
 
@@ -118,4 +126,7 @@ ls -l $BUILD/www/download
 echo
 echo Done [use pub-js.sh or pub-lib.sh to publish]
 
-#pub-www.sh
+if [ $INCLUDE_DOCS = 1 ]
+then
+./pub-www.sh $VERSION
+fi
