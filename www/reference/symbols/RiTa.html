@@ -442,6 +442,15 @@ method, e.g.</div>
 						<tr>
 							<td class="attributes">&lt;static&gt; &nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont">RiTa.<b><a href="../symbols/RiTa.html#.pauseTimer">pauseTimer</a></b>(the, pause-time)
+								</div>
+								<div class="description">Pauses a timer according to its unique id</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont">RiTa.<b><a href="../symbols/RiTa.html#.pluralize">pluralize</a></b>(word)
 								</div>
 								<div class="description">Pluralizes a word according to pluralization rules (see regexs in constants)
@@ -515,6 +524,15 @@ it and leaving the array 1 element shorter.</div>
 Note: see http://text-processing.com/demo/stem/ for comparison of 
 Lancaster and Porter algorithms or  http://mpii.de/yago-naga/javatools 
 for info on PlingStemmer</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&lt;static&gt; &nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont">RiTa.<b><a href="../symbols/RiTa.html#.stopTimer">stopTimer</a></b>(the)
+								</div>
+								<div class="description">Stops a timer according to its unique id</div>
 							</td>
 						</tr>
 					
@@ -1580,6 +1598,55 @@ the original RiTa/Processing Java library
 
 					<hr />
 				
+					<a name=".pauseTimer"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					<span class="light">{number}</span>
+					<span class="light">RiTa.</span><b>pauseTimer</b>(the, pause-time)
+					
+					</div>
+					<div class="description">
+						Pauses a timer according to its unique id
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>the</b>
+									
+								</dt>
+								<dd>unique id for the timer</dd>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>pause-time</b>
+									
+								</dt>
+								<dd>(in seconds)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{number}</span> the new unique id for the timer</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name=".pluralize"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -1936,6 +2003,42 @@ for info on PlingStemmer
 
 					<hr />
 				
+					<a name=".stopTimer"> </a>
+					<div class="fixedFont">&lt;static&gt; 
+					
+					
+					<span class="light">RiTa.</span><b>stopTimer</b>(the)
+					
+					</div>
+					<div class="description">
+						Stops a timer according to its unique id
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{number}</span> <b>the</b>
+									
+								</dt>
+								<dd>unique id for the timer</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+						
+						
+
+					<hr />
+				
 					<a name=".stripPunctuation"> </a>
 					<div class="fixedFont">&lt;static&gt; 
 					
@@ -2003,7 +2106,7 @@ every 'period' seconds
 									<span class="light fixedFont">{number}</span> <b>period</b>
 									
 								</dt>
-								<dd></dd>
+								<dd>(in seconds)</dd>
 							
 								<dt>
 									<span class="light fixedFont">{function}</span> <b>callback</b>
