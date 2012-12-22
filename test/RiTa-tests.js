@@ -4,40 +4,13 @@
 	    setup: function () {},
 	    teardown: function () {}
 	});
-	
-    var functions = [
-        "isAbbreviation"
-        , "isQuestion"
-        , "isSentenceEnd"
-        , "isW_Question"
-        , "randomOrdering"
-        , "removeRandom"
-        , "splitSentences"
-        , "stripPunctuation"
-        , "trimPunctuation"
-        , "isPunctuation"
-        , "tokenize"
-        , "trim"
-        , "distance"
-        , "random"
-        , "getPhonemes"
-        , "getPosTags"
-        , "getPosTagsInline"
-        , "getStresses"
-        , "getSyllables"
-        , "getWordCount"
-        , "posToWordNet"
-        , "conjugate"
-        , "getPastParticiple"
-        , "getPresentParticiple"
-        , "stem"
-        , "pluralize"
-        , "singularize"
-        , "timer" 
-        , "random"
-        , "p5Compatible"
-        , "untokenize" 
-    ];
+
+	var functions = [ "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "removeRandom", 
+						"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
+					"tokenize", "trim", "distance", "random", "getPhonemes", "getPosTags", 
+					"getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet",
+					 "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize",
+					"timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
 
     test("RiTa.functions", function () {
         for (var i = 0; i < functions.length; i++) {
@@ -198,8 +171,6 @@
 
      // always do these three
      deepEqual(RiTa.splitSentences(""), [""]);
-
-   
  });
 
  test("RiTa.stripPunctuation()", function () {

@@ -41,7 +41,7 @@ var runtests = function() {
 
     test("Public Statics", function() {
 
-        equal(typeof RiText.foreach, 'function');
+        //equal(typeof RiText.foreach, 'function');
         equal(typeof RiText.drawAll, 'function');
         equal(typeof RiText.defaultColor, 'function');
         ok(RiText.defaults);
