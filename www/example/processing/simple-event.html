@@ -1,0 +1,47 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+/*
+ * @desc Using RiTa timers to generate a callback
+ */
+
+RiText rt,curs;
+int idx;
+
+void setup() {  
+    
+  size(500,100);
+  RiText.defaultFont("Courier", 24);
+  
+  curs = RiText("|");
+  rt = RiText("A line of text with a cursor.");
+  rt.showBoundingBox(true);
+  
+  RiText.timer(.5, blink);
+  RiText.timer(2, moveCursor);
+  
+  moveCursor();
+}  
+
+void draw() {
+	background(255);	
+	RiText.drawAll();
+}
+
+void blink() {
+    curs.alpha(curs.isVisible()?0:255); 
+}
+
+void moveCursor() {
+  if (++idx == rt.length()) idx = 0;
+  var x = rt.boundingBox().x;
+  x += curs.textWidth()/-2f + idx*curs.textWidth();
+  curs.position(x+2, rt.y); 
+}
+
+
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
