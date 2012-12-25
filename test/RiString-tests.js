@@ -255,6 +255,36 @@ var runtests = function() {
         var rs2 = new RiString("");
         var result = rs.equals(rs2);
         ok(result);
+        
+        // ---------------
+
+        var rs = new RiString("closed");
+        var result = rs.equals("closed");
+        ok(result);
+
+        var rs = new RiString("closed");
+        var result = rs.equals("Closed");
+        ok(!result);
+
+        var rs = new RiString("clOsed");
+        var result = rs.equals("closed");
+        ok(!result);
+
+        var rs = new RiString("There is a cat.");
+        var result = rs.equals("There is a cat.");
+        ok(result);
+
+        var rs = new RiString("There is a cat.");
+        var result = rs.equals("There is a cat. ");
+        ok(!result);
+
+        var rs = new RiString("There is a cat.");
+        var result = rs.equals("There is a cat");
+        ok(!result);
+
+        var rs = new RiString("There is a cat.");
+        var result = rs.equals("");
+        ok(!result);
     });
 
     test("RiString.equalsIgnoreCase()", function() {
@@ -286,7 +316,6 @@ var runtests = function() {
         var rs = new RiString("");
         var result = rs.equalsIgnoreCase("");
         ok(result);
-
     });
 
     test("RiString.indexOf()", function() {

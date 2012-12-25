@@ -23,6 +23,11 @@
         ok(RiTa.VERSION > 0);
     });
     
+    test("RiTa.p5Compatible", function () {
+
+        ok(!"present");
+    });
+    
     test("RiTa.isAbbreviation()", function () {
 
         ok(RiTa.isAbbreviation("Dr."));

@@ -8,7 +8,7 @@ var runtests = function() {
 
     // TODO: add separate test file (same tests), for remote loaded grammars
 
-    var functions = [ "addRule", "clone", "expand", "expandFrom", "expandWith", "getRule", "getRules", "hasRule", "print", "removeRule", "reset", "setGrammar" ];
+    var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getRule", "getRules", "hasRule", "print", "removeRule", "reset", "setGrammar" ];
 
     var grammarObj = { '<start>' : '<noun_phrase> <verb_phrase>', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
 
