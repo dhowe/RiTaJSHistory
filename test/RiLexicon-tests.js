@@ -669,10 +669,8 @@ var runtests = function() {
 
     });
 
-    // TODO: clear() failing may be killing this test
-    test(
-        "RiLexicon.similarByLetter()",
-        function() {
+    // TODO: clear() failing may be killing this test ()???)
+    test("RiLexicon.similarByLetter()",  function() {
 
             ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
@@ -787,8 +785,7 @@ var runtests = function() {
             deepEqual(result, answer);
         });
 
-    test(
-        "RiLexicon.similarBySoundAndLetter()",
+    test("RiLexicon.similarBySoundAndLetter()",
         function() {
 
             RiLexicon.data = undefined;
