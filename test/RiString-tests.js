@@ -380,69 +380,67 @@ var runtests = function() {
 
     });
 
-    test(
-        "RiString.insertWord()",
+    test("RiString.insertWord()",
+    
         function() { //join() added an extra space to the word with punctuation
 
             // check that these are ok ---------------
+            
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord("then", 4);
-            equal(result.text(), rs.text());
+            var result = rs.insertWord(4, "then");
+            equal(result.text(), "Inserts at wordIdx and then shifts each subsequent word accordingly.");
 
             var rs = new RiString("inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("He", 0);
-            var rs2 = "He inserts at wordIdx and shifts each subsequent word accordingly.";
-            equal(rs.text(), rs2);
+            rs.insertWord(0, "He");
+            equal(rs.text(), "He inserts at wordIdx and shifts each subsequent word accordingly.");
 
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("newWord", 1);
+            rs.insertWord(1,"newWord");
             var rs2 = new RiString(
                 "Inserts newWord at wordIdx and shifts each subsequent word accordingly.");
             equal(rs.text(), rs2.text());
 
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("newWord and newWords", 1);
+            rs.insertWord(1,"newWord and newWords");
             var rs2 = new RiString(
                 "Inserts newWord and newWords at wordIdx and shifts each subsequent word accordingly.");
             equal(rs.text(), rs2.text());
 
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord("", 5);
+            var result = rs.insertWord(5,"");
+            var rs2 = "Inserts at wordIdx and shifts each subsequent word accordingly.";
+            equal(result.text(), rs2);
+
+            var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
+            var result = rs.insertWord(5," "); //space
             var rs2 = new RiString(
-                "Inserts at wordIdx and shifts each subsequent word accordingly.");
+                "Inserts at wordIdx and shifts  each subsequent word accordingly.");
             equal(result.text(), rs2.text());
 
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord(" ", 5); //space
-            var rs2 = new RiString(
-                "Inserts at wordIdx and shifts   each subsequent word accordingly.");
-            equal(result.text(), rs2.text());
-
-            var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord("  ", 5); //tab space
+            var result = rs.insertWord(5,"  "); //tab space
             var rs2 = new RiString(
                 "Inserts at wordIdx and shifts    each subsequent word accordingly.");
             equal(result.text(), rs2.text());
 
+
             // not sure what to do about this one, either it OR the next one will fail either way
-            /* TODO: reconsider */
+            /* TODO: reconsider  */
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("**", 5);
-            var rs2 = new RiString(
-                "Inserts at wordIdx and shifts ** each subsequent word accordingly.");
-            equal(rs.text(), rs2.text(),
+            rs.insertWord(5,"**");
+            equal(rs.text(), "Inserts at wordIdx and shifts** each subsequent word accordingly.",
                 "testing the (private) joinWords() actually [currently failing]");
 
             var rs = new RiString("Inserts at wordIdx shifting each subsequent word accordingly.");
-            rs.insertWord(",", 3);
+            rs.insertWord(3,",");
             var rs2 = new RiString(
                 "Inserts at wordIdx , shifting each subsequent word accordingly.");
             equal(rs.text(), rs2.text());
 
             var rs = new RiString("Inserts at wordIdx and shifts each subsequent word accordingly.");
             var result = rs.text();
-            rs.insertWord("newWord", -2); //error -- (no change to original string);
-            equal(result, rs.text());
+            rs.insertWord(-2,"newWord"); //error -- (no change to original string);
+            equal(result, rs.text()); // TODO: start from back of word
 
         });
 
@@ -615,7 +613,7 @@ var runtests = function() {
 
         var rs = new RiString("Who are you?");
         rs.insertChar(2, "");
-        equal(rs.text(), "Wh  are you?");
+        equal(rs.text(), "Who are you?");
 
         var rs = new RiString("Who are you?");
         rs.insertChar(2, "e");
@@ -633,14 +631,17 @@ var runtests = function() {
         rs.insertChar(0, "me");
         equal(rs.text(), "meWho are you?");
 
-        var rs = new RiString("Who are you?");
-        rs.insertChar(-1, "me");
-        equal(rs.text(), "Who are you?"); // TODO: shouldn't this go back from the end?
-
-        var rs = new RiString("Who are you?");
+        var rs = new RiString("Who?");
+        rs.insertChar(rs.length()-1,"!");
+        equal(rs.text(), "Who!?");
+        
+        var rs = new RiString("Who?");
         rs.insertChar(rs.length(),"!");
-        equal(rs.text(), "Who are you?!");
-
+        equal(rs.text(), "Who?!");
+        
+        var rs = new RiString("Who are you");
+        rs.insertChar(-1, "?");
+        equal(rs.text(), "Who are yo?u");
     });
 
 
@@ -834,24 +835,24 @@ var runtests = function() {
 
     test("RiString.removeWord()", function() {
     	
-  		 var rs = new RiString("Who are you?");
+  		var rs = new RiString("Who are you?");
         rs.removeWord(2);
         equal(rs.text(), "Who are?"); 
-
-        var rs = new RiString("Who are you?");
-        equal(rs.removeWord(0).text(), "are you?");
 
         var rs = new RiString("Who are you?");
         rs.removeWord(3); 
         equal(rs.text(), "Who are you"); 
 
         var rs = new RiString("Who are you?");
-        rs.removeWord(-1);
-        equal(rs.text(), "Who are you"); // TODO: should go from back
-
-        var rs = new RiString("Who are you?");
         rs.removeWord(20);
         equal(rs.text(), "Who are you?");
+        
+        var rs = new RiString("Who are you?");
+        equal(rs.removeWord(0).text(), "are you?");
+        
+        var rs = new RiString("Who are you?");
+        rs.removeWord(-1);
+        equal(rs.text(), "Who are you"); // TODO: should go from back
     });
  
      
@@ -860,7 +861,7 @@ var runtests = function() {
         var rs = new RiString("Who are you?");
         rs.replaceWord(2, ""); // nice! this too...
         equal(rs.text(), "Who are?"); // strange case, not sure
-        //equal(rs.text(), "Who are ?");
+        // could also be: equal(rs.text(), "Who are ?");
 
         var rs = new RiString("Who are you?");
         equal("Who are What?", rs.replaceWord(2, "What").text());
@@ -869,17 +870,16 @@ var runtests = function() {
         equal(rs.replaceWord(0, "What").text(), "What are you?");
 
         var rs = new RiString("Who are you?");
-        rs.replaceWord(3, "!!"); //
+        rs.replaceWord(3, "!!"); 
         equal(rs.text(), "Who are you!!"); // nice! this is a strange one...
 
         var rs = new RiString("Who are you?");
-        rs.replaceWord(-1, "asfasf");
-        equal(rs.text(), "Who are you?");
+        rs.replaceWord(-1, ".");
+        equal(rs.text(), "Who are you.");
 
         var rs = new RiString("Who are you?");
         rs.replaceWord(20, "asfasf");
         equal(rs.text(), "Who are you?");
-
     });
 
     test("RiString.slice()", function() { //very similar to substring
