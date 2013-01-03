@@ -12,7 +12,7 @@ var runtests = function() {
 
         var rx3 = new RiText(new RiString("hello"));
         equal(typeof rx3, 'object');
-
+	
         var rx3 = RiText(RiString("hello"));
         equal(typeof rx3, 'object');
     });
@@ -35,8 +35,10 @@ var runtests = function() {
     test("Public Constants", function() {
 
         ok(RiText.PARAGRAPH);
-        ok(RiText.LEFT);
-        ok(RiText.CENTER);
+        ok(RiTa.LEFT);
+        ok(RiTa.CENTER);
+        ok(RiTa.UNKNOWN);
+        ok(RiTa.TIMER_TICK);
     });
 
     test("Public Statics", function() {

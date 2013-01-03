@@ -6,7 +6,7 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    var functions = [ "getSource", "getType" ];
+    var functions = [ "getSource", "getType", "toString" ];
 
     test("RiTaEvent-functions", function() {
 
@@ -74,8 +74,10 @@ var runtests = function() {
 
     });
 
+	
     test("RiTaEvent.getSource()", function() {
 
+    	ok(!"Need to use real source types (like RiTaJS))");
         ok(RiTaEvent(this).getSource());
         ok(new RiTaEvent(this).getSource());
         ok(RiTaEvent(this, "test").getSource());
@@ -84,12 +86,17 @@ var runtests = function() {
 
     test("RiTaEvent.getType()", function() {
 
+    	ok(!"Need to use real event types (like RiTaJS))");
+
         ok(RiTaEvent(this).getType());
         ok(new RiTaEvent(this).getType());
         ok(RiTaEvent(this, "test").getType());
         ok(new RiTaEvent(this, "test").getType());
     });
 
+    test("RiTaEvent.toString()", function() {
+    	ok(!"Need to verify text-string describing even type (like RiTaJS))");
+	});
 }
 
 if (typeof exports != 'undefined') exports.unwrap = runtests;

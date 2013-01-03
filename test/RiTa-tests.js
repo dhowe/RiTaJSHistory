@@ -25,7 +25,7 @@
     
     test("RiTa.p5Compatible", function () {
 
-        ok(!"present");
+        ok(!"needs a test");
     });
     
     test("RiTa.isAbbreviation()", function () {
