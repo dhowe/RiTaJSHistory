@@ -33,10 +33,12 @@ var runtests = function() {
     });
 
     test("Public Constants", function() {
-
-        ok(RiText.PARAGRAPH);
-        ok(RiText.LEFT);
-        ok(RiText.CENTER);
+ 
+		ok(RiText.PARAGRAPH);
+		ok(RiTa.LEFT);
+		ok(RiTa.CENTER);
+		ok(RiTa.UNKNOWN);
+		ok(RiTa.TIMER_TICK); 
     });
 
     test("Public Statics", function() {
