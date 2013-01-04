@@ -71,7 +71,7 @@ If you want to use RiTaJS with <a href="http://processingjs.org/">ProcessingJS</
 
 Can I contribute?
 --------
-Sure! Just press *Fork* at the top of this github page and start coding. Active contributors might be asked to join the core team, and given the ability to merge pull requests.
+Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started. 
 
 If you don't feel like coding but still want to contribute, please join the discussion on the issuetracker and ritajs-dev group.
 
