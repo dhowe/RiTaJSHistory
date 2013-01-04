@@ -6,17 +6,19 @@ var runtests = function () {
 			}); 
     
             var functions =["generateTokens", 
-                            "generateUntil", 
+                            "generateUntil",
+                            "generateSentences", 
                             "getCompletions", 
-                            "getN", 
                             "getProbabilities", 
                             "getProbability", 
                             "numTokens", 
                             "loadTokens", 
                             "loadText", 
-                            // "ignoreCase", 
+                            "recognizeSentences",
                             "print", 
-                            "useSmoothing"
+                            "useSmoothing",
+                            "getN"
+                            // "ignoreCase",
                             ];
             
             var sample = "One reason people lie is to achieve personal power. Achieving personal power is helpful for one who pretends to be more confident than he really is. For example, one of my friends threw a party at his house last month. He asked me to come to his party and bring a date. However, I did not have a girlfriend. One of my other friends, who had a date to go to the party with, asked me about my date. I did not want to be embarrassed, so I claimed that I had a lot of work to do. I said I could easily find a date even better than his if I wanted to. I also told him that his date was ugly. I achieved power to help me feel confident; however, I embarrassed my friend and his date. Although this lie helped me at the time, since then it has made me look down on myself.",SP=' ',E=' ';
@@ -231,7 +233,41 @@ var runtests = function () {
                    //L(i+") "+res);
                  }
              });  
+              
+             test("RiMarkov.loadText(sentences)", function () {
+             	 
+             	var rm = new RiMarkov(4);
+             	var sents = rm.loadText(sample).sentenceList;
+             	ok(sents && sents.length>0);
+             	ok(!"need more tests");
+             });
                      
+             test("RiMarkov.generateSentences()", function () {
+		
+				throws(function() {
+		
+					var rm = new RiMarkov(4);
+					rm.recognizeSentences(false);
+					
+					RiTa.SILENT = 1; 
+					try {
+						rm.generateSentences(10);
+					} catch (e) {
+						throw e;
+					}
+					RiTa.SILENT = 0;
+				});
+				
+				var rm = new RiMarkov(4);
+				rm.loadText(sample);
+				rm.recognizeSentences(false);
+				for (var i = 0; i < 10; i++) {
+					ok(rm.generateSentences(1));
+				}
+				 
+				ok(!"need more tests");
+             });  
+                                
              test("RiMarkov.generateUntil()", function () {
                  
                  var rm = new RiMarkov(3);
@@ -242,16 +278,12 @@ var runtests = function () {
                    var arr = rm.generateUntil('[\.\?!]',4,20);
                    var res = RiTa.untokenize(arr);
                    
-                   ok(arr.length>=4&&arr.length<=20,res+'  (length='+arr.length+")");
-                 
-                   //L(i+") "+res);
-    
+                   ok(arr.length>=4 && arr.length <= 20,res+'  (length='+arr.length+")");
+
                    var n = rm.getN();
                    for ( var j = 0; j < arr.length-n; j++) {
                       var partial = arr.slice(j,j+n);
-                      //L("  "+i+"."+j+") "+partial);
                       partial = RiTa.untokenize(partial);
-                      //L("  "+i+"."+j+"] "+partial);
                       ok(sample.indexOf(partial)>-1,partial)
                    }
                  }
@@ -475,20 +507,23 @@ var runtests = function () {
                  notEqual(rm2.getProbability("One"), rm.getProbability("one"));
              });    
              
-             test("RiMarkov.loadText()", function () { //TODO: revise tests
+             test("RiMarkov.loadText(tokens)", function () { //TODO: revise tests
                  
                  var words = 'The dog ate the cat';
                  
                  var rm = new RiMarkov(3);
+                 rm.recognizeSentences(false);
                  rm.loadText(words); 
                  equal(rm.getProbability("The"), 0.2);
                  
                  words = 'the dog ate the cat';
                  var rm = new RiMarkov(3);
+                 rm.recognizeSentences(false);
                  rm.loadText(words); 
                  equal(rm.getProbability("the"), 0.4);
              });    
              
+         
                           
              /*
 1] p(One) = 0.010810811
@@ -557,6 +592,16 @@ var runtests = function () {
                  notEqual(rm2.getProbability("personal"), rm.getProbability("personal"));
                  
                  // more tests??
+             });
+             
+             test("RiMarkov.recognizeSentences()", function () {
+                 
+                 var rm = new RiMarkov(3, false);
+                 var x = rm.recognizeSentences();
+                 equal(x,true);
+                 rm.recognizeSentences(false);
+                 var x = rm.recognizeSentences();
+                 equal(x,false);
              });
 }
 
