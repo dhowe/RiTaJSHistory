@@ -77,7 +77,8 @@ var runtests = function() {
 	
     test("RiTaEvent.getSource()", function() {
 
-    	ok(!"Need to use real source types (like RiTaJS))");
+    	ok(!"Need to use real source types (like RiTa))");
+    	
         ok(RiTaEvent(this).getSource());
         ok(new RiTaEvent(this).getSource());
         ok(RiTaEvent(this, "test").getSource());
@@ -86,7 +87,7 @@ var runtests = function() {
 
     test("RiTaEvent.getType()", function() {
 
-    	ok(!"Need to use real event types (like RiTaJS))");
+    	ok(!"Need to use real event types (like RiTa))");
 
         ok(RiTaEvent(this).getType());
         ok(new RiTaEvent(this).getType());
@@ -95,7 +96,8 @@ var runtests = function() {
     });
 
     test("RiTaEvent.toString()", function() {
-    	ok(!"Need to verify text-string describing even type (like RiTaJS))");
+    	
+    	ok(!"Need to verify text-string describing event-type is same as in RiTa)");
 	});
 }
 
