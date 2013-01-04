@@ -1,5 +1,5 @@
 
-## RiTaJS: A RiTa generative language toolkit for JavaScript
+## RiTaJS: a generative language toolkit for JavaScript
 
 
 <a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/js/img/RiTa-logo2.png"/></a>
@@ -46,7 +46,10 @@ Create a new file on your desktop called hello.html, add the following lines, sa
   &lt;html&gt;
 </pre>  
 
-If you want to use RiTaJS with Processing, you can do so like this (assuming you've downloaded both libraries to the current directory):
+
+With ProcessingJS
+--------
+If you want to use RiTaJS with <a href="http://processingjs.org/">ProcessingJS</a>, you can do so like this (assuming you've downloaded both libraries to the current directory):
 <pre>
   &lt;html&gt;
   &lt;script src="processing-min.js"&gt;&lt;/script&gt;
