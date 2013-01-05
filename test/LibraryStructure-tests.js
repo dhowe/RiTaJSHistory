@@ -80,6 +80,7 @@ var runtests = function() {
         ok(RiTa.VERSION);
         ok(RiTa.PRESENT_TENSE);
         ok(RiTa.SECOND_PERSON);
+        ok(RiTa.LEFT);
         ok(RiGrammar.START_RULE);
     });
 
