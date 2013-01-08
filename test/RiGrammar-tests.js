@@ -142,52 +142,52 @@ var runtests = function() {
         ok(rg.getRule("start"))
     });
 
-    test("RiGrammar.clone", function() {
+    // test("RiGrammar.clone", function() {
 
-        var rg1 = new RiGrammar();
-        rg1.reset();
-        rg1.addRule("<start>", "<first> | <second>");
-        rg1.addRule("<first>", "the <pet> <action> were 'adj()'");
-        rg1.addRule("second", "the <action> of the 'adj()' <pet>");
-        rg1.addRule("<pet>", "<bird> | <mammal>");
-        rg1.addRule("<bird>", "hawk | crow");
-        rg1.addRule("<mammal>", "dog");
-        rg1.addRule("<action>", "cries | screams | falls");
+    //     var rg1 = new RiGrammar();
+    //     rg1.reset();
+    //     rg1.addRule("<start>", "<first> | <second>");
+    //     rg1.addRule("<first>", "the <pet> <action> were 'adj()'");
+    //     rg1.addRule("second", "the <action> of the 'adj()' <pet>");
+    //     rg1.addRule("<pet>", "<bird> | <mammal>");
+    //     rg1.addRule("<bird>", "hawk | crow");
+    //     rg1.addRule("<mammal>", "dog");
+    //     rg1.addRule("<action>", "cries | screams | falls");
 
-        var rg2 = rg1.clone();
-        deepEqual(rg1._rules.length, rg2._rules.length);
+    //     var rg2 = rg1.clone();
+    //     deepEqual(rg1._rules.length, rg2._rules.length);
 
-        //    return;
+    //     //    return;
 
-        deepEqual(rg1._rules, rg2._rules);
-        deepEqual(rg1, rg2);
+    //     deepEqual(rg1._rules, rg2._rules);
+    //     deepEqual(rg1, rg2);
 
-        rg2.removeRule("pet");
-        ok(rg1.hasRule("pet"));
-        ok(!rg2.hasRule("pet"));
+    //     rg2.removeRule("pet");
+    //     ok(rg1.hasRule("pet"));
+    //     ok(!rg2.hasRule("pet"));
 
-        rg2.addRule("<pet>", "<bird>");
+    //     rg2.addRule("<pet>", "<bird>");
 
 
-        var i, good = 0;
-        for (i = 0; i < 100; i++) {
-            var r = rg1.expand();
-            //console.log(r);
-            good = (r.indexOf('dog') > -1);
-            if (good) break;
-        }
-        ok(good, i);
+    //     var i, good = 0;
+    //     for (i = 0; i < 100; i++) {
+    //         var r = rg1.expand();
+    //         //console.log(r);
+    //         good = (r.indexOf('dog') > -1);
+    //         if (good) break;
+    //     }
+    //     ok(good, i);
 
-        good = 0;
-        for (i = 0; i < 100; i++) {
-            r = rg2.expand();
-            good = (r.indexOf('dog') > -1);
-            if (good) {
-                break;
-            }
-        }
-        ok(!good);
-    });
+    //     good = 0;
+    //     for (i = 0; i < 100; i++) {
+    //         r = rg2.expand();
+    //         good = (r.indexOf('dog') > -1);
+    //         if (good) {
+    //             break;
+    //         }
+    //     }
+    //     ok(!good);
+    // });
 
     test("RiGrammar.expand()", function() {
 
