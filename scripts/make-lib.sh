@@ -29,6 +29,7 @@ while [ $# -ge 1 ]; do
     shift
 done
 #echo "DOCS=$INCLUDE_DOCS"
+#echo "PUB=$DO_PUBLISH"
 
 ##############################################################
 
@@ -49,6 +50,7 @@ RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 ZIP_TMP=/tmp/rita-$VERSION
 ZIP_FILE=rita-full-$VERSION.zip
 
+echo
 echo Building RiTaJS v$VERSION ------------------------------
 
 ###COMPILE############################################################
@@ -126,7 +128,7 @@ ls -l $BUILD/www/download
 echo
 echo Done [use pub-js.sh or pub-lib.sh to publish]
 
-if [ $INCLUDE_DOCS = 1 ]
+if [ $DO_PUBLISH = 1 ]
 then
-./pub-www.sh $VERSION
+./pub-lib.sh $VERSION
 fi

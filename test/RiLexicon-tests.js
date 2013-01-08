@@ -18,11 +18,11 @@ var runtests = function() {
     var functions = ["addWord", 
                      "clear",
                      "containsWord", 
-                     "getAlliterations", 
-                     "getLexicalData", 
-                     "getRandomWord", 
-                     "getRhymes",
-                     "getWords" ,
+                     "alliterations", 
+                     "lexicalData", 
+                     "randomWord", 
+                     "rhymes",
+                     "words" ,
                      "isAdverb",
                      "isNoun",
                      "isVerb",
@@ -30,7 +30,6 @@ var runtests = function() {
                      "isAlliteration", 
                      "isRhyme", 
                      "removeWord", 
-                     "setLexicalData",
                      "similarByLetter", 
                      "similarBySound", 
                      "similarBySoundAndLetter",
@@ -42,7 +41,7 @@ var runtests = function() {
 
         var lex1 = createLex();
         var lex2 = createLex();
-        ok(1);
+        equal(lex1.size(), lex2.size());
     });
 
     test("RiLexicon-functions", function() {
@@ -138,24 +137,24 @@ var runtests = function() {
         ok(lex.containsWord("banana"));
         ok(lex.containsWord("funny"));
 
-        var obj = [];
-        obj["wonderfullyy"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
-        var result = lex.setLexicalData(obj);
-        deepEqual(result, obj);
-        ok(lex.containsWord("wonderfullyy"));
-
         lex.clear();
         var lex = createLex()
         ok(!lex.containsWord("wonderfullyy"));
         ok(lex.containsWord("wonderful"));
 
         var lex = createLex()
-        var result = lex.getLexicalData();
+        var result = lex.lexicalData();
         ok(Object.keys(result).length > 1000);
 
         lex.clear();
         var lex = createLex()
         ok(Object.keys(result).length > 1000);
+
+        var obj = {};
+        obj["wonderfullyy"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
+        lex.lexicalData(obj);
+        var result = lex.lexicalData();
+        deepEqual(result, obj)
     });
 
 
@@ -183,148 +182,148 @@ var runtests = function() {
 
     });
 
-    test("RiLexicon.getAlliterations()", function() {
+    test("RiLexicon.alliterations()", function() {
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
         var lex = createLex() // only 1 per test needed
-        var result = lex.getAlliterations("cat");
+        var result = lex.alliterations("cat");
         ok(result.length > 2000);
 
-        var result = lex.getAlliterations("dog");
+        var result = lex.alliterations("dog");
         ok(result.length > 1000);
 
-        var result = lex.getAlliterations("URL");
+        var result = lex.alliterations("URL");
         ok(!(result.length > 1000));
 
-        var result = lex.getAlliterations("no stress");
+        var result = lex.alliterations("no stress");
         ok(!(result.length > 1000));
 
-        var result = lex.getAlliterations("#$%^&*");
+        var result = lex.alliterations("#$%^&*");
         ok(!(result.length > 1000));
 
-        var result = lex.getAlliterations("");
+        var result = lex.alliterations("");
         ok(!(result.length > 1000));
         
         // TODO: better tests
     });
 
 
-    test("RiLexicon.getLexicalData()", function() {
+    test("RiLexicon.lexicalData()", function() {
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
         var lex = createLex()
-        var result = lex.getLexicalData();
+        var result = lex.lexicalData();
         ok(Object.keys(result).length > 1000);
 
-        var re = lex.getLexicalData();
+        var re = lex.lexicalData();
         var result = re.a;
         var answer = [ "ey1", "dt vb vbn nnp fw jj ls nn" ];
 
         deepEqual(result, answer);
 
-        var re = lex.getLexicalData();
+        var re = lex.lexicalData();
         var result = re.the;
         var answer = [ "dh-ax", "dt vbd vbp nn in jj nnp pdt" ];
 
         deepEqual(result, answer);
     });
 
-    test("RiLexicon.getRandomWord()", function() { //TODO More Test
+    test("RiLexicon.randomWord()", function() { //TODO More Test
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
 
-        //getRandomWord();, getRandomWord(targetLength);, getRandomWord(pos);, getRandomWord(pos, targetLength);
+        //randomWord();, randomWord(targetLength);, randomWord(pos);, randomWord(pos, targetLength);
         var lex = createLex()
 
-        var result = lex.getRandomWord();
-        ok(result.length > 0, "getRandomWord: " + result);
+        var result = lex.randomWord();
+        ok(result.length > 0, "randomWord: " + result);
 
-        var result = lex.getRandomWord("nn");
-        ok(result.length > 0, "getRandomWord nn: " + result);
+        var result = lex.randomWord("nn");
+        ok(result.length > 0, "randomWord nn: " + result);
 
-        var result = lex.getRandomWord("nns");
-        ok(result.length > 0, "getRandomWord nns: " + result);
+        var result = lex.randomWord("nns");
+        ok(result.length > 0, "randomWord nns: " + result);
 
-        var result = lex.getRandomWord(3);
+        var result = lex.randomWord(3);
         ok(result.length > 0, "3 syllableCount: " + result);
 
-        var result = lex.getRandomWord(5);
+        var result = lex.randomWord(5);
         ok(result.length > 0, "5 syllableCount: " + result);
 
-        var result = lex.getRandomWord("nns", 3);
+        var result = lex.randomWord("nns", 3);
         ok(result.length > 0, "3 syllableCount + nns: " + result);
 
         // TODO: more tests with both count and pos
     });
 
 
-    test("RiLexicon.getRhymes()", function() {
+    test("RiLexicon.rhymes()", function() {
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
         var lex = createLex()
 
-        result = lex.getRhymes("apple");
+        result = lex.rhymes("apple");
         var answer = [ "chapel", "grapple", "pineapple" ];
         deepEqual(result, answer);
 
-        result = lex.getRhymes("apple.");
+        result = lex.rhymes("apple.");
         var answer = [];
         deepEqual(result, answer);
 
-        result = lex.getRhymes("bible");
+        result = lex.rhymes("bible");
         var answer = [ "libel", "tribal" ];
         deepEqual(result, answer);
 
-        var result = lex.getRhymes("google");
+        var result = lex.rhymes("google");
         var answer = [];
         deepEqual(result, answer);
 
-        result = lex.getRhymes("happens in here");
+        result = lex.rhymes("happens in here");
         var answer = [];
         deepEqual(result, answer);
 
-        result = lex.getRhymes("");
+        result = lex.rhymes("");
         var answer = [];
         deepEqual(result, answer);
 
 
     });
 
-    test("RiLexicon.getWords()", function() {
+    test("RiLexicon.words()", function() {
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
         var lex = createLex()
-        var result = lex.getWords();
+        var result = lex.words();
         ok(result.length > 1000);
 
-        var result2 = lex.getWords(false);
-        var result1 = lex.getWords(true);
+        var result2 = lex.words(false);
+        var result1 = lex.words(true);
         ok(result1.length > 1000);
         ok(result2.length > 1000);
         notDeepEqual(result1, result2);
 
-        //getWords(regex);
-        var result = lex.getWords("colou*r");
+        //words(regex);
+        var result = lex.words("colou*r");
         ok(result.length > 5);
 
-        var result = lex.getWords("[^A-M]in");
+        var result = lex.words("[^A-M]in");
         ok(result.length > 5);
 
-        var result1 = lex.getWords("colou*r", true);
+        var result1 = lex.words("colou*r", true);
         ok(result1.length > 5);
 
-        var result2 = lex.getWords(true, "colou*r");
+        var result2 = lex.words(true, "colou*r");
         ok(result2.length > 5);
         notDeepEqual(result1, result2);
 
-        var result1 = lex.getWords("colou*r", false);
+        var result1 = lex.words("colou*r", false);
         ok(result1.length > 5);
 
-        var result2 = lex.getWords(false, "colou*r");
+        var result2 = lex.words(false, "colou*r");
         ok(result2.length > 5);
 
         deepEqual(result1, result2);
@@ -644,27 +643,27 @@ var runtests = function() {
     });
 
 
-    test("RiLexicon.setLexicalData()", function() {
+    test("RiLexicon.lexicalData()", function() {
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
         var lex = createLex()
-        var originalLex = lex.getLexicalData();
-        lex.setLexicalData(originalLex);
+        var originalLex = lex.lexicalData();
+        lex.lexicalData(originalLex);
 
         var obj = [];
         obj["wonderfully"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
-        var result = lex.setLexicalData(obj);
+        var result = lex.lexicalData(obj);
         deepEqual(result, obj);
 
         var obj = [];
         obj["wonderfully"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
         obj["wonderfullyy"] = [ "w-ah1-n-d er-f ax-l iy-y", "rb" ];
-        var result = lex.setLexicalData(obj);
+        var result = lex.lexicalData(obj);
         deepEqual(result, obj);
         deepEqual(result.wonderfullyy, [ "w-ah1-n-d er-f ax-l iy-y", "rb" ]);
 
-        var result = lex.setLexicalData(null);
+        var result = lex.lexicalData(null);
         deepEqual(result, null);
 
     });

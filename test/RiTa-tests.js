@@ -5,7 +5,7 @@
 	    teardown: function () {}
 	});
 
-	var functions = [ "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "removeRandom", 
+	var functions = [ "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering",
 						"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
 					"tokenize", "trim", "distance", "random", "getPhonemes", "getPosTags", 
 					"getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet",
@@ -125,18 +125,18 @@
      }
  });
 
- test("RiTa.removeRandom()", function () { 
-     var result = ["I", "have", "no", "idea", "on", "this", "method"];
-     var input = ["I", "have", "no", "idea", "on", "this", "method"];
-     RiTa.removeRandom(result);
-     equal(result.length , input.length - 1);
+ // test("RiTa.removeRandom()", function () { 
+ //     var result = ["I", "have", "no", "idea", "on", "this", "method"];
+ //     var input = ["I", "have", "no", "idea", "on", "this", "method"];
+ //     RiTa.removeRandom(result);
+ //     equal(result.length , input.length - 1);
 
-     var result = ["I", " ", "no", "idea", "*%", "this", "method"];
-     var input = ["I", " ", "no", "idea", "*%", "this", "method"];
-     RiTa.removeRandom(result);
-     equal(result.length , input.length - 1);
+ //     var result = ["I", " ", "no", "idea", "*%", "this", "method"];
+ //     var input = ["I", " ", "no", "idea", "*%", "this", "method"];
+ //     RiTa.removeRandom(result);
+ //     equal(result.length , input.length - 1);
 
- });
+ // });
 
  test("RiTa.splitSentences()", function () {
 
