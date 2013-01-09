@@ -622,7 +622,7 @@
  
   });
   
-  test("RiTa.stem(lancaster)", function () { 
+    test("RiTa.stem(lancaster)", function () { 
         
         var type = 'Lancaster'; // default
         
