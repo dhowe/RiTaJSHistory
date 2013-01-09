@@ -239,25 +239,11 @@ var runtests = function () {
              	var rm = new RiMarkov(4);
              	var sents = rm.loadText(sample).sentenceList;
              	ok(sents && sents.length>0);
-             	ok(!"need more tests");
+             	ok(!"need more tests","need more tests"); // TODO
              });
                      
              test("RiMarkov.generateSentences()", function () {
 		
-				throws(function() {
-		
-					var rm = new RiMarkov(4);
-					rm.recognizeSentences(false);
-					
-					RiTa.SILENT = 1; 
-					try {
-						rm.generateSentences(10);
-					} catch (e) {
-						throw e;
-					}
-					RiTa.SILENT = 0;
-				});
-				
 				var rm = new RiMarkov(4);
 				rm.loadText(sample);
 				rm.recognizeSentences(false);
@@ -266,6 +252,21 @@ var runtests = function () {
 				}
 				 
 				ok(!"need more tests");
+
+                throws(function() {
+        
+                    var rm = new RiMarkov(4);
+                    rm.recognizeSentences(false);
+                    
+                    RiTa.SILENT = 1; 
+                    try {
+                        rm.generateSentences(10);
+                    } catch (e) {
+                        throw e;
+                    }
+                    RiTa.SILENT = 0;
+                });
+
              });  
                                 
              test("RiMarkov.generateUntil()", function () {
