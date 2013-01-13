@@ -402,7 +402,7 @@ var runtests = function() {
 
         ok(rg1._rules['<start>']);
         ok(rg1._rules['<noun_phrase>']);
-
+g
         rg1.removeRule('<noun_phrase>');
         ok(!rg1._rules['<noun_phrase>']);
 

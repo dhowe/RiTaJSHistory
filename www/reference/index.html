@@ -106,25 +106,20 @@
 			<li>
 				<h3 ><a href="symbols/RiGrammar.html">RiGrammar</a></h3>
 				A probabilistic context-free grammar with literary extensions designed for text-generation
-		<pre> 
-
+<pre> 
 		rg = new RiGrammar("mygrammar.g");
-		System.out.println(rg.expand());</pre>
+		System.out.println(rg.expand());
 
-  
-RiTa grammar files are JSON text files that follow the format below:
- <pre>   myGrammar = {
-		  &lt;start&gt;
-		  &lt;rule1&gt; | &lt;rule2&gt; | &lt;rule3&gt;
-		}
+		</pre>
+
+RiTa grammar files are JSON-formatted text files that follow the format below:
+ <pre>   
+
+		  "&lt;start&gt;": "&lt;rule1&gt; | &lt;rule2&gt; | &lt;rule3&gt;"
 	
-		{
-		  &lt;rule2&gt;
-		  terminal1 | 
-		  terminal2 | &lt;rule1&gt;
-		  # this is a comment 
-		}
-		.
+		  "&lt;rule2&gt;": "terminal1 |  terminal2 | &lt;rule1&gt;"
+		
+		   .
 			</li>
 
 			

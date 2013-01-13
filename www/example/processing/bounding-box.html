@@ -4,7 +4,9 @@
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing =============================== 
 
-	size(600, 400);
+void setup() {
+
+	size(600, 700);
 
 	RiText.showBoundingBoxes(true);
 	
@@ -19,14 +21,29 @@
     rt3.align(RIGHT);
     rt3.scale(72/pf.size); 
 
-    rt4 = new RiText("Bounding", 130, 200, pf);
+    rt4 = new RiText("Bound ing", 130, 200, pf);
     rt4.scale(32/pf.size); // default
     
 	rt5 = new RiText("Boundage", 180, 300);
 	rt5.font(createFont("Times",64));
 
-	background(255);
-	RiText.drawAll();
+	RiText.showBoundingBoxes(false);
+
+	RiText.defaultFont("Georgia",50,60);
+	rt6 = new RiText("Ground Hog", 199, 450);
+
+	rt7 = new RiText("Scaling Fail", 20, 600);
+	rt7.scale(2);
+}
+
+void draw() {
+    background(250);
+	var bb = rt6.boundingBox(true);
+    rect(bb.x, bb.y, bb.width, bb.height);
+    bb = rt7.boundingBox(true);
+    rect(bb.x, bb.y, bb.width, bb.height);
+    RiText.drawAll();
+}
 
 // ============================ End Processing =================================
 </script>

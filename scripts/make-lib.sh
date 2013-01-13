@@ -5,12 +5,13 @@ then
     echo
     echo "  error:   tag or version required"
     echo
-    echo "  usage:   make-lib.sh [tag] [-d -p] "
-    echo "           make-lib.sh 0.63a -d -p"
+    echo "  usage:   make-lib.sh [tag] [-p -D -M] "
+    echo "           make-lib.sh 0.63a -p -D -M"
     echo
     echo "  options:"
     echo "       -p = publish-after-build "
-    echo "       -d = dont-regenerate-docs"
+    echo "       -D = dont-make-docs"
+    echo "       -M = dont-minimize-lib"
     exit
 fi
 
@@ -21,15 +22,19 @@ MINIMIZE_SRC=1
 
 while [ $# -ge 1 ]; do
     case $1 in
-        -d)  INCLUDE_DOCS=0  ;;
+        -D)  INCLUDE_DOCS=0  ;;
     esac
     case $1 in
         -p)  DO_PUBLISH=1  ;;
+    esac
+    case $1 in
+        -M)  MINIMIZE_SRC=0  ;;
     esac
     shift
 done
 #echo "DOCS=$INCLUDE_DOCS"
 #echo "PUB=$DO_PUBLISH"
+#echo "MIN=$MINIMIZE_SRC"
 
 ##############################################################
 
@@ -50,8 +55,11 @@ RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 ZIP_TMP=/tmp/rita-$VERSION
 ZIP_FILE=rita-full-$VERSION.zip
 
+P5_JAVA=~/Documents/Processing/libraries/RiTa/library/rita.js
+
 echo
 echo Building RiTaJS v$VERSION ------------------------------
+echo
 
 ###COMPILE############################################################
 
@@ -69,6 +77,7 @@ then
     $COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level 3 \
                   --compilation_level SIMPLE_OPTIMIZATIONS 
 else
+    echo
     echo Skipping minimization
 fi
 
@@ -80,17 +89,20 @@ fi
 
 if [ $INCLUDE_DOCS = 1 ]
 then
+    echo
     echo Building js-docs...
     rm -rf $REF_DIR/*
     java -Xmx512m -jar $JSDOC/jsrun.jar $JSDOC/app/run.js -d=$REF_DIR -a \
         -t=$JSDOC/templates/ritajs -D="status:alpha" -D="version:$VERSION" $SRC > docs-err.txt 
 else
+    echo
     echo Skipping docs...
 fi
 
 
 ###EXAMPLES ##########################################################
 
+echo
 echo Copying examples
 cd .
 cp -r ../test/renderer/multitest.html ../www/example/
@@ -123,10 +135,15 @@ mkdir $BUILD
 cp -r ../www $BUILD
 ls -l $BUILD/www/download
 
+echo
+echo Copying into $P5_JAVA  # libraries dir
+
+cp $RITA_CODE ~/Documents/Processing/libraries/RiTa/library/rita.js
+
 ####################################################################
 
 echo
-echo Done [use pub-js.sh or pub-lib.sh to publish]
+echo Done [use pub-lib.sh or pub-js.sh to publish]
 
 if [ $DO_PUBLISH = 1 ]
 then

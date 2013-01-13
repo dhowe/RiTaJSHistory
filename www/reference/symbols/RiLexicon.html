@@ -206,6 +206,15 @@ you can do so directly, by editing the 'rita_dict.js' file, or programatically, 
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#alliterations">alliterations</a></b>(word)
+								</div>
+								<div class="description">Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#clear">clear</a></b>()
 								</div>
 								<div class="description">Clears the lexicon</div>
@@ -218,51 +227,6 @@ you can do so directly, by editing the 'rita_dict.js' file, or programatically, 
 								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#containsWord">containsWord</a></b>(word)
 								</div>
 								<div class="description">Returns true if the word exists in the lexicon</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getAlliterations">getAlliterations</a></b>(word)
-								</div>
-								<div class="description">Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getLexicalData">getLexicalData</a></b>()
-								</div>
-								<div class="description">Returns the raw dictionary data used to create the default lexicon</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getRandomWord">getRandomWord</a></b>(pos, syllableCount)
-								</div>
-								<div class="description">Returns a random word from the lexicon</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getRhymes">getRhymes</a></b>(word)
-								</div>
-								<div class="description">Two words rhyme if their final stressed vowel and all following phonemes are identical.</div>
-							</td>
-						</tr>
-					
-						<tr>
-							<td class="attributes">&nbsp;</td>
-							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#getWords">getWords</a></b>(regex, randomize)
-								</div>
-								<div class="description">Returns the array of all words in the lexicon or those matching a specific regex.</div>
 							</td>
 						</tr>
 					
@@ -333,6 +297,24 @@ and all following phonemes are identical, else false.</div>
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#lexicalData">lexicalData</a></b>(dictionaryDataObject)
+								</div>
+								<div class="description">Allows one to set/get the raw dictionary data used to create the default lexicon.</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#randomWord">randomWord</a></b>(pos, syllableCount)
+								</div>
+								<div class="description">Returns a random word from the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
 								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#removeWord">removeWord</a></b>(word)
 								</div>
 								<div class="description">Removes a word from the current lexicon (not permanent)</div>
@@ -342,9 +324,9 @@ and all following phonemes are identical, else false.</div>
 						<tr>
 							<td class="attributes">&nbsp;</td>
 							<td class="nameDescription">
-								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#setLexicalData">setLexicalData</a></b>(dictionaryDataObject)
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#rhymes">rhymes</a></b>(word)
 								</div>
-								<div class="description">Allows one to set the raw dictionary data used to create the default lexicon.</div>
+								<div class="description">Two words rhyme if their final stressed vowel and all following phonemes are identical.</div>
 							</td>
 						</tr>
 					
@@ -405,6 +387,15 @@ used in similarByLetter();
 								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#superstrings">superstrings</a></b>(word)
 								</div>
 								<div class="description">Returns all valid superstrings of the input word in the lexicon</div>
+							</td>
+						</tr>
+					
+						<tr>
+							<td class="attributes">&nbsp;</td>
+							<td class="nameDescription">
+								<div class="fixedFont"><b><a href="../symbols/RiLexicon.html#words">words</a></b>(regex, sorted)
+								</div>
+								<div class="description">Returns the array of all words in the lexicon or those matching a specific regex.</div>
 							</td>
 						</tr>
 					
@@ -522,6 +513,49 @@ used in similarByLetter();
 
 					<hr />
 				
+					<a name="alliterations"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>alliterations</b>(word)
+					
+					</div>
+					<div class="description">
+						Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>word</b>
+									
+								</dt>
+								<dd>input</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> strings of alliterations</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name="clear"> </a>
 					<div class="fixedFont">
 					
@@ -582,223 +616,6 @@ used in similarByLetter();
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{boolean}</span> </dd>
-							
-							</dl>
-						
-						
-						
-
-					<hr />
-				
-					<a name="getAlliterations"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{array}</span>
-					<b>getAlliterations</b>(word)
-					
-					</div>
-					<div class="description">
-						Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{string}</span> <b>word</b>
-									
-								</dt>
-								<dd>input</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{array}</span> strings of alliterations</dd>
-							
-							</dl>
-						
-						
-						
-
-					<hr />
-				
-					<a name="getLexicalData"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{object}</span>
-					<b>getLexicalData</b>()
-					
-					</div>
-					<div class="description">
-						Returns the raw dictionary data used to create the default lexicon
-						
-						
-					</div>
-					
-					
-					
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{object}</span> dictionary mapping words to their pronunciation/pos data</dd>
-							
-							</dl>
-						
-						
-						
-
-					<hr />
-				
-					<a name="getRandomWord"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{string}</span>
-					<b>getRandomWord</b>(pos, syllableCount)
-					
-					</div>
-					<div class="description">
-						Returns a random word from the lexicon
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{string}</span> <b>pos</b>
-									
-								</dt>
-								<dd>(optional)</dd>
-							
-								<dt>
-									<span class="light fixedFont">{string}</span> <b>syllableCount</b>
-									
-								</dt>
-								<dd>(optional)</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{string}</span> random word</dd>
-							
-							</dl>
-						
-						
-						
-
-					<hr />
-				
-					<a name="getRhymes"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{array}</span>
-					<b>getRhymes</b>(word)
-					
-					</div>
-					<div class="description">
-						Two words rhyme if their final stressed vowel and all following phonemes are identical.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{string}</span> <b>word</b>
-									
-								</dt>
-								<dd></dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{array}</span> strings of the rhymes for a given word, or empty array if none are found</dd>
-							
-							</dl>
-						
-						
-						
-
-					<hr />
-				
-					<a name="getWords"> </a>
-					<div class="fixedFont">
-					
-					<span class="light">{array}</span>
-					<b>getWords</b>(regex, randomize)
-					
-					</div>
-					<div class="description">
-						Returns the array of all words in the lexicon or those matching a specific regex. 
-If specified, the order of the result array is randomized before return.
-						
-						
-					</div>
-					
-					
-					
-						
-							<dl class="detailList">
-							<dt class="heading">Parameters:</dt>
-							
-								<dt>
-									<span class="light fixedFont">{regex}</span> <b>regex</b>
-									
-								</dt>
-								<dd>(string or object) pattern to match (optional)</dd>
-							
-								<dt>
-									<span class="light fixedFont">{boolean}</span> <b>randomize</b>
-									
-								</dt>
-								<dd>randomizes the order (default=false)</dd>
-							
-							</dl>
-						
-						
-						
-						
-						
-							<dl class="detailList">
-							<dt class="heading">Returns:</dt>
-							
-								<dd><span class="light fixedFont">{array}</span> words in the RiLexicon</dd>
 							
 							</dl>
 						
@@ -1115,6 +932,99 @@ but instead just returns false.
 
 					<hr />
 				
+					<a name="lexicalData"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{object}</span>
+					<b>lexicalData</b>(dictionaryDataObject)
+					
+					</div>
+					<div class="description">
+						Allows one to set/get the raw dictionary data used to create the default lexicon.
+See RiLexicon.addWord() for data format
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{object}</span> <b>dictionaryDataObject</b>
+									
+								</dt>
+								<dd>mapping words to their pronunciation/pos data (optional, for sets only)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{object}</span> this RiLexicon or lexical data (for gets)</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="randomWord"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{string}</span>
+					<b>randomWord</b>(pos, syllableCount)
+					
+					</div>
+					<div class="description">
+						Returns a random word from the lexicon
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>pos</b>
+									
+								</dt>
+								<dd>(optional)</dd>
+							
+								<dt>
+									<span class="light fixedFont">{string}</span> <b>syllableCount</b>
+									
+								</dt>
+								<dd>(optional)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{string}</span> random word</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
 					<a name="removeWord"> </a>
 					<div class="fixedFont">
 					
@@ -1162,16 +1072,15 @@ but instead just returns false.
 
 					<hr />
 				
-					<a name="setLexicalData"> </a>
+					<a name="rhymes"> </a>
 					<div class="fixedFont">
 					
-					<span class="light">{object}</span>
-					<b>setLexicalData</b>(dictionaryDataObject)
+					<span class="light">{array}</span>
+					<b>rhymes</b>(word)
 					
 					</div>
 					<div class="description">
-						Allows one to set the raw dictionary data used to create the default lexicon.
-See RiLexicon.addWord() for data format
+						Two words rhyme if their final stressed vowel and all following phonemes are identical.
 						
 						
 					</div>
@@ -1183,10 +1092,10 @@ See RiLexicon.addWord() for data format
 							<dt class="heading">Parameters:</dt>
 							
 								<dt>
-									<span class="light fixedFont">{object}</span> <b>dictionaryDataObject</b>
+									<span class="light fixedFont">{string}</span> <b>word</b>
 									
 								</dt>
-								<dd>mapping words to their pronunciation/pos data</dd>
+								<dd></dd>
 							
 							</dl>
 						
@@ -1197,7 +1106,7 @@ See RiLexicon.addWord() for data format
 							<dl class="detailList">
 							<dt class="heading">Returns:</dt>
 							
-								<dd><span class="light fixedFont">{object}</span> this RiLexicon</dd>
+								<dd><span class="light fixedFont">{array}</span> strings of the rhymes for a given word, or empty array if none are found</dd>
 							
 							</dl>
 						
@@ -1481,6 +1390,56 @@ used in similarByLetter();
 							<dt class="heading">Returns:</dt>
 							
 								<dd><span class="light fixedFont">{array}</span> matching words</dd>
+							
+							</dl>
+						
+						
+						
+
+					<hr />
+				
+					<a name="words"> </a>
+					<div class="fixedFont">
+					
+					<span class="light">{array}</span>
+					<b>words</b>(regex, sorted)
+					
+					</div>
+					<div class="description">
+						Returns the array of all words in the lexicon or those matching a specific regex. 
+If specified, the order of the result array is randomized before return.
+						
+						
+					</div>
+					
+					
+					
+						
+							<dl class="detailList">
+							<dt class="heading">Parameters:</dt>
+							
+								<dt>
+									<span class="light fixedFont">{regex}</span> <b>regex</b>
+									
+								</dt>
+								<dd>(string or object) pattern to match (optional)</dd>
+							
+								<dt>
+									<span class="light fixedFont">{boolean}</span> <b>sorted</b>
+									
+								</dt>
+								<dd>In sorted order when true (default=false)</dd>
+							
+							</dl>
+						
+						
+						
+						
+						
+							<dl class="detailList">
+							<dt class="heading">Returns:</dt>
+							
+								<dd><span class="light fixedFont">{array}</span> words in the RiLexicon</dd>
 							
 							</dl>
 						
