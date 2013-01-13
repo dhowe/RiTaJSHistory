@@ -417,21 +417,37 @@
 
  test("RiTa.getPosTags()", function () {
      
-     var result = RiTa.getPosTags("asfaasd");
-     var answer = ["nn"];
-     deepEqual(result, answer);
+  var result = RiTa.getPosTags("running");
+  var answer = ["vbg"];
+  deepEqual(result, answer);
 
-     var result = RiTa.getPosTags("clothes");
-     var answer = ["nns"];
-     deepEqual(result, answer);
+  var result = RiTa.getPosTags("asserting");
+  var answer = ["vbg"];
+  deepEqual(result, answer);
 
-     var result = RiTa.getPosTags("There is a cat.");
-     var answer = ["ex", "vbz", "dt", "nn", "."];
-     deepEqual(result, answer);
+  var result = RiTa.getPosTags("assenting");
+  var answer = ["vbg"];
+  deepEqual(result, answer);
 
-     var result = RiTa.getPosTags("The boy, dressed in red, ate an apple.");
-     var answer = ["dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "."];
-     deepEqual(result, answer);
+/*  var result = RiTa.getPosTags("the boy dances");
+  var answer = ["dt", "nn", "vbg"];
+  deepEqual(result, answer); TODO: FAILING     */
+
+  var result = RiTa.getPosTags("asfaasd");
+  var answer = ["nn"];
+  deepEqual(result, answer);
+
+  var result = RiTa.getPosTags("clothes");
+  var answer = ["nns"];
+  deepEqual(result, answer);
+
+  var result = RiTa.getPosTags("There is a cat.");
+  var answer = ["ex", "vbz", "dt", "nn", "."];
+  deepEqual(result, answer);
+
+  var result = RiTa.getPosTags("The boy, dressed in red, ate an apple.");
+  var answer = ["dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "."];
+  deepEqual(result, answer);
      
      var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
      var result = RiTa.getPosTags(txt);

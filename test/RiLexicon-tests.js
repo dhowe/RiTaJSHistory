@@ -306,7 +306,6 @@ var runtests = function() {
         ok(result2.length > 1000);
         notDeepEqual(result1, result2);
 
-        //words(regex);
         var result = lex.words("colou*r");
         ok(result.length > 5);
 
@@ -314,19 +313,13 @@ var runtests = function() {
         ok(result.length > 5);
 
         var result1 = lex.words("colou*r", true);
-        ok(result1.length > 5);
+         ok(result1.length > 5);
 
         var result2 = lex.words(true, "colou*r");
         ok(result2.length > 5);
-        notDeepEqual(result1, result2);
-
-        var result1 = lex.words("colou*r", false);
-        ok(result1.length > 5);
-
-        var result2 = lex.words(false, "colou*r");
-        ok(result2.length > 5);
 
         deepEqual(result1, result2);
+
     });
 
     test("RiLexicon.isAdverb()", function() {
