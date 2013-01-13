@@ -135,25 +135,21 @@
 				
 			
 				A probabilistic context-free grammar with literary extensions designed for text-generation
-		<pre> 
-
+<pre> 
 		rg = new RiGrammar("mygrammar.g");
-		System.out.println(rg.expand());</pre>
+		System.out.println(rg.expand());
 
-  
-RiTa grammar files are JSON text files that follow the format below:
- <pre>   myGrammar = {
-		  &lt;start&gt;
-		  &lt;rule1&gt; | &lt;rule2&gt; | &lt;rule3&gt;
-		}
+		</pre>
+
+RiTa grammar files are JSON-formatted text files that follow the format below:
+ <pre>   
+
+		  "&lt;start&gt;": "&lt;rule1&gt; | &lt;rule2&gt; | &lt;rule3&gt;"
 	
-		{
-		  &lt;rule2&gt;
-		  terminal1 | 
-		  terminal2 | &lt;rule1&gt;
-		  # this is a comment 
-		}
-		...</pre>   
+		  "&lt;rule2&gt;": "terminal1 |  terminal2 | &lt;rule1&gt;"
+		
+		   ...
+		</pre>   
 <b>Primary methods of interest:</b>
 <ul>
 <li><code>expand()</code> which simply begins at the &lt;start&gt; state and 
@@ -178,25 +174,22 @@ by the terminal "hello".
 <li>A RiGrammar object will assign (by default) equal weights to all choices in a rule. 
 One can adjust the weights by adding 'multipliers' as follows: (in the rule below,
 'terminal1' will be chosen twice as often as the 2 other choices.
-<pre>   {
-		 &lt;rule2&gt;
-		 [2] terminal1 | 
-		 terminal2 | &lt;rule1&gt; 
-	   }</pre>
+<pre>   
+		 "&lt;rule2&gt;": "[2] terminal1 | terminal2 | &lt;rule1&gt;" 
+	   </pre>
 <li>The RiGrammar object supports callbacks, from your grammar, back into your code.
 To generate a callback, add the method call in your grammar, surrounded by back-ticks, as follows:
 <pre>   
-    {
-      &lt;rule2&gt;
-      The cat ran after the `getRhyme("cat");` |
-      The &lt;noun&gt; ran after the `pluralize(&lt;noun&gt;);` 
-    }</pre>
+    
+      "&lt;rule2&gt;": "The cat ran after the `pluralize('cat');` | \
+      The &lt;noun&gt; ran after the `pluralize(&lt;noun&gt;);`" 
+    </pre>
     
 Any number of arguments may be passed in a callback, but for each call,
 there must be a corresponding method in the sketch, e.g.,
 
 <pre>
-   function pluralize(String s) {
+   function pluralize(theString) {
      ...
    }
 </pre>

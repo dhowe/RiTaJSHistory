@@ -4,28 +4,44 @@
 
 RiTa.p5Compatible(true);
 
-window.onload = function() {
-    
+function setup() {
+
+    size(600, 700);
+
     RiText.showBoundingBoxes(true);
     
-    var pf = { name: "Arial", size: 36 };
+    var pf = createFont("Arial", 36);
     
     rt1 = new RiText("Bounding", 130, 100);
     rt1.font(pf);
 
-    rt2 = new RiText("wounze", 50, 240); //def
+    rt2 = new RiText("wounze", 50, 240);
 
-    rt3 = new RiText("Bound in", width(), 170, pf); // ?
+    rt3 = new RiText("Bound in", 600, 170, pf);
     rt3.align(RIGHT);
     rt3.scale(72/pf.size); 
 
-    rt4 = new RiText("Bounding", 130, 200, pf);
+    rt4 = new RiText("Bound ing", 130, 200, pf);
     rt4.scale(32/pf.size); // default
     
     rt5 = new RiText("Boundage", 180, 300);
-    rt5.font({name:"Times",size:64});
+    rt5.font(createFont("Times",64));
 
-    RiText.background(255);
+    RiText.showBoundingBoxes(false);
+
+    RiText.defaultFont("Georgia",50,60);
+    rt6 = new RiText("Ground Hog", 199, 450);
+
+    rt7 = new RiText("Scaling Fail", 20, 600);
+    rt7.scale(2);
+}
+
+function draw() {
+    background(250);
+    var bb = rt6.boundingBox(true);
+    RiText.renderer._rect(bb.x, bb.y, bb.width, bb.height);
+    bb = rt7.boundingBox(true);
+    RiText.renderer._rect(bb.x, bb.y, bb.width, bb.height);
     RiText.drawAll();
 }
 
