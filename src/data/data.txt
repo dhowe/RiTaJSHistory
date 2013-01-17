@@ -1,4 +1,0 @@
-This is a test data file.
-How can we load it?
-
-Hmmm.
