@@ -1,0 +1,28 @@
+<script src='../../../lib/processing.js'></script>
+<script src='../../../src/rita.js'></script>
+
+<script type='text/processing' data-processing-target='mycanvas'>
+// =========================== Start Processing =============================== 
+int x = 50, y = 50, w = 500, h = 700;
+
+String txt = "This, then, was his problem: beginning. And having begun: avoiding resolutions. Thus, there were worse jokes his blood might have played on him. Its message might have read: All beginnings imply an apocalypse. Perhaps, in fact, that’s what it did say, how was he to know? Pulling the trigger, he thought: This is working! I’m getting on! It was comfortable, that cabin, roomy and clean-smelling, with walls of unvarnished Norway pine, Coleman lanterns for light, a wood cookstove, and a long pine table with a yellow checkered oilcloth he’d bought for it, big enough to eat on and write on at the same time. There was a bay out front with a small pier for the boat. He was alone on the island, except for a few squirrels, frogs, muskrats, the odd weasel, birds, porcupines. The nearest people were about a mile’s boatride away. He rarely needed these people, though sometimes he visited them when his imagination failed him or he ran out of peanutbutter. On these occasions, they often told him stories, astounding him with their fearless capacity for denouement, and he’d return to his island shaken, thinking: I’m the last man alive on earth! Once they told him about a man who had come to one of the islands to write, but on arriving had shot himself. Yes, he told them, that was me, and they noticed then that his head was coming apart, and on the wall was a message: You ain’t seen nothin’ yet, friends! He once wrote a story about a man who was born at the age of thirtytwo with a self-destruct mechanism in his gonads, such that he could be sure of only one orgasm before he died. This man traveled all over the world, seeking out the perfect mate for this ultimate experience, but blew it one night in a wet dream on a jet flight over Bangkok.";
+
+void setup() {
+  size(600, 780);
+  doPageLayout();
+}
+
+void draw() {
+  background(255);
+  RiText.drawAll();
+}
+
+void doPageLayout() {
+
+  RiText.defaultFont("Georgia", 16,20); // TODO: js, rm rectangle, add leading
+  RiText[] lines = RiText.createLines(txt, x, y, w, h); 
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id='mycanvas' style='border: 1px solid #000000;'></canvas>
