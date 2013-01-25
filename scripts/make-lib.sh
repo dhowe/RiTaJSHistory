@@ -12,23 +12,35 @@ then
     echo "       -p = publish-after-build "
     echo "       -D = dont-make-docs"
     echo "       -M = dont-minimize-lib"
+    echo "       -Z = dont-make-zip"
+    echo "       -c = -DMZ (just combine js)" 
     exit
 fi
 
 VERSION=$1
+MAKE_ZIP=1
 DO_PUBLISH=0
 INCLUDE_DOCS=1
 MINIMIZE_SRC=1
 
 while [ $# -ge 1 ]; do
     case $1 in
-        -D)  INCLUDE_DOCS=0  ;;
+        -D) INCLUDE_DOCS=0  ;;
     esac
     case $1 in
-        -p)  DO_PUBLISH=1  ;;
+        -Z) MAKE_ZIP=0  ;;
     esac
     case $1 in
-        -M)  MINIMIZE_SRC=0  ;;
+        -p) DO_PUBLISH=1  ;;
+    esac
+    case $1 in
+        -M) MINIMIZE_SRC=0  ;;
+    esac
+    case $1 in
+        -c) MINIMIZE_SRC=0  
+            INCLUDE_DOCS=0
+            MAKE_ZIP=0  
+            ;;
     esac
     shift
 done
@@ -112,19 +124,22 @@ echo
 
 ###ZIP###############################################################
 
-echo Making complete zip 
 
-rm -rf $ZIP_TMP
-mkdir $ZIP_TMP
-cd ../www
-cp -r example download/*.js reference tutorial css $ZIP_TMP
-cd - 
-cd $ZIP_TMP
-jar cf $ZIP_FILE *
-cd -
-mv $ZIP_TMP/$ZIP_FILE $DOWNLOAD_DIR
-rm -rf $ZIP_TMP
-echo
+if [ $INCLUDE_DOCS = 1 ]
+then
+    echo Making complete zip 
+    rm -rf $ZIP_TMP
+    mkdir $ZIP_TMP
+    cd ../www
+    cp -r example download/*.js reference tutorial css $ZIP_TMP
+    cd - 
+    cd $ZIP_TMP
+    jar cf $ZIP_FILE *
+    cd -
+    mv $ZIP_TMP/$ZIP_FILE $DOWNLOAD_DIR
+    rm -rf $ZIP_TMP
+    echo
+fi
 
 ###COPY##############################################################
 
