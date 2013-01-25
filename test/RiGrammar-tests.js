@@ -12,9 +12,7 @@ var runtests = function() {
 
     var grammarObj = { '<start>' : '<noun_phrase> <verb_phrase>', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
 
-    var uniqueNouns = {
-
-    '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' }
+    var uniqueNouns = { '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' }
 
     var rg; // the grammar
     
@@ -70,6 +68,7 @@ var runtests = function() {
             window.grammar = rg = new RiGrammar(uniqueNouns);
             for ( var i = 0; i < 30; i++) {
                 var res = rg.expand();
+                console.log("result="+res)
                 ok(res);
                 var dc = res.match(/dog/g);
                 var cc = res.match(/cat/g);
@@ -272,6 +271,36 @@ var runtests = function() {
         }
     });
 
+    test("RiGrammar.expandFrom(Weighted)", function() {
+
+        var rg = new RiGrammar();
+
+        rg.reset();
+        rg.addRule("<start>", "<pet>");
+        rg.addRule("<pet>", "<bird> [9] | <mammal>");
+        rg.addRule("<bird>", "hawk");
+        rg.addRule("<mammal>", "dog [2]");
+
+        equal(rg.expandFrom("<mammal>"), "dog");
+
+        var hawks=0,dogs=0;
+        for ( var i = 0; i < 100; i++) {
+            var res = rg.expandFrom("<pet>");
+            ok(res === "hawk" || res === 'dog');
+            if (res=="dog") dogs++;
+            if (res=="hawk") hawks++;
+        }
+        ok(hawks > dogs*2);
+     });
+    test("RiGrammar.expandFrom(Trim)", function() {
+        var rg = new RiGrammar();
+        rg.addRule("<start>", " The <pet> runs ");
+        rg.addRule("<pet>", " <bird> ");
+        rg.addRule("<bird>", " hawk ");
+        var res = rg.expandFrom("<start>");
+        equal(res, "The hawk runs"); 
+
+    });
     test("RiGrammar.getRule", function() {
 
         var rg = new RiGrammar();
@@ -402,7 +431,7 @@ var runtests = function() {
 
         ok(rg1._rules['<start>']);
         ok(rg1._rules['<noun_phrase>']);
-g
+
         rg1.removeRule('<noun_phrase>');
         ok(!rg1._rules['<noun_phrase>']);
 

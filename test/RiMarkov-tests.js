@@ -284,6 +284,7 @@ var runtests = function () {
                    var n = rm.getN();
                    for ( var j = 0; j < arr.length-n; j++) {
                       var partial = arr.slice(j,j+n);
+                      console.log(partial);
                       partial = RiTa.untokenize(partial);
                       ok(sample.indexOf(partial)>-1,partial)
                    }
