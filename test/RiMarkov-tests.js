@@ -11,7 +11,7 @@ var runtests = function () {
                             "getCompletions", 
                             "getProbabilities", 
                             "getProbability", 
-                            "numTokens", 
+                            "size", 
                             "loadTokens", 
                             "loadText", 
                             "recognizeSentences",
@@ -156,7 +156,7 @@ var runtests = function () {
                  var rm = new RiMarkov(3);
                  rm.loadTokens(tokens);
                  ok(rm.root.count==tokens.length);
-                 ok(rm.numTokens()==tokens.length);
+                 ok(rm.size()==tokens.length);
              });
 
 
@@ -424,13 +424,13 @@ var runtests = function () {
              });
              
             
-            test("RiMarkov.numTokens", function () {
+            test("RiMarkov.size", function () {
                  
                  var tokens = RiTa.tokenize(sample);
                  var rm = new RiMarkov(3);
                  rm.loadTokens(tokens);
                  ok(rm.root.count==tokens.length);
-                 ok(rm.numTokens()==tokens.length);
+                 ok(rm.size()==tokens.length);
             });
             
             test("RiMarkov.getCompletions(a)", function () { //TODO 
