@@ -1,9 +1,11 @@
-var runtests = function() {
+  var runtests = function() {
     QUnit.module("RiText", {
 	    setup: function () {},
 	    teardown: function () {}
 	});
-    var statics = [
+
+  // TODO: check that all these have tests...
+  var statics = [
                    "createFont",
                    "createLetters",
                    "createWords",
@@ -36,6 +38,8 @@ var runtests = function() {
                    "stopTimer",
                    ];
   
+
+    // TODO: check that all these have tests...
     var functions = [ 
                    "align",
                    "alpha",
@@ -68,7 +72,6 @@ var runtests = function() {
                    "colorTo",
                    "rotateTo",
                    "scaleTo",
-                   /////////////////
                    "stopBehavior",
                    "stopBehaviors",
                    "textTo"
@@ -1201,6 +1204,27 @@ var runtests = function() {
 
 
     //---------------------------END COPY FROM RISTRING TESTS
+
+
+    test("RiText.clone()", function() { 
+      var rt = new RiText(100,270,"hello");
+      
+      rt.color(101,102,103,104);
+      rt.showBoundingBox(true);
+      
+      var rt2 = rt.clone();
+      equal(rt.x,rt2.x);
+      equal(rt.y,rt2.y);
+      equal(rt.z,rt2.z);
+      equal(rt.alpha(),rt2.alpha());
+      equal(rt.text(),rt2.text());
+      equal(rt.showBoundingBox(),rt2.showBoundingBox());
+
+      deepEqual(rt.color(),rt2.color());
+
+      // ...
+      //
+    });
 
 
     test("RiText.createFont()", function() { //TODO
