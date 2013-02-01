@@ -219,23 +219,23 @@ var runtests = function() {
 
         var re = lex.lexicalData();
         var result = re.a;
-        var answer = [ "ey1", "dt vb vbn nnp fw jj ls nn" ];
+        var answer = [ "ey1", "dt" ];
 
         deepEqual(result, answer);
 
         var re = lex.lexicalData();
         var result = re.the;
-        var answer = [ "dh-ax", "dt vbd vbp nn in jj nnp pdt" ];
+        var answer = [ "dh-ax", "dt" ];
 
         deepEqual(result, answer);
     });
 
-    test("RiLexicon.randomWord()", function() { //TODO More Test
+    test("RiLexicon.randomWord(1)", function() { 
 
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
 
-        //randomWord();, randomWord(targetLength);, randomWord(pos);, randomWord(pos, targetLength);
         var lex = createLex()
+        //randomWord();, randomWord(targetLength);, randomWord(pos);, randomWord(pos, targetLength);
 
         var result = lex.randomWord();
         ok(result.length > 0, "randomWord: " + result);
@@ -254,6 +254,57 @@ var runtests = function() {
 
         var result = lex.randomWord("nns", 3);
         ok(result.length > 0, "3 syllableCount + nns: " + result);
+    });
+
+    test("RiLexicon.randomWord(2)", function() { 
+
+        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
+
+        var lex = createLex()
+
+        var pos = ["nn","nns","jj","jjr","wp"];
+        for (var j = 0; j < pos.length; j++)
+        {
+          for (var i = 0; i < 20; i++)
+          {
+            var result = lex.randomWord(pos[j]);
+            var best = lex._getBestPos(result);
+            //console.log(result+": "+pos[j]+" ?= "+best);
+            equal(pos[j],best,result);
+          }
+        }
+    });
+
+    test("RiLexicon.randomWord(3)", function() { 
+
+console.log('SYLLABLE_BOUNDARY: '+RiTa.SYLLABLE_BOUNDARY);
+
+        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
+
+        var lex = createLex()
+        for (var i = 0; i < 20; i++)
+        {
+          var result = lex.randomWord(3);
+          var syllables = RiTa.getSyllables(result);
+          var num = syllables.split(RiTa.SYLLABLE_BOUNDARY).length;
+          ok(result.length > 0);
+          ok(num==3,result+": "+syllables);// "3 syllableCount: "
+        }
+    });
+
+    test("RiLexicon.randomWord(4)", function() { 
+
+        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
+
+        var lex = createLex()
+        for (var i = 0; i < 20; i++)
+        {
+          var result = lex.randomWord(5);
+          var syllables = RiTa.getSyllables(result);
+          var num = syllables.split(RiTa.SYLLABLE_BOUNDARY).length;
+          ok(result.length > 0);// "3 syllableCount: "
+          ok(num==5);// "3 syllableCount: "
+        }
 
         // TODO: more tests with both count and pos
     });
@@ -277,8 +328,12 @@ var runtests = function() {
         var answer = [ "libel", "tribal" ];
         deepEqual(result, answer);
 
-        var result = lex.rhymes("google");
+        var result = lex.rhymes("goxgle");
         var answer = [];
+        deepEqual(result, answer);
+
+        var result = lex.rhymes("google");
+        var answer = ['bugle','frugal'];
         deepEqual(result, answer);
 
         result = lex.rhymes("happens in here");
