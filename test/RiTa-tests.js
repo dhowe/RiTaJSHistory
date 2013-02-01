@@ -25,7 +25,22 @@
     
     test("RiTa.p5Compatible", function () {
 
-        ok(!"needs a test");
+        RiTa.p5Compatible(true);
+        equal(typeof RiText.setDefaultFont, 'function'); 
+        RiTa.p5Compatible(false);
+        equal(typeof RiText.setDefaultFont, 'undefined'); 
+
+        if (window) {
+            RiTa.p5Compatible(true);
+            equal(typeof line, 'function'); 
+            RiTa.p5Compatible(false);
+            equal(typeof line, 'undefined'); 
+
+            RiTa.p5Compatible(true);
+            ok(RiText.prototype.textAlign); 
+            RiTa.p5Compatible(false);
+            equal(typeof RiText.prototype.textAlign, 'undefined'); 
+        }
     });
     
     test("RiTa.isAbbreviation()", function () {
