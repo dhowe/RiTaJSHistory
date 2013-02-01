@@ -120,6 +120,7 @@ cd .
 cp -r ../test/renderer/multitest.html ../www/example/
 cp -r ../test/renderer/*.wav ../www/example/  # ???? 
 cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
+## also need to copy libraries for local www??
 echo
 
 ###ZIP###############################################################

@@ -277,8 +277,6 @@ var runtests = function() {
 
     test("RiLexicon.randomWord(3)", function() { 
 
-console.log('SYLLABLE_BOUNDARY: '+RiTa.SYLLABLE_BOUNDARY);
-
         ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
 
         var lex = createLex()
