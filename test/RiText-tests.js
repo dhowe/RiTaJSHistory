@@ -46,7 +46,7 @@
                    "boundingBox",
                    "center",
                    "charOffset",
-                   "clone",
+                   "copy",
                    "color",           
                    "distanceTo",
                    "draw",               
@@ -258,6 +258,11 @@
         ok(!rs.containsWord("."));
         ok(!rs.containsWord("brown"));
     });
+
+    test("RiText.copy()", function() {
+
+        ok(false,"no tests");
+    })
 
     test("RiText.endsWith()", function() {
 

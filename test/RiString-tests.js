@@ -6,9 +6,11 @@ var runtests = function() {
 	}); 
 	
     var functions = [
+
         "analyze",
         "charAt",
         "concat",
+        "copy",
         "endsWith",
         "equals",
         "equalsIgnoreCase",
@@ -71,6 +73,7 @@ var runtests = function() {
         var result = RiString._syllabify(test);
         deepEqual(result, expected);
     });
+
 
     test("RiString._syllabify(array)", function() {
 
@@ -157,6 +160,13 @@ var runtests = function() {
         equal(features.phonemes, "w-ah-n t-uw s-eh-v-ax-n");
         equal(features.syllables, "w-ah-n t-uw s-eh/v-ax-n");
         equal(features.stresses, "0 0 1/0");
+
+        var features = RiString("s*").analyze().features();
+        ok(features); // fails LTS
+        equal(features.phonemes, "");
+        equal(features.syllables, "");
+        equal(features.stresses, "");
+
     });
 
     test("RiString.charAt()", function() {
@@ -193,6 +203,33 @@ var runtests = function() {
         var result = rs.concat(rs2);
         equal(result, "#$#@#$@#The dog was not white ");
 
+    });
+
+    test("RiString.copy()", function() {
+
+      var rs = new RiString("copy cat");
+      var rs2 = rs.copy();
+      deepEqual(rs2, rs);
+
+      rs = new RiString("copy dogs.");
+      rs2 = rs.copy();
+      deepEqual(rs, rs2);
+
+      rs = new RiString("cOPy dOgs.");
+      rs2 = rs.copy();
+      deepEqual(rs, rs2);
+
+      rs = new RiString("!@#$%^&*()_+");
+      rs2 = rs.copy();
+      deepEqual(rs, rs2);
+
+      rs = new RiString("");
+      rs2 = rs.copy();
+      deepEqual(rs, rs2);
+
+      rs = new RiString("!@#$sadas*()_+");
+      rs2 = rs.copy();
+      deepEqual(rs, rs2);
     });
 
     test("RiString.endsWith()", function() {
