@@ -2,12 +2,14 @@
 <script src="../../../src/rita.js "></script>
 <script type="text/processing" data-processing-target="mycanvas ">
 
-  var rt, clicks, txt = [ "Click To Fade", "Fade On Click" ];
+  var rt, ts, clicks, txt = [ "Click To Fade", "Fade On Click" ];
   
   void setup() {  
   	
 	size(400,100);
-	rt = RiText(txt[0], 10, 70, createFont("Arial", 60));
+	rt = RiText("Fade In & Out", 10, 70, createFont("Arial", 60));
+	rt.fadeOut(5);
+	ts = Date.now();
   }  
   
   void draw() {
@@ -27,7 +29,14 @@
 
   void onRiTaEvent(e) {
 
-	console.log("event-type: " + e.getType());
+	var rt = e.getSource();
+	if (rt.isVisible()) {
+		rt.fadeOut(5);
+	}
+	else {
+		rt.fadeIn(5);
+		console.log("elapsed: "+((Date.now()-ts)/1000)+"s")
+	}
   }
 
 </script>
