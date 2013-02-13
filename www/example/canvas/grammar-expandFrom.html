@@ -1,8 +1,8 @@
-<script src="../../../lib/processing.js"></script>
+<canvas id="canvas" style="border: 1px solid #000000;"></canvas>
 <script src="../../../src/rita.js"></script>
+<script>
 
-<script type="text/processing" data-processing-target="mycanvas">
-// =========================== Start Processing =============================== 
+RiTa.p5Compatible(1);
 
 haikuGrammar = { 
     "<start>": "<5-line> % <7-line> % <5-line>",  
@@ -15,37 +15,37 @@ haikuGrammar = {
     "<5>": "resolutional | non-elemental | rolling foothills rise | toward mountains higher | out over this country | in the springtime again"
 };
 
-var rts = [];
+var grammar, rts = [];
 
-void setup()
+function setup()
 {
-    size(650, 200);
+    RiText.size(650, 200);
 
-    RiText.setDefaultFont(createFont("arial",30));
-    RiText.setDefaultAlignment(CENTER);
+    RiText.defaultFont("arial",30);  
+    RiText.defaultAlignment(CENTER);
 
-    rts[0] = new RiText("click to", width / 2, 75);
-    rts[1] = new RiText("generate", width / 2, 110);
-    rts[2] = new RiText("a 7-7-7 haiku", width / 2, 145); 
+    rts[0] = new RiText("click to", RiText.width() / 2, 75);
+    rts[1] = new RiText("generate", RiText.width() / 2, 110);
+    rts[2] = new RiText("a 7-7-7 haiku", RiText.width() / 2, 145); 
 
     grammar = new RiGrammar(haikuGrammar);
+    
 }
 
-void draw()
+function draw()
 {
-    background(230, 240, 255);
-    for ( var k = 0; k < rts.length; k++)
-        rts[k].draw();
+    RiText.background(230,240, 255);
+    RiText.drawAll();
 }
 
-void mouseClicked()
+function mouseClicked()
 {
     // all 7s
-    for ( var i = 0; i < rts.length; i++) {
+    for (var i = 0; i < rts.length; i++) {
         var result = grammar.expandFrom("<7-line>");
         rts[i].setText(result);
     }
 }
-// ============================ End Processing =================================
+
+
 </script>
-<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
