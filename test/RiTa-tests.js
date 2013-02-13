@@ -815,102 +815,107 @@
         equal(RiTa.pluralize("taxi"), "taxis");
         equal( RiTa.pluralize("Chinese"), "Chinese");
         equal( RiTa.pluralize("bonsai"), "bonsai");
+        
+        equal(RiTa.pluralize("gas"), "gases");
+    	equal(RiTa.pluralize("bus"), "buses");
+    	equal(RiTa.pluralize("happiness"), "happiness");
     });
     
    test("RiTa.singularize()", function () { 
-       
-       equal( RiTa.singularize("bonsai"), "bonsai");
-       equal( RiTa.singularize("crises"), "crisis");
-       equal( RiTa.singularize("taxis"), "taxi");
-       equal( RiTa.singularize("chiefs"), "chief");
-       equal( RiTa.singularize("monarchs"), "monarch");
-       equal( RiTa.singularize("lochs"), "loch");
-       equal( RiTa.singularize("stomachs"), "stomach");
-       
-       equal( RiTa.singularize("Chinese"), "Chinese");
-       
-       equal( RiTa.singularize("people"), "person");
-       equal( RiTa.singularize("monies"), "money");
-       equal( RiTa.singularize("vertebrae"), "vertebra");
-       equal( RiTa.singularize("humans"), "human");
-       equal( RiTa.singularize("germans"), "german");
-       equal( RiTa.singularize("romans"), "roman");
-       
-       
-       equal( RiTa.singularize("memoranda"), "memorandum");
-       equal( RiTa.singularize("data"), "datum" );
-       equal( RiTa.singularize("appendices"), "appendix");
-       equal( RiTa.singularize("theses"), "thesis" );
-       equal( RiTa.singularize("alumni"), "alumnus" );
-       
-       
-       equal( RiTa.singularize("solos"), "solo" );
-       equal( RiTa.singularize("music"), "music" );
-       
-        equal( RiTa.singularize("oxen"), "ox" );
-        equal( RiTa.singularize("solos"), "solo" );
-        equal( RiTa.singularize("music"), "music" );
-        
-        equal(RiTa.singularize("tobacco"), "tobacco");
-        equal(RiTa.singularize("cargo"), "cargo");
-        equal(RiTa.singularize("golf"), "golf");
-        equal(RiTa.singularize("grief"), "grief");
-   
-        equal(RiTa.singularize("cakes"), "cake");
-        
-        equal("dog", RiTa.singularize("dogs"));
-        equal("foot", RiTa.singularize("feet"));
-        equal("tooth", RiTa.singularize("teeth"));
-        equal("kiss", RiTa.singularize("kisses"));
-        equal("child", RiTa.singularize("child"));
-        equal("randomword", RiTa.singularize("randomwords"));
-        equal("deer", RiTa.singularize("deer"));
-        equal("sheep", RiTa.singularize("sheep"));
-        equal("shrimp", RiTa.singularize("shrimps"));
-        equal("", RiTa.singularize(""));
-        equal(RiTa.singularize("tomatoes"), "tomato");
-        equal(RiTa.singularize("photos"), "photo");
-        
-        equal(RiTa.singularize("toes"), "toe");
-        
-        equal("series", RiTa.singularize("series"));  
-        equal("ox", RiTa.singularize("oxen"));
-        equal("man", RiTa.singularize("men"));
-        equal("mouse", RiTa.singularize("mice"));
-        equal("louse", RiTa.singularize("lice"));
-        equal("child", RiTa.singularize("children"));
-    });
+     
+		equal(RiTa.singularize("bonsai"), "bonsai");
+		equal(RiTa.singularize("crises"), "crisis");
+		equal(RiTa.singularize("taxis"), "taxi");
+		equal(RiTa.singularize("chiefs"), "chief");
+		equal(RiTa.singularize("monarchs"), "monarch");
+		equal(RiTa.singularize("lochs"), "loch");
+		equal(RiTa.singularize("stomachs"), "stomach");
+
+		equal(RiTa.singularize("Chinese"), "Chinese");
+
+		equal(RiTa.singularize("people"), "person");
+		equal(RiTa.singularize("monies"), "money");
+		equal(RiTa.singularize("vertebrae"), "vertebra");
+		equal(RiTa.singularize("humans"), "human");
+		equal(RiTa.singularize("germans"), "german");
+		equal(RiTa.singularize("romans"), "roman");
+
+		equal(RiTa.singularize("memoranda"), "memorandum");
+		equal(RiTa.singularize("data"), "datum");
+		equal(RiTa.singularize("appendices"), "appendix");
+		equal(RiTa.singularize("theses"), "thesis");
+		equal(RiTa.singularize("alumni"), "alumnus");
+
+		equal(RiTa.singularize("solos"), "solo");
+		equal(RiTa.singularize("music"), "music");
+
+		equal(RiTa.singularize("oxen"), "ox");
+		equal(RiTa.singularize("solos"), "solo");
+		equal(RiTa.singularize("music"), "music");
+
+		equal(RiTa.singularize("tobacco"), "tobacco");
+		equal(RiTa.singularize("cargo"), "cargo");
+		equal(RiTa.singularize("golf"), "golf");
+		equal(RiTa.singularize("grief"), "grief");
+
+		equal(RiTa.singularize("cakes"), "cake");
+
+		equal("dog", RiTa.singularize("dogs"));
+		equal("foot", RiTa.singularize("feet"));
+		equal("tooth", RiTa.singularize("teeth"));
+		equal("kiss", RiTa.singularize("kisses"));
+		equal("child", RiTa.singularize("child"));
+		equal("randomword", RiTa.singularize("randomwords"));
+		equal("deer", RiTa.singularize("deer"));
+		equal("sheep", RiTa.singularize("sheep"));
+		equal("shrimp", RiTa.singularize("shrimps"));
+
+		equal(RiTa.singularize("tomatoes"), "tomato");
+		equal(RiTa.singularize("photos"), "photo");
+
+		equal(RiTa.singularize("toes"), "toe");
+
+		equal("series", RiTa.singularize("series"));
+		equal("ox", RiTa.singularize("oxen"));
+		equal("man", RiTa.singularize("men"));
+		equal("mouse", RiTa.singularize("mice"));
+		equal("louse", RiTa.singularize("lice"));
+		equal("child", RiTa.singularize("children"));
+		
+		equal(RiTa.singularize("gases"), "gas");
+    	equal(RiTa.singularize("buses"), "bus");
+    	equal(RiTa.singularize("happiness"), "happiness");
+    
+		equal("", RiTa.singularize(""));
+  });
 
   test("RiTa.getPastParticiple()", function () { 
 
-      equal(RiTa.getPastParticiple("sleep"), "slept");
-      equal(RiTa.getPastParticiple("withhold"), "withheld");
 
-      equal(RiTa.getPastParticiple("cut"), "cut");
-      equal(RiTa.getPastParticiple("go"), "gone");
-      equal(RiTa.getPastParticiple("swim"), "swum");
-      equal(RiTa.getPastParticiple("would"), "would"); 
-      equal(RiTa.getPastParticiple("might"), "might"); 
-      equal(RiTa.getPastParticiple("run"), "run"); 
-      equal(RiTa.getPastParticiple("speak"), "spoken");
-      equal(RiTa.getPastParticiple("break"), "broken");
-      equal(RiTa.getPastParticiple("become"), "became");
-      equal(RiTa.getPastParticiple("plead"), "pled");
-      
-      equal(RiTa.getPastParticiple("shine"), "shone");
-      equal(RiTa.getPastParticiple("drink"), "drunk");
-      equal(RiTa.getPastParticiple("stink"), "stunk");
-      equal(RiTa.getPastParticiple("shrink"), "shrunk");
-      equal(RiTa.getPastParticiple("awake"), "awoken");
-      equal(RiTa.getPastParticiple("study"), "studied");
-      
-      equal(RiTa.getPastParticiple("study "), "studied"); //space  
-      equal(RiTa.getPastParticiple(" study"), "studied"); //space
-      equal(RiTa.getPastParticiple("study  "), "studied"); //double space  
-      equal(RiTa.getPastParticiple("  study"), "studied"); //double space
-      equal(RiTa.getPastParticiple("study   "), "studied"); //tab space  
-      equal(RiTa.getPastParticiple("    study"), "studied"); //tab space
-      equal(RiTa.getPastParticiple(""), "");
+		equal(RiTa.getPastParticiple("sleep"), "slept");
+		equal(RiTa.getPastParticiple("withhold"), "withheld");
+
+		equal(RiTa.getPastParticiple("cut"), "cut");
+		equal(RiTa.getPastParticiple("go"), "gone");
+		equal(RiTa.getPastParticiple("swim"), "swum");
+		equal(RiTa.getPastParticiple("would"), "would");
+		equal(RiTa.getPastParticiple("might"), "might");
+		equal(RiTa.getPastParticiple("run"), "run");
+		equal(RiTa.getPastParticiple("speak"), "spoken");
+		equal(RiTa.getPastParticiple("break"), "broken");
+		equal(RiTa.getPastParticiple(""), ""); 
+
+		// PROBLEMS 
+		
+		equal(RiTa.getPastParticiple("awake"), "awoken");
+		equal(RiTa.getPastParticiple("become"), "became");
+		equal(RiTa.getPastParticiple("drink"), "drunk");
+		equal(RiTa.getPastParticiple("plead"), "pled");
+		equal(RiTa.getPastParticiple("run"), "run");
+		equal(RiTa.getPastParticiple("shine"), "shone"); // or shined
+		equal(RiTa.getPastParticiple("shrink"), "shrunk"); // or shrunken
+		equal(RiTa.getPastParticiple("stink"), "stunk");
+		equal(RiTa.getPastParticiple("study"), "studied");
   });
 
 
@@ -1027,12 +1032,6 @@
             equal(c, a[i]);
             //return;
         }
-        
-        var args = {
-            tense: RiTa.PAST_TENSE,
-            number: RiTa.SINGULAR,
-            person: RiTa.THIRD_PERSON
-        };
         
         /////////////////////////////////////////////////
         
