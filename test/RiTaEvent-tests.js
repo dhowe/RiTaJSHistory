@@ -60,6 +60,7 @@ var runtests = function() {
                 }
                 RiTa.SILENT = 0;
             }, BAD[i]);
+            
             throws(function() {
 				RiTa.SILENT = 1;
                 try {
@@ -77,7 +78,7 @@ var runtests = function() {
 	
     test("RiTaEvent.getSource()", function() {
 
-    	ok(!"Need to use real source types (like RiTa))");
+    	ok(!"Need to use real source types (like RiTa))"); // TODO:
     	
         ok(RiTaEvent(this).getSource());
         ok(new RiTaEvent(this).getSource());
@@ -87,7 +88,7 @@ var runtests = function() {
 
     test("RiTaEvent.getType()", function() {
 
-    	ok(!"Need to use real event types (like RiTa))");
+    	ok(!"Need to use real event types (like RiTa))"); // TODO:
 
         ok(RiTaEvent(this).getType());
         ok(new RiTaEvent(this).getType());

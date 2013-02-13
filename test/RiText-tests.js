@@ -259,11 +259,6 @@
         ok(!rs.containsWord("brown"));
     });
 
-    test("RiText.copy()", function() {
-
-        ok(false,"no tests");
-    })
-
     test("RiText.endsWith()", function() {
 
         // check that these are ok --------------
@@ -1211,13 +1206,13 @@
     //---------------------------END COPY FROM RISTRING TESTS
 
 
-    test("RiText.clone()", function() { 
+    test("RiText.copy()", function() { 
       var rt = new RiText(100,270,"hello");
       
       rt.color(101,102,103,104);
       rt.showBoundingBox(true);
       
-      var rt2 = rt.clone();
+      var rt2 = rt.copy();
       equal(rt.x,rt2.x);
       equal(rt.y,rt2.y);
       equal(rt.z,rt2.z);
