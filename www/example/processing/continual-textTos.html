@@ -7,9 +7,10 @@
   void setup() {  
   	
 	size(400,100);
-	rt = RiText("Fade In & Out", 10, 70, createFont("Arial", 60));
-	rt.fadeOut(5);
 	ts = Date.now();
+	rt = RiText(txt[0], 10, 70, createFont("Arial", 60));
+	rt.textTo(txt[1] ,1);
+	console.log("hello");
   }  
   
   void draw() {
@@ -17,24 +18,15 @@
 	background(255);
 	rt.draw();
   } 
-  
-  void mouseClicked() { 
-	
-	// swap texts
-	var newText = clicks++%2 == 0 ? txt[1] : txt[0];
-	
-	// fade to the new over 2 secs
-	rt.textTo(newText, 2f); 
-  }
 
   void onRiTaEvent(e) {
 
 	var rt = e.getSource();
-	if (rt.isVisible()) {
-		rt.fadeOut(1);
+	if (rt.text() == txt[0]) {
+		rt.textTo(txt[1],1);
 	}
 	else {
-		rt.fadeIn(1);
+		rt.textTo(txt[0],1);
 		console.log("elapsed: "+((Date.now()-ts)/1000)+"s")
 	}
   }

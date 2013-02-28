@@ -818,7 +818,6 @@
         
         equal(RiTa.pluralize("gas"), "gases");
     	equal(RiTa.pluralize("bus"), "buses");
-    	equal(RiTa.pluralize("happiness"), "happiness");
     });
     
    test("RiTa.singularize()", function () { 

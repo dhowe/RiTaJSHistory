@@ -5,6 +5,7 @@
 	});
 
   // TODO: check that all these have tests...
+  
   var statics = [
                    "createFont",
                    "createLetters",
@@ -36,7 +37,7 @@
                    "timer",
                    "pauseTimer",
                    "stopTimer",
-                   ];
+    ];
   
 
     // TODO: check that all these have tests...
@@ -75,7 +76,7 @@
                    "stopBehavior",
                    "stopBehaviors",
                    "textTo"
-                   ];
+    ];
   
     var RiString_functions = [
                   "analyze", 
@@ -119,7 +120,7 @@
                   "wordAt", 
                   "wordCount", 
                   "words" 
-                  ];
+    ];
     
     test("RiText.functions", function() {
 
@@ -211,6 +212,22 @@
         equal(features.stresses, "0 0 1/0");
     });
 
+    test("RiText.features()", function() {
+    	var rs = new RiText("Returns the array of words.");
+	    var features = rs.features();
+	    console.log(features);
+	    ok(features);
+	    ok(features.syllables);
+	    ok(features.phonemes);
+	    ok(features.stresses);
+	    
+	    ok(features.mutable);
+	    ok(features.tokens);
+	    ok(features.text);
+	    ok(features.pos);
+	    
+    });
+    	
     test("RiText.charAt()", function() {
 
         var rs = new RiText("The dog was white");
