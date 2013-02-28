@@ -97,6 +97,12 @@ var runtests = function() {
 
     test("RiString()", function() {
 
+		// var str = "HELLO WORLD";
+		// var n = str.slice(-1);
+		// console.log("n="+n);
+		// var n = str.charAt(str.length-1);
+		// console.log("n="+n);
+
         ok(RiString('hello'));
         ok(new RiString('hello'));
         ok(RiString(''));
