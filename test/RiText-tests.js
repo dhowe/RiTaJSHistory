@@ -148,12 +148,12 @@
         ok(RiText());
         ok(RiText(123));
 
-        ok(new RiText(new RiString("The dog was white")));
-
+	    ok(new RiText(RiString("The dog was white")));
+        ok(RiText(RiString("The dog was white")));
         ok(RiText(new RiString("The dog was white")));
-
+        ok(new RiText(new RiString("The dog was white")));
+        
         ok(RiText(new RiString("")));
-
         ok(RiText(new RiString(123)));
 
         var BADS = [ null, undefined ]
@@ -162,6 +162,7 @@
 
                 try {
                     new RiText(BADS[i]);
+                    fail("no exception");
                 }
                 catch (e) {
                     throw e;
@@ -171,6 +172,53 @@
 
                 try {
                     RiText(BADS[i]);
+                    fail("no exception");
+                }
+                catch (e) {
+                    throw e;
+                }
+            });
+        }
+
+    });
+    
+	test("RiText(this)", function() {
+
+        ok(new RiText(this, "The dog was white"));
+
+        ok(RiText(this, "The dog was white"));
+
+        ok(RiText(this, ""));
+
+        ok(RiText(this));
+        ok(RiText(this, 123));
+
+        ok(new RiText(this, RiString("The dog was white")));
+        ok(RiText(this, RiString("The dog was white")));
+        ok(RiText(this, new RiString("The dog was white")));
+        ok(new RiText(this, new RiString("The dog was white")));
+
+        ok(RiText(this, RiString("")));
+
+        ok(RiText(this, new RiString(123)));
+
+        var BADS = [ null, undefined ]
+        for ( var i = 0; i < BADS.length; i++) {
+            throws(function() {
+
+                try {
+                    new RiText(this,BADS[i]);
+                    fail("no exception");
+                }
+                catch (e) {
+                    throw e;
+                }
+            });
+            throws(function() {
+
+                try {
+                    RiText(this,BADS[i]);
+                    fail("no exception");
                 }
                 catch (e) {
                     throw e;
@@ -213,38 +261,45 @@
     });
 
     test("RiText.features()", function() {
-    	var rs = new RiText("Returns the array of words.");
-	    var features = rs.features();
-	    console.log(features);
-	    ok(features);
-	    ok(features.syllables);
-	    ok(features.phonemes);
-	    ok(features.stresses);
-	    
-	    ok(features.mutable);
-	    ok(features.tokens);
-	    ok(features.text);
-	    ok(features.pos);
+    	
+    	var rs = [ RiText("Returns the array of words."), RiText(this,"Returns the array of words.")];
+    	for (var i=0; i < rs.length; i++) {
+
+		    var features = rs[i].features();
+		    //console.log(features);
+		    ok(features);
+		    ok(features.syllables);
+		    ok(features.phonemes);
+		    ok(features.stresses);
+		    
+		    ok(features.mutable);
+		    ok(features.tokens);
+		    ok(features.text);
+		    ok(features.pos);
+	    }
 	    
     });
     	
     test("RiText.charAt()", function() {
 
-        var rs = new RiText("The dog was white");
-
-        var result = rs.charAt(0);
-        equal(result, "T");
-
-        var result = rs.charAt(5);
-        notEqual(result, "O");
-
-        var result = rs.charAt(5);
-        notEqual(result, '*');
-
-        var result = rs.charAt(200); //out of range character
-        equal(result, "");
+        var rs = [new RiText("The dog was white"),RiText("The dog was white")];
+        
+		for (var i=0; i < rs.length; i++) {
+			var r = rs[i];
+	        var result = r.charAt(0);
+	        equal(result, "T");
+	
+	        var result = r.charAt(5);
+	        notEqual(result, "O");
+	
+	        var result = r.charAt(5);
+	        notEqual(result, '*');
+	
+	        var result = r.charAt(200); //out of range character
+	        equal(result, "");
+       }
     });
-
+    
     test("RiText.concat()", function() { //TODO
 
         var rs = new RiText("The dog was white");
@@ -437,69 +492,65 @@
 
     });
 
-    test(
-        "RiText.insertWord()",
-        function() { //join() added an extra space to the word with punctuation
+    test( "RiText.insertWord()", function() { 
+    	
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(4,"then");
+        equal(rs.text(), "Inserts at wordIdx and then shifts each subsequent word accordingly.");
 
-            // check that these are ok ---------------
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord("then", 4);
-            equal(result.text(), rs.text());
+        var rs = new RiText("inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(0,"He");
+        equal("He inserts at wordIdx and shifts each subsequent word accordingly.", rs.text());
 
-            var rs = new RiText("inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("He", 0);
-            var rs2 = "He inserts at wordIdx and shifts each subsequent word accordingly.";
-            equal(rs.text(), rs2);
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(1,"newWord");
+        var rs2 = new RiText(
+            "Inserts newWord at wordIdx and shifts each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("newWord", 1);
-            var rs2 = new RiText(
-                "Inserts newWord at wordIdx and shifts each subsequent word accordingly.");
-            equal(rs.text(), rs2.text());
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(1,"newWord and newWords");
+        var rs2 = new RiText(
+            "Inserts newWord and newWords at wordIdx and shifts each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("newWord and newWords", 1);
-            var rs2 = new RiText(
-                "Inserts newWord and newWords at wordIdx and shifts each subsequent word accordingly.");
-            equal(rs.text(), rs2.text());
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(5,"");
+        var rs2 = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord("", 5);
-            var rs2 = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            equal(result.text(), rs2.text());
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(5," "); //space
+        var rs2 = new RiText(
+            "Inserts at wordIdx and shifts   each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord(" ", 5); //space
-            var rs2 = new RiText(
-                "Inserts at wordIdx and shifts   each subsequent word accordingly.");
-            equal(result.text(), rs2.text());
+//console.log(rs.text()); return;
 
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.insertWord("  ", 5); //tab space
-            var rs2 = new RiText(
-                "Inserts at wordIdx and shifts    each subsequent word accordingly.");
-            equal(result.text(), rs2.text());
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(5,"  "); //tab space
+        var rs2 = new RiText(
+            "Inserts at wordIdx and shifts    each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            // not sure what to do about this one, either it OR the next one will fail either way  
-            /* TODO: reconsider */
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            rs.insertWord("**", 5);
-            var rs2 = new RiText(
-                "Inserts at wordIdx and shifts ** each subsequent word accordingly.");
-            equal(rs.text(), rs2.text(),
-                "testing the (private) joinWords() actually [currently failing]");
+        // not sure what to do about this one, either it OR the next one will fail either way  
+        /* TODO: reconsider */
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(5,"**");
+        var rs2 = new RiText(
+            "Inserts at wordIdx and shifts ** each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            var rs = new RiText("Inserts at wordIdx shifting each subsequent word accordingly.");
-            rs.insertWord(",", 3);
-            var rs2 = new RiText("Inserts at wordIdx , shifting each subsequent word accordingly.");
-            equal(rs.text(), rs2.text());
+        var rs = new RiText("Inserts at wordIdx shifting each subsequent word accordingly.");
+        rs.insertWord(3,",");
+        var rs2 = new RiText("Inserts at wordIdx , shifting each subsequent word accordingly.");
+        equal(rs.text(), rs2.text());
 
-            var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
-            var result = rs.text();
-            rs.insertWordAt("newWord", -2); //error -- (no change to original string);
-            equal(result, rs.text());
+        var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
+        rs.insertWord(-2, "newWord"); //error -- (no change to original string);
+        equal("Inserts at wordIdx and shifts each subsequent word newWord accordingly.", rs.text());
 
-        });
+	});
 
     test("RiText.lastIndexOf()", function() { //TODO revise
 
@@ -652,7 +703,7 @@
 
         var rs = new RiText("The dog was white");
         var result = rs.removeChar(-1);
-        equal(rs.text(), "The dog was white");
+        equal(rs.text(), "The dog was whit");
 
         var rs = new RiText("The dog was white");
         var result = rs.removeChar(1000);
@@ -687,7 +738,7 @@
 
         var rs = new RiText("Who are you?");
         rs.replaceChar(-1, "me");
-        equal(rs.text(), "Who are you?");
+        equal(rs.text(), "Who are youme");
 
         var rs = new RiText("Who are you?");
         rs.replaceChar(10000, "me");
@@ -822,7 +873,7 @@
         
         var rs = new RiText("Who are you?");
         rs.replaceWord(-1, "asfasf");
-        equal(rs.text(), "Who are you?");
+        equal("Who are you asfasf", rs.text());
 
         var rs = new RiText("Who are you?");
         rs.replaceWord(20, "asfasf");
@@ -1248,34 +1299,34 @@
 
         var result = RiText.createFont("Arial");
         ok(result);
-        console.log("TEST! RiText.createFont()");
+        console.log("DO TEST! RiText.createFont()");
         ok(1, "Tested in specific renders");
     });
 
     test("RiText.createWords()", function() { //TODO
 
         var result = RiText.createWords();
-        console.log("TEST! RiText.createWords()");
+        console.log("DO TEST! RiText.createWords()");
         ok(1, "Tested in specific renderers");
     });
 
     test("RiText.createLetters()", function() { //TODO
 
         var result = RiText.createLetters();
-        console.log("TEST! RiText.createLetters()");
+        console.log("DO TEST! RiText.createLetters()");
         ok(1, "Tested in specific renderers");
     });
 
     test("RiText.createLines()", function() { //TODO
 
-        console.log("TEST! RiText.createLines()");
+        console.log("DO TEST! RiText.createLines()");
         ok(1, "Tested in specific renderers");
     });
 
     test("RiText.drawAll()", function() { //TODO
 
         var result = RiText.drawAll();
-        console.log("TEST! RiText.drawAll()");
+        console.log("DO TEST! RiText.drawAll()");
         ok(1, "Tested in specific renderers");
     });
 
