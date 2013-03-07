@@ -6,7 +6,7 @@
 	});
 
 	var functions = [ "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering",
-						"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
+					"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
 					"tokenize", "trim", "distance", "random", "getPhonemes", "getPosTags", 
 					"getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet",
 					 "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize",
@@ -31,6 +31,7 @@
         equal(typeof RiText.setDefaultFont, 'undefined'); 
 
         if (window) {
+        	
             RiTa.p5Compatible(true);
             equal(typeof line, 'function'); 
             RiTa.p5Compatible(false);
@@ -397,20 +398,20 @@
      equal(result, answer);
 
      var result = RiTa.getPhonemes("The.");
-     var answer = "dh-ax";
+     var answer = "dh-ax .";
      equal(result, answer);
 
      var result = RiTa.getPhonemes("The boy jumped over the wild dog.");
-     var answer = "dh-ax b-oy jh-ah-m-p-t ow-v-er dh-ax w-ay-l-d d-ao-g";
+     var answer = "dh-ax b-oy jh-ah-m-p-t ow-v-er dh-ax w-ay-l-d d-ao-g .";
      equal(result, answer);
 
      var result = RiTa.getPhonemes("The boy ran to the store.");
-     var answer = "dh-ax b-oy r-ae-n t-uw dh-ax s-t-ao-r";
+     var answer = "dh-ax b-oy r-ae-n t-uw dh-ax s-t-ao-r .";
      equal(result, answer);
      
      var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
      var result = RiTa.getPhonemes(txt);
-     var answer = "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er";
+     var answer = "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g . b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er .";
      equal(result, answer);
 
      var result = RiTa.getPhonemes("");
@@ -430,69 +431,52 @@
  });
 
 
- test("RiTa.getPosTags()", function () {
-     
-  var result = RiTa.getPosTags("running");
-  var answer = ["vbg"];
-  deepEqual(result, answer);
+	test("RiTa.getPosTags()", function() {
 
-  var result = RiTa.getPosTags("asserting");
-  var answer = ["vbg"];
-  deepEqual(result, answer);
+		var result = RiTa.getPosTags("running");
+		var answer = ["vbg"];
+		deepEqual(result, answer);
 
-  var result = RiTa.getPosTags("assenting");
-  var answer = ["vbg"];
-  deepEqual(result, answer);
+		var result = RiTa.getPosTags("asserting");
+		var answer = ["vbg"];
+		deepEqual(result, answer);
 
-/*  var result = RiTa.getPosTags("the boy dances");
-  var answer = ["dt", "nn", "vbg"];
-  deepEqual(result, answer); TODO: FAILING     */
+		var result = RiTa.getPosTags("assenting");
+		var answer = ["vbg"];
+		deepEqual(result, answer);
 
-  var result = RiTa.getPosTags("asfaasd");
-  var answer = ["nn"];
-  deepEqual(result, answer);
+		/*  var result = RiTa.getPosTags("the boy dances");
+		 var answer = ["dt", "nn", "vbg"];
+		 deepEqual(result, answer); TODO: FAILING     */
 
-  var result = RiTa.getPosTags("clothes");
-  var answer = ["nns"];
-  deepEqual(result, answer);
+		var result = RiTa.getPosTags("asfaasd");
+		var answer = ["nn"];
+		deepEqual(result, answer);
 
-  var result = RiTa.getPosTags("There is a cat.");
-  var answer = ["ex", "vbz", "dt", "nn", "."];
-  deepEqual(result, answer);
+		var result = RiTa.getPosTags("clothes");
+		var answer = ["nns"];
+		deepEqual(result, answer);
 
-  var result = RiTa.getPosTags("The boy, dressed in red, ate an apple.");
-  var answer = ["dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "."];
-  deepEqual(result, answer);
-     
-     var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
-     var result = RiTa.getPosTags(txt);
-     var answer = [
-        "dt",
-        "nn",
-        "vbd",
-        "rbr",
-        "in",
-        "dt",
-        "jj",
-        "nn",
-        ".",
-        "cc",
-        "dt",
-        "jj",
-        "nn",
-        "vbd",
-        "jjr",
-        "."
-        ];
-     deepEqual(result, answer);
+		var result = RiTa.getPosTags("There is a cat.");
+		var answer = ["ex", "vbz", "dt", "nn", "."];
+		deepEqual(result, answer);
 
-     var result = RiTa.getPosTags("");
-     var answer = [];
-     deepEqual(result, answer);
+		var result = RiTa.getPosTags("The boy, dressed in red, ate an apple.");
+		var answer = ["dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "."];
+		deepEqual(result, answer);
 
- });
+		var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
+		var result = RiTa.getPosTags(txt);
+		var answer = ["dt", "nn", "vbd", "rbr", "in", "dt", "jj", "nn", ".", "cc", "dt", "jj", "nn", "vbd", "jjr", "."];
+		deepEqual(result, answer);
 
- test("RiTa.getPosTagsInline()", function () { 
+		var result = RiTa.getPosTags("");
+		var answer = [];
+		deepEqual(result, answer);
+
+	}); 
+
+ 	test("RiTa.getPosTagsInline()", function () { 
      
      var result = RiTa.getPosTagsInline("asdfaasd");
      var answer = "asdfaasd/nn";
@@ -529,24 +513,24 @@
      equal(result, answer);
 
      var result = RiTa.getStresses("The emperor had no clothes on.");
-     var answer = "0 1/0/0 1 1 1 1";
+     var answer = "0 1/0/0 1 1 1 1 .";
      equal(result, answer);
 
      var result = RiTa.getStresses("The emperor had no clothes on. The King is fat.");
-     var answer = "0 1/0/0 1 1 1 1 0 1 1 1";
+     var answer = "0 1/0/0 1 1 1 1 . 0 1 1 1 .";
      equal(result, answer);
 
      var result = RiTa.getStresses("to preSENT, to exPORT, to deCIDE, to beGIN");
-     var answer = "1 0/1 1 0/1 1 0/1 1 0/1";
+     var answer = "1 0/1 , 1 0/1 , 1 0/1 , 1 0/1";
      equal(result, answer);
 
      var result = RiTa.getStresses("to present, to export, to decide, to begin");
-     var answer = "1 0/1 1 0/1 1 0/1 1 0/1";
+     var answer = "1 0/1 , 1 0/1 , 1 0/1 , 1 0/1";
      equal(result, answer);
      
      var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
      var result = RiTa.getStresses(txt);
-     var answer = "0 1 1 1/0 1 0 1/0 1 1 0 1/0 1 1 1/0/0";
+     var answer = "0 1 1 1/0 1 0 1/0 1 . 1 0 1/0 1 1 1/0/0 .";
      equal(result, answer);
 
      var result = RiTa.getStresses("");
@@ -559,12 +543,12 @@
 
      var txt = "The dog ran faster than the other dog. But the other dog was prettier.";
      var result = RiTa.getSyllables(txt);
-     var answer = "dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er";
+     var answer = "dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .";
      equal(result, answer);
      
      var txt = "The emperor had no clothes on.";
      var result = RiTa.getSyllables(txt);
-     var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
+     var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .";
      equal(result, answer);
      
      var txt = "The Laggin Dragon";
@@ -573,7 +557,7 @@
      equal(result, answer);
 
      var result = RiTa.getSyllables("@#$%&*()");
-     var answer = "";
+     var answer = "@ # $ % ae-n-d * ( )";
      equal(result, answer);
 
      var result = RiTa.getSyllables("");
@@ -720,16 +704,16 @@
         equal(result, answer);
         
         var result = RiTa.getPhonemes("HTERE ^%&*^ IS ^(*^*() fsfa");
-        var answer = "t-ih-r ih-z f-s-f-ax";
+        var answer = "t-ih-r ^ % ae-n-d *^ ih-z ^ ( *^* ( ) f-s-f-ax";
         equal(result, answer);
 
         //getStresses
         var result = RiTa.getStresses("deMOcracy, dependaBIlity, phoTOgraphy, geOLogy");
-        var answer = "0/1/0/0 0/1/0/1/0/0 0/1/0/0 0/1/0/0";
+        var answer = "0/1/0/0 , 0/1/0/1/0/0 , 0/1/0/0 , 0/1/0/0";
         equal(result, answer);
 
         var result = RiTa.getStresses("@#$%^&*()");
-        var answer = "";
+        var answer = 	"@ # $ % ^ 1 * ( )";
         equal(result, answer);
 
         var result = RiTa.getStresses("asdfgasdasdasdasdsadasf");
@@ -737,7 +721,7 @@
         equal(result, answer);
 
         var result = RiTa.getStresses("HTERE ^%&*^ IS ^(*^*() fsfa");
-        var answer = "1 1 0";
+        var answer = "1 ^ % 1 *^ 1 ^ ( *^* ( ) 0";
         equal(result, answer);
 
         //getSyllables
@@ -758,15 +742,15 @@
         equal(result, answer);
 
         var result = RiTa.getSyllables("The three emperor had no clothes on.");
-        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
+        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .";
         equal(result, answer);
 
         var result = RiTa.getSyllables("The 3 emperor had no clothes on.");
-        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
+        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .";
         equal(result, answer);
 
         var result = RiTa.getSyllables("The 3 emperor! Had no clothes, on.");
-        var answer = "dh-ax th-r-iy eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
+        var answer = "dh-ax th-r-iy eh-m-p/er/er ! hh-ae-d n-ow k-l-ow-dh-z , aa-n .";
         equal(result, answer);
 
         var result = RiTa.getSyllables("asdfgasdasdasdasdsadasf");
@@ -774,7 +758,7 @@
         equal(result, answer);
 
         var result = RiTa.getSyllables("HTERE ^%&*^ IS ^(*^*() fsfa");
-        var answer = "t-ih-r ih-z f-s-f-ax";
+        var answer = "t-ih-r ^ % ae-n-d *^ ih-z ^ ( *^* ( ) f-s-f-ax";
         equal(result, answer);
 
     });

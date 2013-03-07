@@ -137,6 +137,24 @@ var runtests = function() {
 
     test("RiString.analyze()", function() {
 
+      	var features = RiString("Mom & Dad, waiting for the car, ate a steak.").analyze().features();
+        ok(features);
+        equal(features.phonemes,  "m-aa-m ae-n-d d-ae-d , w-ey-t-ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
+        equal(features.syllables, "m-aa-m ae-n-d d-ae-d , w-ey-t/ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
+        equal(features.stresses,  "1 1 1 , 1/0 1 0 1 , 1 1 1 .");
+        
+		var numWords =  features.tokens.split(" ").length;
+    	equal(numWords, features.stresses.split(" ").length);
+    	equal(numWords, features.phonemes.split(" ").length);
+    	equal(numWords, features.syllables.split(" ").length);
+    	equal(numWords, features.pos.split(" ").length);
+    	
+    	var features = RiString("The dog ran faster than the other dog.  But the other dog was prettier.").analyze().features();
+		ok(features);
+        equal(features.phonemes,  "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g . b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er .");
+        equal(features.syllables, "dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .");
+        equal(features.stresses,  "0 1 1 1/0 1 0 1/0 1 . 1 0 1/0 1 1 1/0/0 .");
+        
         var features = RiString("The laggin dragon").analyze().features();
         ok(features);
         equal(features.phonemes, "dh-ax l-ae-g-ih-n d-r-ae-g-ax-n");
@@ -151,15 +169,15 @@ var runtests = function() {
 
         var features = RiString(".").analyze().features();
         ok(features);
-        equal(features.phonemes, "");
-        equal(features.syllables, "");
-        equal(features.stresses, "");
+        equal(features.phonemes, ".");
+        equal(features.syllables, ".");
+        equal(features.stresses, ".");
 
         var features = RiString("123.").analyze().features();
         ok(features);
-        equal(features.phonemes, "w-ah-n-t-uw-th-r-iy");
-        equal(features.syllables, "w-ah-n/t-uw/th-r-iy");
-        equal(features.stresses, "0/0/0");
+        equal(features.phonemes, "w-ah-n-t-uw-th-r-iy .");
+        equal(features.syllables, "w-ah-n/t-uw/th-r-iy .");
+        equal(features.stresses, "0/0/0 .");
 
         var features = RiString("1 2 7").analyze().features();
         ok(features);
@@ -167,12 +185,11 @@ var runtests = function() {
         equal(features.syllables, "w-ah-n t-uw s-eh/v-ax-n");
         equal(features.stresses, "0 0 1/0");
 
-        var features = RiString("s*").analyze().features();
-        ok(features); // fails LTS
-        equal(features.phonemes, "");
-        equal(features.syllables, "");
-        equal(features.stresses, "");
-
+        var features = RiString("*").analyze().features();
+        ok(features); 
+        equal(features.phonemes, "*");
+        equal(features.syllables, "*");
+        equal(features.stresses, "*");
     });
 
     test("RiString.charAt()", function() {
