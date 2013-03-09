@@ -760,7 +760,6 @@
         var result = RiTa.getSyllables("HTERE ^%&*^ IS ^(*^*() fsfa");
         var answer = "t-ih-r ^ % ae-n-d *^ ih-z ^ ( *^* ( ) f-s-f-ax";
         equal(result, answer);
-
     });
 
     test("RiTa.pluralize()", function () { 
