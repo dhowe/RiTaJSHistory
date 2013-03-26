@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+      #myCanvas {
+        border: 1px solid #9C9898;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="200"></canvas>
+    <script>
+		var canvas = document.getElementById('myCanvas');
+		var context = canvas.getContext('2d');
+		// translate context to center of canvas
+		//context.translate(canvas.width / 2, canvas.height / 2);
+
+		// rotate 45 degrees clockwise
+		//context.rotate(Math.PI / 4);
+
+		var count = 0;
+		setInterval(function() {
+			console.log("OK!");
+			context.fillStyle = 'white';
+			context.fillRect(0,0,canvas.width,canvas.height);
+			context.save();
+			context.font = 'italic 40px Calibri';
+			context.textAlign = "center";
+			context.translate(150,75);
+			context.rotate(radians(++count));
+			context.scale(5);
+			context.fillStyle = 'blue';
+			context.fillText("Hello", 0, 0);
+			context.restore();
+		}, 30);
+		function radians(Value) {
+			/** Converts numeric degrees to radians */
+			return Value * Math.PI / 180;
+		}
+    </script>
+  </body>
+</html>
