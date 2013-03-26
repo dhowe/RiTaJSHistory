@@ -14,24 +14,24 @@ var rt;
 void setup() {
     
   size(400, 200);
-  RiText.defaultFont(createFont("Big Caslon",110));
-  rt = new RiText("SCALE", 0, 150);
-  //rt.showBoundingBox(1);
-  doScale();
+  RiText.defaultFont(createFont("Big Caslon",80));
+  rt = new RiText("ingSpin");
+  rt.showBoundingBox(1);
+  doRotate();
 }
 
-void doScale()
+void doRotate()
 {
-  rt.scaleTo(.2, 3);  // scale to .2 over 3 seconds
+  rt.rotateTo(2*PI, 3);  // rotate to .2 over 3 seconds
   
   //scale to fullsize over 2 seconds, after waiting 3 seconds  
-  rt.scaleTo(1, 2, 3); 
+  rt.rotateTo(0, 2, 3); 
 }
 
 // called when any behavior (e.g., scaleTo) completes
 void onRiTaEvent(re) {
   var rt = re.getSource();
-  if (rt.scaleX>=1) doScale();
+  if (rt.scaleX>=1) doRotate();
 }
 
 void draw() {

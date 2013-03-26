@@ -1,0 +1,43 @@
+<canvas id="canvas" width=400 height=200 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+
+<script>
+
+window.onload = setup;
+    
+var rt;
+
+function setup()
+{	
+  RiText.defaultFont(RiText.createFont("Big Caslon",80));
+  rt = new RiText("ingSpin");
+  rt.showBoundingBox(1);
+
+  RiText.loop();
+  doRotate();
+}
+
+function doRotate()
+{
+  rt.rotateTo(Math.PI, 3);  // rotate to 2*PI over 3 seconds
+  
+  // after 3 seconds, rotate back to 0 (in 2 seconds)   
+  rt.rotateTo(0, 2, 3); 
+}
+
+// called when any behavior (e.g., rotateTo) completes
+function onRiTaEvent(re) {
+	
+  var rt = re.getSource();
+  if (rt._rotateZ<1) 
+  	doRotate();
+}
+
+function draw() {
+
+  RiText.background(255);
+  rt.draw();
+}
+
+
+</script>

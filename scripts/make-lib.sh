@@ -158,6 +158,11 @@ cp $RITA_CODE ~/Documents/Processing/libraries/RiTa/library/rita.js
 
 ####################################################################
 
+cd ../build/www/download/
+pwd
+ls -l
+cd -
+
 echo
 echo Done [use pub-lib.sh or pub-js.sh to publish]
 
