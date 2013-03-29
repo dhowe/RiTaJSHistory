@@ -5,7 +5,7 @@
 		var tests = [
 		    new Test("simplest"),
 		    new Test("alignments"),
-			new Test("bounding-box"),
+			new Test("bounding-box",1,1),
 		 	new Test("color-fades"), 
 		 	
 		 	new Test("create-letters"),
@@ -13,7 +13,7 @@
 			new Test("create-lines"),
 		 	new Test("layout-with-breaks"),
 		 	new Test("words-letters-lines"),
-		 	new Test("pixel-x-positions"),
+		 	new Test("pixel-x-positions",1,0),
 		 	
 		 	new Test("contains-test"),
 		 	new Test("default-centering"),
@@ -22,7 +22,7 @@
 		 	new Test("fade-to-text"),
 		 	new Test("font-rotation"),
 		 	new Test("font-scaling"),
-		 	new Test("get-picked"),
+		 	new Test("get-picked",0,1),
 		 	
 		    new Test("grammar-haiku"), 
 		    new Test("grammar-expandFrom"), 
@@ -34,7 +34,7 @@
 		 	
 		 	new Test("letter-grid"),
 		 	new Test("move-to"),
-		 	new Test("pick-and-drag"),
+		 	new Test("pick-and-drag",0,1),
 		 	
 		 	//new Test("riconjugator-tests"),
 		 	new Test("rita-events"),
@@ -47,18 +47,20 @@
 		 	
 		];
 	
-		function Test(url, fail) {
+		function Test(url, failP, failC) {
 			this.url = url;
-			this.fail = typeof fail !== 'undefined' ? fail : false;
+			this.failP5 = typeof failP !== 'undefined' ? failP : false;
+			this.failCanvas = typeof failC !== 'undefined' ? failC : false;
 		}
     
 	</script>
 		
 	<style type="text/css">
-		a {color: #006600; }
+		
+		a { text-decoration: none; color:#006600; }
+		a:hover { color : black;}
+		a:visited { color: #006600; }
 		a.fail {color: #dd3333;}
-		a:hover{ color : black;}
-		a:link{ text-decoration: none; }
 	</style> 
    
    	</head>
@@ -71,8 +73,13 @@
 	 var body = "<table><tr>";
 	    for ( var i = 0; i < tests.length; i++) {
 	      body += "<td>"+tests[i].url+":</td>";//http://localhost/~dhowe/RiTaLibraryJS/src/test/renderer/multitest.html?test=simple-ritext
-	      body += "<td><a href=\""+testDir+"/processing/"+tests[i].url+".html\">[processing]</a></td>";
-	      body += "<td><a href=\""+testDir+"/canvas/"+tests[i].url+".html\">[canvas]</a></td>";
+	      body += "<td><a";
+	      if (tests[i].failP5) body += " class=fail";
+	      body += " href=\""+testDir+"/processing/"+tests[i].url+".html";
+	      body += "\">[processing]</a></td>";
+	      body += "<td><a";
+	      if (tests[i].failCanvas) body += " class=fail";
+	      body += " href=\""+testDir+"/canvas/"+tests[i].url+".html\">[canvas]</a></td>";
 	      body += "<td><a href=\""+testDir+"/multitest.html?test="+tests[i].url+"\">[compare]</a></td></tr>";
 	    }
 	    document.writeln(body+"</table>");
