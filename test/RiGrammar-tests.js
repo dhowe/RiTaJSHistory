@@ -456,6 +456,7 @@ var runtests = function() {
         rg.addRule("<mammal>", "dog");
         rg.addRule("<action>", "cries | screams | falls");
         ok(typeof rg.print === 'function'); // how to test?
+        rg.print();
     });
 
     test("RiGrammar.expandWith", function() {
