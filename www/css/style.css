@@ -1,10 +1,11 @@
 .container {
-  box-shadow: 0px 0px 30px #888;
+  box-shadow: 0px 0px 30px #000;
   margin-bottom: 4em;
+  background-color:#EEEEEE;
 }
 
 .header {
-  background-color: #EEEEEE;
+  background-color: #656F8C;
   line-height: 0;
   padding-left:8px;
 }
@@ -95,9 +96,9 @@
 
   
 }
-
+body{  background-color:#2E273F;}
 a {
-  color: #0075B2;
+  color: #656F8C;
 }
 
 a:hover, a:focus {
@@ -121,7 +122,7 @@ a:hover, a:focus {
 .sidebar {
   border-left: 1px dotted #0073AF;
   padding-left: 1.3em;
-    color: #0075B2;
+    color: #656F8C;
 
 }
 
@@ -134,12 +135,12 @@ a:hover, a:focus {
 }
 
 .sidebar h3 {
-    color: #0075B2;
+    color: #656F8C;
 }
 
 .sidebar ul li {
   list-style-type: circle;
-  color: #0075B2;
+  color: #656F8C;
 }
 
 .sidebar ul li:hover {
@@ -277,7 +278,7 @@ ul.tweet_list li,ul.tweet_list li:hover {
 .refbar {
   border-right: 1px dotted #0073AF;
   padding-left: 1.3em;
-  color: #0075B2;
+  color: #656F8C;
 
 }
 
@@ -290,12 +291,12 @@ ul.tweet_list li,ul.tweet_list li:hover {
 }
 
 .refbar h3 {
-    color: #0075B2;
+    color: #656F8C;
 }
 
 .refbar ul li {
 	list-style-type: none;
-	color: #0075B2;
+	color: #656F8C;
 	font-size: 13px;
 	font-weight: normal;
 	line-height: 18px;
@@ -303,13 +304,13 @@ ul.tweet_list li,ul.tweet_list li:hover {
 }
 
 .refbar ul li:hover {
-	list-style-type: disc;
+	list-style-type: none;
 	color: #00a7fd;
 }
-
+/*
 .classList li:first-child {
 	display:none;
-}
+}*/
 
 .reference div ul li{
 	list-style-type: none;
@@ -324,8 +325,22 @@ ul.tweet_list li,ul.tweet_list li:hover {
 	font-size: 15px;
 
 }
-
+/*
 .reference div ul li:first-child{
 	
 		display:none;
-}
+}*/
+
+.sub-table{
+	margin-top:-10px;
+	margin-left:-10px;
+	margin-bottom:-10px;
+	border:hidden;
+	}
+	
+.sub-table tr{
+
+	}
+	
+.name-row th{
+	width:18%;}
