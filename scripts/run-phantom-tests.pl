@@ -11,8 +11,8 @@ use strict;
 my $VERBOSE = 1;
 my $ANT = "/opt/local/bin/ant";
 my $BUILD_XML = "build-all-tests.xml";
-#$BUILD_XML = "build-one-test.xml";
 
+#$BUILD_XML = "build-one-test.xml";
 
 #### VARIABLES
 
@@ -56,9 +56,13 @@ foreach my $line (@output) {
         $total += $2;
         $results{$name} = "$1/$2";
     }
+    elsif ($line =~ /.*timeout.*/) {
+    	fatal("Test (test=$name?) timed out before finishing!");
+    }
+    
 }
 
-die "[FATAL] Total = 0 tests run...\n\n" if ($total == 0); 
+fatal("Total = 0 tests run...") if ($total == 0);
 
 # format and print results ############################
 print "\n";
@@ -87,6 +91,11 @@ if ($VERBOSE) {
         print STDERR "$line\n";
     }
 }
+
+sub fatal {
+  print "\n[FATAL]: $_[0]\n";
+  die   "\n[FATAL]: $_[0]\n";
+} 
 
 sub trim($)
 {

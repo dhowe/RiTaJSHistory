@@ -1,4 +1,4 @@
-MAX_TIMEOUT=30000; // 30 sec before timeout
+MAX_TIMEOUT=20000; // < Default Max Timeout 
 
 /**
  * Wait until the test condition is true or a timeout occurs. Useful for waiting
@@ -14,7 +14,7 @@ MAX_TIMEOUT=30000; // 30 sec before timeout
  */
 function waitFor(testFx, onReady, timeOutMillis) {
 
-    var maxtimeOutMillis = timeOutMillis ? timeOutMillis : MAX_TIMEOUT, //< Default Max Timout is 30s
+    var maxtimeOutMillis = timeOutMillis ? timeOutMillis : MAX_TIMEOUT, 
         start = new Date().getTime(),
         condition = false,
         interval = setInterval(function() {
