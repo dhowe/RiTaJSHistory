@@ -1,0 +1,52 @@
+[
+	{
+      "methodName":"source()",
+      "example":"",
+      "description":"Gets the source for this event (usually a RiText)",
+      "syntax":"source()",
+      "parameters":
+      [
+			{ 
+			"type": "None", 
+			"desc": "" 
+			},
+			
+	  ],
+	  "returns":
+      [
+			{ 
+			"type": "Object", 
+			"desc": "the source" 
+			},
+			
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":"",
+   },
+   {
+      "methodName":"type()",
+      "example":"",
+      "description":"Returns the type for this event",
+      "syntax":"type()",
+      "parameters":
+      [
+			{ 
+			"type": "None", 
+			"desc": "" 
+			},
+	  ],
+	  "returns":
+      [
+	{ 
+			"type": "int", 
+			"desc": "the type" 
+			},
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":"",
+   },
+   
+  
+]

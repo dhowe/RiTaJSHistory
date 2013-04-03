@@ -1,4 +1,5 @@
-#!/opt/local/bin/perl -w
+
+#/usr/bin/perl -w
 
 #### TO-RUN: ./run-phantom-tests.pl 2> err.txt
 
@@ -9,7 +10,8 @@ use strict;
 #### OPTIONS
 
 my $VERBOSE = 1;
-my $ANT = "/opt/local/bin/ant";
+my $ANT = `which ant`;  # "  /opt/local/bin/ant";
+print $ANT;
 my $BUILD_XML = "build-all-tests.xml";
 
 #### VARIABLES
