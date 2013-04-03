@@ -1,5 +1,4 @@
-
-#/usr/bin/perl -w
+#!/usr/bin/perl -w
 
 #### TO-RUN: ./run-phantom-tests.pl 2> err.txt
 
@@ -10,9 +9,10 @@ use strict;
 #### OPTIONS
 
 my $VERBOSE = 1;
-my $ANT = `which ant`;  # "  /opt/local/bin/ant";
-print $ANT;
+my $ANT = "/opt/local/bin/ant";
 my $BUILD_XML = "build-all-tests.xml";
+#$BUILD_XML = "build-one-test.xml";
+
 
 #### VARIABLES
 
@@ -31,18 +31,19 @@ $src = $ARGV[0] if (scalar(@ARGV)>0);
 
 print "\nRunning tests in PhantomJS...\n\n" if ($VERBOSE);
 
-my @output = split(/\n/,`$ANT -Dsrc.loc=$src -f $BUILD_XML 2>&1`); 
+my @output = split(/\n/, `$ANT -Dsrc.loc=$src -f $BUILD_XML 2>&1`); 
+
+## print("$ANT -Dsrc.loc=$src -f $BUILD_XML\n");
+## DBUG: 'ant -Dsrc.loc=lib -f build-all-tests.xml'
 
 ##### compile results          ############################
 
 foreach my $line (@output) {
 
-    #if ($line =~ /\[apply\] Starting (.*)$/) {
-    #    print trim("[INFO] $1")."\n"; 
-    #}
-
+	# DBUG: print "[INFO] $line\n";
+	 
     if ($line =~ /\[apply\] Starting ([^\.]*)\.html(.*)$/) {
-        print "[INFO] $1 [loaded from $loaded]...\n"; 
+        print "[INFO] $1 [loaded from $loaded]...\n";     
         $name = $1;
         $name =~ s/Structure//;
         $name =~ s/-tests//;
@@ -57,7 +58,7 @@ foreach my $line (@output) {
     }
 }
 
-die "FATAL: Total = 0\n" if ($total == 0); 
+die "[FATAL] Total = 0 tests run...\n\n" if ($total == 0); 
 
 # format and print results ############################
 print "\n";

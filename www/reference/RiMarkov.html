@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.o../xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="generator" content="JsDoc Toolkit" />
+		
+		<title>JsDoc Reference - RiMarkov</title>
+		 <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+		    <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+		    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+		    <link rel="shortcut icon" type="image/x-icon" href="http://rednoise.org/rita/rita.ico"/>
+		    
+		    <!-- <script src="../js/processing-min.js" type="text/javascript"></script> -->
+		   
+		    <script type="text/javascript" src="../mailto.js"></script>
+		    <script type="text/javascript">
+		      // Only do tracking on the actual site
+		      if (document.location.host === "processingjs.org") {
+		        var _gaq = _gaq || [];
+		        _gaq.push(['_setAccount', 'UA-8565070-1']);
+		        _gaq.push(['_trackPageview']);
+		        (function() {
+		          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		        }());
+		      }
+		    </script>
+	</head>
+
+	<body>
+<!-- ============================== header ================================= -->	
+		<!-- begin static/header.html -->
+		<div id="header">
+</div>
+		<!-- end static/header.html -->
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<div class="container">
+		      <div class="header"> <a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a> <a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="../img/forkme-right-orange.png" alt="Fork me on GitHub"> </a>
+</div>
+		      <span class="tagline">a software toolkit for generative literature</span>
+		          <div class="navbar">
+			        <canvas width="940px" height="78px" data-processing-sources="../RiTaBanner.pde"></canvas>
+
+			        <ul>
+			          <li><a href="../index.html"><span>home</span></a></li>
+			          <li><a href="../download/index.html"><span>download</span></a></li>
+			          <li><a href=../index.html" class="selected"><span>reference</span></a></li>
+			         <!-- <li><a href="../exhibition/index.html"><span>exhibition</span></a></li> -->
+			          <li><a href="../example/index.html"><span>example</span></a></li>
+				      <li><a href="../tutorial/index.html"><span>tutorial</span></a></li>
+			          <li>
+			            <script language="JavaScript">InsertMailToTag("daniel.c.howe", "gmail.com");</script>
+			          </li>
+			        </ul>
+			        <!-- <a class="viewsource" href="../RiTaBanner.pde">view source</a> -->
+			</div>
+		      <div class="page row">
+              		
+				 <div class="refbar span3">
+			        <div id="index">
+						<!-- begin publish.classesIndex -->
+<h3></h3>
+<ul class="classList">
+	<br />
+	<li><a href="index.html">Back to index</a></li>
+	
+	
+</ul>
+<hr />
+						<!-- end publish.classesIndex -->
+					</div>
+
+			        </div>
+		        <div class="span12">
+
+		
+		<div class="reference row">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+<!-- ============================== classes index ============================ -->
+
+		
+		<div id="content">
+<!-- ============================== class title ============================ -->
+			<h2 class="classTitle">
+				
+				Class RiMarkov
+			</h2>
+
+<!-- ============================== class summary ========================== -->			
+			
+            <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
+			    
+		<tr class="">
+          <th scope="row">Examples</th>
+          <td><div class="example"> 
+			    <!-- EXAMPLES  -->
+			    <!-- EXAMPLE IMAGE  -->
+			    <!-- <img src="../alpha_.gif" alt="example pic" /> -->
+	     <pre class="margin">RiMarkov rm = new RiMarkov(this, 3);
+rm.loadFile("war_peace.txt"); // in data dir.
+String[] sents = rm.generateSentences(10);
+for (int i = 0; i < sents.length; i++) {
+	System.out.println(sents[i]);
+}</pre>
+            </div></td>
+        </tr> 
+			    <tr class="">
+			      <th scope="row">Description</th>
+			      <!-- DESCRIPTION  -->
+			      <td>
+				
+				
+			
+				Performs text generation via Markov chains (aka n-grams)
+with options to process single characters, words, sentences, and 
+arbitrary regular expressions. 
+
+<p>
+
+Provides a variety of methods specifically 
+designed for text-generation.
+				
+				
+					<br />
+</td>
+		        </tr>
+			    <tr class="">
+			      <th scope="row">Syntax</th>
+			      <!-- SYNTAX  -->
+			      <td><pre>RiMarkov(int nFactor) <br />          Construct a sentence-generating Markov chain (or n-gram) model and set its n-factor<br />RiMarkov(int nFactor, boolean ignoreCase) <br />          invisible<br />RiMarkov(PApplet parent, int nFactor) <br />          Construct a sentence-generating Markov chain (or n-gram) model and set its n-factor<br />RiMarkov(PApplet pApplet, int nFactor, boolean ignoreCase)</pre></td>
+		        </tr>
+			    <tr class="">
+			      <th scope="row">Parameters</th>
+			      <td><table cellpadding="0" cellspacing="0" border="0" class="sub-table">
+			        <tr class="">
+			          <!-- PARAMETERS  -->
+			          <th width="25%" scope="row">int</th>
+			          <td width="75%">nFactor</td>
+		            </tr>
+                    			        <tr class="">
+			          <!-- PARAMETERS  -->
+			          <th width="25%" scope="row">boolean</th>
+			          <td width="75%">ignore case</td>
+		            </tr>
+                        			        <tr class="">
+			          <!-- PARAMETERS  -->
+			          <th width="25%" scope="row">PApple</th>
+			          <td width="75%">pApplet</td>
+		            </tr>
+                        			        
+			        </table></td>
+		        </tr>
+                
+			    <tr class="">
+			      <th scope="row">Platform</th>
+			      <!-- SYNTAX  -->
+			      <td>Java / Javascript</td>
+		        </tr>
+				<tr class='Note' style='display:none'>
+			      <th scope="row">Note</th>
+			      <!-- SYNTAX  -->
+			      <td></td>
+		        </tr>
+		      </table>
+            
+						
+						
+						
+
+					
+				
+			
+			
+<!-- ============================== event details ========================= --></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	</div>
+	        </div>
+	       
+	      </div>
+		
+<!-- ============================== footer ================================= -->
+
+
+	 <div class="footer">
+	         <p> <br />
+       <br /></p>
+	     </div>
+	    </div>
+	            
+		
+		
+		
+	
+	</body>
+</html>

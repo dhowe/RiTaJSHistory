@@ -1,12 +1,17 @@
 #!/bin/sh
 
-INDIR=$1
-OUTDIR=$2
+INPUT=../../docs/
+OUTPUT=../../www/reference/
 
-cd ../tools/refgen # tmp: make into jar
+HTML="${INPUT}html"
+CLASSPATH=".:core.jar:json.jar"
 
-#echo copying css to $OUTDIR 
-#ls $OUTDIR
-#cp -r $CSS $OUTDIR
+cd ../tools/refgen				 # tmp: use jar instead
 
-java -Xmx512m -classpath .:core.jar:json.jar DocGenerator ../../www/reference/ ../../docs/
+java -Xmx512m -classpath $CLASSPATH DocGenerator $OUTPUT $INPUT
+
+cp ${HTML}/*.html $OUTPUT
+
+rm $OUTPUT/template.html
+
+echo DONE: html written to $HTML
