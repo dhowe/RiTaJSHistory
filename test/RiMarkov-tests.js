@@ -239,7 +239,39 @@ var runtests = function () {
              	var rm = new RiMarkov(4);
              	var sents = rm.loadText(sample).sentenceList;
              	ok(sents && sents.length>0);
-             	ok(!"need more tests","need more tests"); // TODO
+             	//ok(!"need more tests","need more tests"); // TODO
+             	
+             	
+             	var words = "The dog ate the cat";
+
+      			var rm = new RiMarkov(3,false);
+      			rm.loadText(words);
+      			//rm.print();
+      			equal(rm.getProbability("The"), 0.2);
+      			
+      			
+      			var words = "the dog ate the cat";
+
+				var rm = new RiMarkov(3,false);
+				rm.loadText(words);
+				//rm.print();
+				equal(rm.getProbability( "the" ), 0.4);
+				
+
+				var words = "The dog ate the cat.";
+
+				var rm = new RiMarkov(3,true);
+				rm.loadText(words);
+				//rm.print();
+				equal(rm.getProbability( "The" ), 1/6);
+
+				var words = "The dog ate the cat. A boy ate the hat.";
+				
+				var rm = new RiMarkov(3,true);
+				rm.loadText(words);
+				equal(rm.getProbability( "the" ), 1/6);
+		
+      			
              });
                      
              test("RiMarkov.generateSentences()", function () {
@@ -593,12 +625,11 @@ var runtests = function () {
                  rm2.loadTokens(RiTa.tokenize(sample));
                  notEqual(rm2.getProbability("personal"), rm.getProbability("personal"));
                  
-                 // more tests?? yes
-                 
+                 // more tests??
              });
              
              test("RiMarkov.recognizeSentences()", function () {
-                  
+                 
                  var rm = new RiMarkov(3, false);
                  var x = rm.recognizeSentences();
                  equal(x,true);
