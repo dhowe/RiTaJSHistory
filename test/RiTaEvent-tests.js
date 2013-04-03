@@ -6,7 +6,7 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    var functions = [ "getSource", "getType", "toString" ];
+    var functions = [ "source", "type", "toString" ];
 
     test("RiTaEvent-functions", function() {
 
@@ -76,29 +76,25 @@ var runtests = function() {
     });
 
 	
-    test("RiTaEvent.getSource()", function() {
+    test("RiTaEvent.source()", function() {
 
-    	ok(!"Need to use real source types (like RiTa))"); // TODO:
-    	
-        ok(RiTaEvent(this).getSource());
-        ok(new RiTaEvent(this).getSource());
-        ok(RiTaEvent(this, "test").getSource());
-        ok(new RiTaEvent(this, "test").getSource());
+        equal(RiTaEvent(this).source(),this);
+        equal(new RiTaEvent(this,RiTa.TEXT_TO).source(),this);
+        equal(RiTaEvent(this, RiTa.COLOR_TO).source(),this);
+        equal(new RiTaEvent(this, RiTa.FADE_OUT).source(),this);
     });
 
-    test("RiTaEvent.getType()", function() {
+    test("RiTaEvent.type()", function() {
 
-    	ok(!"Need to use real event types (like RiTa))"); // TODO:
-
-        ok(RiTaEvent(this).getType());
-        ok(new RiTaEvent(this).getType());
-        ok(RiTaEvent(this, "test").getType());
-        ok(new RiTaEvent(this, "test").getType());
+        equal(RiTaEvent(this).type(), RiTa.UNKNOWN);
+        equal(new RiTaEvent(this, RiTa.TEXT_TO).type(), RiTa.TEXT_TO);
+        equal(RiTaEvent(this, RiTa.COLOR_TO).type(),RiTa.COLOR_TO);
+        equal(new RiTaEvent(this, RiTa.FADE_OUT).type(),RiTa.FADE_OUT );
     });
 
     test("RiTaEvent.toString()", function() {
     	
-    	ok(!"Need to verify text-string describing event-type is same as in RiTa)");
+    	ok(RiTaEvent(this).toString()); //TODO: compare to RiTa
 	});
 }
 

@@ -4,7 +4,7 @@ INPUT=../../docs/
 OUTPUT=../../www/reference/
 
 HTML="${INPUT}html"
-CLASSPATH=".:core.jar:json.jar"
+CLASSPATH=".:../../lib/core.jar:../../lib/json.jar"
 
 cd ../tools/refgen				 # tmp: use jar instead
 
