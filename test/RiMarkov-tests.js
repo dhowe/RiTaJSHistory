@@ -593,11 +593,12 @@ var runtests = function () {
                  rm2.loadTokens(RiTa.tokenize(sample));
                  notEqual(rm2.getProbability("personal"), rm.getProbability("personal"));
                  
-                 // more tests??
+                 // more tests?? yes
+                 
              });
              
              test("RiMarkov.recognizeSentences()", function () {
-                 
+                  
                  var rm = new RiMarkov(3, false);
                  var x = rm.recognizeSentences();
                  equal(x,true);
