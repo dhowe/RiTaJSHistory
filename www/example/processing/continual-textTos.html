@@ -1,0 +1,35 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js "></script>
+<script type="text/processing" data-processing-target="mycanvas ">
+
+  var rt, ts, clicks, txt = [ "Click To Fade", "Fade On Click" ];
+  
+  void setup() {  
+  	
+	size(400,100);
+	ts = Date.now();
+	rt = RiText(txt[0], 10, 70, createFont("Arial", 60));
+	rt.textTo(txt[1] ,1);
+	console.log("hello");
+  }  
+  
+  void draw() {
+
+	background(255);
+	rt.draw();
+  } 
+
+  void onRiTaEvent(e) {
+
+	var rt = e.getSource();
+	if (rt.text() == txt[0]) {
+		rt.textTo(txt[1],1);
+	}
+	else {
+		rt.textTo(txt[0],1);
+		console.log("elapsed: "+((Date.now()-ts)/1000)+"s")
+	}
+  }
+
+</script>
+<canvas id="mycanvas " style="border:1px solid #000000;"></canvas>

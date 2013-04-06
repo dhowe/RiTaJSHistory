@@ -19,10 +19,10 @@ void setup() {
 
 	rt3 = new RiText("Bound in", width, 170, pf);
     rt3.align(RIGHT);
-    rt3.scale(72/pf.size); 
+    rt3.scale(72/pf.size);
+    console.log(72/pf.size); 
 
     rt4 = new RiText("Bound ing", 130, 200, pf);
-    rt4.scale(32/pf.size); // default
     
 	rt5 = new RiText("Boundage", 180, 300);
 	rt5.font(createFont("Times",64));
@@ -34,14 +34,21 @@ void setup() {
 
 	rt7 = new RiText("Scaling Fail", 20, 600);
 	rt7.scale(2);
+	
+	RiText.showBoundingBoxes(true);
+
+	//rt8 = new RiText("Scaling2", 0, 80);
+	//rt8.scale(2);
+	
 }
 
 void draw() {
     background(250);
-	var bb = rt6.boundingBox(true);
+    noFill();
+    var bb = rt6.boundingBox(true);
     rect(bb.x, bb.y, bb.width, bb.height);
     bb = rt7.boundingBox(true);
-    rect(bb.x, bb.y, bb.width, bb.height);
+    rect(bb.x, bb.y, bb.width, bb.height); 
     RiText.drawAll();
 }
 

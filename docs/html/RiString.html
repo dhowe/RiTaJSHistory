@@ -14,36 +14,15 @@
 		   <!--  <script src="../js/processing-min.js" type="text/javascript"></script> -->
 		    
 		    <script type="text/javascript" src="../mailto.js"></script>
-		    <script type="text/javascript">
-		      // Only do tracking on the actual site
-		      if (document.location.host === "processingjs.org") {
-		        var _gaq = _gaq || [];
-		        _gaq.push(['_setAccount', 'UA-8565070-1']);
-		        _gaq.push(['_trackPageview']);
-		        (function() {
-		          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		        }());
-		      }
-		    </script>
+
 	</head>
 
 	<body>
 <!-- ============================== header ================================= -->	
 		<!-- begin static/header.html -->
-		<div id="header">
-</div>
+		<div id="header"></div>
 		<!-- end static/header.html -->
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 			<div class="container">
 		      <div class="header"> <a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a> <a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="../img/forkme-right-orange.png" alt="Fork me on GitHub"> </a>
 </div>
@@ -66,92 +45,52 @@
 			</div>
 		      <div class="page row">
               		
-				 <div class="refbar span3">
-			        <div id="index">
-						<!-- begin publish.classesIndex -->
-<h3></h3>
-<ul class="classList">
-	<br />
-	<li><a href="index.html">Back to index</a></li>
-	
-	
-</ul>
-<hr />
-						<!-- end publish.classesIndex -->
-					</div>
+			     <div align=right><a href="index.html">&lt; back to index&nbsp;&nbsp;</a></div>
 
-			        </div>
 		        <div class="span12">
 
 		
 		<div class="reference row">
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
-<!-- ============================== classes index ============================ -->
-
-		
 		<div id="content">
 <!-- ============================== class title ============================ -->
 			<h2 class="classTitle">
-				
 				Class RiString
 			</h2>
 
 <!-- ============================== class summary ========================== -->			
 			
               <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
-			    
+		        <tr class="">
+		      <th scope="row">Description</th>
+		      <!-- DESCRIPTION  -->
+		      <td>
+				<p>The basic text container object, implementing a variety of 
+additional functionality atop the javascript string object</p><p>
+Provides additional functions for text-analysis and generation.<p/>
+</td>
+	        </tr>
 		<tr class="">
           <th scope="row">Examples</th>
           <td><div class="example"> 
 			    <!-- EXAMPLES  -->
 			    <!-- EXAMPLE IMAGE  -->
 			    <!-- <img src="../alpha_.gif" alt="example pic" /> -->
-	     <pre class="margin">RiString rs = new RiString("The dog was white");
-RiAnalyzer ra = new RiAnalyzer();
-ra.analyze(rs);
+	     <pre class="margin">rs = new RiString("The dog was white");
+rs.analyze();
 
-System.out.println(rs.getFeature("syllables"));
-System.out.println(rs.getFeature("phonemes"));    
-System.out.println(rs.getFeature("stresses"));
-System.out.println(rs.getFeature("pos"));</pre>
+println(rs.get("syllables"));
+println(rs.get("phonemes"));    
+println(rs.get("stresses"));
+println(rs.get("pos"));</pre>
             </div></td>
         </tr> 
-			    <tr class="">
-			      <th scope="row">Description</th>
-			      <!-- DESCRIPTION  -->
-			      <td>
-	
-				The basic text container object, implementing a variety of 
-additional functionality atop the javascript string object
-
-<p>
-
-Provides a variety of methods specifically 
-designed for text-generation.
-				
-				
-					<br />
-</td>
-		        </tr>
+			
 			    <tr class="">
 			      <th scope="row">Syntax</th>
 			      <!-- SYNTAX  -->
-			      <td><pre>RiString(java.lang.CharSequence s) 
-RiString(PApplet p, java.lang.CharSequence s) 
-          Included only for consistency's sake</pre></td>
+			      <td><pre>RiString(String s)</pre> 
+          </td>
 		        </tr>
 			    <tr class="">
 			      <th scope="row">Parameters</th>
@@ -161,11 +100,6 @@ RiString(PApplet p, java.lang.CharSequence s)
 			          <th width="25%" scope="row">String</th>
 			          <td width="75%">String</td>
 		            </tr>
-                    			        <tr class="">
-			          <!-- PARAMETERS  -->
-			          <th width="25%" scope="row">PApplet</th>
-			          <td width="75%">pApplet</td>
-		            </tr>      
 			        </table></td>
 		        </tr>
                 

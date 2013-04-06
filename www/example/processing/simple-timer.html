@@ -1,3 +1,4 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <script src="../../../lib/processing.js"></script>
 <script src="../../../src/rita.js"></script>
 
@@ -11,7 +12,7 @@
 RiText rt;
 
 int count = 0; // utf-8 chars too
-String[] txt = {"GOD", "DOG"}; // 
+String[] txt = {"GÖD", "DÖG"}; // 
 
 void setup() {  
     
@@ -21,7 +22,6 @@ void setup() {
   
    // set timer to call onRiTaEvent every half sec.
   RiText.timer(.5f);
-  //onRiTaEvent();
 }  
 
 void onRiTaEvent(RiTaEvent re) {
