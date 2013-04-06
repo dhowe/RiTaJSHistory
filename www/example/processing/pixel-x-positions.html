@@ -3,6 +3,8 @@
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing =============================== 
 
+// problem with processing line function (too thick)
+
 var numWords, txt = "The dog ate the cat.";
 
 void setup() 
@@ -21,19 +23,21 @@ void setup()
 void drawIt() 
 {
   background(200);
-  
+  	
   line1.draw();
 
   stroke(#ffffff);
   for (var i = 0; i < txt.length; i++) {
       var y = line1.charOffset(i);
-      RiText.line(y, 28, y, RiText.height());
+      //RiText.line(y, 28, y, RiText.height());
+      line(y, 28, y, RiText.height());
   }
   
   stroke(#ff0000);
   for (var i = 0; i < numWords; i++) {
       var y = line1.wordOffset(i);
-      RiText.line(y, 0, y, 55);
+      //RiText.line(y, 0, y, 55);
+	  line(y, 0, y, 55);
   }
 }
 

@@ -1,16 +1,13 @@
-< script src = "../../../lib/processing.js" > < /script>
-<script src="../.. / .. / src / rita.js "></script>
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js "></script>
+<script type="text/processing" data-processing-target="mycanvas ">
 
-<script type="
-text / processing " data-processing-target="
-mycanvas ">
-
-  var rt, clicks, txt = [ "Click To Fade ", "Fade On Click " ];
+  var rt, clicks, txt = [ "Click To Fade", "Fade On Click" ];
   
   void setup() {  
   	
 	size(400,100);
-	rt = RiText(txt[0], 10, 70, createFont("Arial ", 60));
+	rt = RiText(txt[0], 10, 70, createFont("Arial", 60));
   }  
   
   void draw() {
@@ -28,12 +25,10 @@ mycanvas ">
 	rt.textTo(newText, 2f); 
   }
 
-  void onRiTaEvent(e) {
+  void onRiTaEvent(e) { 
 
-	console.log("event - type: " + e.getType());
+	console.log("event-type: " + e.getType());
   }
 
 </script>
-<canvas id="
-mycanvas " style="
-border: 1px solid #000000;"></canvas>
+<canvas id="mycanvas " style="border:1px solid #000000;"></canvas>

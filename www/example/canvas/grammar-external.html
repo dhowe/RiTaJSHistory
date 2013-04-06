@@ -1,0 +1,40 @@
+<canvas id="canvas" style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script src="../data/haiku.js"></script>
+<script>
+
+RiTa.p5Compatible(1);
+
+var grammar, rts = [];
+
+function setup()
+{
+    RiText.size(650, 200);
+
+    RiText.defaultFont("arial",30);  
+    RiText.defaultAlignment(CENTER);
+
+    rts[0] = new RiText("click to", RiText.width() / 2, 75);
+    rts[1] = new RiText("generate", RiText.width() / 2, 110);
+    rts[2] = new RiText("a haiku", RiText.width() / 2, 145); 
+
+    grammar = new RiGrammar(haikuGrammar);
+}
+
+function draw()
+{
+    RiText.background(230,240, 255);
+    RiText.drawAll();
+}
+
+function mouseClicked()
+{
+    var result = grammar.expand();
+    var lines =  result.split("%");
+    for ( var int = 0; int < rts.length; int++) {
+        rts[int].setText(lines[int]);
+    }
+}
+
+
+</script>

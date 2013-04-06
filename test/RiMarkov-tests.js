@@ -1,5 +1,7 @@
 var runtests = function () {
 	
+			// TODO: make sure we test: allowDuplicates and recognizeSentences flags to the constructor
+		
 		    QUnit.module("RiMarkov", {
 			    setup: function () {},
 			    teardown: function () {}
