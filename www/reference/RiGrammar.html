@@ -15,15 +15,14 @@
 	</head>
 
 	<body>
-<!-- ============================== header ================================= -->	
+		<!-- ============================== header ================================= -->
+			
 		<!-- begin static/header.html -->
-		<div id="header">
-</div>
+		<div id="header"></div>
 		<!-- end static/header.html -->
 
 			<div class="container">
-		      <div class="header"> <a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a> <a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="../img/forkme-right-orange.png" alt="Fork me on GitHub"> </a>
-</div>
+		      <div class="header"> <a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a> <a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="../img/forkme-right-orange.png" alt="Fork me on GitHub"> </a></div>
 		      <span class="tagline">a software toolkit for generative literature</span>
 		          <div class="navbar">
 			        <canvas width="940px" height="78px" data-processing-sources="../RiTaBanner.pde"></canvas>
@@ -40,42 +39,29 @@
 			          </li>
 			        </ul>
 			       <!--  <a class="viewsource" href="../RiTaBanner.pde">view source</a> -->
-			</div>
+					</div>
+					
 		      <div class="page row">
               		
-				 <!--div class="refbar span3"-->
-			        <div id="index">
-						<!-- begin publish.classesIndex -->
-<h3></h3>
-<!-- ul class="classList">
-	<br/>
-	<li><a href="index.html">Back to index</a></li>
-</ul-->
-<hr />
-						<!-- end publish.classesIndex -->
-					</div>
+						<div align=right><a href="index.html">&lt; back to index&nbsp;&nbsp;</a></div>
 
-			        <!--/div-->
-		        <div class="span12">
+		        	<div class="span12">
 
-		<div class="reference row">
+						<div class="reference row">
 		
-<!-- ============================== classes index ============================ -->
-
-		
-		<div id="content">
+							<div id="content">
+			
 <!-- ============================== class title ============================ -->
-			<h2 class="classTitle">
-				
-				Class RiGrammar
-			</h2>
 
+								<h2 class="classTitle">Class RiGrammar</h2></br>
+			
 <!-- ============================== class summary ========================== -->
+
 <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
 		<tr class="">
-			      <th scope="row">Description</th>
+			      <th scope="row"<br>Description</th>
 			      <!-- DESCRIPTION  -->
-			      <td><span class="description">A probabilistic context-free grammar with literary extensions designed for text-generation </span></td>
+			      <td><span class="description">A probabilistic context-free grammar with literary extensions for text-generation.</span></td>
 		</tr>
 		<tr class="">
           <th scope="row">Examples</th>
@@ -83,11 +69,14 @@
           	<div class="example"> 
 			    
 	     <pre class="margin"> 
-rg = new RiGrammar("mygrammar.g");
+rg = new RiGrammar();
+
+rg.setGrammarFromFile("myGrammar.json");
+
 println(rg.expand());
 		</pre>
 		
-RiTa grammar files are JSON-formatted text files that follow the format below:
+RiTa grammars are JSON-formatted Strings as follows:
 <pre>
 { 	   
 	"&lt;start&gt;": "&lt;rule1&gt; | &lt;rule2&gt; | &lt;rule3&gt;",
@@ -102,13 +91,20 @@ RiTa grammar files are JSON-formatted text files that follow the format below:
 <li>Commonly used methods:</li>
 <br/>
 <ul>
-<li><code>expand()</code> which simply begins at the &lt;start&gt; state and 
+
+<li><code>expand()</code> begins at the &lt;start&gt; state and 
 generates a string of terminals from the grammar.<p>
-<li><code>expandFrom(String)</code> which begins with the argument
+	
+<li><code>expandFrom(String)</code> begins with the argument
 String (which can consist of both non-terminals and terminals,) 
-and expands from there. Notice that <code>expand()</code> is simply
-a convenient version of <code>expandFrom("&lt;start&gt;");</code>.<p>
-<li><code>expandWith(String, String)</code> takes 2 String arguments, the 1st 
+and expands from there.
+<br> 
+<p>
+	<br>
+Notice that <code>expand()</code> is simply
+a convenient version of <code>expandFrom("&lt;start&gt;");</code>.</p>
+	
+<!--li><code>expandWith(String, String)</code> takes 2 String arguments, the 1st 
 (a terminal) is guaranteed to be substituted for the 2nd (a non-terminal). Once this 
 substitution is made, the algorithm then works backwards (up the tree from the leaf)
 ensuring that the terminal (terminal1) appears in the output string. 
@@ -118,14 +114,14 @@ grammar.expandWith(terminal1, "&lt;rule2&gt;");
 </pre>
 assuring not only that <code>&lt;rule2&gt;</code>will be used at least 
 once in the generation process, but that when it is, it will be replaced 
-by the terminal "hello".
+by the terminal "hello". -->
 </ul>
 
 <li>A RiGrammar object will assign (by default) equal weights to all choices in a rule. 
 One can adjust the weights by adding 'multipliers' as follows: (in the rule below,
 'terminal1' will be chosen twice as often as the 2 other choices.
 <pre>   
-"&lt;rule2&gt;": "[2] terminal1 | terminal2 | &lt;rule1&gt;" 
+"&lt;rule2&gt;": "terminal1 [2] | terminal2 | &lt;rule1&gt;" 
 </pre>
 
 <li>The RiGrammar object supports callbacks, from your grammar, back into your code.
@@ -140,9 +136,9 @@ Any number of arguments may be passed in a callback, but for each call,
 there must be a corresponding method in the sketch, e.g.,
 
 <pre>
-   function pluralize(theString) {
-     ...
-   }
+function pluralize(theString) {
+   ...
+}
 </pre>
             </div></td>
         </tr> 
@@ -152,13 +148,16 @@ there must be a corresponding method in the sketch, e.g.,
 			      <!-- SYNTAX  -->
 			      <td>
 <pre>
+// Initialize a RiGrammar object with no grammar data.
+
 RiGrammar() 
-	Initialize a RiGrammar object with no grammar data.
-          
+	
+     
+// Specify a grammar in JSON format (see example above).
+     
 RiGrammar(String jsonGrammar) 
-	Specify a grammar file  in JSON format (see example above).
-          
-</pre></td>
+</pre>
+</td>
 		        </tr>
 			    <tr class="">
 			      <th scope="row">Parameters</th>

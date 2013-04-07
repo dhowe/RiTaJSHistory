@@ -759,30 +759,6 @@
       "platform":"Java / Javascript",
 	  "note":"",
 
-   },
-   {
-      "methodName":"RiTa.p5Compatible()",
-      "example":"",
-      "description":"For convenience, provides implementations of some of Processing built-in method, e.g. size(), background(), etc. and backwards compatibility with the original RiTa/Processing Java library",
-      "syntax":"RiTa.p5Compatible(boolean value)",
-      "parameters":[
-         {
-            "type":"boolean",
-            "desc":"true to enable compatibility, else false"
-         },
-
-      ],
-      "returns":[
-         {
-            "type":"None",
-            "desc":""
-         },
-
-      ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-
-   },
+   }
 
 ]

@@ -6,43 +6,21 @@
 		<meta name="generator" content="JsDoc Toolkit" />
 		
 		<title>JsDoc Reference - RiText</title>
-		 <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
-		    <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
-		    <link rel="stylesheet" href="../css/style.css" type="text/css" />
-		    <link rel="shortcut icon" type="image/x-icon" href="http://rednoise.org/rita/rita.ico"/>
+	 	<link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+	    <link rel="stylesheet" href="../css/syntax.css" type="text/css" />
+	    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+	    <link rel="shortcut icon" type="image/x-icon" href="http://rednoise.org/rita/rita.ico"/>
+	    
+		<!-- <script src="../js/processing-min.js" type="text/javascript"></script> -->
 		    
-		    <!-- <script src="../js/processing-min.js" type="text/javascript"></script> -->
-		    
-		    <script type="text/javascript" src="../mailto.js"></script>
-		    <script type="text/javascript">
-		      // Only do tracking on the actual site
-		      if (document.location.host === "processingjs.org") {
-		        var _gaq = _gaq || [];
-		        _gaq.push(['_setAccount', 'UA-8565070-1']);
-		        _gaq.push(['_trackPageview']);
-		        (function() {
-		          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-		          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-		          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-		        }());
-		      }
-		    </script>
+		<script type="text/javascript" src="../mailto.js"></script>
 	</head>
 
 	<body>
 <!-- ============================== header ================================= -->	
 		<!-- begin static/header.html -->
-		<div id="header">
-</div>
+		<div id="header"></div>
 		<!-- end static/header.html -->
-		
-		
-		
-		
-		
-		
-		
-		
 		
 			<div class="container">
 		      <div class="header"> <a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a> <a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="../img/forkme-right-orange.png" alt="Fork me on GitHub"> </a>
@@ -65,41 +43,11 @@
 			        <!-- <a class="viewsource" href="../RiTaBanner.pde">view source</a> -->
 			</div>
 		      <div class="page row">
-			
-			
-			
-				 <div class="refbar span3">
-			        <div id="index">
-						<!-- begin publish.classesIndex -->
-<h3></h3>
-<ul class="classList">
-	<br />
-	<li><a href="index.html">Back to index</a></li>
-	
-	
-</ul>
-<hr />
-						<!-- end publish.classesIndex -->
-					</div>
+							 <div align=right><a href="index.html">&lt; back to index&nbsp;&nbsp;</a></div>
 
-			        </div>
-			
 		        <div class="span12">
 
 		<div class="reference row">
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
 <!-- ============================== classes index ============================ -->
 
@@ -107,25 +55,37 @@
 		<div id="content">
 <!-- ============================== class title ============================ -->
 			<h2 class="classTitle">
-				
 				Class RiText
 			</h2>
-
 <!-- ============================== class summary ========================== -->			
 			
-            		  <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
-			    
+	<table cellpadding="0" cellspacing="0" border="0" class="ref-item">
+		<tr class="">
+	      <th scope="row">Description</th>
+	      <!-- DESCRIPTION  -->
+	      <td>
+			<p>
+			A text display object for the RiTa tools. 
+			</p>
+			<p>
+			Wraps an instance of RiString to provide utility methods for typography, text effects, animation, etc.
+			</p> 
+		   </td>
+		</tr>			    
 		<tr class="">
           <th scope="row">Examples</th>
           <td><div class="example"> 
 			    <!-- EXAMPLES  -->
-			    <!-- EXAMPLE IMAGE  -->
 			    <!-- <img src="../alpha_.gif" alt="example pic" /> -->
-	     <pre class="margin">import rita.*;
+	     <pre class="margin">
+import rita.*;
      
+RiText rt;
+
 void setup() {
+	
    // start in the upper left corner
-   RiText rt = new RiText(this, "hello", 0, 10);
+   rt = new RiText(this, "hello", 0, 10);
    
    // measure the width of the text
    float tw = rt.textWidth();
@@ -135,30 +95,27 @@ void setup() {
 }
 
 void draw() {
-   // draw the bg every frame
+	
+   // draw the bg and RiText each frame
    background(255);
+   rt.draw(); 
 }</pre>
             </div></td>
         </tr> 
-			    <tr class="">
-			      <th scope="row">Description</th>
-			      <!-- DESCRIPTION  -->
-			      <td>A text display object for the RiTa tools. 
-
-Wraps an instance of RiString to provide utility
-methods for typography, text effects, animation, etc. 
-
-<p>
-
-Uses either the native canvas renderer or the Processing renderer (when included)
-				
-
-</p></td>
-		        </tr>
+			    
 			    <tr class="">
 			      <th scope="row">Syntax</th>
 			      <!-- SYNTAX  -->
-			      <td><pre>RiText(PApplet pApplet) <br />RiText(PApplet pApplet, char character) <br />RiText(PApplet pApplet, char character, float startXPos, float startYPos) <br />RiText(PApplet pApplet, float startXPos, float startYPos) <br />RiText(PApplet pApplet, java.lang.String text) <br />RiText(PApplet pApplet, java.lang.String text, float startXPos, float startYPos) <br />RiText(PApplet pApplet, java.lang.String text, float xPos, float yPos, int alignment) <br />RiText(PApplet pApplet, java.lang.String text, float xPos, float yPos, int alignment, PFont theFont) <br />          Creates a new RiText object base-aligned at x='xPos', y='yPos', with 'alignment' from one of (LEFT, CENTER, RIGHT), using font specified by 'theFont'.<br />RiText(PApplet pApplet, java.lang.String text, float startXPos, float startYPos, PFont font)</pre></td>
+			      <td><pre>
+			      	
+// Creates a new RiText object base-aligned at x='xPos', y='yPos', using the font optionally specified by 'theFont'.
+
+RiText(PApplet pApplet, String text) 
+RiText(PApplet pApplet, String text, float xPos, float yPos)
+RiText(PApplet pApplet, String text, float xPos, float yPos, PFont theFont) 
+
+</pre></td>
+			      				      	
 		        </tr>
 			    <tr class="">
 			      <th scope="row">Parameters</th>
@@ -168,35 +125,25 @@ Uses either the native canvas renderer or the Processing renderer (when included
 			          <th width="25%" scope="row">PApplet</th>
 			          <td width="75%">the pApplet</td>
 		            </tr>
-                    			        <tr class="">
-			          <!-- PARAMETERS  -->
-			          <th width="25%" scope="row">char</th>
-			          <td width="75%">the character</td>
-		            </tr>
-                    <tr class="">
-			          <!-- PARAMETERS  -->
-			          <th width="25%" scope="row">float</th>
-			          <td width="75%">the start X position</td>
-		            </tr>
-                    <tr class="">
-			          <!-- PARAMETERS  -->
-			          <th width="25%" scope="row">float</th>
-			          <td width="75%">the start Y position</td>
-		            </tr>
                     <tr class="">
 			          <!-- PARAMETERS  -->
 			          <th width="25%" scope="row">String</th>
 			          <td width="75%">the text</td>
 		            </tr>
-                        <tr class="">
+                    <tr class="">
 			          <!-- PARAMETERS  -->
-			          <th width="25%" scope="row">int</th>
-			          <td width="75%">the alignment</td>
+			          <th width="25%" scope="row">float</th>
+			          <td width="75%">the X position</td>
 		            </tr>
-                                            <tr class="">
+                    <tr class="">
+			          <!-- PARAMETERS  -->
+			          <th width="25%" scope="row">float</th>
+			          <td width="75%">the Y position</td>
+		            </tr>
+                    <tr class="">
 			          <!-- PARAMETERS  -->
 			          <th width="25%" scope="row">PFont</th>
-			          <td width="75%">the font</td>
+			          <td width="75%">the font (optional)</td>
 		            </tr>
                     
 			        </table></td>
@@ -212,29 +159,6 @@ Uses either the native canvas renderer or the Processing renderer (when included
 			      <td></td>
 		        </tr>
 		      </table>
-           
-						
-						
-						
-
-					
-				
-			
-			
-<!-- ============================== event details ========================= --></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	</div>
 	        </div>
@@ -243,16 +167,12 @@ Uses either the native canvas renderer or the Processing renderer (when included
 		
 <!-- ============================== footer ================================= -->
 
-
 	 <div class="footer">
 	         <p> <br />
        <br /></p>
 	     </div>
 	    </div>
-	            
-		
-		
-		
+
 	
 	</body>
 </html>
