@@ -3,9 +3,7 @@
 
 <script>
 
-var rt=[], k=0, num=6;
-
-RiTa.p5Compatible(true);
+//RiTa.p5Compatible(true);
 
 function setup()
 {	
@@ -14,9 +12,13 @@ function setup()
   RiText.defaultColor(255);
   RiText.defaultAlignment(CENTER);
   RiText.defaultFont("Arial",36);
+
+  var rt = [];  
   
-  for (var i=0; i< num; i++) {
-    for (var j=0; j< num; j++, k++) {
+  for (var i=0, k=0; i< 6; i++) {
+  	
+    for (var j=0; j< 6; j++, k++) {
+    	
       var c = String.fromCharCode(65+k);         // letters
       rt[k] = RiText(65+k, 24+j*30, 32+i*30);
       if (k < 26) {    
@@ -40,10 +42,7 @@ function draw() {
 }
 
 function onRiTaEvent(re) {
-    
-  re.getSource().colorTo
-      ([Math.floor(random(100,255)), Math.floor(random(100,255)), 0, 255], 1);
+        
+  re.source().colorTo([ random(100,255), random(100,255), 0 ], 1);
 }
-
-
 </script>

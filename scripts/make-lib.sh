@@ -103,9 +103,10 @@ if [ $INCLUDE_DOCS = 1 ]
 then
     echo
     echo Building js-docs...
-    rm -rf $REF_DIR/*
-    java -Xmx512m -jar $JSDOC/jsrun.jar $JSDOC/app/run.js -d=$REF_DIR -a \
-        -t=$JSDOC/templates/ritajs -D="status:alpha" -D="version:$VERSION" $SRC > docs-err.txt 
+    #rm -rf $REF_DIR/*
+    #java -Xmx512m -jar $JSDOC/jsrun.jar $JSDOC/app/run.js -d=$REF_DIR -a \
+    #    -t=$JSDOC/templates/ritajs -D="status:alpha" -D="version:$VERSION" $SRC > docs-err.txt 
+   ./make-docs.sh 
 else
     echo
     echo Skipping docs...

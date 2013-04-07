@@ -31,7 +31,7 @@ function draw()
 function onRiTaEvent(e)
 {
     if (e.getType() == 'moveToCompleted') 
-        moveToRandom(e.getSource());
+        moveToRandom(e.source());
 }
 
 // pick a new random location to go to

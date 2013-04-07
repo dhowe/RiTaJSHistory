@@ -2143,31 +2143,6 @@
 	  "note":"",
    },
    {
-      "methodName":"RiText.defaultFontSize()",
-      "example":"",
-      "description":"Sets/gets the default font size for all RiTexts",
-      "syntax":"RiText.defaultFontSize()<br/>RiText.defaultFontSize(int size)",
-      "parameters":
-      [
-			{ 
-			"type": "int", 
-			"desc": "size (optional, for sets only)" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "int", 
-			"desc": "the current default font size" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
       "methodName":"RiText.defaultMotionType()",
       "example":"",
       "description":"Sets/gets the default font size for all RiTexts",

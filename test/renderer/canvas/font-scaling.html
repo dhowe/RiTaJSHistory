@@ -28,7 +28,7 @@ function doScale()
 // called when any behavior (e.g., scaleTo) completes
 function onRiTaEvent(re) {
     
-  var rt = re.getSource();
+  var rt = re.source();
   if (rt.scaleX>=1) doScale();
 }
 
