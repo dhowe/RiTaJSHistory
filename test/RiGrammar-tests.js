@@ -73,9 +73,9 @@ var runtests = function() {
                 var dc = res.match(/dog/g);
                 var cc = res.match(/cat/g);
                 var mc = res.match(/mouse/g);
-                ok(!dc || dc.length < 2);
-                ok(!cc || cc.length < 2);
-                ok(!mc || mc.length < 2);
+                ok(!dc || dc.length < 3); //The  cat  chased the cat <--- 2 matches for this case
+                ok(!cc || cc.length < 3);
+                ok(!mc || mc.length < 3);
             }
         }
         else {
