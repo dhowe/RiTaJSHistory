@@ -38,7 +38,7 @@ var runtests = function() {
 		ok(RiTa.LEFT);
 		ok(RiTa.CENTER);
 		ok(RiTa.UNKNOWN);
-		ok(RiTa.TIMER_TICK); 
+		ok(RiTa.TIMER); 
     });
 
     test("Public Statics", function() {

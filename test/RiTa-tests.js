@@ -431,7 +431,27 @@
  });
 
 
+	test("RiTa.getPosTags(sns)", function() {
+		
+		var checks = ["emphasis","stress","discus","colossus","fibrosis","digitalis","pettiness","innings","mess"];
+		for(var i=0,j=checks.length; i<j; i++) {
+		  deepEqual(RiTa.getPosTags(checks[i],["nn"]);
+		}
+	});
+	
 	test("RiTa.getPosTags()", function() {
+
+		var result = RiTa.getPosTags("mammal");
+		var answer = ["nn"];
+		deepEqual(result, answer);
+		
+		var result = RiTa.getPosTags("preparedness");
+		var answer = ["nn"];
+		deepEqual(result, answer);
+		
+		var result = RiTa.getPosTags("highness");
+		var answer = ["nn"];
+		deepEqual(result, answer);
 
 		var result = RiTa.getPosTags("running");
 		var answer = ["vbg"];
