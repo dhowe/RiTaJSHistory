@@ -508,17 +508,13 @@
    {
       "methodName":"split()",
       "example":"",
-      "description":"Split a RiString into an array of sub-RiString and return the new array. <br/>If an empty string ('') is used as the separator, the string is split between each character.",
-      "syntax":"split()<br/>split(String separator)<br/>split(int limit)<br/>split(String separator, int limit)",
+      "description":"Split a RiString into an array of RiStrings, one for each element after the split, and returns the new array. <br/>If an empty string ('') is used as the separator, the string is split between each character.",
+      "syntax":"split()<br/>split(String separator)<br/>
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "(Optional) Specifies the character to use for splitting the string. If omitted, the entire string will be returned. If an empty string ('') is used as the separator, the string is split between each character." 
-			},
-			{ 
-			"type": "int", 
-			"desc": "(Optional) An integer that specifies the number of splits" 
+			"desc": "(Optional) Specifies the character to use for splitting the string. If omitted, the string is split according to RiTa.tokenize(). If an empty string ('') is used as the separator, the string is split between each character." 
 			},
 	  ],
 	  "returns":
