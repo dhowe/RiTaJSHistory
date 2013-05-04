@@ -1884,12 +1884,16 @@
       "methodName":"RiText.createFont()",
       "example":"",
       "description":"",
-      "syntax":"RiText.createFont(fontName, fontsize, leading)",
+      "syntax":"RiText.createFont(fontName, fontSize)",
       "parameters":
       [
 			{ 
-			"type": "", 
-			"desc": "" 
+			"type": "String", 
+			"desc": "name of the font" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "size of the font" 
 			},
 			
 	  ],
@@ -1909,7 +1913,7 @@
       "methodName":"RiText.createLetters()",
       "example":"",
       "description":"",
-      "syntax":"RiText.createLetters(txt, x, y, w, h, fontObj)",
+      "syntax":"RiText.createLetters(pApplet, txt, x, y, w, h, fontObj, leading)",
       "parameters":
       [
 			{ 
@@ -1934,7 +1938,7 @@
       "methodName":"RiText.createWords()",
       "example":"",
       "description":"",
-      "syntax":"RiText.createWords(txt, x, y, w, h, fontObj)",
+      "syntax":"RiText.createWords(pApplet, txt, x, y, w, h, fontObj, leading)",
       "parameters":
       [
 			{ 
@@ -1959,7 +1963,7 @@
       "methodName":"RiText.createLines()",
       "example":"",
       "description":"",
-      "syntax":"RiText.createLines(txt, x, y, maxW, maxH, theFont)",
+      "syntax":"RiText.createLines(pApplet, txt, x, y, maxW, maxH, theFont, leading)",
       "parameters":
       [
 			{ 
@@ -1984,7 +1988,7 @@
       "methodName":"RiText.drawAll()",
       "example":"",
       "description":"A convenience method to draw all existing RiText objects (with no argument) or an array of RiText objects (if supplied as an argument)",
-      "syntax":"RiText.drawAll(RiText[] array)<br/>RiText.drawAll(RiText[] array)",
+      "syntax":"RiText.drawAll()<br/>RiText.drawAll(RiText[] array)",
       "parameters":
       [
 			{ 
@@ -2056,34 +2060,9 @@
 	  "note":"",
    },
    {
-      "methodName":"RiText.defaultAlignment()",
-      "example":"",
-      "description":"Sets/gets the default alignment for all RiTexts",
-      "syntax":"RiText.defaultAlignment()<br/>RiText.defaultAlignment(int align)",
-      "parameters":
-      [
-			{ 
-			"type": "int", 
-			"desc": "align (optional, for sets only)" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "int", 
-			"desc": "the current default alignment" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
       "methodName":"RiText.defaultColor()",
       "example":"",
-      "description":"Sets/gets the default color",
+      "description":"Convenience method to set/get the default color",
       "syntax":"RiText.defaultColor()<br/>RiText.defaultColor(float[] color)",
       "parameters":
       [
@@ -2108,8 +2087,8 @@
    {
       "methodName":"RiText.defaultFont()",
       "example":"",
-      "description":"Sets/gets the default font for all RiTexts",
-      "syntax":"RiText.defaultFont()<br/>RiText.defaultFont(PFont font)<br/>RiText.defaultFont(PFont font, string fontName)<br/>RiText.defaultFont(PFont font, string fontName, int fontSize)<br/>RiText.defaultFont(PFont font, string fontName, int fontSize, int leading)",
+      "description":"Convenience method to set/get the default font",
+      "syntax":"RiText.defaultFont()<br/>RiText.defaultFont(PFont font)<br/>RiText.defaultFont(string fontName, int fontSize)",
       "parameters":
       [
 			{ 
@@ -2124,145 +2103,11 @@
 			"type": "int", 
 			"desc": "the font size (optional, for 'sets' only)" 
 			},
-			{ 
-			"type": "int", 
-			"desc": "the font leading (optional, for 'sets' only)" 
-			},
-			
 	  ],
 	  "returns":
       [
 			{ 
-			"type": "PFont", 
-			"desc": "the current default font" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.defaultMotionType()",
-      "example":"",
-      "description":"Sets/gets the default font size for all RiTexts",
-      "syntax":"RiText.defaultMotionType(int motionType)",
-      "parameters":
-      [
-			{ 
-			"type": "int", 
-			"desc": "motionType" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "int", 
-			"desc": "the current default motionType" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.showBoundingBoxes()",
-      "example":"",
-      "description":"Sets/gets the default bounding box visibility",
-      "syntax":"RiText.showBoundingBoxes()<br/>RiText.showBoundingBoxes(boolean size)",
-      "parameters":
-      [
-			{ 
-			"type": "boolean", 
-			"desc": "size (optional, for sets only)" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "boolean", 
-			"desc": "the current default bounding box visibility" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.height()",
-      "example":"",
-      "description":"Convenience method to get the height of the current drawing surface",
-      "syntax":"RiText.height()",
-      "parameters":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "number", 
-			"desc": "height" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.width()",
-      "example":"",
-      "description":"Convenience method to get the width of the current drawing surface",
-      "syntax":"RiText.width()",
-      "parameters":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "number", 
-			"desc": "width" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.size()",
-      "example":"",
-      "description":"Convenience method to set the size of the drawing surface in the current renderer context ",
-      "syntax":"RiText.size(number width, number height)",
-      "parameters":
-      [
-      		{ 
-			"type": "number", 
-			"desc": "width" 
-			},
-			{ 
-			"type": "number", 
-			"desc": "height" 
-			},
-
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "None", 
+			"type": "", 
 			"desc": "" 
 			},
 			
@@ -2271,6 +2116,7 @@
       "platform":"Java / Javascript",
 	  "note":"",
    },
+   
    {
       "methodName":"RiText.randomColor()",
       "example":"",
@@ -2305,189 +2151,7 @@
       "platform":"Java / Javascript",
 	  "note":"",
    },
-   {
-      "methodName":"RiText.background()",
-      "example":"",
-      "description":"Returns a random color in which the 3 values for rgb (or rgba if 'includeAlpha' is true), are between min and max ",
-      "syntax":"RiText.background(float r, float g, float b, float a)",
-      "parameters":
-      [
-      		{ 
-			"type": "float", 
-			"desc": "r" 
-			},
-			{ 
-			"type": "float", 
-			"desc": "g" 
-			},
-			{ 
-			"type": "float", 
-			"desc": "b" 
-			},
-			{ 
-			"type": "float", 
-			"desc": "a" 
-			},
-
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.mouse()",
-      "example":"",
-      "description":"Returns the mouse position from a mouse event in a cross-browser compatible fashion",
-      "syntax":"RiText.mouse(MouseEvent e)",
-      "parameters":
-      [
-      		{ 
-			"type": "MouseEvent", 
-			"desc": "mouseEvent" 
-			},
-
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "object", 
-			"desc": "mouse position with x,y properties" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.loop()",
-      "example":"RiText.loop();<br/>RiText.loop('draw');<br/>RiText.loop(30);<br/>RiText.loop(draw, 10);",
-      "description":"Starts an animation loop that calls the specified callback (usually 'draw') at the specified fps ",
-      "syntax":"RiText.loop()<br/>RiText.loop(function callback)<br/>RiText.loop(function callback, number fps)",
-      "parameters":
-      [
-      		{ 
-			"type": "function", 
-			"desc": "the animation callback (optional, default=60)" 
-			},
-			{ 
-			"type": "number", 
-			"desc": "the target framesPerSecond (optional, default='draw')" 
-			},
-
-
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.noLoop()",
-      "example":"",
-      "description":"Immediately stops the current animation loop and clears ",
-      "syntax":"RiText.noLoop()",
-      "parameters":
-      [
-      		{ 
-			"type": "None", 
-			"desc": "" 
-			},
-
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.line()",
-      "example":"",
-      "description":"Convenience method to draw a crisp line on the drawing surface",
-      "syntax":"RiText.line(number x1, number y1, number x2, number y2)<br/>RiText.line(number x1, number y1, number x2, number y2, number lineWidth)",
-      "parameters":
-      [
-      		{ 
-			"type": "number", 
-			"desc": "x1" 
-			},
-			{ 
-			"type": "number", 
-			"desc": "y1" 
-			},
-			{ 
-			"type": "number", 
-			"desc": "x2" 
-			},
-			{ 
-			"type": "number", 
-			"desc": "y2" 
-			},
-			{ 
-			"type": "number", 
-			"desc": "lineWidth" 
-			},
-
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
-   {
-      "methodName":"RiText.graphics()",
-      "example":"",
-      "description":"Returns the current graphics context, either a canvas 2d'-context or ProcessingJS instance ",
-      "syntax":"RiText.graphics()",
-      "parameters":
-      [
-      		{ 
-			"type": "None", 
-			"desc": "" 
-			},
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "object", 
-			"desc": "" 
-			},
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":"",
-   },
+   
    {
       "methodName":"RiText.picked()",
       "example":"var rts = RiText.getPicked(mx, my);<br/>if (rts.length) { <br/>	rts[0].doSomething();<br/>}",
