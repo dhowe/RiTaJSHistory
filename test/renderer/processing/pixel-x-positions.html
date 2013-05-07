@@ -11,7 +11,7 @@ void setup()
 {          
   size(400, 100);
   
-  RiText.showBoundingBoxes(true);
+  RiText.defaults.boundingBoxVisible = true;
   RiText.defaultFont(createFont("arial",30));  
   
   line1 = new RiText(txt, 64, 50); 

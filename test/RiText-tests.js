@@ -20,7 +20,6 @@
                    "defaultMotionType",
                    "defaultBoundingBoxes",
                    "randomColor",
-                   "graphics",
                    "picked",
                    "timer",
                    "random",
