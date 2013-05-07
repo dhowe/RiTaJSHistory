@@ -393,63 +393,60 @@
  
     test("RiTa.getPhonemes()", function () { 
 
-     var result = RiTa.getPhonemes("The");
-     var answer = "dh-ax";
-     equal(result, answer);
+		var result = RiTa.getPhonemes("The");
+		var answer = "dh-ax";
+		equal(result, answer);
 
-     var result = RiTa.getPhonemes("The.");
-     var answer = "dh-ax .";
-     equal(result, answer);
+		var result = RiTa.getPhonemes("The.");
+		var answer = "dh-ax .";
+		equal(result, answer);
 
-     var result = RiTa.getPhonemes("The boy jumped over the wild dog.");
-     var answer = "dh-ax b-oy jh-ah-m-p-t ow-v-er dh-ax w-ay-l-d d-ao-g .";
-     equal(result, answer);
+		var result = RiTa.getPhonemes("The boy jumped over the wild dog.");
+		var answer = "dh-ax b-oy jh-ah-m-p-t ow-v-er dh-ax w-ay-l-d d-ao-g .";
+		equal(result, answer);
 
-     var result = RiTa.getPhonemes("The boy ran to the store.");
-     var answer = "dh-ax b-oy r-ae-n t-uw dh-ax s-t-ao-r .";
-     equal(result, answer);
-     
-     var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
-     var result = RiTa.getPhonemes(txt);
-     var answer = "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g . b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er .";
-     equal(result, answer);
+		var result = RiTa.getPhonemes("The boy ran to the store.");
+		var answer = "dh-ax b-oy r-ae-n t-uw dh-ax s-t-ao-r .";
+		equal(result, answer);
 
-     var result = RiTa.getPhonemes("");
-     var answer = "";
-     equal(result, answer);
+		var txt = "The dog ran faster than the other dog.  But the other dog was prettier.";
+		var result = RiTa.getPhonemes(txt);
+		var answer = "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g . b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er .";
+		equal(result, answer);
 
-     throws(function () {
-     	RiTa.SILENT = 1;
-         try {
-             RiTa.getPhonemes([]);
-         } catch (e) {
-             throw e;
-         }
-         RiTa.SILENT = 0;
-     });
+		var result = RiTa.getPhonemes("");
+		var answer = "";
+		equal(result, answer);
 
- });
+		throws(function() {
+			RiTa.SILENT = 1;
+			try {
+				RiTa.getPhonemes([]);
+			} catch (e) {
+				throw e;
+			}
+			RiTa.SILENT = 0;
+		}); 
 
 
-	test("RiTa.getPosTags(sns)", function() {
-		
-		var checks = ["emphasis","stress","discus","colossus","fibrosis","digitalis","pettiness","innings","mess"];
-		for(var i=0,j=checks.length; i<j; i++) {
-		  deepEqual(RiTa.getPosTags(checks[i],["nn"]);
-		}
 	});
-	
+
+
 	test("RiTa.getPosTags()", function() {
 
+		var result = RiTa.getPosTags("the boy dances");
+		var answer = ["dt", "nn", "vbz"];
+		deepEqual(result, answer);
+		
+		var result = RiTa.getPosTags("he dances");
+		var answer = ["prp", "vbz"];
+		deepEqual(result, answer); 
+ 
+		var result = RiTa.getPosTags("Dave dances");
+		var answer = [ "nnp", "vbz"];
+		deepEqual(result, answer); 
+ 
 		var result = RiTa.getPosTags("mammal");
-		var answer = ["nn"];
-		deepEqual(result, answer);
-		
-		var result = RiTa.getPosTags("preparedness");
-		var answer = ["nn"];
-		deepEqual(result, answer);
-		
-		var result = RiTa.getPosTags("highness");
 		var answer = ["nn"];
 		deepEqual(result, answer);
 
@@ -465,12 +462,16 @@
 		var answer = ["vbg"];
 		deepEqual(result, answer);
 
-		/*  var result = RiTa.getPosTags("the boy dances");
-		 var answer = ["dt", "nn", "vbg"];
-		 deepEqual(result, answer); TODO: FAILING     */
-
 		var result = RiTa.getPosTags("asfaasd");
 		var answer = ["nn"];
+		deepEqual(result, answer);
+
+		var result = RiTa.getPosTags("innings");
+		var answer = ["nns"];
+		deepEqual(result, answer);
+		
+		var result = RiTa.getPosTags("Dave");
+		var answer = ["nnp"];
 		deepEqual(result, answer);
 
 		var result = RiTa.getPosTags("clothes");
@@ -494,6 +495,17 @@
 		var answer = [];
 		deepEqual(result, answer);
 
+	});
+	
+	test("RiTa.getPosTags(sns)", function() {
+		
+		var checks = [ "emphasis", "stress","discus","colossus","fibrosis","digitalis","pettiness",
+		  "mess","cleanliness", "orderliness", "bronchitis", "preparedness", "highness"  ];
+		for (var i=0, j=checks.length; i<j; i++) {
+	      if (RiTa.getPosTags(checks[i])[0] !== 'nn')
+	  	  	console.log(checks[i]+": "+RiTa.getPosTags(checks[i])[0]);
+		  deepEqual(RiTa.getPosTags(checks[i]),["nn"]);
+		}
 	}); 
 
  	test("RiTa.getPosTagsInline()", function () { 
