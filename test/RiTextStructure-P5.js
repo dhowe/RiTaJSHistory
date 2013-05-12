@@ -34,7 +34,8 @@ var runtests = function() {
 
     test("Public Constants", function() {
  
-		ok(RiText.PARAGRAPH);
+		ok(RiText.PARAGRAPH_BREAK);
+		ok(RiText.LINE_BREAK);
 		ok(RiTa.LEFT);
 		ok(RiTa.CENTER);
 		ok(RiTa.UNKNOWN);

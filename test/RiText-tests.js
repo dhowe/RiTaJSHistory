@@ -30,6 +30,7 @@
   
 
     // TODO: check that all these have tests...
+    
     var functions = [ 
                    "align",
                    "alpha",
@@ -1289,34 +1290,34 @@
 
         var result = RiText.createFont("Arial");
         ok(result);
-        console.log("DO TEST! RiText.createFont()");
+        console.error("DO TEST! RiText.createFont()");
         ok(1, "Tested in specific renders");
     });
 
     test("RiText.createWords()", function() { //TODO
 
         var result = RiText.createWords();
-        console.log("DO TEST! RiText.createWords()");
+        console.error("DO TEST! RiText.createWords()");
         ok(1, "Tested in specific renderers");
     });
 
     test("RiText.createLetters()", function() { //TODO
 
         var result = RiText.createLetters();
-        console.log("DO TEST! RiText.createLetters()");
+        console.error("DO TEST! RiText.createLetters()");
         ok(1, "Tested in specific renderers");
     });
 
     test("RiText.createLines()", function() { //TODO
 
-        console.log("DO TEST! RiText.createLines()");
+        console.error("DO TEST! RiText.createLines()");
         ok(1, "Tested in specific renderers");
     });
 
     test("RiText.drawAll()", function() { //TODO
 
         var result = RiText.drawAll();
-        console.log("DO TEST! RiText.drawAll()");
+        console.error("DO TEST! RiText.drawAll()");
         ok(1, "Tested in specific renderers");
     });
 

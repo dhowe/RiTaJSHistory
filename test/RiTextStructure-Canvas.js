@@ -34,7 +34,7 @@ var runtests = function() {
 
     test("Public Constants", function() {
 
-        ok(RiText.PARAGRAPH);
+        ok(RiText.PARAGRAPH_BREAK);
         ok(RiTa.LEFT);
         ok(RiTa.CENTER);
         ok(RiTa.UNKNOWN);
@@ -147,14 +147,6 @@ var runtests = function() {
         ok(typeof RiText().textSize == 'undefined');
         ok(typeof RiText().setColor == 'undefined');
         RiTa.p5Compatible(1);
-    });
-
-    test("Global Objects[compat]", function() {
-
-        RiTa.p5Compatible(1);
-        ok(typeof size == 'function');
-        ok(typeof background == 'function');
-        ok(typeof random == 'function');
     });
 
     test("Global Objects[!compat]", function() {

@@ -33,11 +33,6 @@
         if (window) {
         	
             RiTa.p5Compatible(true);
-            equal(typeof line, 'function'); 
-            RiTa.p5Compatible(false);
-            equal(typeof line, 'undefined'); 
-
-            RiTa.p5Compatible(true);
             ok(RiText.prototype.textAlign); 
             RiTa.p5Compatible(false);
             equal(typeof RiText.prototype.textAlign, 'undefined'); 
@@ -502,7 +497,7 @@
 		var checks = [ "emphasis", "stress","discus","colossus","fibrosis","digitalis","pettiness",
 		  "mess","cleanliness", "orderliness", "bronchitis", "preparedness", "highness"  ];
 		for (var i=0, j=checks.length; i<j; i++) {
-	      if (RiTa.getPosTags(checks[i])[0] !== 'nn')
+	      if (RiTa.getPosTags(checks[i])[0] !== 'nn') 
 	  	  	console.log(checks[i]+": "+RiTa.getPosTags(checks[i])[0]);
 		  deepEqual(RiTa.getPosTags(checks[i]),["nn"]);
 		}

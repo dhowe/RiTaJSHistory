@@ -236,16 +236,33 @@ var runtests = function () {
                  }
              });  
               
+             test("RiMarkov.textRegex(ssRegex)", function () {
+             	var rm = new RiMarkov(4);
+             	var words = "The dog ate the cat";
+               	var ssRegex = rm.ssRegex;
+               	ok(words.split(' ')[0].match(ssRegex)); 
+             });
+             
+             test("RiMarkov.getSentenceStart()", function () {
+             	var rm = new RiMarkov(4);
+             	rm.loadText(sample);
+				for(var i=0; i<10; i++)
+               		ok(rm._getSentenceStart()); 
+             });
+             
              test("RiMarkov.loadText(sentences)", function () {
              	 
-             	var rm = new RiMarkov(4);
+             	var rm = new RiMarkov(4, true, false);
              	var sents = rm.loadText(sample).sentenceList;
-             	ok(sents && sents.length>0);
-             	//ok(!"need more tests","need more tests"); // TODO
+             	ok(sents && sents.length);
              	
-             	
-             	var words = "The dog ate the cat";
+             	var rm = new RiMarkov(4, false, false);
+             	var sents = rm.loadText(sample).sentenceList;
+             	ok(!sents.length);
 
+             	//ok(!"need more tests","need more tests"); // TODO
+
+             	var words = "The dog ate the cat";
       			var rm = new RiMarkov(3,false);
       			rm.loadText(words);
       			//rm.print();
@@ -272,29 +289,70 @@ var runtests = function () {
 				var rm = new RiMarkov(3,true);
 				rm.loadText(words);
 				equal(rm.getProbability( "the" ), 1/6);
-		
-      			
              });
-                     
-             test("RiMarkov.generateSentences()", function () {
-		
-				var rm = new RiMarkov(4);
-				rm.loadText(sample);
-				rm.recognizeSentences(false);
-				for (var i = 0; i < 10; i++) {
-					ok(rm.generateSentences(1));
+             
+             test("RiMarkov.validateSentence()", function () {
+				var rm = new RiMarkov(4, true);
+				var goods = [ 
+					"The dog ate the cat.", 
+					"The dog ate the cat!", 
+					"The dog ate the cat?",
+					'However, I did not have a girlfriend.' 
+				];
+				for (var i=0; i < goods.length; i++) {
+				  ok(rm._validateSentence(goods[i]));
 				}
-				 
-				ok(!"need more tests");
+				var bads = [ "The dog ate the cat", "the dog ate the cat!"];
+				for (var i=0; i < bads.length; i++) {
+				  ok(!rm._validateSentence(bads[i]));
+				}
+			 });       
+			 
+             test("RiMarkov.generateSentences()", function () {
+		        
+		        var dbug = true;
+		        
+		        if(dbug)console.log(E);
+		        
+				var rm = new RiMarkov(4, true, true);
+				rm.loadText(sample);
+				for (var i = 0; i < 3; i++) {
+					var sents = rm.generateSentences(3);
+					for (var j = 0; j < sents.length; j++) {
+						if(dbug)console.log(i+"."+j+") "+sents[j]);
+						ok(sents);
+					}
+					ok(sents.length==3);
+				}
+				
+				if(dbug)console.log(E);
+								
+				var rm = new RiMarkov(4, true, true);
+				rm.loadText(sample);
+				for (var i = 0; i < 10; i++) {
+					var sent = rm.generateSentences(1)[0];
+					if(dbug)console.log(i+") "+sent);
+					ok(sent);
+				}
+
+				if(dbug)console.log(E);
+
+				var rm = new RiMarkov(4, true, false);
+				rm.loadText(sample);
+				for (var i = 0; i < 10; i++) {
+					var sent = rm.generateSentences(1)[0];
+					if(dbug)console.log(i+") "+sent);
+					ok(sent);
+				}
 
                 throws(function() {
         
-                    var rm = new RiMarkov(4);
-                    rm.recognizeSentences(false);
-                    
+                    var rm = new RiMarkov(4, false);
+  
                     RiTa.SILENT = 1; 
                     try {
                         rm.generateSentences(10);
+                        ok(!"FAIL!!!");
                     } catch (e) {
                         throw e;
                     }
@@ -439,7 +497,7 @@ var runtests = function () {
                  equal( rm.getProbability("power"), 0.017045454545454544);
              });
              
-             test("RiMarkov.getProbability[array]", function () {
+             test("RiMarkov.getProbability[array]", function() {
 
                  var rm = new RiMarkov(3);
                  rm.loadTokens(RiTa.tokenize(sample));
@@ -458,7 +516,7 @@ var runtests = function () {
              });
              
             
-            test("RiMarkov.size", function () {
+            test("RiMarkov.size", function() {
                  
                  var tokens = RiTa.tokenize(sample);
                  var rm = new RiMarkov(3);
@@ -467,7 +525,7 @@ var runtests = function () {
                  ok(rm.size()==tokens.length);
             });
             
-            test("RiMarkov.getCompletions(a)", function () { //TODO 
+            test("RiMarkov.getCompletions(a)", function() {   //TODO:
 
                 var rm = new RiMarkov(4);
                 rm.loadTokens(RiTa.tokenize(sample));
@@ -477,7 +535,6 @@ var runtests = function () {
                 
                 var res = rm.getCompletions("One reason people lie is".split(' '));
                 deepEqual(res, ["to"]);
-                
                 
                 var res = rm.getCompletions("personal power".split(' '));
                 deepEqual(res,[ '.', 'is' ]);
@@ -493,7 +550,7 @@ var runtests = function () {
                 deepEqual(res,[]);
             });
             
-            test("RiMarkov.getCompletions(b)", function () { //TODO
+            test("RiMarkov.getCompletions(b)", function() {  //TODO:
 
                 var rm = new RiMarkov(4);
                 rm.loadTokens(RiTa.tokenize(sample2));
@@ -513,12 +570,11 @@ var runtests = function () {
                 var res = rm.getCompletions(['I','did']);
                 deepEqual(res, ["not","occasionally" ]); // sort
                 
-                //////////////////////
                 var res = rm.getCompletions(['I','did'],['want']);
                 deepEqual(res, ["not","occasionally"]);
             });
   
-             test("RiMarkov.loadTokens", function () { //TODO: revise tests
+             test("RiMarkov.loadTokens", function() { //TODO: revise tests
                  
                  var words = 'The dog ate the cat'.split(' ');
                  
@@ -547,15 +603,15 @@ var runtests = function () {
                  
                  var words = 'The dog ate the cat';
                  
-                 var rm = new RiMarkov(3);
-                 rm.recognizeSentences(false);
-                 rm.loadText(words); 
+                 var rm = new RiMarkov(3, false);
+                 rm.loadText(words);
+				 rm.print(); 
                  equal(rm.getProbability("The"), 0.2);
-                 
+
                  words = 'the dog ate the cat';
-                 var rm = new RiMarkov(3);
-                 rm.recognizeSentences(false);
+                 var rm = new RiMarkov(3, false);
                  rm.loadText(words); 
+                 rm.print();
                  equal(rm.getProbability("the"), 0.4);
              });    
              
@@ -616,28 +672,32 @@ var runtests = function () {
              
              test("RiMarkov.useSmoothing()", function () {
                  
-                 var rm = new RiMarkov(3, false);
+                 var rm = new RiMarkov(3);
+                 rm.useSmoothing(false);
                  rm.loadTokens(RiTa.tokenize(sample));
 
-                 var rm2 = new RiMarkov(3, true);
+                 var rm2 = new RiMarkov(3);
+				 rm2.useSmoothing(true);
                  rm2.loadTokens(RiTa.tokenize(sample));
                  notEqual(rm2.getProbability("one"), rm.getProbability("one"));
                  
-                 var rm2 = new RiMarkov(3, true);
-                 rm2.loadTokens(RiTa.tokenize(sample));
-                 notEqual(rm2.getProbability("personal"), rm.getProbability("personal"));
+                 var p1 = rm.getProbability("personal");
+                 var p2 = rm2.getProbability("personal");
+                 // console.log(p1 + " ?= "+p2); 
+                 notEqual(p1, p2);
                  
-                 // more tests??
+                 // more tests?? yes
              });
              
              test("RiMarkov.recognizeSentences()", function () {
                  
                  var rm = new RiMarkov(3, false);
                  var x = rm.recognizeSentences();
-                 equal(x,true);
-                 rm.recognizeSentences(false);
+                 equal(x, false);
+                 
+                 var rm = new RiMarkov(3, true);
                  var x = rm.recognizeSentences();
-                 equal(x,false);
+                 equal(x, true);
              });
 }
 
