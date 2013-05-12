@@ -30,11 +30,6 @@ var runtests = function () {
         equal("", RiTa.timer("need tests"));
     });
         
-    test("RiTa.p5Compatible()", function () { //TODO: no tests
-        
-        equal(RiTa.p5Compatible(1), "need more detailed test");
-        equal(RiTa.p5Compatible(0), "need more detailed test");
-    });
     
     test("RiGrammar.expandWith()", function () { //TODO: fix impl.
         
