@@ -36,6 +36,24 @@ var runtests = function () {
         equal("fix impl.");
     });
     
+    test("RiLexicon.getSyllables", function () { 
+         var lex = RiLexicon();
+
+ 		// Problem: All punct is stripped except the &
+        var result = lex._getSyllables("@#$%&*()");
+        var answer = "";
+        equal(result, answer);
+        
+   		// Problem: All punct is stripped except the &
+        var result = lex._getPhonemes("@#$%&*()"); // ?
+        var answer = "";
+        equal(result, answer);
+        
+   		// Problem: All punct is stripped except the &
+        var result = lex._getStresses("@#$%&*()");  // ?
+        var answer = "";
+        equal(result, answer);
+    });
      
 }
 
