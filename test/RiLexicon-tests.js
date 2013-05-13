@@ -2,20 +2,18 @@ var runtests = function() {
     
 	QUnit.module("RiLexicon", {
 	    setup: function () {
-			RiLexicon.data = undefined;
+			//RiLexicon.data = undefined;
 	    },
 	    teardown: function () {
 	    }
 	});
 
  	function createLex() {
- 		RiTa.SILENT = 1;
- 		var rl = new RiLexicon();
- 		RiTa.SILENT = 0;
- 		return rl;
+ 		RiLexicon.data = undefined;
+ 		return new RiLexicon();
  	}
  	
-    var functions = ["addWord", 
+    var lex, functions = ["addWord", 
                      "clear",
                      "containsWord", 
                      "alliterations", 
@@ -36,32 +34,28 @@ var runtests = function() {
                      "size",
                      "substrings", 
                      "superstrings"];
-    
+	
     test("RiLexicon[singleton]", function() {
-
-        var lex1 = createLex();
-        var lex2 = createLex();
-        equal(lex1.size(), lex2.size());
+		lex = RiLexicon();
+        var lex2 = RiLexicon();
+        ok(lex.data === lex2.data);
     });
 
     test("RiLexicon-functions", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
+		lex = RiLexicon();
 
-        var lex = createLex();
         for ( var i = 0; i < functions.length; i++) {
 
             equal(typeof lex[functions[i]], 'function', functions[i]);
         }
 
     });
-
-
+    
+  
     test("RiLexicon-lookups", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex();
+    	lex = RiLexicon();
 
         ok(typeof RiLexicon.data != 'undefined');
         ok(typeof RiLexicon != 'undefined', "RiLexicon OK");
@@ -77,9 +71,7 @@ var runtests = function() {
 
     test("RiLexicon-gets", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex();
+      	lex = RiLexicon();
 
         var word = "aberrations";
         var output1 = lex._getSyllables(word);
@@ -97,11 +89,11 @@ var runtests = function() {
 
     });
 
+
     test("RiLexicon.addWord()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
+    	lex = RiLexicon();
 
-        var lex = createLex()
         var result = lex.addWord("bananana", "b-ax-n ae1-n ax ax", "nn");
         ok(lex.containsWord("bananana"));
 
@@ -116,54 +108,39 @@ var runtests = function() {
         lex.addWord("HAHAHA", "hh-aa1 hh-aa1 hh-aa1", "uh");
         equal(lex._getPhonemes("HAHAHA"), "hh-aa-hh-aa-hh-aa");
 
-        var lex = createLex()
-        lex.addWord("", "", "");
-
-        lex.clear();
+        lex = createLex();
     });
-
 
     test("RiLexicon.clear()", function() {
 
-        var lex = createLex()
+    	lex = RiLexicon();
         ok(lex.containsWord("banana"));
         lex.removeWord("banana");
 
         ok(!lex.containsWord("banana"));
 
         lex.clear();
+        ok(lex.size()<1);
+        
         lex = createLex();
 
-        ok(lex.containsWord("banana"));
         ok(lex.containsWord("funny"));
-
-        lex.clear();
-        var lex = createLex()
-        ok(!lex.containsWord("wonderfullyy"));
-        ok(lex.containsWord("wonderful"));
-
-        var lex = createLex()
         var result = lex.lexicalData();
-        ok(Object.keys(result).length > 1000);
-
-        lex.clear();
-        var lex = createLex()
-        ok(Object.keys(result).length > 1000);
+        ok(Object.keys(result).length > 30000);
 
         var obj = {};
         obj["wonderfullyy"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
         lex.lexicalData(obj);
         var result = lex.lexicalData();
         deepEqual(result, obj)
+        
+		lex = createLex();
     });
-
 
     test("RiLexicon.containsWord()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
-        var lex = createLex()
-
+    	lex = RiLexicon();
         ok(lex.containsWord("cat"));
         ok(lex.containsWord("cats"));
         ok(!lex.containsWord("cated"));
@@ -184,9 +161,8 @@ var runtests = function() {
 
     test("RiLexicon.alliterations()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex() // only 1 per test needed
+    	lex = RiLexicon();
+    	
         var result = lex.alliterations("cat");
         ok(result.length > 2000);
 
@@ -194,26 +170,25 @@ var runtests = function() {
         ok(result.length > 1000);
 
         var result = lex.alliterations("URL");
-        ok(!(result.length > 1000));
+        ok(result.length<1);
 
-        var result = lex.alliterations("no stress");
-        ok(!(result.length > 1000));
+		var result = lex.alliterations("no stress");
+		ok(result.length < 1);
+		
+		var result = lex.alliterations("#$%^&*");
+		ok(result.length < 1);
+		
+		var result = lex.alliterations("");
+		ok(result.length < 1); 
 
-        var result = lex.alliterations("#$%^&*");
-        ok(!(result.length > 1000));
-
-        var result = lex.alliterations("");
-        ok(!(result.length > 1000));
-        
         // TODO: better tests
     });
 
 
     test("RiLexicon.lexicalData()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+    	lex = RiLexicon();
+        
         var result = lex.lexicalData();
         ok(Object.keys(result).length > 1000);
 
@@ -228,13 +203,23 @@ var runtests = function() {
         var answer = [ "dh-ax", "dt" ];
 
         deepEqual(result, answer);
+        
+        var obj = {};
+        obj["wonderfully"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
+        var result = lex.lexicalData(obj);
+        deepEqual(result.lexicalData(), obj);
+
+        var obj = {};
+        obj["wonderfullyy"] = [ "w-ah1-n-d er-f ax-l iy-y", "rb" ];
+        var result = lex.lexicalData(obj);
+        deepEqual(result.lexicalData().wonderfullyy, [ "w-ah1-n-d er-f ax-l iy-y", "rb" ]);
+
+        lex = createLex();
     });
 
     test("RiLexicon.randomWord(1)", function() { 
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
-
-        var lex = createLex()
+	    lex = RiLexicon();
         //randomWord();, randomWord(targetLength);, randomWord(pos);, randomWord(pos, targetLength);
 
         var result = lex.randomWord();
@@ -258,10 +243,7 @@ var runtests = function() {
 
     test("RiLexicon.randomWord(2)", function() { 
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
-
-        var lex = createLex()
-
+	    lex = RiLexicon();
         var pos = ["nn","nns","jj","jjr","wp"];
         for (var j = 0; j < pos.length; j++)
         {
@@ -277,9 +259,7 @@ var runtests = function() {
 
     test("RiLexicon.randomWord(3)", function() { 
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
-
-        var lex = createLex()
+	    lex = RiLexicon();
         for (var i = 0; i < 20; i++)
         {
           var result = lex.randomWord(3);
@@ -292,9 +272,7 @@ var runtests = function() {
 
     test("RiLexicon.randomWord(4)", function() { 
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined'); 
-
-        var lex = createLex()
+	    lex = RiLexicon();
         for (var i = 0; i < 20; i++)
         {
           var result = lex.randomWord(5);
@@ -309,11 +287,7 @@ var runtests = function() {
 
 
     test("RiLexicon.rhymes()", function() {
-
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
-
+	    lex = RiLexicon();
         result = lex.rhymes("apple");
         var answer = [ "chapel", "grapple", "pineapple" ];
         deepEqual(result, answer);
@@ -347,9 +321,8 @@ var runtests = function() {
 
     test("RiLexicon.words()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+	    lex = RiLexicon();
+	    
         var result = lex.words();
         ok(result.length > 1000);
 
@@ -372,60 +345,60 @@ var runtests = function() {
         ok(result2.length > 5);
 
         deepEqual(result1, result2);
-
     });
 
     test("RiLexicon.isAdverb()", function() {
+	    lex = RiLexicon();
 
-        ok(!createLex().isAdverb("swim"));
-        ok(!createLex().isAdverb("walk"));
-        ok(!createLex().isAdverb("walker"));
-        ok(!createLex().isAdverb("beautiful"));
-        ok(!createLex().isAdverb("dance"));
-        ok(!createLex().isAdverb("dancing"));
-        ok(!createLex().isAdverb("dancer"));
+        ok(!lex.isAdverb("swim"));
+        ok(!lex.isAdverb("walk"));
+        ok(!lex.isAdverb("walker"));
+        ok(!lex.isAdverb("beautiful"));
+        ok(!lex.isAdverb("dance"));
+        ok(!lex.isAdverb("dancing"));
+        ok(!lex.isAdverb("dancer"));
 
         //verb
-        ok(!createLex().isAdverb("wash"));
-        ok(!createLex().isAdverb("walk"));
-        ok(!createLex().isAdverb("play"));
-        ok(!createLex().isAdverb("throw"));
-        ok(!createLex().isAdverb("drink"));
-        ok(!createLex().isAdverb("eat"));
-        ok(!createLex().isAdverb("chew"));
+        ok(!lex.isAdverb("wash"));
+        ok(!lex.isAdverb("walk"));
+        ok(!lex.isAdverb("play"));
+        ok(!lex.isAdverb("throw"));
+        ok(!lex.isAdverb("drink"));
+        ok(!lex.isAdverb("eat"));
+        ok(!lex.isAdverb("chew"));
 
         //adj
-        ok(!createLex().isAdverb("wet"));
-        ok(!createLex().isAdverb("dry"));
-        ok(!createLex().isAdverb("furry"));
-        ok(!createLex().isAdverb("sad"));
-        ok(!createLex().isAdverb("happy"));
+        ok(!lex.isAdverb("wet"));
+        ok(!lex.isAdverb("dry"));
+        ok(!lex.isAdverb("furry"));
+        ok(!lex.isAdverb("sad"));
+        ok(!lex.isAdverb("happy"));
 
         //n
-        ok(!createLex().isAdverb("dogs"));
-        ok(!createLex().isAdverb("wind"));
-        ok(!createLex().isAdverb("dolls"));
-        ok(!createLex().isAdverb("frogs"));
-        ok(!createLex().isAdverb("ducks"));
-        ok(!createLex().isAdverb("flowers"));
-        ok(!createLex().isAdverb("fish"));
+        ok(!lex.isAdverb("dogs"));
+        ok(!lex.isAdverb("wind"));
+        ok(!lex.isAdverb("dolls"));
+        ok(!lex.isAdverb("frogs"));
+        ok(!lex.isAdverb("ducks"));
+        ok(!lex.isAdverb("flowers"));
+        ok(!lex.isAdverb("fish"));
 
         //adv
-        ok(createLex().isAdverb("truthfully"));
-        ok(createLex().isAdverb("kindly"));
-        ok(createLex().isAdverb("bravely"));
-        ok(createLex().isAdverb("doggedly"));
-        ok(createLex().isAdverb("sleepily"));
-        ok(createLex().isAdverb("excitedly"));
-        ok(createLex().isAdverb("energetically"));
-        ok(createLex().isAdverb("hard")); // +adj
+        ok(lex.isAdverb("truthfully"));
+        ok(lex.isAdverb("kindly"));
+        ok(lex.isAdverb("bravely"));
+        ok(lex.isAdverb("doggedly"));
+        ok(lex.isAdverb("sleepily"));
+        ok(lex.isAdverb("excitedly"));
+        ok(lex.isAdverb("energetically"));
+        ok(lex.isAdverb("hard")); // +adj
 
-        ok(!createLex().isAdverb(""));
+        ok(!lex.isAdverb(""));
 
         throws(function() {
             RiTa.SILENT=1;
             try {
-                createLex().isAdverb("banana split");
+                lex.isAdverb("banana split");
             }
             catch (e) {
                 throw e;
@@ -434,59 +407,58 @@ var runtests = function() {
         });
     });
     
-    return;
-
     test("RiLexicon.isNoun()", function() {
+	    lex = RiLexicon();
 
-        ok(createLex().isNoun("swim"));
-        ok(createLex().isNoun("walk"));
-        ok(createLex().isNoun("walker"));
-        ok(createLex().isNoun("dance"));
-        ok(createLex().isNoun("dancing"));
-        ok(createLex().isNoun("dancer"));
+        ok(lex.isNoun("swim"));
+        ok(lex.isNoun("walk"));
+        ok(lex.isNoun("walker"));
+        ok(lex.isNoun("dance"));
+        ok(lex.isNoun("dancing"));
+        ok(lex.isNoun("dancer"));
 
         //verb
-        ok(createLex().isNoun("wash"));//"TODO:also false in processing -> nn" shoulbe be both Verb and Noun
-        ok(createLex().isNoun("walk"));
-        ok(createLex().isNoun("play"));
-        ok(createLex().isNoun("throw"));
-        ok(createLex().isNoun("drink"));//TODO:"also false in processing -> nn" shoulbe be both Verb and Noun
-        ok(!createLex().isNoun("eat"));
-        ok(!createLex().isNoun("chew"));
+        ok(lex.isNoun("wash"));//"TODO:also false in processing -> nn" shoulbe be both Verb and Noun
+        ok(lex.isNoun("walk"));
+        ok(lex.isNoun("play"));
+        ok(lex.isNoun("throw"));
+        ok(lex.isNoun("drink"));//TODO:"also false in processing -> nn" shoulbe be both Verb and Noun
+        ok(!lex.isNoun("eat"));
+        ok(!lex.isNoun("chew"));
 
         //adj
-        ok(!createLex().isNoun("hard"));
-        ok(!createLex().isNoun("dry"));
-        ok(!createLex().isNoun("furry"));
-        ok(!createLex().isNoun("sad"));
-        ok(!createLex().isNoun("happy"));
-        ok(!createLex().isNoun("beautiful"));
+        ok(!lex.isNoun("hard"));
+        ok(!lex.isNoun("dry"));
+        ok(!lex.isNoun("furry"));
+        ok(!lex.isNoun("sad"));
+        ok(!lex.isNoun("happy"));
+        ok(!lex.isNoun("beautiful"));
 
         //n
-        ok(createLex().isNoun("dogs"));
-        ok(createLex().isNoun("wind"));
-        ok(createLex().isNoun("dolls"));
-        ok(createLex().isNoun("frogs"));
-        ok(createLex().isNoun("ducks"));
-        ok(createLex().isNoun("flowers"));
-        ok(createLex().isNoun("fish"));
-        ok(createLex().isNoun("wet")); //+v/adj
+        ok(lex.isNoun("dogs"));
+        ok(lex.isNoun("wind"));
+        ok(lex.isNoun("dolls"));
+        ok(lex.isNoun("frogs"));
+        ok(lex.isNoun("ducks"));
+        ok(lex.isNoun("flowers"));
+        ok(lex.isNoun("fish"));
+        ok(lex.isNoun("wet")); //+v/adj
 
         //adv
-        ok(!createLex().isNoun("truthfully"));
-        ok(!createLex().isNoun("kindly"));
-        ok(!createLex().isNoun("bravely"));
-        ok(!createLex().isNoun("scarily"));
-        ok(!createLex().isNoun("sleepily"));
-        ok(!createLex().isNoun("excitedly"));
-        ok(!createLex().isNoun("energetically"));
+        ok(!lex.isNoun("truthfully"));
+        ok(!lex.isNoun("kindly"));
+        ok(!lex.isNoun("bravely"));
+        ok(!lex.isNoun("scarily"));
+        ok(!lex.isNoun("sleepily"));
+        ok(!lex.isNoun("excitedly"));
+        ok(!lex.isNoun("energetically"));
 
-        ok(!createLex().isNoun(""));
+        ok(!lex.isNoun(""));
 
         throws(function() {
 			RiTa.SILENT=1;
             try {
-                createLex().isNoun("banana split");
+                lex.isNoun("banana split");
 
             }
             catch (e) {
@@ -497,55 +469,56 @@ var runtests = function() {
     });
 
     test("RiLexicon.isVerb()", function() {
+	    lex = RiLexicon();
 
-        ok(createLex().isVerb("dance"));
-        ok(createLex().isVerb("swim"));
-        ok(createLex().isVerb("walk"));
-        ok(!createLex().isVerb("walker"));
-        ok(!createLex().isVerb("beautiful"));
+        ok(lex.isVerb("dance"));
+        ok(lex.isVerb("swim"));
+        ok(lex.isVerb("walk"));
+        ok(!lex.isVerb("walker"));
+        ok(!lex.isVerb("beautiful"));
 
-        ok(createLex().isVerb("dancing"));
-        ok(!createLex().isVerb("dancer"));
+        ok(lex.isVerb("dancing"));
+        ok(!lex.isVerb("dancer"));
 
         //verb
-        ok(createLex().isVerb("eat"));
-        ok(createLex().isVerb("chew"));
+        ok(lex.isVerb("eat"));
+        ok(lex.isVerb("chew"));
 
-        ok(createLex().isVerb("throw")); // +n 
-        ok(createLex().isVerb("walk")); // +n 
-        ok(createLex().isVerb("wash")); // +n 
-        ok(createLex().isVerb("drink")); // +n 
-        ok(createLex().isVerb("ducks")); // +n
-        ok(createLex().isVerb("fish")); // +n
-        ok(createLex().isVerb("dogs")); // +n
-        ok(createLex().isVerb("wind")); // +n
-        ok(createLex().isVerb("wet")); // +adj
-        ok(createLex().isVerb("dry")); // +adj
+        ok(lex.isVerb("throw")); // +n 
+        ok(lex.isVerb("walk")); // +n 
+        ok(lex.isVerb("wash")); // +n 
+        ok(lex.isVerb("drink")); // +n 
+        ok(lex.isVerb("ducks")); // +n
+        ok(lex.isVerb("fish")); // +n
+        ok(lex.isVerb("dogs")); // +n
+        ok(lex.isVerb("wind")); // +n
+        ok(lex.isVerb("wet")); // +adj
+        ok(lex.isVerb("dry")); // +adj
 
         //adj
-        ok(!createLex().isVerb("hard"));
-        ok(!createLex().isVerb("furry"));
-        ok(!createLex().isVerb("sad"));
-        ok(!createLex().isVerb("happy"));
+        ok(!lex.isVerb("hard"));
+        ok(!lex.isVerb("furry"));
+        ok(!lex.isVerb("sad"));
+        ok(!lex.isVerb("happy"));
 
         //n
-        ok(!createLex().isVerb("dolls"));
-        ok(!createLex().isVerb("frogs"));
-        ok(!createLex().isVerb("flowers"));
+        ok(!lex.isVerb("dolls"));
+        ok(!lex.isVerb("frogs"));
+        ok(!lex.isVerb("flowers"));
 
         //adv
-        ok(!createLex().isVerb("truthfully"));
-        ok(!createLex().isVerb("kindly"));
-        ok(!createLex().isVerb("bravely"));
-        ok(!createLex().isVerb("scarily"));
-        ok(!createLex().isVerb("sleepily"));
-        ok(!createLex().isVerb("excitedly"));
-        ok(!createLex().isVerb("energetically"));
+        ok(!lex.isVerb("truthfully"));
+        ok(!lex.isVerb("kindly"));
+        ok(!lex.isVerb("bravely"));
+        ok(!lex.isVerb("scarily"));
+        ok(!lex.isVerb("sleepily"));
+        ok(!lex.isVerb("excitedly"));
+        ok(!lex.isVerb("energetically"));
 
         throws(function() {
             RiTa.SILENT=1;
             try {
-                createLex().isVerb("banana split");
+                lex.isVerb("banana split");
             }
             catch (e) {
                 throw e;
@@ -557,56 +530,57 @@ var runtests = function() {
 
 
     test("RiLexicon.isAdjective()", function() {
+	    lex = RiLexicon();
 
-        ok(!createLex().isAdjective("swim"));
-        ok(!createLex().isAdjective("walk"));
-        ok(!createLex().isAdjective("walker"));
-        ok(createLex().isAdjective("beautiful"));
-        ok(!createLex().isAdjective("dance"));
-        ok(!createLex().isAdjective("dancing"));
-        ok(!createLex().isAdjective("dancer"));
+        ok(!lex.isAdjective("swim"));
+        ok(!lex.isAdjective("walk"));
+        ok(!lex.isAdjective("walker"));
+        ok(lex.isAdjective("beautiful"));
+        ok(!lex.isAdjective("dance"));
+        ok(!lex.isAdjective("dancing"));
+        ok(!lex.isAdjective("dancer"));
 
         //verb
-        ok(!createLex().isAdjective("wash"));
-        ok(!createLex().isAdjective("walk"));
-        ok(!createLex().isAdjective("play"));
-        ok(!createLex().isAdjective("throw"));
-        ok(!createLex().isAdjective("drink"));
-        ok(!createLex().isAdjective("eat"));
-        ok(!createLex().isAdjective("chew"));
+        ok(!lex.isAdjective("wash"));
+        ok(!lex.isAdjective("walk"));
+        ok(!lex.isAdjective("play"));
+        ok(!lex.isAdjective("throw"));
+        ok(!lex.isAdjective("drink"));
+        ok(!lex.isAdjective("eat"));
+        ok(!lex.isAdjective("chew"));
 
         //adj
-        ok(createLex().isAdjective("hard"));
-        ok(createLex().isAdjective("wet"));
-        ok(createLex().isAdjective("dry"));
-        ok(createLex().isAdjective("furry"));
-        ok(createLex().isAdjective("sad"));
-        ok(createLex().isAdjective("happy"));
-        ok(createLex().isAdjective("kindly")); //+adv
+        ok(lex.isAdjective("hard"));
+        ok(lex.isAdjective("wet"));
+        ok(lex.isAdjective("dry"));
+        ok(lex.isAdjective("furry"));
+        ok(lex.isAdjective("sad"));
+        ok(lex.isAdjective("happy"));
+        ok(lex.isAdjective("kindly")); //+adv
 
         //n
-        ok(!createLex().isAdjective("dogs"));
-        ok(!createLex().isAdjective("wind"));
-        ok(!createLex().isAdjective("dolls"));
-        ok(!createLex().isAdjective("frogs"));
-        ok(!createLex().isAdjective("ducks"));
-        ok(!createLex().isAdjective("flowers"));
-        ok(!createLex().isAdjective("fish"));
+        ok(!lex.isAdjective("dogs"));
+        ok(!lex.isAdjective("wind"));
+        ok(!lex.isAdjective("dolls"));
+        ok(!lex.isAdjective("frogs"));
+        ok(!lex.isAdjective("ducks"));
+        ok(!lex.isAdjective("flowers"));
+        ok(!lex.isAdjective("fish"));
 
         //adv
-        ok(!createLex().isAdjective("truthfully"));
-        ok(!createLex().isAdjective("bravely"));
-        ok(!createLex().isAdjective("scarily"));
-        ok(!createLex().isAdjective("sleepily"));
-        ok(!createLex().isAdjective("excitedly"));
-        ok(!createLex().isAdjective("energetically"));
+        ok(!lex.isAdjective("truthfully"));
+        ok(!lex.isAdjective("bravely"));
+        ok(!lex.isAdjective("scarily"));
+        ok(!lex.isAdjective("sleepily"));
+        ok(!lex.isAdjective("excitedly"));
+        ok(!lex.isAdjective("energetically"));
 
 
         throws(function() {
             RiTa.SILENT=1;
 
             try {
-                createLex().isAdjective("banana split");
+                lex.isAdjective("banana split");
 
             }
             catch (e) {
@@ -619,9 +593,7 @@ var runtests = function() {
 
     test("RiLexicon.isAlliteration()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+	    lex = RiLexicon();
 
         ok(lex.isAlliteration("apple", "polo"));
         ok(lex.isAlliteration("polo", "apple")); // swap position
@@ -640,11 +612,7 @@ var runtests = function() {
 
 
     test("RiLexicon.isRhyme()", function() {
-
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
-
+	    lex = RiLexicon();
         ok(!lex.isRhyme("solo ", "tomorrow"));
         ok(!lex.isRhyme("apple", "polo"));
         ok(!lex.isRhyme("this", "these"));
@@ -669,9 +637,7 @@ var runtests = function() {
 
     test("RiLexicon.removeWord()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+	    lex = RiLexicon();
 
         ok(lex.containsWord("banana"));
         lex.removeWord("banana");
@@ -686,42 +652,17 @@ var runtests = function() {
         lex.removeWord("");
 
         ok(!lex._getPhonemes("banana"));
+        
+        lex = createLex();
     });
 
-
-    test("RiLexicon.lexicalData()", function() {
-
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
-        var originalLex = lex.lexicalData();
-        lex.lexicalData(originalLex);
-
-        var obj = [];
-        obj["wonderfully"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
-        var result = lex.lexicalData(obj);
-        deepEqual(result, obj);
-
-        var obj = [];
-        obj["wonderfully"] = [ "w-ah1-n-d er-f ax-l iy", "rb" ];
-        obj["wonderfullyy"] = [ "w-ah1-n-d er-f ax-l iy-y", "rb" ];
-        var result = lex.lexicalData(obj);
-        deepEqual(result, obj);
-        deepEqual(result.wonderfullyy, [ "w-ah1-n-d er-f ax-l iy-y", "rb" ]);
-
-        var result = lex.lexicalData(null);
-        deepEqual(result, null);
-
-    });
 
     // TODO: clear() failing may be killing this test ()???)
     test("RiLexicon.similarByLetter()",  function() {
 
-            ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
-            //similarByLetter(input); similarByLetter(input, result, minMed, preserveLength); <-String Set int boolean
+	        lex = RiLexicon();
 
-            var lex = createLex()
             var result = lex.similarByLetter("banana");
             var answer = [ "banal", "bonanza", "cabana", "lantana", "manna", "wanna" ];
             deepEqual(result, answer);
@@ -783,9 +724,8 @@ var runtests = function() {
         "RiLexicon.similarBySound()",
         function() {
 
-            RiLexicon.data = undefined;
 
-            var lex = createLex()
+	        lex = RiLexicon();
 
             var result = lex.similarBySound("tornado");
             var answer = [ "torpedo" ];
@@ -833,28 +773,15 @@ var runtests = function() {
     test("RiLexicon.similarBySoundAndLetter()",
         function() {
 
-            RiLexicon.data = undefined;
+	        lex = RiLexicon();
 
-            ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-            var lex = createLex()
             var result = lex.similarBySoundAndLetter("try");
             var answer = [ "cry", "dry", "fry", "pry", "tray", "wry" ];
             deepEqual(result, answer);
 
-            var lex = createLex()
             var result = lex.similarBySoundAndLetter("daddy");
             var answer = [ "dandy" ];
             deepEqual(result, answer);
-
-            var lex = createLex()
-            var result = lex.similarBySoundAndLetter("daddy", 1);
-            deepEqual(result, answer);
-
-            var lex = createLex()
-            var result = lex.similarBySoundAndLetter("daddy", 2);
-            var answer = [ "dad", "dally", "dowdy" ];
-            ok(result.length > 10);
 
             var result = lex.similarBySoundAndLetter("banana");
             var answer = [ "bonanza" ];
@@ -863,16 +790,6 @@ var runtests = function() {
             var result = lex.similarBySoundAndLetter("tornado");
             var answer = [ "torpedo" ];
             deepEqual(result, answer);
-
-            var result = lex.similarBySoundAndLetter("tornado", 2);
-            var answer = [ "torpedo" ];
-            deepEqual(result, answer);
-
-            var result = lex.similarBySoundAndLetter("tornado", 3);
-            ok(result.length > answer.length); // more
-            var answer = [ "horned", "ornate", "tirade", "torn", "torpid", "torrid", "torso", "trade" ];
-            deepEqual(result, answer);
-
 
             var lex = createLex()
             var result = lex.similarBySoundAndLetter("worngword");
@@ -886,9 +803,7 @@ var runtests = function() {
 
     test("RiLexicon.substrings()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex() // only 1 per test needed
+        lex = RiLexicon();
 
         var result = lex.substrings("thousand");
         var answer = [ "sand", "thou" ];
@@ -916,15 +831,11 @@ var runtests = function() {
 
     });
 
-    test(
-        "RiLexicon.superstrings()",
-        function() {
+    test("RiLexicon.superstrings()", function() {
 
 
-            ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
+	        lex = RiLexicon();
 
-
-            var lex = createLex()
             var result = lex.superstrings("superm");
             var answer = [ "supermarket", "supermarkets" ];
             deepEqual(result, answer);
@@ -941,9 +852,9 @@ var runtests = function() {
 
     test("RiLexicon.getPosData()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
-        var lex = createLex()
+        lex = RiLexicon();
+
         var result = lex._getPosData("box");
         deepEqual(result, "nn vb");
 
@@ -954,7 +865,7 @@ var runtests = function() {
         deepEqual(result, "vbz rb nns vbp");
 
         var result = lex._getPosData("a");
-        deepEqual(result, "dt vb vbn nnp fw jj ls nn");
+        deepEqual(result, "dt");
 
         var result = lex._getPosData("beautiful");
         deepEqual(result, "jj");
@@ -973,9 +884,8 @@ var runtests = function() {
 
     test("RiLexicon.isVowel()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
+        lex = RiLexicon();
 
-        var lex = createLex()
 
         ok(lex._isVowel("a"));
         ok(lex._isVowel("e"));
@@ -987,15 +897,13 @@ var runtests = function() {
         ok(!lex._isVowel("v"));
         ok(!lex._isVowel("3"));
         ok(!lex._isVowel(""));
-
     });
-
 
     test("RiLexicon.isConsonant()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
-        var lex = createLex()
+        lex = RiLexicon();
+
 
         ok(!lex._isConsonant("vv"));
         ok(!lex._isConsonant(""));
@@ -1012,18 +920,14 @@ var runtests = function() {
         ok(!lex._isConsonant("o"));
         ok(!lex._isConsonant("uu"));
 
-        ok(!lex._isConsonant("3"));//why fail?
+        ok(!lex._isConsonant("3"));
 
     });
 
+    test("RiLexicon.lookupRaw()", function() { 
 
 
-
-    test("RiLexicon.lookupRaw()", function() {
-
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+        lex = RiLexicon();
 
         var result = lex._lookupRaw("banana");
         deepEqual(result, [ "b-ax-n ae1-n ax", "nn" ]);
@@ -1040,16 +944,14 @@ var runtests = function() {
         var result = lex._lookupRaw("ajj");
         deepEqual(result, null);
     });
+    
+	//For RiTa.getPhonemes() NOT IN RiTa-Java
 
-
-
-
-    //For RiTa.getPhonemes()
     test("RiLexicon.getPhonemes()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
 
-        var lex = createLex()
+        lex = RiLexicon();
+
 
         var result = lex._getPhonemes("The");
         var answer = "dh-ax";
@@ -1073,13 +975,11 @@ var runtests = function() {
 
     });
 
-    //For RiTa.getStresses()
+    //For RiTa.getStresses() NOT IN RiTa-Java
 
     test("RiLexicon.getStresses()", function() {
 
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+        lex = RiLexicon();
 
         var result = lex._getStresses("The emperor had no clothes on");
         var answer = "0 1/0/0 1 1 1 1";
@@ -1104,29 +1004,25 @@ var runtests = function() {
         var result = lex._getStresses("");
         var answer = "";
         equal(result, answer);
-
-
     });
 
+    //For RiTa.getSyllables() NOT IN RiTa-Java
+
     test("RiLexicon.getSyllables()", function() {
-
-        ok(!RiLexicon || typeof RiLexicon.data == 'undefined');
-
-        var lex = createLex()
+    	
+        lex = RiLexicon();
 
         var result = lex._getSyllables("The emperor had no clothes on.");
         var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n";
         equal(result, answer);
 
-        var result = lex._getSyllables("@#$%&*()");
+        var result = lex._getSyllables("@#$%*()");
         var answer = "";
         equal(result, answer);
 
         var result = lex._getSyllables("");
         var answer = "";
         equal(result, answer);
-
-
     });
 
 }
