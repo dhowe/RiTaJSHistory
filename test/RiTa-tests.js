@@ -353,20 +353,20 @@
      deepEqual(output, expected);
  });
 
- test("RiTa.trim()", function () {
-
-     equal(RiTa.trim(""), "");
-     equal(RiTa.trim(" "), "");
-     equal(RiTa.trim("hello "), "hello");
-     equal(RiTa.trim("hel'lo "), "hel'lo");
-     equal(RiTa.trim(" hel o"), "hel o");
-     equal(RiTa.trim(" hello "), "hello");
-     equal(RiTa.trim("'hell' "), "'hell'");
-     equal(RiTa.trim("'hello    "), "'hello"); //tab
-     equal(RiTa.trim("  hello  "), "hello"); //multiple
-     equal(RiTa.trim("  hello    "), "hello"); //mixed
-    
- });
+	test("RiTa.trim()", function () {
+	
+	     equal(RiTa.trim(""), "");
+	     equal(RiTa.trim(" "), "");
+	     equal(RiTa.trim("hello "), "hello");
+	     equal(RiTa.trim("hel'lo "), "hel'lo");
+	     equal(RiTa.trim(" hel o"), "hel o");
+	     equal(RiTa.trim(" hello "), "hello");
+	     equal(RiTa.trim("'hell' "), "'hell'");
+	     equal(RiTa.trim("'hello    "), "'hello"); //tab
+	     equal(RiTa.trim("  hello  "), "hello"); //multiple
+	     equal(RiTa.trim("  hello    "), "hello"); //mixed
+	    
+	});
 
     test("RiTa.distance()", function () { 
         
@@ -379,11 +379,98 @@
     
     test("RiTa.random()", function () {
         
+        // float random()
         var answer = RiTa.random();
         ok(answer >=0,answer);
         var answer2 = RiTa.random();
-        ok(answer2 <=1, answer2);
+        ok(answer2 <1, answer2);
         
+         // int random(int max)
+	    var answer = RiTa.random(50);
+	    ok(answer >= 0);
+	    var answer2 = RiTa.random(50);
+	    ok(answer2 < 50);
+	
+	    answer = RiTa.random(1);
+	    ok(answer >= 0);
+	    answer2 = RiTa.random(1);
+	    ok(answer2 < 1);
+	
+	    answer = RiTa.random(2);
+	    ok(answer >= 0);
+	    answer2 = RiTa.random(2);
+	    ok(answer2 < 2);
+	
+	    answer = RiTa.random(0);
+	    ok(answer == 0);
+
+        // int random(int min, int max)
+	    var answer = RiTa.random(10, 34);
+	    ok(answer >= 10);
+	    var answer2 = RiTa.random(10, 34);
+	    ok(answer2 < 34);
+	
+	    answer = RiTa.random(1, 2);
+	    ok(answer >= 1);
+	    answer2 = RiTa.random(1, 2);
+	    ok(answer2 < 2);
+	
+	    answer = RiTa.random(1, 3);
+	    ok(answer >= 1);
+	    answer2 = RiTa.random(1, 3);
+	    ok(answer2 < 3);
+	
+	    answer = RiTa.random(0, 0);
+	    ok(answer == 0);
+
+	    answer = RiTa.random(5, 1); //"min > max"
+	    ok(answer >= 1);
+	    answer2 = RiTa.random(0, 0);
+	    ok(answer2 < 5);
+	    
+	    // float random(float max)
+	    var answer = RiTa.random(12.3);
+	    ok(answer >= 0);
+	    var answer2 = RiTa.random(12.3);
+	    ok(answer2 < 12.3);
+	
+	    answer = RiTa.random(1.1);
+	    ok(answer >= 0);
+	    answer2 = RiTa.random(1.1);
+	    ok(answer2 < 1.1);
+	
+	    answer = RiTa.random(1.2);
+	    ok(answer >= 0);
+	    answer2 = RiTa.random(1.2);
+	    ok(answer2 < 1.2);
+	
+	    answer = RiTa.random(0);
+	    ok(answer == 0);
+
+	    // float random(float min, float max)
+	
+	    var answer = RiTa.random(3.4, 3.6);
+	    ok(answer >= 3.4);
+	    var answer2 = RiTa.random(3.4, 3.6);
+	    ok(answer2 < 3.6);
+	
+	    answer = RiTa.random(1.1, 1.2);
+	    ok(answer >= 1.1);
+	    answer2 = RiTa.random(1.1, 1.2);
+	    ok(answer2 < 1.2);
+	
+	    answer = RiTa.random(1.1, 1.3);
+	    ok(answer >= 1.1);
+	    answer2 = RiTa.random(1.1, 1.3);
+	    ok(answer2 < 1.3);
+	
+	    answer = RiTa.random(0, 0);
+	    ok(answer == 0);
+	
+	    answer = RiTa.random(5.1, 1.1); //TODO   "min > max"
+	    ok(answer >= 1.1);
+	    answer2 = RiTa.random(0, 0);
+	    ok(answer2 < 5.1);
     });
  
     test("RiTa.getPhonemes()", function () { 
@@ -565,7 +652,8 @@
      equal(result, answer);
 
  });
-    
+
+
  test("RiTa.getSyllables()", function () {
 
      var txt = "The dog ran faster than the other dog. But the other dog was prettier.";
