@@ -2,8 +2,8 @@
 <script src="../../../src/rita.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
+	
 // =========================== Start Processing =============================== 
-
 
 /**
  * @desc Timed scaling behaviors with callbacks on completion 
@@ -14,7 +14,7 @@ var rt;
 void setup() {
     
   size(400, 200);
-  RiText.defaultFont(createFont("Big Caslon",80));
+  RiText.defaultFont(createFont("Times", 80));
   rt = new RiText("ingSpin");
   rt.showBoundingBox(1);
   doRotate();
@@ -30,7 +30,7 @@ void doRotate()
 
 // called when any behavior (e.g., scaleTo) completes
 void onRiTaEvent(re) {
-  var rt = re.getSource();
+  var rt = re.source();
   if (rt.scaleX>=1) doRotate();
 }
 

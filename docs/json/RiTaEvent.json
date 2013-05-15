@@ -9,20 +9,18 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
-			
+			}			
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "Object", 
 			"desc": "the source" 
-			},
-			
+			}			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"type()",
@@ -34,17 +32,17 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 	  ],
 	  "returns":
       [
-	{ 
+			{ 
 			"type": "int", 
 			"desc": "the type" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
-   },
+	  "note":""
+   }
 ]

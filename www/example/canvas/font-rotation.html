@@ -28,7 +28,7 @@ function doRotate()
 // called when any behavior (e.g., rotateTo) completes
 function onRiTaEvent(re) {
 	
-  var rt = re.getSource();
+  var rt = re.source();
   if (rt._rotateZ<1) 
   	doRotate();
 }

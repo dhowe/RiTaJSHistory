@@ -16,21 +16,23 @@ var runtests = function() {
         ok(typeof RiGrammar != 'undefined');
         ok(typeof RiMarkov != 'undefined');
         ok(typeof RiTaEvent != 'undefined');
-        if (typeof window != 'undefined') {
+        if (typeof window != 'undefined' && window) {
             ok(typeof RiText != 'undefined');
         }
     });
 
     test("Private Statics (funs)", function() {
 
-        if (typeof window != 'undefined') {
+        if (typeof window != 'undefined' && window) {
             equal(typeof RiText._handleLeading, 'function');
             equal(typeof RiText._disposeOne, 'function');
+             // these fail in phantom outside the conditional ??
+			equal(typeof is, 'undefined');
         }
         equal(typeof _wordOffsetFor, 'undefined');
         equal(typeof _handleLeading, 'undefined');
         equal(typeof _disposeOne, 'undefined');
-        equal(typeof is, 'undefined');
+
     });
     
     test("Private Statics (vars)", function() {

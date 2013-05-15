@@ -23,7 +23,6 @@ cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents/rita/js/; tar xf -; 
 # unlink rita-latest-full.zip ; ln -s rita-full-0.23a.zip rita-latest-full.zip
 
 
-
 rm -rf $ZIP_FILE
 echo
 echo cleaning up...

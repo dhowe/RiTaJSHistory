@@ -21,7 +21,7 @@
 
   void onRiTaEvent(e) {
 
-	var rt = e.getSource();
+	var rt = e.source();
 	if (rt.text() == txt[0]) {
 		rt.textTo(txt[1],1);
 	}

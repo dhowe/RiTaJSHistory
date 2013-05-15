@@ -4,23 +4,22 @@
       "example":"",
       "description":"A constant representing the current RiTa version ",
       "syntax":"RiTa.VERSION",
-      "parameters":[
+      "parameters": [
          {
             "type":"None",
             "desc":""
-         },
-
+         }
       ],
-      "returns":[
+      "returns": [
          {
             "type":"String",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiTa.isAbbreviation()",
@@ -35,19 +34,19 @@
          {
             "type":"boolean",
             "desc":"caseSensitive (optional, default=false)"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"boolean",
             "desc":"true if 'input' is an abbreviation"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
 
    },
    {
@@ -59,19 +58,19 @@
          {
             "type":"String",
             "desc":"sentence"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"boolean",
             "desc":"true if 'sentence' starts with a question word"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
 
    },
    {
@@ -87,19 +86,19 @@
          {
             "type":"String",
             "desc":"nextWord"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"boolean",
             "desc":"true if 'currentWord' is the final word of a sentence"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
 
    },
    {
@@ -111,19 +110,19 @@
          {
             "type":"String",
             "desc":"sentence"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"boolean",
             "desc":"true if sentence starts with a w-question word, eg (who,what,why,where,when,etc.)"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
 
    },
    {
@@ -135,19 +134,19 @@
          {
             "type":"int",
             "desc":"numElements"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"int[]",
             "desc":"unique integers from 0 to numElements-1"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -163,19 +162,19 @@
          {
             "type":"String OR regex",
             "desc":"regex (optional) the pattern to be used for tozenization"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String[]",
             "desc":"array of sentences"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -187,19 +186,19 @@
          {
             "type":"String",
             "desc":"text input"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String",
             "desc":"result"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -211,19 +210,19 @@
          {
             "type":"String",
             "desc":"text input"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String",
             "desc":"result"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -235,19 +234,19 @@
          {
             "type":"String",
             "desc":"text input"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"boolean",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -255,7 +254,7 @@
       "example":"",
       "description":"Tokenizes the string according to Penn Treebank conventions<br/>See: <a href='http://www.cis.upenn.edu/~treebank/tokenization.html'>http://www.cis.upenn.edu/~treebank/tokenization.html</a>",
       "syntax":"RiTa.tokenize(String words)<br/>RiTa.tokenize(String words, String regex)",
-      "parameters":[
+      "parameters": [
          {
             "type":"String",
             "desc":"words a sentence"
@@ -263,18 +262,18 @@
          {
             "type":"String OR regex",
             "desc":"regex (optional) the pattern to be used for tozenization"
-         },
+         }
       ],
       "returns":[
          {
             "type":"String[]",
             "desc":"which each element is a single token (or word)"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -286,19 +285,19 @@
          {
             "type":"String",
             "desc":"the input string"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -322,18 +321,18 @@
          {
             "type":"float",
             "desc":"y2"
-         },
+         }
       ],
       "returns":[
          {
             "type":"float",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -345,19 +344,19 @@
          {
             "type":"String OR String[]",
             "desc":"words to analyze"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":"e.g., 'dh-ax-d-ao-g-r-ae-n-f-ae-s-t'"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -369,19 +368,19 @@
          {
             "type":"String OR String[]",
             "desc":"the text to be tagged"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -393,19 +392,19 @@
          {
             "type":"String",
             "desc":"words the text to tag"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -417,19 +416,19 @@
          {
             "type":"String OR String[]",
             "desc":"words to analyze"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":"e.g., '01-0-1', with 1's meaning 'stressed', and 0's meaning 'unstressed', "
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -441,19 +440,19 @@
          {
             "type":"String OR String[]",
             "desc":"words to analyze"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":"e.g., 'dh-ax d-ao-g r-ae-n f-ae-s-t' for the 4 syllables of the phrase 'The dog ran fast'"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -465,19 +464,19 @@
          {
             "type":"String",
             "desc":"the string to analyze"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"int",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -489,19 +488,19 @@
          {
             "type":"String",
             "desc":"pos tag to convert"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":"simplified WordNet tag"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },
    {
@@ -517,19 +516,19 @@
          {
             "type":"Map",
             "desc":"args containing the relevant options for the conjugator"
-         },
+         }
         
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the conjugated verb"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },   
    {
@@ -541,19 +540,19 @@
          {
             "type":"String",
             "desc":"the verb"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the past participle form of the verb"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
    {
@@ -565,19 +564,19 @@
          {
             "type":"String",
             "desc":"the verb"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the present participle form of the verb"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
    {
@@ -593,19 +592,19 @@
          {
             "type":"String",
             "desc":"type one of ['Lancaster' (the default), 'Porter', or 'Pling'] to specify the stemming algorithm to use"
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the stemmed form of 'word'"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
    {
@@ -617,19 +616,19 @@
          {
             "type":"String",
             "desc":"the noun"
-         },
+         }
          
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the plural form of noun"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
    {
@@ -641,19 +640,19 @@
          {
             "type":"String",
             "desc":"the noun"
-         },
+         }
          
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the singular form of noun"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
 {
@@ -669,19 +668,19 @@
          {
             "type":"function",
             "desc":"callback called every 'period' seconds (optional)"
-         },
+         }
          
       ],
       "returns":[
          {
             "type":"int",
             "desc":"the unique id for the timer"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
    {
@@ -693,19 +692,19 @@
          {
             "type":"int",
             "desc":"the unique id for the timer"
-         },
+         }
          
       ],
       "returns":[
          {
             "type":"None",
             "desc":""
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    }, 
    {
@@ -721,19 +720,19 @@
          {
             "type":"float",
             "desc":"pause-time (in seconds)"
-         },
+         }
          
       ],
       "returns":[
          {
             "type":"id",
             "desc":"the new unique id for the timer"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
       
    },  
    {
@@ -745,19 +744,19 @@
          {
             "type":"None",
             "desc":""
-         },
+         }
 
       ],
       "returns":[
          {
             "type":"int",
             "desc":"a random number"
-         },
+         }
 
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
 
    }
 

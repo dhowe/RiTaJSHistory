@@ -7,7 +7,7 @@
 #    node    -> run-in-qunit.js
 #
 
-if [[ "$#" == 1 && $1 =~ ^-n$ ]]; then 
+if [[ "$#" -ge 1 && $1 =~ ^-n$ ]]; then 
 shift
 ./run-node-tests.sh $@
 exit

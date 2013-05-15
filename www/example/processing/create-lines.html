@@ -16,7 +16,7 @@ void setup() {
   RiText.defaultFont(createFont("Georgia", 16));
   
   for (var i = 0; i < 1; i++)
-    txt += "</p>" + txt;  // specify some paragraphs
+    txt += "<p/>" + txt;  // specify some paragraphs
   
   mouseReleased();
 }
@@ -41,7 +41,7 @@ void mouseDragged() {
 void mouseReleased() {
   RiText.disposeAll();
   rts = RiText.createLines(txt, x, y, w, h); 
-  for ( var i = 0; i < rts.length; i++) 
+  for ( var i = 0; i < rts.length(); i++) 
       rts[i].color(RiText.randomColor()); 
 }
 
