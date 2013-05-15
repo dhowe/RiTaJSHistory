@@ -52,7 +52,8 @@ var runtests = function() {
 
         for ( var i = 0; i < 10; i++) {
         	
-        	// TODO: fails in phantomJS
+        	// TODO: fails in phantomJS  ??
+        	// The "this" value passed to eval must be the global object from which eval originated
         	
             var res = rg.expand(fun);
             ok(res && res.length && !res.match("`"));
@@ -63,12 +64,21 @@ var runtests = function() {
     // TODO: fails in phantomJS
     test("RiGrammar-exec3", function() {
 
-        if (typeof window != 'undefined') {  // why are we skipping this for node?
+        if (typeof window != 'undefined' && window) 
+        {     
+        	var rg = new RiGrammar(uniqueNouns);
         	
-            window.grammar = rg = new RiGrammar(uniqueNouns);
+        	// save grammar in window for store()/unique() functions below
+            window.grammar = rg;
+             
+            var res = rg.expand();
+            //console.log(res);
+            ok(res);
+            
+            //window.grammar = rg;
             for ( var i = 0; i < 30; i++) {
                 var res = rg.expand();
-                console.log("result="+res)
+                //console.log("result="+res)
                 ok(res);
                 var dc = res.match(/dog/g);
                 var cc = res.match(/cat/g);
@@ -78,9 +88,7 @@ var runtests = function() {
                 ok(!mc || mc.length < 3);
             }
         }
-        else {
-        	ok(1); // for node only
-        }
+        //else ok(1); // for node only
 
     });
 
@@ -456,7 +464,7 @@ var runtests = function() {
         rg.addRule("<mammal>", "dog");
         rg.addRule("<action>", "cries | screams | falls");
         ok(typeof rg.print === 'function'); // how to test?
-        rg.print();
+        //rg.print();
     });
 
     test("RiGrammar.expandWith", function() {
@@ -478,7 +486,7 @@ var runtests = function() {
             var r = rg.expandWith("screams", "<action>");
             if (r.indexOf("screams") < 1) {
                 str = r;
-                console.log("error: " + r);
+                // console.log("error: " + r);
                 missed = true;
             }
         }
@@ -489,7 +497,7 @@ var runtests = function() {
             var r = rg.expandWith("dog", "<pet>");
             if (r.indexOf("dog") < 1) {
                 str = r;
-                console.log("error: " + r);
+                // console.log("error: " + r);
                 missed = true;
             }
         }
@@ -505,15 +513,15 @@ var runtests = function() {
 var saved = {};
 
 function store(word) { // tmp
-
+	word = word.trim();
     saved[word] = 1;
     return word;
 }
 
 function unique(word) {
-
+	
+	word = word.trim();
     while (saved[word]) {
-
         word = grammar.expandFrom('<noun>');
     }
     saved = {};

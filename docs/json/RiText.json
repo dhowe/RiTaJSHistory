@@ -9,7 +9,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -17,12 +17,12 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
 	  
    },
    {
@@ -35,7 +35,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -43,12 +43,12 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"z",
@@ -60,7 +60,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -68,17 +68,17 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
 
 	{
       "methodName":"analyze()",
-      "example":"myRiText.get('phonemes') ||  myRiText.get(RiTa.PHONEMES);",
+      "example":"myRiText.get('phonemes') || myRiText.get(RiTa.PHONEMES);",
       "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. <br/>To access any of these, use get(name)",
       "syntax":"analyze()",
       "parameters":
@@ -86,7 +86,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -94,12 +94,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"charAt()",
@@ -111,18 +111,18 @@
 			{ 
 			"type": "int", 
 			"desc": "index of the character" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
 			"desc": "the character" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"concat()",
@@ -134,18 +134,18 @@
 			{ 
 			"type": "RiText", 
 			"desc": "" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"endsWith()",
@@ -157,18 +157,18 @@
 			{ 
 			"type": "String", 
 			"desc": "string the suffix" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the character sequence represented by the argument is a suffix of the character sequence represented by this object; false otherwise" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"equals()",
@@ -180,18 +180,18 @@
 			{ 
 			"type": "String OR RiText", 
 			"desc": "String or RiText object to compare this RiText against" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the RiText are equal; false otherwise." 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"equalsIgnoreCase()",
@@ -203,18 +203,18 @@
 			{ 
 			"type": "String OR RiText", 
 			"desc": "String or RiText object to compare this RiText against" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the argument is not null and the Strings are equal, ignoring case; false otherwise" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"indexOf()",
@@ -230,18 +230,18 @@
 			{ 
 			"type": "int", 
 			"desc": "(Optional) The start position in the string to start the search. If omitted, the search starts from position 0" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
 			"desc": "the first index of the matching pattern or -1 if none are found" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
     {
       "methodName":"insertWordAt()",
@@ -257,19 +257,18 @@
 			{ 
 			"type": "int", 
 			"desc": "" 
-			},
-		
+			}		
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"lastIndexOf()",
@@ -285,18 +284,18 @@
 			{ 
 			"type": "int", 
 			"desc": "(Optional) The start position in the string to start the search. If omitted, the search starts from position 0" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
 			"desc": "the last index of the matching pattern or -1 if none are found" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"length()",
@@ -308,7 +307,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -316,11 +315,11 @@
 			{ 
 			"type": "int", 
 			"desc": "the length" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"match()",
@@ -332,7 +331,7 @@
 			{ 
 			"type": "String", 
 			"desc": "regex Regular expression" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -340,11 +339,11 @@
 			{ 
 			"type": "String[]", 
 			"desc": "strings matches or empty array if none are found" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"pos()",
@@ -356,7 +355,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -364,11 +363,11 @@
 			{ 
 			"type": "String[]", 
 			"desc": "strings of pos, one per word" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"posAt()",
@@ -380,7 +379,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the word index" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -388,11 +387,11 @@
 			{ 
 			"type": "String", 
 			"desc": "the pos" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"removeCharAt()",
@@ -404,7 +403,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the index" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -412,11 +411,11 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceCharAt()",
@@ -432,7 +431,7 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -440,11 +439,11 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceFirst()",
@@ -460,18 +459,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceLast()",
@@ -487,18 +486,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceAll()",
@@ -514,18 +513,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement sequence of char values" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceWordAt()",
@@ -541,18 +540,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"slice()",
@@ -568,18 +567,18 @@
 			{ 
 			"type": "int", 
 			"desc": "(Optional) Where to end the extraction. If omitted, slice() selects all characters from the begin position to the end of the string" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"split()",
@@ -595,18 +594,18 @@
 			{ 
 			"type": "int", 
 			"desc": "(Optional) An integer that specifies the number of splits" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText[]", 
 			"desc": "RiTexts" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"startsWith()",
@@ -618,7 +617,7 @@
 			{ 
 			"type": "String", 
 			"desc": "string the prefix" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -626,11 +625,11 @@
 			{ 
 			"type": "boolean", 
 			"desc": "true if the character sequence represented by the argument is a prefix of the character sequence represented by this string; false otherwise. <br/>Note also that true will be returned if the argument is an empty string or is equal to this RiText object as determined by the equals() method." 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"substring()",
@@ -646,7 +645,7 @@
 			{ 
 			"type": "int", 
 			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the string" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -654,11 +653,11 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"substr()",
@@ -674,7 +673,7 @@
 			{ 
 			"type": "int", 
 			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the string" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -682,11 +681,11 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"text()",
@@ -698,7 +697,7 @@
 			{ 
 			"type": "String", 
 			"desc": "text (optional)" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -706,11 +705,11 @@
 			{ 
 			"type": "String OR RiText", 
 			"desc": "the contained text (for sets) or this RiText (for gets)" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"toCharArray()",
@@ -722,7 +721,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -730,11 +729,11 @@
 			{ 
 			"type": "RiText[]", 
 			"desc": "RiTexts with each letter as its own RiText element" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"toLowerCase()",
@@ -746,7 +745,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -754,11 +753,11 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"toUpperCase()",
@@ -770,7 +769,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -778,11 +777,11 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"trim()",
@@ -794,7 +793,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -802,11 +801,11 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"wordAt()",
@@ -818,7 +817,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the word index" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -826,11 +825,11 @@
 			{ 
 			"type": "String", 
 			"desc": "this word" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"wordCount()",
@@ -842,7 +841,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -850,11 +849,11 @@
 			{ 
 			"type": "int", 
 			"desc": "number of words" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"words()",
@@ -866,7 +865,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -874,11 +873,11 @@
 			{ 
 			"type": "String[]", 
 			"desc": "strings, one per word" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
   
 
@@ -902,7 +901,7 @@
 			{ 
 			"type": "float", 
 			"desc": "(optional) input (0-255) " 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -910,12 +909,12 @@
 			{ 
 			"type": "RiText OR float", 
 			"desc": "either this RiText (for set) or the current alpha value (for get)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"boundingBox()",
@@ -927,7 +926,7 @@
 			{ 
 			"type": "boolean", 
 			"desc": "(optional, default=false) if true, bounding box is first transformed (rotate,translate,scale)" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -935,12 +934,12 @@
 			{ 
 			"type": "float[]", 
 			"desc": "x,y,width,height" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"center()",
@@ -952,7 +951,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -960,12 +959,12 @@
 			{ 
 			"type": "float[]", 
 			"desc": "x,y" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"charOffset()",
@@ -977,7 +976,7 @@
 			{ 
 			"type": "int", 
 			"desc": "charIdx" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -985,12 +984,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the pixel offset" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"clone()",
@@ -1002,7 +1001,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1010,12 +1009,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"color()",
@@ -1039,7 +1038,7 @@
 			{ 
 			"type": "float", 
 			"desc": "ca" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1047,12 +1046,12 @@
 			{ 
 			"type": "RiText OR float[]", 
 			"desc": "either this RiText (for sets) or the current color object (for gets)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"contains()",
@@ -1068,7 +1067,7 @@
 			{ 
 			"type": "float", 
 			"desc": "my" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1076,12 +1075,12 @@
 			{ 
 			"type": "boolean", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"distanceTo()",
@@ -1097,7 +1096,7 @@
 			{ 
 			"type": "float", 
 			"desc": "my" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1105,12 +1104,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the distance" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"draw()",
@@ -1122,7 +1121,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1130,12 +1129,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"font()",
@@ -1155,7 +1154,7 @@
 			{ 
 			"type": "float", 
 			"desc": "size (optional) containing the font size " 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1163,12 +1162,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText (set) or the current font (get)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"fontSize()",
@@ -1180,7 +1179,7 @@
 			{ 
 			"type": "float", 
 			"desc": "(optional) font size" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1188,68 +1187,69 @@
 			{ 
 			"type": "RiText OR float", 
 			"desc": "either this RiText (for set) or the current font size (for get)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"motionType()",
       "example":"",
-      "description":"Sets/gets the animation <code>motionType</code> for this RiText
-		 according to one of the following functions: <br/>
-		 <ul>
-		 <li>RiText.LINEAR
-		 <br/><br/>
-		 <li>RiText.EASE_IN
-		 <li>RiText.EASE_OUT
-		 <li>RiText.EASE_IN_OUT
-		 <br/><br/>
-		 <li>RiText.EASE_IN_EXPO
-		 <li>RiText.EASE_OUT_EXPO
-		 <li>RiText.EASE_IN_OUT_EXPO
-		 <br/><br/>
-		 <li>RiText.EASE_IN_SINE
-		 <li>RiText.EASE_OUT_SINE
-		 <li>RiText.EASE_IN_OUT_SINE
-		 <br/><br/>
-		 <li>RiText.EASE_IN_CUBIC
-		 <li>RiText.EASE_OUT_CUBIC
-		 <li>RiText.EASE_IN_OUT_CUBIC
-		 <br/><br/>
-		 <li>RiText.EASE_IN_QUARTIC
-		 <li>RiText.EASE_OUT_QUARTIC
-		 <li>RiText.EASE_IN_OUT_QUARTIC
-		 <br/><br/>
-		 <li>RiText.EASE_IN_QUINTIC
-		 <li>RiText.EASE_OUT_QUINTIC
-		 <li>RiText.EASE_IN_OUT_QUINTIC
-		 <br/><br/>
-		 <li>RiText.BACK_IN
-		 <li>RiText.BACK_OUT
-		 <li>RiText.BACK_IN_OUT
-		 <br/><br/>
-		 <li>RiText.BOUNCE_IN
-		 <li>RiText.BOUNCE_OUT
-		 <li>RiText.BOUNCE_IN_OUT
-		 <br/><br/>
-		 <li>RiText.CIRCULAR_IN
-		 <li>RiText.CIRCULAR_OUT
-		 <li>RiText.CIRCULAR_IN_OUT
-		 <br/><br/>
-		 <li>RiText.ELASTIC_IN
-		 <li>RiText.ELASTIC_OUT
-		 <li>RiText.ELASTIC_IN_OUT                  
-		 </ul>",
+      "description": [
+"Sets/gets the animation <code>motionType</code> for this RiText<br/>",
+"according to one of the following functions: <br/><br/>",
+"<ul><br/>",
+"<li>RiText.LINEAR<br/>",
+"<br/><br/><br/>",
+"<li>RiText.EASE_IN<br/>",
+"<li>RiText.EASE_OUT<br/>",
+"<li>RiText.EASE_IN_OUT<br/>",
+"<br/><br/><br/>",
+"<li>RiText.EASE_IN_EXPO<br/>",
+"<li>RiText.EASE_OUT_EXPO<br/>",
+"<li>RiText.EASE_IN_OUT_EXPO<br/>",
+"<br/><br/><br/>",
+"<li>RiText.EASE_IN_SINE<br/>",
+"<li>RiText.EASE_OUT_SINE<br/>",
+"<li>RiText.EASE_IN_OUT_SINE<br/>",
+"<br/><br/><br/>",
+"<li>RiText.EASE_IN_CUBIC<br/>",
+"<li>RiText.EASE_OUT_CUBIC<br/>",
+"<li>RiText.EASE_IN_OUT_CUBIC<br/>",
+"<br/><br/><br/>",
+"<li>RiText.EASE_IN_QUARTIC<br/>",
+"<li>RiText.EASE_OUT_QUARTIC<br/>",
+"<li>RiText.EASE_IN_OUT_QUARTIC<br/>",
+"<br/><br/><br/>",
+"<li>RiText.EASE_IN_QUINTIC<br/>",
+"<li>RiText.EASE_OUT_QUINTIC<br/>",
+"<li>RiText.EASE_IN_OUT_QUINTIC<br/>",
+"<br/><br/><br/>",
+"<li>RiText.BACK_IN<br/>",
+"<li>RiText.BACK_OUT<br/>",
+"<li>RiText.BACK_IN_OUT<br/>",
+"<br/><br/><br/>",
+"<li>RiText.BOUNCE_IN<br/>",
+"<li>RiText.BOUNCE_OUT<br/>",
+"<li>RiText.BOUNCE_IN_OUT<br/>",
+"<br/><br/><br/>",
+"<li>RiText.CIRCULAR_IN<br/>",
+"<li>RiText.CIRCULAR_OUT<br/>",
+"<li>RiText.CIRCULAR_IN_OUT<br/>",
+"<br/><br/><br/>",
+"<li>RiText.ELASTIC_IN<br/>",
+"<li>RiText.ELASTIC_OUT<br/>",
+"<li>RiText.ELASTIC_IN_OUT<br/>",
+"</ul>"],
       "syntax":"motionType()<br/>motionType(int motionType)",
       "parameters":
       [
 			{ 
 			"type": "int", 
 			"desc": "motionType" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1257,12 +1257,12 @@
 			{ 
 			"type": "int OR RiText", 
 			"desc": "motionType or RiText (for gets)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"position()",
@@ -1278,7 +1278,7 @@
 			{ 
 			"type": "float", 
 			"desc": "(optional) Y coordinate" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1286,12 +1286,12 @@
 			{ 
 			"type": "RiText OR float[]", 
 			"desc": "either this RiText (for sets) or object {x, y} (for gets)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"rotate()",
@@ -1303,7 +1303,7 @@
 			{ 
 			"type": "float", 
 			"desc": "degree to rotate" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1311,12 +1311,12 @@
 			{ 
 			"type": "RiText OR float[]", 
 			"desc": "either this RiText (for sets) or the current degree of rotation (for gets)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"scale()",
@@ -1332,7 +1332,7 @@
 			{ 
 			"type": "float", 
 			"desc": "(optional) the ScaleY ratio" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1340,12 +1340,12 @@
 			{ 
 			"type": "RiText OR float[]", 
 			"desc": "either this RiText (for sets) or the current scales (for gets)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"showBoundingBox()",
@@ -1357,7 +1357,7 @@
 			{ 
 			"type": "boolean", 
 			"desc": "(optional) true or false " 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1365,12 +1365,12 @@
 			{ 
 			"type": "RiText OR boolean", 
 			"desc": "this RiText (set) or the current boolean value (get)" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"splitLetters()",
@@ -1382,7 +1382,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1390,12 +1390,12 @@
 			{ 
 			"type": "RiTexts[]", 
 			"desc": "RiTexts" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"splitWords()",
@@ -1407,7 +1407,7 @@
 			{ 
 			"type": "String", 
 			"desc": "String or regex to split" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1415,12 +1415,12 @@
 			{ 
 			"type": "RiText[]", 
 			"desc": "RiTexts" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"textHeight()",
@@ -1432,7 +1432,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1440,12 +1440,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the current height of the text" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"textAscent()",
@@ -1457,7 +1457,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1465,12 +1465,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the ascent of the current font" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"textDescent()",
@@ -1482,7 +1482,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1490,12 +1490,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the descent of the current font" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"textWidth()",
@@ -1507,7 +1507,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1515,12 +1515,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the width of the text" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"isVisible()",
@@ -1532,7 +1532,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1540,12 +1540,12 @@
 			{ 
 			"type": "boolean", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"wordOffset()",
@@ -1557,7 +1557,7 @@
 			{ 
 			"type": "int", 
 			"desc": "wordIdx" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1565,12 +1565,12 @@
 			{ 
 			"type": "float", 
 			"desc": "the pixel x-offset" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"fadeIn()",
@@ -1590,7 +1590,7 @@
 			{ 
 			"type": "function", 
 			"desc": "callback" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1598,12 +1598,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"fadeOut()",
@@ -1627,7 +1627,7 @@
 			{ 
 			"type": "boolean", 
 			"desc": "(optional, default=false), destroys the object when the behavior completes" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -1635,12 +1635,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"moveTo()",
@@ -1664,21 +1664,19 @@
 			{ 
 			"type": "float", 
 			"desc": "delay" 
-			},
-			
-			
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"colorTo()",
@@ -1697,26 +1695,24 @@
 			},
 			{ 
 			"type": "float", 
-			"desc": "seconds (optional, default=0),  # of seconds in the future that the fade will start " 
+			"desc": "seconds (optional, default=0),  # of seconds in the future that the fade will start" 
 			},
 			{ 
 			"type": "function", 
 			"desc": "callback the callback to be invoked when the behavior has completed (optional: default=onRiTaEvent(e))" 
-			},
-			
-			
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"rotateTo()",
@@ -1740,7 +1736,7 @@
 			{ 
 			"type": "function", 
 			"desc": "callback the callback to be invoked when the behavior has completed (optional: default=onRiTaEvent(e))" 
-			},
+			}
 			
 			
 	  ],
@@ -1749,12 +1745,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"scaleTo()",
@@ -1778,7 +1774,7 @@
 			{ 
 			"type": "function", 
 			"desc": "callback the callback to be invoked when the behavior has completed (optional: default=onRiTaEvent(e))" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1786,12 +1782,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"stopBehavior()",
@@ -1803,7 +1799,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the behavior id" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1811,12 +1807,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"stopBehaviors()",
@@ -1828,7 +1824,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1836,12 +1832,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"textTo()",
@@ -1865,7 +1861,7 @@
 			{ 
 			"type": "function", 
 			"desc": "callback the callback to be invoked when the behavior has completed (optional: default=onRiTaEvent(e))" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1873,12 +1869,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the unique id for this behavior" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.createFont()",
@@ -1894,7 +1890,7 @@
 			{ 
 			"type": "float", 
 			"desc": "size of the font" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1902,12 +1898,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.createLetters()",
@@ -1919,7 +1915,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1927,12 +1923,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.createWords()",
@@ -1944,7 +1940,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1952,12 +1948,12 @@
 			{ 
 			"type": "RiText", 
 			"desc": "this RiText" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.createLines()",
@@ -1969,7 +1965,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -1977,12 +1973,12 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.drawAll()",
@@ -1994,7 +1990,7 @@
 			{ 
 			"type": "RiText[]", 
 			"desc": "draws only the array if supplied (optional)" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -2002,12 +1998,12 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.dispose()",
@@ -2019,7 +2015,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -2027,12 +2023,12 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.disposeAll()",
@@ -2044,7 +2040,7 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -2052,12 +2048,12 @@
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.defaultColor()",
@@ -2069,7 +2065,7 @@
 			{ 
 			"type": "float[]", 
 			"desc": "color" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -2077,12 +2073,12 @@
 			{ 
 			"type": "float[]", 
 			"desc": "the current default color" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.defaultFont()",
@@ -2102,19 +2098,19 @@
 			{ 
 			"type": "int", 
 			"desc": "the font size (optional, for 'sets' only)" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    
    {
@@ -2135,7 +2131,7 @@
 			{ 
 			"type": "boolean", 
 			"desc": "true if includes alpha" 
-			},
+			}
 
 
 	  ],
@@ -2144,21 +2140,19 @@
 			{ 
 			"type": "number[]", 
 			"desc": "numbers - [r,g,b] or [r,g,b,a]" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
-   },
-   
+	  "note":""
+   },   
    {
-      "methodName":"RiText.picked()",
-      "example":"var rts = RiText.getPicked(mx, my);<br/>if (rts.length) { <br/>	rts[0].doSomething();<br/>}",
-      "description":"Returns all RiTexts that contain the point x,y or null if none do. <br/><br/>Note: this will return an array even if only one item is picked, therefore, you should generally use it as example",
-      "syntax":"RiText.picked(float x, float y)",
-      "parameters":
-      [
+      "methodName": "RiText.picked()",
+      "example": "var rts = RiText.getPicked(mx, my);<br/>if (rts.length) { <br/>  rts[0].doSomething();<br/>}",
+      "description": "Returns all RiTexts that contain the point x,y or null if none do. <br/><br/>Note: this will return an array even if only one item is picked, therefore, you should generally use it as example",
+      "syntax": "RiText.picked(float x, float y)",
+      "parameters": [
       		{ 
 			"type": "float", 
 			"desc": "x" 
@@ -2166,20 +2160,19 @@
 			{ 
 			"type": "float", 
 			"desc": "y" 
-			},
-			
+			}		
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiText[]", 
 			"desc": "one or more RiTexts containing the point, or an empty array if none do." 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.timer()",
@@ -2195,7 +2188,7 @@
 			{ 
 			"type": "function", 
 			"desc": "callback called every 'period' seconds (default=onRiTaEvent)" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -2203,12 +2196,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the unique id for the timer" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.stopTimer()",
@@ -2220,7 +2213,7 @@
       		{ 
 			"type": "int", 
 			"desc": "the unique id for the timer" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -2228,12 +2221,12 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.pauseTimer()",
@@ -2249,7 +2242,7 @@
 			{ 
 			"type": "float", 
 			"desc": "period (in seconds)" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -2257,12 +2250,12 @@
 			{ 
 			"type": "int", 
 			"desc": "the new unique id for the timer" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"RiText.random()",
@@ -2274,21 +2267,18 @@
       		{ 
 			"type": "None", 
 			"desc": "" 
-			},
-
-
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "float", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
-   },
-  
+	  "note":""
+   }  
 ]

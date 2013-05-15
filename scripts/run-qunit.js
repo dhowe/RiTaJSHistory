@@ -1,4 +1,4 @@
-MAX_TIMEOUT=20000; // < Default Max Timeout 
+MAX_TIMEOUT=60000; // < Default Max Timeout 
 
 /**
  * Wait until the test condition is true or a timeout occurs. Useful for waiting

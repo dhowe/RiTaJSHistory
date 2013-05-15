@@ -13,7 +13,8 @@ var runtests = function() {
  		return new RiLexicon();
  	}
  	
-    var lex, functions = ["addWord", 
+    var lex, functions = [
+    				 "addWord", 
                      "clear",
                      "containsWord", 
                      "alliterations", 
@@ -247,7 +248,7 @@ var runtests = function() {
         var pos = ["nn","nns","jj","jjr","wp"];
         for (var j = 0; j < pos.length; j++)
         {
-          for (var i = 0; i < 20; i++)
+          for (var i = 0; i < 5; i++)
           {
             var result = lex.randomWord(pos[j]);
             var best = lex._getBestPos(result);
@@ -260,7 +261,7 @@ var runtests = function() {
     test("RiLexicon.randomWord(3)", function() { 
 
 	    lex = RiLexicon();
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < 10; i++)
         {
           var result = lex.randomWord(3);
           var syllables = RiTa.getSyllables(result);
@@ -273,7 +274,7 @@ var runtests = function() {
     test("RiLexicon.randomWord(4)", function() { 
 
 	    lex = RiLexicon();
-        for (var i = 0; i < 20; i++)
+        for (var i = 0; i < 10; i++)
         {
           var result = lex.randomWord(5);
           var syllables = RiTa.getSyllables(result);

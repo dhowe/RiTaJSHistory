@@ -34,14 +34,13 @@ void setup()
 
 void draw() {
     
-  RiText.background(0);
+  background(0);
   RiText.drawAll();
 }
 
 void onRiTaEvent(re) {
-    
-    re.getSource().colorTo
-        ([Math.floor(random(100,255)), Math.floor(random(100,255)), 0, 255], 1);
+        
+  re.source().colorTo([ random(100,255), random(100,255), 0 ], 1);
 }
 
 

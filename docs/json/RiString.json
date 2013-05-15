@@ -9,7 +9,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -17,12 +17,12 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"charAt()",
@@ -34,18 +34,18 @@
 			{ 
 			"type": "int", 
 			"desc": "index of the character" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
 			"desc": "the character" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"concat()",
@@ -57,18 +57,18 @@
 			{ 
 			"type": "RiString", 
 			"desc": "RiString" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"endsWith()",
@@ -80,18 +80,18 @@
 			{ 
 			"type": "String", 
 			"desc": "string the suffix" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the character sequence represented by the argument is a suffix of the character sequence represented by this object; false otherwise" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"equals()",
@@ -103,18 +103,18 @@
 			{ 
 			"type": "String OR RiString", 
 			"desc": "String or RiString object to compare this RiString against" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the RiString are equal; false otherwise." 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"equalsIgnoreCase()",
@@ -126,18 +126,18 @@
 			{ 
 			"type": "String OR RiString", 
 			"desc": "String or RiString object to compare this RiString against" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the argument is not null and the Strings are equal, ignoring case; false otherwise" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"indexOf()",
@@ -152,20 +152,19 @@
 			},
 			{ 
 			"type": "int", 
-			"desc": "(Optional) The start position in the string to start the search. If omitted,
-		 *        the search starts from position 0" 
-			},
+			"desc": "(Optional) The start position in the string to start the search. If omitted, the search starts from position 0" 
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
 			"desc": "the first index of the matching pattern or -1 if none are found" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
     {
       "methodName":"insertWordAt()",
@@ -181,7 +180,7 @@
 			{ 
 			"type": "int", 
 			"desc": "" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -189,11 +188,11 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"lastIndexOf()",
@@ -209,18 +208,18 @@
 			{ 
 			"type": "int", 
 			"desc": "(Optional) The start position in the string to start the search. If omitted, the search starts from position 0" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
 			"desc": "the last index of the matching pattern or -1 if none are found" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"length()",
@@ -232,7 +231,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -240,11 +239,11 @@
 			{ 
 			"type": "int", 
 			"desc": "the length" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"match()",
@@ -256,7 +255,7 @@
 			{ 
 			"type": "String", 
 			"desc": "regex Regular expression" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -264,11 +263,11 @@
 			{ 
 			"type": "String[]", 
 			"desc": "strings matches or empty array if none are found" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"pos()",
@@ -280,7 +279,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -288,11 +287,11 @@
 			{ 
 			"type": "String[]", 
 			"desc": "strings of pos, one per word" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"posAt()",
@@ -304,7 +303,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the word index" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -312,11 +311,11 @@
 			{ 
 			"type": "String", 
 			"desc": "the pos" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"removeCharAt()",
@@ -328,7 +327,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the index" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -336,11 +335,11 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceCharAt()",
@@ -356,7 +355,7 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 		
 	  ],
 	  "returns":
@@ -364,11 +363,11 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceFirst()",
@@ -384,18 +383,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceLast()",
@@ -411,18 +410,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceAll()",
@@ -438,18 +437,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement sequence of char values" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"replaceWordAt()",
@@ -465,18 +464,18 @@
 			{ 
 			"type": "String", 
 			"desc": "the replacement" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"slice()",
@@ -492,41 +491,40 @@
 			{ 
 			"type": "int", 
 			"desc": "(Optional) Where to end the extraction. If omitted, slice() selects all characters from the begin position to the end of the string" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"split()",
       "example":"",
       "description":"Split a RiString into an array of RiStrings, one for each element after the split, and returns the new array. <br/>If an empty string ('') is used as the separator, the string is split between each character.",
-      "syntax":"split()<br/>split(String separator)<br/>
-      "parameters":
-      [
+      "syntax": "split()<br/>split(String separator)<br/>",
+      "parameters": [
 			{ 
 			"type": "String", 
 			"desc": "(Optional) Specifies the character to use for splitting the string. If omitted, the string is split according to RiTa.tokenize(). If an empty string ('') is used as the separator, the string is split between each character." 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiStrings[]", 
 			"desc": "RiStrings" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"startsWith()",
@@ -538,7 +536,7 @@
 			{ 
 			"type": "String", 
 			"desc": "string the prefix" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -546,11 +544,11 @@
 			{ 
 			"type": "boolean", 
 			"desc": "true if the character sequence represented by the argument is a prefix of the character sequence represented by this string; false otherwise. <br/>Note also that true will be returned if the argument is an empty string or is equal to this RiString object as determined by the equals() method." 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"substring()",
@@ -566,7 +564,7 @@
 			{ 
 			"type": "int", 
 			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the string" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -574,11 +572,11 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"substr()",
@@ -594,7 +592,7 @@
 			{ 
 			"type": "int", 
 			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the string" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -602,11 +600,11 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"text()",
@@ -618,7 +616,7 @@
 			{ 
 			"type": "String", 
 			"desc": "text (optional)" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -626,11 +624,11 @@
 			{ 
 			"type": "String OR RiString", 
 			"desc": "the contained text (for sets) or this RiString (for gets)" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"toCharArray()",
@@ -642,7 +640,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -650,11 +648,11 @@
 			{ 
 			"type": "RiString[]", 
 			"desc": "RiStrings with each letter as its own RiString element" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"toLowerCase()",
@@ -666,7 +664,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -674,11 +672,11 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"toUpperCase()",
@@ -690,7 +688,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -698,11 +696,11 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"trim()",
@@ -714,7 +712,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -722,11 +720,11 @@
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"wordAt()",
@@ -738,7 +736,7 @@
 			{ 
 			"type": "int", 
 			"desc": "the word index" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -746,11 +744,11 @@
 			{ 
 			"type": "String", 
 			"desc": "this word" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"wordCount()",
@@ -762,7 +760,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -770,11 +768,11 @@
 			{ 
 			"type": "int", 
 			"desc": "number of words" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"words()",
@@ -786,7 +784,7 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 
 	  ],
 	  "returns":
@@ -794,11 +792,10 @@
 			{ 
 			"type": "String[]", 
 			"desc": "strings, one per word" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
-   },
-  
+	  "note":""
+   }  
 ]

@@ -17,7 +17,7 @@
 			{ 
 			"type": "String", 
 			"desc": "weight" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -25,12 +25,12 @@
 			{ 
 			"type": "RiGrammar", 
 			"desc": "this RiGrammar" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"expand()",
@@ -42,7 +42,7 @@
 			{ 
 			"type": "String", 
 			"desc": "One or more function to be added to the current context BEFORE executing the expand() call. Useful for defining functions referenced in back-ticked rules." 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -50,12 +50,12 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"expandFrom()",
@@ -67,7 +67,7 @@
 			{ 
 			"type": "String", 
 			"desc": "rule" 
-			},
+			}
 			
 	  ],
 	  "returns":
@@ -75,12 +75,12 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"expandWith()",
@@ -96,19 +96,19 @@
 			{ 
 			"type": "String", 
 			"desc": "symbol" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
 			"desc": "expanded text" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"getRule()",
@@ -120,19 +120,19 @@
 			{ 
 			"type": "String", 
 			"desc": "rule name" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
 			"desc": "the rule" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"hasRule()",
@@ -144,19 +144,19 @@
 			{ 
 			"type": "String", 
 			"desc": "the rule name" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
 			"desc": "true if the rule exists in the grammar, else false" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"print()",
@@ -168,19 +168,19 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiGrammar", 
 			"desc": "this RiGrammar" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"removeRule()",
@@ -192,19 +192,19 @@
 			{ 
 			"type": "String", 
 			"desc": "" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiGrammar", 
 			"desc": "this RiGrammar" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"reset()",
@@ -216,19 +216,19 @@
 			{ 
 			"type": "None", 
 			"desc": "" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiGrammar", 
 			"desc": "this RiGrammar" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":""
    },
    {
       "methodName":"setGrammar()",
@@ -240,20 +240,18 @@
 			{ 
 			"type": "String OR object", 
 			"desc": "grammar containing the grammar rules" 
-			},
+			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiGrammar", 
 			"desc": "this RiGrammar" 
-			},
+			}
 			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
-   },
-   
-  
+	  "note":""
+   }   
 ]

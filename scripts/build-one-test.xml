@@ -9,7 +9,11 @@
 	  <property name="dir" value="../test"/>
 	  <property name="buildname" value="RiTaJS"/>
 
-	  <property name="${dir}/RiLexicon-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
+	  <property name="${dir}/RiMarkov-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
+	  <!--property name="${dir}/RiGrammar-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
+	  <property name="${dir}/RiTa-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
+	  <property name="${dir}/RiMarkov-tests.html?src=${src.loc}&amp;data=1" value="file3"/>
+	  <property name="${dir}/RiTaEvent-tests.html?src=${src.loc}&amp;data=1" value="file3"/-->
 	
 	  <propertyset id="html.tests"><propertyref prefix="${dir}"/></propertyset>
 

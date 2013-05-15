@@ -24,13 +24,14 @@
     });
     
     test("RiTa.p5Compatible", function () {
-
+		
         RiTa.p5Compatible(true);
-        equal(typeof RiText.setDefaultFont, 'function'); 
+        if (typeof window != 'undefined' && window) 
+        	equal(typeof RiText.setDefaultFont, 'function'); 
         RiTa.p5Compatible(false);
-        equal(typeof RiText.setDefaultFont, 'undefined'); 
+        ok(typeof RiText == 'undefined' || typeof RiText.setDefaultFont, 'undefined'); 
 
-        if (window) {
+        if (typeof window != 'undefined' && window) {
         	
             RiTa.p5Compatible(true);
             ok(RiText.prototype.textAlign); 
