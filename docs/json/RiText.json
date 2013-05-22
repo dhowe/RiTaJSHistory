@@ -1017,10 +1017,10 @@
 	  "note":""
    },
    {
-      "methodName":"color()",
+      "methodName":"fill()",
       "example":"",
       "description":"Set/gets the color for this RiText",
-      "syntax":"color()<br/>color(float[] rgba)<br/>color(float r, float, float b, float a)",
+      "syntax":"fill()<br/>fill(float[] rgba)<br/>fill(float r, float, float b, float a)",
       "parameters":
       [
 			{ 

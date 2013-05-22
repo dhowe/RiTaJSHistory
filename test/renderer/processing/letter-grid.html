@@ -11,17 +11,17 @@ void setup()
   size(200, 200);
   
   RiText.defaultColor(255);
-  RiText.defaultAlignment(CENTER);
+  RiText.defaults.alignment = CENTER;
   RiText.defaultFont("Arial", 36); // was CourierNew
   
   for (var i=0; i< num; i++) {
     for (var j=0; j< num; j++, k++) {
-      var c = String.fromCharCode(65+k);           // letters
+      char c = (char) (65 + k);           // letters
       rt[k] = RiText(65+k, 24+j*30, 32+i*30);
       if (k < 26) {    
           
           if ("AEIOU".indexOf(c) >= 0) {  // vowels
-            rt[k].fadeColor([204], 1);
+            rt[k].colorTo([204], 1);
           }
       } 
       else {

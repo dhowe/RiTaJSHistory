@@ -7,6 +7,7 @@ var runtests = function() {
 	
     // NOTE: Instances of RiLexicon & RiText are not available on this page
 
+
     test("Public Objects", function() {
 
         ok(RiTa.VERSION > 0);
@@ -19,6 +20,12 @@ var runtests = function() {
         if (typeof window != 'undefined' && window) {
             ok(typeof RiText != 'undefined');
         }
+    });
+
+    test("Global Window", function() {
+    	ok(typeof window == 'object');
+    	ok(({}).toString.call(window).match
+    		(/\s([a-zA-Z]+)/)[1].toLowerCase() === 'global');
     });
 
     test("Private Statics (funs)", function() {
