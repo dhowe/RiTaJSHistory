@@ -33,7 +33,7 @@ void onRiTaEvent(re) {
   
   // set them all to red
   for (var i = 0; i < slots.length; i++) 
-    slots[i].color(255,0,0);
+    slots[i].fill(255,0,0);
   
   // lets some keep spinning 
   if (clicks < 1)
@@ -48,7 +48,7 @@ void randomItem(rt) {
   // pick a random string & set it to black
   var randIdx = Math.floor(random(slots.length));
   rt.setText(items[randIdx]);
-  rt.setColor(0);
+  rt.fill(0);
 }
 
 void draw() {

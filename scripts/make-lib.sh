@@ -1,12 +1,14 @@
 #/bin/sh
 
+# TODO: make ##version## replacements in rita.js && /RiTaLibraryJS/www/download/index.html
+
 if [ $# -lt "1"  ]
 then
     echo
     echo "  error:   tag or version required"
     echo
     echo "  usage:   make-lib.sh [tag] [-p -D -M] "
-    echo "           make-lib.sh 0.63a -p -D -M"
+    echo "           make-lib.sh 1.0.63a -p -D -M"
     echo
     echo "  options:"
     echo "       -p = publish-after-build "
@@ -119,7 +121,7 @@ echo
 echo Copying examples
 cd .
 cp -r ../test/renderer/multitest.html ../www/example/
-cp -r ../test/renderer/*.wav ../www/example/  # ???? 
+#cp -r ../test/renderer/*.wav ../www/example/  # ???? 
 cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
 ## also need to copy libraries for local www??
 echo
