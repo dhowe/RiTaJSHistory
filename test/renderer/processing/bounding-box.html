@@ -8,7 +8,7 @@ void setup() {
 
 	size(600, 700);
 
-    RiText.defaults.boundingBoxVisible = 1;
+    RiText.defaults.showBounds = 1;
 	
 	var pf = createFont("Arial", 36);
 	
@@ -19,15 +19,14 @@ void setup() {
 
 	rt3 = new RiText("Bound in", width, 170, pf);
     rt3.align(RIGHT);
-    rt3.scale(72/pf.size);
-    console.log(72/pf.size); 
+    rt3.scale(72/pf.size); 
 
     rt4 = new RiText("Bound ing", 130, 200, pf);
     
 	rt5 = new RiText("Boundage", 180, 300);
 	rt5.font(createFont("Times",64));
 
-    RiText.defaults.boundingBoxVisible = 0;
+    RiText.defaults.showBounds = 0;
 
 	RiText.defaultFont("Georgia",50,60);
 	rt6 = new RiText("Ground Hog", 199, 450);
@@ -35,7 +34,7 @@ void setup() {
 	rt7 = new RiText("Scaling Fail", 20, 600);
 	rt7.scale(2);
 	
-    RiText.defaults.boundingBoxVisible = 1;
+    RiText.defaults.showBounds = 1;
 
 	//rt8 = new RiText("Scaling2", 0, 80);
 	//rt8.scale(2);

@@ -1019,27 +1019,26 @@
    {
       "methodName":"fill()",
       "example":"",
-      "description":"Set/gets the color for this RiText",
+      "description":"Set/gets the fill color for this RiText",
       "syntax":"fill()<br/>fill(float[] rgba)<br/>fill(float r, float, float b, float a)",
       "parameters":
       [
 			{ 
 			"type": "float OR float[]", 
-			"desc": "cr" 
+			"desc": "r" 
 			},
 			{ 
 			"type": "float", 
-			"desc": "cg" 
+			"desc": "g" 
 			},
 			{ 
 			"type": "float", 
-			"desc": "cb" 
+			"desc": "b" 
 			},
 			{ 
 			"type": "float", 
-			"desc": "ca" 
+			"desc": "a" 
 			}
-			
 	  ],
 	  "returns":
       [
@@ -1348,10 +1347,10 @@
 	  "note":""
    },
    {
-      "methodName":"showBoundingBox()",
+      "methodName":"showBounds()",
       "example":"",
-      "description":"Set/gets the boundingbox visibility for this RiText ",
-      "syntax":"showBoundingBox()<br/>showBoundingBox(boolean trueOrFalse)",
+      "description":"Set/gets the bounding box visibility for this RiText ",
+      "syntax":"showBounds()<br/>showBounds(boolean trueOrFalse)",
       "parameters":
       [
 			{ 
@@ -2056,17 +2055,28 @@
 	  "note":""
    },
    {
-      "methodName":"RiText.defaultColor()",
+      "methodName":"RiText.defaultFill()",
       "example":"",
-      "description":"Convenience method to set/get the default color",
-      "syntax":"RiText.defaultColor()<br/>RiText.defaultColor(float[] color)",
+      "description":"Convenience method to set/get the default fill color",
+      "syntax":"RiText.defaultFill()<br/>RiText.defaultFill(float[] color)",
       "parameters":
       [
 			{ 
-			"type": "float[]", 
-			"desc": "color" 
+			"type": "float OR float[]", 
+			"desc": "r" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "g" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "b" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "a" 
 			}
-			
 	  ],
 	  "returns":
       [
