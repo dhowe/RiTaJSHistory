@@ -1,22 +1,18 @@
 <html>
 	
-<canvas id="canvas" style="border: 1px solid #000000;"></canvas>
+<canvas id="canvas" width=400 height=400 style="border: 1px solid #000000;"></canvas>
 <script src="../../../src/rita.js"></script>
 
 <script>
 
 RiTa.p5Compatible(true);
 
-size(400, 400);
-
-RiText.showBoundingBoxes(true);
-RiText.defaultFont(createFont("Times", 64));
+RiText.defaults.showBounds=true;
+RiText.defaultFont("Times", 64);
 
 RiText("Left",   200, 100).align(LEFT);
 RiText("Center", 200, 200).align(CENTER);
 RiText("Right",  200, 300).align(RIGHT);
-
-background(255);
 
 line(200,0,200,400);
     

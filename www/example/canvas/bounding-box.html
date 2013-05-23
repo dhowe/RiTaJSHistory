@@ -8,7 +8,7 @@ function setup() {
 
     size(600, 700);
 
-    RiText.showBoundingBoxes(true);
+	RiText.defaults.showBounds = true;
     
     var pf = createFont("Arial", 36);
     
@@ -27,17 +27,21 @@ function setup() {
     rt5 = new RiText("Boundage", 180, 300);
     rt5.font(createFont("Times",64));
 
-    RiText.showBoundingBoxes(false);
-
+	RiText.defaults.showBounds = true;
     RiText.defaultFont("Georgia",50,60);
+    
     rt6 = new RiText("Ground Hog", 199, 450);
 
     rt7 = new RiText("Scaling Fail", 20, 600);
     rt7.scale(2);
+    
+    RiText.loop();
 }
 
 function draw() {
+		
     background(250);
+    
     var bb = rt6.boundingBox(true);
     RiText.renderer._rect(bb.x, bb.y, bb.width, bb.height);
     bb = rt7.boundingBox(true);
