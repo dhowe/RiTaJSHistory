@@ -53,13 +53,13 @@ If you want to use RiTaJS with <a href="http://processingjs.org/">ProcessingJS</
 <pre>
   &lt;html&gt;
   &lt;script src="processing-min.js"&gt;&lt;/script&gt;
-  &lt;script src="rita-020a.min.js"&gt;&lt;/script&gt;
+  &lt;script src="rita-1.0.29a.min.js"&gt;&lt;/script&gt;
   &lt;script type="text/processing" data-processing-target="mycanvas"&gt;
 
 	size(200,200);
 	background(255);
 	
-	RiText("SIMPLE").color(200,100,0).draw();
+	RiText("SIMPLE").fill(200,100,0).draw();
 
   &lt;/script&gt;
   &lt;canvas id="mycanvas"&gt;&lt;/canvas&gt;
