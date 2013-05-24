@@ -1408,7 +1408,7 @@
 				
 				delete RiText.setDefaultFont;
 				delete RiText.setDefaultColor;
-				//delete RiText.setDefaultAlignment;
+				delete RiText.setDefaultAlignment;
 				delete RiText.setCallbackTimer;
 
 				if (typeof window != 'undefined' && window && !hasProcessing)  {
@@ -5066,13 +5066,13 @@
 	 * Sets/gets the default alignment for all RiTexts
 	 * @param {number} align (optional, for sets only)
 	 * @returns {number} the current default alignment
-
+    */
 	RiText.defaultAlignment = function(align) {
 
 		if (arguments.length==1)
 			RiText.defaults.alignment = align;
 		return RiText.defaults.alignment;
-	}	 */
+	}
 	
 	/**
 	 * Sets/gets the default font size for all RiTexts
@@ -5166,6 +5166,23 @@
 	}
 	
 	
+  /**
+	 * Set/gets default boundingbox visibility
+	 *
+	 * @param {boolean} trueOrFalse (optional) true or false
+	 * @returns {object | boolean} this RiText (set) or the current boolean value (get)
+	 */
+  RiText.showBoundingBox = function(trueOrFalse) {
+
+    if (arguments.length == 1) {
+      RiText.defaults.boundingBoxVisible = trueOrFalse;
+      return this;
+    }
+
+    return RiText.defaults.boundingBoxVisible;
+  }
+
+
 	// private statics ///////////////////////////////////////////////////////////////
 	
 	RiText._layoutArray = function(lines, x, y, w, h, pfont, leading) {
@@ -6137,7 +6154,24 @@
 			
 			return id;
 		},
-	   
+    /**
+     * Sets/gets color for this RiText
+     * @param {number | array} r takes 1-4 number values for rgba, or an array of size 1-4
+	   * @param {number} g (optional)
+	   * @param {number} b (optional)
+	   * @param {number} a (optional)
+	   * @returns {object} the current color (get) or the RiText object (set)
+	   */
+    color : function(r, g, b, a) {
+
+      if (0 == arguments.length) {
+        return this._color;
+      }
+      else {
+        this._color = parseColor.apply(this,arguments);
+        return this;
+      }
+    },
 		/**
 		 * Move to new x,y position over 'seconds'
 		 * <p>

@@ -2,6 +2,8 @@
 <script src="../../../src/rita.js"></script>
 <script type="text/processing" data-processing-target="mycanvas">
 
+RiTa.p5Compatible(1);
+
 haikuGrammar = { 
     "<start>": "<5-line> % <7-line> % <5-line>",  
     "<5-line>": "<1> <4> |<1> <3> <1> |<1> <1> <3> | <1> <2> <2> | <1> <2> <1> <1> | <1> <1> <2> <1> | <1> <1> <1> <2> | <1> <1> <1> <1> <1> | <2> <3> | <2> <2> <1> | <2> <1> <2> | <2> <1> <1> <1> | <3> <2> | <3> <1> <1> | <4> <1> | <5>",
@@ -42,7 +44,7 @@ void mouseClicked()
     var result = grammar.expand();
     var lines =  result.split("%");
     for ( var int = 0; int < rts.length; int++) {
-        rts[int].setText(lines[int]);
+        rts[int].text(lines[int]);
     }
 }
 

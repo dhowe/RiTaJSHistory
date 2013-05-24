@@ -3,13 +3,15 @@
 
 
 var rt, idx=0, tid, y = 30, s = "This is a typewriter typing a line.",
-	bell = new Audio("../data/bell.wav"), key = new Audio("../data/key.wav"); 
+	bell = new Audio("../bell.wav"), key = new Audio("../key.wav"); 
 
 RiTa.p5Compatible(true);
 
+window.onload= function(){setup();draw();}
+
 function setup() 
 { 
-  size(550,550);
+  RiText.size(550,550);
 
   RiText.defaultFont("courier", 24);
   rt = new RiText("", 20, y);
@@ -30,11 +32,13 @@ function onRiTaEvent(re) {
     idx = 0;
   }   
   else if (!rt.endsWith(" ")) 
-    key.play();    
+    key.play();
+
+  draw();
 }
 
 function draw() {
-  background(255);
+  RiText.background(255);
   RiText.drawAll();
 }
 

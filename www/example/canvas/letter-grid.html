@@ -5,12 +5,14 @@
 
 //RiTa.p5Compatible(true);
 
+window.onload = function() {setup(); draw();}
+
 function setup()
 {	
-  size(200, 200);
+  RiText.size(200, 200);
   
   RiText.defaultColor(255);
-  RiText.defaultAlignment(CENTER);
+  RiText.defaultAlignment(RiTa.CENTER);
   RiText.defaultFont("Arial",36);
 
   var rt = [];  
@@ -24,11 +26,11 @@ function setup()
       if (k < 26) {    
           
           if ("AEIOU".indexOf(c) >= 0) {  // vowels
-            rt[k].fadeColor([204], 1);
+            rt[k].colorTo([204], 1);
           }
       } 
       else {
-          rt[k].setText(k+22);  // numbers
+          rt[k].text(k+22);  // numbers
           rt[k].fill(153);
       } 
     }
@@ -43,6 +45,6 @@ function draw() {
 
 function onRiTaEvent(re) {
         
-  re.source().colorTo([ random(100,255), random(100,255), 0 ], 1);
+  re.source().colorTo([ RiTa.random(100,255), RiTa.random(100,255), 0 ], 1);
 }
 </script>

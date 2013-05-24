@@ -30,7 +30,7 @@ function draw()
 //called by RiTa whenever a 'moveTo' behavior finishes
 function onRiTaEvent(e)
 {
-    if (e.getType() == 'moveToCompleted') 
+    if (e.type() == 'moveToCompleted') 
         moveToRandom(e.source());
 }
 
