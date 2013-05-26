@@ -2,10 +2,13 @@
 
 INPUT=../../docs/
 OUTPUT=../../www/reference/
+GENZIP="doc-gen.zip"
 
 HTML="${INPUT}html"
 CSS="${INPUT}css"
-CLASSPATH=".:../../lib/core.jar:../../lib/json.jar"
+CLASSPATH="$GENZIP:../../lib/core.jar:../../lib/json.jar"
+
+echo CP: $CLASSPATH
 
 cd ../tools/refgen				 # tmp: use jar instead
 

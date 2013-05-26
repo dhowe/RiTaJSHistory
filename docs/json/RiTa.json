@@ -2,7 +2,7 @@
 	{
       "methodName":"RiTa.VERSION",
       "example":"",
-      "description":"A constant representing the current RiTa version ",
+      "description":"the current RiTa version ",
       "syntax":"RiTa.VERSION",
       "parameters": [
          {
@@ -76,7 +76,7 @@
    {
       "methodName":"RiTa.isSentenceEnd()",
       "example":"",
-      "description":"Returns true if 'currentWord' is the final word of a sentence. <br/>This is a simplified version of the OAK/JET sentence splitter method.",
+      "description":"Takes two consecutive words and returns true if 'currentWord' is the final word of a sentence (if true, 'nextWord' is generally the first word of the next sentence) ",
       "syntax":"RiTa.isSentenceEnd(String currentWord, String nextWord)",
       "parameters":[
          {
@@ -152,7 +152,7 @@
    {
       "methodName":"RiTa.splitSentences()",
       "example":"",
-      "description":"Splits the 'text' into sentences (according to PENN Treebank conventions)",
+      "description":"Splits 'text' into sentences (according to PENN Treebank conventions)",
       "syntax":"RiTa.splitSentences(String text)<br/>RiTa.splitSentences(String text, String regex)",
       "parameters":[
          {
@@ -160,10 +160,9 @@
             "desc":"text the text to be split"
          },
          {
-            "type":"String OR regex",
-            "desc":"regex (optional) the pattern to be used for tozenization"
+            "type":"String OR Regex (in JS)",
+            "desc":"regex (optional) the pattern to be used for word tokenization"
          }
-
       ],
       "returns":[
          {
@@ -180,14 +179,13 @@
    {
       "methodName":"RiTa.stripPunctuation()",
       "example":"",
-      "description":"Strips all punctuation from the given string",
+      "description":"Strips all punctuation from the input string",
       "syntax":"RiTa.stripPunctuation(String text)",
       "parameters":[
          {
             "type":"String",
             "desc":"text input"
          }
-
       ],
       "returns":[
          {
@@ -204,21 +202,19 @@
    {
       "methodName":"RiTa.trimPunctuation()",
       "example":"",
-      "description":"Trims punctuation from each side of the token (does not trim whitespace or internal punctuation)",
+      "description":"Trims punctuation from both ends the input string (does not trim whitespace or internal punctuation)",
       "syntax":"RiTa.trimPunctuation(String text)",
       "parameters":[
          {
             "type":"String",
             "desc":"text input"
          }
-
       ],
       "returns":[
          {
             "type":"String",
             "desc":"result"
          }
-
       ],
       "related":"",
       "platform":"Java / Javascript",
@@ -242,7 +238,6 @@
             "type":"boolean",
             "desc":""
          }
-
       ],
       "related":"",
       "platform":"Java / Javascript",
@@ -252,22 +247,22 @@
    {
       "methodName":"RiTa.tokenize()",
       "example":"",
-      "description":"Tokenizes the string according to Penn Treebank conventions<br/>See: <a href='http://www.cis.upenn.edu/~treebank/tokenization.html'>http://www.cis.upenn.edu/~treebank/tokenization.html</a>",
+      "description":"Tokenizes the string (into words) according to Penn Treebank conventions<br/>See: <a href='http://www.cis.upenn.edu/~treebank/tokenization.html'>http://www.cis.upenn.edu/~treebank/tokenization.html</a>",
       "syntax":"RiTa.tokenize(String words)<br/>RiTa.tokenize(String words, String regex)",
       "parameters": [
          {
             "type":"String",
-            "desc":"words a sentence"
+            "desc":"the input"
          },
          {
-            "type":"String OR regex",
+            "type":"String OR Regex (in JS)",
             "desc":"regex (optional) the pattern to be used for tozenization"
          }
       ],
       "returns":[
          {
             "type":"String[]",
-            "desc":"which each element is a single token (or word)"
+            "desc":"in which each element is a single token (or word)"
          }
 
       ],
@@ -304,7 +299,7 @@
       "methodName":"RiTa.distance()",
       "example":"",
       "description":"Convenience method to get the distance between 2 points",
-      "syntax":"RiTa.distance(float x1,float y1,float x2,float y2)",
+      "syntax":"RiTa.distance(float x1, float y1, float x2, float y2)",
       "parameters":[
          {
             "type":"float",
@@ -326,7 +321,7 @@
       "returns":[
          {
             "type":"float",
-            "desc":""
+            "desc":"the distance"
          }
 
       ],
@@ -362,7 +357,7 @@
    {
       "methodName":"RiTa.getPosTags()",
       "example":"",
-      "description":"Uses the default PosTagger to tag the input with a tag from the PENN tag set",
+      "description":"Uses the default PosTagger to tag the input with a tag from the <a href='http://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html' target=new>PENN tag set</a>",
       "syntax":"RiTa.getPosTags(String word)<br/>RiTa.getPosTags(String[] word)",
       "parameters":[
          {
@@ -386,19 +381,19 @@
    {
       "methodName":"RiTa.getPosTagsInline()",
       "example":"",
-      "description":"Takes an array of words and of tags and returns a combined String of the form:<br/><pre>'The/dt doctor/nn treated/vbd dogs/nns'</pre>assuming a '/' as 'delimiter'",
+      "description":"Takes an string returns a combined string of the form:<p><pre>'The/dt doctor/nn treated/vbd dogs/nns'</pre>",
       "syntax":"RiTa.getPosTagsInline(String word)",
       "parameters":[
          {
-            "type":"String",
-            "desc":"words the text to tag"
+            "type":"String or String[]",
+            "desc":"the text to tag"
          }
         
       ],
       "returns":[
          {
             "type":"String",
-            "desc":""
+            "desc":"a combined string of words and pos tags"
          }
 
       ],
@@ -410,7 +405,7 @@
    {
       "methodName":"RiTa.getStresses()",
       "example":"",
-      "description":"Analyzes the given string and returns a new string containing the stresses for each syllable of the input text ",
+      "description":"Analyzes the input and returns a new string containing the stresses for each syllable of the input text ",
       "syntax":"RiTa.getStresses(String word)<br/>RiTa.getStresses(String[] word)",
       "parameters":[
          {
@@ -434,7 +429,7 @@
    {
       "methodName":"RiTa.getSyllables()",
       "example":"",
-      "description":"Analyzes the given string, Returns a String containing the phonemes for each syllable of each word of the input text,  delimited by dashes (phonemes) and spaces (words) ",
+      "description":"Analyzes the input and returns a String containing the phonemes for each syllable of each word of the input text,  delimited by dashes (phonemes) and spaces (words) ",
       "syntax":"RiTa.getSyllables(String word)<br/>RiTa.getSyllables(String[] word)",
       "parameters":[
          {
@@ -459,7 +454,7 @@
       "methodName":"RiTa.getWordCount()",
       "example":"",
       "description":"Returns the # of words in the String according to the default tokenizer",
-      "syntax":"RiTa.getWordCount(String word)",
+      "syntax":"RiTa.getWordCount(String text)",
       "parameters":[
          {
             "type":"String",
@@ -470,7 +465,7 @@
       "returns":[
          {
             "type":"int",
-            "desc":""
+            "desc":"the # of words"
          }
 
       ],
@@ -482,19 +477,19 @@
    {
       "methodName":"RiTa.posToWordNet()",
       "example":"",
-      "description":"Converts a PENN part-of-speech tag to the simplified WordNet scheme <br/> (e.g. nn -> n, nns -> n, vbz -> v, rb -> r { 'n' (noun), 'v'(verb), 'a'(adj), 'r'(adverb), '-'(other) } as a String.",
-      "syntax":"RiTa.posToWordNet(String tag)",
+      "description":"Converts a PENN part-of-speech tag to the simplified WordNet scheme, consisting of the following 5 tags: 'n' (noun), 'v' (verb), 'a' (adj), 'r' (adverb), and '-'(other).",
+      "syntax":"RiTa.posToWordNet(String pennPosTag)",
       "parameters":[
          {
             "type":"String",
-            "desc":"pos tag to convert"
+            "desc":"the (PENN) pos tag to convert"
          }
         
       ],
       "returns":[
          {
             "type":"String",
-            "desc":"simplified WordNet tag"
+            "desc":"the simplified WordNet tag"
          }
 
       ],
@@ -505,7 +500,7 @@
    },
    {
       "methodName":"RiTa.conjugate()",
-      "example":"",
+      "example":'Map args = new HashMap();<br>args.put("tense", RiTa.PAST_TENSE);<br>args.put("number", RiTa.SINGULAR);<br>args.put("person", RiTa.FIRST_PERSON);<br><br>String c = RiTa.conjugate("swim", args);<br>',
       "description":"Conjugates the 'verb' according to the specified options",
       "syntax":"RiTa.conjugate(String verb, Map args)",
       "parameters":[

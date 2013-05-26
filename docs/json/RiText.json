@@ -2,7 +2,7 @@
 	{
       "methodName":"x",
       "example":"",
-      "description":"variable",
+      "description":"x-position of the object",
       "syntax":"",
       "parameters":
       [
@@ -28,7 +28,7 @@
    {
       "methodName":"y",
       "example":"",
-      "description":"variable",
+      "description":"y-position (the baseline of the text)",
       "syntax":"",
       "parameters":
       [
@@ -53,7 +53,7 @@
    {
       "methodName":"z",
       "example":"",
-      "description":"variable",
+      "description":"z-position (used only in 3d)",
       "syntax":"",
       "parameters":
       [
@@ -74,7 +74,7 @@
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
-   },
+   },	
 
 	{
       "methodName":"analyze()",
