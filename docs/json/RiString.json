@@ -1,24 +1,16 @@
 [
 	{
       "methodName":"analyze()",
-      "example":"myRiString.get('phonemes') ||  myRiString.get(RiTa.PHONEMES);",
-      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. <br/>To access any of these, use get(name)",
+      "example":"myRiString.analyze();\n\nmyRiString.get('phonemes');\n\nOR\n\nmyRiString.get(RiTa.PHONEMES);",
+      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. To access any of these, use get(name)",
       "syntax":"analyze()",
-      "parameters":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-			
-	  ],
+      "parameters":[ ],
 	  "returns":
       [
 			{ 
 			"type": "RiString", 
 			"desc": "this RiString" 
 			}
-			
 	  ],
       "related":"",
       "platform":"Java / Javascript",

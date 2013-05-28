@@ -66,8 +66,7 @@
 		      <!-- DESCRIPTION  -->
 		      <td>
 				<p>The basic text container object, implementing a variety of 
-additional functionality atop the javascript string object</p><p>
-Provides additional functions for text-analysis and generation.<p/>
+additional additional functions for text-analysis and generation atop the native string objects
 </td>
 	        </tr>
 		<tr class="">
@@ -79,10 +78,13 @@ Provides additional functions for text-analysis and generation.<p/>
 	     <pre class="margin">rs = new RiString("The dog was white");
 rs.analyze();
 
-println(rs.get("syllables"));
-println(rs.get("phonemes"));    
-println(rs.get("stresses"));
-println(rs.get("pos"));</pre>
+println(rs.get(RiTa.POS));
+println(rs.get(RiTa.STRESSES));
+println(rs.get(RiTa.SYLLABLES));
+
+// OR
+
+println(rs.get("syllables"));</pre>
             </div></td>
         </tr> 
 			
