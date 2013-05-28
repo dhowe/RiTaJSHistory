@@ -40,7 +40,7 @@ var runtests = function() {
         "substring",
         "substr",
         "text",
-        "toCharArray",
+        //"toCharArray",
         "toLowerCase",
         "toUpperCase",
         "trim",
@@ -1174,7 +1174,7 @@ var runtests = function() {
 
     });
 
-    test(
+    /*test(
         "RiString.toCharArray()",
         function() {
 
@@ -1184,7 +1184,7 @@ var runtests = function() {
             deepEqual(result, answer);
 
             // no error checks needed ------------
-        });
+    }); */
 
     test("RiString.toLowerCase()", function() {
 

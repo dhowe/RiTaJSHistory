@@ -1,10 +1,10 @@
 [
 	{
       "methodName":"analyze()",
-      "example":"myRiString.analyze();\n\nmyRiString.get('phonemes');\n\nOR\n\nmyRiString.get(RiTa.PHONEMES);",
-      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. To access any of these, use get(name)",
+      "example":'myRiString.analyze();\n\nmyRiString.get(RiTa.PHONEMES);\n\nOR\n\nmyRiString.get("phonemes");',
+      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. To access any of these, use myRistring.get(name)",
       "syntax":"analyze()",
-      "parameters":[ ],
+      "parameters":[],
 	  "returns":
       [
 			{ 
@@ -19,20 +19,20 @@
    {
       "methodName":"charAt()",
       "example":"",
-      "description":"Returns the character at the given 'index', or empty string if none is found",
+      "description":"Returns the character at the specified 'index'",
       "syntax":"charAt(int index)",
       "parameters":
       [
 			{ 
 			"type": "int", 
-			"desc": "index of the character" 
+			"desc": "index of the character (accepts negative offsets, which count backward from lhe end)" 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String", 
-			"desc": "the character" 
+			"desc": "the character as a String" 
 			}
 	  ],
       "related":"",
@@ -66,7 +66,7 @@
       "methodName":"endsWith()",
       "example":"",
       "description":"Tests if this string ends with the specified suffix",
-      "syntax":"endsWith(String substr)",
+      "syntax":"endsWith(String suffix)",
       "parameters":
       [
 			{ 
@@ -111,7 +111,7 @@
    {
       "methodName":"equalsIgnoreCase()",
       "example":"",
-      "description":"Compares this RiString to another RiString, ignoring case considerations",
+      "description":"Compares this RiString to another RiString or a String, ignoring case considerations",
       "syntax":"equalsIgnoreCase(String arg)<br/>equalsIgnoreCase(RiString arg)",
       "parameters":
       [
@@ -134,13 +134,13 @@
    {
       "methodName":"indexOf()",
       "example":"",
-      "description":"Returns the index within this string of the first occurrence of the specified character",
+      "description":"Returns the index within this string of the first occurrence of the 'searchstring'",
       "syntax":"indexOf(String searchstring)<br/>indexOf(String searchstring, int start)",
       "parameters":
       [
 			{ 
-			"type": "String OR RiString", 
-			"desc": "searchstring (Required) or character to search for" 
+			"type": "String", 
+			"desc": "searchstring to search for" 
 			},
 			{ 
 			"type": "int", 
@@ -151,7 +151,7 @@
       [
 			{ 
 			"type": "int", 
-			"desc": "the first index of the matching pattern or -1 if none are found" 
+			"desc": "the first index of the matching pattern or -1 if not found" 
 			}
 	  ],
       "related":"",
@@ -167,11 +167,11 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "" 
+			"desc": "the new word to insert" 
 			},
 			{ 
 			"type": "int", 
-			"desc": "" 
+			"desc": "the position at which it insert the word" 
 			}
 		
 	  ],
@@ -194,8 +194,8 @@
       "parameters":
       [
 			{ 
-			"type": "String OR RiString", 
-			"desc": "searchstring (Required) or character to search for" 
+			"type": "String", 
+			"desc": "what to search for" 
 			},
 			{ 
 			"type": "int", 
@@ -218,14 +218,7 @@
       "example":"",
       "description":"Returns the length of this string",
       "syntax":"length()",
-      "parameters":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-		
-	  ],
+      "parameters":   [	  ],
 	  "returns":
       [
 			{ 
@@ -246,7 +239,7 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "regex Regular expression" 
+			"desc": "regular expression" 
 			}
 		
 	  ],
@@ -268,11 +261,7 @@
       "syntax":"pos()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-		
+
 	  ],
 	  "returns":
       [
@@ -428,7 +417,7 @@
 			},
 			{ 
 			"type": "String", 
-			"desc": "the replacement sequence of char values" 
+			"desc": "the replacement string" 
 			}
 	  ],
 	  "returns":
@@ -478,7 +467,7 @@
       [
 			{ 
 			"type": "int", 
-			"desc": "(Required) The index where to begin the extraction. First character is at index 0" 
+			"desc": "The index where to begin the extraction. First character is at index 0" 
 			},
 			{ 
 			"type": "int", 
@@ -499,19 +488,19 @@
    {
       "methodName":"split()",
       "example":"",
-      "description":"Split a RiString into an array of RiStrings, one for each element after the split, and returns the new array. <br/>If an empty string ('') is used as the separator, the string is split between each character.",
+      "description":"Split a RiString into an array of RiStrings, one for each element after the split, and returns the new array.",
       "syntax": "split()<br/>split(String separator)<br/>",
       "parameters": [
 			{ 
 			"type": "String", 
-			"desc": "(Optional) Specifies the character to use for splitting the string. If omitted, the string is split according to RiTa.tokenize(). If an empty string ('') is used as the separator, the string is split between each character." 
+			"desc": '(Optional) Specifies the character to use for splitting the string. If omitted, the string is split according to RiTa.tokenize(). If an empty string ("") is used as the separator, the string is split between each character.' 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiStrings[]", 
-			"desc": "RiStrings" 
+			"desc": "the RiString array" 
 			}
 	  ],
       "related":"",
@@ -624,16 +613,11 @@
    },
    {
       "methodName":"toCharArray()",
-      "example":"",
+      "hidden":true,
       "description":"Converts this object to an array of RiString objects, one per character",
       "syntax":"toCharArray()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
 	  ],
 	  "returns":
       [
@@ -653,11 +637,6 @@
       "syntax":"toLowerCase()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
 	  ],
 	  "returns":
       [
@@ -677,11 +656,6 @@
       "syntax":"toUpperCase()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
 	  ],
 	  "returns":
       [
@@ -697,15 +671,10 @@
    {
       "methodName":"trim()",
       "example":"",
-      "description":"Returns a copy of the string, with leading and trailing whitespace omitted.",
+      "description":"Removes leading and trailing whitespace from the RiString",
       "syntax":"trim()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
 	  ],
 	  "returns":
       [
@@ -735,7 +704,7 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "this word" 
+			"desc": "the word" 
 			}
 	  ],
       "related":"",
@@ -749,11 +718,6 @@
       "syntax":"wordCount()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
 	  ],
 	  "returns":
       [
@@ -773,17 +737,12 @@
       "syntax":"words()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String[]", 
-			"desc": "strings, one per word" 
+			"desc": "array of words" 
 			}
 	  ],
       "related":"",

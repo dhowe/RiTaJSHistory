@@ -652,12 +652,16 @@
       "syntax":"RiTa.timer(float period)<br/>RiTa.timer(float period, function callback)",
       "parameters":[
          {
+            "type":"Object",
+            "desc":"the parent object in which to find (optional in JS)"
+         },
+         {
             "type":"float",
             "desc":"period (in seconds)"
          },
          {
-            "type":"function",
-            "desc":"callback function to be called every 'period' seconds (optional, JS only)"
+            "type":"String OR function ",
+            "desc":"callback function to be called every 'period' seconds<br>the function name String (in Java) or the function itself (in JS) "
          }
          
       ],
@@ -670,7 +674,7 @@
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"The 2-parameter version of this function is available only in JavaScript"
+	  "note":"The 'parent' object is optional in JS, and the optional callback is a function, rather than a String name"	
       
    }, 
    {
