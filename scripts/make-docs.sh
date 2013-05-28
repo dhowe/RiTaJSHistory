@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# make-docs.sh OUTPUT [INPUT] [single-class-name]
+
 INPUT=../../docs/
 OUTPUT=../../www/reference/
 GENZIP="doc-gen.zip"
@@ -16,7 +18,7 @@ cp ${HTML}/*.html $OUTPUT
 cp ${CSS}/*.css ${OUTPUT}../css/
 
 
-java -Xmx512m -classpath $CLASSPATH DocGenerator $OUTPUT $INPUT
+java -Xmx512m -classpath $CLASSPATH DocGenerator $OUTPUT $INPUT $1 $2 $3
 
 rm $OUTPUT/template.html
 

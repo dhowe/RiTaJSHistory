@@ -100,7 +100,7 @@
                   "substring", 
                   "substr", 
                   "text",
-                  "toCharArray", 
+                  //"toCharArray", 
                   "toLowerCase", 
                   "toUpperCase", 
                   "trim", 
@@ -1117,7 +1117,7 @@
         // no error checks needed ------------
     });
 
-    test(
+    /*test(
         "RiText.toCharArray()",
         function() {
 
@@ -1127,7 +1127,7 @@
             deepEqual(result, answer);
 
             // no error checks needed ------------
-        });
+    }); */
 
     test("RiText.toLowerCase()", function() {
 
