@@ -46,9 +46,9 @@ var runtests = function() {
 
         //equal(typeof RiText.foreach, 'function');
         equal(typeof RiText.drawAll, 'function');
-        equal(typeof RiText.defaultColor, 'function');
+        equal(typeof RiText.defaultFill, 'function');
         ok(RiText.defaults);
-        ok(RiText.defaults.color);
+        ok(RiText.defaults.fill);
         ok(RiText.defaults.paragraphLeading || RiText.defaults.paragraphLeading == 0);
     });
 
@@ -141,7 +141,7 @@ var runtests = function() {
     test("Member Functions[!compat]", function() {
 
         RiTa.p5Compatible(0);
-        ok(typeof RiText().fill == 'undefined');
+        ok(typeof RiText().fill == 'function');
         ok(typeof RiText().textAlign == 'undefined');
         ok(typeof RiText().textFont == 'undefined');
         ok(typeof RiText().textSize == 'undefined');
