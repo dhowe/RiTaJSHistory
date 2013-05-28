@@ -33,7 +33,7 @@
 			        <ul>
 			          <li><a href="../index.html"><span>home</span></a></li>
 			          <li><a href="../download/index.html"><span>download</span></a></li>
-			          <li><a href="../index.html" class="selected"><span>reference</span></a></li>
+			          <li><a href="./index.html" class="selected"><span>reference</span></a></li>
 			         <!-- <li><a href="../exhibition/index.html"><span>exhibition</span></a></li> -->
 			          <li><a href="../example/index.html"><span>example</span></a></li>
 				      <li><a href="../tutorial/index.html"><span>tutorial</span></a></li>
@@ -69,7 +69,7 @@
 						The lexicon can be extended and/or customized for additional words, usages, or pronunciations.
 						<p> Also equipped with implementations of a variety of matching algorithms 
 						(min-edit-distance, soundex, anagrams, alliteration, rhymes, looks-like, etc.) 
-						based on combinations of letters, syllables and phonemes.
+						based on combinations of letters, syllables, phonemes, and stresses.
 						<p> 
 						Note: If you wish to modify or customize the lexicon (e.g., add words, or change pronunciations) 
 						you can do so directly, by editing the included 'rita_dict.js' file, or programatically, via addWord() & removeWord()
@@ -89,7 +89,7 @@ lexicon = new RiLexicon();
 
 similars = lexicon.similarBySound("cat");
 
-rhymes = lexicon.getSimpleRhymes("cat");
+rhymes = lexicon.rhymes("cat");
 </pre>
             </div></td>
         </tr> 

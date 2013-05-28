@@ -69,22 +69,34 @@
 			    <tr class="">
 			      <th scope="row">Description</th>
 			      <!-- DESCRIPTION  -->
-			      <td>A simple wrapper for event-based callbacks.</td>
+			      <td>A simple wrapper for event-based callbacks. One will generally encounter this object in an event-based callback (see example below). </td>
 		        </tr>
-				<!--tr class="">
+		        
+				<tr class="">
 		          <th scope="row">Examples</th>
 		          <td><div class="example"> 
 			     	<pre class="margin">
-			     	
+void setup() {
+  
+  size(300,300);
+  
+  new RiText(this, "hello").fadeOut(3.1);
+}		     	  
+  
+void onRiTaEvent(RiTaEvent re) {
+	
+  // called when 'myRiText' has finished fading out
+  
+  println(re.source().alpha());
+}
 			     	</pre>
 		            </div></td>
-		        </tr--> 
+		        </tr> 
 			    
 			    <tr class="">
 			      <th scope="row">Syntax</th>
 			      <!-- SYNTAX  -->
-			      <td><pre>RiTaEvent(Object source, int type)
-RiTaEvent(Object source, int type, Object data)</pre></td>
+			      <td><pre>RiTaEvent(Object source, int type)</pre></td>
 		        </tr>
 			    <tr class="">
 			      <th scope="row">Parameters</th>

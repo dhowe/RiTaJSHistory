@@ -32,7 +32,7 @@
 			        <ul>
 			          <li><a href="../index.html"><span>home</span></a></li>
 			          <li><a href="../download/index.html"><span>download</span></a></li>
-			          <li><a href="../index.html" class="selected"><span>reference</span></a></li>
+			          <li><a href="./index.html" class="selected"><span>reference</span></a></li>
 			         <!-- <li><a href="../exhibition/index.html"><span>exhibition</span></a></li> -->
 			          <li><a href="../example/index.html"><span>example</span></a></li>
 				      <li><a href="../tutorial/index.html"><span>tutorial</span></a></li>
@@ -86,17 +86,14 @@ void setup() {
 	
    // start in the upper left corner
    rt = new RiText(this, "hello", 0, 10);
-   
-   // measure the width of the text
-   float tw = rt.textWidth();
-  
-   // move to the lower right over 2 sec
-   rt.moveTo(width-tw, height, 2);    
+
+   // move to the lower right over 2 seconds
+   rt.moveTo(width-40, height, 2);    
 }
 
 void draw() {
 	
-   // draw the bg and RiText each frame
+   // draw bg and RiText each frame
    background(255);
    rt.draw(); 
 }</pre>
@@ -108,12 +105,14 @@ void draw() {
 			      <!-- SYNTAX  -->
 			      <td><pre>
 			      	
-// Creates a new RiText object base-aligned at x='xPos', y='yPos', using the font optionally specified by 'theFont'.
+// Creates a new RiText object base-aligned at ('x', 'y') 
+// using the font object (optionally) specified by 'theFont'.
 
 RiText(PApplet pApplet, String text) 
-RiText(PApplet pApplet, String text, float xPos, float yPos)
-RiText(PApplet pApplet, String text, float xPos, float yPos, PFont theFont) 
+RiText(PApplet pApplet, String text, float x, float y)
+RiText(PApplet pApplet, String text, float x, float y, PFont theFont) 
 
+Note: First argument (pApplet) is optional in JavaScript mode 
 </pre></td>
 			      				      	
 		        </tr>
@@ -133,12 +132,12 @@ RiText(PApplet pApplet, String text, float xPos, float yPos, PFont theFont)
                     <tr class="">
 			          <!-- PARAMETERS  -->
 			          <th width="25%" scope="row">float</th>
-			          <td width="75%">the X position</td>
+			          <td width="75%">the X position (optional)</td>
 		            </tr>
                     <tr class="">
 			          <!-- PARAMETERS  -->
 			          <th width="25%" scope="row">float</th>
-			          <td width="75%">the Y position</td>
+			          <td width="75%">the Y position (optional)</td>
 		            </tr>
                     <tr class="">
 			          <!-- PARAMETERS  -->
@@ -153,14 +152,14 @@ RiText(PApplet pApplet, String text, float xPos, float yPos, PFont theFont)
 			      <!-- SYNTAX  -->
 			      <td>Java / Javascript</td>
 		        </tr>
-				<tr class='Note' style='display:none'>
+				<tr class='Note'>
 			      <th scope="row">Note</th>
-			      <!-- SYNTAX  -->
-			      <td></td>
+			      <!-- NOTE  -->
+			      <td>First argument (pApplet) is optional when using JavaScript mode</td>
 		        </tr>
 		      </table>
 
-	</div>
+			</div>
 	        </div>
 	       
 	      </div>

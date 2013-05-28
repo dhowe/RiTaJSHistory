@@ -75,8 +75,11 @@
           <td><div class="example"> 
 
 <pre class="margin">
-RiTa.defaultFont("Times", 32);
 
+vers = RiTa.VERSION;
+
+// layout text in lines (one RiText per line),
+// starting at 100,100 with width/height of 400x300
 rts = RiTa.createLines(text, 100, 100, 400, 300);
 
 ...
