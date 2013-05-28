@@ -5,11 +5,7 @@
       "description":"Gets the source for this event (usually a RiText)",
       "syntax":"source()",
       "parameters":
-      [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}			
+      [	
 	  ],
 	  "returns":
       [
@@ -25,14 +21,10 @@
    {
       "methodName":"type()",
       "example":"",
-      "description":"Returns the type for this event",
+      "description":"Returns the type for this event, e.g., RiTa.MOVE_TO",
       "syntax":"type()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
 	  ],
 	  "returns":
       [

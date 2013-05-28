@@ -20,16 +20,19 @@
 
     test("RiTa.constants", function () {
 
-        ok(RiTa.VERSION > 0);
+        ok(RiTa.VERSION);
     });
     
     test("RiTa.p5Compatible", function () {
 		
         RiTa.p5Compatible(true);
+        
         if (typeof window != 'undefined' && window) 
         	equal(typeof RiText.setDefaultFont, 'function'); 
+        
         RiTa.p5Compatible(false);
-        ok(typeof RiText == 'undefined' || typeof RiText.setDefaultFont, 'undefined'); 
+        
+        ok(typeof RiText == 'undefined' || typeof RiText.setDefaultFont == 'undefined'); 
 
         if (typeof window != 'undefined' && window) {
         	

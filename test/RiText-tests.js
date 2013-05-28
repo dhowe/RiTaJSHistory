@@ -14,7 +14,7 @@
                    "drawAll",
                    "dispose",
                    "disposeAll",
-                   "defaultColor",
+                   "defaultFill",
                    "defaultFont",
                    "randomColor",
                    "picked",
@@ -35,7 +35,7 @@
                    "center",
                    "charOffset",
                    "copy",
-                   "color",           
+                   "fill",           
                    "distanceTo",
                    "draw",               
                    "font",
@@ -44,7 +44,7 @@
                    "position",
                    "rotate",
                    "scale",
-                   "showBoundingBox",
+                   "showBounds",
                    "splitLetters",
                    "splitWords",
                    "text",
@@ -1265,8 +1265,8 @@
     test("RiText.copy()", function() { 
       var rt = new RiText(100,270,"hello");
       
-      rt.color(101,102,103,104);
-      rt.showBoundingBox(true);
+      rt.fill(101,102,103,104);
+      rt.showBounds(true);
       
       var rt2 = rt.copy();
       equal(rt.x,rt2.x);
@@ -1274,9 +1274,9 @@
       equal(rt.z,rt2.z);
       equal(rt.alpha(),rt2.alpha());
       equal(rt.text(),rt2.text());
-      equal(rt.showBoundingBox(),rt2.showBoundingBox());
+      equal(rt.showBounds(),rt2.showBounds());
 
-      deepEqual(rt.color(),rt2.color());
+      deepEqual(rt.fill(),rt2.fill());
 
       // ...
       //
