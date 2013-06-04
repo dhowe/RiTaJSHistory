@@ -185,6 +185,16 @@ var runtests = function() {
         // TODO: better tests
     });
 
+    test("RiLexicon.alliterations(int)", function() {
+	 var lex = RiLexicon();
+
+     var result = lex.alliterations("dog",15);
+     ok(result.length == 3);
+     var result = lex.alliterations("cat",17);
+     //console.log(result);
+     ok(result.length == 3);
+
+    });
 
     test("RiLexicon.lexicalData()", function() {
 
