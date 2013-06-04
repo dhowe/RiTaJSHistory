@@ -1,21 +1,17 @@
 [
 	{
+	  "variable":true,
       "methodName":"x",
       "example":"",
       "description":"x-position of the object",
       "syntax":"",
       "parameters":
       [
-			{ 
-			"type": "", 
-			"desc": "" 
-			}
-			
 	  ],
 	  "returns":
       [
-			{ 
-			"type": "", 
+      		{ 
+			"type": "int", 
 			"desc": "" 
 			}
 			
@@ -26,6 +22,7 @@
 	  
    },
    {
+   	  "variable":true,
       "methodName":"y",
       "example":"",
       "description":"y-position (the baseline of the text)",
@@ -33,7 +30,7 @@
       "parameters":
       [
 			{ 
-			"type": "", 
+			"type": "int", 
 			"desc": "" 
 			}
 			
@@ -51,22 +48,18 @@
 	  "note":""
    },
    {
+      "variable":true,
       "methodName":"z",
       "example":"",
       "description":"z-position (used only in 3d)",
       "syntax":"",
       "parameters":
       [
-			{ 
-			"type": "", 
-			"desc": "" 
-			}
-			
 	  ],
 	  "returns":
       [
-			{ 
-			"type": "", 
+      		{ 
+			"type": "int", 
 			"desc": "" 
 			}
 			
@@ -79,14 +72,10 @@
 	{
       "methodName":"analyze()",
       "example":"myRiText.get('phonemes') || myRiText.get(RiTa.PHONEMES);",
-      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. <br/>To access any of these, use get(name)",
+      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. To access any of these, use get(name)",
       "syntax":"analyze()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
 			
 	  ],
 	  "returns":
@@ -304,17 +293,13 @@
       "syntax":"length()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-		
+			
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
-			"desc": "the length" 
+			"desc": "the length of the string" 
 			}
 	  ],
       "related":"",
@@ -352,10 +337,7 @@
       "syntax":"pos()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 		
 	  ],
 	  "returns":
@@ -718,11 +700,7 @@
       "syntax":"toCharArray()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+			
 	  ],
 	  "returns":
       [
@@ -742,11 +720,7 @@
       "syntax":"toLowerCase()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+			
 	  ],
 	  "returns":
       [
@@ -766,10 +740,7 @@
       "syntax":"toUpperCase()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 
 	  ],
 	  "returns":
@@ -790,11 +761,7 @@
       "syntax":"trim()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+			
 	  ],
 	  "returns":
       [
@@ -838,11 +805,7 @@
       "syntax":"wordCount()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+			
 	  ],
 	  "returns":
       [
@@ -862,10 +825,7 @@
       "syntax":"words()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 
 	  ],
 	  "returns":
@@ -948,10 +908,7 @@
       "syntax":"center()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 			
 	  ],
 	  "returns":
@@ -998,10 +955,7 @@
       "syntax":"clone()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+		
 			
 	  ],
 	  "returns":
@@ -1117,10 +1071,7 @@
       "syntax":"draw()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+		
 
 	  ],
 	  "returns":
@@ -1378,10 +1329,7 @@
       "syntax":"splitLetters()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 
 	  ],
 	  "returns":
@@ -1428,11 +1376,7 @@
       "syntax":"textHeight()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+			
 	  ],
 	  "returns":
       [
@@ -1453,11 +1397,7 @@
       "syntax":"textAscent()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+			
 	  ],
 	  "returns":
       [
@@ -1478,10 +1418,7 @@
       "syntax":"textDescent()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 
 	  ],
 	  "returns":
@@ -1503,10 +1440,7 @@
       "syntax":"textWidth()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 
 	  ],
 	  "returns":
@@ -1528,17 +1462,13 @@
       "syntax":"isVisible()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
-
+		
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
-			"desc": "" 
+			"desc": "false if the alpha value of this object is &lt;= 0" 
 			}
 			
 	  ],
@@ -1820,10 +1750,7 @@
       "syntax":"stopBehaviors()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 			
 	  ],
 	  "returns":
@@ -1994,10 +1921,6 @@
 	  ],
 	  "returns":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
 			
 	  ],
       "related":"",
@@ -2228,10 +2151,7 @@
 	  ],
 	  "returns":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 			
 	  ],
       "related":"",
@@ -2274,10 +2194,7 @@
       "syntax":"RiText.random()",
       "parameters":
       [
-      		{ 
-			"type": "None", 
-			"desc": "" 
-			}
+      		
 	  ],
 	  "returns":
       [

@@ -38,16 +38,12 @@
       "syntax":"clear()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
 	  ],
 	  "returns":
       [
 			{ 
-			"type": "None", 
-			"desc": "" 
+			"type": "RiLexicon", 
+			"desc": "this RiLexicon object" 
 			}
 	  ],
       "related":"",
@@ -87,13 +83,16 @@
 			{ 
 			"type": "String", 
 			"desc": "word input" 
+			},
+			{ 
+			"type": "int", 
+			"desc": "minimum length of word to return (optional, default=4)" 
 			}
 	  ],
-	  "returns":
-      [
+	  "returns": [
 			{ 
 			"type": "String[]", 
-			"desc": "strings of alliterations" 
+			"desc": "array of alliterations" 
 			}
 	  ],
       "related":"",
@@ -103,20 +102,20 @@
    {
       "methodName":"lexicalData()",
       "example":"",
-      "description":"Allows one to set/get the raw dictionary data used to create the default lexicon. <br/>See RiLexicon.addWord() for data format",
+      "description":"Allows one to set/get the raw dictionary data used to create the default lexicon. <br/><br/>See RiLexicon.addWord() for data format",
       "syntax":"lexicalData()<br/>lexicalData(Map dictionaryDataObject)",
       "parameters":
       [
 			{ 
 			"type": "Map", 
-			"desc": "mapping words to their pronunciation/pos data (optional, for sets only)" 
+			"desc": "A map (HashMap in Java, Object in JavaScript) that maps words to their pronunciation and part-of-speech data (optional, for sets only)" 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "RiLexicon or Map", 
-			"desc": "this RiLexicon or lexical data (for gets)" 
+			"desc": "this RiLexicon or lexical data map (for gets)" 
 			}
 	  ],
       "related":"",
@@ -126,17 +125,17 @@
    {
       "methodName":"randomWord()",
       "example":"",
-      "description":"Returns a random word from the lexicon",
+      "description":"Returns a random word from the lexicon. When arguments are supplied part-of-speech and/or syllable-count will be matched as well",
       "syntax":"randomWord()<br/>randomWord(String pos)<br/>randomWord(int syllableCount)<br/>randomWord(String pos, int syllableCount)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "pos (optional)" 
+			"desc": "the part-of-speech to match (optional)" 
 			},
 			{ 
 			"type": "int", 
-			"desc": "syllableCount (optional)" 
+			"desc": "the # of syllables to matcg (optional)" 
 			}
 	  ],
 	  "returns":
@@ -153,7 +152,7 @@
    {
       "methodName":"rhymes()",
       "example":"",
-      "description":"Two words rhyme if their final stressed vowel and all following phonemes are identical",
+      "description":"Two words rhyme aer considered as rhyming if their final stressed vowel and all following phonemes are identical",
       "syntax":"rhymes(String word)",
       "parameters":
       [
@@ -166,7 +165,7 @@
       [
 			{ 
 			"type": "String[]", 
-			"desc": "strings of the rhymes for a given word, or empty array if none are found" 
+			"desc": "rhymes for word, or an empty array if none are found" 
 			}
 	  ],
       "related":"",
@@ -193,7 +192,7 @@
       [
 			{ 
 			"type": "String[]", 
-			"desc": "words in the RiLexicon " 
+			"desc": "all (or the matching) words in the lexicon" 
 			}
 	  ],
       "related":"",
@@ -203,13 +202,13 @@
    {
       "methodName":"isAdverb()",
       "example":"",
-      "description":"Returns true for 'word' if it has an adverb form. That is, if any of its possible parts of speech are any variant of an adverb in the PENN part-of-speech tag set (e.g. rb, rbr, rbs)",
+      "description":"Returns true if the word haa an adverb form. That is, if any of its possible parts of speech are any variant of an adverb in the PENN part-of-speech tag set (e.g. rb, rbr, rbs)",
       "syntax":"isAdverb(String word)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "the PENN part-of-speech tag" 
+			"desc": "the word to test" 
 			}
 	  ],
 	  "returns":
@@ -226,13 +225,13 @@
    {
       "methodName":"isNoun()",
       "example":"",
-      "description":"Returns true for 'word' if it has a noun form. That is, if any of its possible parts of speech are any variant of a noun in the PENN part-of-speech tag set(e.g. nn, nns, nnp, nnps)",
+      "description":"Returns true if the word has a noun form. That is, if any of its possible parts of speech are any variant of a noun in the PENN part-of-speech tag set(e.g. nn, nns, nnp, nnps)",
       "syntax":"isNoun(String word)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "the PENN part-of-speech tag" 
+			"desc": "the word to test" 
 			}
 	  ],
 	  "returns":
@@ -249,13 +248,13 @@
    {
       "methodName":"isVerb()",
       "example":"",
-      "description":"Returns true for 'word' if it has a verb form. That is, if any of its possible parts of speech are any variant of a verb in the PENN part-of-speech tag set (e.g. vb, vbg, vbd, vbp, vbz)",
+      "description":"Returns true for if word has a verb form. That is, if any of its possible parts of speech are any variant of a verb in the PENN part-of-speech tag set (e.g. vb, vbg, vbd, vbp, vbz)",
       "syntax":"isVerb(String word)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "the PENN part-of-speech tag" 
+			"desc": "the word to test" 
 			}
 	  ],
 	  "returns":
@@ -272,13 +271,13 @@
    {
       "methodName":"isAdjective()",
       "example":"",
-      "description":"Returns true for 'word' if it has an adjective form. That is, if any of its possible parts of speech are any variant of an adjective in the PENN part-of-speech tag set (e.g. jj, jjr, jjs)",
+      "description":"Returns true if word has an adjective form. That is, if any of its possible parts of speech are any variant of an adjective in the PENN part-of-speech tag set (e.g. jj, jjr, jjs)",
       "syntax":"isAdjective(String word)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "the PENN part-of-speech tag" 
+			"desc": "the word to test" 
 			}
 	  ],
 	  "returns":
@@ -295,24 +294,24 @@
    {
       "methodName":"isAlliteration()",
       "example":"",
-      "description":"Returns true if the first stressed consonant of the two words match, else false.",
+      "description":"Returns true if the two words are alliterations (iff the first stressed consonant of the two match)",
       "syntax":"isAlliteration(String word1, String word2)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "word1" 
+			"desc": "the first word" 
 			},
 			{ 
 			"type": "String", 
-			"desc": "word2" 
+			"desc": "the second word" 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "boolean", 
-			"desc": "true if word1.equals(word2) and false if either (or both) are null;" 
+			"desc": "true if the first stressed consonant of the two words match" 
 			}
 	  ],
       "related":"",
@@ -356,20 +355,17 @@
    {
       "methodName":"reload()",
       "example":"",
-      "description":"",
+      "description":"Clears then reloads the lexicon",
       "syntax":"reload()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
+			
 	  ],
 	  "returns":
       [
 			{ 
-			"type": "None", 
-			"desc": "" 
+			"type": "RiLexicon", 
+			"desc": "this object" 
 			}
 	  ],
       "related":"",
@@ -378,14 +374,14 @@
    },
    {
       "methodName":"removeWord()",
-      "example":"removeWord('abandon');",
-      "description":"Removes a word from the current lexicon ",
+      "example": "removeWord(\"abandon\");",
+      "description":"Removes a word from the currently loaded lexicon",
       "syntax":"removeWord(String word)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "word" 
+			"desc": "word to remove" 
 			}
 	  ],
 	  "returns":
@@ -393,29 +389,6 @@
 			{ 
 			"type": "RiLexicon", 
 			"desc": "this RiLexicon" 
-			}
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":""
-   },
-   {
-      "methodName":"setLexicalData()",
-      "example":"",
-      "description":"",
-      "syntax":"setLexicalData()",
-      "parameters":
-      [
-			{ 
-			"type": "", 
-			"desc": "" 
-			}
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "", 
-			"desc": "" 
 			}
 	  ],
       "related":"",
@@ -431,7 +404,7 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "word" 
+			"desc": "the word to match" 
 			},
 			{ 
 			"type": "int", 
@@ -446,7 +419,7 @@
       [
 			{ 
 			"type": "String[]", 
-			"desc": "matching words" 
+			"desc": "the matching words" 
 			}
 	  ],
       "related":"",
@@ -456,13 +429,13 @@
    {
       "methodName":"similarBySound()",
       "example":"",
-      "description":"Compares the phonemes of the input string (using a version of the min-edit distance algorithm) to each word in the lexicon, returning the set of closest matches.",
+      "description":"Compares the phonemes of the input word (using a version of the min-edit distance algorithm) to each word in the lexicon, returning the set of closest matches.",
       "syntax":"similarBySound(String input)<br/>similarByLetter(String input, int minAllowedDist)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "input" 
+			"desc": "the word to match" 
 			},
 			{ 
 			"type": "int", 
@@ -473,7 +446,7 @@
       [
 			{ 
 			"type": "String[]", 
-			"desc": "matching words" 
+			"desc": "the matching words" 
 			}
 	  ],
       "related":"",
@@ -489,14 +462,14 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "word" 
+			"desc": "the word to match" 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String[]", 
-			"desc": "matching words" 
+			"desc": "the matching words" 
 			}
 	  ],
       "related":"",
@@ -510,16 +483,12 @@
       "syntax":"size()",
       "parameters":
       [
-			{ 
-			"type": "None", 
-			"desc": "" 
-			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "int", 
-			"desc": "words" 
+			"desc": "the # of words" 
 			}
 	  ],
       "related":"",
@@ -535,18 +504,18 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "word" 
+			"desc": "the word to match" 
 			},
 			{ 
 			"type": "int", 
-			"desc": "(optional, default=4) minimum length of return word " 
+			"desc": "minimum length of return word (optional, default=4)" 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String[]", 
-			"desc": "matching words" 
+			"desc": "the matching words" 
 			}
 	  ],
       "related":"",
@@ -562,14 +531,14 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "word" 
+			"desc": "the word to match" 
 			}
 	  ],
 	  "returns":
       [
 			{ 
 			"type": "String[]", 
-			"desc": "matching words" 
+			"desc": "the matching words" 
 			}
 	  ],
       "related":"",
