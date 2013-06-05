@@ -10,7 +10,6 @@ var runtests = function() {
 
     test("Public Objects", function() {
 
-        ok(RiTa.VERSION > 0);
         ok(typeof RiTa != 'undefined');
         ok(typeof RiString != 'undefined');
         ok(typeof RiLexicon != 'undefined');
@@ -24,8 +23,8 @@ var runtests = function() {
 
     test("Global Window", function() {
     	ok(typeof window == 'object');
-    	ok(({}).toString.call(window).match
-    		(/\s([a-zA-Z]+)/)[1].toLowerCase() === 'global');
+    	//ok(({}).toString.call(window).match
+    		//(/\s([a-zA-Z]+)/)[1].toLowerCase() === 'global');
     });
 
     test("Private Statics (funs)", function() {
