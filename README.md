@@ -6,12 +6,12 @@
 
 ### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
 
-RiTaJS is an easy-to-use toolkit designed to facilitate experiments 
+RiTaJS is designed to an easy-to-use toolkit for experiments 
 in natural language and generative literature, based on the RiTa 
 (http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
 works alone or in conjunction with Processing(JS) and/or with 
 its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
-are free, gratis, and open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
+are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
 About the project

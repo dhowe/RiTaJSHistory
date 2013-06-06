@@ -16,31 +16,31 @@
       <div class="header">
       <a href="./index.html"><img src="./img/RiTa-logo3.png" width="60" height="60"></a><a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="./img/forkme-right-orange.png" alt="Fork me on GitHub"> </a>
 
-      </div>
+    </div>
 
-      <span class="tagline">a software toolkit for generative literature</span>
-
-      <div class="navbar">
-        <canvas width="940px" height="78px" data-processing-sources="./RiTaBanner.pde">
-        <ul>
-          <li><a href="./index.html" class="selected"><span>home</span></a></li>
-          <li><a href="./download/index.html"><span>download</span></a></li>
-          <li><a href="./reference/index.html"><span>reference</span></a></li>
-	      <!-- <li><a href="./exhibition/index.html"><span>exhibition</span></a></li> -->
-	       <li><a href="./example/index.html"><span>example</span></a></li>
-		   <li><a href="./tutorial/index.html"><span>tutorial</span></a></li>
-          <li><script language="JavaScript">InsertMailToTag("daniel.c.howe", "gmail.com");</script></li>
-        </ul>
-       <a class="viewsource" href="./RiTaBanner.pde">view source</a>
-      </div>
-
-      <div class="page row">
+	<div class="navbar">
+	    <canvas width="940px" height="78px" data-processing-sources="./RiTaBanner.pde"></canvas>
+	    <ul>
+	      <li><a href="./index.html" class="selected"><span>home</span></a></li>
+	      <li><a href="./download/index.html"><span>download</span></a></li>
+	      <li><a href="./reference/index.html" ><span>reference</span></a></li>
+	      <!--<li><a href="./exhibition/index.html"><span>exhibition</span></a></li>-->
+	      <!--li><a href="./example/index.html"><span>example</span></a></li-->
+	      <li><a href="./tutorial/index.html"><span>tutorial</span></a></li>
+	      <li> 
+	        <script>InsertMailToTag("daniel.c.howe", "gmail.com");</script> 
+	      </li>
+	    </ul>
+	    <a class="viewsource" href="./RiTaBanner.pde">view source</a>
+	</div>
+  
+    <div class="page row">
         <div class="span11">
 <div class="home-exhibition">
   
   <span>
     <a href="http://www.rednoise.org/rita/sketches/cornell/"><img src="./img/gallery/cornell.jpg" width="180" height="75" /></a>
-    <a href="http://www.rednoise.org/rita/sketches/cornell/">Cornell's Yoke Machine </a>
+    <a href="http://www.rednoise.org/rita/sketches/cornell/">Cornell's Yoke Machine (Java) </a>
     <p>by Janalyn Guo</p>
     <p>&nbsp;</p>
 
@@ -52,44 +52,41 @@
 	<p>&nbsp;</p>
   </span>
   <span>
-    <a href=""><img src="./img/gallery/massive.png" width="180" height="75" /></a>
-    <a href="">the Massive Comprehension Machine</a>
+    <a href="http://antiart.feenelcaos.org/indexhibit/project/massive-comprehension-machine/"><img src="./img/gallery/massive.png" width="180" height="75" /></a>
+    <a href="http://antiart.feenelcaos.org/indexhibit/project/massive-comprehension-machine/">the Massive Comprehension Machine</a>
     <p>by Lot Aoros</p>
   </span>
 </div>
 <div class="intro">
 <h2>RiTa</h2><br>
-<p>RiTa<sup>†</sup> is an easy-to-use toolkit designed to facilitate experiments in 
+<p>RiTa<sup>†</sup> is designed to be an easy-to-use toolkit for experiments in 
 natural language and generative literature. The philosophy behind the API is to be as 
 simple and intuitive as possible, while still providing adequate flexibility for more
-advanced users. RiTa is implemented in Java and JavaScript (with a single API) 
-and optionally integrates with Processing(JS). It is free, libre and <a href="">open-source</a>.  
+advanced tasks. RiTa is implemented in Java and JavaScript (with a single API) 
+and optionally integrates with Processing(JS). It is free/libre/<a href="https://github.com/dhowe/RiTa">open-source</a>.  
 
 <br>&nbsp;<br>
 
 Based on the RiTa library for Java, RiTaJS was developed to provide a seamless transition 
 for those wishing to work with programmatic natural language natively in the web browser
  (in HTML5), as well as for those switching from Processing to ProcessingJS.
-For server-side applications, RiTaJS also runs as a <a href="http://rednoise.org/rita/">Node.js</a> module.  
+For server-side applications, RiTaJS also runs as a <a href="http://nodejs.org/">Node.js</a> module.  
 The RiTa tools are currently implemented for English with a Spanish version under development. 
 </p>
 <br>
 <p>Some of the features of RiTa/RiTaJS include:
-
+<div class="ilist">
       <li>Text-generation via Context-Free Grammars and Markov-chains</li>
       <li>Analysis of Syllables, Phonemes, Stress, Part-of-Speech, etc. </li>
       <li>Modules for tokenization, verb conjugation, pluralization, and stemming </li>
       <li>A user-customizable lexicon with a letter-to-sound phoneme generation </li>
-      <li>A standard set of 'easing' effects for animation & textual behaviors</li>
-      <li>Integration with <a href="http://processing.org/">Processing</a> and
-      		 <a href="http://processingjs.org/">ProcessingJS</a></li>
-      <li>Integration with <a href="http://nodejs.org/">NodeJS</a> for server-side applications</li>
+      <li>A standard set of 'easing' effects for animation &amp; textual behaviors</li>
+      <li>Integration with <a href="http://processing.org/">Processing</a>,
+      		 <a href="http://processingjs.org/">ProcessingJS</a>, and <a href="http://nodejs.org/">NodeJS</a> for server-side applications</li>
 	  <li>Runs in Java, JavaScript and Node.js with no dependencies on Processing</li>
-
+</div>
 <br/>
 
-<!--p>Browse the full API <a href="./reference/index.html">here</a-->
-    
 <p>&nbsp;</p>
 <p style="font-size:11px">
 <sup>†</sup> from the old Norse, meaning to mark, scratch, or scribble
@@ -111,13 +108,13 @@ The RiTa tools are currently implemented for English with a Spanish version unde
         <div class="sidebar span4">
         	<p>&nbsp;</p>
        		<h3>Downloads</h3>
-	          <p> <a href="./download/index.html">Download the latest version of RiTa.js!</a></p>
-          <!-- <h3><a href="articles/index.html">Meta</a></h3>
-          <p> <strong>Keywords</strong>. ##library.keywords##<br />
+	          <p> <a href="./download/index.html">Download the latest RiTa.js!</a></p>
+            <!--<h3><a href="articles/index.html">Meta</a></h3>
+            <p> <strong>Keywords</strong>. ##library.keywords##<br />
             <strong>Reference</strong>. Have a look at the javadoc reference <a href="./reference/index.html" target="_blank">here</a>. A 		copy of the reference is included in the .zip as well.<br />
             <strong>Source</strong>. The source code of RiTaJS is available at <a href="https://github.com/dhowe/RiTaJS">GitHub</a>, 
             and its repository can be browsed <a href="##source.repository##" target="_blank">here</a>.<br />
-            <br />
+            <br/>
             </p>-->
           <h3><span class="misc-title">Acknowledgments</span></h3>
           <p>
@@ -131,7 +128,7 @@ Mary Choueiter | Mini Ham          </p>
       <div class="footer">
        <p> 
        <br />
-      <!-- TODO: twitter or homepgae link here -->
+      <!-- TODO: twitter or homepage link here -->
       <!--a href="http://creativecommons.org/licenses/by-nc-sa/3.0/us/" rel="license"> <img src="http://i.creativecommons.org/l/by-nc-sa/3.0/us/88x31.png" style="border-width:0" alt="Creative Commons License" /> </a> --> </p>
       </p>
       </div>
