@@ -49,7 +49,7 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 
 With ProcessingJS
 --------
-If you want to use RiTaJS with <a href="http://processingjs.org/">ProcessingJS</a>, you can do so like this (assuming you've downloaded both libraries to the current directory):
+If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>, you can simply open Processing and switch to 'JavaScript' mode. If you don't want to use the Processing IDE, you can cimply create an HTML files like this (assuming you've downloaded both libraries to the current directory):
 <pre>
   &lt;html&gt;
   &lt;script src="processing-min.js"&gt;&lt;/script&gt;
