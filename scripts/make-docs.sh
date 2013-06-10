@@ -10,7 +10,7 @@ HTML="${INPUT}html"
 CSS="${INPUT}css"
 CLASSPATH="$GENZIP:../../lib/core.jar:../../lib/json.jar"
 
-echo CP: $CLASSPATH
+#echo CP: $CLASSPATH
 
 cd ../tools/refgen				 # tmp: use jar instead
 
