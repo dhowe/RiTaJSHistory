@@ -52,6 +52,8 @@ With ProcessingJS
 If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>, you can simply open Processing and switch to 'JavaScript' mode. If you don't want to use the Processing IDE, you can cimply create an HTML files like this (assuming you've downloaded both libraries to the current directory):
 <pre>
   &lt;html&gt;
+  &lt;meta charset="utf-8"/&gt;
+
   &lt;script src="processing-min.js"&gt;&lt;/script&gt;
   &lt;script src="rita-1.0.29a.min.js"&gt;&lt;/script&gt;
   &lt;script type="text/processing" data-processing-target="mycanvas"&gt;
