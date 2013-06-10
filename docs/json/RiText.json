@@ -1038,17 +1038,17 @@
    {
       "methodName":"distanceTo()",
       "example":"",
-      "description":"Returns the distance between the center points of this and another RiText",
+      "description":"Returns the distance between the center points of this object and another RiText, or between this object and a point (x,y)",
       "syntax":"distanceTo(float mx, float my)",
       "parameters":
       [
 			{ 
-			"type": "float", 
-			"desc": "mx" 
+			"type": "float or RiText", 
+			"desc": "the other RiText or the X-position of the point " 
 			},
 			{ 
 			"type": "float", 
-			"desc": "my" 
+			"desc": "the Y-position of the point (optional)" 
 			}
 
 	  ],
