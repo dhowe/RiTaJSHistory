@@ -27,10 +27,10 @@ function draw() {
 
 function mouseMoved(e) {
 
-	rt.color(0,0,0);
+	rt.fill(0,0,0);
     var mp = RiText.mouse(e);  // broken (doesnt count canvas offset)
 	if (rt.contains(mp.x,mp.y))
-    	rt.color(200,0,0);
+    	rt.fill(200,0,0);
 }
 
 
