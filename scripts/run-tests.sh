@@ -1,5 +1,7 @@
 #!/bin/sh
 
+#set -e # die on errors 
+
 # usage: run-tests.sh [-p (phantom=default) || -n (node) ]
 #
 # calls run-[env]-tests

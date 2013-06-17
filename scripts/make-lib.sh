@@ -1,6 +1,6 @@
 #/bin/sh
 
-set -e # die on any errors 
+set -e # die on errors 
 
 # TODO: make ##version## replacements in rita.js && /RiTaLibraryJS/www/download/index.html
 
