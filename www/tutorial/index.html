@@ -14,30 +14,33 @@
   </head>
   <body>
     <div class="container">
-        <div class="header"> <a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a> <a href="https://github.com/dhowe/RiTaJS/"> <img style="position:absolute; margin-left:723px; border: 0; z-index:999999999" src="../img/forkme-right-orange.png" alt="Fork me on GitHub"> </a>
-</div>
+        <div class="header">
+        	<a href="../index.html"><img src="../img/RiTa-logo3.png" width="60" height="60"></a>
+        	<a href="https://github.com/dhowe/RiTaJS/"><img style="position:absolute; width:149px;margin-top:-8px;margin-left:723px; border: 0; z-index:999999999" src="../img/forkme.png" alt="Fork me on GitHub"></a>
+		</div>
       <span class="tagline">a software toolkit for generative literature</span>
       <div class="navbar">
-        <canvas width="940px" height="78px" data-processing-sources="../RiTaBanner.pde"></canvas>
+        <!--anvas width="940px" height="78px" data-processing-sources="../RiTaBanner.pde"></canvas-->
         <ul>
           <li><a href="../index.html"><span>home</span></a></li>
           <li><a href="../download/index.html"><span>download</span></a></li>
           <li><a href="../reference/index.html"><span>reference</span></a></li>
-          <!-- <li><a href="../exhibition/index.html"><span>exhibition</span></a></li> -->
-          <li><a href="../example/index.html"><span>example</span></a></li>
+          <!-- <li><a href="../exhibition/index.html"><span>exhibition</span></a></li> 
+          <li><a href="../example/index.html"><span>example</span></a></li>-->
           <li><a href="./index.html" class="selected"><span>tutorial</span></a></li>
           
           <li>
             <script language="JavaScript">InsertMailToTag("daniel.c.howe", "gmail.com");</script>
           </li>
         </ul>
-        <a class="viewsource" href="../RiTaBanner.pde">view source</a> </div>
+        <!--a class="viewsource" href="../RiTaBanner.pde">view source</a--> 
+      </div>
       <div class="page row">
         <div class="span11">
 
 <h2>Tutorial</h2>
 
-<p>This page explains how to quickly get started with RiTa.js. If you encounter any problems with these instructions (or links),
+<p>This page explains how to quickly get started with RiTa.js with just a text-editor and a browser (RiTa and RiTaJS can also be used directly in Processing). If you encounter any problems with these instructions,
  please <script language="JavaScript">InsertMailToTag("daniel.c.howe", "gmail.com");</script> us!
 
 <p>
@@ -53,12 +56,13 @@ If you've worked with javascript before and have both of these ready-to-go, skip
  Its not super-important which ones we use; any decent text-editor, preferably
  with support for javascript (syntax-highlighting, etc), will be fine, but today we'll,
   use <a href="http://www.barebones.com/products/TextWrangler/download.html">TextWrangler</a>
-   since its pre-installed on the lab machines.
+   since its free and pre-installed on our lab machines.
    <p>
    For text-rendering, RiTa.js uses HTML5's canvas object. This is built-in to all the major web browsers, 
    so any is fine (IE, as usual is a bit of a mess),
     but lets start with <a href="https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>
    as it seems to have the best canvas support at the moment. We'll use the web-browser to view our work as we go.<p>
+   	
    Note that you can also use RiTaJS from within the <a href="http://processingjs.org">Processing</a> IDE as described <a href="">here</a>.  
 
     <h3 id="obtaining">2. Downloading RiTa.js</h3>
@@ -67,13 +71,12 @@ If you've worked with javascript before and have both of these ready-to-go, skip
         You don't have to compile it or tell your web server about it. You just 
         include in on a web page, and the browser will do the rest.</p>
     <p>
-        You can download RiTa.js at <a href="http://rednoise.org/rita/js/download">the download
-            page</a>. The library comes in a number of forms, for example:</p>
+        You can download RiTa.js at <a href="http://rednoise.org/rita/js/download">the download page</a>. The library comes in a number of forms, for example:</p>
     <ul>
     	<!-- TODO: this should autoupdate on build with new version -->
-        <li>rita-full-0.18.zip</li>
-        <li>rita-0.18.js </li>
-        <li>rita-0.18.min.js *</li>
+        <li>rita-full-1.0.18.zip</li>
+        <li>rita-1.0.18.js </li>
+        <li>rita-1.0.18.min.js *</li>
     </ul>
     <p> 
         The version numbers may be different as you read this, but note the file extensions.
@@ -89,24 +92,19 @@ If you've worked with javascript before and have both of these ready-to-go, skip
     <h3 id="creating">3. Creating a RiTa.js Web Page</h3>
     <p>
         It's easy to get overwhelmed with the amount there is to learn about modern web
-        technologies. But there's a secret: you can ignore 95% of it as you start, and add
+        brwosers. But there's a secret: you can ignore 95% of it as you start, and add
         more later as you have time and interest. Unlike compilers or programming languages,
         web browsers are designed to accept almost any input you throw at them, whether
         valid or not, whether complete or not. Here's your first RiTa.js web page:</p>
 
 <div class="highlight">
-	 <pre><code class="html">
-	 
-&lt;canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"&gt;&lt;/canvas&gt;
-&lt;script src="http://rednoise.org/rita/js/download/rita-0.18a.min.js"&gt;&lt;/script&gt;
+	 <pre><code class="html">&lt;canvas id="canvas" width=200 height=200 style="border: 1px solid #000000;"&gt;&lt;/canvas&gt;
+&lt;script src="http://rednoise.org/rita/js/download/rita-latest.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-
-// code goes here:
 
 RiText("This is not the Text").draw();
 
 &lt;/script&gt;
-	
 	</code></pre>
 </div>
 
@@ -114,15 +112,11 @@ Now lets add a bit more code:
 
 <div class="highlight"> 
 	 <pre><code class="html">
-
-// code goes here:
-
-var rt = new RiText("This is not the Text");
+var rt = RiText("This is not the Text");
 rt.font("arial", 16);
 rt.fill(200,100,100);
 rt.x = 30;
 rt.draw();
-	
 	</code></pre>
 </div>
 
@@ -132,9 +126,6 @@ Ok, so now lets try a loop:
 
 <div class="highlight">
 	 <pre><code class="html">
-
-// code goes here:
-
 var rt; 
 
 function setup()
@@ -148,7 +139,7 @@ function draw()
   
   rt.draw();
 
-  if (++rt.y == height())  
+  if (++rt.y == 200)  
       rt.y = 0;
 }
 	
@@ -162,16 +153,15 @@ Ok, now lets move things around:
 
 <div class="highlight">
 	 <pre><code class="html">
-
 function setup()
 {
-    RiText.defaultFont({name:"Georgia",size:30});  
+    RiText.defaultFont("Georgia",30);  
     
-    var rt1 = new RiText("ZIG");
-    var rt2 = new RiText("ZAG", 300, 300);
-	
-	rt1.moveTo(300, 300, 1);
-	rt2.moveTo(50, 50, 1.5);
+    var rt1 = RiText("ZIGX");
+    var rt2 = RiText("ZAG", 300, 300);
+    
+    rt1.moveTo(300, 300, 1);
+    rt2.moveTo(50, 50, 1.5);
 }
 
 function draw()
@@ -190,15 +180,14 @@ Ok, now lets get some more motion going:
 
 <div class="highlight">
 	 <pre><code class="html">
-
 // 2 RiTexts, moving to random spots
 
 function setup()
 {
-    RiText.defaultFont({name:"Georgia",size:30});  
+    RiText.defaultFont("Georgia",30);  
     
-    var rt1 = new RiText("ZIG");
-    var rt2 = new RiText("ZAG", 300, 300);
+    var rt1 = RiText("ZIG");
+    var rt2 = RiText("ZAG", 300, 300);
 
     moveToRandom(rt1);
     moveToRandom(rt2);
@@ -207,10 +196,10 @@ function setup()
 // pick a new random location to go to
 function moveToRandom(rt) {
 
-    var newX = RiText.random(RiText.width() - rt.textWidth());
-    var newY = RiText.random(rt.textHeight(), RiText.height() - 10);
-    var dst = RiText.distance(rt.x, rt.y, newX, newY);
-    rt.moveTo(newX,newY,dst / RiText.width());
+    var newX = RiTa.random(200 - rt.textWidth());
+    var newY = RiTa.random(rt.textHeight(), 190);
+    var dst = RiTa.distance(rt.x, rt.y, newX, newY);
+    rt.moveTo(newX, newY, dst / 200);
 }
 
 function draw()
@@ -222,8 +211,8 @@ function draw()
 //called by RiTa whenever a 'moveTo' behavior finishes
 function onRiTaEvent(e)
 {
-    if (e.getType() == 'moveToCompleted') 
-        moveToRandom(e.getSource());
+    if (e.type() == RiTa.MOVE_TO) 
+        moveToRandom(e.source());
 }
 
 	
@@ -238,21 +227,19 @@ Ok, now lets try working with a 'grammar':
 
 <div class="highlight">
 	 <pre><code class="html">
-
-// code goes here:
-
+	 	
 haikuGrammar = { 
-    "<start>": "<5-line> % <7-line> % <5-line>",  
-    "<5-line>": "<1> <4> |<1> <3> <1> |<1> <1> <3> | <1> <2> <2> | <1> <2> <1> <1> | <1> <1> <2> <1> | <1> <1> <1> <2> | <1> <1> <1> <1> <1> | <2> <3> | <2> <2> <1> | <2> <1> <2> | <2> <1> <1> <1> | <3> <2> | <3> <1> <1> | <4> <1> | <5>",
-    "<7-line>": "<1> <1> <5-line> | <2> <5-line> | <5-line> <1> <1> | <5-line> <2>",  
-    "<1>": "red | white | black | sky | dawns | breaks | falls | leaf | rain | pool | my | your | sun | clouds | blue | green | night | day | dawn | dusk | birds | fly | grass | tree | branch | through | hell | zen | smile | gray | wave | sea | through | sound | mind | smoke | cranes | fish", 
-    "<2>": "drifting | purple | mountains | skyline | city | faces | toward | empty | buddhist | temple | japan | under | ocean | thinking | zooming | rushing | over | rice field | rising | falling | sparkling | snowflake",
-    "<3>": "sunrises | pheasant farms | people farms | samurai | juniper | fishing boats | far away | kimonos | evenings | peasant rain | sad snow fall",
-    "<4>": "aluminum | yakitori | the east village | west of the sun |  chrysanthemums | cherry blossoms",
-    "<5>": "resolutional | non-elemental | rolling foothills rise | toward mountains higher | out over this country | in the springtime again"
+  "< start>": "<5-line> % <7-line> % <5-line>",
+  "<5-line>": "<1> <4> |<1> <3> <1> |<1> <1> <3> | <1> <2> <2> | <1> <2> <1> <1> | <1> <1> <2> <1> | <1> <1> <1> <2> | <1> <1> <1> <1> <1> | <2> <3> | <2> <2> <1> | <2> <1> <2> | <2> <1> <1> <1> | <3> <2> | <3> <1> <1> | <4> <1> | <5>",
+  "<7-line>": "<1> <1> <5-line> | <2> <5-line> | <5-line> <1> <1> | <5-line> <2>",  
+  "<1>": "red | white | black | sky | dawns | breaks | falls | leaf | rain | pool | my | your | sun | clouds | blue | green | night | day | dawn | dusk | birds | fly | grass | tree | branch | through | hell | zen | smile | gray | wave | sea | through | sound | mind | smoke | cranes | fish", 
+  "<2>": "drifting | purple | mountains | skyline | city | faces | toward | empty | buddhist | temple | japan | under | ocean | thinking | zooming | rushing | over | rice field | rising | falling | sparkling | snowflake",
+  "<3>": "sunrises | pheasant farms | people farms | samurai | juniper | fishing boats | far away | kimonos | evenings | peasant rain | sad snow fall",
+  "<4>": "aluminum | yakitori | the east village | west of the sun |  chrysanthemums | cherry blossoms",
+  "<5>": "resolutional | non-elemental | rolling foothills rise | toward mountains higher | out over this country | in the springtime again"
 };
 
-var rts = [];
+var grammar, rts = [];
 
 window.onmouseup=mouseClicked;
 
@@ -263,9 +250,9 @@ function setup()
     RiText.defaultFont("arial",30);  
     RiText.defaultAlignment(CENTER);
 
-    rts[0] = new RiText("click to", RiText.width() / 2, 75);
-    rts[1] = new RiText("generate", RiText.width() / 2, 110);
-    rts[2] = new RiText("a haiku", RiText.width() / 2, 145); 
+    rts[0] = RiText("click to", RiText.width() / 2, 75);
+    rts[1] = RiText("generate", RiText.width() / 2, 110);
+    rts[2] = RiText("a haiku", RiText.width() / 2, 145); 
 
     grammar = new RiGrammar(haikuGrammar);
     
@@ -282,12 +269,10 @@ function mouseClicked()
 {
     var result = grammar.expand();
     var lines =  result.split("%");
-    for ( var int = 0; int < rts.length; int++) {
-        rts[int].setText(lines[int]);
+    for (var i = 0; i < rts.length; i++) {
+        rts[i].text(lines[i]);
     }
 }
-
-	
 	</code></pre>
 </div>
 

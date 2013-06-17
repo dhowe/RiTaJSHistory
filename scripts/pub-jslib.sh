@@ -17,6 +17,7 @@ VERSION=$1
 WWWDIR=../build/www
 ZIP_FILE=ritajs-www.zip
 DEST=dhowe@rednoise.org
+#DEST=dhowe@localhost
 
 cd $WWWDIR
 echo zipping: $ZIP_FILE

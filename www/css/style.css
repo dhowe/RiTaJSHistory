@@ -17,14 +17,14 @@
 	line-height: 2;
 }
 
-/* The amount of CSS needed for the navbar is terrifying. I am sorry. */
+/* The amount of CSS needed for the navbar is terrifying. I am sorry. -Kenny */
 
 .navbar {
 	background-color: #000000;
 	line-height: 0;
 	position: relative;
 	width: 940px;
-	height: 78px;
+	height: 40px;  /* was 78 px for processing sketch */
 }
 
 .navbar ul {
