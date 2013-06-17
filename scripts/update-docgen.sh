@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e # die on errors 
+
 
 JSPROJ="/Users/dhowe/Documents/javascript-workspace/RiTaLibraryJS"
 GENZIP="$JSPROJ/tools/refgen/doc-gen.zip"

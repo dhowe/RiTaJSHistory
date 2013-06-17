@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e # die on errors 
+
 #TODO: add flags for options
 
 DEST=".."

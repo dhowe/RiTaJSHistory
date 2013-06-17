@@ -1,5 +1,7 @@
 #/bin/sh
 
+set -e # die on errors 
+
 if [ $# -lt "1"  ]
 then
     echo
