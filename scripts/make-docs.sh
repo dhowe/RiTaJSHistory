@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # make-docs.sh OUTPUT [INPUT] [single-class-name]
 
 INPUT=../../docs/
@@ -23,5 +25,5 @@ java -Xmx512m -classpath $CLASSPATH DocGenerator $OUTPUT $INPUT $1 $2 $3
 
 #rm $OUTPUT/template.html
 
-echo DONE: html written to $HTML
+#echo DONE: html written to $OUTPUT
 
