@@ -91,6 +91,7 @@ echo
 rm -f $RITA_CODE
 echo "Combining rita-*.js as ${RITA_CODE}" 
 cat $ALL_SRC >> $RITA_CODE
+echo
 
 if [ $MINIMIZE_SRC = 1 ]
 then
@@ -135,9 +136,8 @@ fi
 
 echo
 echo Copying examples
-cd .
-cp -r ../test/renderer/multitest.html ../www/example/
-cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
+#cp -r ../test/renderer/multitest.html ../www/example/
+#cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
 #cp -r ../test/renderer/*.wav ../www/example/  # ???? 
 ## also need to copy libraries for local www??
 echo

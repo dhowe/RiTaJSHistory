@@ -1,10 +1,22 @@
 #/bin/sh
 
+#####NEXT
+
+# download gallery page and resources
+# add ant exec: make-lib.sh ${project.version}
+
 ################### PLAN ###################
-# publish rita-js with this script to rita
-# cp RiTa-XXX folder to www/download/  (in pub-lib.sh)
-# make-sure p5 examples are in RiTa-zip
+# make rita-js
+# do ant-build (includes js in rita.jar
+# do the publish
+
 # update all version #s  -- where?
+
+# pass from ant to make-lib.sh (make-lib updates 2)
+
+# java:resources/build.properties
+# js:src/rita.js (change this***)
+# js:www/download/index.html (change this***)
 
 if [ $# -lt "1"  ]
 then
@@ -29,7 +41,7 @@ echo
 
 echo Running RiTa-Java ant build
 cd $ANT_DIR
-#ant
+ant
 cd-
 
 ./pub-lib.sh $VERSION
