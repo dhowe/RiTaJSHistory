@@ -1,5 +1,11 @@
 #/bin/sh
 
+################### PLAN ###################
+# publish rita-js with this script to rita
+# cp RiTa-XXX folder to www/download/  (in pub-lib.sh)
+# make-sure p5 examples are in RiTa-zip
+# update all version #s  -- where?
+
 if [ $# -lt "1"  ]
 then
     echo
@@ -26,9 +32,6 @@ cd $ANT_DIR
 #ant
 cd-
 
-echo Zipping the web directory
-jar 
-
-
+./pub-lib.sh $VERSION
 
 

@@ -237,29 +237,6 @@ a:hover, a:focus {
 	box-shadow: 0px 0px 5px #999;
 }
 
-.tweet_list {
-	border-radius: 0.5em;
-	margin: 0;
-	overflow-y: hidden;
-	background-color: #E0E0E0;
-}
-
-ul.tweet_list li, ul.tweet_list li:hover {
-	color: #404040;
-}
-
-.tweet_list li {
-	padding: 0.5em;
-}
-
-.tweet_list .tweet_even {
-	background-color: #EFEFEF;
-}
-
-.tweet_list .tweet_avatar {
-	padding-right: .5em;
-	float: left;
-}
 
 /*-----Home------*/
 
