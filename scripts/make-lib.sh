@@ -150,7 +150,7 @@ then
     rm -rf $ZIP_TMP
     mkdir $ZIP_TMP
     cd ../www
-    cp -r example download/*.js reference tutorial css $ZIP_TMP
+    cp -r examples download/*.js reference tutorial css $ZIP_TMP
     cd - 
     cd $ZIP_TMP
     jar cf $ZIP_FILE *
