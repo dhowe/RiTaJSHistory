@@ -17,6 +17,7 @@ then
     echo "       -D = dont-make-docs"
     echo "       -M = dont-minimize-lib"
     echo "       -Z = dont-make-zip"
+    echo "       -F = do fake-minimize"
     echo "       -c = -DMZ (just combine js)" 
     exit
 fi
@@ -96,7 +97,7 @@ then
 
     if [ $FAKE_MINIMIZE = 1 ]
     then
-        FILE=~/Desktop/rita-$VERSION.min.js
+        FILE=/tmp/rita-$VERSION.min.js
         echo "Copying $FILE to ${RITA_CODE}"
         cp $FILE $RITA_CODE_MIN
     else

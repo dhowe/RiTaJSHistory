@@ -9,26 +9,42 @@
     <link rel="stylesheet" href="../css/style.css" type="text/css" />
     <link rel="shortcut icon" type="image/x-icon" href="http://rednoise.org/rita/rita.ico"/>
     
-    <script src="../js/processing-min.js" type="text/javascript"></script>
-	<script src="../js/rita.js" type="text/javascript"></script>
+    <!--script src="../js/processing-min.js" type="text/javascript"></script--	>
+	<!--script src="../js/rita.js" type="text/javascript"></script-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>  
     <script type="text/javascript" src="../mailto.js"></script>
+    
     <script type="text/javascript">
 
         var V = '1.0.31';
         
         $(document).ready(function() {
             
-            var theHtml = '<h2>Download RiTa.js v'+V+'</h2><br/>'+
-            '<strong>RiTa.js</strong> version '+V+' [complete]<br/> <a href="./rita-full-'+V+'.zip">rita-full-'+V+'.zip</a><br/><br/>'+
-            '<strong>RiTa.js</strong> version '+V+' [minified]<br/> <a href="./rita-'+V+'.min.js">rita-'+V+'.min.js</a><br/><br/>'+
-            '<strong>RiTa.js</strong> version '+V+' [source]<br/> <a href="./rita-'+V+'.js">rita-'+V+'.js</a><br/>&nbsp;<br/>'+
-            '<br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/>';
+            //var theHtml = '<h2>Download RiTa v'+V+'</h2><br/>'+
+            var theHtml = '<h2>Downloads</h2><br/>'+
+            	'<strong>RiTa library</strong>&nbsp; &nbsp;(java, js, reference, examples, tutorial, src)<p/> '+
+            	'<a href="./RiTa-latest.zip">RiTa-'+V+'.zip</a><br/>&nbsp;<p/>';
+            //'<strong>RiTa</strong> version '+V+' [jar-only]<br/> <a href="./rita-full-'+V+'.zip">rita-full-'+V+'.zip</a><br/><br/>';
+            
+            theHtml += // '<p><h2>Download RiTa.js v'+V+'</h2><br/>'+
+           	 	//'<strong>RiTa.js</strong> version '+V+' [complete]<br/> <a href="./ritajs-full-'+V+'.zip">ritasj-full-'+V+'.zip</a><br/><br/>'+
+           	 	
+            	'<strong>RiTa.js</strong>&nbsp; &nbsp;(js-source only)<p/> <a href="./ritajs-latest-min.js">ritajs-'+V+'.min.js</a><br/>'+
+            	'<a href="./ritajs-latest.js">ritajs-'+V+'.js</a><br/>&nbsp;<p/>'+	
+				'<strong>RiTa.jar</strong>&nbsp; &nbsp;(java-jar only)<p/> <a href="./rita-latest.jar">rita-'+V+'.jar</a><br/><p>';
+            
+            theHtml += '&nbsp;</p><h3>Archived Versions</h3><br/>'+
+				//'<strong>RiTa-original</strong> [v1022 alpha]<br/>'+
+				'<a href="./rita-original.zip">RiTa-alpha.1022.zip</a><br/>&nbsp;<br/>'+
+            	'<br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/>';
+
             $("#version-div").html('<p>'+theHtml+'</p>');
         });
         
     </script>
+    
   </head>
+  
   <body>
       <div class="container">
         
@@ -68,6 +84,8 @@
             and its repository can be browsed <a href="##source.repository##" target="_blank">here</a>.<br />
             <br />
             </p>-->
+            
+       
             
           <h3><span class="misc-title">Acknowledgments</span></h3>
           <p> Kenny Wong | John Cayley<br/>
