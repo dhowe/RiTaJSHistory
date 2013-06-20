@@ -37,20 +37,28 @@ done
 echo
 echo copying RiTa-$VERSION.zip ./download/
 cd $WWWDIR
+rm -rf download/[Rr]i[Tt]a-* 
 cp $DLDIR/RiTa-$VERSION.zip ./download/
 echo
 
+echo copying js-files to ./download/
+cd $WWWDIR
+rm -rf download/*.js
+cp $JSPROJ/www/download/rita-*.js ./download/
 echo
-echo zipping: $ZIP_FILE
+
+echo zipping: ritajs-www.zip
+cd $WWWDIR
 rm -rf $ZIP_FILE
 jar cf $ZIP_FILE *
-
-jar tf $ZIP_FILE
-ls -l $ZIP_FILE
+#jar tf $ZIP_FILE
+#pwd
+#ls -l $ZIP_FILE
 echo
 
 echo copying $ZIP_FILE to $DEST...
-cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents/rita/; tar xf -; cd download; ln -fs rita-${VERSION}.min.js ritajs-latest.min.js; ln -fs rita-${VERSION}.js ritajs-latest.js; ln -fs rita-full-${VERSION}.zip ritajs-latest-full.zip; ls -l)" 
+echo
+cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -s rita-${VERSION}.jar rita-latest.jar; ls -l; pwd)" 
 
 echo
 rm -rf $ZIP_FILE

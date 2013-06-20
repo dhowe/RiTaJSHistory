@@ -2,8 +2,15 @@
 
 #####NEXT
 
-# download gallery page and resources
-# add ant exec: make-lib.sh ${project.version}
+# finish download links
+# upgrade to 1.0.32
+## test 
+  # check rita.jar sym link
+  # check all download links
+  # check version #s
+  # run examples in P5 (check version #s)
+## publish-to-red
+
 
 ################### PLAN ###################
 # make rita-js
@@ -45,5 +52,3 @@ ant
 cd-
 
 ./pub-lib.sh $VERSION
-
-
