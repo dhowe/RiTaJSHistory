@@ -21,6 +21,7 @@ cd ../tools/refgen
 #cp ${CSS}/*.css ${OUTPUT}../css/
 #cp ${HTML}/Ri*.html $OUTPUT
 
+echo
 java -Xmx512m -classpath $CLASSPATH DocGenerator $OUTPUT $INPUT $1 $2 $3
 
 #rm $OUTPUT/template.html

@@ -60,11 +60,12 @@ done
 ##############################################################
 
 BUILD=../build
+DOWNLOAD_INDEX=$BUILD/www/download/index.html
 COMPILE="java -jar ../tools/compiler-latest/compiler.jar"
 
 JSDOC=../tools/jsdoc-toolkit
-SRC=../src/rita.js
-ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ../src/rita.js"
+SRC_VERSIONED=/tmp/rita-versioned.js
+ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ${SRC_VERSIONED}"
 
 DOWNLOAD_DIR=../www/download
 LIB_DIR=../www/js
@@ -74,7 +75,7 @@ RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 
 ZIP_TMP=/tmp/rita-$VERSION
-ZIP_FILE=rita-full-$VERSION.zip
+ZIP_FILE=ritajs-full-$VERSION.zip
 
 P5_JAVA=~/Documents/Processing/libraries/RiTa/library/rita.js
 LATEST=~/Documents/eclipse-workspace/RiTa/latest/rita.js
@@ -88,6 +89,10 @@ echo
 # clean the target dir first
 #mv $DOWNLOAD_DIR/*.js  $DOWNLOAD_DIR/*.zip $DIST_DIR > /dev/null 2>&1; true
 
+echo Copying rita.js to $SRC_VERSIONED
+cp ../src/rita.js $SRC_VERSIONED
+sed -i -e "s/##version##/${VERSION}/g" $SRC_VERSIONED
+
 rm -f $RITA_CODE
 echo "Combining rita-*.js as ${RITA_CODE}" 
 cat $ALL_SRC >> $RITA_CODE
@@ -95,7 +100,6 @@ echo
 
 if [ $MINIMIZE_SRC = 1 ]
 then
-
     if [ $FAKE_MINIMIZE = 1 ]
     then
         FILE=/tmp/rita-$VERSION.min.js
@@ -134,13 +138,13 @@ fi
 
 ###EXAMPLES ##########################################################
 
-echo
-echo Copying examples
+#echo
+#echo Copying examples
 #cp -r ../test/renderer/multitest.html ../www/example/
 #cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
 #cp -r ../test/renderer/*.wav ../www/example/  # ???? 
 ## also need to copy libraries for local www??
-echo
+#echo
 
 ###ZIP###############################################################
 
@@ -167,7 +171,8 @@ echo Copying into $BUILD
 /bin/rm -rf $BUILD
 mkdir $BUILD
 cp -r ../www $BUILD
-ls -l $BUILD/www/download
+sed -i -e "s/##version##/${VERSION}/g" $DOWNLOAD_INDEX 
+ls -l $BUILD
 
 echo
 echo Copying $RITA_CODE 
@@ -178,18 +183,16 @@ cp $RITA_CODE ~/Documents/Processing/libraries/RiTa/library/rita.js
 if [ $MINIMIZE_SRC = 1 ]
 then
     echo " -> $LATEST"  # lib
-    cp   $RITA_CODE_MIN $LATEST
+    cp $RITA_CODE_MIN $LATEST
 fi
 
 echo " -> $LIB_DIR/"
-cp   $RITA_CODE_MIN $LIB_DIR/rita.js
+cp $RITA_CODE_MIN $LIB_DIR/rita.js
 echo
 
 ####################################################################
 
-cd ../build/www/download/
-ls -l
-cd -
+ls ../build/www/download/
 
 echo
 echo Done [use pub-jslib.sh or publish-rita.sh to publish]

@@ -16,7 +16,7 @@
     
     <script type="text/javascript">
 
-        var V = '1.0.31';
+        var V = '##version##';
         
         $(document).ready(function() {
             
@@ -27,15 +27,15 @@
             //'<strong>RiTa</strong> version '+V+' [jar-only]<br/> <a href="./rita-full-'+V+'.zip">rita-full-'+V+'.zip</a><br/><br/>';
             
             theHtml += // '<p><h2>Download RiTa.js v'+V+'</h2><br/>'+
-           	 	//'<strong>RiTa.js</strong> version '+V+' [complete]<br/> <a href="./ritajs-full-'+V+'.zip">ritasj-full-'+V+'.zip</a><br/><br/>'+
+           	 	//'<strong>RiTa.js</strong> version '+V+' [complete]<br/> <a href="./rita-full-'+V+'.zip">ritasj-full-'+V+'.zip</a><br/><br/>'+
            	 	
-            	'<strong>RiTa.js</strong>&nbsp; &nbsp;(js-source only)<p/> <a href="./ritajs-latest-min.js">ritajs-'+V+'.min.js</a><br/>'+
-            	'<a href="./ritajs-latest.js">ritajs-'+V+'.js</a><br/>&nbsp;<p/>'+	
+            	'<strong>RiTa.js</strong>&nbsp; &nbsp;(js-source only)<p/> <a href="./rita-latest-min.js">rita-'+V+'.min.js</a><br/>'+
+            	'<a href="./rita-latest.js">rita-'+V+'.js</a><br/>&nbsp;<p/>'+	
 				'<strong>RiTa.jar</strong>&nbsp; &nbsp;(java-jar only)<p/> <a href="./rita-latest.jar">rita-'+V+'.jar</a><br/><p>';
             
             theHtml += '&nbsp;</p><h3>Archived Versions</h3><br/>'+
 				//'<strong>RiTa-original</strong> [v1022 alpha]<br/>'+
-				'<a href="./rita-original.zip">RiTa-alpha.1022.zip</a><br/>&nbsp;<br/>'+
+				'<a href="http://rednoise.org/rita-archive/rita-original.zip">RiTa-alpha.1022.zip</a><br/>&nbsp;<br/>'+
             	'<br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/><br/>&nbsp;<br/>';
 
             $("#version-div").html('<p>'+theHtml+'</p>');
