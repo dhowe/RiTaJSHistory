@@ -41,10 +41,10 @@ rm -rf download/[Rr]i[Tt]a-*
 cp $DLDIR/RiTa-$VERSION.zip ./download/
 echo
 
-echo copying js-files to ./download/
+echo copying js/jars to ./download/
 cd $WWWDIR
-rm -rf download/*.js
 cp $JSPROJ/www/download/rita-*.js ./download/
+cp $JAVAPROJ/latest/rita-*.jar ./download/
 echo
 
 echo zipping: ritajs-www.zip
@@ -58,10 +58,11 @@ echo
 
 echo copying $ZIP_FILE to $DEST...
 echo
-cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -s rita-${VERSION}.jar rita-latest.jar; ls -l; pwd)" 
+cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -fs rita-${VERSION}.jar rita-latest.jar; ls -l ../js)" 
 
 echo
 rm -rf $ZIP_FILE
+#rm -rf $WWWDIR
 echo cleaning up...
 echo done
 echo

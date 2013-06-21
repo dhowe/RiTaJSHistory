@@ -2,14 +2,13 @@
 
 #####NEXT
 
-# finish download links
 # upgrade to 1.0.32
-## test 
-  # check rita.jar sym link
-  # check all download links
-  # check version #s
-  # run examples in P5 (check version #s)
+  # run examples in P5 (check version #s in java/js)
 ## publish-to-red
+
+### Change parameters to italic (instead of bold) on RiText.html etc.
+###(add examples next)
+###(add one more gallery item  to home page)
 
 
 ################### PLAN ###################

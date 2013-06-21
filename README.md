@@ -2,7 +2,7 @@
 ## RiTaJS: a generative language toolkit for JavaScript
 
 
-<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/js/img/RiTa-logo2.png"/></a>
+<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo2.png"/></a>
 
 ### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
 
@@ -31,7 +31,7 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 <pre>
   &lt;html&gt;
   &lt;canvas id="canvas" width=200 height=200&gt;&lt;/canvas&gt;
-  &lt;script src="http://rednoise.org/rita/js/rita-latest.min.js"&gt;&lt;/script&gt;
+  &lt;script src="http://rednoise.org/rita/download/rita-latest.min.js"&gt;&lt;/script&gt;
   &lt;script&gt;
 
     window.onload = function() {

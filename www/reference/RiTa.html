@@ -28,24 +28,25 @@
 </div>
 		      <span class="tagline">a software toolkit for generative literature</span>
 		          <div class="navbar">
-			        <!--canvas width="940px" height="78px" data-processing-sources="../RiTaBanner.pde"></canvas-->
-
-			        <ul>
-			          <li><a href="../index.html"><span>home</span></a></li>
-			          <li><a href="../download/index.html"><span>download</span></a></li>
-			          <li><a href="./index.html" class="selected"><span>reference</span></a></li>
-			         <!-- <li><a href="../exhibition/index.html"><span>exhibition</span></a></li> -->
-			          <li><a href="../example/index.html"><span>example</span></a></li>
-				      <li><a href="../tutorial/index.html"><span>tutorial</span></a></li>
-			          <li>
-			            <script language="JavaScript">InsertMailToTag("daniel.c.howe", "gmail.com");</script>
-			          </li>
-			        </ul>
-			        <!-- <a class="viewsource" href="../RiTaBanner.pde">view source</a> -->
+			       
 			</div>
 		      <div class="page row">
-             	<div align=right><a href="index.html">&lt; back to index&nbsp;&nbsp;</a></div>
+				<div class="refbar span3">
+					<div id="index">
+						<!-- begin publish.classesIndex -->
+						<h3></h3>
+						<ul class="classList" >
+							<br />
+							<li style="top:60px;left:50px">
+								<a href="index.html">Back to index</a>
+							</li>
+						</ul>
+						<hr />
+						<!-- end publish.classesIndex -->
+					</div>
 
+				</div>
+				
 		        <div class="span12">
 
 		
@@ -60,7 +61,7 @@
 			<h2 class="classTitle">				
 				Class RiTa
 			</h2>
-
+<p>&nbsp;</p> 
 <!-- ============================== class summary ========================== -->			
 			
      <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
@@ -80,6 +81,7 @@ vers = RiTa.VERSION;
 
 // layout text in lines (one RiText per line),
 // starting at 100,100 with width/height of 400x300
+
 rts = RiTa.createLines(text, 100, 100, 400, 300);
 
 ...
