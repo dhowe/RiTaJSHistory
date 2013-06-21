@@ -2,8 +2,6 @@
 
 set -e # die on errors 
 
-# TODO: make ##version## replacements in rita.js && /RiTaLibraryJS/www/download/index.html
-
 if [ $# -lt "1"  ]
 then
     echo
@@ -28,6 +26,7 @@ DO_PUBLISH=0
 INCLUDE_DOCS=1
 MINIMIZE_SRC=1
 FAKE_MINIMIZE=0
+LINE="------------------------------------------------------"
 
 while [ $# -ge 1 ]; do
     case $1 in
@@ -77,125 +76,126 @@ RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 ZIP_TMP=/tmp/rita-$VERSION
 ZIP_FILE=ritajs-full-$VERSION.zip
 
-P5_JAVA=~/Documents/Processing/libraries/RiTa/library/rita.js
+P5_LIB=~/Documents/Processing/libraries/RiTa/library/rita.js
 LATEST=~/Documents/eclipse-workspace/RiTa/latest/rita.js
 
 echo
 echo "Building RiTaJS v$VERSION ------------------------------"
 echo
 
-###COMPILE############################################################
+###COMPILE-JS###################################################
 
-# clean the target dir first
-#mv $DOWNLOAD_DIR/*.js  $DOWNLOAD_DIR/*.zip $DIST_DIR > /dev/null 2>&1; true
+echo Removing rita.js 
+echo   from $P5_LIB
+rm -f $P5_LIB
+echo   from $LATEST
+rm -f $LATEST
+echo
 
 echo Copying rita.js to $SRC_VERSIONED
 cp ../src/rita.js $SRC_VERSIONED
-sed -i -e "s/##version##/${VERSION}/g" $SRC_VERSIONED
+sed -i "" "s/##version##/${VERSION}/g" $SRC_VERSIONED
 
 rm -f $RITA_CODE
 echo "Combining rita-*.js as ${RITA_CODE}" 
 cat $ALL_SRC >> $RITA_CODE
 echo
 
+rm -f $RITA_CODE_MIN
 if [ $MINIMIZE_SRC = 1 ]
 then
     if [ $FAKE_MINIMIZE = 1 ]
     then
         FILE=/tmp/rita-$VERSION.min.js
         echo "Copying $FILE to ${RITA_CODE}"
-        cp $FILE $RITA_CODE_MIN
+        cp $FILE $RITA_CODE_MIN || exit !?
     else
         echo "Compiling rita-*.js as ${RITA_CODE_MIN}"; 
         $COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level 3 \
-                  --compilation_level SIMPLE_OPTIMIZATIONS 
+           --compilation_level SIMPLE_OPTIMIZATIONS  #ADVANCED_OPTIMIZATIONS
     fi
 else
     echo
     echo Skipping minimization
 fi
 
-
-#echo "Compiling rita-*.js as ${RITA_CODE_MIN}_adv.js"; 
-#$COMPILE --js  ${ALL_SRC} --js_output_file "${RITA_CODE_MIN}_adv.js" --summary_detail_level 3 \
-#  --compilation_level ADVANCED_OPTIMIZATIONS 
-
-###DOCS###############################################################
+###MAKE-DOCS#######################################################
 
 if [ $INCLUDE_DOCS = 1 ]
 then
-    echo
+    echo $LINE
     echo Building js-docs...
     #rm -rf $REF_DIR/*
     #java -Xmx512m -jar $JSDOC/jsrun.jar $JSDOC/app/run.js -d=$REF_DIR -a \
     #    -t=$JSDOC/templates/ritajs -D="status:alpha" -D="version:$VERSION" $SRC > docs-err.txt 
    ./make-docs.sh 
 else
-    echo
+    echo $LINE
     echo Skipping docs...
 fi
 
 
-###EXAMPLES ##########################################################
+###EXAMPLES##########################################################
 
 #echo
 #echo Copying examples
-#cp -r ../test/renderer/multitest.html ../www/example/
-#cp -r ../test/renderer/canvas ../test/renderer/processing ../www/example/
-#cp -r ../test/renderer/*.wav ../www/example/  # ???? 
-## also need to copy libraries for local www??
 #echo
 
-###ZIP###############################################################
+###JS_FULL_ZIP#######################################################
 
-if [ $INCLUDE_DOCS = 1 ]
-then
-    echo Making complete zip 
-    rm -rf $ZIP_TMP
-    mkdir $ZIP_TMP
-    cd ../www
-    cp -r examples download/*.js reference tutorial css $ZIP_TMP
-    cd - 
-    cd $ZIP_TMP
-    jar cf $ZIP_FILE *
-    cd -
-    mv $ZIP_TMP/$ZIP_FILE $DOWNLOAD_DIR
-    rm -rf $ZIP_TMP
-    echo
-fi
+#if [ $INCLUDE_DOCS = 1 ]
+#then
+#    echo Making complete zip 
+#    rm -rf $ZIP_TMP
+#    mkdir $ZIP_TMP
+#    cd ../www
+#    cp -r examples js download/*.js reference tutorial css $ZIP_TMP
 
-###COPY##############################################################
+#    ### make the zip
+#    cd - 
+#    cd $ZIP_TMP
+#    jar cf $ZIP_FILE *
+#    cd -
+#    mv $ZIP_TMP/$ZIP_FILE $DOWNLOAD_DIR
+#    rm -rf $ZIP_TMP
+#    echo $LINE
+#fi
+
+###COPY->BUILD#######################################################
 
 echo Copying into $BUILD 
 
-/bin/rm -rf $BUILD
+rm -rf $BUILD
 mkdir $BUILD
 cp -r ../www $BUILD
-sed -i -e "s/##version##/${VERSION}/g" $DOWNLOAD_INDEX 
-ls -l $BUILD
+sed -i "" "s/##version##/${VERSION}/g" $DOWNLOAD_INDEX 
+#ls -l $BUILD
 
-echo
+###COPY-P5_LIB#######################################################
+echo $LINE
 echo Copying $RITA_CODE 
-echo " -> $P5_JAVA"  # libraries dir
-cp $RITA_CODE ~/Documents/Processing/libraries/RiTa/library/rita.js
+echo " -> $P5_LIB"  # libraries dir
+cp $RITA_CODE $P5_LIB
 
-
+###COPY-RITA.LATEST##################################################
 if [ $MINIMIZE_SRC = 1 ]
 then
     echo " -> $LATEST"  # lib
     cp $RITA_CODE_MIN $LATEST
+    #less $RITA_CODE_MIN
 fi
 
+###COPY-www/js(for RiTaBanner#########################################
 echo " -> $LIB_DIR/"
 cp $RITA_CODE_MIN $LIB_DIR/rita.js
-echo
+echo $LINE
 
-####################################################################
+######################################################################
 
-ls ../build/www/download/
+ls ../build/www/js/
 
-echo
-echo Done [use pub-jslib.sh or publish-rita.sh to publish]
+echo $LINE
+echo Done [use pub-jslib.sh [-r] to publish]
 
 if [ $DO_PUBLISH = 1 ]
 then
