@@ -110,6 +110,16 @@
 	  "note":""
    },
    {
+      "methodName":"getGrammar()",
+      "example":"",
+      "description":"Returns the current grammar as a string",
+      "syntax":"getGrammar()",
+      "parameters":[],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
       "methodName":"getRule()",
       "example":"",
       "description":"Returns the requested rule",
@@ -207,10 +217,7 @@
       "example":"",
       "description":"Clears all rules in the current grammar",
       "syntax":"reset()",
-      "parameters":
-      [
-
-	  ],
+      "parameters": [],
 	  "returns":
       [
 			{ 
@@ -231,7 +238,7 @@
       "parameters":
       [
 			{ 
-			"type": "String OR object", 
+			"type": "String OR Object", 
 			"desc": "grammar containing the grammar rules" 
 			}
 	  ],
@@ -246,5 +253,29 @@
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
-   }   
+   },
+   {
+      "methodName":"setGrammarFromFile()",
+      "example":"",
+      "description":"Re-initializes the grammar from a file containing the JSON grammar rules",
+      "syntax":"setGrammarFromFile(String grammarFileName)<br/>",
+      "parameters":
+      [
+			{ 
+				"type": "String", 
+				"desc": "filename of file containing the grammar rules" 
+			}
+	  ],
+	  "returns":
+      [
+			{ 
+				"type": "RiGrammar", 
+				"desc": "this RiGrammar" 
+			}
+			
+	  ],
+      "related":"",
+      "platform":"Java only; for Javascript, use the <script src=...> tag in your html page",
+	  "note":""
+   }      
 ]
