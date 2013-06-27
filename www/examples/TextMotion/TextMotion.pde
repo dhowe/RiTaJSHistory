@@ -32,8 +32,8 @@ void onRiTaEvent(RiTaEvent re) {
 
 void moveToRandom(RiText rt)
 {
-  float newX = RiText.random(width - rt.textWidth()); 
-  float newY = RiText.random(rt.textHeight(), height - 10);
+  float newX = random(width - rt.textWidth()); 
+  float newY = random(rt.textHeight(), height - 10);
   float dst = rt.distanceTo(newX, newY);
 
   rt.moveTo(newX, newY, dst / width);
