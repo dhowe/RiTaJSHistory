@@ -16,81 +16,6 @@ var runtests = function() {
 
     var rg; // the grammar
     
-    test("RiGrammar-exec1", function() {
-  
-        var rg = new RiGrammar();
-
-        rg.addRule("<start>", "<first> | <second>");
-        rg.addRule("<first>", "the <pet> <action> were 'adj()'");
-        rg.addRule("second", "the <action> of the 'adj()' <pet>");
-        rg.addRule("<pet>", "<bird> | <mammal>");
-        rg.addRule("<bird>", "hawk | crow");
-        rg.addRule("<mammal>", "dog");
-        rg.addRule("<action>", "cries | screams | falls");
-
-        for ( var i = 0; i < 10; i++) {
-            var res = rg.expand();
-            ok(res && res.length && res.match("adj()"));
-        }
-    });
-    
-    test("RiGrammar-exec2", function() {
-  
-        var rg = new RiGrammar();
-    
-        // tmp for exec
-        var fun = "function adj() { return Math.random() < .5 ? 'hot' : 'cold'; }";
-		        
-		rg.reset();
-        rg.addRule("<start>", "<first> | <second>");
-        rg.addRule("<first>", "the <pet> <action> were `adj()`");
-        rg.addRule("second", "the <action> of the `adj()` <pet>");
-        rg.addRule("<pet>", "<bird> | <mammal>");
-        rg.addRule("<bird>", "hawk | crow");
-        rg.addRule("<mammal>", "dog");
-        rg.addRule("<action>", "cries | screams | falls");
-
-        for ( var i = 0; i < 10; i++) {
-        	
-        	// TODO: fails in phantomJS  ??
-        	// The "this" value passed to eval must be the global object from which eval originated
-        	
-            var res = rg.expand(fun);
-            ok(res && res.length && !res.match("`"));
-        }
-    });
-    
-    
-    // TODO: fails in phantomJS
-    test("RiGrammar-exec3", function() {
-
-        if (typeof window != 'undefined' && window) 
-        {     
-        	var rg = new RiGrammar(uniqueNouns);
-        	
-        	// save grammar in window for store()/unique() functions below
-            window.grammar = rg;
-             
-            var res = rg.expand();
-            //console.log(res);
-            ok(res);
-            
-            //window.grammar = rg;
-            for ( var i = 0; i < 30; i++) {
-                var res = rg.expand();
-                //console.log("result="+res)
-                ok(res);
-                var dc = res.match(/dog/g);
-                var cc = res.match(/cat/g);
-                var mc = res.match(/mouse/g);
-                ok(!dc || dc.length < 3); //The  cat  chased the cat <--- 2 matches for this case
-                ok(!cc || cc.length < 3);
-                ok(!mc || mc.length < 3);
-            }
-        }
-        //else ok(1); // for node only
-
-    });
 
     test("RiGrammar.functions", function() {
 
@@ -213,11 +138,12 @@ var runtests = function() {
         rg.addRule("<rule1>", "cat", .4);
         rg.addRule("<rule1>", "dog", .6);
         rg.addRule("<rule1>", "boy", .2);
-        ok(rg.getRule("<rule1>"));
-        ok(rg.getRule("rule1"));
+        
+		ok(rg.getRule("<rule1>"));
+  		ok(rg.getRule("rule1"));
 
         var found1 = false, found2 = false, found3 = false;
-        for ( var i = 0; i < 100; i++) {
+        for ( var i = 0; i < 20; i++) {
             var res = rg.expand();
             ok(res === "cat" || res === 'dog' || res === 'boy');
             if (res === "cat")
@@ -227,12 +153,13 @@ var runtests = function() {
             else if (res === "boy") 
             	found3 = true;
         }
+        
         ok(found1);
         ok(found2);
         ok(found3);
-
+        
         var fail = false;
-        for ( var i = 0; i < 100; i++) {
+        for ( var i = 0; i < 20; i++) {
             var res = rg.expand()
             if (!res) fail = true;
         }
@@ -319,7 +246,7 @@ var runtests = function() {
 
         var rg = new RiGrammar(sentenceGrammar);
 	    var r = rg.getRule("<noun_phrase>");
-	    console.log("rule: "+r);
+	    //console.log("rule: "+r);
 	    equal(r,"<determiner> <noun>");
 	    
 		rg.reset();
@@ -523,6 +450,83 @@ var runtests = function() {
 
         //equal("TODO: MORE TESTS HERE");
     });
+    
+        test("RiGrammar-exec1", function() {
+  
+        var rg = new RiGrammar();
+
+        rg.addRule("<start>", "<first> | <second>");
+        rg.addRule("<first>", "the <pet> <action> were 'adj()'");
+        rg.addRule("second", "the <action> of the 'adj()' <pet>");
+        rg.addRule("<pet>", "<bird> | <mammal>");
+        rg.addRule("<bird>", "hawk | crow");
+        rg.addRule("<mammal>", "dog");
+        rg.addRule("<action>", "cries | screams | falls");
+
+        for ( var i = 0; i < 10; i++) {
+            var res = rg.expand();
+            ok(res && res.length && res.match("adj()"));
+        }
+    });
+        
+    test("RiGrammar-exec2", function() {
+  
+        var rg = new RiGrammar();
+    
+        // tmp for exec
+        var fun = "function adj() { return Math.random() < .5 ? 'hot' : 'cold'; }";
+		        
+		rg.reset();
+        rg.addRule("<start>", "<first> | <second>");
+        rg.addRule("<first>", "the <pet> <action> were `adj()`");
+        rg.addRule("second", "the <action> of the `adj()` <pet>");
+        rg.addRule("<pet>", "<bird> | <mammal>");
+        rg.addRule("<bird>", "hawk | crow");
+        rg.addRule("<mammal>", "dog");
+        rg.addRule("<action>", "cries | screams | falls");
+
+        for ( var i = 0; i < 10; i++) {
+        	
+        	// TODO: fails in phantomJS  ??
+        	// The "this" value passed to eval must be the global object from which eval originated
+        	
+            var res = rg.expand(fun);
+            ok(res && res.length && !res.match("`"));
+        }
+    });
+    
+    
+    // TODO: fails in phantomJS
+    test("RiGrammar-exec3", function() {
+
+        if (typeof window != 'undefined' && window) 
+        {     
+        	var rg = new RiGrammar(uniqueNouns);
+        	
+        	// save grammar in window for store()/unique() functions below
+            window.grammar = rg;
+             
+            var res = rg.expand();
+            //console.log(res);
+            ok(res);
+            
+            //window.grammar = rg;
+            for ( var i = 0; i < 30; i++) {
+                var res = rg.expand();
+                //console.log("result="+res)
+                ok(res);
+                var dc = res.match(/dog/g);
+                var cc = res.match(/cat/g);
+                var mc = res.match(/mouse/g);
+                ok(!dc || dc.length < 3); //The  cat  chased the cat <--- 2 matches for this case
+                ok(!cc || cc.length < 3);
+                ok(!mc || mc.length < 3);
+            }
+        }
+        //else ok(1); // for node only
+
+    });
+
 }
 
 // unique methods...
