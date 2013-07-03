@@ -115,6 +115,14 @@
       "description":"Returns the current grammar as a string",
       "syntax":"getGrammar()",
       "parameters":[],
+      "returns":
+      [
+			{ 
+			"type": "String", 
+			"desc": "a string representation of the grammar" 
+			}
+			
+	  ],
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
