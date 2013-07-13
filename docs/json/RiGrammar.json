@@ -239,10 +239,10 @@
 	  "note":""
    },
    {
-      "methodName":"setGrammar()",
+      "methodName":"load()",
       "example":"",
-      "description":"Re-initializes the grammar from an object or JSON string containing the rules",
-      "syntax":"setGrammar(String grammar)<br/>setGrammar(object grammar)",
+      "description":"Re-initializes the grammar from an object or string containing the rules",
+      "syntax":"load(String grammar)<br/>load(object grammar)",
       "parameters":
       [
 			{ 
@@ -263,10 +263,10 @@
 	  "note":""
    },
    {
-      "methodName":"setGrammarFromFile()",
+      "methodName":"loadFromFile()",
       "example":"",
-      "description":"Re-initializes the grammar from a file containing the JSON grammar rules",
-      "syntax":"setGrammarFromFile(String grammarFileName)<br/>",
+      "description":"Re-initializes the grammar from a file containing the grammar rules",
+      "syntax":"loadFromFile(String grammarFileName)<br/>",
       "parameters":
       [
 			{ 

@@ -15,7 +15,7 @@ var mDown, rts, txt = "A huge lizard was discovered drinking out of the fountain
 function setup()
 {
     RiText.size(600, 800);  
-    RiText.defaultFont({ name:"Georgia", size:16, leading:18 });
+    RiText.defaultFont("Georgia", 16);
     txt += "</p>" + txt;   // add a paragraph
     mouseReleased();
 }
@@ -41,7 +41,7 @@ function mouseReleased(e) {
     RiText.disposeAll();
     rts = RiText.createWords(txt, x, y, w, h);
     for ( var i = 0; i < rts.length; i++) 
-      rts[i].color(RiText.randomColor()); 
+      rts[i].fill(RiText.randomColor()); 
     draw();
 }
 

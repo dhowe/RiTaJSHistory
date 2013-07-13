@@ -8,7 +8,7 @@ var runtests = function() {
 
     // TODO: add separate test file (same tests), for remote loaded grammars
 
-    var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getRule", "getGrammar", "hasRule", "print", "removeRule", "reset", "setGrammar" ];
+    var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getRule", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFromFile" ];
 
     var sentenceGrammar = { '<start>' : '<noun_phrase> <verb_phrase>', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
 
@@ -239,7 +239,9 @@ var runtests = function() {
     });
     
 	test("RiGrammar.getGrammar", function() {
-		ok(!"implement me");
+		var rg = new RiGrammar(sentenceGrammar);
+	    var e = "<start>\n  '<noun_phrase> <verb_phrase>' [1]\n<noun_phrase>\n  '<determiner> <noun>' [1]\n<verb_phrase>\n  '<verb>' [1]\n  '<verb> <noun_phrase>' [.1]\n<determiner>\n  'a' [.1]\n  'the' [1]\n<noun>\n  'woman' [1]\n  'man' [1]\n<verb>\n  'shoots' [1]\n";
+		equal(rg.getGrammar(),e);
 	});
         
     test("RiGrammar.getRule", function() {
@@ -267,12 +269,12 @@ var runtests = function() {
 	  
 	  /*
 	    rg = new RiGrammar(sentenceGrammar);
-	    rg.setGrammarFromFile("sentence2.json");
+	    rg.loadFromFile("sentence2.json");
 	    r = rg.getRule("<noun_phrase>");    
 	    equal(r,"<determiner> <noun>");
 	    
 	    rg = new RiGrammar(sentenceGrammar);
-	    rg.setGrammarFromFile("sentence1.json");
+	    rg.loadFromFile("sentence1.json");
 	    r = rg.getRule("<noun_phrase>");    
 	    //System.out.println("'"+r+"'");
 	    equal(r,"<determiner> <noun>");
@@ -288,9 +290,9 @@ var runtests = function() {
 	    equal('', rg.getRule("start"));
 	
 	    var g = [];
-	    g[0] = RiGrammar().setGrammar(sentenceGrammar); 
-	        // (new RiGrammar()).setGrammarFromFile("sentence1.json"),
-	        // (new RiGrammar()).setGrammarFromFile("sentence2.json")
+	    g[0] = RiGrammar().load(sentenceGrammar); 
+	        // (new RiGrammar()).loadFromFile("sentence1.json"),
+	        // (new RiGrammar()).loadFromFile("sentence2.json")
 	    
 	    for (var i = 0; i < g.length; i++) {
 	      var rule = g[i].getRule("<noun_phrase>");
@@ -354,21 +356,21 @@ var runtests = function() {
 
         var rg = new RiGrammar();
         ok(rg._rules);
-        rg.setGrammar(JSON.stringify(sentenceGrammar));
+        rg.load(JSON.stringify(sentenceGrammar));
         rg.reset();
         deepEqual(rg._rules, {});
         deepEqual(rg, RiGrammar());
     });
 
 
-    test("RiGrammar.setGrammar", function() {
+    test("RiGrammar.load", function() {
 
         var rg = new RiGrammar();
         ok(rg._rules);
         ok(typeof rg._rules['<start>'] === 'undefined');
         ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
 
-        rg.setGrammar(JSON.stringify(sentenceGrammar));
+        rg.load(JSON.stringify(sentenceGrammar));
         ok(rg._rules);
         ok(typeof rg._rules['<start>'] !== 'undefined');
         ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');

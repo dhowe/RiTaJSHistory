@@ -220,6 +220,10 @@ table .header:hover:after{visibility:visible;}
 table .headerSortDown:after,table .headerSortDown:hover:after{visibility:visible;filter:alpha(opacity=60);-khtml-opacity:0.6;-moz-opacity:0.6;opacity:0.6;}
 table .headerSortUp:after{border-bottom:none;border-left:4px solid transparent;border-right:4px solid transparent;border-top:4px solid #000;visibility:visible;-webkit-box-shadow:none;-moz-box-shadow:none;box-shadow:none;filter:alpha(opacity=60);-khtml-opacity:0.6;-moz-opacity:0.6;opacity:0.6;}
 table .blue{color:#049cdb;border-bottom-color:#049cdb;}
+
+table .fields{ background-color:whiteSmoke; width:100%;padding:0;font-size:13px;border-collapse:collapse;}table th,table td{padding:10px 5px 9px;line-height:2px;text-align:left;}
+table .fields td{vertical-align:top;border-top:0px solid #ddd;}
+
 table .headerSortUp.blue,table .headerSortDown.blue{background-color:#ade6fe;}
 table .green{color:#46a546;border-bottom-color:#46a546;}
 table .headerSortUp.green,table .headerSortDown.green{background-color:#cdeacd;}
