@@ -14,10 +14,10 @@ var x=90, y=50, w=380, h=500, ctx = document.getElementById("canvas").getContext
 function setup() {
 
     RiText.defaults.paragraphLeading = 15;
-    RiText.defaultFont({name:"Georgia", size:16, leading:18});
+    RiText.defaultFont("Georgia", 16);
 
     for (var i = 0; i < 1; i++)
-        txt += "</p>" + txt;   // specify some paragraphs
+        txt += "<p/>" + txt;   // specify some paragraphs
 
     mouseReleased();
     RiText.loop();
@@ -36,7 +36,7 @@ function mouseReleased(e) {
     RiText.disposeAll();
     rts = RiText.createLines(txt, x, y, w, h);
    	for ( var i = 0; i < rts.length; i++) 
-      rts[i].color(RiText.randomColor()); 
+      rts[i].fill(RiText.randomColor()); 
 }
 
 function mousePressed(e) {
