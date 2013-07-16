@@ -33,7 +33,7 @@ void draw()
 // called by RiTa whenever a 'moveTo' behavior finishes
 void onRiTaEvent(e)
 {
-    if (e.type() == 'moveToCompleted') 
+    if (e.type() == RiTa.MOVE_TO) 
        moveToRandom(e.source());
 }
 

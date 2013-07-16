@@ -34,7 +34,7 @@ function mouseMoved(e) {
     var picks = RiText.picked(mp.x, mp.y);
     for ( var i = 0; i < RiText.instances.length; i++) {
         var r = RiText.instances[i];
-        r.showBoundingBox(r==picks[0]);
+        r.showBounds(r==picks[0]);
     }
 }
 

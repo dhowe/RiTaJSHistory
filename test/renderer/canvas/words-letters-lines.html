@@ -13,9 +13,9 @@ var line1, line2 = [], line3 = [];
 
 function setup() 
 {
-  RiText.defaultFont( { name:"Georgia", size:32 });
+  RiText.defaultFont("Georgia", 32);
   
-  RiText.showBoundingBoxes(true);
+  RiText.defaults.showBounds = true;
 
   line1 = new RiText(txt, 64, 100);     // lines
   
