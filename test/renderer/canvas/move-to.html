@@ -30,7 +30,7 @@ function draw()
 //called by RiTa whenever a 'moveTo' behavior finishes
 function onRiTaEvent(e)
 {
-    if (e.getType() == 'moveToCompleted') 
+    if (e.type() == RiTa.MOVE_TO) 
         moveToRandom(e.source());
 }
 
@@ -39,7 +39,7 @@ function moveToRandom(rt)
 {
     var newX = RiText.random(RiText.width() - rt.textWidth()); // broken??
     var newY = RiText.random(rt.textHeight(), RiText.height() - 10);
-    var dst = RiText.distance(rt.x, rt.y, newX, newY);
+    var dst = RiTa.distance(rt.x, rt.y, newX, newY);
     rt.moveTo(newX,newY,dst / RiText.width());
 }
 

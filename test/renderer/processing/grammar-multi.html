@@ -11,8 +11,8 @@ void setup()
 {
     size(650, 200);
 
-    RiText.setDefaultFont(createFont("arial",30));  
-    RiText.setDefaultAlignment(CENTER);
+    RiText.defaultFont("arial",30);  
+    RiText.defaults.alignment=CENTER;
 
     rts[0] = new RiText("click to", width / 2, 75);
     rts[1] = new RiText("generate", width / 2, 110);
@@ -37,7 +37,7 @@ void mouseClicked()
     var result = grammar.expand();
     var lines =  result.split("%");
     for ( var int = 0; int < rts.length; int++) {
-        rts[int].setText(lines[int]);
+        rts[int].text(lines[int]);
     }
 }
 // ============================ End Processing =================================

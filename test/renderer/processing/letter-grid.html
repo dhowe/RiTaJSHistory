@@ -2,6 +2,7 @@
 <script src="../../../src/rita.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
+	
 // =========================== Start Processing =============================== 
 
 var rt=[], k=0, num=6;
@@ -16,10 +17,9 @@ void setup()
   
   for (var i=0; i< num; i++) {
     for (var j=0; j< num; j++, k++) {
-      char c = (char) (65 + k);           // letters
+      String c = String.fromCharCode(65 + k);  // letters
       rt[k] = RiText(65+k, 24+j*30, 32+i*30);
       if (k < 26) {    
-          
           if ("AEIOU".indexOf(c) >= 0) {  // vowels
             rt[k].colorTo([204], 1);
           }
@@ -33,13 +33,12 @@ void setup()
 }
 
 void draw() {
-    
+
   background(0);
   RiText.drawAll();
 }
 
 void onRiTaEvent(re) {
-        
   re.source().colorTo([ random(100,255), random(100,255), 0 ], 1);
 }
 

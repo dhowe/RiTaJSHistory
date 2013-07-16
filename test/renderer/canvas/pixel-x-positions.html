@@ -2,17 +2,17 @@
 <script src="../../../src/rita.js"></script>
 <script>
 
-var ctx = RiText.graphics();
+var ctx = RiText._graphics();
 var y, numWords, txt = "The dog ate the cat.";
 
 window.onload = function(){
   
-  RiText.showBoundingBoxes(true);
-  RiText.defaultFont({name:"arial",size:30});  
+  RiText.defaults.showBounds = true;
+  RiText.defaultFont("arial", 30);  
   
   line1 = new RiText(txt, 64, 50); 
-  numWords = txt.split(" ").length; 
-
+  numWords = txt.split(" ").length;
+  
   drawIt();
 }
 

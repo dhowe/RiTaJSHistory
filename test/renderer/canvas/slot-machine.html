@@ -13,10 +13,10 @@ function setup() {
     
   size(400, 100);
 
-  RiText.defaultFont(createFont("Arial", 32));
+  RiText.defaultFont("Arial", 32);
 
   // the initial layout
-  var xOff = width() / 2 - 100;
+  var xOff =100;
   for (var j = 0; j < 3; j++)
     slots[j] = new RiText(items[j], xOff += 50, 65);
   
@@ -36,7 +36,7 @@ function onRiTaEvent(re) {
   
   // set them all to red
   for (var i = 0; i < slots.length; i++) 
-    slots[i].color(255,0,0);
+    slots[i].fill(255,0,0);
   
   // lets some keep spinning 
   if (clicks < 1)
@@ -50,8 +50,8 @@ function onRiTaEvent(re) {
 function randomItem(rt) {
   // pick a random string & set it to black
   var randIdx = Math.floor(random(slots.length));
-  rt.setText(items[randIdx]);
-  rt.setColor(0);
+  rt.text(items[randIdx]);
+  rt.fill(0);
 }
 
 function draw() {

@@ -249,7 +249,7 @@ function setup()
     RiText.size(650, 200);
 
     RiText.defaultFont("arial",30);  
-    RiText.defaultAlignment(CENTER);
+    RiText.defaults.alignment = CENTER;
 
     rts[0] = RiText("click to", RiText.width() / 2, 75);
     rts[1] = RiText("generate", RiText.width() / 2, 110);

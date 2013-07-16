@@ -3,14 +3,14 @@
 
 <script>
 
-//RiTa.p5Compatible(true);
+RiTa.p5Compatible(true);
 
 function setup()
 {	
   size(200, 200);
   
-  RiText.defaultColor(255);
-  RiText.defaultAlignment(CENTER);
+  RiText.defaultFill(255);
+  RiText.defaults.alignment = CENTER;
   RiText.defaultFont("Arial",36);
 
   var rt = [];  
@@ -24,7 +24,7 @@ function setup()
       if (k < 26) {    
           
           if ("AEIOU".indexOf(c) >= 0) {  // vowels
-            rt[k].fadeColor([204], 1);
+            rt[k].colorTo([204], 1); 
           }
       } 
       else {

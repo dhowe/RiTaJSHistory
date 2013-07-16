@@ -22,7 +22,7 @@ void draw() {
     var prt = RiText.picked(mouseX, mouseY);
 	for ( var i = 0; i < RiText.instances.length; i++) {
 	    var rt = RiText.instances[i];
-        rt.showBoundingBox(prt[0] == rt);
+        rt.showBounds(prt[0] == rt);
         rt.draw();
     }
 }

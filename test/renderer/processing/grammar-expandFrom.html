@@ -21,14 +21,14 @@ void setup()
 {
     size(650, 200);
 
-    RiText.setDefaultFont(createFont("arial",30));
-    RiText.setDefaultAlignment(CENTER);
+    RiText.defaultFont("arial",30);
+    RiText.defaults.alignment = CENTER;
 
     rts[0] = new RiText("click to", width / 2, 75);
     rts[1] = new RiText("generate", width / 2, 110);
     rts[2] = new RiText("a 7-7-7 haiku", width / 2, 145); 
 
-    grammar = new RiGrammar(haikuGrammar);
+    grammar = RiGrammar(haikuGrammar);
 }
 
 void draw()
@@ -43,7 +43,7 @@ void mouseClicked()
     // all 7s
     for ( var i = 0; i < rts.length; i++) {
         var result = grammar.expandFrom("<7-line>");
-        rts[i].setText(result);
+        rts[i].text(result);
     }
 }
 // ============================ End Processing =================================

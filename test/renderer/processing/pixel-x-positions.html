@@ -11,8 +11,8 @@ void setup()
 {          
   size(400, 100);
   
-  RiText.defaults.boundingBoxVisible = true;
-  RiText.defaultFont(createFont("arial",30));  
+  RiText.defaults.showBounds = true;
+  RiText.defaultFont("arial", 30);  
   
   line1 = new RiText(txt, 64, 50); 
   numWords = txt.split(" ").length;

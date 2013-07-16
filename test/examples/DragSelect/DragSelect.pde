@@ -9,7 +9,7 @@ void setup()
   RiText.setDefaultFont("Ziggurat32.vlw"); 
 
   rt = new RiText(this, "drag me", 70, 150);
-  rt.showBoundingBox(true);
+  rt.showBounds(true);
   rt.boundingBoxStrokeWeight(4);
   rt.setMouseDraggable(true);    
   rt.setSelectedColor(128,0,0);
