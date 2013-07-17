@@ -501,9 +501,12 @@ var runtests = function() {
     // TODO: fails in phantomJS
     test("RiGrammar-exec3", function() {
 
+		var rg = new RiGrammar(uniqueNouns);
+		ok(rg); // >= 1 assertion, required for node
+		
         if (typeof window != 'undefined' && window) 
         {     
-        	var rg = new RiGrammar(uniqueNouns);
+        	
         	
         	// save grammar in window for store()/unique() functions below
             window.grammar = rg;
@@ -525,8 +528,6 @@ var runtests = function() {
                 ok(!mc || mc.length < 3);
             }
         }
-        //else ok(1); // for node only
-
     });
 
 }
