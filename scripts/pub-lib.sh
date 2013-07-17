@@ -22,6 +22,7 @@ JAVAPROJ=$DOCDIR/eclipse-workspace/RiTa
 DLDIR=$JAVAPROJ/distribution/RiTa-$VERSION/download
 WWWDIR=$JSPROJ/build/www
 ZIP_FILE=ritajs-www.zip
+PROPS_FILE=$JAVAPROJ/latest/RiTa.txt
 DEST=dhowe@localhost
 
 while [ $# -ge 1 ]; do
@@ -64,6 +65,10 @@ echo
 echo copying $ZIP_FILE to $DEST...
 echo
 cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -fs rita-${VERSION}.jar rita-latest.jar; ls -l ../js)" 
+
+echo copying $PROPS_FILE to $DEST...
+echo
+scp $PROPS_FILE $DEST:/Library/WebServer/Documents/rita
 
 echo
 rm -rf $ZIP_FILE
