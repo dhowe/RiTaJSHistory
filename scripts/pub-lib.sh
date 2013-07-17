@@ -17,8 +17,8 @@ fi
 
 VERSION=$1
 DOCDIR=~/documents
-JSPROJ=$DOCDIR/javascript-workspace/RiTaLibraryJS
 JAVAPROJ=$DOCDIR/eclipse-workspace/RiTa
+JSPROJ=$JAVAPROJ/RiTaLibraryJS
 DLDIR=$JAVAPROJ/distribution/RiTa-$VERSION/download
 WWWDIR=$JSPROJ/build/www
 ZIP_FILE=ritajs-www.zip
