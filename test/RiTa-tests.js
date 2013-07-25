@@ -7,9 +7,9 @@
 
 	var functions = [ "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering",
 					"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
-					"tokenize", "trim", "distance", "random", "getPhonemes", "getPosTags", 
+					"tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", 
 					"getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet",
-					 "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize",
+					"conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize",
 					"timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
 
     test("RiTa.functions", function () {
@@ -43,6 +43,19 @@
         }
     });
     
+	asyncTest("RiTa.loadString()", function () {
+		if (typeof document === 'undefined') {// for node
+			expect(0);
+			start();
+			return;
+		}
+    	RiTa.loadString("http://localhost/testfiles/kafka.txt", document, function(s) {
+			ok(s);
+    		ok(s.length() > 100000);
+    		start();		
+    	});s
+  	});
+  
     test("RiTa.isAbbreviation()", function () {
 
         ok(RiTa.isAbbreviation("Dr."));

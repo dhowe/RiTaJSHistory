@@ -265,10 +265,10 @@
 	  "note":""
    },
    {
-      "methodName":"recognizeSentences()",
+      "methodName":"sentenceAware()",
       "example":"",
-      "description":"Returns whether the model will try to recognize (English-like) sentences in its input.<br><br>This value can only be set via the object's constructor",
-      "syntax":"recognizeSentences()",
+      "description":"Returns whether the model will try to recognize (English-like) sentences in its input.<br><br>This value can only be set via the constructor",
+      "syntax":"sentenceAware()",
       "parameters":
       [
 	  ],

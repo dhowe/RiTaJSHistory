@@ -48,7 +48,7 @@ cp $JSPROJ/www/download/rita-*.js ./download/
 cp $JAVAPROJ/latest/rita-*.jar ./download/
 echo
 
-echo zipping: ritajs-www.zip
+echo zipping...
 cd $WWWDIR
 rm -rf $ZIP_FILE
 jar cf $ZIP_FILE *
@@ -62,7 +62,7 @@ echo
 # NEXT: add a separate scp for library.properties -> rita/RiTa.txt?
 #
 
-echo copying $ZIP_FILE to $DEST...
+echo copying to $DEST...
 echo
 cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -fs rita-${VERSION}.jar rita-latest.jar; ls -l ../js)" 
 
