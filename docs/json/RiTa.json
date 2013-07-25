@@ -358,14 +358,18 @@
          {
             "type":"String OR String[]",
             "desc":"the text to be tagged"
+         },
+         {
+            "type":"boolean",
+            "desc":"if true, use WordNet syle tags (optional, default=false)"
          }
         
       ],
       "returns":[
-         {
-            "type":"String",
+       {
+            "type":"String[] of part-of-speech tags",
             "desc":""
-         }
+       }
 
       ],
       "related":"",

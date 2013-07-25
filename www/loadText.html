@@ -1,0 +1,40 @@
+<html>
+<head>
+<script src=help.js></script>
+</head>
+<body>
+test3
+</body>
+<script>
+
+loadText('wheights.txt',function(s) {
+   	alert("text: "+s.substring(0,40));
+});
+
+/*
+function loadText(url,cb) {
+
+    var cwin, text, iframe = document.createElement("iframe");
+    iframe.setAttribute('src', url);
+    iframe.setAttribute('style', 'display: none');
+    document.body.appendChild(iframe);
+    cwin = iframe.contentWindow || iframe.contentDocument.parentWindow;
+    cwin.onload = function() {
+    	text = cwin.document.body.childNodes[0].innerHTML;
+        cb.call(this,text);
+    };
+}
+*/
+
+
+	//document.body.removeChild(iframe);
+    /*while (strRawContents.indexOf("\r") >= 0)
+        strRawContents = strRawContents.replace("\r", "");
+    var arrLines = strRawContents.split("\n");
+    alert("File " + oFrame.src + " has " + arrLines.length + " lines");
+    for (var i = 0; i < arrLines.length; i++) {
+        var curLine = arrLines[i];
+        alert("Line #" + (i + 1) + " is: '" + curLine + "'");
+    }*/
+</script>
+</html>
