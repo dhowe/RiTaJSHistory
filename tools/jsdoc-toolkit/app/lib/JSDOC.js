@@ -1,6 +1,6 @@
 /**
 	@overview
-	@date $Date: 2012/06/20 14:10:17 $
+	@date $Date: 2013/08/08 05:27:15 $
 	@version $Revision: 1.1 $ 
 	@location $HeadURL: https://jsdoc-toolkit.googlecode.com/svn/tags/jsdoc_toolkit-2.4.0/jsdoc-toolkit/app/lib/JSDOC.js $
 	@name JSDOC.js
