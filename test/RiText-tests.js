@@ -130,11 +130,14 @@
         ok(new RiText("The dog was white"));
 
         ok(RiText("The dog was white"));
-
+        
         ok(RiText(""));
 
         ok(RiText());
         ok(RiText(123));
+        
+        ok(RiText(" "));
+        equal(RiText(" ").length(), 1);
 
 	    ok(new RiText(RiString("The dog was white")));
         ok(RiText(RiString("The dog was white")));
@@ -180,6 +183,9 @@
 
         ok(RiText(this));
         ok(RiText(this, 123));
+        
+        ok(RiText(this," "));
+        equal(RiText(this," ").length(), 1);
 
         ok(new RiText(this, RiString("The dog was white")));
         ok(RiText(this, RiString("The dog was white")));
