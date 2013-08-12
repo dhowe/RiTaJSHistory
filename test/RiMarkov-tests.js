@@ -789,5 +789,4 @@ function D(obj) {
 	return properties;
 }
 
-if ( typeof exports != 'undefined')
-	exports.unwrap = runtests;
+if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;

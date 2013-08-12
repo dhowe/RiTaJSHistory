@@ -57,4 +57,4 @@ var runtests = function () {
      
 }
 
-if (typeof exports != 'undefined') exports.unwrap = runtests;
+if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;

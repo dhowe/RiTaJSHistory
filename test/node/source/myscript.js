@@ -1,3 +1,0 @@
-exports.myObj = {
-      a: true
-}

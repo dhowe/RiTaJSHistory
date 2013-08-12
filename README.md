@@ -1,28 +1,23 @@
 
 ## RiTaJS: a generative language toolkit for JavaScript
 
+<a href="http://rednoise.org/rita/"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo2.png"/></a>
 
-<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo2.png"/></a>
+### <a href="http://rednoise.org/rita">The RiTaJS website</a>
 
-### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
+RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. Is is implemented in Java and JavaScript (with a unified API for both) and optionally integrates with both Processing(JS) and NodeJS. It is free/libre and open-source according to the GPL license (http://www.gnu.org/licenses/gpl.txt). 
 
-RiTaJS is designed to an easy-to-use toolkit for experiments 
-in natural language and generative literature, based on the RiTa 
-(http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
-works alone or in conjunction with Processing(JS) and/or with 
-its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
-are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
-
-
+Please see https://github.com/dhowe/RiTa for the Java implementation of RiTa.  
+  
 About the project
 --------
-* Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
-* License: 			 GPL (see included LICENSE file for full license)
-* Maintainers:       See included AUTHORS file for contributor list
-* Web Site:          http://rednoise.org/rita/js
-* Github Repo:       https://github.com/dhowe/RiTaJS/
-* Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
-
+* Original Author:  Daniel C. Howe (http://rednoise.org/~dhowe)
+* Related:			RiTaJS -> https://github.com/dhowe/RiTa/js
+* License:			GPL (see included LICENSE file for full license)
+* Maintainers:      See included AUTHORS file for contributor list
+* Web Site:         http://rednoise.org/rita
+* Github Repo:      https://github.com/dhowe/RiTaJS/
+* Bug Tracker:      https://github.com/dhowe/RiTaJS/issues
 
 
 A Simple Sketch
@@ -69,6 +64,19 @@ If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>
 </pre>  
 
 
+With NodeJS
+--------
+
+<pre>
+To install:
+$ npm install rita
+
+A simple test:
+
+var rita = require('rita');
+var rs = rita.RiString('The white elephant jumped.');
+console.log(rs.features());
+</pre>  
 
 
 Can I contribute?
