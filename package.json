@@ -1,24 +1,23 @@
 {
-  "author": "Daniel C. Howe <daniel.c.howe@gmail.com>",
-  "name": "RiTaJS",
-  "description": "RiTaJS: A generative language toolkit for JavaScript",
-  "homepage": "http://rednoise.org/rita/js",
+  "version": "1.0.392",
+  "author": "Daniel C. Howe <daniel@rednoise.org>",
+  "name": "rita",
+  "description": "RiTa: A toolkit for natural/generative language",
+  "homepage": "http://rednoise.org/rita",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dhowe/RiTaJS.git"
+    "url": "https://github.com/dhowe/RiTaJS.git"
   },
   "main": "lib/rita.js",
   "engines": {
-    "node": ">=0.4"
+    "node": ">=0.6"
   }, 
-  "maintainers" : [
-        { "name" : "Daniel C. Howe", "email" : "daniel.c.howe@gmail.com" }
-  ],
   "bugs": { 
-        "mail": "daniel.c.howe@gmail.com", "url": "https://github.com/dhowe/RiTaJS/issues" 
+        "mail": "daniel@rednoise.org", "url": "https://github.com/dhowe/RiTaJS/issues" 
   },
+  "license" : "GPL",
   "scripts": {
-        "test": ""
+        "test": "scripts/run-in-qunit.js"
   },
   "dependencies": {},
   "devDependencies": {},
