@@ -4,9 +4,12 @@
 
  <property name="src.loc" value="lib"/>
 
+ <!--echo message="src.loc=${src.loc}"/-->
+
  <target name="init">
 
 	  <property name="dir" value="../test"/>
+
 	  <property name="buildname" value="RiTaJS"/>
 
 	  <property name="${dir}/RiTa-tests.html?src=${src.loc}&amp;data=1"      value="file1"/>
