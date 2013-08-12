@@ -1,4 +1,5 @@
 config
+node
 build
 .project
 .settings
