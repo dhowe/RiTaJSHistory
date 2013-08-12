@@ -15,7 +15,6 @@ my $BUILD_XML = "build-all-tests.xml";
 #$BUILD_XML = "build-one-test.xml";
 
 #### VARIABLES
-
 my $name = 0;
 my $total = 0;
 my $passed = 0;
@@ -31,7 +30,13 @@ $src = $ARGV[0] if (scalar(@ARGV)>0);
 
 print "\nRunning tests in PhantomJS...\n\n" if ($VERBOSE);
 
-my @output = split(/\n/, `$ANT -Dsrc.loc=$src -f $BUILD_XML 2>&1`); 
+print "Call: $ANT -Dsrc.loc=$src -f $BUILD_XML 2>&1\n";
+my $res = `$ANT -Dsrc.loc=$src -f $BUILD_XML 2>&1`; 
+print $res;
+
+die;
+
+my @output = split(/\n/, $res); 
 
 ## print("$ANT -Dsrc.loc=$src -f $BUILD_XML\n");
 ## DBUG: 'ant -Dsrc.loc=lib -f build-all-tests.xml'
