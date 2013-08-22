@@ -565,10 +565,10 @@
 	  "note":""
    },
    {
-      "methodName":"removeCharAt()",
+      "methodName":"removeChar()",
       "example":"",
       "description":"Removes the character at the specified index",
-      "syntax":"removeCharAt(int index)",
+      "syntax":"removeChar(int index)",
       "parameters":
       [
 			{ 
@@ -589,10 +589,10 @@
 	  "note":""
    },
    {
-      "methodName":"replaceCharAt()",
+      "methodName":"replaceChar()",
       "example":"",
       "description":"Replaces the character at 'idx' with 'replaceWith'. <br/>If the specified 'idx' is less than zero, or beyond the length of the current text, there will be no effect",
-      "syntax":"replaceCharAt(int idx, String replaceWith)",
+      "syntax":"replaceChar(int idx, String replaceWith)",
       "parameters":
       [
 			{ 

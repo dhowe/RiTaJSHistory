@@ -17,6 +17,7 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 About the project
 --------
 * Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
+* Related:           RiTa -> https://github.com/dhowe/RiTa
 * License: 			 GPL (see included LICENSE file for full license)
 * Maintainers:       See included AUTHORS file for contributor list
 * Web Site:          http://rednoise.org/rita/js
