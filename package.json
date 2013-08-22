@@ -1,5 +1,5 @@
 {
-  "version": "1.0.392",
+  "version": "1.0.393",
   "author": "Daniel C. Howe <daniel@rednoise.org>",
   "name": "rita",
   "description": "RiTa: A toolkit for natural/generative language",
@@ -12,6 +12,12 @@
   "engines": {
     "node": ">=0.6"
   }, 
+  "keywords": [
+    "nlp", "nlg",
+    "language",
+    "generative",
+    "natural"
+  ],
   "bugs": { 
         "mail": "daniel@rednoise.org", "url": "https://github.com/dhowe/RiTaJS/issues" 
   },
