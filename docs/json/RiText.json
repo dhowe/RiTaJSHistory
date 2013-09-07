@@ -147,7 +147,7 @@
       "platform":"Java / Javascript",
 	  "note":""
    },
-      {
+   {
 	  "variable":true,
       "methodName":"defaults.rotateZ",
       "example":"",
@@ -261,7 +261,7 @@
 	{
       "methodName":"analyze()",
       "example":"myRiText.get('phonemes') || myRiText.get(RiTa.PHONEMES);",
-      "description":"Computes a set of features for the contained string, including phonemes, syllables, stresses, etc. To access any of these, use get(name)",
+      "description":"Computes a set of features for the contained String, including phonemes, syllables, stresses, etc. To access any of these, use get(name)",
       "syntax":"analyze()",
       "parameters":
       [
@@ -282,7 +282,7 @@
    {
       "methodName":"charAt()",
       "example":"",
-      "description":"Returns the character at the given 'index', or empty string if none is found",
+      "description":"Returns the character at the given 'index', or empty String if none is found",
       "syntax":"charAt(int index)",
       "parameters":
       [
@@ -328,13 +328,13 @@
    {
       "methodName":"endsWith()",
       "example":"",
-      "description":"Tests if this string ends with the specified suffix",
+      "description":"Tests if this String ends with the specified suffix",
       "syntax":"endsWith(String substr)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "string the suffix" 
+			"desc": "String the suffix" 
 			}
 	  ],
 	  "returns":
@@ -397,7 +397,7 @@
    {
       "methodName":"indexOf()",
       "example":"",
-      "description":"Returns the index within this string of the first occurrence of the specified character",
+      "description":"Returns the index within this String of the first occurrence of the specified character",
       "syntax":"indexOf(String searchstring)<br/>indexOf(String searchstring, int start)",
       "parameters":
       [
@@ -407,7 +407,7 @@
 			},
 			{ 
 			"type": "int", 
-			"desc": "(Optional) The start position in the string to start the search. If omitted, the search starts from position 0" 
+			"desc": "(Optional) The start position in the String to start the search. If omitted, the search starts from position 0" 
 			}
 	  ],
 	  "returns":
@@ -451,7 +451,7 @@
    {
       "methodName":"lastIndexOf()",
       "example":"",
-      "description":"Returns the index within this string of the last occurrence of the specified character",
+      "description":"Returns the index within this String of the last occurrence of the specified character",
       "syntax":"lastIndexOf(String searchstring)<br/>lastIndexOf(String searchstring, int start)",
       "parameters":
       [
@@ -461,7 +461,7 @@
 			},
 			{ 
 			"type": "int", 
-			"desc": "(Optional) The start position in the string to start the search. If omitted, the search starts from position 0" 
+			"desc": "(Optional) The start position in the String to start the search. If omitted, the search starts from position 0" 
 			}
 	  ],
 	  "returns":
@@ -478,7 +478,7 @@
    {
       "methodName":"length()",
       "example":"",
-      "description":"Returns the length of this string",
+      "description":"Returns the length of this String",
       "syntax":"length()",
       "parameters":
       [
@@ -488,7 +488,7 @@
       [
 			{ 
 			"type": "int", 
-			"desc": "the length of the string" 
+			"desc": "the length of the String" 
 			}
 	  ],
       "related":"",
@@ -498,7 +498,7 @@
    {
       "methodName":"match()",
       "example":"",
-      "description":"Searches for a match between a substring (or regular expression) and the contained string, and _returns the matches",
+      "description":"Searches for a match between a substring (or regular expression) and the contained String, and _returns the matches",
       "syntax":"match(String regex)",
       "parameters":
       [
@@ -673,7 +673,7 @@
    {
       "methodName":"replaceAll()",
       "example":"",
-      "description":"Replaces each substring of this string that matches the given regular expression with the given replacement.",
+      "description":"Replaces each substring of this String that matches the given regular expression with the given replacement.",
       "syntax":"replaceAll(String regex, String replaceWith)",
       "parameters":
       [
@@ -727,7 +727,7 @@
    {
       "methodName":"slice()",
       "example":"",
-      "description":"Extracts a part of a string from this RiText",
+      "description":"Extracts a part of a String from this RiText",
       "syntax":"slice(int begin)<br/>slice(int begin, int end)",
       "parameters":
       [
@@ -737,7 +737,7 @@
 			},
 			{ 
 			"type": "int", 
-			"desc": "(Optional) Where to end the extraction. If omitted, slice() selects all characters from the begin position to the end of the string" 
+			"desc": "(Optional) Where to end the extraction. If omitted, slice() selects all characters from the begin position to the end of the String" 
 			}
 	  ],
 	  "returns":
@@ -754,13 +754,13 @@
    {
       "methodName":"split()",
       "example":"",
-      "description":"Split a RiText into an array of sub-RiText and return the new array. <br/>If an empty string ('') is used as the separator, the string is split between each character.",
+      "description":"Split a RiText into an array of sub-RiText and return the new array. <br/>If an empty String ('') is used as the separator, the String is split between each character.",
       "syntax":"split()<br/>split(String separator)<br/>split(int limit)<br/>split(String separator, int limit)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "(Optional) Specifies the character to use for splitting the string. If omitted, the entire string will be returned. If an empty string ('') is used as the separator, the string is split between each character." 
+			"desc": "(Optional) Specifies the character to use for splitting the String. If omitted, the entire String will be returned. If an empty String ('') is used as the separator, the String is split between each character." 
 			},
 			{ 
 			"type": "int", 
@@ -781,13 +781,13 @@
    {
       "methodName":"startsWith()",
       "example":"",
-      "description":"Tests if this string starts with the specified prefix",
+      "description":"Tests if this String starts with the specified prefix",
       "syntax":"startsWith(String substr)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "string the prefix" 
+			"desc": "String the prefix" 
 			}
 
 	  ],
@@ -795,7 +795,7 @@
       [
 			{ 
 			"type": "boolean", 
-			"desc": "true if the character sequence represented by the argument is a prefix of the character sequence represented by this string; false otherwise. <br/>Note also that true will be returned if the argument is an empty string or is equal to this RiText object as determined by the equals() method." 
+			"desc": "true if the character sequence represented by the argument is a prefix of the character sequence represented by this String; false otherwise. <br/>Note also that true will be returned if the argument is an empty String or is equal to this RiText object as determined by the equals() method." 
 			}
 	  ],
       "related":"",
@@ -805,7 +805,7 @@
    {
       "methodName":"substring()",
       "example":"",
-      "description":"Extracts the characters from a string, between two specified indices, and sets the current text to be that string. ",
+      "description":"Extracts the characters from a String, between two specified indices, and sets the current text to be that String. ",
       "syntax":"substring(int from)<br/>substring(int from, int to)",
       "parameters":
       [
@@ -815,7 +815,7 @@
 			},
 			{ 
 			"type": "int", 
-			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the string" 
+			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the String" 
 			}
 
 	  ],
@@ -833,7 +833,7 @@
    {
       "methodName":"substr()",
       "example":"",
-      "description":"Extracts the characters from this objects contained string, beginning at 'start' and continuing through the specified number of characters, and sets the current text to be that string. (from Javascript String)",
+      "description":"Extracts the characters from this objects contained String, beginning at 'start' and continuing through the specified number of characters, and sets the current text to be that String. (from Javascript String)",
       "syntax":"substr(int start)<br/>substr(int start, int length)",
       "parameters":
       [
@@ -843,7 +843,7 @@
 			},
 			{ 
 			"type": "int", 
-			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the string" 
+			"desc": "(optional) The index where to stop the extraction. If omitted, it extracts the rest of the String" 
 			}
 
 	  ],
@@ -946,7 +946,7 @@
    {
       "methodName":"trim()",
       "example":"",
-      "description":"Returns a copy of the string, with leading and trailing whitespace omitted.",
+      "description":"Returns a copy of the String, with leading and trailing whitespace omitted.",
       "syntax":"trim()",
       "parameters":
       [
@@ -1028,19 +1028,8 @@
       "platform":"Java / Javascript",
 	  "note":""
    },
-  
-
-
-
-
-
-
-
-
-
-
-
-	{
+ 
+   {
       "methodName":"alpha()",
       "example":"",
       "description":"Set/gets the alpha (transparency) for this RiText",
@@ -1279,7 +1268,7 @@
       "methodName":"font()",
       "example":"",
       "description":"Set/gets the font for this RiText",
-      "syntax":"font()<br/>font(Pfont font)<br/>font(string font, float size)",
+      "syntax":"font()<br/>font(Pfont font)<br/>font(String font, float size)",
       "parameters":
       [
 			{ 
@@ -1336,58 +1325,13 @@
    {
       "methodName":"motionType()",
       "example":"",
-      "description": [
-"Sets/gets the animation <code>motionType</code> for this RiText<br/>",
-"according to one of the following functions: <br/><br/>",
-"<ul><br/>",
-"<li>RiText.LINEAR<br/>",
-"<br/><br/><br/>",
-"<li>RiText.EASE_IN<br/>",
-"<li>RiText.EASE_OUT<br/>",
-"<li>RiText.EASE_IN_OUT<br/>",
-"<br/><br/><br/>",
-"<li>RiText.EASE_IN_EXPO<br/>",
-"<li>RiText.EASE_OUT_EXPO<br/>",
-"<li>RiText.EASE_IN_OUT_EXPO<br/>",
-"<br/><br/><br/>",
-"<li>RiText.EASE_IN_SINE<br/>",
-"<li>RiText.EASE_OUT_SINE<br/>",
-"<li>RiText.EASE_IN_OUT_SINE<br/>",
-"<br/><br/><br/>",
-"<li>RiText.EASE_IN_CUBIC<br/>",
-"<li>RiText.EASE_OUT_CUBIC<br/>",
-"<li>RiText.EASE_IN_OUT_CUBIC<br/>",
-"<br/><br/><br/>",
-"<li>RiText.EASE_IN_QUARTIC<br/>",
-"<li>RiText.EASE_OUT_QUARTIC<br/>",
-"<li>RiText.EASE_IN_OUT_QUARTIC<br/>",
-"<br/><br/><br/>",
-"<li>RiText.EASE_IN_QUINTIC<br/>",
-"<li>RiText.EASE_OUT_QUINTIC<br/>",
-"<li>RiText.EASE_IN_OUT_QUINTIC<br/>",
-"<br/><br/><br/>",
-"<li>RiText.BACK_IN<br/>",
-"<li>RiText.BACK_OUT<br/>",
-"<li>RiText.BACK_IN_OUT<br/>",
-"<br/><br/><br/>",
-"<li>RiText.BOUNCE_IN<br/>",
-"<li>RiText.BOUNCE_OUT<br/>",
-"<li>RiText.BOUNCE_IN_OUT<br/>",
-"<br/><br/><br/>",
-"<li>RiText.CIRCULAR_IN<br/>",
-"<li>RiText.CIRCULAR_OUT<br/>",
-"<li>RiText.CIRCULAR_IN_OUT<br/>",
-"<br/><br/><br/>",
-"<li>RiText.ELASTIC_IN<br/>",
-"<li>RiText.ELASTIC_OUT<br/>",
-"<li>RiText.ELASTIC_IN_OUT<br/>",
-"</ul>"],
+      "description": "Sets/gets the animation <code>motionType</code> for this RiText<br/> according to one of the following functions:<br/><ul><li>RiText.LINEAR<li>RiText.EASE_IN<li>RiText.EASE_OUT<li>RiText.EASE_IN_OUT<li>RiText.EASE_IN_EXPO<li>RiText.EASE_OUT_EXPO<li>RiText.EASE_IN_OUT_EXPO<li>RiText.EASE_IN_SINE<li>RiText.EASE_OUT_SINE<li>RiText.EASE_IN_OUT_SINE<li>RiText.EASE_IN_CUBIC<li>RiText.EASE_OUT_CUBIC<li>RiText.EASE_IN_OUT_CUBIC<li>RiText.EASE_IN_QUARTIC<li>RiText.EASE_OUT_QUARTIC<li>RiText.EASE_IN_OUT_QUARTIC<li>RiText.EASE_IN_QUINTIC<li>RiText.EASE_OUT_QUINTIC<li>RiText.EASE_IN_OUT_QUINTIC<li>RiText.BACK_IN<li>RiText.BACK_OUT<li>RiText.BACK_IN_OUT<li>RiText.BOUNCE_IN<li>RiText.BOUNCE_OUT<li>RiText.BOUNCE_IN_OUT<li>RiText.CIRCULAR_IN<li>RiText.CIRCULAR_OUT<li>RiText.CIRCULAR_IN_OUT<li>RiText.ELASTIC_IN<li>RiText.ELASTIC_OUT<li>RiText.ELASTIC_IN_OUT</ul>",
       "syntax":"motionType()<br/>motionType(int motionType)",
       "parameters":
       [
 			{ 
 			"type": "int", 
-			"desc": "motionType" 
+			"desc": "(optional) motionType" 
 			}
 
 	  ],
@@ -2014,7 +1958,6 @@
 			"type": "RiText", 
 			"desc": "this RiText" 
 			}
-			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
@@ -2023,75 +1966,156 @@
    {
       "methodName":"RiText.createLetters()",
       "example":"",
-      "description":"",
-      "syntax":"RiText.createLetters(pApplet, txt, x, y, w, h, fontObj, leading)",
+	  "description":"Creates an array of RiTexts, laid out in lines within the bounding rectange(x,y,w,h), one RiText per letter, with spacing determined by the specified font and leading",
+	  "syntax":"RiText.createLetters(pApplet, text, x, y, w, h, font, leading)",
       "parameters":
       [
+      	    { 
+			"type": "PApplet", 
+			"desc": "the sketch itself or 'this' (optional in JavaScript)" 
+			},
 			{ 
-			"type": "", 
-			"desc": "" 
+			"type": "String or String[]", 
+			"desc": "the text to layout (if an array, each array element will be a line in the layout)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "x-position of layout rect" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "y-position of layout rect" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "width of layout rect (optional, defaults to right-most edge of sketch)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "height of layout rect (optional, defaults to Number.MAX_VALUE)" 
+			},
+			{ 
+			"type": "PFont", 
+			"desc": "the font to use for the layout (optional, defaults to RiText.defaults.font)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "the leading to use for the layout (optional, defaults to RiText.defaults.leading)" 	
 			}
-			
 	  ],
 	  "returns":
       [
 			{ 
-			"type": "RiText", 
-			"desc": "this RiText" 
+			"type": "RiText[]", 
+			"desc": "The created RiTexts" 
 			}
 			
 	  ],
-      "related":"",
+      "related":"RiText.createLines(), RiText.createWords()",
       "platform":"Java / Javascript",
 	  "note":""
    },
    {
       "methodName":"RiText.createWords()",
       "example":"",
-      "description":"",
-      "syntax":"RiText.createWords(pApplet, txt, x, y, w, h, fontObj, leading)",
+	  "description":"Creates an array of RiTexts ,laid out in lines within the bounding rectange(x,y,w,h), one RiText per word, with spacing determined by the specified font and leading",      
+	  "syntax":"RiText.createWords(pApplet, text, x, y, w, h, font, leading)",
       "parameters":
       [
+      	    { 
+			"type": "PApplet", 
+			"desc": "the sketch itself or 'this' (optional in JavaScript)" 
+			},
 			{ 
-			"type": "", 
-			"desc": "" 
+			"type": "String or String[]", 
+			"desc": "the text to layout (if an array, each array element will be a line in the layout)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "x-position of layout rect" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "y-position of layout rect" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "width of layout rect (optional, defaults to right-most edge of sketch)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "height of layout rect (optional, defaults to Number.MAX_VALUE)" 
+			},
+			{ 
+			"type": "PFont", 
+			"desc": "the font to use for the layout (optional, defaults to RiText.defaults.font)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "the leading to use for the layout (optional, defaults to RiText.defaults.leading)" 
 			}
-			
 	  ],
 	  "returns":
       [
 			{ 
-			"type": "RiText", 
-			"desc": "this RiText" 
+			"type": "RiText[]", 
+			"desc": "The created RiTexts" 
 			}
 			
 	  ],
-      "related":"",
+      "related":"RiText.createLines(), RiText.createLetters()",
       "platform":"Java / Javascript",
 	  "note":""
    },
    {
       "methodName":"RiText.createLines()",
       "example":"",
-      "description":"",
-      "syntax":"RiText.createLines(pApplet, txt, x, y, maxW, maxH, theFont, leading)",
+      "description":"Creates an array of RiTexts ,laid out in lines within the bounding rectange(x,y,w,h), one RiText per line, with spacing determined by the specified font and leading",
+      "syntax":"RiText.createLines(pApplet, text, x, y, w, h, font, leading)",
       "parameters":
       [
+    		{ 
+			"type": "PApplet", 
+			"desc": "the sketch itself or 'this' (optional in JavaScript)" 
+			},
 			{ 
-			"type": "", 
-			"desc": "" 
+			"type": "String or String[]", 
+			"desc": "the text to layout (if an array, each array element will be a line in the layout)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "x-position of layout rect" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "y-position of layout rect" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "width of layout rect (optional, defaults to right-most edge of sketch)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "height of layout rect (optional, defaults to Number.MAX_VALUE)" 
+			},
+			{ 
+			"type": "PFont", 
+			"desc": "the font to use for the layout (optional, defaults to RiText.defaults.font)" 
+			},
+			{ 
+			"type": "float", 
+			"desc": "the leading to use for the layout (optional, defaults to RiText.defaults.leading)" 
 			}
-			
 	  ],
 	  "returns":
       [
 			{ 
-			"type": "", 
-			"desc": "" 
+			"type": "RiText[]", 
+			"desc": "The created RiTexts" 
 			}
 			
 	  ],
-      "related":"",
+      "related":"RiText.createWords(), RiText.createLetters()",
       "platform":"Java / Javascript",
 	  "note":""
    },
@@ -2119,23 +2143,18 @@
    {
       "methodName":"RiText.dispose()",
       "example":"",
-      "description":"",
-      "syntax":"RiText.dispose()",
+      "description":"Deletes the RiText (or RiText[])  and all its associated resources.",
+      "syntax":"RiText.dispose(toDelete)",
       "parameters":
       [
 			{ 
-			"type": "", 
-			"desc": "" 
+			"type": "RiText or RiText[]", 
+			"desc": "toDelete" 
 			}
 			
 	  ],
 	  "returns":
       [
-			{ 
-			"type": "", 
-			"desc": "" 
-			}
-			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
@@ -2144,24 +2163,10 @@
    {
       "methodName":"RiText.disposeAll()",
       "example":"",
-      "description":"",
+      "description":"Deletes all currently existing RiTexts.",
       "syntax":"RiText.disposeAll()",
-      "parameters":
-      [
-			{ 
-			"type": "", 
-			"desc": "" 
-			}
-			
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "", 
-			"desc": "" 
-			}
-			
-	  ],
+      "parameters":[],
+	  "returns": [],
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
@@ -2206,7 +2211,7 @@
       "methodName":"RiText.defaultFont()",
       "example":"",
       "description":"Convenience method to set/get the default font",
-      "syntax":"RiText.defaultFont()<br/>RiText.defaultFont(PFont font)<br/>RiText.defaultFont(string fontName, int fontSize)",
+      "syntax":"RiText.defaultFont()<br/>RiText.defaultFont(PFont font)<br/>RiText.defaultFont(String fontName, int fontSize)",
       "parameters":
       [
 			{ 
