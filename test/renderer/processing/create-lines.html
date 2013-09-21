@@ -1,3 +1,8 @@
+<html>
+<head>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+</head>
 <canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
 
 <script src="../../../lib/processing.js"></script>
@@ -40,9 +45,10 @@ void mouseDragged() {
 
 void mouseReleased() {
   RiText.disposeAll();
-  rts = RiText.createLines(txt, x, y, w, h); 
+  rts = RiText.createLines(txt, x, y, w); 
   for ( var i = 0; i < rts.length(); i++) 
       rts[i].fill(RiText.randomColor()); 
 }
 
 </script>
+</html>

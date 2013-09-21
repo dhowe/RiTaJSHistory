@@ -43,18 +43,21 @@
         }
     });
     
-	asyncTest("RiTa.loadString()", function () {
+    // TODO: need tests for this !!!
+	/*asyncTest("RiTa.loadString()", function() {
+		
 		if (typeof document === 'undefined') {// for node
 			expect(0);
 			start();
 			return;
 		}
+	
     	RiTa.loadString("http://localhost/testfiles/kafka.txt", document, function(s) {
 			ok(s);
     		ok(s.length() > 100000);
     		start();		
     	});s
-  	});
+  	});*/
   
     test("RiTa.isAbbreviation()", function () {
 
