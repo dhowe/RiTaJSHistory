@@ -14,6 +14,25 @@ var runtests = function() {
 
     var uniqueNouns = { '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' }
 
+ 	// TODO: ADD TESTS FOR THIS ONE!!
+	var sentenceGrammar2 = {
+	    "<start>": "<noun_phrase> <verb_phrase>.",
+	    "<noun_phrase>": "<determiner> <noun>",
+	    "<determiner>": [
+	        "a [0.1]",
+	        "the"
+	    ],
+	    "<verb_phrase>": [
+	        "<verb> <noun_phrase> [0.1]",
+	        "<verb>"
+	    ],
+	    "<noun>": [
+	        "woman",
+	        "man"
+	    ],
+	    "<verb>": "shoots"
+	}
+	
     var rg; // the grammar
     
 
