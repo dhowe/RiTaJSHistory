@@ -6,24 +6,19 @@ var runtests = function() {
 	    teardown: function () {}
 	}); 
 
-    // TODO: add separate test file (same tests), for remote loaded grammars
-
     var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getRule", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFromFile" ];
 
-    var sentenceGrammar = { '<start>' : '<noun_phrase> <verb_phrase>', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
+    var sentenceGrammar = { '<start>' : '<noun_phrase> <verb_phrase>.', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
 
-    var uniqueNouns = { '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' }
-
- 	// TODO: ADD TESTS FOR THIS ONE!!
 	var sentenceGrammar2 = {
 	    "<start>": "<noun_phrase> <verb_phrase>.",
 	    "<noun_phrase>": "<determiner> <noun>",
 	    "<determiner>": [
-	        "a [0.1]",
+	        "a [.1]",
 	        "the"
 	    ],
 	    "<verb_phrase>": [
-	        "<verb> <noun_phrase> [0.1]",
+	        "<verb> <noun_phrase> [.1]",
 	        "<verb>"
 	    ],
 	    "<noun>": [
@@ -31,10 +26,9 @@ var runtests = function() {
 	        "man"
 	    ],
 	    "<verb>": "shoots"
-	}
+	};
 	
-    var rg; // the grammar
-    
+	var uniqueNouns = { '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' };
 
     test("RiGrammar.functions", function() {
 
@@ -54,15 +48,21 @@ var runtests = function() {
         var rg1 = new RiGrammar(sentenceGrammar);
         ok(rg1._rules);
         ok(rg1._rules['<start>']);
-
         ok(rg1._rules['<noun_phrase>']);
 
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         ok(rg2._rules);
         ok(rg2._rules['<start>']);
         ok(rg2._rules['<noun_phrase>']);
+        
+        var rg3= new RiGrammar(sentenceGrammar2);
+        ok(rg3._rules);
+        ok(rg3._rules['<start>']);
+        ok(rg3._rules['<noun_phrase>']);
 
         deepEqual(rg1, rg2);
+        deepEqual(rg2, rg3);
+        deepEqual(rg1, rg3);
 
         var BAD = [ null, undefined, "hello", 1, 0 ];
         for ( var i = 0; i < BAD.length; i++) {
@@ -92,53 +92,6 @@ var runtests = function() {
         ok(rg.getRule("<start>"));
         ok(rg.getRule("start"))
     });
-
-    // test("RiGrammar.clone", function() {
-
-    //     var rg1 = new RiGrammar();
-    //     rg1.reset();
-    //     rg1.addRule("<start>", "<first> | <second>");
-    //     rg1.addRule("<first>", "the <pet> <action> were 'adj()'");
-    //     rg1.addRule("second", "the <action> of the 'adj()' <pet>");
-    //     rg1.addRule("<pet>", "<bird> | <mammal>");
-    //     rg1.addRule("<bird>", "hawk | crow");
-    //     rg1.addRule("<mammal>", "dog");
-    //     rg1.addRule("<action>", "cries | screams | falls");
-
-    //     var rg2 = rg1.clone();
-    //     deepEqual(rg1._rules.length, rg2._rules.length);
-
-    //     //    return;
-
-    //     deepEqual(rg1._rules, rg2._rules);
-    //     deepEqual(rg1, rg2);
-
-    //     rg2.removeRule("pet");
-    //     ok(rg1.hasRule("pet"));
-    //     ok(!rg2.hasRule("pet"));
-
-    //     rg2.addRule("<pet>", "<bird>");
-
-
-    //     var i, good = 0;
-    //     for (i = 0; i < 100; i++) {
-    //         var r = rg1.expand();
-    //         //console.log(r);
-    //         good = (r.indexOf('dog') > -1);
-    //         if (good) break;
-    //     }
-    //     ok(good, i);
-
-    //     good = 0;
-    //     for (i = 0; i < 100; i++) {
-    //         r = rg2.expand();
-    //         good = (r.indexOf('dog') > -1);
-    //         if (good) {
-    //             break;
-    //         }
-    //     }
-    //     ok(!good);
-    // });
 
     test("RiGrammar.expand()", function() {
 
@@ -258,8 +211,12 @@ var runtests = function() {
     });
     
 	test("RiGrammar.getGrammar", function() {
+		
 		var rg = new RiGrammar(sentenceGrammar);
-	    var e = "<start>\n  '<noun_phrase> <verb_phrase>' [1]\n<noun_phrase>\n  '<determiner> <noun>' [1]\n<verb_phrase>\n  '<verb>' [1]\n  '<verb> <noun_phrase>' [.1]\n<determiner>\n  'a' [.1]\n  'the' [1]\n<noun>\n  'woman' [1]\n  'man' [1]\n<verb>\n  'shoots' [1]\n";
+		var rg2 = new RiGrammar(sentenceGrammar2);
+		deepEqual(rg,rg2)
+		
+		var e = "<start>\n  '<noun_phrase> <verb_phrase>.' [1]\n<noun_phrase>\n  '<determiner> <noun>' [1]\n<verb_phrase>\n  '<verb>' [1]\n  '<verb> <noun_phrase>' [.1]\n<determiner>\n  'a' [.1]\n  'the' [1]\n<noun>\n  'woman' [1]\n  'man' [1]\n<verb>\n  'shoots' [1]\n";
 		equal(rg.getGrammar(),e);
 	});
         
@@ -286,19 +243,6 @@ var runtests = function() {
 	    var result = rg.getRule("<rule1>");
 	    equal(result, answer);
 	  
-	  /*
-	    rg = new RiGrammar(sentenceGrammar);
-	    rg.loadFromFile("sentence2.json");
-	    r = rg.getRule("<noun_phrase>");    
-	    equal(r,"<determiner> <noun>");
-	    
-	    rg = new RiGrammar(sentenceGrammar);
-	    rg.loadFromFile("sentence1.json");
-	    r = rg.getRule("<noun_phrase>");    
-	    //System.out.println("'"+r+"'");
-	    equal(r,"<determiner> <noun>");
-	  */
-	 
 	    rg.reset();
 	    rg.addRule("rule1", "<pet>", 1);
 	    equal(rg.getRule("rule1"),"<pet>");
@@ -310,7 +254,10 @@ var runtests = function() {
 	
 	    var g = [];
 	    g[0] = RiGrammar().load(sentenceGrammar); 
-	        // (new RiGrammar()).loadFromFile("sentence1.json"),
+	    g[1] = RiGrammar().load(sentenceGrammar2); 
+	    
+	        // TODO: 
+	        // (new RiGrammar()).loadFromFile("sentence1.json"), // use jquery
 	        // (new RiGrammar()).loadFromFile("sentence2.json")
 	    
 	    for (var i = 0; i < g.length; i++) {
@@ -338,36 +285,39 @@ var runtests = function() {
 
     test("RiGrammar.hasRule", function() {
 
-        var rg = new RiGrammar(sentenceGrammar);
+        var g = [ new RiGrammar(sentenceGrammar), new RiGrammar(sentenceGrammar) ];
 
-        ok(rg.hasRule("<start>"));
-        ok(rg.hasRule("start"));
-
-        rg.reset();
-        ok(!rg.hasRule("start"));
-        rg.addRule("<rule1>", "<pet>");
-        ok(rg.hasRule("<rule1>"));
-        ok(rg.hasRule("rule1"));
-
-
-        rg.reset();
-
-        rg.addRule("<rule1>", "cat", .4);
-        rg.addRule("<rule1>", "dog", .6);
-        rg.addRule("<rule1>", "boy", .2);
-        ok(rg.hasRule("<rule1>"));
-        ok(rg.hasRule("rule1"));
-        ok(!rg.hasRule("rule"));
-
-        rg.reset();
-
-        rg.addRule("rule1", "<pet>");
-        ok(rg.hasRule("<rule1>"));
-        ok(rg.hasRule("rule1"));
-
-        ok(!rg.hasRule(null));
-        ok(!rg.hasRule(undefined));
-        ok(!rg.hasRule(1));
+	    for (var i = 0; i < g.length; i++) {
+			var rg = g[i];
+	        ok(rg.hasRule("<start>"));
+	        ok(rg.hasRule("start"));
+	
+	        rg.reset();
+	        ok(!rg.hasRule("start"));
+	        rg.addRule("<rule1>", "<pet>");
+	        ok(rg.hasRule("<rule1>"));
+	        ok(rg.hasRule("rule1"));
+	
+	
+	        rg.reset();
+	
+	        rg.addRule("<rule1>", "cat", .4);
+	        rg.addRule("<rule1>", "dog", .6);
+	        rg.addRule("<rule1>", "boy", .2);
+	        ok(rg.hasRule("<rule1>"));
+	        ok(rg.hasRule("rule1"));
+	        ok(!rg.hasRule("rule"));
+	
+	        rg.reset();
+	
+	        rg.addRule("rule1", "<pet>");
+	        ok(rg.hasRule("<rule1>"));
+	        ok(rg.hasRule("rule1"));
+	
+	        ok(!rg.hasRule(null));
+	        ok(!rg.hasRule(undefined));
+	        ok(!rg.hasRule(1));
+		}
     });
 
 
@@ -393,14 +343,169 @@ var runtests = function() {
         ok(rg._rules);
         ok(typeof rg._rules['<start>'] !== 'undefined');
         ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
-
-        //deepEqual(rg,rg1);
+        
+        rg.load(JSON.stringify(sentenceGrammar2));
+        ok(rg._rules);
+        ok(typeof rg._rules['<start>'] !== 'undefined');
+        ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
     });
+    
+	// use jQuery $.ajax()
+  	asyncTest("RiGrammar.loadFromFile1", function() {
+    	
+		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
+		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
+	        
+    	var rg1 = new RiGrammar();
+    	rg1.loadFromFile("sentence1.json", function() {
+    		
+	        ok(rg1._rules);
+	        //rg1.print();
+	        ok(rg1._rules['<start>']);
+	        ok(rg1._rules['<noun_phrase>']);
+	
+	        deepEqual(rg1, rg2);
+	        deepEqual(rg2, rg3);
+	
+	        var BAD = [ null, undefined, "hello", 1, 0 ];
+	        for ( var i = 0; i < BAD.length; i++) {
+	            throws(function() {
+	
+	                try {
+	                    RiGrammar(BAD[i])
+	                }
+	                catch (e) {
+	                    throw e;
+	                }
+	            });
+	        }
+	        
+			start();
+		});
+	});
+	
+	// use jQuery $.ajax()
+	asyncTest("RiGrammar.loadFromFile2", function() {
+    	
+		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
+		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
+	        
+    	var rg1 = new RiGrammar();
+    	rg1.loadFromFile("sentence2.json", function() {
+    		
+	        ok(rg1._rules);
+	        //rg1.print();
+	        ok(rg1._rules['<start>']);
+	        ok(rg1._rules['<noun_phrase>']);
+	
+	        deepEqual(rg1, rg2);
+	        deepEqual(rg2, rg3);
+	
+	        var BAD = [ null, undefined, "hello", 1, 0 ];
+	        for ( var i = 0; i < BAD.length; i++) {
+	            throws(function() {
+	
+	                try {
+	                    RiGrammar(BAD[i])
+	                }
+	                catch (e) {
+	                    throw e;
+	                }
+	            });
+	        }
+	        
+			start();
+		});
+	});
+	
+	// use RiTa native loadString()
+	asyncTest("RiGrammar.loadFromFile3", function() {
+    	
+		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
+		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
+	        
+    	var rg1 = new RiGrammar();
+    	rg1.loadFromFile("sentence1.json", function() {
+    		
+	        ok(rg1._rules);
+	        //rg1.print();
+	        ok(rg1._rules['<start>']);
+	        ok(rg1._rules['<noun_phrase>']);
+	
+	        deepEqual(rg1, rg2);
+	        deepEqual(rg2, rg3);
+	
+	        var BAD = [ null, undefined, "hello", 1, 0 ];
+	        for ( var i = 0; i < BAD.length; i++) {
+	            throws(function() {
+	
+	                try {
+	                    RiGrammar(BAD[i])
+	                }
+	                catch (e) {
+	                    throw e;
+	                }
+	            });
+	        }
+	        
+			start();
+		}, true);
+	});
+	
+	// use RiTa native loadString() 
+	asyncTest("RiGrammar.loadFromFile4", function() {
+    	
+		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
+		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
+	        
+    	var rg1 = new RiGrammar();
+    	rg1.loadFromFile("sentence2.json", function() {
+    		
+	        ok(rg1._rules);
+	        //rg1.print();
+	        ok(rg1._rules['<start>']);
+	        ok(rg1._rules['<noun_phrase>']);
+	
+	        deepEqual(rg1, rg2);
+	        deepEqual(rg2, rg3);
+	
+	        var BAD = [ null, undefined, "hello", 1, 0 ];
+	        for ( var i = 0; i < BAD.length; i++) {
+	            throws(function() {
+	
+	                try {
+	                    RiGrammar(BAD[i])
+	                }
+	                catch (e) {
+	                    throw e;
+	                }
+	            });
+	        }
+	        
+			start();
+		}, true);
+	});
 
 
     test("RiGrammar.removeRule", function() {
 
         var rg1 = new RiGrammar(sentenceGrammar);
+
+        ok(rg1._rules['<start>']);
+        ok(rg1._rules['<noun_phrase>']);
+
+        rg1.removeRule('<noun_phrase>');
+        ok(!rg1._rules['<noun_phrase>']);
+
+        rg1.removeRule('<start>');
+        ok(!rg1._rules['<start>']);
+
+        rg1.removeRule('');
+        rg1.removeRule('bad-name');
+        rg1.removeRule(null);
+        rg1.removeRule(undefined);
+        
+		rg1 = new RiGrammar(sentenceGrammar2);
 
         ok(rg1._rules['<start>']);
         ok(rg1._rules['<noun_phrase>']);
@@ -472,7 +577,7 @@ var runtests = function() {
         //equal("TODO: MORE TESTS HERE");
     });
     
-        test("RiGrammar-exec1", function() {
+    test("RiGrammar-exec1", function() {
   
         var rg = new RiGrammar();
 
@@ -525,8 +630,6 @@ var runtests = function() {
 		
         if (typeof window != 'undefined' && window) 
         {     
-        	
-        	
         	// save grammar in window for store()/unique() functions below
             window.grammar = rg;
              
