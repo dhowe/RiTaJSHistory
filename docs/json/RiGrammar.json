@@ -41,7 +41,7 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "[Javascript Only] One or more function to be added to the current context BEFORE executing the expand() call. Useful for defining functions referenced in back-ticked rules." 
+			"desc": "[Javascript Only] One or more functions to be added to the current context BEFORE executing the expand() call. Useful for defining functions referenced in back-ticked rules." 
 			}
 			
 	  ],
@@ -242,7 +242,7 @@
       "methodName":"load()",
       "example":"",
       "description":"Re-initializes the grammar from an object or string containing the rules",
-      "syntax":"load(String grammar)<br/>load(object grammar)",
+      "syntax":"load(String grammar)<br/>load(Object grammar)",
       "parameters":
       [
 			{ 
@@ -266,12 +266,12 @@
       "methodName":"loadFromFile()",
       "example":"",
       "description":"Re-initializes the grammar from a file containing the grammar rules",
-      "syntax":"loadFromFile(String grammarFileName)<br/>",
+      "syntax":"loadFromFile(String grammarFileURL)<br/>",
       "parameters":
       [
 			{ 
 				"type": "String", 
-				"desc": "filename of file containing the grammar rules" 
+				"desc": "URL of file containing the grammar rules" 
 			}
 	  ],
 	  "returns":
@@ -283,7 +283,7 @@
 			
 	  ],
       "related":"",
-      "platform":"Java only; for Javascript, use the <script src=...> tag in your html page",
+      "platform":"In Javascript, uses JQuery's ajax() method if available, otherwise it attempts an invisible iframe hack. Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page.",
 	  "note":""
    }      
 ]

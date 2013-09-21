@@ -43,21 +43,40 @@
         }
     });
     
-    // TODO: need tests for this !!!
-	/*asyncTest("RiTa.loadString()", function() {
+    // TODO: need more tests for this
+	asyncTest("RiTa.loadString1()", function() {
 		
+		// TODO: why doesn't this test work in node as well ?
 		if (typeof document === 'undefined') {// for node
 			expect(0);
 			start();
 			return;
 		}
-	
-    	RiTa.loadString("http://localhost/testfiles/kafka.txt", document, function(s) {
+
+    	RiTa.loadString("sentence1.json", function(s) {
 			ok(s);
-    		ok(s.length() > 100000);
+    		ok(s.length > 100);
+			ok(JSON.parse(s));
     		start();		
-    	});s
-  	});*/
+    	});
+  	});
+  	
+  	asyncTest("RiTa.loadString2()", function() {
+		
+		// TODO: why doesn't this test work in node as well ?
+		if (typeof document === 'undefined') {// for node
+			expect(0);
+			start();
+			return;
+		}
+
+    	RiTa.loadString("sentence2.json", function(s) {
+			ok(s);
+    		ok(s.length > 100);
+    		ok(JSON.parse(s));
+    		start();		
+    	});
+  	});
   
     test("RiTa.isAbbreviation()", function () {
 

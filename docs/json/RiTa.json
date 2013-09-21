@@ -648,12 +648,12 @@
       "platform":"Java / Javascript",
 	  "note":""
       
-   }, 
+    }, 
 	{
       "methodName":"RiTa.timer()",
       "example":"",
       "description":"Starts a timer that calls 'onRiTaEvent()', or the specified callback (in JS), every 'period' seconds",
-      "syntax":"RiTa.timer(float period)<br/>RiTa.timer(float period, function callback)",
+      "syntax":"RiTa.timer(float period)<br/>RiTa.timer(float period, Function callback)",
       "parameters":[
          {
             "type":"Object",
@@ -664,7 +664,7 @@
             "desc":"period (in seconds)"
          },
          {
-            "type":"String OR function ",
+            "type":"String OR Function ",
             "desc":"callback function to be called every 'period' seconds<br>the function name String (in Java) or the function itself (in JS) "
          }
          
@@ -755,10 +755,31 @@
 
    },
    {
-   	  "hidden": true;
+      "methodName":"RiTa.loadString()",
+      "example":"",
+      "description":"Loads a file's contents from 'url' and calls back to the supplied 'callback' function with the loaded string as an argument",
+      "syntax":"RiTa.loadString(String url, Function callback)",
+      "parameters":[
+         {
+            "type":"String",
+            "desc":"the url from which to load the file"
+         },
+		 {
+            "type":"Function (optional: for JavaScript only)",
+            "desc":"the function to call after the file is loaded (takes one String as its argument)"
+         }
+      ],
+      "returns":[],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":"In Node, uses the node filesystem module; in JavaScript attempts an invisible iframe hack",
+
+   },
+   {
+   	  "hidden": false;
       "methodName":"RiTa.p5Compatible()",
       "example":"",
-      "description":"For convenience, provides implementations of some of Processing built-in method, e.g. size(), background(), etc. and backwards compatibility with the original RiTa/Processing Java library",
+      "description":"For convenience, provides implementations of some of Processing built-in method, e.g. size(), background(), etc. and calls setup() and draw() automatically (if they exist)",
       "syntax":"RiTa.p5Compatible(boolean value)",
       "parameters":[
          {
@@ -776,7 +797,7 @@
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"",
+	  "note":"Does nothing in Java",
 
    }
 ]
