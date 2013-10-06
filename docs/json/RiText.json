@@ -283,7 +283,7 @@
       "methodName":"charAt()",
       "example":"",
       "description":"Returns the character at the given 'index', or empty String if none is found",
-      "syntax":"charAt(int index)",
+      "syntax":"charAt(index)",
       "parameters":
       [
 			{ 
@@ -306,7 +306,7 @@
       "methodName":"concat()",
       "example":"",
       "description":"Concatenates the text from another RiText at the end of this one",
-      "syntax":"concat(RiText riText)",
+      "syntax":"concat(riText)",
       "parameters":
       [
 			{ 
@@ -329,7 +329,7 @@
       "methodName":"endsWith()",
       "example":"",
       "description":"Tests if this String ends with the specified suffix",
-      "syntax":"endsWith(String substr)",
+      "syntax":"endsWith(substr)",
       "parameters":
       [
 			{ 
@@ -352,7 +352,7 @@
       "methodName":"equals()",
       "example":"",
       "description":"Compares this RiText to the specified object. <br/>The result is true if and only if the argument is not null and is a String or RiText object that represents the same sequence of characters as this object.",
-      "syntax":"equals(String arg)<br/>equals(RiText arg)",
+      "syntax":"equals(string)<br/>equals(riText)",
       "parameters":
       [
 			{ 
@@ -375,7 +375,7 @@
       "methodName":"equalsIgnoreCase()",
       "example":"",
       "description":"Compares this RiText to another RiText, ignoring case considerations",
-      "syntax":"equalsIgnoreCase(String arg)<br/>equalsIgnoreCase(RiText arg)",
+      "syntax":"equalsIgnoreCase(string)<br/>equalsIgnoreCase(riText)",
       "parameters":
       [
 			{ 
@@ -398,7 +398,7 @@
       "methodName":"indexOf()",
       "example":"",
       "description":"Returns the index within this String of the first occurrence of the specified character",
-      "syntax":"indexOf(String searchstring)<br/>indexOf(String searchstring, int start)",
+      "syntax":"indexOf(searchstring)<br/>indexOf(searchstring, start)",
       "parameters":
       [
 			{ 
@@ -422,10 +422,10 @@
 	  "note":""
    },
     {
-      "methodName":"insertWordAt()",
+      "methodName":"insertWord()",
       "example":"",
       "description":"Inserts 'newWord' at 'wordIdx' and shifts each subsequent word accordingly.",
-      "syntax":"insertWordAt(String newWord, int wordIdx)",
+      "syntax":"insertWord(newWord, wordIdx)",
       "parameters":
       [
 			{ 
@@ -452,7 +452,7 @@
       "methodName":"lastIndexOf()",
       "example":"",
       "description":"Returns the index within this String of the last occurrence of the specified character",
-      "syntax":"lastIndexOf(String searchstring)<br/>lastIndexOf(String searchstring, int start)",
+      "syntax":"lastIndexOf(searchstring)<br/>lastIndexOf(searchstring, start)",
       "parameters":
       [
 			{ 
@@ -499,7 +499,7 @@
       "methodName":"match()",
       "example":"",
       "description":"Searches for a match between a substring (or regular expression) and the contained String, and _returns the matches",
-      "syntax":"match(String regex)",
+      "syntax":"match(regex)",
       "parameters":
       [
 			{ 
@@ -544,7 +544,7 @@
       "methodName":"posAt()",
       "example":"",
       "description":"Returns the part-of-speech tag for the word at 'index', using RiTa.tokenize() and RiTa.getPosTags()",
-      "syntax":"posAt(int index)",
+      "syntax":"posAt(index)",
       "parameters":
       [
 			{ 
@@ -568,7 +568,7 @@
       "methodName":"removeChar()",
       "example":"",
       "description":"Removes the character at the specified index",
-      "syntax":"removeChar(int index)",
+      "syntax":"removeChar(index)",
       "parameters":
       [
 			{ 
@@ -592,7 +592,7 @@
       "methodName":"replaceChar()",
       "example":"",
       "description":"Replaces the character at 'idx' with 'replaceWith'. <br/>If the specified 'idx' is less than zero, or beyond the length of the current text, there will be no effect",
-      "syntax":"replaceChar(int idx, String replaceWith)",
+      "syntax":"replaceChar(idx, replaceWith)",
       "parameters":
       [
 			{ 
@@ -620,7 +620,7 @@
       "methodName":"replaceFirst()",
       "example":"",
       "description":"Replaces the first instance of 'regex' with 'replaceWith'",
-      "syntax":"replaceFirst(String regex, String replaceWith)",
+      "syntax":"replaceFirst(regex, replaceWith)",
       "parameters":
       [
 			{ 
@@ -647,7 +647,7 @@
       "methodName":"replaceLast()",
       "example":"",
       "description":"Replaces the last instance of 'regex' with 'replaceWith'",
-      "syntax":"replaceLast(String regex, String replaceWith)",
+      "syntax":"replaceLast(regex, replaceWith)",
       "parameters":
       [
 			{ 
@@ -674,7 +674,7 @@
       "methodName":"replaceAll()",
       "example":"",
       "description":"Replaces each substring of this String that matches the given regular expression with the given replacement.",
-      "syntax":"replaceAll(String regex, String replaceWith)",
+      "syntax":"replaceAll(regex, replaceWith)",
       "parameters":
       [
 			{ 
@@ -698,10 +698,10 @@
 	  "note":""
    },
    {
-      "methodName":"replaceWordAt()",
+      "methodName":"replaceWord()",
       "example":"",
       "description":"Replaces the word at 'wordIdx' with 'newWord'",
-      "syntax":"replaceWordAt(int wordIdx, String newWord)",
+      "syntax":"replaceWordAt(wordIdx, newWord)",
       "parameters":
       [
 			{ 

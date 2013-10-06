@@ -20,7 +20,7 @@
       "methodName":"charAt()",
       "example":"",
       "description":"Returns the character at the specified 'index'",
-      "syntax":"charAt(int index)",
+      "syntax":"charAt(index)",
       "parameters":
       [
 			{ 
@@ -43,7 +43,7 @@
       "methodName":"concat()",
       "example":"",
       "description":"Concatenates the text from another RiString at the end of this one",
-      "syntax":"concat(RiString riString)",
+      "syntax":"concat(riString)",
       "parameters":
       [
 			{ 
@@ -66,7 +66,7 @@
       "methodName":"endsWith()",
       "example":"",
       "description":"Tests if this string ends with the specified suffix",
-      "syntax":"endsWith(String suffix)",
+      "syntax":"endsWith(suffix)",
       "parameters":
       [
 			{ 
@@ -89,7 +89,7 @@
       "methodName":"equals()",
       "example":"",
       "description":"Compares this RiString to the specified object. <br/>The result is true if and only if the argument is not null and is a String or RiString object that represents the same sequence of characters as this object.",
-      "syntax":"equals(String arg)<br/>equals(RiString arg)",
+      "syntax":"equals(string)<br/>equals(ristring)",
       "parameters":
       [
 			{ 
@@ -112,7 +112,7 @@
       "methodName":"equalsIgnoreCase()",
       "example":"",
       "description":"Compares this RiString to another RiString or a String, ignoring case considerations",
-      "syntax":"equalsIgnoreCase(String arg)<br/>equalsIgnoreCase(RiString arg)",
+      "syntax":"equalsIgnoreCase(string)<br/>equalsIgnoreCase(ristring)",
       "parameters":
       [
 			{ 
@@ -135,7 +135,7 @@
       "methodName":"indexOf()",
       "example":"",
       "description":"Returns the index within this string of the first occurrence of the 'searchstring'",
-      "syntax":"indexOf(String searchstring)<br/>indexOf(String searchstring, int start)",
+      "syntax":"indexOf(searchstring)<br/>indexOf(searchstring, start)",
       "parameters":
       [
 			{ 
@@ -162,7 +162,7 @@
       "methodName":"insertWordAt()",
       "example":"",
       "description":"Inserts 'newWord' at 'wordIdx' and shifts each subsequent word accordingly.",
-      "syntax":"insertWordAt(String newWord, int wordIdx)",
+      "syntax":"insertWordAt(newWord, wordIdx)",
       "parameters":
       [
 			{ 
@@ -190,7 +190,7 @@
       "methodName":"lastIndexOf()",
       "example":"",
       "description":"Returns the index within this string of the last occurrence of the specified character",
-      "syntax":"lastIndexOf(String searchstring)<br/>lastIndexOf(String searchstring, int start)",
+      "syntax":"lastIndexOf(searchstring)<br/>lastIndexOf(searchstring, start)",
       "parameters":
       [
 			{ 
@@ -234,7 +234,7 @@
       "methodName":"match()",
       "example":"",
       "description":"Searches for a match between a substring (or regular expression) and the contained string, and _returns the matches",
-      "syntax":"match(String regex)",
+      "syntax":"match(regex)",
       "parameters":
       [
 			{ 
@@ -278,7 +278,7 @@
       "methodName":"posAt()",
       "example":"",
       "description":"Returns the part-of-speech tag for the word at 'index', using RiTa.tokenize() and RiTa.getPosTags()",
-      "syntax":"posAt(int index)",
+      "syntax":"posAt(index)",
       "parameters":
       [
 			{ 
@@ -302,7 +302,7 @@
       "methodName":"removeChar()",
       "example":"",
       "description":"Removes the character at the specified index",
-      "syntax":"removeChar(int index)",
+      "syntax":"removeChar(index)",
       "parameters":
       [
 			{ 
@@ -326,7 +326,7 @@
       "methodName":"replaceChar()",
       "example":"",
       "description":"Replaces the character at 'idx' with 'replaceWith'. <br/>If the specified 'idx' is less than zero, or beyond the length of the current text, there will be no effect",
-      "syntax":"replaceChar(int idx, String replaceWith)",
+      "syntax":"replaceChar(idx, replaceWith)",
       "parameters":
       [
 			{ 
@@ -354,7 +354,7 @@
       "methodName":"replaceFirst()",
       "example":"",
       "description":"Replaces the first instance of 'regex' with 'replaceWith'",
-      "syntax":"replaceFirst(String regex, String replaceWith)",
+      "syntax":"replaceFirst(regex, replaceWith)",
       "parameters":
       [
 			{ 
@@ -381,7 +381,7 @@
       "methodName":"replaceLast()",
       "example":"",
       "description":"Replaces the last instance of 'regex' with 'replaceWith'",
-      "syntax":"replaceLast(String regex, String replaceWith)",
+      "syntax":"replaceLast(regex, replaceWith)",
       "parameters":
       [
 			{ 
@@ -408,7 +408,7 @@
       "methodName":"replaceAll()",
       "example":"",
       "description":"Replaces each substring of this string that matches the given regular expression with the given replacement.",
-      "syntax":"replaceAll(String regex, String replaceWith)",
+      "syntax":"replaceAll(regex, replaceWith)",
       "parameters":
       [
 			{ 
@@ -435,7 +435,7 @@
       "methodName":"replaceWordAt()",
       "example":"",
       "description":"Replaces the word at 'wordIdx' with 'newWord'",
-      "syntax":"replaceWordAt(int wordIdx, String newWord)",
+      "syntax":"replaceWordAt(wordIdx, newWord)",
       "parameters":
       [
 			{ 
@@ -462,7 +462,7 @@
       "methodName":"slice()",
       "example":"",
       "description":"Extracts a part of a string from this RiString",
-      "syntax":"slice(int begin)<br/>slice(int begin, int end)",
+      "syntax":"slice(begin)<br/>slice(begin, end)",
       "parameters":
       [
 			{ 
@@ -489,7 +489,7 @@
       "methodName":"split()",
       "example":"",
       "description":"Split a RiString into an array of RiStrings, one for each element after the split, and returns the new array.",
-      "syntax": "split()<br/>split(String separator)<br/>",
+      "syntax": "split()<br/>split(separator)<br/>",
       "parameters": [
 			{ 
 			"type": "String", 
@@ -511,7 +511,7 @@
       "methodName":"startsWith()",
       "example":"",
       "description":"Tests if this string starts with the specified prefix",
-      "syntax":"startsWith(String substr)",
+      "syntax":"startsWith(substr)",
       "parameters":
       [
 			{ 
@@ -535,7 +535,7 @@
       "methodName":"substring()",
       "example":"",
       "description":"Extracts the characters from a string, between two specified indices, and sets the current text to be that string. ",
-      "syntax":"substring(int from)<br/>substring(int from, int to)",
+      "syntax":"substring(from)<br/>substring(from, to)",
       "parameters":
       [
 			{ 
@@ -563,7 +563,7 @@
       "methodName":"substr()",
       "example":"",
       "description":"Extracts the characters from this objects contained string, beginning at 'start' and continuing through the specified number of characters, and sets the current text to be that string. (from Javascript String)",
-      "syntax":"substr(int start)<br/>substr(int start, int length)",
+      "syntax":"substr(start)<br/>substr(start, length)",
       "parameters":
       [
 			{ 
@@ -591,7 +591,7 @@
       "methodName":"text()",
       "example":"",
       "description":"Gets/sets the text contained by this object",
-      "syntax":"text()<br/>text(String theText)",
+      "syntax":"text()<br/>text(theText)",
       "parameters":
       [
 			{ 
@@ -691,7 +691,7 @@
       "methodName":"wordAt()",
       "example":"",
       "description":"Returns the word at 'index', according to RiTa.tokenize()",
-      "syntax":"wordAt(int index)",
+      "syntax":"wordAt(index)",
       "parameters":
       [
 			{ 
