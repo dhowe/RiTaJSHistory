@@ -15,6 +15,9 @@ then
     exit
 fi
 
+SSH="/usr/bin/ssh -p"
+SSHPORT=22022
+
 VERSION=$1
 DOCDIR=~/documents
 JAVAPROJ=$DOCDIR/eclipse-workspace/RiTa
@@ -27,7 +30,7 @@ DEST=dhowe@localhost
 
 while [ $# -ge 1 ]; do
     case $1 in
-        -r) DEST=dhowe@rednoise.org  ;;
+        -r) DEST=dhowe@rednoise.org; SSHPORT=22  ;;
     esac
     shift
 done
@@ -62,13 +65,15 @@ echo
 # NEXT: add a separate scp for library.properties -> rita/RiTa.txt?
 #
 
+echo ssh -p $SSHPORT 
 echo copying to $DEST...
 echo
-cat $ZIP_FILE | ssh $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -fs rita-${VERSION}.jar rita-latest.jar; ls -l ../js)" 
+
+cat $ZIP_FILE | ssh -p $SSHPORT $DEST "(cd /Library/WebServer/Documents; mkdir -p rita; cd rita; tar xf - ; mkdir -p download; cd download;  ln -fs rita-${VERSION}.min.js rita-latest.min.js; ln -fs rita-${VERSION}.js rita-latest.js; ln -fs RiTa-${VERSION}.zip RiTa-latest.zip; ln -fs rita-${VERSION}.jar rita-latest.jar; ls -l ../js)" 
 
 echo copying $PROPS_FILE to $DEST...
 echo
-scp $PROPS_FILE $DEST:/Library/WebServer/Documents/rita
+scp -P $SSHPORT $PROPS_FILE $DEST:/Library/WebServer/Documents/rita
 
 echo
 rm -rf $ZIP_FILE

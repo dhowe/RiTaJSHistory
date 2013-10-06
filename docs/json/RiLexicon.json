@@ -3,7 +3,7 @@
       "methodName":"addWord()",
       "example":"lexicon.addWord('abandon','ax-b ae1-n-d ax-n','vb nn vbp');",
       "description":"Adds a word to the current lexicon. Note: will replace the word if it already exists",
-      "syntax":"addWord(String word, String pronunciationData, String posData)",
+      "syntax":"addWord(word, pronunciationData, posData)",
       "parameters":
       [
 			{ 
@@ -54,7 +54,7 @@
       "methodName":"containsWord()",
       "example":"",
       "description":"Returns true if the word exists in the lexicon (case-insensitive)",
-      "syntax":"containsWord(String word)",
+      "syntax":"containsWord(word)",
       "parameters":
       [
 			{ 
@@ -77,7 +77,7 @@
       "methodName":"alliterations()",
       "example":"",
       "description":"Finds alliterations by comparing the phonemes of the input string to those of each word in the lexicon",
-      "syntax":"alliterations(String word)",
+      "syntax":"alliterations(word)",
       "parameters":
       [
 			{ 
@@ -103,7 +103,7 @@
       "methodName":"lexicalData()",
       "example":"",
       "description":"Allows one to set/get the raw dictionary data used to create the default lexicon. <br/><br/>See RiLexicon.addWord() for data format",
-      "syntax":"lexicalData()<br/>lexicalData(Map dictionaryDataObject)",
+      "syntax":"lexicalData()<br/>lexicalData(dictionaryDataObject)",
       "parameters":
       [
 			{ 
@@ -126,7 +126,7 @@
       "methodName":"randomWord()",
       "example":"",
       "description":"Returns a random word from the lexicon. When arguments are supplied part-of-speech and/or syllable-count will be matched as well",
-      "syntax":"randomWord()<br/>randomWord(String pos)<br/>randomWord(int syllableCount)<br/>randomWord(String pos, int syllableCount)",
+      "syntax":"randomWord()<br/>randomWord(pos)<br/>randomWord(syllableCount)<br/>randomWord(pos, syllableCount)",
       "parameters":
       [
 			{ 
@@ -153,7 +153,7 @@
       "methodName":"rhymes()",
       "example":"",
       "description":"Two words rhyme aer considered as rhyming if their final stressed vowel and all following phonemes are identical",
-      "syntax":"rhymes(String word)",
+      "syntax":"rhymes(word)",
       "parameters":
       [
 			{ 
@@ -176,7 +176,7 @@
       "methodName":"words()",
       "example":"",
       "description":"Returns the array of all words in the lexicon or those matching a specific regex. <br/>If specified, the order of the result array is randomized before return.",
-      "syntax":"words()<br/>words(String regex)<br/>words(boolean order)<br/>words(String regex, boolean order)",
+      "syntax":"words()<br/>words(regex)<br/>words(ordered)<br/>words(regex, ordered)",
       "parameters":
       [
 			{ 
@@ -203,7 +203,7 @@
       "methodName":"isAdverb()",
       "example":"",
       "description":"Returns true if the word haa an adverb form. That is, if any of its possible parts of speech are any variant of an adverb in the PENN part-of-speech tag set (e.g. rb, rbr, rbs)",
-      "syntax":"isAdverb(String word)",
+      "syntax":"isAdverb(word)",
       "parameters":
       [
 			{ 
@@ -226,7 +226,7 @@
       "methodName":"isNoun()",
       "example":"",
       "description":"Returns true if the word has a noun form. That is, if any of its possible parts of speech are any variant of a noun in the PENN part-of-speech tag set(e.g. nn, nns, nnp, nnps)",
-      "syntax":"isNoun(String word)",
+      "syntax":"isNoun(word)",
       "parameters":
       [
 			{ 
@@ -249,7 +249,7 @@
       "methodName":"isVerb()",
       "example":"",
       "description":"Returns true for if word has a verb form. That is, if any of its possible parts of speech are any variant of a verb in the PENN part-of-speech tag set (e.g. vb, vbg, vbd, vbp, vbz)",
-      "syntax":"isVerb(String word)",
+      "syntax":"isVerb(word)",
       "parameters":
       [
 			{ 
@@ -272,7 +272,7 @@
       "methodName":"isAdjective()",
       "example":"",
       "description":"Returns true if word has an adjective form. That is, if any of its possible parts of speech are any variant of an adjective in the PENN part-of-speech tag set (e.g. jj, jjr, jjs)",
-      "syntax":"isAdjective(String word)",
+      "syntax":"isAdjective(word)",
       "parameters":
       [
 			{ 
@@ -295,7 +295,7 @@
       "methodName":"isAlliteration()",
       "example":"",
       "description":"Returns true if the two words are alliterations (iff the first stressed consonant of the two match)",
-      "syntax":"isAlliteration(String word1, String word2)",
+      "syntax":"isAlliteration(word1, word2)",
       "parameters":
       [
 			{ 
@@ -325,7 +325,7 @@
       
       "COMMENT.syntax":"isRhyme(String word1, String word2, boolean useLTS)",
       
-      "syntax":"isRhyme(String word1, String word2)",
+      "syntax":"isRhyme(word1, word2)<br>isRhyme(word1, word2, useLTS)",
       "parameters":
       [
 			{ 
@@ -338,7 +338,7 @@
 			},
 			{  
 			 "type": "boolean", 
-			 "desc": "useLTS (optional, default=false)" 
+			 "desc": "use letter-to-sound rules (optional, default=false)" 
 			}
 	  ],
 	  "returns":
@@ -376,7 +376,7 @@
       "methodName":"removeWord()",
       "example": "removeWord(\"abandon\");",
       "description":"Removes a word from the currently loaded lexicon",
-      "syntax":"removeWord(String word)",
+      "syntax":"removeWord(word)",
       "parameters":
       [
 			{ 
@@ -399,7 +399,7 @@
       "methodName":"similarByLetter()",
       "example":"",
       "description":"Compares the characters of the input string  (using a version of the min-edit distance algorithm) to each word in the lexicon, returning the set of closest matches.",
-      "syntax":"similarByLetter(String word)<br/>similarByLetter(String word, int minAllowedDist)<br/>similarByLetter(String word, int minAllowedDist, boolean preserveLength)",
+      "syntax":"similarByLetter(word)<br/>similarByLetter(word, minAllowedDist)<br/>similarByLetter(word, minAllowedDist, preserveLength)",
       "parameters":
       [
 			{ 
@@ -430,7 +430,7 @@
       "methodName":"similarBySound()",
       "example":"",
       "description":"Compares the phonemes of the input word (using a version of the min-edit distance algorithm) to each word in the lexicon, returning the set of closest matches.",
-      "syntax":"similarBySound(String input)<br/>similarByLetter(String input, int minAllowedDist)",
+      "syntax":"similarBySound(input)<br/>similarByLetter(input, minAllowedDist)",
       "parameters":
       [
 			{ 
@@ -457,7 +457,7 @@
       "methodName":"similarBySoundAndLetter()",
       "example":"",
       "description":"First calls similarBySound(), then filters the result set by the algorithm used in similarByLetter();<br/><br/>(useful when similarBySound() returns too large a result set)",
-      "syntax":"similarBySoundAndLetter(String word)",
+      "syntax":"similarBySoundAndLetter(word)",
       "parameters":
       [
 			{ 
@@ -499,7 +499,7 @@
       "methodName":"substrings()",
       "example":"",
       "description":"Returns all valid substrings of the input word in the lexicon ",
-      "syntax":"substrings(String word)<br/>substrings(String word, int minLength)",
+      "syntax":"substrings(word)<br/>substrings(word, minLength)",
       "parameters":
       [
 			{ 
@@ -526,7 +526,7 @@
       "methodName":"superstrings()",
       "example":"",
       "description":"Returns all valid superstrings of the input word in the lexicon ",
-      "syntax":"superstrings(String word)",
+      "syntax":"superstrings(word)",
       "parameters":
       [
 			{ 

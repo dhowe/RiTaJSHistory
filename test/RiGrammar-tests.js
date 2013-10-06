@@ -579,7 +579,7 @@ var runtests = function() {
     
     test("RiGrammar-exec1", function() {
   
-        var rg = new RiGrammar();
+        var rg = new RiGrammar(); // do nothing
 
         rg.addRule("<start>", "<first> | <second>");
         rg.addRule("<first>", "the <pet> <action> were 'adj()'");
@@ -621,7 +621,6 @@ var runtests = function() {
         }
     });
     
-    
     // TODO: fails in phantomJS
     test("RiGrammar-exec3", function() {
 
@@ -651,7 +650,6 @@ var runtests = function() {
             }
         }
     });
-
 }
 
 // unique methods...

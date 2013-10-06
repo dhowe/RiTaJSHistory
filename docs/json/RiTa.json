@@ -20,7 +20,7 @@
       "methodName":"RiTa.isAbbreviation()",
       "example":"",
       "description":"Returns true if 'input' is an abbreviation",
-      "syntax":"RiTa.isAbbreviation(String input)<br/>RiTa.isAbbreviation(String input, boolean caseSensitive)",
+      "syntax":"RiTa.isAbbreviation(input)<br/>RiTa.isAbbreviation(input, caseSensitive)",
       "parameters":[
          {
             "type":"String",
@@ -48,7 +48,7 @@
       "methodName":"RiTa.isQuestion()",
       "example":"",
       "description":"Returns true if sentence starts with a question word",
-      "syntax":"RiTa.isQuestion(String sentence)",
+      "syntax":"RiTa.isQuestion(sentence)",
       "parameters":[
          {
             "type":"String",
@@ -72,7 +72,7 @@
       "methodName":"RiTa.isSentenceEnd()",
       "example":"",
       "description":"Takes two consecutive words and returns true if 'currentWord' is the final word of a sentence (if true, 'nextWord' is generally the first word of the next sentence) ",
-      "syntax":"RiTa.isSentenceEnd(String currentWord, String nextWord)",
+      "syntax":"RiTa.isSentenceEnd(currentWord, nextWord)",
       "parameters":[
          {
             "type":"String",
@@ -100,7 +100,7 @@
       "methodName":"RiTa.isW_Question()",
       "example":"",
       "description":"Returns true if sentence starts with a w-question word, eg (who,what,why,where,when,etc.)",
-      "syntax":"RiTa.isW_Question(String sentence)",
+      "syntax":"RiTa.isW_Question(sentence)",
       "parameters":[
          {
             "type":"String",
@@ -124,7 +124,7 @@
       "methodName":"RiTa.randomOrdering()",
       "example":"",
       "description":"Returns a randomly ordered array of unique integers from 0 to numElements. <br/>The size of the array will be numElements.",
-      "syntax":"RiTa.randomOrdering(int numElements)",
+      "syntax":"RiTa.randomOrdering(numElements)",
       "parameters":[
          {
             "type":"int",
@@ -148,7 +148,7 @@
       "methodName":"RiTa.splitSentences()",
       "example":"",
       "description":"Splits 'text' into sentences (according to PENN Treebank conventions)",
-      "syntax":"RiTa.splitSentences(String text)<br/>RiTa.splitSentences(String text, String regex)",
+      "syntax":"RiTa.splitSentences(text)<br/>RiTa.splitSentences(text, regex)",
       "parameters":[
          {
             "type":"String",
@@ -175,7 +175,7 @@
       "methodName":"RiTa.stripPunctuation()",
       "example":"",
       "description":"Strips all punctuation from the input string",
-      "syntax":"RiTa.stripPunctuation(String text)",
+      "syntax":"RiTa.stripPunctuation(text)",
       "parameters":[
          {
             "type":"String",
@@ -198,7 +198,7 @@
       "methodName":"RiTa.trimPunctuation()",
       "example":"",
       "description":"Trims punctuation from both ends the input string (does not trim whitespace or internal punctuation)",
-      "syntax":"RiTa.trimPunctuation(String text)",
+      "syntax":"RiTa.trimPunctuation(text)",
       "parameters":[
          {
             "type":"String",
@@ -220,7 +220,7 @@
       "methodName":"RiTa.isPunctuation()",
       "example":"",
       "description":"Returns true if every character of 'text' is a punctuation character",
-      "syntax":"RiTa.isPunctuation(String text)",
+      "syntax":"RiTa.isPunctuation(text)",
       "parameters":[
          {
             "type":"String",
@@ -243,7 +243,7 @@
       "methodName":"RiTa.tokenize()",
       "example":"",
       "description":"Tokenizes the string (into words) according to Penn Treebank conventions<br/>See: <a href='http://www.cis.upenn.edu/~treebank/tokenization.html'>http://www.cis.upenn.edu/~treebank/tokenization.html</a>",
-      "syntax":"RiTa.tokenize(String words)<br/>RiTa.tokenize(String words, String regex)",
+      "syntax":"RiTa.tokenize(words)<br/>RiTa.tokenize(words, regex)",
       "parameters": [
          {
             "type":"String",
@@ -270,7 +270,7 @@
       "methodName":"RiTa.trim()",
       "example":"",
       "description":"Removes blank space from either side of a string",
-      "syntax":"RiTa.trim(String input)",
+      "syntax":"RiTa.trim(input)",
       "parameters":[
          {
             "type":"String",
@@ -294,7 +294,7 @@
       "methodName":"RiTa.distance()",
       "example":"",
       "description":"Convenience method to get the distance between 2 points",
-      "syntax":"RiTa.distance(float x1, float y1, float x2, float y2)",
+      "syntax":"RiTa.distance(x1, y1, x2, y2)",
       "parameters":[
          {
             "type":"float",
@@ -329,7 +329,7 @@
       "methodName":"RiTa.getPhonemes()",
       "example":"",
       "description":"Returns a string containing all phonemes for the input text",
-      "syntax":"RiTa.getPhonemes(String word)<br/>RiTa.getPhonemes(String[] word)",
+      "syntax":"RiTa.getPhonemes(wordStr)<br/>RiTa.getPhonemes(wordArr)",
       "parameters":[
          {
             "type":"String OR String[]",
@@ -353,7 +353,7 @@
       "methodName":"RiTa.getPosTags()",
       "example":"",
       "description":"Uses the default PosTagger to tag the input with a tag from the <a href='http://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html' target=new>PENN tag set</a>",
-      "syntax":"RiTa.getPosTags(String word)<br/>RiTa.getPosTags(String[] word)",
+      "syntax":"RiTa.getPosTags(word)<br/>RiTa.getPosTags(wordArr)",
       "parameters":[
          {
             "type":"String OR String[]",
@@ -381,7 +381,7 @@
       "methodName":"RiTa.getPosTagsInline()",
       "example":"",
       "description":"Takes an string returns a combined string of the form:<p><pre>'The/dt doctor/nn treated/vbd dogs/nns'</pre>",
-      "syntax":"RiTa.getPosTagsInline(String word)",
+      "syntax":"RiTa.getPosTagsInline(word)",
       "parameters":[
          {
             "type":"String or String[]",
@@ -405,7 +405,7 @@
       "methodName":"RiTa.getStresses()",
       "example":"",
       "description":"Analyzes the input and returns a new string containing the stresses for each syllable of the input text ",
-      "syntax":"RiTa.getStresses(String word)<br/>RiTa.getStresses(String[] word)",
+      "syntax":"RiTa.getStresses(word)<br/>RiTa.getStresses(wordArr)",
       "parameters":[
          {
             "type":"String OR String[]",
@@ -429,7 +429,7 @@
       "methodName":"RiTa.getSyllables()",
       "example":"",
       "description":"Analyzes the input and returns a String containing the phonemes for each syllable of each word of the input text,  delimited by dashes (phonemes) and spaces (words) ",
-      "syntax":"RiTa.getSyllables(String word)<br/>RiTa.getSyllables(String[] word)",
+      "syntax":"RiTa.getSyllables(word)<br/>RiTa.getSyllables(wordArr)",
       "parameters":[
          {
             "type":"String OR String[]",
@@ -453,7 +453,7 @@
       "methodName":"RiTa.getWordCount()",
       "example":"",
       "description":"Returns the # of words in the String according to the default tokenizer",
-      "syntax":"RiTa.getWordCount(String text)",
+      "syntax":"RiTa.getWordCount(text)",
       "parameters":[
          {
             "type":"String",
@@ -477,7 +477,7 @@
       "methodName":"RiTa.posToWordNet()",
       "example":"",
       "description":"Converts a PENN part-of-speech tag to the simplified WordNet scheme, consisting of the following 5 tags: 'n' (noun), 'v' (verb), 'a' (adj), 'r' (adverb), and '-'(other).",
-      "syntax":"RiTa.posToWordNet(String pennPosTag)",
+      "syntax":"RiTa.posToWordNet(pennPosTag)",
       "parameters":[
          {
             "type":"String",
@@ -501,14 +501,14 @@
       "methodName":"RiTa.conjugate()",
       "example":'Map args = new HashMap();<br>args.put("tense", RiTa.PAST_TENSE);<br>args.put("number", RiTa.SINGULAR);<br>args.put("person", RiTa.FIRST_PERSON);<br><br>String c = RiTa.conjugate("swim", args);<br>',
       "description":"Conjugates the 'verb' according to the specified options",
-      "syntax":"RiTa.conjugate(String verb, Map args)",
+      "syntax":"RiTa.conjugate(verb, args)",
       "parameters":[
          {
             "type":"String",
             "desc":"the verb stem"
          },
          {
-            "type":"Map",
+            "type":"Map (Object in JavaScript)",
             "desc":"args containing the relevant options for the conjugator"
          }
         
@@ -529,7 +529,7 @@
       "methodName":"RiTa.getPastParticiple()",
       "example":"",
       "description":"Returns the past participle form of the stemmed or non-stemmed 'verb'",
-      "syntax":"RiTa.getPastParticiple(String verb)",
+      "syntax":"RiTa.getPastParticiple(verb)",
       "parameters":[
          {
             "type":"String",
@@ -553,7 +553,7 @@
       "methodName":"RiTa.getPresentParticiple()",
       "example":"",
       "description":"Returns the present participle form of the stemmed or non-stemmed 'verb'",
-      "syntax":"RiTa.getPresentParticiple(String verb)",
+      "syntax":"RiTa.getPresentParticiple(verb)",
       "parameters":[
          {
             "type":"String",
@@ -577,7 +577,7 @@
       "methodName":"RiTa.stem()",
       "example":'String s = RiTa.stem("cakes");\n\nString y = RiTa.stem("cakes", RiTa.PORTER);',
       "description":"Extracts base roots from a word according to the specified stemming algorithm <br/>&nbsp;<br/> Note: see <a href='http://text-processing.com/demo/stem/'>http://text-processing.com/demo/stem/</a> for comparison of Lancaster and Porter algorithms or <a href='http://mpii.de/yago-naga/javatools'>http://mpii.de/yago-naga/javatools</a> for info on PlingStemmer",
-      "syntax":"RiTa.stem(String word, String type)",
+      "syntax":"RiTa.stem(word, type)",
       "parameters":[
          {
             "type":"String",
@@ -605,7 +605,7 @@
       "methodName":"RiTa.pluralize()",
       "example":"",
       "description":"Pluralizes a noun according to pluralization rules",
-      "syntax":"RiTa.pluralize(String word)",
+      "syntax":"RiTa.pluralize(word)",
       "parameters":[
          {
             "type":"String",
@@ -629,7 +629,7 @@
       "methodName":"RiTa.singularize()",
       "example":"",
       "description":"Singularize a word according to singularization rules",
-      "syntax":"RiTa.singularize(String word)",
+      "syntax":"RiTa.singularize(word)",
       "parameters":[
          {
             "type":"String",
@@ -653,7 +653,7 @@
       "methodName":"RiTa.timer()",
       "example":"",
       "description":"Starts a timer that calls 'onRiTaEvent()', or the specified callback (in JS), every 'period' seconds",
-      "syntax":"RiTa.timer(float period)<br/>RiTa.timer(float period, Function callback)",
+      "syntax":"RiTa.timer(parent, period)<br/>RiTa.timer(parent, period, callback)",
       "parameters":[
          {
             "type":"Object",
@@ -685,7 +685,7 @@
       "methodName":"RiTa.stopTimer()",
       "example":"",
       "description":"Stops a timer according to its unique id",
-      "syntax":"RiTa.stopTimer(int id)",
+      "syntax":"RiTa.stopTimer(id)",
       "parameters":[
          {
             "type":"int",
@@ -703,7 +703,7 @@
       "methodName":"RiTa.pauseTimer()",
       "example":"",
       "description":"Pauses a timer according to its unique id",
-      "syntax":"RiTa.pauseTimer(int id, float pauseSec)",
+      "syntax":"RiTa.pauseTimer(id, pauseSec)",
       "parameters":[
          {
             "type":"int",
@@ -731,7 +731,7 @@
       "methodName":"RiTa.random()",
       "example":"",
       "description":"Returns a random number between >= min (default=0) and < max (default=1)",
-      "syntax":"RiTa.random()",
+      "syntax":"RiTa.random()<br>RiTa.random(min)<br>RiTa.random(min, max)",
       "parameters":[
          {
             "type":"int or float",
@@ -758,7 +758,7 @@
       "methodName":"RiTa.loadString()",
       "example":"",
       "description":"Loads a file's contents from 'url' and calls back to the supplied 'callback' function with the loaded string as an argument",
-      "syntax":"RiTa.loadString(String url, Function callback)",
+      "syntax":"RiTa.loadString(url, callback)",
       "parameters":[
          {
             "type":"String",
@@ -780,7 +780,7 @@
       "methodName":"RiTa.p5Compatible()",
       "example":"",
       "description":"For convenience, provides implementations of some of Processing built-in method, e.g. size(), background(), etc. and calls setup() and draw() automatically (if they exist)",
-      "syntax":"RiTa.p5Compatible(boolean value)",
+      "syntax":"RiTa.p5Compatible(value)",
       "parameters":[
          {
             "type":"boolean (optional, only for sets)",

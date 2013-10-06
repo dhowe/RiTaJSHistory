@@ -3,7 +3,7 @@
       "methodName":"addRule()",
       "example":"",
       "description":"Adds a rule to the existing grammar, replacing any existing rule with the same name ",
-      "syntax":"addRule(String name, String ruleStr, float weight)",
+      "syntax":"addRule(name, ruleStr, weight)",
       "parameters":
       [
 			{ 
@@ -36,14 +36,9 @@
       "methodName":"expand()",
       "example":"",
       "description":"Expands a grammar from its '&#60;start&#62;' symbol",
-      "syntax":"expand(String funs)",
+      "syntax":"expand()",
       "parameters":
       [
-			{ 
-			"type": "String", 
-			"desc": "[Javascript Only] One or more functions to be added to the current context BEFORE executing the expand() call. Useful for defining functions referenced in back-ticked rules." 
-			}
-			
 	  ],
 	  "returns":
       [
@@ -61,7 +56,7 @@
       "methodName":"expandFrom()",
       "example":"",
       "description":'Expands the grammar, starting from the given symbol. <br/>&nbsp;<br/>RiGrammar.expand() is equivalent to RiGrammar.expandFrom("<start>").',
-      "syntax":"expandFrom(String rule)",
+      "syntax":"expandFrom(rule)",
       "parameters":
       [
 			{ 
@@ -86,7 +81,7 @@
       "methodName":"expandWith()",
       "example":"",
       "description":"Expands the grammar after replacing an instance of the non-terminal 'symbol' with the String in 'literal'.<br/>&nbsp;<br/>Guarantees that 'literal' will be in the final expanded String, assuming at least one instance of 'symbol' in the Grammar.",
-      "syntax":"expandWith(String literal, String symbol)",
+      "syntax":"expandWith(literal, symbol)",
       "parameters":
       [
 			{ 
@@ -131,7 +126,7 @@
       "methodName":"getRule()",
       "example":"",
       "description":"Returns the requested rule",
-      "syntax":"getRule(String ruleName)",
+      "syntax":"getRule(ruleName)",
       "parameters":
       [
 			{ 
@@ -155,7 +150,7 @@
       "methodName":"hasRule()",
       "example":"",
       "description":"Returns true if the requested rule exists in the grammar, else false",
-      "syntax":"hasRule(String name)",
+      "syntax":"hasRule(ruleName)",
       "parameters":
       [
 			{ 
@@ -200,7 +195,7 @@
       "methodName":"removeRule()",
       "example":"",
       "description":"Deletes the named rule from the grammar",
-      "syntax":"removeRule(String name)",
+      "syntax":"removeRule(name)",
       "parameters":
       [
 			{ 
@@ -242,7 +237,7 @@
       "methodName":"load()",
       "example":"",
       "description":"Re-initializes the grammar from an object or string containing the rules",
-      "syntax":"load(String grammar)<br/>load(Object grammar)",
+      "syntax":"load(grammarString)<br/>load(grammarObject)",
       "parameters":
       [
 			{ 
@@ -266,12 +261,16 @@
       "methodName":"loadFromFile()",
       "example":"",
       "description":"Re-initializes the grammar from a file containing the grammar rules",
-      "syntax":"loadFromFile(String grammarFileURL)<br/>",
+      "syntax":"loadFromFile(grammarFileURL)<br/>loadFromFile(grammarFileURL, callback)",
       "parameters":
       [
 			{ 
 				"type": "String", 
 				"desc": "URL of file containing the grammar rules" 
+			},
+			{ 
+				"type": "Function", 
+				"desc": "to be called when the load completes (optional, for JavaScript)" 
 			}
 	  ],
 	  "returns":
@@ -283,7 +282,7 @@
 			
 	  ],
       "related":"",
-      "platform":"In Javascript, uses JQuery's ajax() method if available, otherwise it attempts an invisible iframe hack. Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page.",
+      "platform":"In Javascript, uses JQuery's ajax() method if available, otherwise attempts an invisible iframe hack, then calls the specified callback function. Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page.",
 	  "note":""
    }      
 ]
