@@ -1,0 +1,23 @@
+PROBLEM: need to make one version of run-in-qunit.sh
+
+mkdir structure in RJS/build  ?
+
+node
+  rita
+    lib
+    test (move here)
+    scripts (move here)
+
+move:
+  lib/rita.js ->  from RJS/www/download/rita-XXX.js (better from build?)
+  test/*.* -> from RJS/test
+  (test|scripts)/phantomjs -> from tools
+  (test|scripts)/run-in-qunit.js -> from HERE ??
+  package.json -> from RJS (Or HERE)
+  README.MD -> from RJS (Or HERE)
+  
+update:
+  package.json (check version #)
+  
+
+npm publish  (from inside node/rita)
