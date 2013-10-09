@@ -1,10 +1,10 @@
 
-## RiTaJS: a generative language toolkit for JavaScript
+#### RiTaJS: a generative language toolkit for JavaScript
 
 
 <a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo2.png"/></a>
 
-### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
+#### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
 
 RiTaJS is designed to an easy-to-use toolkit for experiments 
 in natural language and generative literature, based on the RiTa 
