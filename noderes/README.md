@@ -1,10 +1,10 @@
 
-### RiTaJS: a generative language toolkit for JavaScript
+## RiTaJS: a generative language toolkit for JavaScript
 
 
-<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo3.png"/></a>
+<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo2.png"/></a>
 
-#### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
+### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
 
 RiTaJS is designed to an easy-to-use toolkit for experiments 
 in natural language and generative literature, based on the RiTa 
@@ -14,10 +14,9 @@ its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
 are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
-#### About the project
+About the project
 --------
 * Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
-* Related:           RiTa -> https://github.com/dhowe/RiTa
 * License: 			 GPL (see included LICENSE file for full license)
 * Maintainers:       See included AUTHORS file for contributor list
 * Web Site:          http://rednoise.org/rita/js
@@ -25,8 +24,19 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
 
 
+In NodeJS
+--------
+<pre>
+ 
+ To install: $ npm install rita
+ 
+ rita = require('rita');
+ rs = rita.RiString("The elephant took a bite.");
+ console.log(rs.features());
+</pre>  
 
-#### A Simple Sketch
+
+In a browser
 --------
 Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
 <pre>
@@ -48,7 +58,7 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 </pre>  
 
 
-#### With ProcessingJS
+With ProcessingJS
 --------
 If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>, you can simply open Processing and switch to 'JavaScript' mode. If you don't want to use the Processing IDE, you can cimply create an HTML files like this (assuming you've downloaded both libraries to the current directory):
 <pre>
@@ -70,19 +80,7 @@ If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>
 </pre>  
 
 
-#### With NodeJS
---------
-<pre>
- 
- To install: $ npm install rita
- 
- rita = require('rita');
- rs = rita.RiString("The white elephant smiled.");
- console.log(rs.features());
-</pre>  
-
-
-#### Can I contribute?
+Can I contribute?
 --------
 Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started. 
 

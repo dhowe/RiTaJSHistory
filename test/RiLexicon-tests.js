@@ -1,13 +1,5 @@
 var runtests = function() {
     
-	QUnit.module("RiLexicon", {
-	    setup: function () {
-			//RiLexicon.data = undefined;
-	    },
-	    teardown: function () {
-	    }
-	});
-
  	function createLex() {
  		RiLexicon.data = undefined;
  		return new RiLexicon();
@@ -802,7 +794,7 @@ var runtests = function() {
             var answer = [ "torpedo" ];
             deepEqual(result, answer);
 
-            var lex = createLex()
+            //var lex = createLex();
             var result = lex.similarBySoundAndLetter("worngword");
             var answer = [ "wormwood" ];
             deepEqual(result, answer);

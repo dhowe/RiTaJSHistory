@@ -979,7 +979,17 @@ var runtests = function() {
     });
 
     test("RiString.split()", function() {
-
+      
+        var rs = new RiString("Who are you?");
+        var result = rs.split("?");
+        var answer = [ RiString("Who are you") ];
+        deepEqual(result, answer);
+        
+        var rs = new RiString("Who are you?");
+        var result = rs.split("\\?");
+        var answer = [ RiString("Who are you?") ];
+        deepEqual(result, answer);
+        
         var rs = new RiString("Who are you?");
         var result = rs.split();
         var answer = [ RiString("Who are you?") ];
@@ -991,18 +1001,14 @@ var runtests = function() {
         deepEqual(result, answer);
 
         var rs = new RiString("Who are you?");
-        var result = rs.split("are");
+        var result = rs.split("are");        
         var answer = [ RiString("Who "), RiString(" you?") ];
         deepEqual(result, answer);
 
         var rs = new RiString("Who are you?");
-        var result = rs.split("?");
-        var answer = [ RiString("Who are you"), RiString("") ];
-        deepEqual(result, answer);
-
-        var rs = new RiString("Who are you?");
         var result = rs.split("W");
-        var answer = [ RiString(""), RiString("ho are you?") ];
+//console.log(result);
+        var answer = [ RiString("ho are you?") ];
         deepEqual(result, answer);
 
         var rs = new RiString("Who are you?");

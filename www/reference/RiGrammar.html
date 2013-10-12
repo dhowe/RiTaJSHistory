@@ -68,14 +68,12 @@
           	<div class="example"> 
 			    
 	     <pre class="margin"> 
-rg = new RiGrammar();
+rg = new RiGrammar(jsonStringOrObject);
 
-rg.loadFromFile("myGrammarFile.json");
-
-println(rg.expand());
+result = rg.expand();
 		</pre>
 		
-RiTa grammars are JSON-formatted Strings as follows:
+RiTa grammars are valid JSON-formatted strings as follows:
 <pre>
 { 	   
 	"&lt;start&gt;": "&lt;rule1&gt; | &lt;rule2&gt; | &lt;rule3&gt;",
@@ -85,7 +83,8 @@ RiTa grammars are JSON-formatted Strings as follows:
 	...
 }
 </pre>
-
+OR
+<br/>&nbsp;
 <pre>
 { 	   
 	"&lt;start&gt;": [ "&lt;rule1&gt;", "&lt;rule2&gt;", "&lt;rule3&gt;" ],
@@ -95,7 +94,9 @@ RiTa grammars are JSON-formatted Strings as follows:
 	...
 }
 </pre>
-   
+  
+<li>If you're not sure whether your grammar is valid JSON, you can check it at <a href='http://jsonlint.com/'> jsonlint.com</a><br/>&nbsp;
+	
 <li>Commonly used methods:</li>
 <br/>
 <ul>
@@ -151,47 +152,52 @@ function pluralize(theString) {
             </div></td>
         </tr> 
 
-			    <tr class="">
-			      <th scope="row">Syntax</th>
-			      <!-- SYNTAX  -->
-			      <td>
+		<tr class="">
+		  <th scope="row">Syntax</th>
+		  <!-- SYNTAX  -->
+		  <td>
 <pre>
 // Initialize a RiGrammar object with no grammar data.
-
-RiGrammar() 
+rg = new RiGrammar(); 
 	
+	OR
      
-// Specify a grammar in JSON format (see example above).
-     
-RiGrammar(String jsonGrammar) 
+// Specify a grammar in JSON format.
+rg = RiGrammar(myJSONGrammar)
+
+	OR
+	
+rg = new RiGrammar();
+rg.loadFromFile("fileWithJSON.txt", [optionalCallbackForJS]);
+      
 </pre>
 </td>
-		        </tr>
-			    <tr class="">
-			      <th scope="row">Parameters</th>
-			      <td><table cellpadding="0" cellspacing="0" border="0" class="sub-table">
-    			    <tr class="">
-			          <!-- PARAMETERS  -->
-			          <th width="25%" scope="row" class="nobold">&nbsp; String</th>
-			          <td width="75%">the (JSON) grammar</td>
-		            </tr>
-			        </table></td>
-		        </tr>
-			   	<tr class="">
-			      <th scope="row">Platform</th>
-			      <!-- SYNTAX  -->
-			      <td>Java / Javascript</td>
-		        </tr>
-				<tr class='Note' style='display:none'>
-			      <th scope="row">Note</th>
-			      <!-- SYNTAX  -->
-			      <td></td>
-		        </tr>
-		        
-		        				<tr class="">
-							<th scope="row"></th>
-							<td></td>
-						</tr>
+        </tr>
+	    <tr class="">
+	      <th scope="row">Parameters</th>
+	      <td><table cellpadding="0" cellspacing="0" border="0" class="sub-table">
+		    <tr class="">
+	          <!-- PARAMETERS  -->
+	          <th width="25%" scope="row" class="nobold">&nbsp; String or Object</th>
+	          <td width="75%">the (JSON) grammar</td>
+            </tr>
+	        </table></td>
+        </tr>
+	   	<tr class="">
+	      <th scope="row">Platform</th>
+	      <!-- SYNTAX  -->
+	      <td>Java / Javascript</td>
+        </tr>
+		<tr class='Note' style='display:none'>
+	      <th scope="row">Note</th>
+	      <!-- SYNTAX  -->
+	      <td></td>
+        </tr>
+        
+        				<tr class="">
+					<th scope="row"></th>
+					<td></td>
+				</tr>
 						
 	      </table>
       		
