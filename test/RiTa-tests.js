@@ -5,7 +5,7 @@
 	    teardown: function () {}
 	});
 
-	var functions = [ "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering",
+	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering",
 					"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
 					"tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", 
 					"getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet",
@@ -21,6 +21,11 @@
     test("RiTa.constants", function () {
 
         ok(RiTa.VERSION);
+    });
+
+    test("RiTa.env", function () {
+		var mode = RiTa.env();
+        ok(mode==RiTa.NODEJS || mode==RiTa.JS);
     });
     
     test("RiTa.p5Compatible", function () {

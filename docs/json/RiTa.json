@@ -69,6 +69,23 @@
 
    },
    {
+      "methodName":"RiTa.env()",
+      "example":"",
+      "description":"Returns one of the following constants, depending on the runtime environment (RiTa.JAVA, RiTa.JS, RiTa.NODEJS) ",
+      "syntax":"RiTa.env();",
+      "parameters":[],
+      "returns":[
+         {
+            "type":"int",
+            "desc":"Returns RiTa.JAVA, RiTa.JS, or RiTa.NODEJS, depending on the runtime environment"
+         }
+
+      ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
       "methodName":"RiTa.isSentenceEnd()",
       "example":"",
       "description":"Takes two consecutive words and returns true if 'currentWord' is the final word of a sentence (if true, 'nextWord' is generally the first word of the next sentence) ",
