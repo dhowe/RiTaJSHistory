@@ -172,6 +172,9 @@ sed -i "" "s/##version##/${VERSION}/g" $DOWNLOAD_INDEX
 #ls -l $BUILD
 
 ###COPY-P5_LIB#######################################################
+
+####### 2 jars here? ################################################
+
 echo $LINE
 echo Copying $RITA_CODE 
 echo " -> $P5_LIB"  # libraries dir
