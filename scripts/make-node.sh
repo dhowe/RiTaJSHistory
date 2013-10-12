@@ -9,16 +9,18 @@ then
     echo
     echo "  error:   tag or version required"
     echo
-    echo "  usage:   make-node.sh [tag]  "
+    echo "  usage:   make-node.sh [tag] [-p] [-f]"
     echo "           make-node.sh 1.0.63a"
     echo
     echo "  options:"
     echo "       -p = npm-publish after build "
+    echo "       -f = npm-publish --force "
     exit
 fi
 
 
 VERSION=$1
+DO_FORCE=0
 DO_PUBLISH=0
 INCLUDE_DOCS=1
 
@@ -30,6 +32,9 @@ while [ $# -ge 1 ]; do
     esac
     case $1 in
         -p) DO_PUBLISH=1  ;;
+    esac
+    case $1 in
+        -f) DO_FORCE=1  ;;
     esac
     shift
 done
@@ -83,12 +88,17 @@ echo
 
 if [ $DO_PUBLISH = 1 ]
 then
-    echo Calling npm publish... 
-    $NPM_BIN/npm publish $NODE_RITA
-    # --force if overridding current version
+    if [ $DO_FORCE = 1 ]
+    then
+        echo Calling npm publish --force... 
+        $NPM_BIN/npm publish --force $NODE_RITA
+    else
+        echo Calling npm publish... 
+        $NPM_BIN/npm publish $NODE_RITA
+    fi
     echo Done
 else
-    echo Done [use [-p] to publish]
+    echo Done [use [-p] [-f] to publish]
 fi
 
 exit
