@@ -13,16 +13,19 @@
     "node": ">=0.6"
   }, 
   "keywords": [
-    "nlp", "nlg",
-    "language",
-    "generative",
-    "natural"
+    "nlp", "natural language",
+    "language", "writing",
+    "generative"
   ],
   "bugs": { 
-        "mail": "daniel@rednoise.org", "url": "https://github.com/dhowe/RiTaJS/issues" 
+        "mail": "daniel@rednoise.org", 
+        "url": "https://github.com/dhowe/RiTaJS/issues" 
+  },
+  "scripts": {
+    "test": "node test/test-runner.js"
   },
   "license" : "GPL",
   "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": { "qunit": "0.5.x" },
   "optionalDependencies": {}
 }

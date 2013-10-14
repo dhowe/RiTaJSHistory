@@ -358,7 +358,7 @@ var runtests = function() {
 	        
     	var rg1 = new RiGrammar();
     	rg1.loadFromFile("sentence1.json", function() {
-    		
+
 	        ok(rg1._rules);
 	        //rg1.print();
 	        ok(rg1._rules['<start>']);
