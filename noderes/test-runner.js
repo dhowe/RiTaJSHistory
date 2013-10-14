@@ -1,13 +1,10 @@
-//console.log(module.paths);
+console.log("module.paths="+module.paths);
+console.log("process.cwd="+process.cwd());
 
-var qunit = require('qunit');
-
-var args = process.argv.splice(2);
-var testDir = '../../test/';
-var codeDir = '../../src/';
+var qunit = require('qunit'), args = process.argv.splice(2), testDir = 'rita/test/', codeDir = 'rita/lib/';
 
 // No RiText*
-var testFiles = [
+var theTests = [], testFiles = [
     'RiMarkov',
     'RiGrammar',
     'RiLexicon',
@@ -17,7 +14,6 @@ var testFiles = [
     'LibraryStructure',
 ];
 
-var theTests = [];
 if (args.length && testFiles.indexOf(args[0]) > -1) {
 
     var testNum = 0;
@@ -25,17 +21,18 @@ if (args.length && testFiles.indexOf(args[0]) > -1) {
 
         try {
             testNum = parseInt(args[1]);
+            console.log("Test # "+testNum);
         }
         catch(e) {
             console.err('Ignoring non-numeric arg: '+arg[1]);
         }
     }
     var theTest = testDir + args[0] + '-tests.js';    
-    //if (testNum) theTest += '&testNumber='+testNum;
     theTests.push(theTest);
 }
 else {
-    for(var i=0, len=testFiles.length; i < len; i++){
+
+    for (var i=0, len=testFiles.length; i < len; i++){
         theTests.push(testDir + testFiles[i]+'-tests.js');    
     }
 }
@@ -48,17 +45,16 @@ qunit.setup({
     log: { 
         assertions: false,
         errors: true,
-        tests: false,
+        tests: true,
         summary: false,
         globalSummary: true
     }
 });
 
 qunit.run({
-    deps: [ codeDir+'rita_dict.js', codeDir+'rita_lts.js' ],
     code: codeDir+'rita.js',
     testNum: testNum, // added DCH
     tests: theTests
 
-}, function() {});
+}, function() { console.log("Done"); });
 

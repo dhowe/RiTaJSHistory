@@ -1,16 +1,11 @@
- var runtests = function () {
+var runtests = function () {
  	
     QUnit.module("RiTa", {
 	    setup: function () {},
 	    teardown: function () {}
 	});
 
-	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering",
-					"splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation",
-					"tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", 
-					"getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet",
-					"conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize",
-					"timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
+	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
 
     test("RiTa.functions", function () {
         for (var i = 0; i < functions.length; i++) {
@@ -25,6 +20,7 @@
 
     test("RiTa.env", function () {
 		var mode = RiTa.env();
+		//console.log("Mode: "+mode);
         ok(mode==RiTa.NODEJS || mode==RiTa.JS);
     });
     
@@ -1314,4 +1310,4 @@
 }
 
  
- if (typeof exports != 'undefined') runtests();
+if (typeof exports != 'undefined') runtests();

@@ -22,25 +22,23 @@ var runtests = function() {
         "match",
         "pos",
         "posAt",
+
         "replaceFirst",
         "replaceLast",
         "replaceAll",
-        
         "insertChar",
         "removeChar",
         "replaceChar",
-        
         "insertWord",
         "replaceWord",
         "removeWord",
-        
+
         "slice",
         "split",
         "startsWith",
         "substring",
         "substr",
         "text",
-        //"toCharArray",
         "toLowerCase",
         "toUpperCase",
         "trim",

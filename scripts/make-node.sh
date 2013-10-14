@@ -45,14 +45,18 @@ done
 ##############################################################
 
 BUILD=../build
+TEST=../test
 NODE_RES=../noderes
 NODE_DIR=$BUILD/node
 NODE_RITA=$NODE_DIR/rita
 NODE_LIB=$NODE_DIR/rita/lib
 NODE_DOC=$NODE_DIR/rita/doc
+NODE_TEST=$NODE_DIR/rita/test
 DL_DIR=$BUILD/www/download
 DOC_DIR=$BUILD/www/reference
 PKG_JSON=$NODE_RITA/package.json
+TARBALL=rita-$VERSION.tgz
+LATEST=../../latest
 
 echo
 echo "Building [Node] RiTaJS v$VERSION -----------------------"
@@ -64,6 +68,7 @@ echo Re-creating $NODE_LIB
 rm -rf $NODE_DIR
 mkdir -p $NODE_LIB
 mkdir -p $NODE_DOC
+mkdir -p $NODE_TEST
 
 echo Copying $NODE_RES/package.json to $PKG_JSON
 cp $NODE_RES/package.json $PKG_JSON
@@ -73,17 +78,27 @@ sed -i "" "s/##version##/${VERSION}/g" $PKG_JSON
 echo Copying $NODE_RES/README.md to $NODE_RITA
 cp $NODE_RES/README.md $NODE_RITA/
 
+echo Copying $NODE_RES/test-runner.js to $NODE_TEST
+cp $NODE_RES/test-runner.js $NODE_TEST/
+
+echo Copying $TEST to $NODE_TEST
+cp -r $TEST/*.js* $NODE_TEST/
+
 echo Copying $DOC_DIR to $NODE_DOC
 cp -r $DOC_DIR/* $NODE_DOC/
-find $NODE_DOC -name 'CVS' | xargs rm -r
 
 echo Copying $DL_DIR/rita-$VERSION.min.js to 'lib'
 cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
 
+echo Removing CVS dirs
+find $NODE_DIR -name 'CVS' | xargs rm -r
 #ls -R $NODE_RITA
 #exit
 
 echo $LINE
+echo Generating NPM tarball in $LATEST
+$NPM_BIN/npm pack $NODE_RITA
+mv $TARBALL $LATEST/$TARBALL
 echo
 
 if [ $DO_PUBLISH = 1 ]
@@ -91,10 +106,10 @@ then
     if [ $DO_FORCE = 1 ]
     then
         echo Calling npm publish --force... 
-        $NPM_BIN/npm publish --force $NODE_RITA
+        $NPM_BIN/npm publish --force $LATEST/$TARBALL
     else
         echo Calling npm publish... 
-        $NPM_BIN/npm publish $NODE_RITA
+        $NPM_BIN/npm publish $LATEST/$TARBALL
     fi
     echo Done
 else
