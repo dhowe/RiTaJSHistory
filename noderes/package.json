@@ -10,7 +10,7 @@
   },
   "main": "lib/rita.js",
   "engines": {
-    "node": ">=0.6"
+    "node": ">= 0.6"
   }, 
   "keywords": [
     "nlp", "natural language",
@@ -26,6 +26,6 @@
   },
   "license" : "GPL",
   "dependencies": {},
-  "devDependencies": { "qunit": "0.5.x" },
+  "devDependencies": { "qunit": ">= 0.5" },
   "optionalDependencies": {}
 }

@@ -2,7 +2,7 @@
 
 set -e # die on errors 
 
-NPM_BIN=/Users/dhowe/.nvm/v0.10.15/bin
+NPM=/usr/local/bin/npm
 
 if [ $# -lt "1"  ]
 then
@@ -66,7 +66,7 @@ echo
 
 echo Re-creating $NODE_LIB 
 rm -rf $NODE_DIR
-mkdir -p $NODE_LIB
+mkdir -p $NODE_LIB || die
 mkdir -p $NODE_DOC
 mkdir -p $NODE_TEST
 
@@ -90,26 +90,31 @@ cp -r $DOC_DIR/* $NODE_DOC/
 echo Copying $DL_DIR/rita-$VERSION.min.js to 'lib'
 cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
 
-echo Removing CVS dirs
-find $NODE_DIR -name 'CVS' | xargs rm -r
+if true ### hack for set -e
+then
+  find $NODE_DIR -name 'CVS' | xargs rm -r
+fi
 #ls -R $NODE_RITA
 #exit
 
 echo $LINE
 echo Generating NPM tarball in $LATEST
-$NPM_BIN/npm pack $NODE_RITA
-mv $TARBALL $LATEST/$TARBALL
+echo "CMD: $NPM pack $NODE_RITA from: "
+pwd
 echo
+$NPM pack $NODE_RITA
+echo Generated tarball 
+mv $TARBALL $LATEST/$TARBALL
 
 if [ $DO_PUBLISH = 1 ]
 then
     if [ $DO_FORCE = 1 ]
     then
         echo Calling npm publish --force... 
-        $NPM_BIN/npm publish --force $LATEST/$TARBALL
+        $NPM publish --force $LATEST/$TARBALL
     else
         echo Calling npm publish... 
-        $NPM_BIN/npm publish $LATEST/$TARBALL
+        $NPM publish $LATEST/$TARBALL
     fi
     echo Done
 else
