@@ -33,6 +33,8 @@ In NodeJS
  rita = require('rita');
  rs = rita.RiString("The elephant took a bite.");
  console.log(rs.features());
+ 
+ To run tests: $ npm test rita
 </pre>  
 
 

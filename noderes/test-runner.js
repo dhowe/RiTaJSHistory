@@ -1,7 +1,7 @@
 console.log("module.paths="+module.paths);
 console.log("process.cwd="+process.cwd());
 
-var qunit = require('qunit'), args = process.argv.splice(2), testDir = 'rita/test/', codeDir = 'rita/lib/';
+var qunit = require('qunit'), args = process.argv.splice(2), testDir = 'test/', codeDir = 'lib/';
 
 // No RiText*
 var theTests = [], testFiles = [
@@ -56,5 +56,5 @@ qunit.run({
     testNum: testNum, // added DCH
     tests: theTests
 
-}, function() { console.log("Done"); });
+}, function() { console.log("ok"); });
 
