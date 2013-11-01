@@ -827,6 +827,7 @@ var runtests = function () {
         equal(RiTa.stem("gases",type), "gase");
         equal(RiTa.stem("buses",type), "buse");
         equal(RiTa.stem("happiness",type), "happi");
+        equal(RiTa.stem("joyful",type), "joy");
         equal(RiTa.stem("terrible",type), "terribl");
 
         var test = 'Stemming is funnier than a bummer';
