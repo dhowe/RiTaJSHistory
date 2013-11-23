@@ -6,29 +6,31 @@ var runtests = function() {
 	    teardown: function () {}
 	}); 
 
-    var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getRule", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFromFile" ];
+//"getRule", 
+    var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFromFile" ];
 
     var sentenceGrammar = { '<start>' : '<noun_phrase> <verb_phrase>.', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
 
 	var sentenceGrammar2 = {
-	    "<start>": "<noun_phrase> <verb_phrase>.",
-	    "<noun_phrase>": "<determiner> <noun>",
-	    "<determiner>": [
-	        "a [.1]",
-	        "the"
+	    '<start>': '<noun_phrase> <verb_phrase>.',
+	    '<noun_phrase>': '<determiner> <noun>',
+	    '<determiner>': [
+	        'a [.1]',
+	        'the'
 	    ],
-	    "<verb_phrase>": [
-	        "<verb> <noun_phrase> [.1]",
-	        "<verb>"
+	    '<verb_phrase>': [
+	        '<verb> <noun_phrase> [.1]',
+	        '<verb>'
 	    ],
-	    "<noun>": [
-	        "woman",
-	        "man"
+	    '<noun>': [
+	        'woman',
+	        'man'
 	    ],
-	    "<verb>": "shoots"
+	    '<verb>': 'shoots'
 	};
 	
 	var uniqueNouns = { '<start>' : 'The `store("<noun>")` chased the `unique("<noun>");`', '<noun>' : 'dog | cat | mouse' };
+	var uniqueNouns2 = { '<start>' : 'The `store("<noun>")` chased the `newrule("<noun>");`', '<noun>' : 'dog | cat | mouse', '<verb>' : 'rhino'  };
 
     test("RiGrammar.functions", function() {
 
@@ -84,13 +86,10 @@ var runtests = function() {
         rg.reset();
         rg.addRule("<start>", "<pet>");
         ok(rg._rules["<start>"]);
-        ok(rg.getRule("<start>"));
-        ok(rg.getRule("start"));
-
+        ok(rg.hasRule("<start>"));
         rg.addRule("<start>", "<dog>", .3);
         ok(rg._rules["<start>"]);
-        ok(rg.getRule("<start>"));
-        ok(rg.getRule("start"))
+        ok(rg.hasRule("<start>"));
     });
 
     test("RiGrammar.expand()", function() {
@@ -111,8 +110,7 @@ var runtests = function() {
         rg.addRule("<rule1>", "dog", .6);
         rg.addRule("<rule1>", "boy", .2);
         
-		ok(rg.getRule("<rule1>"));
-  		ok(rg.getRule("rule1"));
+		ok(rg.hasRule("<rule1>"));
 
         var found1 = false, found2 = false, found3 = false;
         for ( var i = 0; i < 20; i++) {
@@ -171,11 +169,21 @@ var runtests = function() {
         rg.addRule("<mammal>", "dog");
 
         equal(rg.expandFrom("<mammal>"), "dog");
+        equal(rg.expandFrom("mammal"), "dog");
 
         for ( var i = 0; i < 100; i++) {
             var res = rg.expandFrom("<bird>");
             ok(res === "hawk" || res === 'crow');
         }
+        
+		throws(function() {
+			try {
+				rg.expandFrom("wrongName")
+			} catch (e) {
+				throw e;
+			}
+		}); 
+
     });
 
     test("RiGrammar.expandFrom(Weighted)", function() {
@@ -189,6 +197,7 @@ var runtests = function() {
         rg.addRule("<mammal>", "dog [2]");
 
         equal(rg.expandFrom("<mammal>"), "dog");
+        equal(rg.expandFrom("mammal"), "dog");
 
         var hawks=0,dogs=0;
         for ( var i = 0; i < 100; i++) {
@@ -216,11 +225,11 @@ var runtests = function() {
 		var rg2 = new RiGrammar(sentenceGrammar2);
 		deepEqual(rg,rg2)
 		
-		var e = "<start>\n  '<noun_phrase> <verb_phrase>.' [1]\n<noun_phrase>\n  '<determiner> <noun>' [1]\n<verb_phrase>\n  '<verb>' [1]\n  '<verb> <noun_phrase>' [.1]\n<determiner>\n  'a' [.1]\n  'the' [1]\n<noun>\n  'woman' [1]\n  'man' [1]\n<verb>\n  'shoots' [1]\n";
+		var e = "<start>\n  '<noun_phrase> <verb_phrase>.' [1]\n<noun_phrase>\n  '<determiner> <noun>' [1]\n<verb_phrase>\n  '<verb>' [1]\n  '<verb> <noun_phrase>' [.1]\n<determiner>\n  'a' [.1]\n  'the' [1]\n<noun>\n  'woman' [1]\n  'man' [1]\n<verb>\n  'shoots' [1]";
 		equal(rg.getGrammar(),e);
 	});
         
-    test("RiGrammar.getRule", function() {
+    /*test("RiGrammar.getRule", function() {
 
         var rg = new RiGrammar(sentenceGrammar);
 	    var r = rg.getRule("<noun_phrase>");
@@ -262,42 +271,27 @@ var runtests = function() {
 	    
 	    for (var i = 0; i < g.length; i++) {
 	      var rule = g[i].getRule("<noun_phrase>");
-	      //System.out.println(i+"R='"+rule+"'");
+	      console.log(i+"R='"+rule+"'");
 	      equal(rule,"<determiner> <noun>");
 	    }
-    });
+    });*/
 
-    /*test("RiGrammar.getRules", function() {
+   test("RiGrammar.hasRule", function() {
 
-        var rg = new RiGrammar(sentenceGrammar);
-
-        var rules = rg.getRules();
-        ok(rules);
-        ok(rules['<start>']);
-        ok(!rules['start']);
-        ok(!rules['']);
-        ok(!rules['det']);
-        ok(!rules[null]);
-        ok(!rules[undefined]);
-
-        //rg.print();
-    }); */
-
-    test("RiGrammar.hasRule", function() {
-
-        var g = [ new RiGrammar(sentenceGrammar), new RiGrammar(sentenceGrammar) ];
+        var g = [ new RiGrammar(sentenceGrammar), 
+        		  new RiGrammar(sentenceGrammar2) ];
 
 	    for (var i = 0; i < g.length; i++) {
 			var rg = g[i];
 	        ok(rg.hasRule("<start>"));
-	        ok(rg.hasRule("start"));
+	        ok(!rg.hasRule("start"));
 	
 	        rg.reset();
 	        ok(!rg.hasRule("start"));
 	        rg.addRule("<rule1>", "<pet>");
 	        ok(rg.hasRule("<rule1>"));
-	        ok(rg.hasRule("rule1"));
-	
+	        ok(!rg.hasRule("rule1"));
+	        ok(rg.hasRule(rg._normalizeRuleName("rule1")));
 	
 	        rg.reset();
 	
@@ -305,14 +299,17 @@ var runtests = function() {
 	        rg.addRule("<rule1>", "dog", .6);
 	        rg.addRule("<rule1>", "boy", .2);
 	        ok(rg.hasRule("<rule1>"));
-	        ok(rg.hasRule("rule1"));
-	        ok(!rg.hasRule("rule"));
+	        ok(!rg.hasRule("rule1"));
+			ok(rg.hasRule(rg._normalizeRuleName("rule1")));
+
+	        ok(!rg.hasRule("badname"));
 	
 	        rg.reset();
 	
 	        rg.addRule("rule1", "<pet>");
 	        ok(rg.hasRule("<rule1>"));
-	        ok(rg.hasRule("rule1"));
+			ok(rg.hasRule(rg._normalizeRuleName("rule1")));
+	        ok(!rg.hasRule("rule1"));
 	
 	        ok(!rg.hasRule(null));
 	        ok(!rg.hasRule(undefined));
@@ -390,8 +387,7 @@ var runtests = function() {
 		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
 		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
 	        
-    	var rg1 = new RiGrammar();
-    	rg1.loadFromFile("sentence2.json", function() {
+    	var rg1 = RiGrammar().loadFromFile("sentence2.json", function() {
     		
 	        ok(rg1._rules);
 	        //rg1.print();
@@ -577,7 +573,143 @@ var runtests = function() {
         //equal("TODO: MORE TESTS HERE");
     });
     
-    test("RiGrammar-exec1", function() {
+      
+	test("RiGrammar.testSpecialChars", function() {
+
+	    var res, s = "{ \"<start>\": \"hello: name\" }";
+	    var rg = new RiGrammar(s);
+	    //var rule = rg.getRule("<start>");
+	    //ok(rule==="hello: name");
+	    res = rg.expand();
+	    ok(res==="hello: name");
+	    	
+	    s = "{ \"<start>\": \"hello &#124; name\" }";
+	    rg = new RiGrammar(s);
+	    //rule = rg.getRule("<start>");
+	    //ok(rule==="hello &#124; name");
+	    res = rg.expand();
+	    ok(res==="hello | name");
+	
+	    s = "{ \"<start>\": \"&#8220;hello!&#8221;\" }";
+	    rg = new RiGrammar(s);
+	    //rule = rg.getRule("<start>");
+	    //ok(rule==="&#8220;hello!&#8221;");
+	    //ok("fails b/c of editor?");
+	    //res = rg.expand();
+	    //console.log(res+'=“hello!”');
+	    // ok(res==='“hello!”'); // fails bc of editor
+	
+	    s = "{ \"<start>\": \"&lt;start&gt;\" }";
+	    rg = new RiGrammar(s);
+	    //rule = rg.getRule("<start>");
+	    //ok(rule==="&lt;start&gt;");
+	    res = rg.expand();
+	    //console.log(res);
+	    ok(res==="<start>");
+	    
+	    s = "{ \"<start>\": \"I don&#96;t want it.\" }";
+	    rg = new RiGrammar(s);
+	    //rule = rg.getRule("<start>");
+	    //ok(rule==="I don&#96;t want it.");
+	    res = rg.expand();
+		//console.log(res);
+	    ok(res==="I don`t want it.");
+	    
+	    s = "{ \"<start>\": \"&#39;I really don&#39;t&#39;\" }";
+	    rg = new RiGrammar(s);
+	    //rule = rg.getRule("<start>");
+	    //ok(rule==="&#39;I really don&#39;t&#39;");
+	    res = rg.expand();
+	    ok(res==="'I really don't'");
+
+	    s = "{ \"<start>\": \"hello | name\" }";
+	    rg = new RiGrammar(s);
+	    //rule = rg.getRule("<start>");
+	    //ok(rule==="hello | name");
+	    for (var i = 0; i < 10; i++)
+	    {
+	      res = rg.expand();
+	      ok(res==="hello" || res==="name");
+	    }
+	
+	});
+	
+	test("RiGrammar.testExecIgnores", function() {
+    
+	    var rg = new RiGrammar(); // do nothing
+	    rg.execDisabled = false;
+	    
+	    rg.addRule("<start>", "<first> | <second>");
+	    rg.addRule("<first>", "the <pet> <action> were 'adj()'");
+	    rg.addRule("<second>", "the <action> of the 'adj()' <pet>");
+	    rg.addRule("<pet>", "<bird> | <mammal>");
+	    rg.addRule("<bird>", "hawk | crow");
+	    rg.addRule("<mammal>", "dog");
+	    rg.addRule("<action>", "cries | screams | falls");
+	
+	    for ( var i = 0; i < 10; i++) {
+	        var res = rg.expand();
+	        console.log(i+") "+res);
+	        ok(res!=null && res.length>0);
+	        ok(res.indexOf("'adj()'")>-1);
+	    }
+	  
+	    rg.reset();
+	    
+	    rg.addRule("<start>", "<first> | <second>");
+	    rg.addRule("<first>", "the <pet> <action> were `adj()'");
+	    rg.addRule("<second>", "the <action> of the `adj()' <pet>");
+	    rg.addRule("<pet>", "<bird> | <mammal>");
+	    rg.addRule("<bird>", "hawk | crow");
+	    rg.addRule("<mammal>", "dog");
+	    rg.addRule("<action>", "cries | screams | falls");
+	
+	    for ( var i = 0; i < 10; i++) {
+	        var res = rg.expand();
+	        console.log(i+") "+res);
+	        ok(res!=null && res.length>0);
+	        ok(res.indexOf("`adj()'")>-1);
+	    }
+	    
+	  
+	    rg.reset();
+	    
+	    rg.addRule("<start>", "<first> | <second>");
+	    rg.addRule("<first>", "the <pet> <action> were `nofun()`");
+	    rg.addRule("<second>", "the <action> of the `nofun()` <pet>");
+	    rg.addRule("<pet>", "<bird> | <mammal>");
+	    rg.addRule("<bird>", "hawk | crow");
+	    rg.addRule("<mammal>", "dog");
+	    rg.addRule("<action>", "cries | screams | falls");
+	
+	    var tmp = RiTa.SILENT;
+	    RiTa.SILENT = true;
+	    for (var i = 0; i < 10; i++) {
+	        var res = rg.expand();
+	        console.log(i+") "+res);
+	        ok(res!=null && res.length>0 && res.indexOf("`nofun()`")>-1);
+	    }
+	
+	    rg.reset();
+	
+	    rg.addRule("<start>", "<first> | <second>");
+	    rg.addRule("<first>", "the <pet> <action> were `nofun()`");
+	    rg.addRule("<second>", "the <action> of the `nofun()` <pet>");
+	    rg.addRule("<pet>", "<bird> | <mammal>");
+	    rg.addRule("<bird>", "hawk | crow");
+	    rg.addRule("<mammal>", "dog");
+	    rg.addRule("<action>", "cries | screams | falls");
+	
+	    for ( var i = 0; i < 10; i++) {
+	        var res = rg.expand();
+	        console.log(i+") "+res);
+	        ok(res!=null && res.length>0 && res.indexOf("`nofun()`")>-1);
+	    }
+	    
+	    RiTa.SILENT = tmp;
+	});
+	 
+    test("RiGrammar.exec1", function() {
   
         var rg = new RiGrammar(); // do nothing
 
@@ -595,7 +727,7 @@ var runtests = function() {
         }
     });
         
-    test("RiGrammar-exec2", function() {
+    test("RiGrammar.exec2", function() {
   
         var rg = new RiGrammar();
     
@@ -622,7 +754,7 @@ var runtests = function() {
     });
     
     // TODO: fails in phantomJS
-    test("RiGrammar-exec3", function() {
+    test("RiGrammar.exec3", function() {
 
 		var rg = new RiGrammar(uniqueNouns);
 		ok(rg); // >= 1 assertion, required for node
@@ -650,6 +782,31 @@ var runtests = function() {
             }
         }
     });
+    
+        // TODO: fails in phantomJS
+    test("RiGrammar.exec4", function() {
+
+		var rg = new RiGrammar(uniqueNouns2);
+		ok(rg); // >= 1 assertion, required for node
+		
+        if (typeof window != 'undefined' && window) 
+        {     
+        	// save grammar in window for store()/unique() functions below
+            window.grammar = rg;
+             
+            var res = rg.expand();
+            //console.log(res);
+            ok(res);
+            
+            //window.grammar = rg;
+            for ( var i = 0; i < 1; i++) {
+                var res = rg.expand();
+console.log("result="+res)
+                ok(res);                
+                ok(res.match(/rhino/g));
+            }
+        }
+    });
 }
 
 // unique methods...
@@ -671,6 +828,11 @@ function unique(word) {
     saved = {};
 
     return word;
+}
+
+function newrule(word) {
+	
+    return "<verb>";
 }
 
 function dump(obj) {

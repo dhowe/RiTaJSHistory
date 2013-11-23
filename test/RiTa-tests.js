@@ -5,7 +5,7 @@ var runtests = function () {
 	    teardown: function () {}
 	});
 
-	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
+	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
 
     test("RiTa.functions", function () {
         for (var i = 0; i < functions.length; i++) {
@@ -167,7 +167,7 @@ var runtests = function () {
      equal(result.length,5);
 
      var result = RiTa.randomOrdering(50);
-     equal(result.length,50);
+     equal(result.length, 50);
 
      var obj = {};
      for (var i = 0; i < result.length; i++) {

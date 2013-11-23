@@ -14,7 +14,7 @@ void setup()
 
   // create a new grammar 
   grammar = new RiGrammar();
-  grammar.setGrammarFromFile("mcgrammar.g");  
+  grammar.loadFromFile("mcgrammar.g");  
 }
 
 void drawC() {
