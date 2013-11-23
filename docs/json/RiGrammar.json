@@ -43,8 +43,12 @@
 	  "returns":
       [
 			{ 
-			"type": "String", 
-			"desc": "the result of the expansion" 
+				"type": "String", 
+				"desc": "the result of the expansion" 
+			},
+			{ 
+				"type": "Object", 
+				"desc": "on which to call the function (optional, for JavaScript)" 
 			}
 			
 	  ],
@@ -62,6 +66,10 @@
 			{ 
 			"type": "String", 
 			"desc": "rule" 
+			},
+			{ 
+				"type": "Object", 
+				"desc": "on which to call the function (optional, for JavaScript)" 
 			}
 			
 	  ],
