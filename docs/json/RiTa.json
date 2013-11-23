@@ -138,6 +138,23 @@
 
    },
    {
+      "methodName":"RiTa.randomItem()",
+      "example":"",
+      "description":"Returns a random item from an array (or Collection)",
+      "syntax":"RiTa.randomItem(myArray)",
+      "parameters":[],
+      "returns":[
+         {
+            "type":"Object",
+            "desc":"the item"
+         }
+
+      ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
       "methodName":"RiTa.randomOrdering()",
       "example":"",
       "description":"Returns a randomly ordered array of unique integers from 0 to numElements. <br/>The size of the array will be numElements.",

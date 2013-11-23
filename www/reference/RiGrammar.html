@@ -140,10 +140,14 @@ To generate a callback, add the method call in your grammar, surrounded by back-
 "&lt;rule2&gt;": "The cat ran after the `pluralize('cat')` | The \
 	 &lt;noun&gt; ran after the `pluralize(&lt;noun&gt;)`" 
 </pre>
-    
+
+<p>
+Then call myGrammar.expand(callee), where callee is the (optional) object on which to execute the method.
+If no object is supplied (e.g., in JavaScript) then the function is invoked if it exists in the current scope. 
+</p><p>
 Any number of arguments may be passed in a callback, but for each call,
 there must be a corresponding method in the sketch, e.g.,
-
+</p>
 <pre>
 function pluralize(theString) {
    ...
