@@ -6,7 +6,6 @@ var runtests = function() {
 	    teardown: function () {}
 	}); 
 
-//"getRule", 
     var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFromFile" ];
 
     var sentenceGrammar = { '<start>' : '<noun_phrase> <verb_phrase>.', '<noun_phrase>' : '<determiner> <noun>', '<verb_phrase>' : '<verb> | <verb> <noun_phrase> [.1]', '<determiner>' : 'a [.1] | the', '<noun>' : 'woman | man', '<verb>' : 'shoots' }
@@ -649,7 +648,7 @@ var runtests = function() {
 	
 	    for ( var i = 0; i < 10; i++) {
 	        var res = rg.expand();
-	        console.log(i+") "+res);
+	        //console.log(i+") "+res);
 	        ok(res!=null && res.length>0);
 	        ok(res.indexOf("'adj()'")>-1);
 	    }
@@ -666,7 +665,7 @@ var runtests = function() {
 	
 	    for ( var i = 0; i < 10; i++) {
 	        var res = rg.expand();
-	        console.log(i+") "+res);
+	        //console.log(i+") "+res);
 	        ok(res!=null && res.length>0);
 	        ok(res.indexOf("`adj()'")>-1);
 	    }
@@ -686,7 +685,7 @@ var runtests = function() {
 	    RiTa.SILENT = true;
 	    for (var i = 0; i < 10; i++) {
 	        var res = rg.expand();
-	        console.log(i+") "+res);
+	        //console.log(i+") "+res);
 	        ok(res!=null && res.length>0 && res.indexOf("`nofun()`")>-1);
 	    }
 	
@@ -702,7 +701,7 @@ var runtests = function() {
 	
 	    for ( var i = 0; i < 10; i++) {
 	        var res = rg.expand();
-	        console.log(i+") "+res);
+	        //console.log(i+") "+res);
 	        ok(res!=null && res.length>0 && res.indexOf("`nofun()`")>-1);
 	    }
 	    
@@ -782,36 +781,72 @@ var runtests = function() {
             }
         }
     });
-    
-        // TODO: fails in phantomJS
-    test("RiGrammar.exec4", function() {
-
+	     
+    // TODO: fails in phantomJS
+	test("RiGrammar.exec4", function() {
+	
 		var rg = new RiGrammar(uniqueNouns2);
 		ok(rg); // >= 1 assertion, required for node
 		
-        if (typeof window != 'undefined' && window) 
-        {     
-        	// save grammar in window for store()/unique() functions below
-            window.grammar = rg;
-             
-            var res = rg.expand();
-            //console.log(res);
-            ok(res);
-            
-            //window.grammar = rg;
+	    if (typeof window != 'undefined' && window) 
+	    {     
+	    	// save grammar in window for store()/unique() functions below
+	        window.grammar = rg;
+	         
+	        var res = rg.expand();
+	        //console.log(res);
+	        ok(res);
+	        
+	        //window.grammar = rg;
             for ( var i = 0; i < 1; i++) {
                 var res = rg.expand();
-console.log("result="+res)
-                ok(res);                
-                ok(res.match(/rhino/g));
-            }
-        }
-    });
+				//console.log("result="+res)
+            	ok(res);                
+            	ok(res.match(/rhino/g));
+	        }
+	    }
+	});
+	
+	test("RiGrammar.testExecArgs", function() { 
+
+		var rg = new RiGrammar();
+		rg.execDisabled = false;
+		rg.addRule("<start>", "`getFloat()`");
+		
+		for (var i = 0; i < 10; i++) {
+		
+		  var res = rg.expandFrom("<start>", this);
+		  ok(res && res.length);
+		  ok(parseFloat(res));
+		}
+		
+		rg.reset();
+		rg.addRule("<start>", "`adj(2)`");
+		for (var i = 0; i < 10; i++) {
+
+			var res = rg.expandFrom("<start>", this);
+			ok(res && res.length && res==="number");
+		}
+
+		rg.reset();
+		rg.addRule("<start>", "`adj(true)`");
+		for (var i = 0; i < 10; i++) {
+
+			var res = rg.expandFrom("<start>", this);
+			//System.out.println(i + ")" + res);
+			ok(res==="boolean");
+		}
+
+	});
 }
 
-// unique methods...
+// callback methods...
 
 var saved = {};
+
+function getFloat() { return Math.random(); }
+
+function adj(o) { return (_type(o)==='boolean') ? "boolean" : "number"; }
 
 function store(word) { // tmp
 	word = word.trim();
@@ -853,6 +888,5 @@ function dump(obj) {
     }
     return properties;
 }
-
 
 if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;
