@@ -8,15 +8,15 @@
       [
 			{ 
 			"type": "String", 
-			"desc": "name" 
+			"desc": "the rule name" 
 			},
 			{ 
 			"type": "String", 
-			"desc": "ruleStr" 
+			"desc": "the rule definition" 
 			},
 			{ 
 			"type": "float", 
-			"desc": "weight" 
+			"desc": "the rule weight (optional, defaults to 1)" 
 			}
 			
 	  ],
@@ -36,9 +36,13 @@
       "methodName":"expand()",
       "example":"",
       "description":"Expands a grammar from its '&#60;start&#62;' symbol",
-      "syntax":"expand()",
+      "syntax":"expand()<br/>expand(callbackObject)",
       "parameters":
       [
+      		{ 
+				"type": "Object", 
+				"desc": "the object on which to call any (back-ticked) callback functions (optional)" 
+			}
 	  ],
 	  "returns":
       [
@@ -46,11 +50,6 @@
 				"type": "String", 
 				"desc": "the result of the expansion" 
 			},
-			{ 
-				"type": "Object", 
-				"desc": "on which to call the function (optional, for JavaScript)" 
-			}
-			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
@@ -59,17 +58,17 @@
    {
       "methodName":"expandFrom()",
       "example":"",
-      "description":'Expands the grammar, starting from the given symbol. <br/>&nbsp;<br/>RiGrammar.expand() is equivalent to RiGrammar.expandFrom("<start>").',
-      "syntax":"expandFrom(rule)",
+      "description":'Expands the grammar, starting from the given symbol. <br/>&nbsp;<br/>RiGrammar.expand() is equivalent to RiGrammar.expandFrom("&lt;start&gt;").',
+      "syntax":"expandFrom(rule)<br/>expandFrom(rule, callbackObject)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "rule" 
+			"desc": "the rule from which to start the expansion" 
 			},
-			{ 
+	   		{ 
 				"type": "Object", 
-				"desc": "on which to call the function (optional, for JavaScript)" 
+				"desc": "the object on which to call any (back-ticked) callback functions (optional)" 
 			}
 			
 	  ],
@@ -89,16 +88,20 @@
       "methodName":"expandWith()",
       "example":"",
       "description":"Expands the grammar after replacing an instance of the non-terminal 'symbol' with the String in 'literal'.<br/>&nbsp;<br/>Guarantees that 'literal' will be in the final expanded String, assuming at least one instance of 'symbol' in the Grammar.",
-      "syntax":"expandWith(literal, symbol)",
+      "syntax":"expandWith(literal, symbol)<br/>expandWith(literal, symbol,callbackObject)",
       "parameters":
       [
 			{ 
 			"type": "String", 
-			"desc": "literal" 
+			"desc": "a literal" 
 			},
 			{ 
 			"type": "String", 
-			"desc": "symbol" 
+			"desc": "a symbol" 
+			},
+	   		{ 
+				"type": "Object", 
+				"desc": "the object on which to call any (back-ticked) callback functions (optional)" 
 			}
 	  ],
 	  "returns":
@@ -123,30 +126,6 @@
 			{ 
 			"type": "String", 
 			"desc": "a string representation of the grammar" 
-			}
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":""
-   },
-   {
-      "methodName":"getRule()",
-      "example":"",
-      "description":"Returns the requested rule",
-      "syntax":"getRule(ruleName)",
-      "parameters":
-      [
-			{ 
-			"type": "String", 
-			"desc": "rule name" 
-			}
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "String", 
-			"desc": "the rule" 
 			}
 			
 	  ],
@@ -250,7 +229,7 @@
       [
 			{ 
 			"type": "String OR Object", 
-			"desc": "grammar containing the grammar rules" 
+			"desc": "the grammar rules" 
 			}
 	  ],
 	  "returns":
@@ -278,7 +257,7 @@
 			},
 			{ 
 				"type": "Function", 
-				"desc": "to be called when the load completes (optional, for JavaScript)" 
+				"desc": "to be called when the load completes (optional, for JavaScript only)" 
 			}
 	  ],
 	  "returns":
@@ -290,7 +269,7 @@
 			
 	  ],
       "related":"",
-      "platform":"In Javascript, uses JQuery's ajax() method if available, otherwise attempts an invisible iframe hack, then calls the specified callback function. Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page.",
+      "platform":"In Javascript, uses JQuery's ajax() method if available, otherwise attempts an invisible iframe-hack, then calls the specified callback function. Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page.",
 	  "note":""
    }      
 ]

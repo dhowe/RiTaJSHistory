@@ -142,11 +142,11 @@ To generate a callback, add the method call in your grammar, surrounded by back-
 </pre>
 
 <p>
-Then call myGrammar.expand(callee), where callee is the (optional) object on which to execute the method.
-If no object is supplied (e.g., in JavaScript) then the function is invoked if it exists in the current scope. 
+Then call <em>myGrammar.expand(callee)</em>, where callee is the (optional) object on which to execute the method.
+If no object is supplied (e.g., in JavaScript) then the function is called in the current scope. 
 </p><p>
 Any number of arguments may be passed in a callback, but for each call,
-there must be a corresponding method in the sketch, e.g.,
+there must be a corresponding method in the object that gets the callback , e.g.,
 </p>
 <pre>
 function pluralize(theString) {
