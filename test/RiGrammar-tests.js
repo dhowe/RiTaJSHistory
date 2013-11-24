@@ -808,11 +808,12 @@ var runtests = function() {
 	});
 	
 	test("RiGrammar.testExecArgs", function() { 
+	
+		//
 
 		var rg = new RiGrammar();
 		rg.execDisabled = false;
 		rg.addRule("<start>", "`getFloat()`");
-		
 		for (var i = 0; i < 10; i++) {
 		
 		  var res = rg.expandFrom("<start>", this);
@@ -843,6 +844,8 @@ var runtests = function() {
 // callback methods...
 
 var saved = {};
+
+function _type(obj) { return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase(); }
 
 function getFloat() { return Math.random(); }
 
