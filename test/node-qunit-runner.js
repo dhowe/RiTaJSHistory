@@ -8,6 +8,7 @@ var codeDir = '../src/';
 
 // No RiText*
 var testFiles = [
+    //'RiGrammar2'
     'RiMarkov',
     'RiGrammar',
     'RiLexicon',

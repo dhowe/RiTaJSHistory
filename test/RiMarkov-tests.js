@@ -343,51 +343,40 @@ var runtests = function() {
 
 	test("RiMarkov.generateSentences()", function() {
 
-		var dbug = true;
-
-		if (dbug)
-			console.log(E);
+		var dbug = 0;
 
 		var rm = new RiMarkov(4, true, true);
 		rm.loadText(sample);
 		for (var i = 0; i < 3; i++) {
 			var sents = rm.generateSentences(3);
 			for (var j = 0; j < sents.length; j++) {
-				if (dbug)
-					console.log(i + "." + j + ") " + sents[j]);
+				if (dbug)console.log(i + "." + j + ") " + sents[j]);
 				ok(sents);
 			}
 			ok(sents.length == 3);
 		}
 
-		if (dbug)
-			console.log(E);
-
 		var rm = new RiMarkov(4, true, true);
 		rm.loadText(sample);
 		for (var i = 0; i < 10; i++) {
 			var sent = rm.generateSentences(1)[0];
-			if (dbug)
-				console.log(i + ") " + sent);
+			if (dbug)console.log(i + ") " + sent);
 			ok(sent);
 		}
-
-		if (dbug)
-			console.log(E);
 
 		var rm = new RiMarkov(4, true, false);
 		rm.loadText(sample);
 		for (var i = 0; i < 10; i++) {
 			var sent = rm.generateSentences(1)[0];
-			if (dbug)
-				console.log(i + ") " + sent);
+			if (dbug)console.log(i + ") " + sent);
 			ok(sent);
 		}
 
 		throws(function() {
 
-			var rm = new RiMarkov(4, false);
+			var tmp, rm = new RiMarkov(4, false);
 
+			tmp = RiTa.SILENT; 
 			RiTa.SILENT = 1;
 			try {
 				rm.generateSentences(10);
@@ -395,7 +384,7 @@ var runtests = function() {
 			} catch (e) {
 				throw e;
 			}
-			RiTa.SILENT = 0;
+			RiTa.SILENT = tmp;
 		});
 
 	});
@@ -414,7 +403,7 @@ var runtests = function() {
 			var n = rm.getN();
 			for (var j = 0; j < arr.length - n; j++) {
 				var partial = arr.slice(j, j + n);
-				console.log(partial);
+				//console.log(partial);
 				partial = RiTa.untokenize(partial);
 				ok(sample.indexOf(partial) > -1, partial)
 			}
@@ -673,13 +662,13 @@ var runtests = function() {
 
 		var rm = new RiMarkov(3, false);
 		rm.loadText(words);
-		rm.print();
+		//rm.print();
 		equal(rm.getProbability("The"), 0.2);
 
 		words = 'the dog ate the cat';
 		var rm = new RiMarkov(3, false);
 		rm.loadText(words);
-		rm.print();
+		//rm.print();
 		equal(rm.getProbability("the"), 0.4);
 	});
 
@@ -727,12 +716,12 @@ var runtests = function() {
 	//                 notEqual(rm2.getProbability("One"), rm.getProbability("one"));
 	//             });    */
 
-	test("RiMarkov.print()", function() {//TODO: revise tests
+	test("RiMarkov.print()", function() { //TODO: how to test this?
 
 		var words = 'The dog ate the cat'.split(' ');
 		var rm = new RiMarkov(3);
 		rm.loadTokens(words);
-		ok( typeof rm.print == 'function');
+		ok(typeof rm.print == 'function');
 		equal(rm.getProbability("The"), 0.2);
 	});
 
