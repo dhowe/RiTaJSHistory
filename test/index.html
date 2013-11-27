@@ -23,7 +23,6 @@ $(document).ready(function() {
                  "KnownIssues-tests",
                  "LibraryStructure-tests",
                  "Renderer-tests"
-                 // renderer
     ];
     
     var src = param("src"); 
@@ -85,14 +84,6 @@ $(document).ready(function() {
 <br><a href=""><em>RiTa.untokenize()</em></a>
 <br><a href=""><em>RiTa.env()</em></a>
 
-
-<!--br>
-<br><a href=""><em>RiTa.p5Compatible()</em></a>
-<br><a href=""><em>RiTa.isStopWord()</em></a>
-<br><a href=""><em>RiTa.conjugateAll()</em></a>
-<a href=""><em>RiTa.loadString()</em></a>
-<br><a href=""><em>RiTa.getOpenClassWords()</em></a-->
-<!--br><a href=""><em>RiTa.isClosedClass()</em></a-->
 
 <br></td> <td valign=top>
 
@@ -253,34 +244,14 @@ $(document).ready(function() {
 <br><a href="">substrings()</a>
 <br><a href="">superstrings()</a>
 
-<!--br><a href="">getPhonemes()</a-->
-<!--br><a href="">getStresses()</a-->
-<!--br><a href="">getSyllables()</a-->
-<!--br><a href="">getFeatures()</a-->
-<!--br><a href="">getPosData()</a-->
-<!--br><a href="">isSubstring()</a-->
-<!--br><a href="">isSuperstring()</a-->
-<!--br><a href="">iterator()</a-->
-<!--br><a href="">isContaining()</a>
-<br></td> <td valign=top>
-<br><a href="">posIterator()</a>
-<br><a href="">randomIterator()</a>
-<br><a href="">randomPosIterator()</a>
-<br><a href="">isStopWord()</a>
-<br><a href="">singleLetterDeletes()</a>
-<br><a href="">singleLetterInsertions()</a>
-<br><a href="">singleLetterSubtitutions()</a>
-<br><a href="">containingStringsByLetter()</a-->
-<!--br><a href="">getPosStr()</a-->
-
 <br></td> <td valign=top>
 
 <a id="RiMarkov-tests" class=head href="RiMarkov-tests.html?noglobals=true">[RiMarkov]</a><p>
-<a href="">RiMarkov()</a><p>
+<a href="">RiMarkov()</a><br>
 <br><a href="">getN()</a>
 <br><a href="">size()</a>
 <br><a href="">print()</a>
-<a href="">generateTokens()</a>
+<br><a href="">generateTokens()</a>
 <br><a href="">generateUntil()</a>
 <br><a href="">generateSentences()</a>
 <br><a href="">getCompletions()</a>
@@ -292,48 +263,7 @@ $(document).ready(function() {
 <br><a href="">sentenceAware()</a>
 <br><a href="">useSmoothing()</a>
 
-<!--br><a href="">disableSentenceProcessing()</a>
-<br><a href="">generateSentence()</a>
-<br><a href="">generateSentences()</a>
-<br><a href="">getMaxSentenceLength()</a>
-<br><a href="">getMinSentenceLength()</a>
-<br><a href="">loadFile()</a>
-<br><a href="">loadSentences()</a>
-<br><a href="">setAddSpaces()</a>
-<br><a href="">setAllowDuplicates()</a>
-<br><a href="">setMaxSentenceLength()</a>
-<br><a href="">setMinSentenceLength()</a>
-<br><a href="">setPrintIgnoredText()</a>
-<br><a href="">setRecognizeSentences()</a>
-<br><a href="">setRemoveQuotations()</a>
-<br><a href="">setTokenizerRegex()</a>
--->
-
 <br>
-
-
-<!--h3>&nbsp;[RiHtmlParser]</h3>
-<a href="">RiHtmlParser</a>
-<br><a href=""><em>DEFAULT_CHARSET</em></a>
-<br><a href=""><em>DEFAULT_CONNECT_TIMEOUT</em></a>
-<br><a href=""><em>DEFAULT_READ_TIMEOUT</em></a>
-<br><a href=""><em>DEFAULT_USER_AGENT</em></a>
-<br><a href="">customParse()</a>
-<br><a href="">fetch()</a>
-<br><a href="">fetchImage()</a>
-<br><a href="">fetchLinks()</a>
-<br><a href="">fetchLinkText()</a>
-<br><a href="">fetchPImage()</a>
-<br><a href="">getConnectTimeout()</a>
-<br><a href="">getReadTimeout()</a>
-<br><a href="">getUserAgent()</a>
-<br><a href="">post()</a>
-<br><a href="">setConnectTimeout()</a>
-<br><a href="">setReadTimeout()</a>
-<br><a href="">setUserAgent()</a>
-<br-->
-
-
 
 <!--h3>&nbsp;[RiGoogleSearch]</h3>
 <a href="">RiGoogleSearch</a>
@@ -355,50 +285,7 @@ $(document).ready(function() {
 <br><a href="">useGoogleBooks()</a>
 <br><a href=""><em>RiGoogleSearch.isCacheEnabled()</em></a>
 <br><a href=""><em>RiGoogleSearch.setCacheEnabled()</em></a>
-<br
-
-<br></td> <td valign=top>
-
-
-<br></td> <td valign=top>
-
-<a class=head href="RiAnalyzer-tests.html?noglobals=true">[RiAnalyzer]</a><p>
-<a href="">RiAnalyzer</a>
-<br><a href="">analyze()</a>
-<br><a href="">dumpFeatures()</a>
-<br><a href="">getAvailableFeatures()</a>
-<br><a href="">getFeature()</a>
-<br><a href="">getFeatures()</a>
-<br><a href="">getFeatureString()</a>
-<br><a href="">getPhonemes()</a>
-<br><a href="">getPhonemesAt()</a>
-<br><a href="">getPos()</a>
-<br><a href="">getPosAt()</a>
-<br><a href="">getStresses()</a>
-<br><a href="">getStressesAt()</a>
-<br><a href="">getSyllables()</a>
-<br><a href="">getText()</a>
-<br><a href="">getTokens()</a>
-<br><a href="">rhymeScheme()</a>
-<br><a href="">tokenAt()</a>
-<br><a href="">wordCount()</a>
-
-<h3>&nbsp;[RiTextField]</h3>
-<a href="">RiTextField</a>
-<br><a href="">clear()</a>
-<br><a href="">getEnterCode()</a>
-<br><a href="">getTextOffsetY()</a>
-<br><a href="">isVisible()</a>
-<br><a href="">resetEnterCode()</a>
-<br><a href="">setActiveColor()</a>
-<br><a href="">setBgColor()</a>
-<br><a href="">setColor()</a>
-<br><a href="">setFgColor()</a>
-<br><a href="">setText()</a>
-<br><a href="">setTextOffsetY()</a>
-<br><a href="">setVisible()</a>
 <br>
-
 <br-->
 
 
@@ -414,11 +301,6 @@ $(document).ready(function() {
 <a id="RiTextStructure-p5" class=head href="RiTextStructure-p5.html?">[RiText-Structure(p5)]</a><p>
 <a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><p>
 <a id="Renderer-tests" class=head href="renderer/index.html?">[RiText-Renderers]</a><p>
-
-<!--a class=head href="src/test/Expects-tests.html?noglobals=true">[Expects-Tests]</a><p>
-<a class=head href="http://www.rednoise.org/rita/documentation/docs.htm">[RiTa-Javadocs]</a><p>
-<a class=head href="src/test/RiLetterToSound-tests.html?noglobals=true">[RiLetterToSound]</a><p>
-a class=head href="src/test/Run-All-Tests.html">[Run-All-Tests]</a><p-->
 
 </td>
 </tr>

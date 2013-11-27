@@ -9,7 +9,7 @@ use strict;
 #### OPTIONS
 
 my $VERBOSE = 1;
-my $ANT = "/opt/local/bin/ant";
+my $ANT = "/usr/bin/ant";
 my $BUILD_XML = "build-all-tests.xml";
 
 #$BUILD_XML = "build-one-test.xml";
