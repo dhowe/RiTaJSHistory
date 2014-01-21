@@ -3,6 +3,7 @@ import rita.*;
 size(600, 600);
 background(255);
 RiText.defaults.alignment = CENTER;
+println(RiText.defaults.alignment);
 RiText.defaultFont("Times", 18);
 
 String input = "My big black dog is hungry";
@@ -17,13 +18,13 @@ result =  test + ": ("+RiTa.asList(s)+")";
 new RiText(this, result).y+= 30;
 
 result = "No WordNet in JS";
-if (RiTa.env() == RiTa.JAVA) {
+/*if (RiTa.env() == RiTa.JAVA) {
 
   RiWordnet w = new RiWordnet("/WordNet-3.1");
   test = "night";
   s = w.getAntonyms(test, "n");
   result =  test + " is the opposite of "+s[0];
-}
+}*/
 new RiText(this, result).y+= 100;
 
 
