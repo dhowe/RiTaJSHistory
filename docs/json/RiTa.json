@@ -533,7 +533,7 @@
    },
    {
       "methodName":"RiTa.conjugate()",
-      "example":'Map args = new HashMap();<br>args.put("tense", RiTa.PAST_TENSE);<br>args.put("number", RiTa.SINGULAR);<br>args.put("person", RiTa.FIRST_PERSON);<br><br>String c = RiTa.conjugate("swim", args);<br>',
+      "example":"Map args = new HashMap();<br>args.put('tense', RiTa.PAST_TENSE);<br>args.put('number', RiTa.SINGULAR);<br>args.put('person', RiTa.FIRST_PERSON);<br><br>String c = RiTa.conjugate('swim', args);<br>",
       "description":"Conjugates the 'verb' according to the specified options",
       "syntax":"RiTa.conjugate(verb, args)",
       "parameters":[
@@ -609,7 +609,7 @@
    }, 
    {
       "methodName":"RiTa.stem()",
-      "example":'String s = RiTa.stem("cakes");\n\nString y = RiTa.stem("cakes", RiTa.PORTER);',
+      "example":"String s = RiTa.stem('cakes');\n\nString y = RiTa.stem('cakes', RiTa.PORTER);",
       "description":"Extracts base roots from a word according to the specified stemming algorithm <br/>&nbsp;<br/> Note: see <a href='http://text-processing.com/demo/stem/'>http://text-processing.com/demo/stem/</a> for comparison of Lancaster and Porter algorithms or <a href='http://mpii.de/yago-naga/javatools'>http://mpii.de/yago-naga/javatools</a> for info on PlingStemmer",
       "syntax":"RiTa.stem(word, type)",
       "parameters":[
@@ -791,26 +791,25 @@
    {
       "methodName":"RiTa.loadString()",
       "example":"",
-      "description":"Loads a file's contents from 'url' and calls back to the supplied 'callback' function with the loaded string as an argument",
-      "syntax":"RiTa.loadString(url, callback)",
+      "description":"Loads the contents from one or more files/urls and then calls back to the supplied 'callback' function with the loaded string as an argument.",
+      "syntax":"RiTa.loadString(url); RiTa.loadString(url, callback);<br/>RiTa.loadString(url, pApplet)",
       "parameters":[
          {
-            "type":"String",
-            "desc":"the url from which to load the file"
+            "type":"String or Array",
+            "desc":"the filename(s) from which to load the file"
          },
 		 {
-            "type":"Function (optional: for JavaScript only)",
-            "desc":"the function to call after the file is loaded (takes one String as its argument)"
+            "type":"Function (optional: the callback, for JavaScript only) or Object (optional: the PApplet, for Java only)",
+            "desc":"If a Function (in JavaScript), it will be called after the file is loaded (with one string, the aggregate data, as its argument);<br>if no callback is supplied, or the argument is a PApplet(in Java), onRiTaEvent(re) will be called instead, with re.type() == RiTa.DATA_LOADED"
          }
       ],
       "returns":[],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"In Node, uses the node filesystem module; in JavaScript attempts an invisible iframe hack",
-
+	  "note":"In Node, uses the node 'filesystem' or 'request' modules; in JavaScript, uses an invisible iframe; In Java, if a PApplet is passed as 2nd argument, it will be used to locate and check the 'data' folder of the sketch for the specified file"
    },
    {
-   	  "hidden": false;
+   	  "hidden": false,
       "methodName":"RiTa.p5Compatible()",
       "example":"",
       "description":"For convenience, provides implementations of some of Processing built-in method, e.g. size(), background(), etc. and calls setup() and draw() automatically (if they exist)",
@@ -819,19 +818,16 @@
          {
             "type":"boolean (optional, only for sets)",
             "desc":"true to enable compatibility, else false"
-         },
-
+         }
       ],
       "returns":[
          {
             "type":"boolean",
             "desc":"returns current value when no argument is given"
-         },
-
+         }
       ],
       "related":"",
       "platform":"Java / Javascript",
-	  "note":"Does nothing in Java",
-
+	  "note":"Does nothing in Java"
    }
 ]

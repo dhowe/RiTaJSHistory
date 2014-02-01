@@ -49,7 +49,7 @@
 			{ 
 				"type": "String", 
 				"desc": "the result of the expansion" 
-			},
+			}
 	  ],
       "related":"",
       "platform":"Java / Javascript",
@@ -58,7 +58,7 @@
    {
       "methodName":"expandFrom()",
       "example":"",
-      "description":'Expands the grammar, starting from the given symbol. <br/>&nbsp;<br/>RiGrammar.expand() is equivalent to RiGrammar.expandFrom("&lt;start&gt;").',
+      "description":"Expands the grammar, starting from the given symbol. <br/>&nbsp;<br/>RiGrammar.expand() is equivalent to RiGrammar.expandFrom('&lt;start&gt;').",
       "syntax":"expandFrom(rule)<br/>expandFrom(rule, callbackObject)",
       "parameters":
       [
@@ -78,7 +78,6 @@
 			"type": "String", 
 			"desc": "the result of the expansion"  
 			}
-			
 	  ],
       "related":"",
       "platform":"Java / Javascript",
@@ -116,10 +115,33 @@
 	  "note":""
    },
    {
+      "methodName":"load()",
+      "example":"",
+      "description":"Loads a grammar from a String or JSON object",
+      "syntax":"load(grammarRules);",
+      "parameters":
+      [
+      		{ 
+			"type": "String or Object", 
+			"desc": "a String or (JSON) Object representationof the grammar" 
+			}
+	  ],
+      "returns":
+      [
+			{ 
+			"type": "Object", 
+			"desc": "this RiGrammar object" 
+			}		
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
       "methodName":"getGrammar()",
       "example":"",
-      "description":"Returns the current grammar as a string",
-      "syntax":"getGrammar()",
+      "description":"Gets the current grammar as a String",
+      "syntax":"grammar();",
       "parameters":[],
       "returns":
       [
@@ -131,6 +153,33 @@
 	  ],
       "related":"",
       "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
+      "methodName":"loadFrom()",
+      "example":"",
+      "description":"Re-initializes the grammar from a file or URL containing the grammar rules",
+      "syntax":"loadFrom(url, option)",
+      "parameters":
+      [
+			{ 
+				"type": "String", 
+				"desc": "File or URL containing the grammar rules" 
+			},
+			{
+            	"type":"Function or Object (optional)",
+            	"desc":"If a Function is supplied (in JavaScript), it will be called after the file is loaded.<br>If a PApplet(in Java) is passed, it will be used to locate and check the 'data' folder of the sketch for the specified file"
+         	}
+	  ],
+	  "returns":
+      [
+			{ 
+				"type": "RiGrammar", 
+				"desc": "this RiGrammar" 
+			}
+	  ],
+      "related":"",
+      "platform":"Delegates to RiTa.loadString() to load. To check if the object has finished loading, check RiGrammar.ready(). Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page (probably a better option).",
 	  "note":""
    },
    {
@@ -203,6 +252,24 @@
 	  "note":""
    },
    {
+      "methodName":"ready()",
+      "example":"",
+      "description":"Returns true if there is at least one valid rule, else false",
+      "syntax":"ready();",
+      "parameters":  [  ],
+	  "returns":
+      [
+			{ 
+			"type": "boolean", 
+			"desc": "true if there is at least one valid rule, else false" 
+			}
+			
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
       "methodName":"reset()",
       "example":"",
       "description":"Clears all rules in the current grammar",
@@ -219,57 +286,5 @@
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
-   },
-   {
-      "methodName":"load()",
-      "example":"",
-      "description":"Re-initializes the grammar from an object or string containing the rules",
-      "syntax":"load(grammarString)<br/>load(grammarObject)",
-      "parameters":
-      [
-			{ 
-			"type": "String OR Object", 
-			"desc": "the grammar rules" 
-			}
-	  ],
-	  "returns":
-      [
-			{ 
-			"type": "RiGrammar", 
-			"desc": "this RiGrammar" 
-			}
-			
-	  ],
-      "related":"",
-      "platform":"Java / Javascript",
-	  "note":""
-   },
-   {
-      "methodName":"loadFromFile()",
-      "example":"",
-      "description":"Re-initializes the grammar from a file containing the grammar rules",
-      "syntax":"loadFromFile(grammarFileURL)<br/>loadFromFile(grammarFileURL, callback)",
-      "parameters":
-      [
-			{ 
-				"type": "String", 
-				"desc": "URL of file containing the grammar rules" 
-			},
-			{ 
-				"type": "Function", 
-				"desc": "to be called when the load completes (optional, for JavaScript only)" 
-			}
-	  ],
-	  "returns":
-      [
-			{ 
-				"type": "RiGrammar", 
-				"desc": "this RiGrammar" 
-			}
-			
-	  ],
-      "related":"",
-      "platform":"In Javascript, uses JQuery's ajax() method if available, otherwise attempts an invisible iframe-hack, then calls the specified callback function. Alternatively, one can use the &lt;script src=...&gt; tag to include the JSON grammar file in an html page.",
-	  "note":""
-   }      
+   }
 ]

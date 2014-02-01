@@ -25,6 +25,51 @@
 	  "note":""
    },
    {
+      "methodName":"ready()",
+      "example":"",
+      "description":"Returns true if there is at least one valid rule, else false",
+      "syntax":"ready();",
+      "parameters":  [  ],
+	  "returns":
+      [
+			{ 
+			"type": "boolean", 
+			"desc": "true if there is at least one valid rule, else false" 
+			}
+			
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
+      "methodName":"loadFrom()",
+      "example":"",
+      "description":"Loads raw text into the object from one or more files/URLs",
+      "syntax":"loadFrom(url);<br/>loadFrom(url, option);",
+      "parameters":
+      [
+	         {
+	            "type":"String or Array",
+	            "desc":"File(s) or URL(s) from which to load the file"
+	         },
+			{
+            	"type":"Function or Object (optional)",
+            	"desc":"If a Function is supplied (in JavaScript), it will be called after the file is loaded.<br>If a PApplet(in Java) is passed, it will be used to locate and check the 'data' folder of the sketch for the specified file"
+         	}
+	  ],
+	  "returns":
+      [
+			{ 
+			"type": "RiMarkov", 
+			"desc": "this RiMarkov" 
+			}
+	  ],
+      "related":"",
+      "platform":"Delegates to RiTa.loadString() to load. To check if the object has finished loading, check RiMarkov.ready().",
+	  "note":""
+   },
+   {
       "methodName":"generateUntil()",
       "example":"",
       "description":"Continues generating tokens until a token matches 'regex', assuming the length of the output array is between min and maxLength (inclusive).",
@@ -228,7 +273,6 @@
 			"type": "String", 
 			"desc": "a regular expression to be used for tokenizing (optional, if not supplied, uses RiTa.tokenize())" 
 			}
-	
 	  ],
 	  "returns":
       [

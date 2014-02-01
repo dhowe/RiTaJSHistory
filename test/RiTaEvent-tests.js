@@ -6,7 +6,7 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    var functions = [ "source", "type", "toString" ];
+    var functions = [ "source", "type", "isType", "data", "toString" ];
 
     test("RiTaEvent-functions", function() {
 
@@ -75,13 +75,22 @@ var runtests = function() {
 
     });
 
-	
     test("RiTaEvent.source()", function() {
 
         equal(RiTaEvent(this).source(),this);
         equal(new RiTaEvent(this,RiTa.TEXT_TO).source(),this);
         equal(RiTaEvent(this, RiTa.COLOR_TO).source(),this);
         equal(new RiTaEvent(this, RiTa.FADE_OUT).source(),this);
+    });
+    
+    test("RiTaEvent.data()", function() {
+
+		equal(RiTaEvent(this).data(), null);
+		equal(RiTaEvent(this,RiTa.TEXT_TO).data(), null);
+        equal(RiTaEvent(this,null,this).data(), this);
+        equal(new RiTaEvent(this,RiTa.TEXT_TO,this).data(),this);
+        equal(RiTaEvent(this, RiTa.COLOR_TO,this).data(),this);
+        equal(new RiTaEvent(this, RiTa.FADE_OUT,this).data(),this);
     });
 
     test("RiTaEvent.type()", function() {
@@ -90,6 +99,14 @@ var runtests = function() {
         equal(new RiTaEvent(this, RiTa.TEXT_TO).type(), RiTa.TEXT_TO);
         equal(RiTaEvent(this, RiTa.COLOR_TO).type(),RiTa.COLOR_TO);
         equal(new RiTaEvent(this, RiTa.FADE_OUT).type(),RiTa.FADE_OUT );
+    });
+    
+    test("RiTaEvent.isType()", function() {
+
+        equal(RiTaEvent(this).isType(RiTa.UNKNOWN), true);
+        equal(new RiTaEvent(this, RiTa.TEXT_TO).isType(RiTa.TEXT_TO), true);
+        equal(RiTaEvent(this, RiTa.COLOR_TO).isType(RiTa.COLOR_TO), true);
+        equal(new RiTaEvent(this, RiTa.FADE_OUT).isType(RiTa.COLOR_TO), false);
     });
 
     test("RiTaEvent.toString()", function() {

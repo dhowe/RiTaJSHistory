@@ -10,7 +10,7 @@ var runtests = function() {
 	});
 
 	var functions = ["generateTokens", "generateUntil", "generateSentences", "getCompletions", 
-		"getProbabilities", "getProbability", "size", "loadTokens", "loadText", 
+		"getProbabilities", "getProbability", "size", "ready", "loadFrom", "loadTokens", "loadText", 
 		"sentenceAware", "print", "useSmoothing", "getN"
 	];
 
@@ -114,50 +114,130 @@ var runtests = function() {
 		}
 	});
 
-/* TODO: fix these 
-	asyncTest("RiMarkov.loadFileLocal", function() {
-
-		loadHelper('../kafka.txt');
-	});
-
-	asyncTest("RiMarkov.loadFileRemote", function() {
+	asyncTest("RiMarkov.loadFromUrlMulti", function() {
 		
-		loadHelper('http://localhost/testfiles/kafka.txt');
-	});
-
-	function loadHelper(url) {
-
-		if (typeof document === 'undefined') {// for node
-			
-			// TODO: make work with Node, like loadString()
-			expect(0);
-			start();
-			return;
-		}
-		
-		console.log("trying: "+url);
-
-		var rm1 = new RiMarkov(4), cwin, text, iframe = document.createElement("iframe");
-		iframe.setAttribute('src', url);
-		iframe.setAttribute('style', 'display: none');
-		document.body.appendChild(iframe);
-		cwin = iframe.contentWindow || iframe.contentDocument.parentWindow;
-		cwin.onload = function() {
-			text = cwin.document.body.childNodes[0].innerHTML;
-			//document.body.removeChild(iframe);
-			rm1.loadText(text);
-			var sents = rm1.generateSentences(10);
-			ok(sents && sents.length == 10);
-			for (var j = 0; j < sents.length; j++) {
-				console.log(j + ") " + sents[j]);
-				var words = sents[j].split(" ");
-				ok(!RiTa.isAbbreviation(words[words.length - 1]));
-				ok(sents[j]);
-			}
-			start();
-		};	
-	}
-	*/
+    	if (RiTa.env() == RiTa.NODEJS) {
+    		ok("Not for Node");
+    		start();
+    		return;
+    	}		
+    	
+  		var rm = new RiMarkov(3);
+    	rm.loadFrom(["http://localhost/testfiles/kafka.txt", "http://localhost/testfiles/wittgenstein.txt"]);
+    	
+    	var ts = +new Date();
+    	var id = setInterval(function() {
+    		
+    		if (rm.ready()) { 
+    			
+    			ok(rm.size());
+    			start();
+    			clearInterval(id);
+    		}
+    		else {
+    			
+    			console.log("waiting...");
+    			var now = +new Date();
+    			if (now-ts > 5000) {
+    				equal("no result",0);
+    				start();
+    				clearInterval(id);   				
+    			}
+			} 
+    		
+    	}, 50);
+    });
+  	
+  	asyncTest("RiMarkov.loadFromFileMulti", function() {
+  		
+  		var rm = new RiMarkov(3);
+    	rm.loadFrom(["../data/kafka.txt", "../data/wittgenstein.txt"]);
+    	
+    	var ts = +new Date();
+    	var id = setInterval(function() {
+    		
+    		if (rm.ready()) { 
+    			
+    			ok(rm.size());
+    			start();
+    			clearInterval(id);
+    		}
+    		else {
+    			
+    			console.log("waiting...");
+    			var now = +new Date();
+    			if (now-ts > 5000) {
+    				equal("no result",0);
+    				start();
+    				clearInterval(id);   				
+    			}
+			} 
+    		
+    	}, 50);
+  	});
+    	
+	asyncTest("RiMarkov.loadFromFile", function() {
+    	
+  		var rm = new RiMarkov(3);
+    	rm.loadFrom("../data/kafka.txt");
+    	
+    	var ts = +new Date();
+    	var id = setInterval(function() {
+    		
+    		if (rm.ready()) { 
+    			
+    			ok(rm.size());
+    			start();
+    			clearInterval(id);
+    		}
+    		else {
+    			
+    			console.log("waiting...");
+    			var now = +new Date();
+    			if (now-ts > 5000) {
+    				equal("no result",0);
+    				start();
+    				clearInterval(id);   				
+    			}
+			} 
+    		
+    	}, 50);
+    });
+    
+	asyncTest("RiMarkov.loadFromUrl", function() {
+    	
+    	if (RiTa.env() == RiTa.NODEJS) {
+    		ok("Not for Node");
+    		start();
+    		return;
+    	}
+    		
+		var rm = new RiMarkov(3);
+    	rm.loadFrom("http://localhost/testfiles/kafka.txt");
+    	
+    	var ts = +new Date();
+    	var id = setInterval(function() {
+    		
+    		if (rm.ready()) { 
+    			
+    			ok(rm.size());
+    			start();
+    			clearInterval(id);
+    		}
+    		else {
+    			
+    			console.log("waiting...");
+    			var now = +new Date();
+    			if (now-ts > 5000) {
+    				equal("no result",0);
+    				start();
+    				clearInterval(id);   				
+    			}
+			} 
+    		
+    	}, 50);
+    });
+    
 	test("RiMarkov.isRoot", function() {
 		var rm = new RiMarkov(3);
 		ok(rm.root.isRoot());
@@ -574,10 +654,20 @@ var runtests = function() {
 	test("RiMarkov.size", function() {
 
 		var tokens = RiTa.tokenize(sample);
+		var sents = RiTa.splitSentences(sample);
+		
 		var rm = new RiMarkov(3);
 		rm.loadTokens(tokens);
 		ok(rm.root.count == tokens.length);
-		ok(rm.size() == tokens.length);
+		equal(rm.size(), tokens.length);
+		
+		var rm = new RiMarkov(3, true);
+		rm.loadText(sample);
+		equal(rm.size(), tokens.length);
+		
+		var rm = new RiMarkov(3, false);
+		rm.loadText(sample);
+		equal(rm.size(), tokens.length);
 	});
 
 	test("RiMarkov.getCompletions(a)", function() {//TODO:

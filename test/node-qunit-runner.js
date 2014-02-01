@@ -1,6 +1,8 @@
 //console.log(module.paths);
 
 var qunit = require('qunit');
+require('request');
+require('fs');
 
 var args = process.argv.splice(2);
 var testDir = '../test/';
@@ -8,14 +10,14 @@ var codeDir = '../src/';
 
 // No RiText*
 var testFiles = [
-    //'RiGrammar2'
-    'RiMarkov',
+
     'RiGrammar',
     'RiLexicon',
     'RiString',
     'RiTa',
     'RiTaEvent',
     'LibraryStructure',
+    'RiMarkov'
 ];
 
 var theTests = [];
@@ -44,8 +46,7 @@ else {
 }
 
 console.log('\nLoading tests from:');
-console.log(theTests);
-console.log('\n');
+console.log(theTests+"\n");
 
 qunit.setup({
     log: { 
