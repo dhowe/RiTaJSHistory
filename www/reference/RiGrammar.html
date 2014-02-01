@@ -173,10 +173,16 @@ rg = new RiGrammar();
 rg = RiGrammar(myJSONGrammar)
 
 	OR
-	
+
+// Load a JSON grammar from a file 	
 rg = new RiGrammar();
-rg.loadFromFile("fileWithJSON.txt", [optionalCallbackForJS]);
-      
+rg.loadFrom("file.json");
+
+      	OR
+      	
+// Load a JSON grammar from a URL	
+rg = new RiGrammar();
+rg.loadFrom("http://www.theserver.org/file.json");
 </pre>
 </td>
         </tr>
