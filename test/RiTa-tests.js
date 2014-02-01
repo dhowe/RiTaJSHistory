@@ -12,7 +12,82 @@ var runtests = function () {
             equal(typeof RiTa[functions[i]], 'function', functions[i]);
         }
     });
+    
+        
+	asyncTest("RiTa.loadString1(file)", function() {
+		
+    	RiTa.loadString("../data/sentence1.json", function(s) {
+			ok(s && s.length > 100);
+    		ok(JSON.parse(s));
+			ok(JSON.parse(s));
+    		start();		
+    	});
+  	});
 
+  	asyncTest("RiTa.loadString2(file)", function() {
+
+    	RiTa.loadString("../data/sentence2.json", function(s) {
+			ok(s && s.length > 100);
+    		ok(JSON.parse(s));
+    		ok(JSON.parse(s));
+    		start();		
+    	});
+  	});
+  	
+	asyncTest("RiTa.loadString1(url)", function() {
+  		
+  		if (RiTa.env() === RiTa.NODEJS) {// for node
+			expect(0);
+			start();
+			return;
+		}		
+		
+    	RiTa.loadString("http://localhost/testfiles/sentence1.json", function(s) {
+    		
+			ok(s && s.length > 100);
+    		ok(JSON.parse(s));
+			ok(JSON.parse(s));
+    		start();		
+    	});
+  	});
+
+  	asyncTest("RiTa.loadString2(url)", function() {
+  		if (RiTa.env() === RiTa.NODEJS) {// for node
+			expect(0);
+			start();
+			return;
+		}
+    	RiTa.loadString("http://localhost/testfiles/sentence2.json", function(s) {
+			ok(s && s.length > 100);
+    		ok(JSON.parse(s));
+    		start();		
+    	});
+  	});
+
+  	asyncTest("RiMarkov.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
+  		
+  		RiTa.loadString(["../data/sentence1.json","../data/sentence2.json"], function(s) {
+    		ok(s && s.length>500);
+    		start();		
+    	});
+  	}); 	
+  	
+	
+  	asyncTest("RiMarkov.loadStringMulti(url)", function() {
+  		
+  		if (RiTa.env() === RiTa.NODEJS) {// for node
+			expect(0);
+			start();
+			return;
+		}
+		
+		var urls = ["http://localhost/testfiles/sentence1.json","http://localhost/testfiles/sentence2.json"];
+  		RiTa.loadString(urls, function(s) {
+    		ok(s && s.length>500);
+    		start();		
+    	});
+  	}); 		
+		
     test("RiTa.constants", function () {
 
         ok(RiTa.VERSION);
@@ -43,42 +118,7 @@ var runtests = function () {
             equal(typeof RiText.prototype.textAlign, 'undefined'); 
         }
     });
-    
-    // TODO: need more tests for this
-	asyncTest("RiTa.loadString1()", function() {
-		
-		// TODO: why doesn't this test work in node as well ?
-		if (typeof document === 'undefined') {// for node
-			expect(0);
-			start();
-			return;
-		}
-
-    	RiTa.loadString("sentence1.json", function(s) {
-			ok(s);
-    		ok(s.length > 100);
-			ok(JSON.parse(s));
-    		start();		
-    	});
-  	});
   	
-  	asyncTest("RiTa.loadString2()", function() {
-		
-		// TODO: why doesn't this test work in node as well ?
-		if (typeof document === 'undefined') {// for node
-			expect(0);
-			start();
-			return;
-		}
-
-    	RiTa.loadString("sentence2.json", function(s) {
-			ok(s);
-    		ok(s.length > 100);
-    		ok(JSON.parse(s));
-    		start();		
-    	});
-  	});
-  
     test("RiTa.isAbbreviation()", function () {
 
         ok(RiTa.isAbbreviation("Dr."));

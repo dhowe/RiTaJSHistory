@@ -2,7 +2,7 @@
   "version": "##version##",
   "author": "Daniel C. Howe <daniel@rednoise.org>",
   "name": "rita",
-  "description": "RiTa: A toolkit for natural/generative language",
+  "description": "RiTa: A toolkit for natural language and computational literature",
   "homepage": "http://rednoise.org/rita",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "test": "node test/test-runner.js"
   },
   "license" : "GPL",
-  "dependencies": {},
+  "dependencies": { "request": ">= 2.0" },
   "devDependencies": { "qunit": ">= 0.5" },
   "optionalDependencies": {}
 }
