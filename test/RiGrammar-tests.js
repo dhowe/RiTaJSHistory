@@ -748,7 +748,7 @@ var runtests = function() {
     
     test("RiGrammar.exec1", function() {
   
-		var rg = new RiGrammar(newruleg);
+		var rg = new RiGrammar();
 		rg.execDisabled = false;
 		ok(rg); 
 
