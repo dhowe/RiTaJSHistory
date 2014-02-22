@@ -11,7 +11,7 @@ void setup()
   new RiText(this, "click to (re)generate!");
 
   // create a markov model w' n=3
-  markov = new RiMarkov(4);  
+  markov = new RiMarkov(this, 4);  
   
   // load files into the model
   markov.loadFrom(new String[] { "wittgenstein.txt", "kafka.txt" });    
