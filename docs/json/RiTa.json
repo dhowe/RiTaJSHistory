@@ -386,7 +386,7 @@
    {
       "methodName":"RiTa.getPosTags()",
       "example":"",
-      "description":"Uses the default PosTagger to tag the input with a tag from the <a href='http://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html' target=new>PENN tag set</a>",
+      "description":"Uses the default PosTagger to tag the input with tags from the <a href='../../PennTags.html'>PENN tag set</a>",
       "syntax":"RiTa.getPosTags(word)<br/>RiTa.getPosTags(wordArr)",
       "parameters":[
          {
@@ -406,7 +406,7 @@
        }
 
       ],
-      "related":"",
+      "related":"<a href='../../PennTags.html'>the PENN tagset</a>",
       "platform":"Java / Javascript",
 	  "note":""
       
@@ -414,7 +414,7 @@
    {
       "methodName":"RiTa.getPosTagsInline()",
       "example":"",
-      "description":"Takes an string returns a combined string of the form:<p><pre>'The/dt doctor/nn treated/vbd dogs/nns'</pre>",
+      "description":"Takes an string returns a combined string of the form:<p><pre>'The/dt doctor/nn treated/vbd dogs/nns'</pre>, using lowercased tags from the <a href='../../PennTags.html'>PENN tag set</a>",
       "syntax":"RiTa.getPosTagsInline(word)",
       "parameters":[
          {
@@ -430,7 +430,7 @@
          }
 
       ],
-      "related":"",
+      "related":"<a href='../../PennTags.html'>the PENN tagset</a>",
       "platform":"Java / Javascript",
 	  "note":""
       

@@ -522,7 +522,7 @@
    {
       "methodName":"pos()",
       "example":"",
-      "description":"Returns an array of part-of-speech tags, one per word, using RiTa.tokenize() and RiTa.getPosTags() on the contained string",
+      "description":"Returns an array of part-of-speech tags, one per word, using RiTa.tokenize() and RiTa.getPosTags(), with tags from the <a href='../../PennTags.html'>PENN tag set</a>",
       "syntax":"pos()",
       "parameters":
       [
@@ -536,14 +536,14 @@
 			"desc": "strings of pos, one per word" 
 			}
 	  ],
-      "related":"",
+      "related":"<a href='../../PennTags.html'>the PENN tagset</a>",
       "platform":"Java / Javascript",
 	  "note":""
    },
    {
       "methodName":"posAt()",
       "example":"",
-      "description":"Returns the part-of-speech tag for the word at 'index', using RiTa.tokenize() and RiTa.getPosTags()",
+      "description":"Returns the part-of-speech tag for the word at 'index', using RiTa.tokenize() and RiTa.getPosTags(), with tags from the <a href='../../PennTags.html'>PENN tag set</a>",
       "syntax":"posAt(index)",
       "parameters":
       [
@@ -560,7 +560,7 @@
 			"desc": "the pos" 
 			}
 	  ],
-      "related":"",
+      "related":"<a href='../../PennTags.html'>the PENN tagset</a>",
       "platform":"Java / Javascript",
 	  "note":""
    },

@@ -45,7 +45,7 @@ void mouseDragged() {
 
 void mouseReleased() {
   RiText.disposeAll();
-  rts = RiText.createLines(txt, x, y, w); 
+  rts = RiText.createLines(txt, x, y, w, h); 
   for ( var i = 0; i < rts.length(); i++) 
       rts[i].fill(RiText.randomColor()); 
 }
