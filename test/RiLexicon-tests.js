@@ -410,6 +410,7 @@ var runtests = function() {
             RiTa.SILENT=1;
             try {
                 lex.isAdverb("banana split");
+                ok(!"failed");
             }
             catch (e) {
                 throw e;
