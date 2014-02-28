@@ -474,7 +474,7 @@
       "returns":[
          {
             "type":"String",
-            "desc":"e.g., 'dh-ax d-ao-g r-ae-n f-ae-s-t' for the 4 syllables of the phrase 'The dog ran fast'"
+            "desc": "e.g., 'dh-ax d-ao-g r-ae-n f-ae-s-t' for the 4 syllables of the phrase 'The dog ran fast'"
          }
 
       ],
@@ -505,7 +505,6 @@
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
-      
    },
    {
       "methodName":"RiTa.posToWordNet()",
@@ -517,19 +516,16 @@
             "type":"String",
             "desc":"the (PENN) pos tag to convert"
          }
-        
       ],
       "returns":[
          {
             "type":"String",
             "desc":"the simplified WordNet tag"
          }
-
       ],
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
-      
    },
    {
       "methodName":"RiTa.conjugate()",

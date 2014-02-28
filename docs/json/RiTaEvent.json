@@ -36,5 +36,47 @@
       "related":"",
       "platform":"Java / Javascript",
 	  "note":""
+   },
+   {
+      "methodName":"data()",
+      "example":"",
+      "description":"Returns the data for this event, if it has any",
+      "syntax":"data()",
+      "parameters":
+      [
+	  ],
+	  "returns":
+      [
+			{ 
+			"type": "Object", 
+			"desc": "the data, which varies from event to event" 
+			}
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
+   },
+   {
+      "methodName":"isType()",
+      "example":"if (event.isType(RiTa.MOVE_TO)) { ... } ",
+      "description":"Returns true if the types match, else false e.g., RiTa.MOVE_TO",
+      "syntax":"isType()",
+      "parameters":
+      [
+      		{ 
+			"type": "int", 
+			"desc": "the type" 
+			}
+	  ],
+	  "returns":
+      [
+			{ 
+			"type": "boolean", 
+			"desc": "true if the types match, else false" 
+			}
+	  ],
+      "related":"",
+      "platform":"Java / Javascript",
+	  "note":""
    }
 ]
