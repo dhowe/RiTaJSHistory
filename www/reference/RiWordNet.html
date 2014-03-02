@@ -106,7 +106,7 @@ as part of the installation. Please download the version (3.x is recommended) fo
  <p>
  Note: Valid WordNet parts-of-speech include (noun="n",verb="v",adj="a", and
  adverb="r"). <br>
- These can be specified either as literals or using the String constants:
+ These can be specified either as a literal (e.g., "n") or using the constants:
  
  <pre>
     RiWordNet.NOUN
@@ -116,11 +116,12 @@ as part of the installation. Please download the version (3.x is recommended) fo
  </pre>
  
  <p>
- Note: methods return null either when the query term is not found or there
- are no entries for the relation type being sought.
+ <em>NOTE:</em>&nbsp; Methods returning a String[] will return a zero-length array when the query term
+  is not found or there are no entries for the relation type being sought, 
+  rather than null (as in the original version of this library). 
  
  <p>
- For more info on the meaning of various wordnet concepts (synset, sense,
+ For more info on the meaning of various WordNet concepts (synset, sense,
  hypernym, etc), see <a href="http://wordnet.princeton.edu/wordnet/man/wngloss.7WN.html" target=_blank>this page</a>.
  
  <p>
@@ -130,48 +131,15 @@ as part of the installation. Please download the version (3.x is recommended) fo
 		        </tr>
 		        </table>
 		        
-		        <table cellpadding="0" cellspacing="0" border="0" class="ref-item">
-		        
-				<!--tr class="">
-		          <th scope="row">Examples</th>
-		          <td><div class="example"> 
-			     	<pre class="margin">
-			     	</pre>
-		            </div></td>
-		        </tr> 
-			    
-			    <tr class="">
-			      <th scope="row">Syntax</th>
-			      <td><pre>RiWordNet(Object source, int type)</pre></td>
-		        </tr>
-		        
-			    <tr class="">
-			      <th scope="row">Parameters</th>
-			      <td><table cellpadding="0" cellspacing="0" border="0" class="sub-table">
-			        <tr class="">
-			          <th width="25%" scope="row" class="nobold">&nbsp; Object</th>
-			          <td width="75%">the source</td>
-		            </tr>
-                    <tr class="">
-			          <th width="25%" scope="row" class="nobold">&nbsp; int</th>
-			          <td width="75%">the type</td>
-		            </tr>
-			        </table></td>
-		        </tr-->
-		        
+		        <table cellpadding="0" cellspacing="0" border="1">
+		        		        
 			   	<tr class="">
 			      <th scope="row">Platform</th>
-			      <td>Java only (for now)</td>
+			      <td>Java only&nbsp;  
+			      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			      </td>
 		        </tr>
-				<tr class='Note' style='display:none'>
-			      <th scope="row">Note</th>
-			      <!-- SYNTAX  -->
-			      <td></td>
-		        </tr>
-				<tr class="">
-						<th scope="row"></th>
-						<td></td>
-					</tr>
 
 		      </table>
 		  </div>

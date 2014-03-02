@@ -1,18 +1,23 @@
 #!/bin/sh
 
-set -e # die on errors 
+# update-docgen.sh: rebuilds ../tools/refgen/doc-gen.zip from src
 
+set -e
 
-JSPROJ="/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS"
-GENZIP="$JSPROJ/tools/refgen/doc-gen.zip"
-GENPROJ="/Users/dhowe/Documents/eclipse-workspace/RiTa_DocGen"
-GENBIN="$GENPROJ/bin"
+ls ../../../../eclipse-workspace/RiTa_DocGen/bin
 
-cd $GENBIN
+exit
+INPUT=../../docs/
+OUTPUT=../../www/reference/
+GENZIP="doc-gen.zip"
+CLASSPATH="$GENZIP:../../lib/core.jar:../../lib/json.jar"
 
-jar cvf $GENZIP *.class
+#echo CP: $CLASSPATH
 
-jar tf $GENZIP
+cd ../tools/refgen				 
 
-echo done
+echo
+java -Xmx512m -classpath $CLASSPATH DocGenerator $OUTPUT $INPUT $1 $2 $3
+
+echo DONE: html written to $OUTPUT
 

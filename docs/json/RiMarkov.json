@@ -1,4 +1,6 @@
-[
+{
+    "class": "rita.RiMarkov",
+    "fields": [
 	{
       "methodName":"generateTokens()",
       "example":"",
@@ -374,3 +376,4 @@
 	  "note":""
    }
 ]
+}

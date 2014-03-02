@@ -1,4 +1,6 @@
-[
+{
+    "class": "rita.RiTa",
+    "fields": [
 	{
       "methodName":"RiTa.VERSION",
       "variable": true,
@@ -827,3 +829,4 @@
 	  "note":"Does nothing in Java"
    }
 ]
+}

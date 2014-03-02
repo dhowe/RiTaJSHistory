@@ -1,4 +1,6 @@
-[
+{
+    "class": "rita.RiGrammar",
+    "fields": [
 	{
       "methodName":"addRule()",
       "example":"",
@@ -288,3 +290,4 @@
 	  "note":""
    }
 ]
+}
