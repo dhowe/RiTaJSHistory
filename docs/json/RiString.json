@@ -1,4 +1,6 @@
-[
+{
+    "class": "rita.RiString",
+    "fields": [
 	{
       "methodName":"analyze()",
       "example":'myRiString.analyze();\n\nmyRiString.get(RiTa.PHONEMES);\n\nOR\n\nmyRiString.get("phonemes");',
@@ -750,3 +752,4 @@
 	  "note":""
    }  
 ]
+}

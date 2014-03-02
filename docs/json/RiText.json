@@ -1,4 +1,6 @@
-[
+{
+    "class": "rita.RiText",
+    "fields": [
 	{
 	  "variable":true,
       "methodName":"x",
@@ -2381,3 +2383,4 @@
 	  "note":""
    }  
 ]
+}

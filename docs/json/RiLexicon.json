@@ -1,4 +1,6 @@
-[
+{
+    "class": "rita.RiLexicon",
+    "fields": [
 	{
       "methodName":"addWord()",
       "example":"lexicon.addWord('abandon','ax-b ae1-n-d ax-n','vb nn vbp');",
@@ -546,3 +548,4 @@
 	  "note":""
    }
 ]
+}
