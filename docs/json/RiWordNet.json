@@ -190,7 +190,7 @@
 		"desc": "posStr"
 	}, {
 		"type": "int",
-		"desc": "(optional)maxResults"
+		"desc": "(optional) maxResults"
 	}],
 	"returns": [{
 		"type": "java.lang.String[]",
@@ -675,7 +675,7 @@
 		"desc": "posStr"
 	}, {
 		"type": "int",
-		"desc": "(optional)maxResults"
+		"desc": "(optional) maxResults"
 	}],
 	"returns": [{
 		"type": "java.lang.String[]",
