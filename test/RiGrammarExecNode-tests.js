@@ -1,4 +1,4 @@
-
+// TODO: Fix me! 
 var runtests = function() {
    
     QUnit.module("RiGrammar", {
@@ -7,8 +7,6 @@ var runtests = function() {
 	    temp : function() { return Math.random() < .5 ? 'hot' : 'cold'; }
 
 	}); 
-	
-
 
     test("RiGrammar.exec1", function() {
   
