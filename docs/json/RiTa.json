@@ -531,7 +531,7 @@
    },
    {
       "methodName":"RiTa.conjugate()",
-      "example":"Map args = new HashMap();<br>args.put('tense', RiTa.PAST_TENSE);<br>args.put('number', RiTa.SINGULAR);<br>args.put('person', RiTa.FIRST_PERSON);<br><br>String c = RiTa.conjugate('swim', args);<br>",
+      "example":"// Java<br><br>Map args = new HashMap();<br>args.put(\"tense\", RiTa.PAST_TENSE);<br>args.put(\"number\", RiTa.SINGULAR);<br>args.put(\"person\", RiTa.FIRST_PERSON);<br><br>String c = RiTa.conjugate(\"swim\", args);<br> <br> <br>// Javascript<br><br>var args = {<br>  tense: RiTa.PRESENT_TENSE,<br>  number: RiTa.SINGULAR,<br>  person: RiTa.THIRD_PERSON<br>};<br><br>var c = RiTa.conjugate('swim', args);<br> <br>",
       "description":"Conjugates the 'verb' according to the specified options",
       "syntax":"RiTa.conjugate(verb, args)",
       "parameters":[
@@ -540,7 +540,7 @@
             "desc":"the verb stem"
          },
          {
-            "type":"Map (Object in JavaScript)",
+            "type":"Object<br>(or Map in Java)",
             "desc":"args containing the relevant options for the conjugator"
          }
         

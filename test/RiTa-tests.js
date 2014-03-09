@@ -1183,11 +1183,7 @@ var runtests = function () {
 
         // TODO: Check against RiTa-java (why are these all doubling?)
         
-        var args = {
-            tense: RiTa.PRESENT_TENSE,
-            number: RiTa.SINGULAR,
-            person: RiTa.THIRD_PERSON
-        };
+        var args = { tense: RiTa.PRESENT_TENSE, number: RiTa.SINGULAR, person: RiTa.THIRD_PERSON };
         
         s = ["swim", "need", "open"];
         a = ["swims", "needs", "opens"];

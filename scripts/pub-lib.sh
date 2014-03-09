@@ -24,7 +24,7 @@ JAVAPROJ=$DOCDIR/eclipse-workspace/RiTa
 JSPROJ=$JAVAPROJ/RiTaLibraryJS
 DLDIR=$JAVAPROJ/distribution/RiTa-$VERSION/download
 WWWDIR=$JSPROJ/build/www
-ZIP_FILE=ritajs-www.zip
+ZIP_FILE=rita-www.zip
 PROPS_FILE=$JAVAPROJ/latest/RiTa.txt
 DEST=dhowe@localhost
 
@@ -38,21 +38,20 @@ done
 
 #./make-www.sh
 
+cd $WWWDIR
+
 echo
 echo copying RiTa-$VERSION.zip ./download/
-cd $WWWDIR
 rm -rf download/[Rr]i[Tt]a-* 
 cp $DLDIR/RiTa-$VERSION.zip ./download/
 echo
 
 echo copying js/jars to ./download/
-cd $WWWDIR
 cp $JSPROJ/www/download/rita-*.js ./download/
-cp $JAVAPROJ/latest/rita-*.jar ./download/
+cp $JAVAPROJ/latest/rita-$VERSION.jar ./download/
 echo
 
 echo zipping...
-cd $WWWDIR
 rm -rf $ZIP_FILE
 jar cf $ZIP_FILE *
 #jar tf $ZIP_FILE
