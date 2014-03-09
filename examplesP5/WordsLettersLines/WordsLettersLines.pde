@@ -1,4 +1,5 @@
 import rita.*;
+
 // Layout RiTexts in a line, as a row or words, or as single letters
 
 String txt = "The dog ate the cat.";
@@ -11,12 +12,9 @@ void setup() {
   RiText.defaultFont("Georgia", 32);
   RiText.defaults.showBounds = true;
 
-  line1 = new RiText(this, txt, 64, 100); // lines
-
-  line2 = line1.splitWords(); // words
-
-  line1.y = 150;
-  line3 = line1.splitLetters(); // letters
+  line1 = new RiText(this, txt, 64, 150); // lines
+  line2 = RiText.createWords(this, txt, 64, 40); // words
+  line3 = RiText.createLetters(this, txt, 64, 90); // letters
 
   setColors();
 }
@@ -25,7 +23,7 @@ void draw() {
 
   background(255);
 
-  line1.y = 50 + frameCount % 2; // wiggle
+  line1.y = 50 + frameCount % 3; // wiggle
   line2[line2.length - 1].y = 100 + frameCount % 4;
   line3[line3.length - 2].y = 150 + frameCount % 7;
 
