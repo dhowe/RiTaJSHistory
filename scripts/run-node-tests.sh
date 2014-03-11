@@ -1,7 +1,26 @@
-#!/bin/sh
+#!/bin/bash
+#
+# to run one test pass it as an argument: $script RiString
+#
 
-echo "\nRunning tests in NodeJS...\n\n"
+set -e # die on errors 
 
 cd ../test
-echo node node-qunit-runner.js $@
-node node-qunit-runner.js $@
+
+QUNIT=node_modules/qunit/bin/cli.js
+SRC=../src
+
+if [ $# -lt "1"  ]
+then
+  tests="RiGrammar-tests.js RiLexicon-tests.js RiString-tests.js RiTa-tests.js RiTaEvent-tests.js LibraryStructure-tests.js RiMarkov-tests.js RiWordNet-tests.js"
+else
+  tests="$1-tests.js"
+fi
+
+$QUNIT -c $SRC/rita.js -d $SRC/rita_lts.js $SRC/rita_dict.js node_modules/request  -t $tests
+
+#for test in "${tests[@]}"
+#do
+#    echo
+#done
+

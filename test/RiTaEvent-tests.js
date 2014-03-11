@@ -29,6 +29,7 @@ var runtests = function() {
             try {
             	
                 new RiTaEvent();
+                fail("no exception");
             }
             catch (e) {
                 throw e;
@@ -40,6 +41,7 @@ var runtests = function() {
 			RiTa.SILENT = 1;
             try {
                 RiTaEvent();
+                fail("no exception");
             }
             catch (e) {
                 throw e;
@@ -54,6 +56,7 @@ var runtests = function() {
 				RiTa.SILENT = 1;
                 try {
                     new RiTaEvent(BAD[i]);
+                    fail("no exception");
                 }
                 catch (e) {
                     throw e;
@@ -65,6 +68,7 @@ var runtests = function() {
 				RiTa.SILENT = 1;
                 try {
                     RiTaEvent(BAD[i]);
+                    fail("no exception");
                 }
                 catch (e) {
                     throw e;
