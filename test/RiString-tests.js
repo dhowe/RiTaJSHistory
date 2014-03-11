@@ -116,6 +116,7 @@ var runtests = function() {
 
                 try {
                     new RiString(BAD[i]);
+                    fail("no exception");
                 }
                 catch (e) {
                     throw e;
@@ -125,6 +126,7 @@ var runtests = function() {
 
                 try {
                     RiString(BAD[i]);
+                    fail("no exception");
                 }
                 catch (e) {
                     throw e;

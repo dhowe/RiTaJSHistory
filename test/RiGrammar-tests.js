@@ -69,7 +69,7 @@ var runtests = function() {
 
 				try {
 					RiGrammar(BAD[i]);
-					equal("no exception", 0);
+					fail("no exception");
 				} 
 				catch (e) {
 					throw e;
