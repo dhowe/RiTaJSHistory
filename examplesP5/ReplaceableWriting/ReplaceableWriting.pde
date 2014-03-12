@@ -7,11 +7,14 @@ String text = "Last Wednesday we decided to visit the zoo. We arrived the next m
 
 void setup()
 {
-  size(400, 400);   
+  size(600, 400);   
+  
   RiText.defaults.fontSize = 18; 
-  wordnet = new RiWordNet("/WordNet-3.1", true);
-  rts = RiText.createLines(this, text, 50, 50, 300);   
-  RiTa.timer(this, 2.0); 
+  
+  wordnet = new RiWordNet("/WordNet-3.1", true, true);
+  rts = RiText.createLines(this, text, 50, 50, 500);
+
+  RiTa.timer(this, 2f);
 }
 
 void draw()
@@ -20,12 +23,10 @@ void draw()
   RiText.drawAll();
 }
 
-/*  replace a random word in the paragraph with one
- from wordnet with the same (basic) part-of-speech */
+//  replace a random word in the paragraph with one
+//  from wordnet with the same (basic) part-of-speech 
 void onRiTaEvent(RiTaEvent e)
-{
-  println();
-  
+{   
   String[] words = text.split(" ");
 
   // loop from a random spot
@@ -34,39 +35,32 @@ void onRiTaEvent(RiTaEvent e)
   {
     // only words of 3 or more chars
     if (words[i].length()<3) continue;
-      
-    // get the pos
+
     String pos = wordnet.getBestPos(words[i].toLowerCase());        
     if (pos != null) 
     {
-
-      println("======================\nword: "+words[i]+":");
-
       // get the synset
-      String[] syns = wordnet.getSynset(words[i], pos);
+      String[] syns = wordnet.getSynonyms(words[i], pos);
 
-println(syns);
-
-      if (syns.length<1) continue;
+      // only words with >1 synonyms
+      if (syns.length<2) continue;
 
       // pick a random synonym
-      String newStr = syns[(int)random(0, syns.length)];
-
-println("replace: "+newStr);
+      int randIdx = (int)random(0, syns.length);
+      String newStr = syns[randIdx];
 
       if (Character.isUpperCase(words[i].charAt(0)))              
         newStr = RiTa.upperCaseFirst(newStr); // keep capitals
 
       // and make a substitution
-      //text = RiText.regexReplace("\\b"+words[i]+"\\b", text, newStr);
       text = text.replaceAll("\\b"+words[i]+"\\b", newStr);
-      
-      RiText.dispose(rts);   // clean up the last batch
 
-      // create a RiText[] from 'text' starting at (30,50) & going down
-      rts = RiText.createLines(this, text, 50, 50, 300);      
+      RiText.dispose(rts);   // clean up the old text
+
+      // create a new RiText[] from 'text' starting at (30,50)
+      rts = RiText.createLines(this, text, 50, 50, 500);      
       break;
-    }    
-  }       
-}
+    }
+  }
+}     
 
