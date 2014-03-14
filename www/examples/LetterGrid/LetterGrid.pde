@@ -1,5 +1,7 @@
 import rita.*;
 
+// Processing's letter-grid example in RiTa
+
 void setup()
 {
   size(200, 200);
@@ -17,9 +19,10 @@ void setup()
       char c = (char) (65 + k); // letters
       
       rt[k] = new RiText(this, c, 24 + j * 30, 32 + i * 30);
+      
       if (k < 26)
       {
-        if (rt[k].match("[AEIOU]").length>0)                  // vowels
+        if (rt[k].match("[AEIOU]").length > 0)               // vowels
           rt[k].colorTo(new float[] { 204 }, 1.0);
       }
       else
