@@ -1,0 +1,56 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+<script type="text/processing" data-processing-target="mycanvas">
+
+import rita.*;
+
+var grammar = { 
+	"<start>": "The `store(<obj>)` ate the `rhyme()`.",
+	"<obj>": "cap | lap | tap | trap | map | strap | wrap"
+};
+ 
+RiGrammar rg;
+RiText rt;
+String stored = "";
+
+void setup()
+{
+    size(400, 200);
+
+    RiText.defaults.fontSize=24;
+    RiText.defaults.alignment=CENTER;
+
+    rt = new RiText(this, "click");
+    
+    rg = new RiGrammar(this);
+    rg.load(grammar);
+}
+
+void draw()
+{
+    background(230,240, 255);
+    rt.draw();
+}
+
+void mouseClicked()
+{
+    String result = rg.expand(this);
+    rt.text(result);
+}
+
+String rhyme() {
+	
+  String choice = stored;
+  while (choice.equals(stored))
+    choice = rg.expandFrom("<obj>");
+  return choice;
+}
+
+String store(String s) {
+
+  stored = s;
+  return stored;
+}
+
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
