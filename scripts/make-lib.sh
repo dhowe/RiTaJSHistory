@@ -66,10 +66,11 @@ JSDOC=../tools/jsdoc-toolkit
 SRC_VERSIONED=/tmp/rita-versioned.js
 ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ${SRC_VERSIONED}"
 
-DOWNLOAD_DIR=../www/download
-LIB_DIR=../www/js
+WWW_DIR=../../www
+DOWNLOAD_DIR=$WWW_DIR/download
+LIB_DIR=$WWW_DIR/js
 DIST_DIR=../dist
-REF_DIR=../www/reference
+REF_DIR=$WWW_DIR/reference
 RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 
@@ -167,7 +168,7 @@ echo Copying into $BUILD
 
 rm -rf $BUILD
 mkdir $BUILD
-cp -r ../www $BUILD
+cp -r $WWW_DIR $BUILD
 sed -i "" "s/##version##/${VERSION}/g" $DOWNLOAD_INDEX 
 #ls -l $BUILD
 
@@ -195,7 +196,7 @@ echo $LINE
 
 ######################################################################
 
-ls ../build/www/js/
+#ls ../build/www/js/
 
 echo $LINE
 echo Done [use pub-jslib.sh [-r] to publish]

@@ -12,7 +12,7 @@ void setup() {
   RiText.defaultFont("Georgia", 32);
   RiText.defaults.showBounds = true;
 
-  line1 = new RiText(this, txt, 64, 150); // lines
+  line1 = new RiText(this, txt, 64, 150); // a line
   line2 = RiText.createWords(this, txt, 64, 40); // words
   line3 = RiText.createLetters(this, txt, 64, 90); // letters
 
