@@ -116,7 +116,7 @@ var runtests = function() {
 
 	asyncTest("RiMarkov.loadFromUrlMulti", function() {
 		
-    	if (RiTa.env() == RiTa.NODEJS) {
+    	if (RiTa.env() == RiTa.NODE) {
     		ok("Not for Node");
     		start();
     		return;
@@ -206,7 +206,7 @@ var runtests = function() {
     
 	asyncTest("RiMarkov.loadFromUrl", function() {
     	
-    	if (RiTa.env() == RiTa.NODEJS) {
+    	if (RiTa.env() == RiTa.NODE) {
     		ok("Not for Node");
     		start();
     		return;

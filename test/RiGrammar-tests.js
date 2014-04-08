@@ -297,7 +297,7 @@ var runtests = function() {
     
     asyncTest("RiGrammar.loadFrom(Url)", function() {
     	
-    	if (RiTa.env() == RiTa.NODEJS) {
+    	if (RiTa.env() == RiTa.NODE) {
     		ok("Not for Node");
     		start();
     		return;
@@ -764,7 +764,7 @@ var runtests = function() {
 	
 	        for ( var i = 0; i < 10; i++) {
 	        	
-	        	// TODO: fails in nodeJS  ??
+	        	// TODO: fails in NODE  ??
 	        	// The "this" value passed to eval must be the global object from which eval originated ?
 	        	
 	            var res = rg.expand();
@@ -776,7 +776,7 @@ var runtests = function() {
         
 	var newruleg = { '<start>' : 'The <noun> chased the `newrule("<noun>")`.', '<noun>' : 'dog | cat | mouse', '<verb>' : 'rhino'  };
      
-    // TODO: fails in nodeJS/phantomJS ?
+    // TODO: fails in NODE/phantomJS ?
 	test("RiGrammar.exec2", function() {
 	
 		var rg = new RiGrammar(newruleg);

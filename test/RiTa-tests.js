@@ -36,7 +36,7 @@ var runtests = function () {
   	
 	asyncTest("RiTa.loadString1(url)", function() {
   		
-  		if (RiTa.env() === RiTa.NODEJS) {// for node
+  		if (RiTa.env() === RiTa.NODE) {// for node
 			expect(0);
 			start();
 			return;
@@ -52,7 +52,7 @@ var runtests = function () {
   	});
 
   	asyncTest("RiTa.loadString2(url)", function() {
-  		if (RiTa.env() === RiTa.NODEJS) {// for node
+  		if (RiTa.env() === RiTa.NODE) {// for node
 			expect(0);
 			start();
 			return;
@@ -75,7 +75,7 @@ var runtests = function () {
 	
   	asyncTest("RiMarkov.loadStringMulti(url)", function() {
   		
-  		if (RiTa.env() === RiTa.NODEJS) {// for node
+  		if (RiTa.env() === RiTa.NODE) {// for node
 			expect(0);
 			start();
 			return;
@@ -96,7 +96,7 @@ var runtests = function () {
     test("RiTa.env", function () {
 		var mode = RiTa.env();
 		//console.log("Mode: "+mode);
-        ok(mode==RiTa.NODEJS || mode==RiTa.JS);
+        ok(mode==RiTa.NODE || mode==RiTa.JS);
     });
     
     test("RiTa.p5Compatible", function () {

@@ -70,41 +70,46 @@ mkdir -p $NODE_LIB || die
 mkdir -p $NODE_DOC
 mkdir -p $NODE_TEST
 
+
 echo Copying $NODE_RES/package.json to $PKG_JSON
 cp $NODE_RES/package.json $PKG_JSON
 sed -i "" "s/##version##/${VERSION}/g" $PKG_JSON
 #cat $PKG_JSON
 
-echo Copying $NODE_RES/README.md to $NODE_RITA
+echo 1: Copying $NODE_RES/README.md to $NODE_RITA
 cp $NODE_RES/README.md $NODE_RITA/
 
-echo Copying $NODE_RES/test-runner.js to $NODE_TEST
+echo 2: Copying $NODE_RES/test-runner.js to $NODE_TEST
 cp $NODE_RES/test-runner.js $NODE_TEST/
 
-echo Copying $TEST to $NODE_TEST
+echo 3: Copying $TEST to $NODE_TEST
 cp -r $TEST/*.js* $NODE_TEST/
 
-echo Copying $DOC_DIR to $NODE_DOC
+echo 4: Copying $DOC_DIR to $NODE_DOC
 cp -r $DOC_DIR/* $NODE_DOC/
 
-echo Copying $DL_DIR/rita-$VERSION.min.js to 'lib'
-cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
+#echo 5: Copying $DL_DIR/rita-$VERSION.min.js to $NODE_LIB
+#cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
 
 if true ### hack for set -e
 then
   find $NODE_DIR -name 'CVS' | xargs rm -r
 fi
-#ls -R $NODE_RITA
-#exit
+
 
 echo $LINE
 echo Generating NPM tarball in $LATEST
 echo "CMD: $NPM pack $NODE_RITA from: "
+
 pwd
 echo
+
 $NPM pack $NODE_RITA
+exit
 echo Generated tarball 
 mv $TARBALL $LATEST/$TARBALL
+
+
 
 if [ $DO_PUBLISH = 1 ]
 then
@@ -121,4 +126,3 @@ else
     echo Done [use [-p] [-f] to publish]
 fi
 
-exit
