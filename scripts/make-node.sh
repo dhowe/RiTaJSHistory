@@ -105,7 +105,7 @@ pwd
 echo
 
 $NPM pack $NODE_RITA
-exit
+
 echo Generated tarball 
 mv $TARBALL $LATEST/$TARBALL
 
