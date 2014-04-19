@@ -266,7 +266,7 @@
 		    ok(features.phonemes);
 		    ok(features.stresses);
 		    
-		    ok(features.mutable);
+		    //ok(features.mutable);
 		    ok(features.tokens);
 		    ok(features.text);
 		    ok(features.pos);

@@ -8,6 +8,7 @@ set -e # die on errors
 cd ../test
 
 QUNIT=node_modules/qunit/bin/cli.js
+#QUNIT=node_modules/qunit-cli/bin/qunit-cli
 SRC=../src
 
 if [ $# -lt "1"  ]
@@ -17,10 +18,8 @@ else
   tests="$1-tests.js"
 fi
 
+#tests="RiTaEvent-tests.js"
+
 $QUNIT -c $SRC/rita.js -d $SRC/rita_lts.js $SRC/rita_dict.js node_modules/request  -t $tests
 
-#for test in "${tests[@]}"
-#do
-#    echo
-#done
-
+exit
