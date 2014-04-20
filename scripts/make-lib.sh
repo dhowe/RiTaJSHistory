@@ -184,8 +184,10 @@ cp $RITA_CODE $P5_LIB
 ###COPY-RITA.LATEST##################################################
 if [ $MINIMIZE_SRC = 1 ]
 then
-    echo " -> $LATEST"  # lib
+    echo " -> $LATEST" 
     cp $RITA_CODE_MIN $LATEST
+    echo " -> $DIST_DIR"  
+    cp $RITA_CODE_MIN $DIST_DIR/rita.js
     #less $RITA_CODE_MIN
 fi
 
