@@ -46,7 +46,7 @@ done
 
 BUILD=../build
 TEST=../test
-NODE_RES=../noderes
+NODE_RES=../resources/node
 NODE_DIR=$BUILD/node
 NODE_RITA=$NODE_DIR/rita
 NODE_LIB=$NODE_DIR/rita/lib
