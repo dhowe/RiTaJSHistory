@@ -47,7 +47,7 @@ cp $DLDIR/RiTa-$VERSION.zip ./download/
 echo
 
 echo copying js/jars to ./download/
-cp $JSPROJ/www/download/rita-*.js ./download/
+cp $JAVAPROJ/www/download/rita-*.js ./download/
 cp $JAVAPROJ/latest/rita-$VERSION.jar ./download/
 echo
 
@@ -59,11 +59,6 @@ jar cf $ZIP_FILE *
 #ls -l $ZIP_FILE
 echo
 
-
-#
-# NEXT: add a separate scp for library.properties -> rita/RiTa.txt?
-#
-
 echo ssh -p $SSHPORT 
 echo copying to $DEST...
 echo
@@ -73,6 +68,20 @@ cat $ZIP_FILE | ssh -p $SSHPORT $DEST "(cd /Library/WebServer/Documents; mkdir -
 echo copying $PROPS_FILE to $DEST...
 echo
 scp -P $SSHPORT $PROPS_FILE $DEST:/Library/WebServer/Documents/rita
+
+#TODO: git tag BOTH versions here!!!
+########################################
+
+# cd PROJ_HOME
+
+# commit your changes
+# git commit -am "Release version $VERSION"
+
+# tag the commit
+# git tag -a v$VERSION -m "Release version $VERSION"
+
+# push to GitHub
+# git push origin master --tags
 
 echo
 rm -rf $ZIP_FILE

@@ -1328,6 +1328,26 @@ var runtests = function() {
         equal(sy, "dh-ax l-ae/g-ih-n d-r-ae-g/ax-n");
         equal(st, "0 1/1 1/0");
     });
+    
+	test("RiString.set()", function() {
+		
+      var rs = new RiString("Mom & Dad");
+      rs.set("Id", "1000"); // TODO: test that this does not create default features
+      
+      equal(rs.get("Id"), "1000");
+      ok(rs.get(RiTa.PHONEMES) != null);
+      //console.log(rs.get(RiTa.PHONEMES));
+      
+      var features = rs.features();
+      //console.log(features);
+
+      ok(features[RiTa.PHONEMES] != null);
+      
+      rs.text("Dad & Mom"); // reset all original features, but not those set() by user
+      
+      equal(features[RiTa.PHONEMES], null); // OK: has been reset
+      equal(rs.get("Id"), "1000");  // OK:  has not been reset
+	});  
 
 }
 
