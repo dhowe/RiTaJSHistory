@@ -69,6 +69,7 @@ ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ${SRC_VERSIONED}"
 WWW_DIR=../../www
 DOWNLOAD_DIR=$WWW_DIR/download
 LIB_DIR=$WWW_DIR/js
+EX_LIB_DIR=$WWW_DIR/examples/lib
 DIST_DIR=../dist
 REF_DIR=$WWW_DIR/reference
 RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
@@ -192,15 +193,20 @@ then
 fi
 
 ###COPY-www/js(for RiTaBanner#########################################
-echo " -> $LIB_DIR/"
-cp $RITA_CODE_MIN $LIB_DIR/rita.js
+#echo " -> $LIB_DIR/"
+#cp $RITA_CODE_MIN $LIB_DIR/rita.js
+#echo $LINE
+
+###COPY-www/examples/lib (for examples #########################################
+echo " -> $EX_LIB_DIR/"
+cp $RITA_CODE_MIN $EX_LIB_DIR/rita.js
 echo $LINE
 
 ######################################################################
 
 #ls ../build/www/js/
 
-echo $LINE
+echo
 echo Done [use pub-jslib.sh [-r] to publish]
 
 if [ $DO_PUBLISH = 1 ]

@@ -1,2 +1,2 @@
 gjslint: 2.3.6.1
-phantomjs: phantomjs-1.9.0-macosx
+clojure-compiler: 20140407
