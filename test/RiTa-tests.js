@@ -64,8 +64,14 @@ var runtests = function () {
     	});
   	});
 
-  	asyncTest("RiMarkov.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
+  	asyncTest("RiTa.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
   		
+		if (RiTa.env() === RiTa.NODE) {// for node
+			expect(0);
+			start();
+			return;
+		}
+		
   		RiTa.loadString(["../data/sentence1.json","../data/sentence2.json"], function(s) {
     		ok(s && s.length>500);
     		start();		
