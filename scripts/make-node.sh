@@ -67,8 +67,8 @@ echo
 echo Re-creating $NODE_LIB 
 rm -rf $NODE_DIR
 mkdir -p $NODE_LIB || die
-mkdir -p $NODE_DOC
-mkdir -p $NODE_TEST
+mkdir -p $NODE_DOC || die
+mkdir -p $NODE_TEST || die
 
 
 echo Copying $NODE_RES/package.json to $PKG_JSON
@@ -88,8 +88,8 @@ cp -r $TEST/*.js* $NODE_TEST/
 echo 4: Copying $DOC_DIR to $NODE_DOC
 cp -r $DOC_DIR/* $NODE_DOC/
 
-#echo 5: Copying $DL_DIR/rita-$VERSION.min.js to $NODE_LIB
-#cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
+echo 5: Copying $DL_DIR/rita-$VERSION.min.js to $NODE_LIB
+cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
 
 if true ### hack for set -e
 then
@@ -126,3 +126,4 @@ else
     echo Done [use [-p] [-f] to publish]
 fi
 
+tar -tvf $LATEST/$TARBALL

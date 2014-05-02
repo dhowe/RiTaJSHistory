@@ -1,0 +1,30 @@
+<html>
+	
+<canvas id="canvas" width=400 height=400 style="border: 1px solid #000000;"></canvas>
+<script src="../../../src/rita.js"></script>
+<script>
+
+var rm = new RiMarkov(3);
+
+RiTa.loadString('../../../data/kafka.txt', function(text) {
+
+	rm.loadText(text);
+	var sentenceOne = rm.generateSentences(1);
+	var sentenceTwo = rm.generateSentences(1);
+	var output = sentenceOne + " " + sentenceTwo;
+	
+	RiText(output).draw();   
+});
+
+</script>
+
+<!-- --------------------- FOOTER ----------------------- -->
+
+<script>
+function view(){ window.location="view-source:"+window.location; }
+if (top === self) {
+document.writeln('<p><a href="javascript:view()">view source</a>');
+}
+</script>
+
+</html>
