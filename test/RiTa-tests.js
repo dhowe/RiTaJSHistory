@@ -4,22 +4,39 @@ var runtests = function () {
 	    setup: function () {},
 	    teardown: function () {}
 	});
-
+	
+	// TODO: fetch from JSON!
 	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
 
     test("RiTa.functions", function () {
         for (var i = 0; i < functions.length; i++) {
             equal(typeof RiTa[functions[i]], 'function', functions[i]);
         }
+
     });
-    
-        
+	
+  	asyncTest("RiMarkov.loadStringMulti(url)", function() { // hmm, not sure why this needs to be first for node
+
+		var urls = ["http://localhost/testfiles/sentence1.json","http://localhost/testfiles/sentence2.json"];
+  		RiTa.loadString(urls, function(s) {
+    		ok(s && s.length>500);
+    		start();		
+    	});
+  	}); 		
+  	
+  	asyncTest("RiTa.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
+  		
+  		RiTa.loadString(["../data/sentence1.json","../data/sentence2.json"], function(s) {
+    		ok(s && s.length>500);
+    		start();		
+    	});
+  	});
+  			    
 	asyncTest("RiTa.loadString1(file)", function() {
 		
     	RiTa.loadString("../data/sentence1.json", function(s) {
 			ok(s && s.length > 100);
     		ok(JSON.parse(s));
-			ok(JSON.parse(s));
     		start();		
     	});
   	});
@@ -29,80 +46,41 @@ var runtests = function () {
     	RiTa.loadString("../data/sentence2.json", function(s) {
 			ok(s && s.length > 100);
     		ok(JSON.parse(s));
-    		ok(JSON.parse(s));
     		start();		
     	});
   	});
   	
 	asyncTest("RiTa.loadString1(url)", function() {
   		
-  		if (RiTa.env() === RiTa.NODE) {// for node
-			expect(0);
-			start();
-			return;
-		}		
-		
     	RiTa.loadString("http://localhost/testfiles/sentence1.json", function(s) {
     		
 			ok(s && s.length > 100);
     		ok(JSON.parse(s));
-			ok(JSON.parse(s));
     		start();		
     	});
   	});
 
   	asyncTest("RiTa.loadString2(url)", function() {
-  		if (RiTa.env() === RiTa.NODE) {// for node
-			expect(0);
-			start();
-			return;
-		}
+
     	RiTa.loadString("http://localhost/testfiles/sentence2.json", function(s) {
 			ok(s && s.length > 100);
     		ok(JSON.parse(s));
     		start();		
     	});
-  	});
-
-  	asyncTest("RiTa.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
-  		
-		if (RiTa.env() === RiTa.NODE) {// for node
-			expect(0);
-			start();
-			return;
-		}
-		
-  		RiTa.loadString(["../data/sentence1.json","../data/sentence2.json"], function(s) {
-    		ok(s && s.length>500);
-    		start();		
-    	});
   	}); 	
   	
-	
-  	asyncTest("RiMarkov.loadStringMulti(url)", function() {
-  		
-  		if (RiTa.env() === RiTa.NODE) {// for node
-			expect(0);
-			start();
-			return;
-		}
-		
-		var urls = ["http://localhost/testfiles/sentence1.json","http://localhost/testfiles/sentence2.json"];
-  		RiTa.loadString(urls, function(s) {
-    		ok(s && s.length>500);
-    		start();		
-    	});
-  	}); 		
-		
     test("RiTa.constants", function () {
 
         ok(RiTa.VERSION);
     });
 
     test("RiTa.env", function () {
-		var mode = RiTa.env();
-		//console.log("Mode: "+mode);
-        ok(mode==RiTa.NODE || mode==RiTa.JS);
+    	var mode = RiTa.env();
+		var inNode = (typeof module != 'undefined' && module.exports);
+		inNode && ok(mode==RiTa.NODE);
+		
+		var inBrowser = typeof window != 'undefined';
+		inBrowser && ok(mode==RiTa.JS);
     });
     
     test("RiTa.p5Compatible", function () {
@@ -966,6 +944,10 @@ var runtests = function () {
 
     test("RiTa.pluralize()", function () { 
         
+        equal("blondes", RiTa.pluralize("blonde"));
+        equal("eyes", RiTa.pluralize("eye"));
+        equal("blondes", RiTa.pluralize("blond"));
+        
         equal("dogs", RiTa.pluralize("dog"));
         equal("feet", RiTa.pluralize("foot"));
         equal("men", RiTa.pluralize("man"));
@@ -1003,12 +985,20 @@ var runtests = function () {
         
         equal(RiTa.pluralize("gas"), "gases");
     	equal(RiTa.pluralize("bus"), "buses");
+    	
+	    equal("crises", RiTa.pluralize("crisis"));
+	    equal("theses", RiTa.pluralize("thesis"));
+	    equal("apotheses", RiTa.pluralize("apothesis"));
+	    equal("stimuli", RiTa.pluralize("stimulus"));
+	    equal("alumni", RiTa.pluralize("alumnus"));
+	    equal("corpora", RiTa.pluralize("corpus"));
     });
     
    test("RiTa.singularize()", function () { 
      
+     	equal("blonde", RiTa.singularize("blondes"));
+     	equal("eye", RiTa.singularize("eyes"));
 		equal(RiTa.singularize("bonsai"), "bonsai");
-		equal(RiTa.singularize("crises"), "crisis");
 		equal(RiTa.singularize("taxis"), "taxi");
 		equal(RiTa.singularize("chiefs"), "chief");
 		equal(RiTa.singularize("monarchs"), "monarch");
@@ -1069,7 +1059,14 @@ var runtests = function () {
 		equal(RiTa.singularize("gases"), "gas");
     	equal(RiTa.singularize("buses"), "bus");
     	equal(RiTa.singularize("happiness"), "happiness");
-    
+    	
+        equal(RiTa.singularize("crises"), "crisis");
+		equal(RiTa.singularize("theses"), "thesis");
+		equal(RiTa.singularize("apotheses"), "apothesis");
+		equal(RiTa.singularize("stimuli"), "stimulus");
+		equal(RiTa.singularize("alumni"), "alumnus");
+		equal(RiTa.singularize("corpora"), "corpus");
+
 		equal("", RiTa.singularize(""));
   });
 

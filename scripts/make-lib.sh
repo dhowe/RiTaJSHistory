@@ -67,6 +67,8 @@ SRC_VERSIONED=/tmp/rita-versioned.js
 ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ${SRC_VERSIONED}"
 
 WWW_DIR=../../www
+RES_DIR=../../resources
+LICENSE=$RES_DIR/license.txt
 DOWNLOAD_DIR=$WWW_DIR/download
 LIB_DIR=$WWW_DIR/js
 EX_LIB_DIR=$WWW_DIR/examples/lib
@@ -170,6 +172,7 @@ echo Copying into $BUILD
 rm -rf $BUILD
 mkdir $BUILD
 cp -r $WWW_DIR $BUILD
+cp -r $LICENSE $BUILD/www/
 sed -i "" "s/##version##/${VERSION}/g" $DOWNLOAD_INDEX 
 #ls -l $BUILD
 

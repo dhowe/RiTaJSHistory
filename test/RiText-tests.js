@@ -1,11 +1,12 @@
-  var runtests = function() {
+var runtests = function() {
+  	
     QUnit.module("RiText", {
 	    setup: function () {},
 	    teardown: function () {}
 	});
 
   // TODO: check that all these have tests...
-  
+  // TODO: fetch these from the JSON docs
   var statics = [
                    "createFont",
                    "createLetters",
@@ -16,6 +17,7 @@
                    "disposeAll",
                    "defaultFill",
                    "defaultFont",
+				   "defaultFontSize",
                    "randomColor",
                    "picked",
                    "timer",
@@ -27,7 +29,7 @@
   
 
     // TODO: check that all these have tests...
-    
+    // TODO: fetch these from the JSON docs
     var functions = [ 
                    "align",
                    "alpha",
