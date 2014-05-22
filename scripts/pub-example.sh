@@ -1,24 +1,25 @@
 #!/bin/sh
 
-# packages and publishes a sketch @ rednoise/~www/sketches
-# assumes the sketch is in $SKETCHBOOK, as defined below
+# packages and publishes a sketch @ rednoise/~www/examples
+# assumes the sketch is in $SKETCHBOOK, as defined 
+
+SKETCHBOOK=~/Documents/Processing/libraries/RiTa/examples/$SKETCH_NAME/web-export
 
 if [ $# != 1 ]
 then
   echo
   echo "sketch-name required!"
 	echo
-  echo  packages and publishes a js-sketch to rednoise/~www/sketches
+  echo  packages and publishes a example to rednoise/~www/examples
   echo
-  echo "usage: pub-sketch.sh [sketch-name]"
+  echo "usage: pub-example [sketch-name]"
   echo 
-  echo "example: pub-sketch.sh MySketch "
+  echo "example: pub-example.sh MySketch "
   exit
 fi
 
 TMP_DIR=/tmp
 SKETCH_NAME=$1
-SKETCHBOOK=~/Documents/Processing/libraries/RiTa/examples/$SKETCH_NAME/web-export
 #SKETCHBOOK=~/Documents/eclipse-workspace/$SKETCH_NAME/applet
 ZIP_FILE=$SKETCH_NAME.zip
  

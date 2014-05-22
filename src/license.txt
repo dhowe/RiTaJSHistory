@@ -1,9 +1,22 @@
+RiTaJS: a Software Toolkit for Generative Language
+
+Written by Daniel C. Howe (daniel-at-rednoise.org).  
+Available at http://rednoise.org/rita/.
+
 Copyright (c) 2009-, Daniel C. Howe
 
 http://rednoise.org/~dhowe
 http://rednoise.org/rita
 http://rednoise.org/rita/js
 
+Portions of the included code were adapted from a variety of sources including 
+the FreeTTS, CMU-pronunciation, and PENN treebank libraries. It also includes 
+modified versions of several canonical NLP algorithms, including pluralization 
+via Minnen, Carroll, and Pearce, and stemming via the Brill, Porter and Lancaster 
+(Paice/Husk) algorithms, as well as Penner's easing functions, and several modified 
+jQuery functions. I would like to thank all of those involved in these projects for 
+their generous efforts. 
+ 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or

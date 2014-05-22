@@ -11,7 +11,9 @@ var rts, txt = "A huge lizard was discovered drinking out of the fountain today.
 void setup()
 {
 	size(600, 800);  
-	RiText.defaultFont(createFont("Georgia", 16));
+	//RiText.defaultFont(createFont("Georgia", 16));
+	RiText.defaults.fontSize = 32;
+	
 	txt += "<p/>" + txt;   // add a paragraph
 	mouseReleased();
 }
@@ -20,6 +22,7 @@ void draw() {
 	background(255);
 	noFill();
 	rect(x, y, w, h);
+	line(0,y,width,y);
 	RiText.drawAll();
 }
 
