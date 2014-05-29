@@ -297,11 +297,11 @@ var runtests = function() {
     
     asyncTest("RiGrammar.loadFrom(Url)", function() {
     	
-    	if (RiTa.env() == RiTa.NODE) {
-    		ok("Not for Node");
-    		start();
-    		return;
-    	}
+    	// if (RiTa.env() == RiTa.NODE) {
+    		// ok("Not for Node");
+    		// start();
+    		// return;
+    	// }
     	
     	var grammar = new RiGrammar();
     	grammar.loadFrom("http://localhost/testfiles/haiku.json");
