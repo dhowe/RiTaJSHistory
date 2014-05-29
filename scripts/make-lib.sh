@@ -11,7 +11,8 @@ then
     echo "           make-lib.sh 1.0.63a -p -D -M"
     echo
     echo "  options:"
-    echo "       -p = publish-after-build "
+    echo "       -p = publish-after-build"
+    echo "       -b = update bower.json file"
     echo "       -D = dont-make-docs"
     echo "       -M = dont-minimize-lib"
     echo "       -Z = dont-make-zip"
@@ -24,16 +25,21 @@ VERSION=$1
 MAKE_ZIP=1
 DO_PUBLISH=0
 INCLUDE_DOCS=1
+UPDATE_BOWER=0
 MINIMIZE_SRC=1
 FAKE_MINIMIZE=0
 LINE="------------------------------------------------------"
 
 while [ $# -ge 1 ]; do
+    echo arg: $1
     case $1 in
         -D) INCLUDE_DOCS=0  ;;
     esac
     case $1 in
         -Z) MAKE_ZIP=0  ;;
+    esac
+    case $1 in
+        -b) UPDATE_BOWER=1  ;;
     esac
     case $1 in
         -p) DO_PUBLISH=1  ;;
@@ -76,7 +82,8 @@ DIST_DIR=../dist
 REF_DIR=$WWW_DIR/reference
 RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
-RITA_CODE_MICRO=$DOWNLOAD_DIR/rita-$VERSION.micro.min.js
+RITA_CODE_MICRO=$DOWNLOAD_DIR/rita-$VERSION.micro.js
+BOWER_JSON=../resources/bower/package.json
 
 ZIP_TMP=/tmp/rita-$VERSION
 ZIP_FILE=ritajs-full-$VERSION.zip
@@ -100,6 +107,17 @@ echo
 echo Copying rita.js to $SRC_VERSIONED
 cp ../src/rita.js $SRC_VERSIONED
 sed -i "" "s/##version##/${VERSION}/g" $SRC_VERSIONED
+
+if [ $UPDATE_BOWER = 1 ]
+then
+    echo "Updating bower version to ${VERSION}" 
+    cp $BOWER_JSON ../bower.json
+    sed -i "" "s/##version##/${VERSION}/g" ../bower.json
+    #sed -i "" "s/##version##/${VERSION}/g" $SRC_VERSIONED
+else
+    echo "Not updating bower" 
+fi
+#head ../bower.json
 
 rm -f $RITA_CODE
 echo "Combining rita-*.js as ${RITA_CODE}" 
@@ -195,6 +213,8 @@ then
     echo " -> $LATEST" 
     cp $RITA_CODE_MIN $LATEST
     echo " -> $DIST_DIR"  
+
+    # should remove rita-renderer from here
     cp $RITA_CODE_MIN $DIST_DIR/rita.js
     #less $RITA_CODE_MIN
 fi
