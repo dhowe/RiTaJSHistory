@@ -11,7 +11,7 @@
 
 RiText rt;
 
-int count = 0; // utf-8 chars too
+int id, count = 0; // utf-8 chars too
 String[] txt = {"GÖD", "DÖG"}; // 
 
 void setup() {  
@@ -21,7 +21,7 @@ void setup() {
   rt.font("Courier", 100);
   
    // set timer to call onRiTaEvent every half sec.
-  RiText.timer(.5f);
+  id = RiText.timer(.5f);
 }  
 
 void onRiTaEvent(RiTaEvent re) {
@@ -29,6 +29,12 @@ void onRiTaEvent(RiTaEvent re) {
   rt.text(count++%2==0 ? txt[1]:txt[0]);
   background(221,221,204);
   rt.draw();
+}
+
+void mouseReleased() {
+
+  id = RiText.pauseTimer(id, 3);
+  console.log("pause: "+id);
 }
 
 

@@ -76,6 +76,7 @@ DIST_DIR=../dist
 REF_DIR=$WWW_DIR/reference
 RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
+RITA_CODE_MICRO=$DOWNLOAD_DIR/rita-$VERSION.micro.min.js
 
 ZIP_TMP=/tmp/rita-$VERSION
 ZIP_FILE=ritajs-full-$VERSION.zip
@@ -106,6 +107,7 @@ cat $ALL_SRC >> $RITA_CODE
 echo
 
 rm -f $RITA_CODE_MIN
+rm -f $RITA_CODE_MICRO
 if [ $MINIMIZE_SRC = 1 ]
 then
     if [ $FAKE_MINIMIZE = 1 ]
@@ -113,10 +115,12 @@ then
         FILE=/tmp/rita-$VERSION.min.js
         echo "Copying $FILE to ${RITA_CODE}"
         cp $FILE $RITA_CODE_MIN || exit !?
+        cp ../src/rita.js $RITA_CODE_MICRO || exit !?
     else
         echo "Compiling rita-*.js as ${RITA_CODE_MIN}"; 
-        $COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level 3 \
-           --compilation_level SIMPLE_OPTIMIZATIONS  #ADVANCED_OPTIMIZATIONS
+        $COMPILE --js  ${ALL_SRC} --js_output_file $RITA_CODE_MIN --summary_detail_level 3 --compilation_level SIMPLE_OPTIMIZATIONS  #ADVANCED_OPTIMIZATIONS
+        echo "Compiling rita.js as ${RITA_CODE_MICRO}"; 
+        $COMPILE --js  ../src/rita.js --js_output_file $RITA_CODE_MICRO --summary_detail_level 3 --compilation_level SIMPLE_OPTIMIZATIONS  #ADVANCED_OPTIMIZATIONS
     fi
 else
     echo
