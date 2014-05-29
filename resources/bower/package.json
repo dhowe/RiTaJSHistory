@@ -6,15 +6,14 @@
   "homepage": "http://rednoise.org/rita",
   "keywords": [
     "nlp", "natural language",
-    "language", "writing",
-    "generative"
+    "language", "writing", "generative"
   ],
   "bugs": { 
         "mail": "daniel@rednoise.org", 
         "url": "https://github.com/dhowe/RiTaJS/issues" 
   },
   "license" : "GPL",
-  "dependencies": { "request": ">= 2.0" },
+  "dependencies": {},
   "devDependencies": { "qunit": ">= 1.0" },
   "main": "dist/rita.js",
   "ignore": [
