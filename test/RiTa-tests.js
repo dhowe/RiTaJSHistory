@@ -1346,98 +1346,25 @@ test("RiTa.conjugate", function () {
             equal(c, a[i]);
         }
     });
-
-
-test("RiTa.timer()", function () { 
+asyncTest("RiTa.timerAsync()", function () { 
 
     var functionToTrigger = function() {
-
       functionToTrigger.countInstances++;
-      console.log(functionToTrigger.countInstances);
     }
     functionToTrigger.countInstances = 0; // initialize variable
 
-    RiTa.timer(0.1,functionToTrigger)
+    var id = RiTa.timer(0.1,functionToTrigger)
 
-    sleep(2000);
+    setTimeout(function() {
 
-    ok(functionToTrigger.countInstances>18 && functionToTrigger.countInstances<22)
-    
-    console.log("result" + functionToTrigger.countInstances);
+        ok(functionToTrigger.countInstances==4)
+        console.log("result: " + functionToTrigger.countInstances);
+        start();
+        RiTa.stopTimer(id);
+        
+    }, 400);
 });
 
-
-
-test("RiTa.pauseTimer()", function () { 
-
-    var functionToTrigger = function() {
-
-        functionToTrigger.countInstances++;
-        console.log(functionToTrigger.countInstances);
-    }
-    functionToTrigger.countInstances = 0; // initialize variable
-
-
-var start = new Date().getTime();
-
-    var id= RiTa.timer(0.1,functionToTrigger)
-
-    while (functionToTrigger.countInstances<10){
-
-
-    }
-
-    console.log("resultA" + functionToTrigger.countInstances);
-
-    console.log("time" + Date().getTime() -start);
-
-
-    RiTa.pauseTimer(id, 1)
-
-    sleep(2000);
-
-    ok(functionToTrigger.countInstances>18 && functionToTrigger.countInstances<22);
-
-    console.log("resultB" + functionToTrigger.countInstances);
-
-
-});
-
-
-test("RiTa.stopTimer()", function () { 
-
-    var functionToTrigger = function() {
-
-        functionToTrigger.countInstances++;
-        console.log(functionToTrigger.countInstances);
-    }
-    functionToTrigger.countInstances = 0; // initialize variable
-
-    var id= RiTa.timer(0.01,functionToTrigger)
-
-    sleep(1000);
-
-    console.log("resultA" + functionToTrigger.countInstances);
-
-    RiTa.stopTimer(id)
-
-    ok(functionToTrigger.countInstances>8 && functionToTrigger.countInstances<12);
-
-    sleep(2000);
-
-    ok(functionToTrigger.countInstances>8 && functionToTrigger.countInstances<12);
-
-    console.log("resultB" + functionToTrigger.countInstances);
-
-
-});
-
-
-
-function sleep(delay) {
-    var start = new Date().getTime();
-    while (new Date().getTime() < start + delay);
-}
 
 }
 
