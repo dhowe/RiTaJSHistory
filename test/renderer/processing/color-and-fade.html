@@ -1,0 +1,73 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing ===============================
+
+
+void setup()
+{   
+   		size(400, 800);
+
+		RiText.defaultFont("Times", 20);
+		
+
+		var rt = new RiText(this, "1.ColorTo gray in 2 sec", 100,  50);
+		rt.colorTo([200], 2);
+		rt.showBounds(true);
+
+		var c = [0,0,255];
+		var rt6 = new RiText(this, "2.ColorTo Bluein 2 sec" , 100, 100);
+		rt6.colorTo(c,2);
+		rt6.showBounds(true);
+		new RiText(this, "3.ColorTo Blue 5s delay 5" , 100, 150).colorTo(c,5,2);
+
+		var rt2 = new RiText(this, "4.fade out and in" , 100, 200);
+		rt2.fadeOut(2);
+
+		rt2.fadeIn(2,4);
+		
+		var rt3 = new RiText(this, "5.fade out delay 2s and in at 8s" , 100, 250);
+		rt3.fadeOut(2,2);
+
+		rt3.fadeIn(2,8);
+		
+		var rt4 = new RiText(this, "6.fade out and in at 4s" , 100, 300);
+		rt4.showBounds(true); 
+		rt4.fadeOut(2);
+		rt4.fadeIn(2,4);
+
+		var rt5 = new RiText(this, "7.fade out delay 2s and in at 8s" , 100, 350);
+		rt5.showBounds(true);
+		rt5.fadeOut(2,2);
+		
+		rt5.fadeIn(2,8);
+
+
+		var rt7 = new RiText(this, "8.Null" , 100, 400);
+		rt5.showBounds(true);
+		rt7.textTo("8.Changed Text",3);
+		
+		
+		var rt8 = new RiText(this, "9.Null" , 100, 450);
+
+		rt8.textTo("9.Changed Text delay3s",3,5); 
+		
+		var rt9 = new RiText(this, "10.Null" , 100, 500);
+		rt9.showBounds(true);
+		rt9.textTo("10.Changed Text delay3s",3,5);	
+		
+		background(255);
+
+}
+
+void draw()
+{
+    background(255);
+    RiText.drawAll();
+}
+
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
