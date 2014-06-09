@@ -31,7 +31,7 @@ FAKE_MINIMIZE=0
 LINE="------------------------------------------------------"
 
 while [ $# -ge 1 ]; do
-    echo arg: $1
+    #echo arg: $1
     case $1 in
         -D) INCLUDE_DOCS=0  ;;
     esac
