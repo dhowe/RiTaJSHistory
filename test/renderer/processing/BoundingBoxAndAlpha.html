@@ -6,10 +6,9 @@
 
 void setup() {
 
-	
 		size(900, 660);
 
-		RiTa.start(this);
+		RiTa.start(this); // not needed in JS
 
 		RiText.defaults.showBounds = true;
     	RiText.defaultFontSize(64);
@@ -25,17 +24,19 @@ void setup() {
 
 		RiText.defaultFont("Times", 32);
 
-		for (var i = 0; i < 11; i++)
-			new RiText(this, "alpha " + (i * 10), 400, 
+		for (var i = 0; i < 11; i++) {
+			new RiText(this, "alpha " + (i * 10), 450, 
 					(i + 1) * 38).alpha(i * 10).draw();
+		}
 
 		RiText.defaults.showBounds = false;
 
 		RiText.defaultFont("Times",22);
 
 		for (var i = 0; i < 11; i++)
-			new RiText(this, "alpha " + (i * 10), 600, 
+			new RiText(this, "alpha " + (i * 10), 650, 
 					(i + 1) * 38).alpha(i * 10).draw();
+					
 		RiText.defaultFill(200);
 		new RiText("D.Fill_200", 50,  500);
 		RiText.defaultFill(10);
