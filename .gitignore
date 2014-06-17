@@ -6,6 +6,7 @@ build
 .settings
 .externalToolBuilders
 *.class
+**/.DS_STORE
 .DS_STORE
 CVS
 */CVS
