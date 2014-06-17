@@ -1286,8 +1286,7 @@ var runtests = function() {
 
       deepEqual(rt.fill(),rt2.fill());
 
-      // ...
-      //
+      // TODO: finish
     });
 
 

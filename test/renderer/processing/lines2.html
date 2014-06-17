@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+		<meta content="utf-8" http-equiv="encoding">
+	</head>
+	<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
+
+	<script src="../../../lib/processing.js"></script>
+	<script src="../../../src/rita.js"></script>
+
+	<script type="text/processing" data-processing-target="mycanvas">
+		
+int y = 64;
+
+size(400, 400);
+background(250);
+
+RiText.defaultFont("Georgia", 32);
+
+RiText[] rts = RiText.createLines(this, "A huge lizard.",0,0,300,y); // single line
+rect(0, 0,300,y);
+
+RiText.drawAll();
+
+	</script>
+</html>
