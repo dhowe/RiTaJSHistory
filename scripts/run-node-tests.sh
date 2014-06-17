@@ -19,6 +19,6 @@ fi
 
 #tests="RiTaEvent-tests.js"
 
-$QUNIT -c $SRC/rita.js -d $SRC/rita_lts.js $SRC/rita_dict.js  -t $tests 2>&1  | tee test-log.txt
+$QUNIT -c $SRC/rita.js -d $SRC/rita_lts.js $SRC/rita_dict.js  -t $tests 2>&1  | /usr/bin/tee test-log.txt
 
 exit

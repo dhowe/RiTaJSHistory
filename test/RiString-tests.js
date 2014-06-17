@@ -253,6 +253,8 @@ var runtests = function() {
       rs = new RiString("!@#$sadas*()_+");
       rs2 = rs.copy();
       deepEqual(rs, rs2);
+      
+    	// TODO: Finish: call analyze(), then test that features() hash matches..
     });
 
     test("RiString.endsWith()", function() {
