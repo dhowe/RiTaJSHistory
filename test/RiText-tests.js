@@ -6,9 +6,7 @@ var runtests = function() {
 	});
 
   // TODO: check that all these have tests...
-  // TODO: fetch these from the JSON docs
   var statics = [
-                   "createFont",
                    "createLetters",
                    "createWords",
                    "createLines",
@@ -20,7 +18,6 @@ var runtests = function() {
 				   "defaultFontSize",
                    "randomColor",
                    "picked",
-                   "timer",
                    "random",
                    "timer",
                    "pauseTimer",
@@ -29,7 +26,6 @@ var runtests = function() {
   
 
     // TODO: check that all these have tests...
-    // TODO: fetch these from the JSON docs
     var functions = [ 
                    "align",
                    "alpha",
@@ -71,7 +67,8 @@ var runtests = function() {
                   "analyze", 
                   "charAt", 
                   "concat", 
-                  "containsWord", 
+                  "containsWord",
+                  "copy", 
                   "endsWith", 
                   "equals", 
                   "equalsIgnoreCase", 
@@ -1125,18 +1122,6 @@ var runtests = function() {
         // no error checks needed ------------
     });
 
-    /*test(
-        "RiText.toCharArray()",
-        function() {
-
-            var rs = new RiText("The Australian Pavilion.");
-            var result = rs.toCharArray();
-            var answer = [ "T", "h", "e", " ", "A", "u", "s", "t", "r", "a", "l", "i", "a", "n", " ", "P", "a", "v", "i", "l", "i", "o", "n", "." ];
-            deepEqual(result, answer);
-
-            // no error checks needed ------------
-    }); */
-
     test("RiText.toLowerCase()", function() {
 
         var rs = new RiText("The Australian Pavilion.");
@@ -1266,10 +1251,6 @@ var runtests = function() {
     });
 
 
-
-    //---------------------------END COPY FROM RISTRING TESTS
-
-
     test("RiText.copy()", function() { 
       var rt = new RiText(100,270,"hello");
       
@@ -1288,42 +1269,5 @@ var runtests = function() {
 
       // TODO: finish
     });
-
-
-    test("RiText.createFont()", function() { //TODO
-
-        var result = RiText.createFont("Arial");
-        ok(result);
-        console.error("DO TEST! RiText.createFont()");
-        ok(1, "Tested in specific renders");
-    });
-
-    test("RiText.createWords()", function() { //TODO
-
-        var result = RiText.createWords();
-        console.error("DO TEST! RiText.createWords()");
-        ok(1, "Tested in specific renderers");
-    });
-
-    test("RiText.createLetters()", function() { //TODO
-
-        var result = RiText.createLetters();
-        console.error("DO TEST! RiText.createLetters()");
-        ok(1, "Tested in specific renderers");
-    });
-
-    test("RiText.createLines()", function() { //TODO
-
-        console.error("DO TEST! RiText.createLines()");
-        ok(1, "Tested in specific renderers");
-    });
-
-    test("RiText.drawAll()", function() { //TODO
-
-        var result = RiText.drawAll();
-        console.error("DO TEST! RiText.drawAll()");
-        ok(1, "Tested in specific renderers");
-    });
-
 
 }
