@@ -1,0 +1,28 @@
+<script src="../../../lib/processing.js"></script>
+<script src="../../../src/rita.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+
+ void setup() {
+
+		size(400, 400);
+		background(250);
+
+		RiText.defaultFont("Georgia", 32);
+
+		var rts = RiText.createLines(this, "A huge lizard.",0,0,400,64); // single line
+		rect(0, 0,400,64);
+
+		if (rts.length > 0)
+			System.out.println("y="+rts[0].y);
+
+		new RiText(this, "A huge lizard.",0,25).fill(0,64);
+		RiText.drawAll();
+		
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
