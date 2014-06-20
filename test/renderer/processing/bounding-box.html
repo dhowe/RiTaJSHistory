@@ -4,7 +4,7 @@
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing =============================== 
 
-void setup() {
+void setup() { 
 
 	size(600, 700);
 
@@ -32,7 +32,7 @@ void setup() {
 	rt6 = new RiText("Ground Hog", 199, 450);
 
 	rt7 = new RiText("Scaling Fail", 20, 600);
-	rt7.scale(2);
+	rt7.scale(2); // TODO: this is broken
 	
     RiText.defaults.showBounds = 1;
 
@@ -42,12 +42,13 @@ void setup() {
 }
 
 void draw() {
+	
     background(250);
     noFill();
-    var bb = rt6.boundingBox(true);
-    rect(bb.x, bb.y, bb.width, bb.height);
-    bb = rt7.boundingBox(true);
-    rect(bb.x, bb.y, bb.width, bb.height); 
+    var bb = rt6.boundingBox();
+    rect(bb[0], bb[1], bb[2], bb[3]);
+    bb = rt7.boundingBox();
+    rect(bb[0], bb[1], bb[2], bb[3]);
     RiText.drawAll();
 }
 
