@@ -8,8 +8,7 @@ set -e # die on errors
 cd ../test
 
 SRC=../src
-QUNIT=node_modules/.bin/qunit
-ARGS='{summary:true,errors:true}'
+PHANTOM=node_modules/.bin/phantomjs
 ARGS='{globalSummary:true,errors:true}'
 
 if [ $# -lt "1"  ]
@@ -21,6 +20,6 @@ fi
 
 echo 
 
-$QUNIT -l $ARGS -c $SRC/rita.js -d $SRC/rita_lts.js $SRC/rita_dict.js  -t "QUnit-Callbacks.js" $TESTS 2>&1  | /usr/bin/tee test-log.txt
+$PHANTOM ../lib/phantomjs-qunit.js RiTa-tests.html 2>&1  | /usr/bin/tee test-log.txt
 
 exit

@@ -26,6 +26,6 @@
   },
   "license" : "GPL",
   "dependencies": { },
-  "devDependencies": { "qunit": ">= 0.5" },
+  "devDependencies": { "qunit": ">= 1.0" },
   "optionalDependencies": { }
 }
