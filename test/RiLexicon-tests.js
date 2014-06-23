@@ -1,8 +1,6 @@
 var runtests = function() {
 	
-	console.log("[TEST] Running 'RiMarkov-tests'");
-	
-	QUnit.module("RiMarkov", {
+	QUnit.module("RiLexicon", {
 	    setup: function () {},
 	    teardown: function () {}
 	}); 
@@ -34,6 +32,7 @@ var runtests = function() {
                      "size",
                      "substrings", 
                      "superstrings"];
+	 
 	 
     test("RiLexicon[singleton]", function() {
 		lex = RiLexicon();

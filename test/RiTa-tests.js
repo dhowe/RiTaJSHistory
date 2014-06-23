@@ -1,14 +1,13 @@
-var runtests = function () {
 
-	console.log("[TEST] Running 'RiTa-tests'");
+var runtests = function () {
 
     QUnit.module("RiTa", {
         setup: function () {},
         teardown: function () {}
     });
 
-
     test("RiTa.functions", function () {
+    	
 	    // TODO: fetch from JSON!
     	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
         for (var i = 0; i < functions.length; i++) {
@@ -17,59 +16,7 @@ var runtests = function () {
 
     });
 
-  	asyncTest("RiMarkov.loadStringMulti(url)", function() { // hmm, not sure why this needs to be first for node
-
-          var urls = ["http://localhost/testfiles/sentence1.json","http://localhost/testfiles/sentence2.json"];
-          RiTa.loadString(urls, function(s) {
-              ok(s && s.length>500);
-              start();		
-          });
-      }); 		
-  	
-  	asyncTest("RiTa.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
-  		
-  		RiTa.loadString(["../data/sentence1.json","../data/sentence2.json"], function(s) {
-              ok(s && s.length>500);
-              start();		
-          });
-  	});
-
-     asyncTest("RiTa.loadString1(file)", function() {
-
-         RiTa.loadString("../data/sentence1.json", function(s) {
-           ok(s && s.length > 100);
-           ok(JSON.parse(s));
-           start();		
-       });
-     });
-
-     asyncTest("RiTa.loadString2(file)", function() {
-
-         RiTa.loadString("../data/sentence2.json", function(s) {
-           ok(s && s.length > 100);
-           ok(JSON.parse(s));
-           start();		
-       });
-     });
-
-     asyncTest("RiTa.loadString1(url)", function() {
-
-         RiTa.loadString("http://localhost/testfiles/sentence1.json", function(s) {
-
-           ok(s && s.length > 100);
-           ok(JSON.parse(s));
-           start();		
-       });
-     });
-
-     asyncTest("RiTa.loadString2(url)", function() {
-
-         RiTa.loadString("http://localhost/testfiles/sentence2.json", function(s) {
-           ok(s && s.length > 100);
-           ok(JSON.parse(s));
-           start();		
-       });
-     }); 	
+	// loadString tests moved to ExternalFiles-tests.js
 
      test("RiTa.constants", function () {
 

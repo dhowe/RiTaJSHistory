@@ -1,22 +1,12 @@
+
 var runtests = function () {
 
-	console.log("[TEST] Running 'ExternalFiles-tests'");
-    QUnit.module("ExternalFiles", {	
+    QUnit.module("UrlLoading", {	
         setup: function () {},
         teardown: function () {}
     });
 
-	// RiTa
-    test("RiTa.functions", function () {
-	    // TODO: fetch from JSON!
-    	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
-        for (var i = 0; i < functions.length; i++) {
-            equal(typeof RiTa[functions[i]], 'function', functions[i]);
-        }
-
-    });
-
-  	asyncTest("RiMarkov.loadStringMulti(url)", function() { // hmm, not sure why this needs to be first for node
+  	asyncTest("RiTa.loadStringMulti(url)", function() { // hmm, not sure why this needs to be first for node
 
           var urls = ["http://localhost/testfiles/sentence1.json","http://localhost/testfiles/sentence2.json"];
           RiTa.loadString(urls, function(s) {
@@ -271,6 +261,7 @@ var runtests = function () {
     		
     	}, 50);
     });       
+    
     asyncTest("RiGrammar.loadFrom2(file)", function() {
     	
     	var rg1 = new RiGrammar();

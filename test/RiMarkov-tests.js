@@ -1,30 +1,54 @@
 var runtests = function() {
 
-	console.log("[TEST] Running 'RiMarkov-tests'");
-
 	// TODO: make sure we test: allowDuplicates and sentenceAware flags to the constructor
 
 	QUnit.module("RiMarkov", {
-		setup : function() {
-		},
-		teardown : function() {
-		}
+		setup : function() { },
+		teardown : function() { }
 	});
-
-	var functions = ["generateTokens", "generateUntil", "generateSentences", "getCompletions", 
-		"getProbabilities", "getProbability", "size", "ready", "loadFrom", "loadTokens", "loadText", 
-		"sentenceAware", "print", "useSmoothing", "getN"
-	];
 
 	var sample = "One reason people lie is to achieve personal power. Achieving personal power is helpful for one who pretends to be more confident than he really is. For example, one of my friends threw a party at his house last month. He asked me to come to his party and bring a date. However, I did not have a girlfriend. One of my other friends, who had a date to go to the party with, asked me about my date. I did not want to be embarrassed, so I claimed that I had a lot of work to do. I said I could easily find a date even better than his if I wanted to. I also told him that his date was ugly. I achieved power to help me feel confident; however, I embarrassed my friend and his date. Although this lie helped me at the time, since then it has made me look down on myself.", SP = ' ', E = ' ';
 
 	var sample2 = "One reason people lie is to achieve personal power. " + "Achieving personal power is helpful for one who pretends to " + "be more confident than he really is. For example, one of my " + "friends threw a party at his house last month. He asked me to " + "come to his party and bring a date. However, I did not have a " + "girlfriend. One of my other friends, who had a date to go to the " + "party with, asked me about my date. I did not want to be embarrassed, " + "so I claimed that I had a lot of work to do. I said I could easily find" + " a date even better than his if I wanted to. I also told him that his " + "date was ugly. I achieved power to help me feel confident; however, I " + "embarrassed my friend and his date. Although this lie helped me at the " + "time, since then it has made me look down on myself. After all, I did " + "occasionally want to be embarrassed.";
 
 	test("RiMarkov-functions", function() {
-
+		
+		var functions = ["generateTokens", "generateUntil", "generateSentences", "getCompletions", 
+			"getProbabilities", "getProbability", "size", "ready", "loadFrom", "loadTokens", "loadText", 
+			"sentenceAware", "print", "useSmoothing", "getN"
+		];
 		var rm = new RiMarkov(5);
 		for (var i = 0; i < functions.length; i++) {
 			equal( typeof rm[functions[i]], 'function', functions[i]);
+		}
+	});
+
+	test("RiMarkov()", function() {
+
+		ok(RiMarkov(4));
+		ok(new RiMarkov(3));
+
+		var BAD = [null, undefined, "1"];
+		for (var i = 0; i < BAD.length; i++) {
+			throws(function() {
+				RiTa.SILENT = 1;
+				try {
+					new RiMarkov(BAD[i]);
+				} catch (e) {
+					throw e;
+				}
+				RiTa.SILENT = 0;
+				v
+			});
+			throws(function() {
+				RiTa.SILENT = 1;
+				try {
+					RiMarkov(BAD[i]);
+				} catch (e) {
+					throw e;
+				}
+				RiTa.SILENT = 0;
+			});
 		}
 	});
 
@@ -48,7 +72,7 @@ var runtests = function() {
 
 		var root = RiMarkov(3).root;
 		var i = root.addChild("I");
-		var i2 = root.addChild("I");
+		var i2 = root.addChild("I");	
 		var j = root.addChild("J");
 		equal(i.siblingCount(), 3);
 		equal(i2.siblingCount(), 3);
@@ -85,35 +109,6 @@ var runtests = function() {
 			RiTa.SILENT = 0;
 		});
 
-	});
-
-	test("RiMarkov", function() {
-
-		ok(RiMarkov(4));
-		ok(new RiMarkov(3));
-
-		var BAD = [null, undefined, "1"];
-		for (var i = 0; i < BAD.length; i++) {
-			throws(function() {
-				RiTa.SILENT = 1;
-				try {
-					new RiMarkov(BAD[i]);
-				} catch (e) {
-					throw e;
-				}
-				RiTa.SILENT = 0;
-				v
-			});
-			throws(function() {
-				RiTa.SILENT = 1;
-				try {
-					RiMarkov(BAD[i]);
-				} catch (e) {
-					throw e;
-				}
-				RiTa.SILENT = 0;
-			});
-		}
 	});
 
 	test("RiMarkov.isRoot", function() {
@@ -207,41 +202,10 @@ var runtests = function() {
 			}
 			var res = RiTa.untokenize(arr);
 			ok(sample.indexOf(res) > -1, res);
-			//L(i+") "+res);
 		}
 	});
 
-	/*test("RiMarkov.textRegex(SSRE)", function () {
-	 var rm = new RiMarkov(4), ssRegex = rm._SSRE;
-
-	 if (navigator && navigator.userAgent && navigator.userAgent.indexOf("PhantomJS") > -1) {
-	 ok("why do these fail in PhantomJS? (diff. scoping?)");
-	 return;
-	 }
-
-	 var words = "The dog ate the cat";
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-
-	 var words = "I ate the cat";
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-
-	 var words = "Mr. Jones ate the cat";
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-
-	 var words = '"Mr. Jones ate the cat", she said';
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-
-	 var words = "'Mr. Jones ate the cat', she said";
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-
-	 var words = "IT is a store that sells clothing";
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-
-	 var words = "Parke-Davis is a store that sells drugs";
-	 ok(words.split(' ')[0].match(ssRegex)==0);
-	 });*/
-
-	test("RiMarkov.getSentenceStart()", function() {
+	test("RiMarkov.getSentenceStarts()", function() {
 		var rm = new RiMarkov(4);
 		rm.loadText(sample);
 		for (var i = 0; i < 10; i++)
@@ -288,6 +252,7 @@ var runtests = function() {
 	});
 
 	test("RiMarkov.validateSentence()", function() {
+		
 		var rm = new RiMarkov(4, true);
 		var goods = ["The dog ate the cat.", "The dog ate the cat!", "The dog ate the cat?", 'However, I did not have a girlfriend.'];
 		for (var i = 0; i < goods.length; i++) {
@@ -377,9 +342,9 @@ var runtests = function() {
 
 	});
 
-	test("RiMarkov.getN() nFactor", function() {//TODO
+	test("RiMarkov.getN()", function() {//TODO
 
-		for (var i = 1; i < 10; i++) {
+		for (var i = 1; i < 5; i++) {
 			var rm = RiMarkov(i);
 			equal(rm.getN(), i);
 		}
@@ -722,28 +687,6 @@ var runtests = function() {
 		var x = rm.sentenceAware();
 		equal(x, true);
 	});
-}
-function L(str) {
-
-	console.log(str);
-}
-
-function D(obj) {
-
-	var properties = "";
-	for (var propertyName in obj) {
-
-		properties += propertyName + ": ";
-
-		// Check if its NOT a function
-		if (!(obj[propertyName] instanceof Function)) {
-			properties += obj.propertyName;
-		} else {
-			properties += "function()";
-		}
-		properties += ", ";
-	}
-	return properties;
 }
 
 if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;

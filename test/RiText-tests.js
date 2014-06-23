@@ -1,7 +1,5 @@
 var runtests = function() {
-	
-	console.log("[TEST] Running 'RiText-tests'");
-  	
+	 	
     QUnit.module("RiText", {
 	    setup: function () {},
 	    teardown: function () {}
