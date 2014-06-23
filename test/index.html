@@ -1,8 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>RiTa Docs</title>
-<link href="rita-api.css" rel="stylesheet" type="text/css">
+<title>RiTa Tests</title>
+<link href="rita-test.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../lib/jquery-min.js"></script>
 <script type="text/javascript" src="./rita-loader.js"></script>
 <script>
@@ -18,8 +18,9 @@ $(document).ready(function() {
                  "RiGrammar-tests",
                  "RiTaEvent-tests",
                  "RiLexicon-tests",
-                 "RiTextStructure-canvas",
-                 "RiTextStructure-p5",
+                 "RiWordNet-tests",
+                 "RiTextStructure-P5",
+                 "UrlLoading-tests",
                  "KnownIssues-tests",
                  "LibraryStructure-tests",
                  "Renderer-tests"
@@ -43,12 +44,14 @@ $(document).ready(function() {
 </head>
 
 <body>
-<table width="1300" height="100%"  border="0" cellpadding="1" cellspacing="1">
-<tr>
-  <td valign=top>
-  <h3>&nbsp; QUnit Tests:</h3>
-  
-    <img src="imgs/RiTa.jpg" width=100><p>
+
+  <div id="qunit-header">RiTaJS Unit Tests</div>
+    <h2 id="qunit-banner"></div>
+    <div id="qunit-testrunner-toolbar">&nbsp;</div>
+    <h2 id="qunit-userAgent"></h2><br>
+	<h2 id="qunit-header2">PhantomJS (browser)</h2>
+	<a id="AllTests" class=head href="AllTests.html?data=1">[Full Test Suite]</a><p>
+
     <a id="RiTa-tests" class=head href="RiTa-tests.html?data=1">[RiTa]</a><br>
 	<a id="RiText-tests"  class=head href="RiText-tests.html?noglobals=true&data=1">[RiText]</a><br>
 	<a id="RiString-tests" class=head href="RiString-tests.html?noglobals=true&data=1">[RiString]</a><br>
@@ -61,13 +64,14 @@ $(document).ready(function() {
 	<a id="UrlLoading-tests" class=head href="UrlLoading-tests.html?">[RiTa-UrlLoading]</a><br>
 	<a id="LibraryStructure-tests" class=head href="LibraryStructure-tests.html?noglobals=true">[RiTa-Structure]</a><br>
 	<a id="RiTextStructure-canvas" class=head href="RiTextStructure-canvas.html?">[RiText-Structure(Ctx)]</a><br>
-	<a id="RiTextStructure-p5" class=head href="RiTextStructure-p5.html?">[RiText-Structure(p5)]</a><br>
+	<a id="RiTextStructure-p5" class=head href="RiTextStructure-P5.html?">[RiText-Structure(p5)]</a><br>
 	<a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><br>
-	<a id="Renderer-tests" class=head href="renderer/index.html?">[RiText-Renderers]</a><br>
-
-  </td>
-</tr>
-</table>
+	<a id="Renderer-tests" class=head href="renderer/index.html?">[RiText-Renderers]</a><p>
+	<h2 id="qunit-header2">PhantomJS (cmd-line)</h2>
+	<div class="notes">$ /RiTaJS/scripts/run-phantom-tests.sh</div><br>
+	<h2 id="qunit-header2">NodeJS (cmd-line)</h2>
+	<div class="notes">$ /RiTaJS/scripts/run-node-tests.sh</div><p></p><br><p></p><br>
+    <img src="imgs/RiTa.jpg" width=100><p>
 
 </body>
 </html>

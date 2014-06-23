@@ -1,0 +1,81 @@
+body {
+	margin-left: 30px;
+	margin-top: 20px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #FFFFFF;
+  	background-repeat: no-repeat;
+  	color: #657890;
+  	font-size: 12px; 
+	font:normal normal normal 12px Verdana, Arial, Helvetica, sans-serif;	
+}
+
+pre {  
+	FONT-FAMILY: "Courier New", Courier, mono; 
+	FONT-SIZE: 11px; 
+	LINE-HEIGHT: normal; 
+	COLOR: #000000
+}
+
+
+
+.head {
+  color:#395771;
+  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height:140%;
+  font-size: 14px; 
+}
+
+   a.head:link    { color:#395771; text-decoration:none; font-size: 14px;  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+    a.head:visited { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+    a.head:hover   { color:#395771; text-decoration:underline;font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+   a.head:active  { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+
+.jdocs {
+  color:#395771;
+  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height:140%;
+  font-size: 12px; 
+}
+A:link {
+	color: #657890;
+  font-size: 12px; 
+	text-decoration: none;
+	font:normal normal normal 12px Verdana, Arial, Helvetica, sans-serif;	
+	padding-left:8px;
+	padding-bottom: 15px;	
+	line-height:140%;
+}
+A:visited {
+	color: #657890;
+  font-size: 12px; 
+	text-decoration: none;
+	font:normal normal normal 12px Verdana, Arial, Helvetica, sans-serif;	
+	padding-left:8px;
+	padding-bottom: 15px;	
+	line-height:140%;
+}											
+A:active {
+	color: #657890;
+  font-size: 12px; 
+	text-decoration: none;
+	font:normal normal normal 12px Verdana, Arial, Helvetica, sans-serif;	
+	padding-left:8px;
+	padding-bottom: 15px;	
+	line-height:140%;
+}
+A:hover {
+	color: #153850;
+  font-size: 12px; 
+	text-decoration: none;
+	font:normal normal normal 12px Verdana, Arial, Helvetica, sans-serif;	
+	padding-left:8px;
+	padding-bottom: 15px;	
+	line-height:140%;
+  cursor: pointer;
+	text-decoration: underline;
+}

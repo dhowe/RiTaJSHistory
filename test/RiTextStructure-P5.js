@@ -128,15 +128,15 @@ var runtests = function() {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    test("Member Functions[compat]", function() {
-
-        RiTa.p5Compatible(1);
-        ok(typeof RiText().fill == 'function');
-        ok(typeof RiText().textAlign == 'function');
-        ok(typeof RiText().textFont == 'function');
-        ok(typeof RiText().textSize == 'function');
-        ok(typeof RiText().setColor == 'function');
-    });
+    // test("Member Functions[compat]", function() {
+// 
+        // RiTa.p5Compatible(1);
+        // ok(typeof RiText().fill == 'function');
+        // ok(typeof RiText().textAlign == 'function');
+        // ok(typeof RiText().textFont == 'function');
+        // ok(typeof RiText().textSize == 'function');
+        // ok(typeof RiText().setColor == 'function');
+    // });
 
     test("Member Functions[!compat]", function() {
 
@@ -149,15 +149,15 @@ var runtests = function() {
         RiTa.p5Compatible(1);
     });
 
-    test("Global Objects[compat]", function() {
-
-        // Note: don't modify window when there is Processing already
-        // hmm, but why aren't these defined by Processing?
-        RiTa.p5Compatible(1);        
-        ok(typeof size == 'undefined');
-        ok(typeof background == 'undefined');
-        ok(typeof random == 'undefined');
-    });
+    // test("Global Objects[compat]", function() {
+// 
+        // // Note: don't modify window when there is Processing already
+        // // hmm, but why aren't these defined by Processing?
+        // RiTa.p5Compatible(1);        
+        // ok(typeof size == 'undefined');
+        // ok(typeof background == 'undefined');
+        // ok(typeof random == 'undefined');
+    // });
 
     test("Global Objects[!compat]", function() {
 
@@ -167,12 +167,12 @@ var runtests = function() {
         ok(typeof random != 'function');
     });
 
-    test("Public Statics[compat]", function() {
-
-        RiTa.p5Compatible(1);
-        equal(typeof RiText.setDefaultFont, 'function');
-        equal(typeof RiText.setDefaultColor, 'function');
-    });
+    // test("Public Statics[compat]", function() {
+// 
+        // RiTa.p5Compatible(1);
+        // equal(typeof RiText.setDefaultFont, 'function');
+        // equal(typeof RiText.setDefaultColor, 'function');
+    // });
 
     test("Public Statics[!compat]", function() {
 

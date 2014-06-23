@@ -1,26 +1,13 @@
+[TEST] Loading RiTa from ../src/rita.js
+[WARN] Unknown Env: not Processing(JS), Node, or Android; renderer is null
 [INFO] RiTaJS.version [##version##]
-[INFO] Testing UrlLoading
-[INFO] Completed UrlLoading
-[INFO] Testing RiGrammar
-[INFO] Completed RiGrammar
-[INFO] Testing RiLexicon
-[INFO] Completed RiLexicon
-[INFO] Testing RiString
-[INFO] Completed RiString
-[INFO] Testing RiTa
-[INFO] Completed RiTa
-[INFO] Testing RiTaEvent
-[INFO] Completed RiTaEvent
-[INFO] Testing LibraryStructure
-[INFO] Completed LibraryStructure
-[INFO] Testing RiMarkov
-[INFO] Completed RiMarkov
-[INFO] Testing RiWordNet
-[INFO] Completed RiWordNet
-
-Global summary:
-[90m┌───────┬───────┬────────────┬────────┬────────┬─────────┐[39m
-[90m│[39m[31m Files [39m[90m│[39m[31m Tests [39m[90m│[39m[31m Assertions [39m[90m│[39m[31m Failed [39m[90m│[39m[31m Passed [39m[90m│[39m[31m Runtime [39m[90m│[39m
-[90m├───────┼───────┼────────────┼────────┼────────┼─────────┤[39m
-[90m│[39m 1     [90m│[39m 194   [90m│[39m 2388       [90m│[39m 0      [90m│[39m 2388   [90m│[39m 15797   [90m│[39m
-[90m└───────┴───────┴────────────┴────────┴────────┴─────────┘[39m
+[WARN] vbz! is not a valid pos-tag
+[WARN] aa is not a valid pos-tag
+[WARN] rb  is not a valid pos-tag
+[WARN]  rb  is not a valid pos-tag
+[WARN]  rb   is not a valid pos-tag
+[WARN]   rb is not a valid pos-tag
+[WARN] rb     is not a valid pos-tag
+[WARN]   rb is not a valid pos-tag
+Tests completed in 467 milliseconds.
+698 tests of 707 passed, 9 failed.

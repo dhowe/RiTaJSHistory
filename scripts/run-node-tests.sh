@@ -8,7 +8,6 @@ set -e # die on errors
 cd ../test
 
 SRC=../src
-QUNIT=node_modules/qunit/bin/cli.js
 QUNIT=node_modules/.bin/qunit
 ARGS='{summary:true,errors:true}'
 ARGS='{globalSummary:true,errors:true}'
