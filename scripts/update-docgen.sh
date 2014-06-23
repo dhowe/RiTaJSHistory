@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# IS THIS BEING USED??
+
 # update-docgen.sh: rebuilds ../tools/refgen/doc-gen.zip from src
 
 set -e
@@ -10,7 +12,7 @@ exit
 INPUT=../../docs/
 OUTPUT=../../www/reference/
 GENZIP="doc-gen.zip"
-CLASSPATH="$GENZIP:../../lib/core.jar:../../lib/json.jar"
+CLASSPATH="$GENZIP:../../../libs/core.jar:../../../libs/json.jar"
 
 #echo CP: $CLASSPATH
 
