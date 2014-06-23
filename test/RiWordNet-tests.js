@@ -1,5 +1,6 @@
 
 var runtests = function() {
+	console.log("[TEST] Running 'RiWordNet-tests'");
 	
     QUnit.module("RiWordNet", {
 	    setup: function () {},

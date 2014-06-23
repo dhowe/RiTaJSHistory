@@ -1,5 +1,7 @@
 var runtests = function() {
 
+	console.log("[TEST] Running 'RiMarkov-tests'");
+
 	// TODO: make sure we test: allowDuplicates and sentenceAware flags to the constructor
 
 	QUnit.module("RiMarkov", {
@@ -114,130 +116,6 @@ var runtests = function() {
 		}
 	});
 
-	asyncTest("RiMarkov.loadFromUrlMulti", function() {
-		
-    	if (RiTa.env() == RiTa.NODE) {
-    		ok("Not for Node");
-    		start();
-    		return;
-    	}		
-    	
-  		var rm = new RiMarkov(3);
-    	rm.loadFrom(["http://localhost/testfiles/kafka.txt", "http://localhost/testfiles/wittgenstein.txt"]);
-    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (rm.ready()) { 
-    			
-    			ok(rm.size());
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
-    			
-    			console.log("waiting...");
-    			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
-    });
-  	
-  	asyncTest("RiMarkov.loadFromFileMulti", function() {
-  		
-  		var rm = new RiMarkov(3);
-    	rm.loadFrom(["../data/kafka.txt", "../data/wittgenstein.txt"]);
-    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (rm.ready()) { 
-    			
-    			ok(rm.size());
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
-    			
-    			console.log("waiting...");
-    			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
-  	});
-    	
-	asyncTest("RiMarkov.loadFromFile", function() {
-    	
-  		var rm = new RiMarkov(3);
-    	rm.loadFrom("../data/kafka.txt");
-    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (rm.ready()) { 
-    			
-    			ok(rm.size());
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
-    			
-    			console.log("waiting...");
-    			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
-    });
-    
-	asyncTest("RiMarkov.loadFromUrl", function() {
-    	
-    	if (RiTa.env() == RiTa.NODE) {
-    		ok("Not for Node");
-    		start();
-    		return;
-    	}
-    		
-		var rm = new RiMarkov(3);
-    	rm.loadFrom("http://localhost/testfiles/kafka.txt");
-    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (rm.ready()) { 
-    			
-    			ok(rm.size());
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
-    			
-    			console.log("waiting...");
-    			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
-    });
-    
 	test("RiMarkov.isRoot", function() {
 		var rm = new RiMarkov(3);
 		ok(rm.root.isRoot());

@@ -1,6 +1,8 @@
 var runtests = function () {
    
     RiTa.SILENT = 1;
+
+	console.log("[TEST] Running 'KnownIssues-tests'");
     
     test("RiString.stripPunctuation(unicode)", function () { 
     

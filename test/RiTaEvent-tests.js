@@ -1,6 +1,8 @@
 
 var runtests = function() {
-	
+
+	console.log("[TEST] Running 'RiTaEvent-tests'");
+
     QUnit.module("RiTaEvent", {
 	    setup: function () {},
 	    teardown: function () {}

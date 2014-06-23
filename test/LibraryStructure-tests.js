@@ -1,4 +1,6 @@
 var runtests = function() {
+	
+	console.log("[TEST] Running 'LibraryStructure-tests'");
     
     QUnit.module("LibraryStructure", {
 	    setup: function () {},

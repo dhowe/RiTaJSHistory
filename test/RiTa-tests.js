@@ -1,14 +1,16 @@
 var runtests = function () {
 
-    QUnit.module("RiTa", {
-     setup: function () {},
-     teardown: function () {}
- });
+	console.log("[TEST] Running 'RiTa-tests'");
 
-	// TODO: fetch from JSON!
-	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
+    QUnit.module("RiTa", {
+        setup: function () {},
+        teardown: function () {}
+    });
+
 
     test("RiTa.functions", function () {
+	    // TODO: fetch from JSON!
+    	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
         for (var i = 0; i < functions.length; i++) {
             equal(typeof RiTa[functions[i]], 'function', functions[i]);
         }
@@ -1346,27 +1348,27 @@ test("RiTa.conjugate", function () {
             equal(c, a[i]);
         }
     });
-asyncTest("RiTa.timerAsync()", function () { 
 
-    var functionToTrigger = function() {
-      functionToTrigger.countInstances++;
-    }
-    functionToTrigger.countInstances = 0; // initialize variable
+    asyncTest("RiTa.timerAsync()", function () { 
 
-    var id = RiTa.timer(0.1,functionToTrigger)
+        var functionToTrigger = function() {
+          functionToTrigger.countInstances++;
+        }
+        functionToTrigger.countInstances = 0; // initialize variable
+    
+        var id = RiTa.timer(0.1,functionToTrigger)
+    
+        setTimeout(function() {
+    
+            ok(functionToTrigger.countInstances==4)
+            //console.log("result: " + functionToTrigger.countInstances);
+            start();
+            RiTa.stopTimer(id);
+            
+        }, 400);
+    });
 
-    setTimeout(function() {
-
-        ok(functionToTrigger.countInstances==4)
-        console.log("result: " + functionToTrigger.countInstances);
-        start();
-        RiTa.stopTimer(id);
-        
-    }, 400);
-});
-
-
-}
+}// end runtests
 
 
 if (typeof exports != 'undefined') runtests();
