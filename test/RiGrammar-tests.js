@@ -1,13 +1,12 @@
 
 var runtests = function() {
     
-	console.log("[TEST] Running 'RiGrammar-tests'");
-
     var SILENT = true;
     
     QUnit.module("RiGrammar", {
 	    setup: function () {},
-	    teardown: function () {}
+	    teardown: function () {},
+	    temp : function() { return Math.random() < .5 ? 'hot' : 'cold'; }
 	}); 
 
     var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFrom", "ready" ];
@@ -497,7 +496,7 @@ var runtests = function() {
 	    
 	    RiTa.SILENT = tmp;
 	});
-        
+    
 	test("RiGrammar.execRE", function() {
 
     	var str,res,re = RiGrammar.EXEC_PATT;
@@ -740,6 +739,7 @@ var runtests = function() {
 
 // callback methods...
 
+/*
 function temp() { return Math.random() < .5 ? 'hot' : 'cold'; }
 
 function _type(obj) { return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase(); }
@@ -768,5 +768,5 @@ function dump(obj) {
     }
     return properties;
 }
-
+*/
 if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;

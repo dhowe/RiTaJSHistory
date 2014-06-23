@@ -1,7 +1,5 @@
 var runtests = function() {
-	
-	console.log("[TEST] Running 'LibraryStructure-tests'");
-    
+	   
     QUnit.module("LibraryStructure", {
 	    setup: function () {},
 	    teardown: function () {}
@@ -17,6 +15,7 @@ var runtests = function() {
         ok(typeof RiGrammar != 'undefined');
         ok(typeof RiMarkov != 'undefined');
         ok(typeof RiTaEvent != 'undefined');
+        ok(typeof RiWordNet != 'undefined');
         if (typeof window != 'undefined' && window) {
             ok(typeof RiText != 'undefined');
         }
