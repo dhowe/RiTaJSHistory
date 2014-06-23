@@ -1,5 +1,12 @@
 var runtests = function() {
-    
+	
+	console.log("[TEST] Running 'RiMarkov-tests'");
+	
+	QUnit.module("RiMarkov", {
+	    setup: function () {},
+	    teardown: function () {}
+	}); 
+	
  	function createLex() {
  		RiLexicon.data = undefined;
  		return new RiLexicon();

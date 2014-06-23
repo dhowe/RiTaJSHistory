@@ -1,6 +1,8 @@
 
 var runtests = function() {
     
+	console.log("[TEST] Running 'RiGrammar-tests'");
+
     var SILENT = true;
     
     QUnit.module("RiGrammar", {
@@ -78,7 +80,24 @@ var runtests = function() {
 		}
     });
 
+    test("RiGrammar.load", function() {
 
+        var rg = new RiGrammar();
+        ok(rg._rules);
+        ok(typeof rg._rules['<start>'] === 'undefined');
+        ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
+
+        rg.load(JSON.stringify(sentenceGrammar));
+        ok(rg._rules);
+        ok(typeof rg._rules['<start>'] !== 'undefined');
+        ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
+        
+        rg.load(JSON.stringify(sentenceGrammar2));
+        ok(rg._rules);
+        ok(typeof rg._rules['<start>'] !== 'undefined');
+        ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
+    });
+    
     test("RiGrammar.addRule", function() {
 
         var rg = new RiGrammar();
@@ -266,7 +285,6 @@ var runtests = function() {
 		}
     });
 
-
     test("RiGrammar.reset", function() {
 
         var rg = new RiGrammar();
@@ -275,114 +293,6 @@ var runtests = function() {
         rg.reset();
         deepEqual(rg._rules, {});
         deepEqual(rg, RiGrammar());
-    });
-
-    test("RiGrammar.load", function() {
-
-        var rg = new RiGrammar();
-        ok(rg._rules);
-        ok(typeof rg._rules['<start>'] === 'undefined');
-        ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
-
-        rg.load(JSON.stringify(sentenceGrammar));
-        ok(rg._rules);
-        ok(typeof rg._rules['<start>'] !== 'undefined');
-        ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
-        
-        rg.load(JSON.stringify(sentenceGrammar2));
-        ok(rg._rules);
-        ok(typeof rg._rules['<start>'] !== 'undefined');
-        ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
-    });
-    
-    asyncTest("RiGrammar.loadFrom(Url)", function() {
-    	
-    	// if (RiTa.env() == RiTa.NODE) {
-    		// ok("Not for Node");
-    		// start();
-    		// return;
-    	// }
-    	
-    	var grammar = new RiGrammar();
-    	grammar.loadFrom("http://localhost/testfiles/haiku.json");
-    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (grammar.ready()) { 
-    			ok(grammar);
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
-    			
-     			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
-    });
-   
-	asyncTest("RiGrammar.loadFrom(file)", function() {
-    	
-    	var rg1 = new RiGrammar();
-    	rg1.loadFrom("../data/sentence1.json");
-		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
-		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
-		    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (rg1.ready()) { 
-    			deepEqual(rg1, rg2);
-	        	deepEqual(rg2, rg3);
-	        	ok(rg1);
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
- 
-     			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
-    });       
-    asyncTest("RiGrammar.loadFrom2(file)", function() {
-    	
-    	var rg1 = new RiGrammar();
-    	rg1.loadFrom("../data/sentence2.json");
-		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
-		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
-		    	
-    	var ts = +new Date();
-    	var id = setInterval(function() {
-    		
-    		if (rg1.ready()) { 
-    			deepEqual(rg1, rg2);
-	        	deepEqual(rg2, rg3);
-    			start();
-    			clearInterval(id);
-    		}
-    		else {
-
-    			var now = +new Date();
-    			if (now-ts > 5000) {
-    				equal("no result",0);
-    				start();
-    				clearInterval(id);   				
-    			}
-			} 
-    		
-    	}, 50);
     });
 
     test("RiGrammar.removeRule", function() {

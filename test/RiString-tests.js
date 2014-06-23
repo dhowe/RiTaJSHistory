@@ -1,5 +1,7 @@
 var runtests = function() {
-    
+	
+	console.log("[TEST] Running 'RiString-tests'");
+
     QUnit.module("RiString", {
 	    setup: function () {},
 	    teardown: function () {}
