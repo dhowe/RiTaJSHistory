@@ -1,4 +1,4 @@
-<script src="../../../lib/processing.js"></script>
+<script src="../../../lib/processing.min.js"></script>
 <script src="../../../src/rita.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
@@ -30,7 +30,7 @@
 	 */
 
 	var movingUp;
-	var  rts = new RiText[16]; 
+	var  rts = new Array(16); 
 
 	var counter =0;
 	var goBack = false;
@@ -42,7 +42,7 @@
 
 
 		RiText.defaultFont("Times",40);   
-		RiText.defaults.alignment=(LEFT);    
+		//RiText.defaults.alignment=(LEFT);    
 
 
 	}
@@ -67,9 +67,9 @@
 	{
 		movingUp = !movingUp;
 		for (var i = 0; i < rts.length; i++)  {
-			var xPos = 10+(width/(float)rts.length)*i;     
+			var xPos = 10+(width/rts.length)*i;     
 			if (rts[i] == null) {
-				rts[i] = new RiText(this,(char)(i+65)+"", xPos, height); 
+				rts[i] = new RiText(this,(i+65)+"", xPos, height); 
 				rts[i].motionType(i);
 			}
 			rts[i].moveTo(xPos, (movingUp ? 30 : height), 3f);          
