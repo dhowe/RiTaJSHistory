@@ -6,15 +6,6 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    /*var functions = [];
-
-    test("RiWordNet-functions", function() {
-
-        var rm = new RiWordNet(this);
-        for ( var i = 0; i < functions.length; i++) {
-            equal(typeof rm[functions[i]], 'function', functions[i]);
-        }
-    });*/
 
     test("RiWordNet()", function() {
 
