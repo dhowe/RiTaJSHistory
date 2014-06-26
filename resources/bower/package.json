@@ -12,7 +12,11 @@
         "mail": "daniel@rednoise.org", 
         "url": "https://github.com/dhowe/RiTaJS/issues" 
   },
-  "license" : "GPL",
+  "licenses": [
+    {
+      "type": "GPL",
+      "url": "http://www.opensource.org/licenses/GPL-3.0"
+    }
   "dependencies": {},
   "devDependencies": { "qunit": ">= 1.0" },
   "main": "dist/rita.js",

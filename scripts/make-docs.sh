@@ -8,8 +8,6 @@ cd ../tools/refgen
 
 INPUT=../../../docs/
 OUTPUT=../../../www/reference/
-#GENZIP="doc-gen.zip"
-#CLASSPATH="$GENZIP:../../lib/core.jar:../../lib/json.jar"
 CLASSPATH="../../../bin:../../../libs/core.jar:../../../libs/json.jar"
 
 #echo CP: $CLASSPATH

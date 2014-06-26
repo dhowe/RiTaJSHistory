@@ -109,6 +109,35 @@ var runtests = function() {
     ];
     
     test("RiText.functions", function() {
+    	
+    	if (typeof QUnit.propertiesFromAPI != 'function') {
+			ok(typeof exports == 'undefined'); // not in node, ignore for now
+			console.log('Returning!');
+			return;
+    	}
+    	
+    	rm.hasOwnProperty(eles[i].name)
+		var eles = QUnit.propertiesFromAPI('RiText');
+        var rm = new RiText();
+        for ( var i = 0; i < eles.length; i++) {
+        	if (eles[i].isVar) {
+        		console.log('Checking: '+eles[i].name+' -> '+ rm.hasOwnProperty(eles[i].name) + " isStatic="+eles[i].isStatic);
+        		ok(rm.hasOwnProperty(eles[i].name), eles[i].name);
+        	}
+        	else if (eles[i].isStatic) {
+        		//console.log('Checking: RiText.'+eles[i].name+' -> '+ (typeof RiText[eles[i].name] === 'function'));
+        		equal(typeof RiText[eles[i].name], 'function', RiText[eles[i].name]);
+        	}
+        	else {
+				//console.log('Checking: '+eles[i].name+' -> '+ (typeof rm[eles[i].name]==='function'));
+        		equal(typeof rm[eles[i].name], 'function', eles[i].name);
+        	}
+        }
+        ok(1);
+    });
+    return;
+    
+    test("RiText.functionsOld", function() {
 
         for ( var i = 0; i < statics.length; i++) {
             equal(typeof RiText[statics[i]], 'function', statics[i]);
@@ -1271,3 +1300,5 @@ var runtests = function() {
     });
 
 }
+
+if (typeof exports != 'undefined') runtests();
