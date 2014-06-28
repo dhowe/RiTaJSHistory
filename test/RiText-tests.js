@@ -41,7 +41,7 @@ var runtests = function() {
     });
 
     test("RiText()", function() {
-
+    	
         ok(new RiText("The dog was white"));
 
         ok(RiText("The dog was white"));

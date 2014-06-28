@@ -10,8 +10,10 @@ var runtests = function() {
 	}); 
 
     test("RiGrammar.checkAPI", function() {
-
-    	QUnit.checkAPI('RiGrammar', RiGrammar, new RiGrammar());
+    	if (QUnit.checkAPI)
+			QUnit.checkAPI('RiGrammar', RiGrammar, new RiGrammar());
+		else
+    		ok("Only check in Node");
 	});
 	
     var sentenceGrammar = { "<start>" : "<noun_phrase> <verb_phrase>.", "<noun_phrase>" : "<determiner> <noun>", "<verb_phrase>" : "<verb> | <verb> <noun_phrase> [.1]", "<determiner>" : "a [.1] | the", "<noun>" : "woman | man", "<verb>" : "shoots" }

@@ -7,8 +7,11 @@ var runtests = function() {
 	});
 	
 	test("RiTaEvent.checkAPI", function() {
-
-    	QUnit.checkAPI('RiTaEvent', RiTaEvent, new RiTaEvent(this));
+		
+    	if (QUnit.checkAPI)
+			QUnit.checkAPI('RiTaEvent', RiTaEvent, new RiTaEvent(this));
+		else
+    		ok("Only check in Node");
 	});
 	
     test("RiTaEvent()", function() {

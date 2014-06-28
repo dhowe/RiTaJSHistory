@@ -1,34 +1,30 @@
 <script src="../../../lib/processing.min.js"></script>
 <script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing ===============================
 
-
 void setup()
 {   
-		size(400, 800);
-
-		RiText.defaultFont("Times", 20);
-		
-
-		var rt = new RiText(this, "1.ColorTo gray in 2 sec", 100,  50);
-		rt.colorTo([200, 2]);
-		rt.showBounds(true);
-
-		var c = [0,0,255];
-		var rt6 = new RiText(this, "2.ColorTo Bluein 2 sec" , 100, 100);
-		rt6.colorTo(c,2);
-		rt6.showBounds(true);
-		new RiText(this, "3.ColorTo Blue 5s delay 2s" , 100, 150).colorTo(c,5,2);
-
-		var rt2 = new RiText(this, "4.fade out and in" , 100, 200);
-		rt2.fadeOut(2);
-
-		rt2.fadeIn(2,4);
-		
+	size(400, 800);
 	
+	RiText.defaultFont("Times", 20);
+	
+	var rt = new RiText(this, "1. ColorTo gray in 2 sec", 100,  50);
+	rt.colorTo([127], 2);
+	rt.showBounds(true);
 
+	var c = [0,0,255];
+	var rt6 = new RiText(this, "2. ColorTo Blue in 2 sec" , 100, 100);
+	rt6.colorTo(c,2);
+	rt6.showBounds(true);
+	new RiText(this, "3. ColorTo Blue 5s delay 2s" , 100, 150).colorTo(c,5,2);
+	
+	var rt2 = new RiText(this, "4. fade out and in" , 100, 200);
+	rt2.fadeOut(2);
+	
+	rt2.fadeIn(2,4);
 }
 
 void draw()

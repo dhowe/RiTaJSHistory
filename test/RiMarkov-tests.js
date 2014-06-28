@@ -13,7 +13,10 @@ var runtests = function() {
 
 	test("RiMarkov.checkAPI", function() {
 
-    	QUnit.checkAPI('RiMarkov', RiMarkov, new RiMarkov(2));
+    	if (QUnit.checkAPI)
+	    	QUnit.checkAPI('RiMarkov', RiMarkov, new RiMarkov(2));
+		else
+    		ok("Only check in Node");
 	});
 
 	test("RiMarkov()", function() {

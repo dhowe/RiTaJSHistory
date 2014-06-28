@@ -1,4 +1,6 @@
 
+// loadString tests moved to ExternalFiles-tests.js
+
 var runtests = function () {
 
     QUnit.module("RiTa", {
@@ -8,10 +10,12 @@ var runtests = function () {
 
 	test("RiTa.checkAPI", function() {
 
-    	QUnit.checkAPI('RiTa', RiTa, RiTa);
+    	if (QUnit.checkAPI) 
+    		QUnit.checkAPI('RiTa', RiTa, RiTa);
+    	else
+    		ok("Only check in Node");
 	});
 	
-	// loadString tests moved to ExternalFiles-tests.js
 
     test("RiTa.constants", function () {
 

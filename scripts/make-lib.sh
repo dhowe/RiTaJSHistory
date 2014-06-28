@@ -70,7 +70,7 @@ COMPILE="java -jar ../tools/compiler-latest/compiler.jar"
 
 JSDOC=../tools/jsdoc-toolkit
 SRC_VERSIONED=/tmp/rita-versioned.js
-ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ${SRC_VERSIONED}"
+ALL_SRC="../src/rita_dict.js ../src/rita_lts.js ${SRC_VERSIONED} ../src/ritext.js"
 
 WWW_DIR=../../www
 RES_DIR=../../resources
@@ -120,7 +120,7 @@ fi
 #head ../bower.json
 
 rm -f $RITA_CODE
-echo "Combining rita-*.js as ${RITA_CODE}" 
+echo "Combining src/*.js as ${RITA_CODE}" 
 cat $ALL_SRC >> $RITA_CODE
 echo
 

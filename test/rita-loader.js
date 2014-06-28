@@ -10,6 +10,7 @@ function loadLibrary(name) {
 
 		srcTag += '\n<script src="' + loc.replace('rita.js', 'rita_lts.js') + '"><' + '/script>';
 		srcTag += '\n<script src="' + loc.replace('rita.js', 'rita_dict.js') + '"><' + '/script>';
+		srcTag += '\n<script src="' + loc.replace('rita.js', 'ritext.js') + '"><' + '/script>';
 		dataStr = ' (+data/lts)'
 	}
 

@@ -24,6 +24,40 @@
   line-height:140%;
   font-size: 14px; 
 }
+a.head:link    { color:#395771; text-decoration:none; font-size: 14px;  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+a.head:visited { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+a.head:hover   { color:#395771; text-decoration:underline; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+a.head:active  { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+
+/** Font Family and Sizes */
+.test {
+  color:#395771;
+  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  font-size: 14px; 
+  line-height: 12px!important; 
+}
+a.test:link    { color:#395771; text-decoration:none; font-size: 14px;  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+a.test:visited { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+a.test:hover   { color:#395771; text-decoration:underline; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+a.test:active  { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+
+.fail {
+  color:#fff;
+  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  font-size: 14px; 
+  line-height: 12px!important; 
+}
+a.fail:link    { color:#f00; text-decoration:none; font-size: 14px;  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+a.fail:visited { color:#f00; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+a.fail:hover   { color:#f00; text-decoration:underline; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
+a.fail:active  { color:#f00; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
+
 
 .notes {
   color:#395771;
@@ -33,10 +67,6 @@
   padding-left: 20px;
   font-size: 12px; 
 }
-a.head:link    { color:#395771; text-decoration:none; font-size: 14px;  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
-a.head:visited { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
-a.head:hover   { color:#395771; text-decoration:underline;font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
-a.head:active  { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
 
 #qunit-tests, #qunit-header, #qunit-banner, #qunit-testrunner-toolbar, #qunit-userAgent, #qunit-testresult {
 	font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial, sans-serif;
