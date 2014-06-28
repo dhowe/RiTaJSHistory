@@ -9,49 +9,20 @@ var runtests = function() {
  		RiLexicon.data = undefined;
  		return new RiLexicon();
  	}
- 	
-    var lex, functions = [
-    				 "addWord", 
-                     "clear",
-                     "containsWord", 
-                     "alliterations", 
-                     "lexicalData", 
-                     "randomWord", 
-                     "rhymes",
-                     "words" ,
-                     "isAdverb",
-                     "isNoun",
-                     "isVerb",
-                     "isAdjective",
-                     "isAlliteration", 
-                     "isRhyme", 
-                     "removeWord", 
-                     "similarByLetter", 
-                     "similarBySound", 
-                     "similarBySoundAndLetter",
-                     "size",
-                     "substrings", 
-                     "superstrings"];
-	 
-	 
+
+    var lex;
+    
+    test("RiLexicon.checkAPI", function() {
+
+    	QUnit.checkAPI('RiLexicon', RiLexicon, createLex());
+	});
+	
     test("RiLexicon[singleton]", function() {
 		lex = RiLexicon();
         var lex2 = RiLexicon();
         ok(lex.data === lex2.data);
     });
 
-    test("RiLexicon-functions", function() {
-
-		lex = RiLexicon();
-
-        for ( var i = 0; i < functions.length; i++) {
-
-            equal(typeof lex[functions[i]], 'function', functions[i]);
-        }
-
-    });
-    
-  
     test("RiLexicon-lookups", function() {
 
     	lex = RiLexicon();

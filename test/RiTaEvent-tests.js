@@ -6,20 +6,11 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    test("RiTaEvent.functions", function() {
-    	
-    	if (typeof QUnit.propertiesFromAPI != 'function') {
-			ok(typeof exports == 'undefined'); // not in node, ignore for now
-			return;
-    	}
-    	
-		var functions = QUnit.propertiesFromAPI('RiTaEvent');
-        var rm = new RiTaEvent(this);
-        for ( var i = 0; i < functions.length; i++) {
-            equal(typeof rm[functions[i]], 'function', functions[i]);
-        }
-    });
+	test("RiTaEvent.checkAPI", function() {
 
+    	QUnit.checkAPI('RiTaEvent', RiTaEvent, new RiTaEvent(this));
+	});
+	
     test("RiTaEvent()", function() {
         
         ok(RiTaEvent(this));

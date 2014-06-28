@@ -1,66 +1,26 @@
 [INFO] RiTaJS.version [##version##]
-[INFO] Testing RiText
-Checking: x -> true isStatic=false
-Checking: defaults.scaleX -> false isStatic=false
-Checking: defaults.scaleY -> false isStatic=false
-Checking: defaults.scaleZ -> false isStatic=false
-Checking: defaults.fill -> false isStatic=false
-Checking: defaults.rotateX -> false isStatic=false
-Checking: defaults.rotateY -> false isStatic=false
-Checking: defaults.rotateZ -> false isStatic=false
-Checking: defaults.alignment -> false isStatic=false
-Checking: defaults.motionType -> false isStatic=false
-Checking: y -> true isStatic=false
-Checking: z -> true isStatic=false
-[INFO] Completed RiText
-[INFO] Completed RiText
-[INFO] Completed RiText
-[INFO] Completed RiText
-[INFO] Completed RiText
-[INFO] Completed RiText
+[INFO] Testing UrlLoading
+[INFO] Completed UrlLoading
+[INFO] Testing RiGrammar
+[INFO] Completed RiGrammar
+[INFO] Testing RiLexicon
+[INFO] Completed RiLexicon
+[INFO] Testing RiString
+[INFO] Completed RiString
+[INFO] Testing RiTa
+[INFO] Completed RiTa
+[INFO] Testing RiTaEvent
+[INFO] Completed RiTaEvent
+[INFO] Testing LibraryStructure
+[INFO] Completed LibraryStructure
+[INFO] Testing RiMarkov
+[INFO] Completed RiMarkov
+[INFO] Testing RiWordNet
+[INFO] Completed RiWordNet
 
 Global summary:
 [90m┌───────┬───────┬────────────┬────────┬────────┬─────────┐[39m
 [90m│[39m[31m Files [39m[90m│[39m[31m Tests [39m[90m│[39m[31m Assertions [39m[90m│[39m[31m Failed [39m[90m│[39m[31m Passed [39m[90m│[39m[31m Runtime [39m[90m│[39m
 [90m├───────┼───────┼────────────┼────────┼────────┼─────────┤[39m
-[90m│[39m 1     [90m│[39m 1     [90m│[39m 93         [90m│[39m 9      [90m│[39m 84     [90m│[39m 300     [90m│[39m
+[90m│[39m 1     [90m│[39m 193   [90m│[39m 2334       [90m│[39m 0      [90m│[39m 2334   [90m│[39m 14901   [90m│[39m
 [90m└───────┴───────┴────────────┴────────┴────────┴─────────┘[39m
-
-
-Errors:
-
-Module: RiText Test: RiText.functions
-defaults.scaleX
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.scaleY
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.scaleZ
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.fill
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.rotateX
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.rotateY
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.rotateZ
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.alignment
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)
-
-Module: RiText Test: RiText.functions
-defaults.motionType
-    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiText-tests.js:124:11)

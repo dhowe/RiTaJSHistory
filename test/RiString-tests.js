@@ -5,64 +5,17 @@ var runtests = function() {
 	    teardown: function () {}
 	}); 
 	
-    var functions = [ // TODO: should grab these from RiString.json (add to Github, assign to DH)
+	test("RiString.checkAPI", function() {
 
-        "analyze",
-        "charAt",
-        "concat",
-        "copy",
-        "endsWith",
-        "equals",
-        "equalsIgnoreCase",
-        "get",
-        "features",
-        "indexOf",
-        "lastIndexOf",
-        "length",
-        "match",
-        "pos",
-        "posAt",
-
-        "replaceFirst",
-        "replaceLast",
-        "replaceAll",
-        "insertChar",
-        "removeChar",
-        "replaceChar",
-        "insertWord",
-        "replaceWord",
-        "removeWord",
-
-        "slice",
-        "split",
-        "startsWith",
-        "substring",
-        "substr",
-        "text",
-        "toLowerCase",
-        "toUpperCase",
-        "trim",
-        "wordAt",
-        "wordCount",
-        "words",
-    ];
-
-    test("RiString.functions", function() {
-
-        var rs = new RiString("The dog was white");
-        for ( var i = 0; i < functions.length; i++) {
-            equal(typeof rs[functions[i]], 'function', functions[i]);
-        }
-    });
-
-    test(
-        "RiString._stringify",
-        function() {
+    	QUnit.checkAPI('RiString', RiString, new RiString(''));
+	});
+    
+    test("RiString._stringify", function() {
 
             var data = [ [ [ 2 ], [], [ 'ao' ], [ 'r' ] ], [ [ 0 ], [ 'g' ], [ 'ah' ], [] ], [ [ 0 ], [ 'n' ], [ 'ah' ], [] ], [ [ 1 ], [ 'z' ], [ 'ey' ], [] ], [ [ 0 ], [ 'sh' ], [ 'ah' ], [ 'n', 'z' ] ] ];
             var out = "ao2-r g-ah0 n-ah0 z-ey1 sh-ah0-n-z";
             equal(RiString._stringify(data), out);
-        });
+	});
 
     test("RiString._syllabify(string)", function() {
 
@@ -81,16 +34,15 @@ var runtests = function() {
         deepEqual(result, expected);
     });
 
-    test(
-        "RiString._syllabify(batch1)",
-        function() {
 
-            var data = [ [ 'd-eh1-n-l-ih0-n-jh-er0', 'd-eh1-n l-ih0-n jh-er0' ], [ 'd-uw1-ah0-l', 'd-uw1 ah0-l' ], [ 'd-ih2-s-ah0-l-aw1-d', 'd-ih2 s-ah0 l-aw1-d' ], [ 'd-aa1-d-z', 'd-aa1-d-z' ], [ 'd-r-ao1-l-z', 'd-r-ao1-l-z' ], [ 'd-ay0-ae1-n-ah0', 'd-ay0 ae1 n-ah0' ], [ 'ey1-t-f-ow2-l-d', 'ey1-t f-ow2-l-d' ], [ 'eh1-m-t-iy0-d', 'eh1-m t-iy0-d' ], [ 'ih0-r-ey1-s', 'ih0 r-ey1-s' ], [ 'eh1-v-r-ah0-n', 'eh1-v r-ah0-n' ], [ 'f-ae1-l-k', 'f-ae1-l-k' ], [ 'f-eh1-n-w-ey2', 'f-eh1-n w-ey2' ], [ 'f-ih1-sh-k-ih2-l', 'f-ih1-sh k-ih2-l' ], [ 'f-ao1-r-b-ih0-d-ah0-n', 'f-ao1-r b-ih0 d-ah0-n' ], [ 'f-r-eh1-n-t-s', 'f-r-eh1-n-t-s' ], [ 'g-ae1-l-b-r-ey2-th', 'g-ae1-l b-r-ey2-th' ], [ 'zh-ih0-l-eh1-t', 'zh-ih0 l-eh1-t' ], [ 'jh-ih1-n-iy0', 'jh-ih1 n-iy0' ], [ 'g-aa0-n-z-aa1-l-ah0-z', 'g-aa0-n z-aa1 l-ah0-z' ], [ 'g-r-iy1-n-f-iy2-l-d', 'g-r-iy1-n f-iy2-l-d' ], [ 'g-ih0-t-aa1-r-z', 'g-ih0 t-aa1-r-z' ], [ 'hh-ae1-m-er0-ih0-ng', 'hh-ae1 m-er0 ih0-ng' ], [ 'hh-ae1-t-ih0-n-d-ao0-r-f', 'hh-ae1 t-ih0-n d-ao0-r-f' ], [ 'hh-eh1-m-ih0-ng-w-ey2', 'hh-eh1 m-ih0-ng w-ey2' ], [ 'hh-ih1-ng-k-m-ah0-n', 'hh-ih1-ng-k m-ah0-n' ], [ 'hh-ow1-n-eh0-k', 'hh-ow1 n-eh0-k' ], [ 'hh-ah1-l-d', 'hh-ah1-l-d' ], [ 'ih0-l-uw1-zh-ah0-n', 'ih0 l-uw1 zh-ah0-n' ], [ 'ih0-n-f-ae2-ch-uw0-ey1-sh-ah0-n', 'ih0-n f-ae2 ch-uw0 ey1 sh-ah0-n' ], [ 'ih0-n-t-er1-n-ah0-l-ay2-z', 'ih0-n t-er1 n-ah0 l-ay2-z' ], [ 'ih0-z-ae1-n-s-k-iy0-z', 'ih0 z-ae1-n s-k-iy0-z' ], [ 'jh-ow0-hh-ae1-n-ah0-s', 'jh-ow0 hh-ae1 n-ah0-s' ], [ 'k-ae1-r-ah0-m', 'k-ae1 r-ah0-m' ], [ 'k-aa1-k-iy0', 'k-aa1 k-iy0' ], [ 'n-ey1-v', 'n-ey1-v' ] ];
-            for ( var i = 0, l = data.length; i < l; i++) {
-                var res = RiString._syllabify(data[i][0]);
-                equal(res, data[i][1]);
-            }
-        });
+	test("RiString._syllabify(batch1)", function() {
+
+		var data = [['d-eh1-n-l-ih0-n-jh-er0', 'd-eh1-n l-ih0-n jh-er0'], ['d-uw1-ah0-l', 'd-uw1 ah0-l'], ['d-ih2-s-ah0-l-aw1-d', 'd-ih2 s-ah0 l-aw1-d'], ['d-aa1-d-z', 'd-aa1-d-z'], ['d-r-ao1-l-z', 'd-r-ao1-l-z'], ['d-ay0-ae1-n-ah0', 'd-ay0 ae1 n-ah0'], ['ey1-t-f-ow2-l-d', 'ey1-t f-ow2-l-d'], ['eh1-m-t-iy0-d', 'eh1-m t-iy0-d'], ['ih0-r-ey1-s', 'ih0 r-ey1-s'], ['eh1-v-r-ah0-n', 'eh1-v r-ah0-n'], ['f-ae1-l-k', 'f-ae1-l-k'], ['f-eh1-n-w-ey2', 'f-eh1-n w-ey2'], ['f-ih1-sh-k-ih2-l', 'f-ih1-sh k-ih2-l'], ['f-ao1-r-b-ih0-d-ah0-n', 'f-ao1-r b-ih0 d-ah0-n'], ['f-r-eh1-n-t-s', 'f-r-eh1-n-t-s'], ['g-ae1-l-b-r-ey2-th', 'g-ae1-l b-r-ey2-th'], ['zh-ih0-l-eh1-t', 'zh-ih0 l-eh1-t'], ['jh-ih1-n-iy0', 'jh-ih1 n-iy0'], ['g-aa0-n-z-aa1-l-ah0-z', 'g-aa0-n z-aa1 l-ah0-z'], ['g-r-iy1-n-f-iy2-l-d', 'g-r-iy1-n f-iy2-l-d'], ['g-ih0-t-aa1-r-z', 'g-ih0 t-aa1-r-z'], ['hh-ae1-m-er0-ih0-ng', 'hh-ae1 m-er0 ih0-ng'], ['hh-ae1-t-ih0-n-d-ao0-r-f', 'hh-ae1 t-ih0-n d-ao0-r-f'], ['hh-eh1-m-ih0-ng-w-ey2', 'hh-eh1 m-ih0-ng w-ey2'], ['hh-ih1-ng-k-m-ah0-n', 'hh-ih1-ng-k m-ah0-n'], ['hh-ow1-n-eh0-k', 'hh-ow1 n-eh0-k'], ['hh-ah1-l-d', 'hh-ah1-l-d'], ['ih0-l-uw1-zh-ah0-n', 'ih0 l-uw1 zh-ah0-n'], ['ih0-n-f-ae2-ch-uw0-ey1-sh-ah0-n', 'ih0-n f-ae2 ch-uw0 ey1 sh-ah0-n'], ['ih0-n-t-er1-n-ah0-l-ay2-z', 'ih0-n t-er1 n-ah0 l-ay2-z'], ['ih0-z-ae1-n-s-k-iy0-z', 'ih0 z-ae1-n s-k-iy0-z'], ['jh-ow0-hh-ae1-n-ah0-s', 'jh-ow0 hh-ae1 n-ah0-s'], ['k-ae1-r-ah0-m', 'k-ae1 r-ah0-m'], ['k-aa1-k-iy0', 'k-aa1 k-iy0'], ['n-ey1-v', 'n-ey1-v']];
+		for (var i = 0, l = data.length; i < l; i++) {
+			var res = RiString._syllabify(data[i][0]);
+			equal(res, data[i][1]);
+		}
+	}); 
 
 
     test("RiString()", function() {
