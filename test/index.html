@@ -5,12 +5,57 @@
 <link href="rita-test.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../lib/jquery-min.js"></script>
 <script type="text/javascript" src="./rita-loader.js"></script>
-<script>
 
+<script>
+var testDir = "./renderer",  tests = [
+
+    new Test("g_Simplest"),
+    new Test("g_Alignments"),
+	new Test("g_BoundingBoxAndAlpha"), // failing
+	new Test("g_BoundingBoxFeatures",0), // failing
+ 	new Test("g_ColorAndFade"), 
+ 	//new Test("create-letters"),
+	//new Test("create-words"),
+	new Test("g_CreateLinesSingle"),
+	new Test("g_CreateLinesAndLayoutWithBreaks",1),
+ 	//new Test("layout-with-breaks"),
+ 	new Test("g_DefaultFontAndFontVlwTtf",1),
+	new Test("g_DisposeAll"),
+	new Test("g_MotionTypes"),
+	new Test("g_RandomColor"),
+ 	new Test("g_Scaling"),
+	new Test("g_TranslateTo"),
+	new Test("g_WordsLettersLines"),
+
+ 	/*new Test("pixel-x-positions"),
+ 	new Test("default-centering"),
+ 	new Test("default-font"),
+ 	new Test("delete-ritexts"),
+ 	new Test("disposeAll"),
+ 	new Test("fade-to-text"),
+ 	new Test("font-scaling"),
+ 	new Test("get-picked"),
+    new Test("grammar-haiku"), 
+    new Test("grammar-expandFrom"), 
+ 	new Test("letter-grid"),
+ 	new Test("move-to"),
+ 	new Test("pick-and-drag"),	
+ 	new Test("rita-events"),
+ 	new Test("simple-timer"),
+ 	new Test("slot-machine"), 	
+ 	new Test("text-font"), 
+ 	new Test("text-size"), */
+];
+
+function Test(url, failP) {//}, failC) {
+	this.url = url;
+	this.failP5 = typeof failP !== 'undefined' ? failP : false;
+	//this.failCanvas = typeof failC !== 'undefined' ? failC : false;
+}
+    
 $(document).ready(function() {
 
     var tests = [
-        
                  "RiTa-tests",
                  "RiText-tests",
                  "RiString-tests",
@@ -23,7 +68,7 @@ $(document).ready(function() {
                  "UrlLoading-tests",
                  "KnownIssues-tests",
                  "LibraryStructure-tests",
-                 "Renderer-tests"
+                 //"Renderer-tests"
     ];
     
     var src = param("src"); 
@@ -41,6 +86,7 @@ $(document).ready(function() {
 
 
 </script>
+
 </head>
 
 <body>
@@ -70,8 +116,24 @@ $(document).ready(function() {
 	<h2 id="qunit-header2">PhantomJS (cmd-line)</h2>
 	<div class="notes">$ /RiTaJS/scripts/run-phantom-tests.sh</div><br>
 	<h2 id="qunit-header2">NodeJS (cmd-line)</h2>
-	<div class="notes">$ /RiTaJS/scripts/run-node-tests.sh</div><p></p><br><p></p><br>
-    <img src="imgs/RiTa.jpg" width=100><p>
+	<div class="notes">$ /RiTaJS/scripts/run-node-tests.sh</div><br>
+	<h2 id="qunit-header2">Renderer Tests</h2>
+	
+	<script type="text/javascript">
+	    
+	 	var body = '<table>';
+	    for ( var i = 0; i < tests.length; i++) {
+	      //body += '<td>'+tests[i].url+':</td>';
+	      body += '<tr><td><a';
+	      body += ' class='+(tests[i].failP5 ? 'fail' : 'test');
+	      body += ' href=\''+testDir+'/processing/'+tests[i].url+'.html';
+	      body += '\'>'+tests[i].url+'</a></td></tr>';
+	      //body += '<td><a';
+	    }
+	    document.writeln(body+'</table>');
+	 </script>
+	<p></p><br><p></p>
+	<img src="imgs/RiTa.jpg" width=100><p>
 
 </body>
 </html>

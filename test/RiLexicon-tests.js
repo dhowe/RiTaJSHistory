@@ -14,7 +14,10 @@ var runtests = function() {
     
     test("RiLexicon.checkAPI", function() {
 
-    	QUnit.checkAPI('RiLexicon', RiLexicon, createLex());
+    	if (QUnit.checkAPI)
+    		QUnit.checkAPI('RiLexicon', RiLexicon, createLex());
+		else
+    		ok("Only check in Node");
 	});
 	
     test("RiLexicon[singleton]", function() {

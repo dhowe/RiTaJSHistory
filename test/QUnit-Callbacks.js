@@ -3,12 +3,6 @@
  */
 QUnit.checkAPI = function(className, Class, obj) {
 
-	if (typeof QUnit.propertiesFromAPI != 'function') {
-		ok(typeof exports == 'undefined'); // not in node, ignore for now
-		console.log('Returning!');
-		return;
-	}
-	
 	var eles = QUnit.propertiesFromAPI(className); 	
     for ( var i = 0; i < eles.length; i++) {
     	

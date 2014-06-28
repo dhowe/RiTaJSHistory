@@ -1,5 +1,6 @@
 <script src="../../../lib/processing.min.js"></script>
 <script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing =============================== 
@@ -36,17 +37,17 @@ void setup()
     var rt2 =  new RiText("dispose me", 550, 650);
     rt2.showBounds(true);
     
-    var rt3 =  new RiText("draw before dispose", 50, 650);
+    
+    background(255);
+    var rt3 =  new RiText("this should be the only one showing", 50, 650);
     rt3.draw();
   
     RiText.disposeAll();
+    // RiText.dispose(rts); // TODO: also test ritext array
+    // RiText.dispose(rt); //  TODO: also test single ritext
+    
     RiText.drawAll();
 }
-
-
-
-
-
 
 // ============================ End Processing =================================
 </script>

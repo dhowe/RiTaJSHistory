@@ -3,8 +3,6 @@
 [INFO] Completed UrlLoading
 [INFO] Testing RiGrammar
 [INFO] Completed RiGrammar
-[INFO] Testing RiLexicon
-[INFO] Completed RiLexicon
 [INFO] Testing RiString
 [INFO] Completed RiString
 [INFO] Testing RiTa
@@ -15,6 +13,8 @@
 [INFO] Completed LibraryStructure
 [INFO] Testing RiMarkov
 [INFO] Completed RiMarkov
+[INFO] Testing RiLexicon
+[INFO] Completed RiLexicon
 [INFO] Testing RiWordNet
 [INFO] Completed RiWordNet
 
@@ -22,5 +22,5 @@ Global summary:
 [90m┌───────┬───────┬────────────┬────────┬────────┬─────────┐[39m
 [90m│[39m[31m Files [39m[90m│[39m[31m Tests [39m[90m│[39m[31m Assertions [39m[90m│[39m[31m Failed [39m[90m│[39m[31m Passed [39m[90m│[39m[31m Runtime [39m[90m│[39m
 [90m├───────┼───────┼────────────┼────────┼────────┼─────────┤[39m
-[90m│[39m 1     [90m│[39m 193   [90m│[39m 2334       [90m│[39m 0      [90m│[39m 2334   [90m│[39m 14901   [90m│[39m
+[90m│[39m 1     [90m│[39m 193   [90m│[39m 2361       [90m│[39m 0      [90m│[39m 2361   [90m│[39m 16649   [90m│[39m
 [90m└───────┴───────┴────────────┴────────┴────────┴─────────┘[39m

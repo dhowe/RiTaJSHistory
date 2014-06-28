@@ -1,5 +1,6 @@
 <script src="../../../lib/processing.min.js"></script>
 <script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing =============================== 
@@ -28,11 +29,11 @@ String[] txt = {
 			"a different town,' one of them whispered. 'Change is",
 			"good,' the other one whispered back." };
 
-	var x=30, y=30, w=400-60, h=623;
-	var x2=420, y2=30, w2=400-60, h2=623;
-	var x3=810, y3=30, w3=400-60, h3=h2/2;
+var x=30, y=30, w=400-60, h=623,
+	x2=420, y2=30, w2=400-60, h2=623,
+	x3=810, y3=30, w3=400-60, h3=h2/2;
 
- void setup() {
+void setup() {
 
 		size(1200, 700);
 		background(250);

@@ -9,7 +9,7 @@ var xOff, yOff, mDown, current, txt = "A huge lizard";
 void setup()
 {
     size(400, 400);  
-    RiText.defaults.boundingBoxFill = { r:100,g:0,b:0,a:64 };
+    RiText.defaults.boundingFill = [100,0,0,64];
     RiText.defaultFont("Georgia", 16, 20);
     RiText.createWords(txt, 20, 20, 360, 360);
 }

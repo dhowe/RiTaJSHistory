@@ -1,13 +1,17 @@
 var runtests = function() {
 	
     QUnit.module("RiString", {
-	    setup: function () {},
+	    setup: function () {
+			RiTa.SILENT = true;	
+	    },
 	    teardown: function () {}
 	}); 
 	
 	test("RiString.checkAPI", function() {
-
-    	QUnit.checkAPI('RiString', RiString, new RiString(''));
+		if (QUnit.checkAPI)
+    		QUnit.checkAPI('RiString', RiString, new RiString(''));
+    	else
+    		ok("Only check in Node");
 	});
     
     test("RiString._stringify", function() {
@@ -1311,7 +1315,6 @@ var runtests = function() {
       equal(features[RiTa.PHONEMES], null); // OK: has been reset
       equal(rs.get("Id"), "1000");  // OK:  has not been reset
 	});  
-
 }
 
 if (typeof exports != 'undefined')  runtests();

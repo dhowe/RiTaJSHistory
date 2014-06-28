@@ -1,0 +1,20 @@
+<script src="../../../lib/processing.min.js"></script>
+<script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
+<script src="../../../src/ritext.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+
+size(600, 400);
+
+RiText.defaults.showBounds = true;
+RiText.defaultFontSize(48);
+
+new RiText("Unscaled", 20, 160);
+new RiText("Scale good?", 20, 260).scale(2); // TODO: this is broken in Java
+
+background(255);
+RiText.drawAll();
+
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
