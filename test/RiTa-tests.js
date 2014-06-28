@@ -6,19 +6,14 @@ var runtests = function () {
         teardown: function () {}
     });
 
-    test("RiTa.functions", function () {
-    	
-	    // TODO: fetch from JSON!
-    	var functions = [ "env", "isAbbreviation", "isQuestion", "isSentenceEnd", "isW_Question", "randomOrdering", "randomItem", "splitSentences", "stripPunctuation", "trimPunctuation", "isPunctuation", "tokenize", "trim", "distance", "loadString", "random", "getPhonemes", "getPosTags", "getPosTagsInline", "getStresses", "getSyllables", "getWordCount", "posToWordNet", "conjugate", "getPastParticiple", "getPresentParticiple", "stem", "pluralize", "singularize", "timer", "pauseTimer", "stopTimer", "random", "p5Compatible", "untokenize"]; 
-        for (var i = 0; i < functions.length; i++) {
-            equal(typeof RiTa[functions[i]], 'function', functions[i]);
-        }
+	test("RiTa.checkAPI", function() {
 
-    });
-
+    	QUnit.checkAPI('RiTa', RiTa, RiTa);
+	});
+	
 	// loadString tests moved to ExternalFiles-tests.js
 
-     test("RiTa.constants", function () {
+    test("RiTa.constants", function () {
 
         ok(RiTa.VERSION);
     });

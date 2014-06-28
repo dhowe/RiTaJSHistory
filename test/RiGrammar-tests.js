@@ -9,8 +9,11 @@ var runtests = function() {
 	    temp : function() { return Math.random() < .5 ? 'hot' : 'cold'; }
 	}); 
 
-    var functions = [ "addRule", "expand", "expandFrom", "expandWith", "getGrammar", "hasRule", "print", "removeRule", "reset", "load", "loadFrom", "ready" ];
+    test("RiGrammar.checkAPI", function() {
 
+    	QUnit.checkAPI('RiGrammar', RiGrammar, new RiGrammar());
+	});
+	
     var sentenceGrammar = { "<start>" : "<noun_phrase> <verb_phrase>.", "<noun_phrase>" : "<determiner> <noun>", "<verb_phrase>" : "<verb> | <verb> <noun_phrase> [.1]", "<determiner>" : "a [.1] | the", "<noun>" : "woman | man", "<verb>" : "shoots" }
 
 	var sentenceGrammar2 = {
@@ -30,13 +33,6 @@ var runtests = function() {
 	    ],
 	    "<verb>": "shoots"
 	};
-
-    test("RiGrammar.functions", function() {
-
-        var rg = new RiGrammar();
-        for ( var i = 0; i < functions.length; i++) 
-            equal(typeof rg[functions[i]], 'function', functions[i]);
-    });
 
     test("RiGrammar.init", function() {
   

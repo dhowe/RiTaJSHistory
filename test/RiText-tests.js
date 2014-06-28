@@ -4,111 +4,8 @@ var runtests = function() {
 	    setup: function () {},
 	    teardown: function () {}
 	});
-
-  // TODO: check that all these have tests...
-  var statics = [
-                   "createLetters",
-                   "createWords",
-                   "createLines",
-                   "drawAll",
-                   "dispose",
-                   "disposeAll",
-                   "defaultFill",
-                   "defaultFont",
-				   "defaultFontSize",
-                   "randomColor",
-                   "picked",
-                   "random",
-                   "timer",
-                   "pauseTimer",
-                   "stopTimer",
-    ];
-  
-
-    // TODO: check that all these have tests...
-    var functions = [ 
-                   "align",
-                   "alpha",
-                   "boundingBox",
-                   "center",
-                   "charOffset",
-                   "copy",
-                   "fill",           
-                   "distanceTo",
-                   "draw",               
-                   "font",
-                   "fontSize",
-                   "motionType",
-                   "position",
-                   "rotate",
-                   "scale",
-                   "showBounds",
-                   "splitLetters",
-                   "splitWords",
-                   "text",
-                   "textHeight",
-                   "textAscent",
-                   "textDescent",
-                   "textWidth",
-                   "isVisible",
-                   "wordOffset",
-                   "fadeIn",
-                   "fadeOut",
-                   "moveTo",
-                   "colorTo",
-                   "rotateTo",
-                   "scaleTo",
-                   "stopBehavior",
-                   "stopBehaviors",
-                   "textTo"
-    ];
-  
-    var RiString_functions = [
-                  "analyze", 
-                  "charAt", 
-                  "concat", 
-                  "containsWord",
-                  "copy", 
-                  "endsWith", 
-                  "equals", 
-                  "equalsIgnoreCase", 
-                  "get",
-                  "features",
-                  "indexOf",  
-                  "lastIndexOf", 
-                  "length", 
-                  "match", 
-                  "pos", 
-                  "posAt", 
-                  
-                  "insertChar",
-                  "removeChar", 
-                  "replaceChar", 
-                  
-                  "replaceFirst", 
-                  "replaceLast", 
-                  "replaceAll", 
-                  
-                  "insertWord",
-                  "removeWord",
-                  "replaceWord",
-                   
-                  "slice", 
-                  "split", 
-                  "startsWith", 
-                  "substring", 
-                  "substr", 
-                  "text",
-                  //"toCharArray", 
-                  "toLowerCase", 
-                  "toUpperCase", 
-                  "trim", 
-                  "wordAt", 
-                  "wordCount", 
-                  "words" 
-    ];
     
-    test("RiText.functions", function() {
+    test("RiText.checkAPI", function() { // Can this move to QUnit-Callbacks?
     	
     	if (typeof QUnit.propertiesFromAPI != 'function') {
 			ok(typeof exports == 'undefined'); // not in node, ignore for now
@@ -116,41 +13,31 @@ var runtests = function() {
 			return;
     	}
     	
-    	rm.hasOwnProperty(eles[i].name)
-		var eles = QUnit.propertiesFromAPI('RiText');
-        var rm = new RiText();
+		var eles = QUnit.propertiesFromAPI('RiText'), name, obj = new RiText();
+
         for ( var i = 0; i < eles.length; i++) {
+        	
         	if (eles[i].isVar) {
-        		console.log('Checking: '+eles[i].name+' -> '+ rm.hasOwnProperty(eles[i].name) + " isStatic="+eles[i].isStatic);
-        		ok(rm.hasOwnProperty(eles[i].name), eles[i].name);
+				
+        		if (/^defaults\./.test(eles[i].name)) { // strange-case for static field (generalize)
+        			
+        			name = eles[i].name.substring('defaults.'.length);
+ 					ok(RiText.defaults.hasOwnProperty(name), 'default-var: '+eles[i].name);
+        		}
+        		else   {
+	        		ok(obj.hasOwnProperty(eles[i].name), 'var: '+eles[i].name);
+	        	}
+        		
         	}
         	else if (eles[i].isStatic) {
-        		//console.log('Checking: RiText.'+eles[i].name+' -> '+ (typeof RiText[eles[i].name] === 'function'));
-        		equal(typeof RiText[eles[i].name], 'function', RiText[eles[i].name]);
+ 
+         		equal(typeof RiText[eles[i].name], 'function(static): ', RiText[eles[i].name]);
         	}
         	else {
-				//console.log('Checking: '+eles[i].name+' -> '+ (typeof rm[eles[i].name]==='function'));
-        		equal(typeof rm[eles[i].name], 'function', eles[i].name);
+
+    			equal(typeof obj[eles[i].name], 'function', 'function: '+eles[i].name+'()');
         	}
         }
-        ok(1);
-    });
-    return;
-    
-    test("RiText.functionsOld", function() {
-
-        for ( var i = 0; i < statics.length; i++) {
-            equal(typeof RiText[statics[i]], 'function', statics[i]);
-        }
-        var rt = new RiText();
-        for ( var i = 0; i < functions.length; i++) {
-            equal(typeof rt[functions[i]], 'function', functions[i]);
-        }
-        for ( var i = 0; i < RiString_functions.length; i++) {
-        	if (RiString_functions[i]=="split") continue; // ?
-            equal(typeof rt[RiString_functions[i]], 'function', RiString_functions[i]);
-        }
-
     });
 
     test("RiText()", function() {

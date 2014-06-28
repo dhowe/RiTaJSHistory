@@ -6,7 +6,6 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-
     test("RiWordNet()", function() {
 
         throws(function() {
