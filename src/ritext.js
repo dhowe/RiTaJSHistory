@@ -721,181 +721,195 @@
 		
 		if (g._type() === 'Processing') return; // let P5 do its own loop
 	  
-			if (an.loopStarted) return;
+		if (an.loopStarted) return;
+		
+		switch (a.length) {
 			
-			switch (a.length) {
+			case 1:
 				
-				case 1:
-					
-					if (a[0]) {
-						type = Type.get(a[0]);
-						if (type == F) {
-							callback = a[0];
-						}
-						else if (type == N) {
-							an.targetFPS = a[0];
-						}
+				if (a[0]) {
+					type = Type.get(a[0]);
+					if (type == F) {
+						callback = a[0];
 					}
-					break;
-					
-				case 2:
-					
-					if (a[0]) {
-						
-						type = Type.get(a[0]);
-						if (type == F) {
-							callback = a[0];
-						}
-						type = Type.get(a[1])
-						if (type == N) {
-							an.targetFPS = a[1];
-						}
+					else if (type == N) {
+						an.targetFPS = a[0];
 					}
-					break;
-			}
-	
-			an.timeSinceLastFPS = Date.now(), an.framesSinceLastFPS = 0, mps =  1E3 / an.targetFPS;
-			
-			if (callback && !an.callbackDisabled && window) {
+				}
+				break;
 				
-				an.loopId = window.setInterval(function() {
+			case 2:
+				
+				if (a[0]) {
 					
-				  try {
-					
-					 callback();
-					 
-					 var sec = (Date.now() - an.timeSinceLastFPS) / 1E3;
-					 var fps = ++an.framesSinceLastFPS / sec;
-					 
-					 if (sec > 0.5) {
-					 	
-						 an.timeSinceLastFPS = Date.now();
-						 an.framesSinceLastFPS = 0;
-						 an.actualFPS = fps;
-					 }
-					 an.frameCount++;
-					
-				  } catch(ex) {
-					  
+					type = Type.get(a[0]);
+					if (type == F) {
+						callback = a[0];
+					}
+					type = Type.get(a[1])
+					if (type == N) {
+						an.targetFPS = a[1];
+					}
+				}
+				break;
+		}
+
+		an.timeSinceLastFPS = Date.now(), an.framesSinceLastFPS = 0, mps =  1E3 / an.targetFPS;
+
+		if (callback && !an.callbackDisabled && window) {
+
+			an.loopId = window.setInterval(function() {
+
+				try {
+
+					callback();
+
+					var sec = (Date.now() - an.timeSinceLastFPS) / 1E3;
+					var fps = ++an.framesSinceLastFPS / sec;
+
+					if (sec > 0.5) {
+
+						an.timeSinceLastFPS = Date.now();
+						an.framesSinceLastFPS = 0;
+						an.actualFPS = fps;
+					}
+					an.frameCount++;
+
+				} catch(ex) {
+
 					if (!an.callbackDisabled) {
-						warn("Unable to invoke callback: "+callback);
+						warn("Unable to invoke callback: " + callback);
 						an.callbackDisabled = true;
 					}
-					
+
 					window.clearInterval(an.loopId);
 					console.trace(this);
 					throw ex;
-				  }
-				  
-				}, mps);
-				
-				an.isLooping = true;
-				an.loopStarted = true;
-			}
-		}
-		
-		RiText.randomColor = function(min,max,includeAlpha) {
-			
-			min = min || 0, max = max || 256;
-			var col = [RiText.random(min,max),RiText.random(min,max),RiText.random(min,max)];
-			if (includeAlpha) col.push(RiText.random(min,max));
-			return col;
-		}
-	
-		RiText.random = function() {
-			
-			return RiTa.random.apply(this ,arguments);
-		}	
-	
-		RiText.picked = function(x, y) {
-			
-		  var hits = [];
-		  for (var i = 0; i < RiText.instances.length; i++)
-		  {
-			var rt = RiText.instances[i];
-			rt.contains(x, y) && hits.push(rt);
-		  }
-		  return hits;
-		}
-	
-		RiText.dispose = function(toDelete) {
-			
-		   is(toDelete,A) && RiText._disposeArray(toDelete);
-		   is(toDelete,O) && RiText._disposeOne(toDelete);
-		}
-	
-		RiText.disposeAll = function() {
-			
-			for ( var i = 0; i < RiText.instances.length; i++) {
-	
-				if (RiText.instances[i]) {
-					
-					delete(RiText.instances[i]._rs);
-					delete(RiText.instances[i]);
 				}
-			}
-			
-			RiText.instances = [];
+
+			}, mps);
+
+			an.isLooping = true;
+			an.loopStarted = true;
 		}
+		}
+
 		
-		RiText.createWords = function(txt, x, y, w, h, fontObj, leading) {
-	
-			return RiText._createRiTexts(txt, x, y, w, h, fontObj, leading, RiText.prototype.splitWords);
-	 	}
-	
-		RiText.createLetters = function(txt, x, y, w, h, fontObj, leading) {
-	
-			return RiText._createRiTexts(txt, x, y, w, h, fontObj, leading, RiText.prototype.splitLetters);
-		}
+	RiText.randomColor = function(min,max,includeAlpha) {
 		
-		RiText.defaultFontSize = function(size) {
-			
-			if (!arguments.length) 
-				return RiText.defaults.fontSize;
-	    	
-	    	if (RiText.defaults.fontSize != size) { 
-	    	
-				RiText.defaults.fontSize = size;
-				RiText.defaults._font = null;
-			}
-		}
-	  
-		RiText.defaultFont = function(font, size) {
-	
-			var a = arguments;
-			
-			if (a.length > 1) {
-				var sz = Number(a[1]);
-				if (!sz) a = [a[0]];
-			}
+		min = min || 0, max = max || 256;
+		var col = [RiText.random(min,max),RiText.random(min,max),RiText.random(min,max)];
+		if (includeAlpha) col.push(RiText.random(min,max));
+		return col;
+	}
+
+	RiText.random = function() {
+		
+		return RiTa.random.apply(this ,arguments);
+	}	
+
+	RiText.picked = function(x, y) {
+		
+	  var hits = [];
+	  for (var i = 0; i < RiText.instances.length; i++)
+	  {
+		var rt = RiText.instances[i];
+		rt.contains(x, y) && hits.push(rt);
+	  }
+	  return hits;
+	}
+
+	RiText.dispose = function(toDelete) {
+		
+	   is(toDelete,A) && RiText._disposeArray(toDelete);
+	   is(toDelete,O) && RiText._disposeOne(toDelete);
+	}
+
+	RiText.disposeAll = function() {
+		
+		for ( var i = 0; i < RiText.instances.length; i++) {
+
+			if (RiText.instances[i]) {
 				
-			if (a.length == 1) { // 1-arg
+				delete(RiText.instances[i]._rs);
+				delete(RiText.instances[i]);
+			}
+		}
+		
+		RiText.instances = [];
+	}
 	
-			if (typeof a[0] == O) {
+	RiText.createWords = function(txt, x, y, w, h, fontObj, leading) {
+
+		return RiText._createRiTexts(txt, x, y, w, h, fontObj, leading, RiText.prototype.splitWords);
+ 	}
+
+	RiText.createLetters = function(txt, x, y, w, h, fontObj, leading) {
+
+		return RiText._createRiTexts(txt, x, y, w, h, fontObj, leading, RiText.prototype.splitLetters);
+	}
+	
+	RiText.defaultFontSize = function(size) {
+		
+		if (!arguments.length) 
+			return RiText.defaults.fontSize;
+    	
+    	if (RiText.defaults.fontSize != size) { 
+    	
+			RiText.defaults.fontSize = size;
+			RiText.defaults._font = null;
+		}
+	}
+  
+	RiText.defaultFont = function(font, size) {
+
+		var a = arguments;
+		
+		if (a.length > 1 && !Number(a[1])) a = [a[0]]; // if 0 or undefined or NaN, ignore.
+			
+		if (a.length == 1) { // 1-arg
+
+			// Case:  RiText.defaultFont(name);
+			if (is(a[0],O)) {
 				
 				if (isNode() && a[0].widths) {// use no-op
-					RiText.renderer.font = a[0];
 					
-					//log('setting RiText.renderer.font');
+					RiText.renderer.font = a[0];	
 				}
-				a[0].name && (RiText.defaults.fontFamily = a[0].name);
+				
+				if (a[0].name) 
+					RiText.defaults.fontFamily = a[0].name;
+					
 			  	RiText.defaults._font = a[0];
 			}	
 			
-			// RiText.defaultFont(name);
-			if (typeof a[0] == S) {
+			// Case:  RiText.defaultFont(name);
+			if (is(a[0],S)) {
 				
+				if (/\.vlw$/.test(a[0])) {
+					warn(".vlw fonts not supported in RiTaJS! Ignoring: '"+a[0]+"'");
+					a[0] = RiText.defaults.fontFamily;
+				}
+					
 				RiText.defaults.fontFamily = a[0];
 				RiText.defaults._font = RiText.renderer._createFont(a[0], RiText.defaults.fontSize);
 			}
 		}
-	
-		// RiText.defaultFont(name, size);
+
+		// Case: RiText.defaultFont(name, size);
 		else if (a.length > 1) { // > 1 args
 			  
-			if (typeof a[0] == S) {
-			  RiText.defaults.fontFamily = a[0];
-			  RiText.defaults._font = RiText.renderer._createFont(a[0], a[1]);
+		 	// Case: RiText.defaultFont(name, size);
+			is(a[0],O) && (a[0] = a[0].name);// if an obj, grab the name
+			
+			if (is(a[0],S)) {
+				
+			  	RiText.defaults.fontFamily = a[0];
+			  	RiText.defaults._font = RiText.renderer._createFont(a[0], a[1]);
+			}
+			else {
+				
+				err("Unexpected type: "+(typeof a[0]));
 			}
 		}
 		
@@ -909,7 +923,7 @@
 	
 		return RiText.defaults._font;
 	}
-	
+			
 	/*
 	 * Returns json-formatted string representing the font metrics for the default font,
 	 *  with the following fields: { name, size, ascent, descent, widths }
@@ -946,31 +960,31 @@
 		
 		if (!fontName) err('RiText._createFont requires fontName');
 			
-			fontSize = fontSize || RiText.defaults.fontSize;
-	
-			return RiText.renderer._createFont(fontName, fontSize);
+		fontSize = fontSize || RiText.defaults.fontSize;
+
+		return RiText.renderer._createFont(fontName, fontSize);
+	}
+
+	RiText.drawAll = function(array) {
+		
+		if (arguments.length == 1 && is(array,A)) { 
+			for ( var i = 0; i < array.length; i++)
+				array[i] && array[i].draw();
 		}
-	
-		RiText.drawAll = function(array) {
-			
-			if (arguments.length == 1 && is(array,A)) { 
-				for ( var i = 0; i < array.length; i++)
-					array[i] && array[i].draw();
-			}
-			else {
-				for ( var i = 0; i < RiText.instances.length; i++)
-					RiText.instances[i] && RiText.instances[i].draw();
-			}   
+		else {
+			for ( var i = 0; i < RiText.instances.length; i++)
+				RiText.instances[i] && RiText.instances[i].draw();
+		}   
+	}
+
+	RiText.defaultFill = function(r, g, b, a) {
+ 
+		if (arguments.length) { 
+			RiText.defaults.fill = parseColor.apply(null, arguments);
 		}
-	
-		RiText.defaultFill = function(r, g, b, a) {
-	 
-			if (arguments.length) { 
-				RiText.defaults.fill = parseColor.apply(null, arguments);
-			}
-			return toColArr(RiText.defaults.fill);
-		}
-			
+		return toColArr(RiText.defaults.fill);
+	}
+		
 		
 		// private statics ///////////////////////////////////////////////////////////////
 	
@@ -1326,6 +1340,8 @@
 	RiText.prototype = {
 	
 		init : function(text, x, y, font) { 
+			
+			var bbs, screenH, args;
 						
 			if (!RiText.renderer) 
 				err("No graphics context, RiText unavailable");
@@ -1339,7 +1355,7 @@
 			
 			this._boundingStrokeWeight = RiText.defaults.boundingStrokeWeight;
 			
-			var bbs = RiText.defaults.boundingStroke;
+			bbs = RiText.defaults.boundingStroke;
 			this._boundingStroke = { 
 				r : (bbs && bbs.r) || this._color.r, 
 				g : (bbs && bbs.g) || this._color.g, 
@@ -1366,14 +1382,17 @@
 			this.g = RiText.renderer;
 			
 			// handle the arguments
-			var args = this._initArgs.apply(this,arguments);
+			args = this._initArgs.apply(this,arguments);
 	
 			this.font(args[3]);
+
+//console.log('font: '+this._font+"/"+this._font.size);
+
 			this.text(args[0]);
 	
 			// center by default
 			this.x = is(args[1], N) ? args[1] : this._screenCenterX();
-			var screenH =  (this.g && this.g.p) ? (this.g.p.height / 2) : 50;  // TODO: what to do for Node?
+			screenH =  (this.g && this.g.p) ? (this.g.p.height / 2) : 50;  // TODO: what to do for Node?
 			this.y = is(args[2],N) ? args[2] : screenH + (this.textHeight() / 2.0) ;
 			this.z = 0;
 			
@@ -2054,14 +2073,26 @@
 			
 			if (a.length == 1) {
 			
+				if (is(font,S)) {
+					
+					if (/\.vlw$/.test(font)) {
+						
+						warn(".vlw fonts not supported in RiTaJS! Ignoring: '"+font+"'");
+						this._font = RiText._getDefaultFont();
+						return this;
+					}
+						
+					this._font = RiText.renderer._createFont(font, RiText.defaults.fontSize);	
+					return this;
+				}	
+		
 				this._font = font || RiText._getDefaultFont();
-				this._font.size = this._font.size || RiText.defaults.fontSize;
-	
 				return this;
 			}
 			else if (a.length == 2) {
 				
-				return this.font(RiText.renderer._createFont(a[0], a[1]));
+				this._font = RiText.renderer._createFont(a[0], a[1]);	
+				return this;
 			}
 	
 			return this._font;

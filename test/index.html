@@ -19,7 +19,7 @@ var testDir = "./renderer",  tests = [
 	new Test("g_CreateLinesSingle"),
 	new Test("g_CreateLinesAndLayoutWithBreaks",1),
  	//new Test("layout-with-breaks"),
- 	new Test("g_DefaultFontAndFontVlwTtf",1),
+ 	new Test("g_DefaultFontAndFontVlwTtf",0),
 	new Test("g_DisposeAll"),
 	new Test("g_MotionTypes"),
 	new Test("g_RandomColor"),
@@ -114,7 +114,7 @@ $(document).ready(function() {
 	<a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><br>
 	<a id="Renderer-tests" class=head href="renderer/index.html?">[RiText-Renderers]</a><p>
 	<h2 id="qunit-header2">PhantomJS (cmd-line)</h2>
-	<div class="notes">$ /RiTaJS/scripts/run-phantom-tests.sh</div><br>
+	<div class="notes">$ /RiTaJS/scripts/run-phantom-tests.sh (broken?)</div><br>
 	<h2 id="qunit-header2">NodeJS (cmd-line)</h2>
 	<div class="notes">$ /RiTaJS/scripts/run-node-tests.sh</div><br>
 	<h2 id="qunit-header2">Renderer Tests</h2>
