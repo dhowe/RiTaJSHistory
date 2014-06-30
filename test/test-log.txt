@@ -1,26 +1,3 @@
+[TEST] Loading RiTa from ../src/rita.js
 [INFO] RiTaJS.version [##version##]
-[INFO] Testing UrlLoading
-[INFO] Completed UrlLoading
-[INFO] Testing RiGrammar
-[INFO] Completed RiGrammar
-[INFO] Testing RiString
-[INFO] Completed RiString
-[INFO] Testing RiTa
-[INFO] Completed RiTa
-[INFO] Testing RiTaEvent
-[INFO] Completed RiTaEvent
-[INFO] Testing LibraryStructure
-[INFO] Completed LibraryStructure
-[INFO] Testing RiMarkov
-[INFO] Completed RiMarkov
-[INFO] Testing RiLexicon
-[INFO] Completed RiLexicon
-[INFO] Testing RiWordNet
-[INFO] Completed RiWordNet
-
-Global summary:
-[90m┌───────┬───────┬────────────┬────────┬────────┬─────────┐[39m
-[90m│[39m[31m Files [39m[90m│[39m[31m Tests [39m[90m│[39m[31m Assertions [39m[90m│[39m[31m Failed [39m[90m│[39m[31m Passed [39m[90m│[39m[31m Runtime [39m[90m│[39m
-[90m├───────┼───────┼────────────┼────────┼────────┼─────────┤[39m
-[90m│[39m 1     [90m│[39m 193   [90m│[39m 2361       [90m│[39m 0      [90m│[39m 2361   [90m│[39m 16649   [90m│[39m
-[90m└───────┴───────┴────────────┴────────┴────────┴─────────┘[39m
+'waitFor()' timeout

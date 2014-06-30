@@ -1167,40 +1167,40 @@
 	
 			// TODO: what if there is are tags in here -- is it possible?)
 			yPos = firstLine ? currentY : currentY + leading;
-			rlines.push(RiText._newRiTextLine(sb, pfont, x, currentY));
+			rlines.push(RiText._newRiTextLine(sb, pfont, x, yPos));
 			sb = E;
 		} 
 		else {
 	
 			RiText._addToStack(sb, words);
 			// save for next (not needed?)
-			}
-	
-			return rlines;
 		}
-	
-		RiText._withinBoundsY = function(currentY, leading, maxY, descent, firstLine) {
-			
-	    	if (!firstLine) 
-	    		return currentY + leading <= maxY - descent;
-			return currentY <= maxY - descent;
-	  	}
+
+		return rlines;
+	}
+
+	RiText._withinBoundsY = function(currentY, leading, maxY, descent, firstLine) {
+		
+    	if (!firstLine) 
+    		return currentY + leading <= maxY - descent;
+		return currentY <= maxY - descent;
+  	}
+  
+	RiText._addToStack = function(txt, words) {
+
+		var tmp = txt.split(SP)
+		for ( var i = tmp.length - 1; i >= 0; i--)
+			words.push(tmp[i]);
+	}
 	  
-		RiText._addToStack = function(txt, words) {
-	
-			var tmp = txt.split(SP)
-			for ( var i = tmp.length - 1; i >= 0; i--)
-				words.push(tmp[i]);
-		}
-		  
-		RiText._newRiTextLine = function(s, pf, xPos, nextY) {
-			
-		    // strip trailing spaces
-	    while (s != null && s.length > 0 && endsWith(s, SP))
-	      s = s.substring(0, s.length - 1);
-	    
-	    return RiText(s, xPos, nextY, pf);
-	    //log(rt);return rt;
+	RiText._newRiTextLine = function(s, pf, xPos, nextY) {
+		
+	    // strip trailing spaces
+    while (s != null && s.length > 0 && endsWith(s, SP))
+      s = s.substring(0, s.length - 1);
+    
+    return RiText(s, xPos, nextY, pf);
+    //log(rt);return rt;
 	}
 	
 	RiText._createRiTexts = function(txt, x, y, w, h, fontObj, lead, splitFun) {  
