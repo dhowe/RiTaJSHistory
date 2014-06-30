@@ -20,6 +20,6 @@ fi
 
 echo 
 
-$PHANTOM ../lib/phantomjs-qunit.js RiTa-tests.html 2>&1  | /usr/bin/tee test-log.txt
+$PHANTOM ../lib/phantomjs-qunit.js AllTests.html 2>&1  | /usr/bin/tee test-log.txt
 
 exit
