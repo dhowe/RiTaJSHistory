@@ -221,10 +221,32 @@ var runtests = function() {
         var result = rs.concat(rs2);
         equal(result, " The dog was white The dog was not white ");
 
+        var rs = new RiText(" The dog was white ");
+        var rs2 = new RiText("The dog was not white ");
+        var result = rs.concat(rs2);
+        equal(result, " The dog was white The dog was not white ");
+
         var rs = new RiText("#$#@#$@#");
         var rs2 = new RiText("The dog was not white ");
         var result = rs.concat(rs2);
         equal(result, "#$#@#$@#The dog was not white ");
+
+        var BADS = [ "sometext",null, undefined ];
+        for ( var i = 0; i < BADS.length; i++) {
+            var rs = new RiText(" The dog was white ");
+            throws(function() {
+                try {
+
+                    rs.concat(BADS[i]);
+                    fail("no exception");
+                }
+                catch (e) {
+                    throw e;
+                }
+            });
+        }
+            
+        
 
     });
 
