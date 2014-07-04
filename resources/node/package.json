@@ -24,11 +24,10 @@
   "scripts": {
     "test": "node test/test-runner.js"
   },
-  "licenses": [
-    {
+  "licenses": [{
       "type": "GPL",
       "url": "http://www.opensource.org/licenses/GPL-3.0"
-    }
+  }],
   "dependencies": { },
   "devDependencies": { "qunit": ">= 1.0" },
   "optionalDependencies": { }

@@ -17,7 +17,7 @@ var testDir = "./renderer",  tests = [
  	//new Test("create-letters"),
 	//new Test("create-words"),
 	new Test("g_CreateLinesSingle"),
-	new Test("g_CreateLinesAndLayoutWithBreaks",1),
+	new Test("g_CreateLinesAndLayoutWithBreaks",0),
  	//new Test("layout-with-breaks"),
  	new Test("g_DefaultFontAndFontVlwTtf",0),
 	new Test("g_DisposeAll"),
@@ -113,10 +113,10 @@ $(document).ready(function() {
 	<a id="RiTextStructure-p5" class=head href="RiTextStructure-P5.html?">[RiText-Structure(p5)]</a><br>
 	<a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><br>
 	<a id="Renderer-tests" class=head href="renderer/index.html?">[RiText-Renderers]</a><p>
-	<h2 id="qunit-header2">PhantomJS (cmd-line)</h2>
-	<div class="notes">$ /RiTaJS/scripts/run-phantom-tests.sh (broken?)</div><br>
 	<h2 id="qunit-header2">NodeJS (cmd-line)</h2>
 	<div class="notes">$ /RiTaJS/scripts/run-node-tests.sh</div><br>
+	<h2 id="qunit-header2">PhantomJS (cmd-line)</h2>
+	<div class="notes">$ /RiTaJS/scripts/run-phantom-tests.sh (broken?)</div><br>
 	<h2 id="qunit-header2">Renderer Tests</h2>
 	
 	<script type="text/javascript">

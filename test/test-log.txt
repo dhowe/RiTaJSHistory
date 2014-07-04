@@ -1,3 +1,40 @@
-[TEST] Loading RiTa from ../src/rita.js
 [INFO] RiTaJS.version [##version##]
-'waitFor()' timeout
+[INFO] Testing UrlLoading
+[INFO] Completed UrlLoading
+[INFO] Testing RiGrammar
+[INFO] Completed RiGrammar
+[INFO] Testing RiString
+[INFO] Completed RiString
+[INFO] Testing RiTa
+[INFO] Completed RiTa
+[INFO] Testing RiTaEvent
+[INFO] Completed RiTaEvent
+[INFO] Testing LibraryStructure
+[INFO] Completed LibraryStructure
+[INFO] Testing RiMarkov
+[INFO] Completed RiMarkov
+[INFO] Testing RiLexicon
+[INFO] Completed RiLexicon
+[INFO] Testing RiWordNet
+[INFO] Completed RiWordNet
+
+Global summary:
+[90m┌───────┬───────┬────────────┬────────┬────────┬─────────┐[39m
+[90m│[39m[31m Files [39m[90m│[39m[31m Tests [39m[90m│[39m[31m Assertions [39m[90m│[39m[31m Failed [39m[90m│[39m[31m Passed [39m[90m│[39m[31m Runtime [39m[90m│[39m
+[90m├───────┼───────┼────────────┼────────┼────────┼─────────┤[39m
+[90m│[39m 1     [90m│[39m 194   [90m│[39m 2356       [90m│[39m 1      [90m│[39m 2355   [90m│[39m 19846   [90m│[39m
+[90m└───────┴───────┴────────────┴────────┴────────┴─────────┘[39m
+
+
+Errors:
+
+Module: RiString Test: RiString.features()
+Expected at least one assertion, but none were run - call expect(0) to accept zero assertions.
+    at runtests (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiString-tests.js:94:2)
+    at Object.<anonymous> (/Users/dhowe/Documents/eclipse-workspace/RiTa/RiTaLibraryJS/test/RiString-tests.js:1324:37)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)

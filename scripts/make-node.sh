@@ -85,7 +85,7 @@ cp $NODE_RES/test-runner.js $NODE_TEST/
 echo 3: Copying $TEST to $NODE_TEST
 cp -r $TEST/*.js* $NODE_TEST/
 
-echo 4: Copying $DOC_DIR to $NODE_DOC
+echo 4: Copying $DOC_DIR/* to $NODE_DOC
 cp -r $DOC_DIR/* $NODE_DOC/
 
 echo 5: Copying $DL_DIR/rita-$VERSION.min.js to $NODE_LIB
@@ -126,4 +126,6 @@ else
     echo Done [use [-p] [-f] to publish]
 fi
 
-tar -tvf $LATEST/$TARBALL
+
+ls -l $LATEST/$TARBALL
+#tar -tvf $LATEST/$TARBALL
