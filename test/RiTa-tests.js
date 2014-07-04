@@ -15,8 +15,8 @@ var runtests = function () {
     	else
     		ok("Only check in Node");
 	});
-	
 
+	
     test("RiTa.constants", function () {
 
         ok(RiTa.VERSION);

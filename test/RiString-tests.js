@@ -91,6 +91,10 @@ var runtests = function() {
         }
     });
 
+	test("RiString.features()", function() {
+		// TODO:  
+	});
+	
     test("RiString.analyze()", function() {
 
       	var features = RiString("Mom & Dad, waiting for the car, ate a steak.").analyze().features();
