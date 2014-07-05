@@ -29,6 +29,6 @@
       "url": "http://www.opensource.org/licenses/GPL-3.0"
   }],
   "dependencies": { },
-  "devDependencies": { "qunit": ">= 1.0" },
+  "devDependencies": { "qunit": ">= 1.9.0" },
   "optionalDependencies": { }
 }
