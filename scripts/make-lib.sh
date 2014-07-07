@@ -83,7 +83,7 @@ REF_DIR=$WWW_DIR/reference
 RITA_CODE=$DOWNLOAD_DIR/rita-$VERSION.js
 RITA_CODE_MIN=$DOWNLOAD_DIR/rita-$VERSION.min.js
 RITA_CODE_MICRO=$DOWNLOAD_DIR/rita-$VERSION.micro.js
-BOWER_JSON=../resources/bower/package.json
+BOWER_JSON=../resources/bower/bower.json
 
 ZIP_TMP=/tmp/rita-$VERSION
 ZIP_FILE=ritajs-full-$VERSION.zip
@@ -115,9 +115,8 @@ then
     sed -i "" "s/##version##/${VERSION}/g" ../bower.json
     #sed -i "" "s/##version##/${VERSION}/g" $SRC_VERSIONED
 else
-    echo "Not updating bower" 
+    echo "*** Not updating bower ***" 
 fi
-#head ../bower.json
 
 rm -f $RITA_CODE
 echo "Combining src/*.js as ${RITA_CODE}" 

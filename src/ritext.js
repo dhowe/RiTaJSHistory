@@ -1043,13 +1043,14 @@
 		var a = arguments, t = Type.get(a[0]), g = RiText.renderer;
 	
 		if (t != S && t != A) { // ignore first (PApplet/window) argument, shift
+			
 			txt = a[1], x = a[2], y = a[3], w = a[4], 
 			h = a[5], pfont = a[6], leading = a[7];
 		}
 	
 		if (!txt || !txt.length) return EA;
 	
-		h = h || Number.MAX_VALUE;
+		h = (h && h > 0) || Number.MAX_VALUE;
 		pfont = pfont || RiText.defaultFont();
 	
 		leading = leading || pfont.size * RiText.defaults.leadingFactor;
