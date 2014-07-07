@@ -209,17 +209,12 @@ var runtests = function() {
        }
     });
     
-    test("RiText.concat()", function() { //TODO
+    test("RiText.concat()", function() { 
 
         var rs = new RiText("The dog was white");
         var rs2 = new RiText("The dog was not white");
         var result = rs.concat(rs2);
         equal(result, "The dog was whiteThe dog was not white");
-
-        var rs = new RiText(" The dog was white ");
-        var rs2 = new RiText("The dog was not white ");
-        var result = rs.concat(rs2);
-        equal(result, " The dog was white The dog was not white ");
 
         var rs = new RiText(" The dog was white ");
         var rs2 = new RiText("The dog was not white ");
