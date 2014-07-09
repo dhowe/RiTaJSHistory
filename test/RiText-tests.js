@@ -566,6 +566,35 @@ var runtests = function() {
         var result = rs.match(/r?or?/g);
         deepEqual(result, [ "o", "or", "ro" ]);
 
+         var rs = new RiText("Letter !>D? hello 213331123");
+            var result = rs.match("[A-Za-z]");
+          
+            deepEqual(result, ["L", "e", "t","t", "e", "r" ,"D","h","e","l","l","o"]);
+            
+            var rs = new RiText("Letter !>D? hello 213331123");
+            var result = rs.match("\\W");
+         
+            deepEqual(result,  [ " ", "!", ">","?"," "," "]);
+            
+            var rs = new RiText("Letter !>D? hello 213331123");
+            var result = rs.match("[^0-9]");
+       
+            deepEqual(result,[ "L", "e", "t","t", "e", "r"," ","!",">","D","?" ," ","h","e","l","l","o"," "]);
+
+            var rs = new RiText("!@#$%^&*()__+");
+            var result = rs.match("X|Z");
+         
+            deepEqual(result, []);
+
+            var rs = new RiText( "!@#$%^&*()__+");
+            var result = rs.match("!|Z");
+        
+            deepEqual(result,["!"]);
+
+
+
+
+
     });
 
     test("RiText.pos()", function() {
@@ -1185,22 +1214,74 @@ var runtests = function() {
 
 
     test("RiText.copy()", function() { 
-      var rt = new RiText(100,270,"hello");
-      
-      rt.fill(101,102,103,104);
-      rt.showBounds(true);
-      
-      var rt2 = rt.copy();
-      equal(rt.x,rt2.x);
-      equal(rt.y,rt2.y);
-      equal(rt.z,rt2.z);
-      equal(rt.alpha(),rt2.alpha());
-      equal(rt.text(),rt2.text());
-      equal(rt.showBounds(),rt2.showBounds());
+        var rt = new RiText("hello", 100, 270);
 
-      deepEqual(rt.fill(),rt2.fill());
+    rt.fill(101, 102, 103, 104);
+    rt.showBounds(true);
 
-      // TODO: finish
+    var rt2 = rt.copy();
+    equal(rt.x, rt2.x);
+    equal(rt.y, rt2.y);
+    equal(rt.z, rt2.z);
+    equal(rt.alpha(), rt2.alpha());
+    equal(rt.text(), rt2.text());
+    equal(rt.align(), rt2.align());
+    
+    equal(rt.autodraw(), rt2.autodraw());
+    equal(rt.behaviors(), rt2.behaviors());
+    equal(rt.charAt(3), rt2.charAt(3));
+
+    deepEqual(rt.boundingBox(),rt2.boundingBox());
+
+    deepEqual(rt.fill(), rt2.fill());
+    
+    
+    rt = new RiText(" space tabSpace	AbCd 1234 ", 5, 10);
+
+    rt.fill(101, 102, 103, 104);
+    rt.showBounds(true);
+
+    rt2 = rt.copy();
+    equal(rt.x, rt2.x);
+    equal(rt.y, rt2.y);
+    equal(rt.z, rt2.z);
+    equal(rt.alpha(), rt2.alpha());
+    equal(rt.text(), rt2.text());
+    equal(rt.align(), rt2.align());
+    
+    equal(rt.autodraw(), rt2.autodraw());
+    equal(rt.behaviors(), rt2.behaviors());
+    equal(rt.charAt(3), rt2.charAt(3));
+
+    deepEqual(rt.boundingBox(),rt2.boundingBox());
+
+    deepEqual(rt.fill(), rt2.fill());
+    
+    
+    
+    
+    var rt3 = new RiText("!@#$%^&*()_ GHFHJJJ hjhjjh", 15, 20);
+    
+    rt3.fill(1, 100, 23);
+    rt3.showBounds(false);
+
+    var rt4 = rt3.copy();
+    equal(rt4.x, rt3.x);
+    equal(rt4.y, rt3.y);
+    equal(rt4.z, rt3.z);
+    equal(rt4.alpha(), rt3.alpha());
+    equal(rt4.text(), rt3.text());
+    equal(rt4.align(), rt3.align());
+
+    equal(rt4.autodraw(), rt3.autodraw());
+    equal(rt4.behaviors(), rt3.behaviors());
+    equal(rt4.charAt(3), rt3.charAt(3));
+
+    deepEqual(rt4.boundingBox(),rt3.boundingBox());
+
+    deepEqual(rt4.fill(), rt3.fill());
+
+
     });
 
 }
