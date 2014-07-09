@@ -14,7 +14,7 @@ function loadLibrary(name) {
 		dataStr = ' (+data/lts)'
 	}
 
-	console.log('[TEST] Loading ' + name + ' from ' + loc + dataStr);
+	console.log('[TEST] Loading ' + name + ' from ' + loc + dataStr);//+"\n"+srcTag);
 
 	document.write(srcTag);
 }

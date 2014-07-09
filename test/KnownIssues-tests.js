@@ -6,7 +6,6 @@ var runtests = function () {
     
         var res = RiTa.stripPunctuation("����������`',;:!?)He,;:!?)([].#l\"\\!@$%&}<>|+$%&}<>|+=-_\\o}<>|+=-_\\/*{^");
         equal(res, "Hello");
-
     });
 
     test("RiString.replaceWordAt()", function () { 

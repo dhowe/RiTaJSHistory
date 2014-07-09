@@ -12,8 +12,10 @@ var runtests = function () {
 
     	if (QUnit.checkAPI) 
     		QUnit.checkAPI('RiTa', RiTa, RiTa);
-    	else
+    	else {
+    		console.log("[TEST] Skipping checkAPI() for RiTa");
     		ok("Only check in Node");
+    	}
 	});
 
 	
