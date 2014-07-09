@@ -6,17 +6,24 @@ QUnit.checkAPI = function(className, Class, obj) {
 	var eles = QUnit.propertiesFromAPI(className); 	
     for ( var i = 0; i < eles.length; i++) {
     	
+    	//console.log("Checking "+eles[i].name);
+    	
+    	if (!eles[i] || eles[i]==='undefined') {
+    		console.log("Null element in "+className.json);
+    		continue;
+    	}
+    	
     	if (eles[i].isVar) {
     		
-			ok(obj.hasOwnProperty(eles[i].name), 'checking property:'+eles[i].name);
+			ok(obj.hasOwnProperty(eles[i].name), 'property: '+eles[i].name);
     	}
     	else if (eles[i].isStatic) {
     		
-    		equal(typeof Class[eles[i].name], 'function', 'checking static-function: '+Class[eles[i].name]+'()');
+    		equal(typeof Class[eles[i].name], 'function', 'static-function: '+eles[i].name+'()');
     	}
     	else {
     		
-    		equal(typeof obj[eles[i].name], 'function', 'checking function: '+eles[i].name+'()');
+    		equal(typeof obj[eles[i].name], 'function', 'function: '+eles[i].name+'()');
     	}
     }        
 }

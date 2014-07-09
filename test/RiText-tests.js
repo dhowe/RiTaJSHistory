@@ -554,47 +554,37 @@ var runtests = function() {
 
     test("RiText.match()", function() { //TODO
 
-        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        var result = rs.match(/ain/g);
-        deepEqual(result, [ "ain", "ain", "ain" ]);
+		var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+		var result = rs.match(/ain/g);
+		deepEqual(result, ["ain", "ain", "ain"]);
 
-        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        var result = rs.match(/ain/gi);
-        deepEqual(result, [ "ain", "AIN", "ain", "ain" ]);
+		var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+		var result = rs.match(/ain/gi);
+		deepEqual(result, ["ain", "AIN", "ain", "ain"]);
 
-        var rs = new RiText("Watch out for the rock!");
-        var result = rs.match(/r?or?/g);
-        deepEqual(result, [ "o", "or", "ro" ]);
+		var rs = new RiText("Watch out for the rock!");
+		var result = rs.match(/r?or?/g);
+		deepEqual(result, ["o", "or", "ro"]);
 
-         var rs = new RiText("Letter !>D? hello 213331123");
-            var result = rs.match("[A-Za-z]");
-          
-            deepEqual(result, ["L", "e", "t","t", "e", "r" ,"D","h","e","l","l","o"]);
-            
-            var rs = new RiText("Letter !>D? hello 213331123");
-            var result = rs.match("\\W");
-         
-            deepEqual(result,  [ " ", "!", ">","?"," "," "]);
-            
-            var rs = new RiText("Letter !>D? hello 213331123");
-            var result = rs.match("[^0-9]");
-       
-            deepEqual(result,[ "L", "e", "t","t", "e", "r"," ","!",">","D","?" ," ","h","e","l","l","o"," "]);
+		var rs = new RiText("Letter !>D? hello 213331123");
+		var result = rs.match(/[A-Za-z]/g);		
+		deepEqual(result, ["L", "e", "t", "t", "e", "r", "D", "h", "e", "l", "l", "o"]);
 
-            var rs = new RiText("!@#$%^&*()__+");
-            var result = rs.match("X|Z");
-         
-            deepEqual(result, []);
+		var rs = new RiText("Letter !>D? hello 213331123");
+		var result = rs.match(/\W/g);
+		deepEqual(result, [" ", "!", ">", "?", " ", " "]);
 
-            var rs = new RiText( "!@#$%^&*()__+");
-            var result = rs.match("!|Z");
-        
-            deepEqual(result,["!"]);
+		var rs = new RiText("Letter !>D? hello 213331123");
+		var result = rs.match(/[^0-9]/g);
+		deepEqual(result, ["L", "e", "t", "t", "e", "r", " ", "!", ">", "D", "?", " ", "h", "e", "l", "l", "o", " "]);
 
+		var rs = new RiText("!@#$%^&*()__+");
+		var result = rs.match(/X|Z/g);
+		deepEqual(result, []);
 
-
-
-
+		var rs = new RiText("!@#$%^&*()__+");
+		var result = rs.match(/!|Z/g);
+		deepEqual(result, ["!"]);
     });
 
     test("RiText.pos()", function() {
@@ -1227,8 +1217,8 @@ var runtests = function() {
     equal(rt.text(), rt2.text());
     equal(rt.align(), rt2.align());
     
-    equal(rt.autodraw(), rt2.autodraw());
-    equal(rt.behaviors(), rt2.behaviors());
+    // equal(rt.autodraw(), rt2.autodraw()); // not in API
+    equal(rt.behaviors, rt2.behaviors);
     equal(rt.charAt(3), rt2.charAt(3));
 
     deepEqual(rt.boundingBox(),rt2.boundingBox());
@@ -1249,8 +1239,8 @@ var runtests = function() {
     equal(rt.text(), rt2.text());
     equal(rt.align(), rt2.align());
     
-    equal(rt.autodraw(), rt2.autodraw());
-    equal(rt.behaviors(), rt2.behaviors());
+    // equal(rt.autodraw(), rt2.autodraw()); // not in API
+    equal(rt.behaviors, rt2.behaviors);
     equal(rt.charAt(3), rt2.charAt(3));
 
     deepEqual(rt.boundingBox(),rt2.boundingBox());
@@ -1273,8 +1263,8 @@ var runtests = function() {
     equal(rt4.text(), rt3.text());
     equal(rt4.align(), rt3.align());
 
-    equal(rt4.autodraw(), rt3.autodraw());
-    equal(rt4.behaviors(), rt3.behaviors());
+    // equal(rt.autodraw(), rt2.autodraw()); // not in API ?? no, only static
+    equal(rt4.behaviors, rt3.behaviors); // not in API ??
     equal(rt4.charAt(3), rt3.charAt(3));
 
     deepEqual(rt4.boundingBox(),rt3.boundingBox());

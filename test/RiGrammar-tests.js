@@ -12,8 +12,10 @@ var runtests = function() {
     test("RiGrammar.checkAPI", function() {
     	if (QUnit.checkAPI)
 			QUnit.checkAPI('RiGrammar', RiGrammar, new RiGrammar());
-		else
+  		else {
+    		console.log("[TEST] Skipping checkAPI() for RiGrammar");
     		ok("Only check in Node");
+    	};
 	});
 	
     var sentenceGrammar = { "<start>" : "<noun_phrase> <verb_phrase>.", "<noun_phrase>" : "<determiner> <noun>", "<verb_phrase>" : "<verb> | <verb> <noun_phrase> [.1]", "<determiner>" : "a [.1] | the", "<noun>" : "woman | man", "<verb>" : "shoots" }

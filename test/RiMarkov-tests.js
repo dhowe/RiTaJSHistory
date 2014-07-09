@@ -15,8 +15,10 @@ var runtests = function() {
 
     	if (QUnit.checkAPI)
 	    	QUnit.checkAPI('RiMarkov', RiMarkov, new RiMarkov(2));
-		else
+  		else {
+    		console.log("[TEST] Skipping checkAPI() for RiMarkov");
     		ok("Only check in Node");
+    	};
 	});
 
 	test("RiMarkov()", function() {
