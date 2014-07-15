@@ -4,15 +4,18 @@
 <head>
 <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen"/>
 
-<script type="text/javascript" src="../lib/jquery-min.js"></script>
-<script type="text/javascript" src="../lib/qunit.js"></script>
+<script type="text/javascript" src="../src/rita_dict.js"></script>
+<script type="text/javascript" src="../src/rita_lts.js"></script>
+<script type="text/javascript" src="../src/rita.js"></script>
+<script type="text/javascript" src="../node_modules/qunit/node_modules/qunitjs/qunit/qunit.js"></script>
+<!--script type="text/javascript" src="../lib/qunit.js"</script-->
+
 <script type="text/javascript" src="./RiTa-tests.js"></script>
-<script type="text/javascript" src="./rita-loader.js"></script>        
 
 <script>
-loadLibrary('RiTa');
-$(document).ready(runtests);
+window.onload = runtests;
 </script>
+
 </head>
 
 <body>

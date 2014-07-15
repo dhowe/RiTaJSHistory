@@ -16,13 +16,6 @@ var runtests = function() {
     	};
 	});
     
-    test("RiString._stringify", function() {
-
-            var data = [ [ [ 2 ], [], [ 'ao' ], [ 'r' ] ], [ [ 0 ], [ 'g' ], [ 'ah' ], [] ], [ [ 0 ], [ 'n' ], [ 'ah' ], [] ], [ [ 1 ], [ 'z' ], [ 'ey' ], [] ], [ [ 0 ], [ 'sh' ], [ 'ah' ], [ 'n', 'z' ] ] ];
-            var out = "ao2-r g-ah0 n-ah0 z-ey1 sh-ah0-n-z";
-            equal(RiString._stringify(data), out);
-	});
-
     test("RiString._syllabify(string)", function() {
 
         var test = "ao2-r-g-ah0-n-ah0-z-ey1-sh-ah0-n-z";
@@ -30,6 +23,13 @@ var runtests = function() {
         var result = RiString._syllabify(test);
         deepEqual(result, expected);
     });
+
+    test("RiString._stringify", function() {
+
+            var data = [ [ [ 2 ], [], [ 'ao' ], [ 'r' ] ], [ [ 0 ], [ 'g' ], [ 'ah' ], [] ], [ [ 0 ], [ 'n' ], [ 'ah' ], [] ], [ [ 1 ], [ 'z' ], [ 'ey' ], [] ], [ [ 0 ], [ 'sh' ], [ 'ah' ], [ 'n', 'z' ] ] ];
+            var out = "ao2-r g-ah0 n-ah0 z-ey1 sh-ah0-n-z";
+            equal(RiString._stringify(data), out);
+	});
 
 
     test("RiString._syllabify(array)", function() {
@@ -94,6 +94,13 @@ var runtests = function() {
     });
 
     test("RiString.analyze()", function() { // this also tests RiString.features()
+
+        var features = RiString("123").analyze().features();
+        ok(features);
+
+        equal(features.phonemes, "w-ah-n-t-uw-th-r-iy");
+        equal(features.syllables, "w-ah-n/t-uw/th-r-iy");
+        equal(features.stresses, "0/0/0");
 
       	var features = RiString("Mom & Dad, waiting for the car, ate a steak.").analyze().features();
         ok(features);
@@ -212,7 +219,7 @@ var runtests = function() {
       rs2 = rs.copy();
       deepEqual(rs, rs2);
       
-		rs = new RiString("copy cat");
+        rs = new RiString("copy cat");
 		rs.analyze();
 		rs2 = rs.copy();
 		deepEqual(rs.features(), rs2.features());
@@ -221,7 +228,6 @@ var runtests = function() {
 		rs.set("myFeatureName", "myFeatureValue");
 		rs2 = rs.copy();
 		equal(rs.get("myFeatureName"), rs2.get("myFeatureName")); 
-
     });
 
     test("RiString.endsWith()", function() {

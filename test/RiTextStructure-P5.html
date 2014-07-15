@@ -1,14 +1,20 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" 
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-  <head>
-    <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen" />
-    <script type="text/javascript" src="../lib/jquery-min.js"></script>
-	<script type="text/javascript" src="node_modules/qunit/node_modules/qunitjs/qunit/qunit.js"></script>
-    <script type="text/javascript" src="./rita-loader.js"></script>
-    <script type="text/javascript" src="../lib/processing.min.js"></script>
+    <head>
+    <link rel="stylesheet" href="rita-test.css" type="text/css" media="screen"/>
+
+    <script type="text/javascript" src="../src/rita.js"></script>
+    <script type="text/javascript" src="../src/ritext.js"></script>
+    <script type="text/javascript" src="../lib/qunit.js"></script>
+
     <script type="text/javascript" src="./RiTextStructure-P5.js"></script>
-    <script>loadLibrary('RiTa');</script>
+
+    <script>
+    window.onload = runtests;
+    </script>
+
+    </head>
 
     <script type="text/processing" data-processing-target="mycanvas">
     <script>
@@ -18,8 +24,6 @@
             background(250);
             RiText("Hello from RiTa[P5]").draw();
         }
-
-        $(document).ready(runtests);
 
     </script>
   <body>

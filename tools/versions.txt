@@ -1,2 +1,0 @@
-gjslint: 2.3.6.1
-clojure-compiler: 20140407
