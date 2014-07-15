@@ -1,15 +1,23 @@
 var runtests = function() {
-	 	
+
+    var tmp;	 	
     QUnit.module("RiText", {
-	    setup: function () {},
-	    teardown: function () {}
+	    setup: function () {
+
+            tmp = RiTa.SILENT;
+            RiTa.SILENT = true;
+        },
+	    teardown: function () {
+
+            RiTa.SILENT = tmp;
+        }
 	});
     
     test("RiText.checkAPI", function() { // Can this move to QUnit-Callbacks?
-    	
+
     	if (typeof QUnit.propertiesFromAPI != 'function') {
+
 			ok(typeof exports == 'undefined'); // not in node, ignore for now
-			console.log('Returning!');
 			return;
     	}
     	
@@ -1274,6 +1282,7 @@ var runtests = function() {
 
     });
 
+    RiTa.SILENT = tmp;
 }
 
 if (typeof exports != 'undefined') runtests();

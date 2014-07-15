@@ -5,27 +5,25 @@
         
         <!--link rel="stylesheet" href="../lib/qunit.css"-->
         <link rel="stylesheet" href="./rita-test.css">
-        <link rel="stylesheet" href="../lib/qunit-composite.css">
+        <link rel="stylesheet" href="../node_modules/qunit/node_modules/qunitjs/addons/composite/qunit-composite.css">
 		
-        <script type="text/javascript" src="../lib/jquery-min.js"></script>
-        <script type="text/javascript" src="../lib/qunit.js"></script>
-        <script type="text/javascript" src="../lib/qunit-composite.js"></script>
-        <script type="text/javascript" src="./rita-loader.js"></script>        
+        <script type="text/javascript" src="../node_modules/qunit/node_modules/qunitjs/qunit/qunit.js"></script>
+        <script type="text/javascript" src="../node_modules/qunit/node_modules/qunitjs/addons/composite/qunit-composite.js"></script> 
+
         
         <script>
-	        loadLibrary('RiTa');
 			QUnit.testSuites([
 				//{ name: "RiTaEvent", path: "RiTaEvent" },
-				"RiTaEvent-tests",
-				"RiTa-tests?data=1",
-				"RiText-tests?data=1",
-				"RiString-tests?data=1",
-				"RiMarkov-tests",
-				"RiGrammar-tests",
-				"RiWordNet-tests",
-				"RiTextStructure-P5?data=1",
-				"RiLexicon-tests?data=1",
-				"UrlLoading-tests?data=1",
+				"RiTaEvent-tests.html",
+				"UrlLoading-tests.html",
+				"RiTa-tests.html",
+				"RiText-tests.html",
+				"RiString-tests.html",
+				"RiMarkov-tests.html",
+				"RiGrammar-tests.html",
+				"RiWordNet-tests.html",
+				"RiTextStructure-P5.html",
+				"RiLexicon-tests.html"
 			]);
 		</script>
     </head>

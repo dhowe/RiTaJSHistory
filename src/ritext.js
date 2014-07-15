@@ -48,7 +48,7 @@
 		
 		console.log("err(msg) :: "+typeof console.trace);
 		
-		(!RiTa.SILENT) && console && console.trace(this);
+		(!RiTa.SILENT) && (console && console.trace(this));
 		
 		throw Error("[RiTa] " + msg);
 	}
@@ -110,7 +110,7 @@
 	// RiText statics
 	////////////////////////////////////////////////////////////////////// 
 	
-	isNode() && require('./rita');
+	isNode() && (require('./rita'));
 	
 	var RiText = makeClass();
 		
@@ -127,7 +127,7 @@
 		framesSinceLastFPS : 0,
 		callbackDisabled : false,
 		timeSinceLastFPS : Date.now()
-	}
+	};
 	
 	var Easing = { // Penner's canonical set
 	
@@ -429,8 +429,9 @@
 					var s = 1, i;
 					if ( a[ n ] ) return a[ n ];
 					for ( i = n; i > 1; i-- ) s *= i;
-					return a[ n ] = s;
-	
+
+					a[ n ] = s;
+                    return a[n];
 				};
 			})(),
 	
@@ -533,7 +534,7 @@
 			_valuesEnd = properties;
 			
 			return this;
-		}
+		};
 	
 		this.start = function ( time ) {
 	
@@ -569,19 +570,19 @@
 			}
 	
 			return this;
-		}
+		};
 	
 		this.stop = function () {
 	
 			if (_parent) _parent.stopBehavior( this );
 			return this;
-		}
+		};
 	
 		this.delay = function ( amount ) {
 	
 			_delayTime = amount;
 			return this;
-		}
+		};
 	
 		this.easing = function ( easing ) {
 			if (!easing) err('null easing!!');
@@ -593,26 +594,26 @@
 	
 			_interpolationFunction = interpolation;
 			return this;
-		}
+		};
 	
 		this.chain = function ( chainedTween ) {
 	
 			_chainedTween = chainedTween;
 			return this;
-		}
+		};
 	
 		this.onUpdate = function ( onUpdateCallback ) {
 	
 			_onUpdateCallback = onUpdateCallback;
 			return this;
 	
-		}
+		};
 	
 		this.onComplete = function ( onCompleteCallback ) {
 	
 			_onCompleteCallback = onCompleteCallback;
 			return this;
-		}
+		};
 	
 		this.update = function ( time ) {
 	
@@ -661,7 +662,7 @@
 			}
 	
 			return true;
-		}
+		};
 		
 	} // end TextBehavior
 	
@@ -689,8 +690,8 @@
 			
 			if (Type.get(obj) != type) {
 				
-				throw TypeError('Expected '+(type ? type.toUpperCase() : type+'')
-					+ ", but received "+(obj ? Type.get(obj).toUpperCase() : obj+''));
+				throw TypeError('Expected '+(type ? type.toUpperCase() : type+'') + 
+                    ", but received "+(obj ? Type.get(obj).toUpperCase() : obj+''));
 			}
 			
 			return true;
@@ -717,7 +718,7 @@
 		var a = arguments, type,
 			g = RiText.renderer,  
 			an = RiText._animator, 
-			callback = undef(window) ? null : window['draw'];
+			callback = undef(window) ? null : window.draw;
 		
 		if (g._type() === 'Processing') return; // let P5 do its own loop
 	  
@@ -914,7 +915,7 @@
 		}
 		
 		// RiText.defaultFont();
-		else if (a.length == 0 && !RiText.defaults._font) { // 0-args
+		else if (a.length === 0 && !RiText.defaults._font) { // 0-args
 						
 			// TODO: What if defaults.fontSize has changed since defaults.font was created? 
 			RiText.defaults._font = isNode() ? RiText.defaults.metrics 
@@ -966,14 +967,14 @@
 	}
 
 	RiText.drawAll = function(array) {
-		
+	    	
 		if (arguments.length == 1 && is(array,A)) { 
 			for ( var i = 0; i < array.length; i++)
 				array[i] && array[i].draw();
 		}
 		else {
-			for ( var i = 0; i < RiText.instances.length; i++)
-				RiText.instances[i] && RiText.instances[i].draw();
+			for ( var j = 0; j < RiText.instances.length; j++)
+				RiText.instances[j] && RiText.instances[j].draw();
 		}   
 	}
 
@@ -1068,7 +1069,7 @@
 		
 		if (w < 0) w = Number.MAX_VALUE;
 	
-		var ascent, descent, leading, startX = x, currentX, currentY, 
+		var ascent, descent, startX = x, currentX, currentY, 
 			rlines = [], sb = E, words = [], next, yPos = 0, rt = null,
 			newParagraph = false, forceBreak = false, firstLine = true, 
 			maxW = x + w, maxH = y + h;
@@ -1197,11 +1198,10 @@
 	RiText._newRiTextLine = function(s, pf, xPos, nextY) {
 		
 	    // strip trailing spaces
-    while (s != null && s.length > 0 && endsWith(s, SP))
-      s = s.substring(0, s.length - 1);
+        while (s && s.length > 0 && endsWith(s, SP))
+            s = s.substring(0, s.length - 1);
     
-    return RiText(s, xPos, nextY, pf);
-    //log(rt);return rt;
+        return RiText(s, xPos, nextY, pf);
 	}
 	
 	RiText._createRiTexts = function(txt, x, y, w, h, fontObj, lead, splitFun) {  
@@ -1294,12 +1294,11 @@
 		}
 		
 		if (toDelete) {
-			delete(toDelete._rs);
-			delete(toDelete);
-			toDelete._rs = {};
+
+			delete(toDelete.rs);
 			toDelete = {};
+			toDelete._rs = {};
 		}
-	
 	}  
 	
 	RiText._disposeArray = function(toDelete) {
@@ -1430,7 +1429,7 @@
 				else if (is(a[0], N)) // Number
 					parsed[0] = String.fromCharCode(a[0]);
 					
-				else
+				else if (!RiTa.SILENT)
 				  console.error("Unexpected arg in RiText("+a[0]+" [type="+(typeof a[0])+"])");
 			}
 			
@@ -1639,7 +1638,7 @@
 			// and use 'this' to fade in
 			this.text(newText).alpha(startAlpha);
 	
-			return this.colorTo(toColArr(c, endAlpha), seconds * .95, 
+			return this.colorTo(toColArr(c, endAlpha), seconds * 0.95, 
 				startTime, callback, RiTa.TEXT_TO, false);
 		},
 	
@@ -1874,7 +1873,7 @@
 	
 					return this;
 				}
-			};
+			}
 		},
 	
 		replaceAll : function(pattern, replacement) {
@@ -1915,7 +1914,7 @@
 	
 		startsWith : function(substr) {
 			
-			return this._rs.indexOf(substr) == 0;
+			return this._rs.indexOf(substr) === 0;
 			
 		},
 	
@@ -2109,7 +2108,7 @@
 	
 		fill : function(cr, cg, cb, ca) {
 			
-			if (arguments.length == 0) 
+			if (arguments.length === 0) 
 				return this._color;
 			this._color = parseColor.apply(this, arguments);
 			return this;
@@ -2117,7 +2116,7 @@
 		
 		boundingFill : function(cr, cg, cb, ca) {
 			
- 			if (arguments.length == 0) 
+ 			if (arguments.length === 0) 
 				return this._boundingFill;
 			this._boundingFill = parseColor.apply(this, arguments);
 			return this;
@@ -2125,7 +2124,7 @@
 		
 		boundingStroke : function(cr, cg, cb, ca) {
 			
- 			if (arguments.length == 0) 
+ 			if (arguments.length === 0) 
 				return this._boundingStroke;
 			this._boundingStroke = parseColor.apply(this, arguments);
 			return this;
@@ -2323,11 +2322,11 @@
 		 * Updates existing text behaviors for the object 
 		 * @param {string} the behaviors
 		 */
-		_updateBehaviors: function (time) {
+		_updateBehaviors: function (theTime) {
 	
 			var i = 0;
 			var num = this._behaviors.length;
-			var time = time || Date.now();
+			var time = theTime || Date.now();
 	
 			while ( i < num ) {
 	
@@ -2642,7 +2641,7 @@
 		_textWidth : function(fontObj, str) {
 		
 			var w = 0;
-			var def = this.font.widths["i"];
+			var def = this.font.widths.i;
 			if (str && str.length) {
 				for (var i = 0; i < str.length; i++)  {
 					var c = str.charAt(i);
@@ -2704,7 +2703,9 @@
 			
 			attach : function(p5) {
 	
-				context2d = p5.externals['canvas'].getContext("2d");
+                if (p5 && p5.externals && p5.externals.canvas)
+    				context2d = p5.externals.canvas.getContext("2d");
+
 				RiText.renderer = new RiText_P5(p5, context2d);
 			}
 		})
@@ -2719,8 +2720,10 @@
 		RiText.renderer = RiText_Node(RiText.defaults.metrics);
 	}
 	
+    /*jshint -W069 */
 	// inject into appropriate global scope
 	window && (window['RiText'] = RiText); 
 	isNode() && (module.exports['RiText'] = RiText);
+    /*jshint +W069 */
 	
 })(typeof window !== 'undefined' ? window : null);

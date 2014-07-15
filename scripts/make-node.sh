@@ -44,9 +44,9 @@ done
 
 ##############################################################
 
-BUILD=../build
+BUILD=/tmp/build
 TEST=../test
-NODE_RES=../resources/node
+NODE_RES=..
 NODE_DIR=$BUILD/node
 NODE_RITA=$NODE_DIR/rita
 NODE_LIB=$NODE_DIR/rita/lib
@@ -67,8 +67,8 @@ echo
 echo Re-creating $NODE_LIB 
 rm -rf $NODE_DIR
 mkdir -p $NODE_LIB || die
-mkdir -p $NODE_DOC || die
-mkdir -p $NODE_TEST || die
+#mkdir -p $NODE_DOC || die
+#mkdir -p $NODE_TEST || die
 
 
 echo Copying $NODE_RES/package.json to $PKG_JSON
@@ -76,20 +76,23 @@ cp $NODE_RES/package.json $PKG_JSON
 sed -i "" "s/##version##/${VERSION}/g" $PKG_JSON
 #cat $PKG_JSON
 
+
 echo 1: Copying $NODE_RES/README.md to $NODE_RITA
 cp $NODE_RES/README.md $NODE_RITA/
 
-echo 2: Copying $NODE_RES/test-runner.js to $NODE_TEST
-cp $NODE_RES/test-runner.js $NODE_TEST/
+#echo 2: Copying $NODE_RES/test-runner.js to $NODE_TEST
+#cp $NODE_RES/test-runner.js $NODE_TEST/
 
 echo 3: Copying $TEST to $NODE_TEST
-cp -r $TEST/*.js* $NODE_TEST/
+#cp -r $TEST/*.js $NODE_TEST/
 
 echo 4: Copying $DOC_DIR/* to $NODE_DOC
-cp -r $DOC_DIR/* $NODE_DOC/
+#cp -r $DOC_DIR/* $NODE_DOC/
 
 echo 5: Copying $DL_DIR/rita-$VERSION.min.js to $NODE_LIB
-cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
+# cp $DL_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
+
+#minimize everything, no ritext
 
 if true ### hack for set -e
 then
