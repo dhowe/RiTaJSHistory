@@ -4,7 +4,14 @@
 QUnit.checkAPI = function(className, Class, obj) {
 
 	var eles = QUnit.propertiesFromAPI(className); 	
-    for ( var i = 0; i < eles.length; i++) {
+	if (!eles) {
+		
+		expect(0);
+		console.warn("[WARN] Skipped checkAPI() test for '"+className+"'");
+		return;
+	}
+	
+    for ( var i = 0; eles && i < eles.length; i++) {
     	
     	//console.log("Checking "+eles[i].name);
     	
@@ -29,18 +36,26 @@ QUnit.checkAPI = function(className, Class, obj) {
 }
 
 /*
- * loads the JSON doc-file and populates and array of 'field' object, where a field
- * contains a name and 2 booleans: isVar, and isStatic.
+ * loads the JSON doc-file and populates and array of 'field' objects, where a field
+ * contains a 'name' string, and 2 booleans: 'isVar' and 'isStatic'.
  */
 QUnit.propertiesFromAPI = function(className) {
 	
-	var fields, elements = [];
+	var jsonf, fields, elements = [];
 	
 	// for now, this only works in Node
 	if (typeof exports != 'undefined') {
 		
-	 	fields = require('../../docs/json/'+className).fields;
-	 	
+		jsonf = '../docs/json/'+className;
+		try{
+			fields = require(jsonf).fields;
+		}
+		catch(e) {
+			
+			console.warn("[WARN] No json file found at: '"+jsonf+"'");
+			return;
+		}
+		                
 	   	for (var i=0,j=fields.length; i<j; i++) {
 			 
 			 var isVar = fields[i].variable || false,
