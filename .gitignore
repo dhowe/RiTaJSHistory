@@ -3,11 +3,9 @@ node_modules
 **/node_modules/*
 .git
 config
-build
 .project
 .settings
 .externalToolBuilders
-*.class
 **/.DS_STORE
 .DS_STORE
 CVS
@@ -20,4 +18,5 @@ Render*
 TASKS.txt
 test/CVS
 test/node
+build
 dist
