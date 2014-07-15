@@ -93,19 +93,15 @@ If you don't feel like coding but still want to contribute, please join the disc
 #### Development Setup
 --------
 1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>.
-2. Now install gulp <pre>npm install -g gulp</pre> 
+2. Now install gulp <pre>$npm install -g gulp</pre> 
 3. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
   
   a. First, login to github and fork the project
   
   b. Then, from a terminal/shell: 
   <pre><code>$ git clone https://github.com/username/RiTaJS.git</code></pre>
-4. Now navigate into the project folder and install dependencies via npm.
-  <pre>$ cd RiTaJS; npm install</pre>
-5. To create the library from src, use gulp.
-<pre>$ grunt build</pre>
-6. Run non-graphical tests in node, use gulp.
-<pre>$ grunt test.node</pre>
-7. Run all tests (in phantomJS), use gulp.
-<pre>$ grunt test</pre>   
+4. Now navigate into the project folder and install dependencies via npm. <pre>$ cd RiTaJS; npm install</pre>
+5. To create the library from src, use gulp.<pre>$ grunt build</pre>
+6. Run non-graphical tests in node, use gulp.<pre>$ grunt test.node</pre>
+7. Run all tests (in phantomJS), use gulp.<pre>$ grunt test</pre>   
 
