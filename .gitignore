@@ -1,4 +1,6 @@
 **/web-export/*
+node_modules
+**/node_modules/*
 .git
 config
 build
@@ -18,4 +20,4 @@ Render*
 TASKS.txt
 test/CVS
 test/node
-build
+dist
