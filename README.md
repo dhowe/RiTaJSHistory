@@ -85,15 +85,13 @@ If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>
 
 #### Can I contribute?
 --------
-Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started. 
-
-If you don't feel like coding but still want to contribute, please join the discussion on the issuetracker and ritajs-dev group.
+Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, then follow the instructions below... 
 
 
 #### Development Setup
 --------
 1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>.
-2. Now install gulp <pre>$npm install -g gulp</pre> 
+2. Now install gulp <pre>$ npm install -g gulp</pre> 
 3. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
   
   a. First, login to github and fork the project
