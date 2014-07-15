@@ -18,12 +18,30 @@ var runtests = function () {
     	}
 	});
 
-	
     test("RiTa.constants", function () {
 
         ok(RiTa.VERSION);
     });
 
+     test("RiTa.minEditDist", function () {
+     	
+     	var arr1 = ['The','dog','ate'], arr2 = ['The','cat','ate'];
+     	equal(RiTa.minEditDist(arr1,arr2, false),1);
+     	equal(RiTa.minEditDist(arr1,arr2, true),1/3.0);
+     	
+     	var arr1 = ['The','dog','ate'], arr2 = [];
+     	equal(RiTa.minEditDist(arr1,arr2, false),3);
+     	equal(RiTa.minEditDist(arr1,arr2, true),1);
+     	
+     	var arr1 = 'The dog', arr2 = 'The cat';
+     	equal(RiTa.minEditDist(arr1,arr2, false),3);
+     	equal(RiTa.minEditDist(arr1,arr2, true),3/7);
+     	
+     	var arr1 = 'The dog', arr2 = '';
+     	equal(RiTa.minEditDist(arr1,arr2, false),7);
+     	equal(RiTa.minEditDist(arr1,arr2, true),1);
+     });
+     
      test("RiTa.env", function () {
          var mode = RiTa.env();
          var inNode = (typeof module != 'undefined' && module.exports);
