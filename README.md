@@ -102,4 +102,4 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 5. To create the library from src, use gulp.<pre>$ grunt build</pre>
 6. Run non-graphical tests in node, use gulp.<pre>$ grunt test.node</pre>
 7. Run all tests (in phantomJS), use gulp.<pre>$ grunt test</pre>   
-
+8. Work on an existing <a href="https://github.com/dhowe/RiTaJS/issues?state=open">issue</a>, then <a href="https://help.github.com/articles/creating-a-pull-request">submit a pull request...</a>
