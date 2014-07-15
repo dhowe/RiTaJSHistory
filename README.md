@@ -14,6 +14,7 @@ its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
 are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
+
 #### About the project
 --------
 * Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
@@ -91,21 +92,19 @@ If you don't feel like coding but still want to contribute, please join the disc
 
 #### Development Setup
 --------
-  
 1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>.</li><pre>
-
-2. <pre>npm install -g gulp</pre> 
-
-3. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. From a terminal/shell:
-<pre><code>git clone git@github.com:USERNAME/ritajs.git</code></pre>
-
-4. From a terminal/shell, navigate into the project folder and install dependencies via npm.
-<pre><code>$ cd ritajs; npm install</code></pre>
-
+2. Now install grunt <pre>npm install -g gulp</pre> 
+3. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
+  
+  a. First, login to github and fork the project
+  b. Then, from a terminal/shell: 
+  <pre><code>$ git clone https://github.com/username/RiTaJS.git</code></pre>
+4. Now navigate into the project folder and install dependencies via npm.
+  <pre>$ cd RiTaJS; npm install</pre>
 5. To create the library from src, use gulp.
-<pre><code>$ grunt build</code></pre>
+<pre>$ grunt build</pre>
+6. Run non-graphical tests in node, use gulp.
+<pre>$ grunt test.node</pre>
+7. Run all tests (in phantomJS), use gulp.
+<pre>$ grunt test</pre>   
 
-6. To run the tests, use gulp.
-<pre><code>$ grunt test</code></pre>
-   
-</pre> 
