@@ -3,8 +3,6 @@
 <head>
 <title>RiTa Tests</title>
 <link href="rita-test.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="../lib/jquery-min.js"></script>
-<script type="text/javascript" src="./rita-loader.js"></script>
 
 <script>
 var testDir = "./renderer",  tests = [
@@ -17,7 +15,7 @@ var testDir = "./renderer",  tests = [
  	//new Test("create-letters"),
 	//new Test("create-words"),
 	new Test("g_CreateLinesSingle"),
-	new Test("g_CreateLinesAndLayoutWithBreaks",0),
+	new Test("g_CreateLinesAndLayoutWithBreaks",1),
  	//new Test("layout-with-breaks"),
  	new Test("g_DefaultFontAndFontVlwTtf",0),
 	new Test("g_DisposeAll"),
@@ -62,21 +60,22 @@ function Test(url, failP) {//}, failC) {
     <h2 id="qunit-banner"></div>
     <div id="qunit-testrunner-toolbar">&nbsp;</div>
     <h2 id="qunit-userAgent"></h2><br>
+    <!--p class=head>Note: if you get an error running phantom tests, try resetting permissions<br> on the node_modules folder: (in terminal) $ chmod -R 770 node_modules</p-->
 	<h2 id="qunit-header2">PhantomJS (browser)</h2>
 	<a id="AllTests" class=head href="AllTests.html">[Full Test Suite]</a><p>
 
-    <a id="RiTa-tests" class=head href="RiTa-tests.html?data=1">[RiTa]</a><br>
-	<a id="RiText-tests"  class=head href="RiText-tests.html?noglobals=true&data=1">[RiText]</a><br>
-	<a id="RiString-tests" class=head href="RiString-tests.html?noglobals=true&data=1">[RiString]</a><br>
-	<a id="RiGrammar-tests" class=head href="RiGrammar-tests.html?">[RiGrammar]</a><br>
+    <a id="RiTa-tests" class=head href="RiTa-tests.html">[RiTa]</a><br>
+	<a id="RiText-tests"  class=head href="RiText-tests.html?noglobals=true">[RiText]</a><br>
+	<a id="RiString-tests" class=head href="RiString-tests.html?noglobals=true">[RiString]</a><br>
+	<a id="RiGrammar-tests" class=head href="RiGrammar-tests.html">[RiGrammar]</a><br>
 	<a id="RiTaEvent-tests" class=head href="RiTaEvent-tests.html?noglobals=true">[RiTaEvent]</a><br>
-	<a id="RiLexicon-tests" class=head href="RiLexicon-tests.html?noglobals=true&data=1">[RiLexicon]</a><br>
+	<a id="RiLexicon-tests" class=head href="RiLexicon-tests.html?noglobals=true">[RiLexicon]</a><br>
 	<a id="RiMarkov-tests" class=head href="RiMarkov-tests.html">[RiMarkov]</a><br>
 	<a id="RiWordNet-tests" class=head href="RiWordNet-tests.html">[RiWordNet]</a><p>
 	
-	<a id="UrlLoading-tests" class=head href="UrlLoading-tests.html?">[RiTa-UrlLoading] (must be run from webserver)</a><br>
+	<a id="UrlLoading-tests" class=head href="UrlLoading-tests.html">[RiTa-UrlLoading]</a><span class="headnb">(must be run from webserver, e.g. http://localhost/path/to/RiTaJS/test/UrlLoading-tests.html)</span><br>
 	<a id="LibStructure-tests" class=head href="LibStructure-tests.html?noglobals=true">[RiTa-Structure]</a><br>
-	<a id="RiTextStructure-p5" class=head href="RiTextStructure-P5.html?">[RiText-Structure(p5)]</a><br>
+	<a id="RiTextStructure-p5" class=head href="RiTextStructure-P5.html">[RiText-Structure(p5)]</a><br>
 	<a id="KnownIssues-tests" class=head href="KnownIssues-tests.html?noglobals=true">[KnownIssueTests]</a><br>
 	<h2 id="qunit-header2">Renderer Tests</h2>
 	
@@ -92,8 +91,9 @@ function Test(url, failP) {//}, failC) {
 	      //body += '<td><a';
 	    }
 	    document.writeln(body+'</table>');
+	    
 	 </script>
-	<p></p><br>
+	<p><br/>
 	<img src="imgs/RiTa.jpg" width=100><p>
 
 </body>

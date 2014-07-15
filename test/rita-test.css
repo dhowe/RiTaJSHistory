@@ -22,8 +22,17 @@
   padding-bottom: 0px;
   padding-left: 20px;
   line-height:140%;
-  font-size: 14px; 
 }
+
+.headnb {
+  color:#395771;
+  font: normal normal 11px Verdana, Arial, Helvetica, sans-serif; 
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 20px;
+  line-height:140%; 
+}
+
 a.head:link    { color:#395771; text-decoration:none; font-size: 14px;  font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
 a.head:visited { color:#395771; text-decoration:none; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif; }
 a.head:hover   { color:#395771; text-decoration:underline; font-size: 14px;   font: bold normal normal 12px Verdana, Arial, Helvetica, sans-serif;  }
