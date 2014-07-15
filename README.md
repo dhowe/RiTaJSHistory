@@ -92,11 +92,12 @@ If you don't feel like coding but still want to contribute, please join the disc
 
 #### Development Setup
 --------
-1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>.</li><pre>
-2. Now install grunt <pre>npm install -g gulp</pre> 
+1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>.
+2. Now install gulp <pre>npm install -g gulp</pre> 
 3. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
   
   a. First, login to github and fork the project
+  
   b. Then, from a terminal/shell: 
   <pre><code>$ git clone https://github.com/username/RiTaJS.git</code></pre>
 4. Now navigate into the project folder and install dependencies via npm.
