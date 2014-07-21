@@ -85,7 +85,7 @@ If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>
 
 #### Can I contribute?
 --------
-Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, then follow the instructions below... 
+Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, or follow the instructions below... 
 
 
 #### Development Setup

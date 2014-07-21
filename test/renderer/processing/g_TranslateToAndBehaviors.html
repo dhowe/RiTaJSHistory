@@ -1,0 +1,120 @@
+
+<script src="../../../lib/processing.min.js"></script>
+<script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
+
+<script type="text/processing" data-processing-target="mycanvas">
+
+// =========================== Start Processing =============================== 
+	var rt3;
+	var rt4;
+	var rt5;
+	var rt6;
+	var rt7;
+	var rt8;
+	var rt9;
+    var rt10;
+    var rt11;
+    var rt12;
+    var rt13;
+	var counter;
+    var behaviourID;
+    var behaviourID2;
+    
+	
+  void setup()
+  {
+    size(800, 800);
+    
+    RiText.defaultFont("Georgia", 30);
+
+    var rt1 = new RiText(this, "Move",750,750);
+    rt1.moveTo(200,50,2);
+
+    rt3 = new RiText(this, "Move Delay2s");
+    rt3.position(200, 250);
+   
+    rt3.moveTo(550, 50, 2,2);
+
+    rt4 = new RiText(this, "Rotate",100,300);
+    rt4.rotate(50).fill(255,0,0);
+
+    rt5 = new RiText(this, "RotateTo Delay2s",500,300);
+    rt5.fill(255,0,0);
+    rt5.rotateTo(-2,2,2);
+    
+    rt6 = new RiText(this, "RotateTo",300,300);
+    rt6.fill(255,0,0);
+    rt6.rotateTo(0.5f,1);
+    
+    rt7 = new RiText(this, "Bigger",50,500);
+    rt7.fill(0,200,0);
+    rt7.scale(1.5f);
+    
+    rt8 = new RiText(this, "Taller",300,500);
+    rt8.fill(0,200,0);
+    rt8.scale(1.5f,2f);
+    
+    rt9 = new RiText(this, "ScaleTo",50,700);
+    rt9.fill(0,200,0);
+    rt9.scaleTo(1.5f,2);
+    
+    var rt10 = new RiText(this, "ScaleTo Delay2s",300,700);
+    rt10.fill(0,200,0);
+    rt10.scaleTo(1.5f,2,2);
+
+     rt11 = new RiText(this, "Stop Behavior 100");
+    rt11.position(0, 20);
+   
+    behaviourID = rt11.moveTo(800, 20, 5);
+    
+    rt12 = new RiText(this, "Stop Behavior 300");
+    rt12.position(0, 20);
+   
+    behaviourID2 = rt12.moveTo(800, 20, 5);
+    
+    rt13 = new RiText(this, "Stop Behaviors");
+    rt13.position(0, 80);
+   
+    rt13.moveTo(800, 80, 5);
+
+  }
+
+  void draw()
+  {
+
+    fill(255, 100); // leave trails
+    rect(0, 0, width, height);
+    
+    fill(0,0,255);
+    text((int)rt3.position()[0]+", "+(int)rt3.position()[1],(int)rt3.position()[0],(int)rt3.position()[1]+50);
+    
+    text(rt5.rotate()[0] + "",500,300+100);
+    
+    text(RiText.timer(this,3),50,50);
+    
+    int timer = RiText.timer(this,3);
+    text(timer,50,50);
+    
+    if(timer == 100){
+        rt11.stopBehavior(behaviourID);
+    }
+    if(timer == 300){
+        rt12.stopBehavior(behaviourID2);
+    }
+    if(timer == 400){
+        rt13.stopBehaviors();
+    }
+
+    RiText.drawAll();
+    
+
+  }
+
+  void changeBg(){
+	  
+	  
+  }
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>
