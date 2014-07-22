@@ -593,6 +593,16 @@ var runtests = function() {
 		var rs = new RiText("!@#$%^&*()__+");
 		var result = rs.match(/!|Z/g);
 		deepEqual(result, ["!"]);
+		
+		
+		//case-insensitive tests
+    	var rs = new RiText(null, "The rain in SPAIN stays mainly in the plain");
+    	var result = rs.match("ain", Pattern.CASE_INSENSITIVE);
+    	deepEqual(result, new String[] { "ain", "AIN", "ain", "ain" });
+    
+    	var rs = new RiText(null, "The rain in SPAIN stays mainly in the plain");
+    	var result = rs.match("ain");
+    	deepEqual(result, new String[] { "ain", "ain", "ain" });
     });
 
     test("RiText.pos()", function() {
@@ -1126,7 +1136,11 @@ var runtests = function() {
         var rs = new RiText("     Start at first character.    "); // spaces/tabs
         equal(rs.trim().text(), "Start at first character.");
 
-        //TODO: add tests for 'hard' tabs
+    	var rs = new RiText(null, "Start at first character.\t"); //\t
+    	equal(rs.trim().text(), "Start at first character.");
+    
+    	var rs = new RiText(null, "\t\t\tStart at first character.\t"); //\t
+    	equal(rs.trim().text(), "Start at first character.");
         // no error checks needed
     });
 
