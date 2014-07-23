@@ -332,15 +332,17 @@ var runtests = function() {
     test("RiGrammar.print", function() {
 
         var rg = new RiGrammar();
-        rg.addRule("<start>", "<first> | <second>");
-        rg.addRule("<first>", "the <pet> <action> were `adj()`");
-        rg.addRule("<second>", "the <action> of the `adj()` <pet>");
-        rg.addRule("<pet>", "<bird> | <mammal>");
-        rg.addRule("<bird>", "hawk | crow");
-        rg.addRule("<mammal>", "dog");
-        rg.addRule("<action>", "cries | screams | falls");
+          rg.reset();
+    rg.addRule("<start>", "<first> | <second>", 1);
+    rg.addRule("<first>", "the <pet> <action> of ...", 1);
+    rg.addRule("<second>", "the <action> of the <pet> were ...", 1);
+    rg.addRule("<pet>", "<bird> | <mammal>", 1);
+    rg.addRule("<bird>", "hawks | crows", 1);
+    rg.addRule("<mammal>", "dogs", 1);
+    rg.addRule("<action>", "cries | screams | falls", 1);
+    rg.print();
         ok(typeof rg.print === 'function'); // TODO: how to test?
-        //rg.print();
+  
     });
 
     test("RiGrammar.expandWith", function() {
