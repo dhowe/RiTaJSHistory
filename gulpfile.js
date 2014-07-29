@@ -18,6 +18,7 @@ var pjson = require('./package.json'),
     rename = require('gulp-rename'),
     clean = require('gulp-rimraf'),
     argv = require('yargs').argv,
+    symlink = require('gulp-symlink'),
     version = pjson.version;
 
 // Display gulp task
@@ -32,20 +33,28 @@ gulp.task('clean', function () {
           .pipe(clean());
 });
 
-// Concatenate & minify RiTaJS
+// Concatenate & minify RiTaJS (4)
 gulp.task('build', function() {
 
+    // create micro version (only rita.js minified)
     var tmp = gulp.src('src/rita.js')
         .pipe(concat(pjson.name+'-'+version+'.micro.js'))
         .pipe(uglify())
         .pipe(gulp.dest(buildDir));
+        
+    // create micro-render version (rita.js + ritext.js minified)
+    tmp = gulp.src(['src/rita.js','src/ritext.js'])
+        .pipe(concat(pjson.name+'-'+version+'.microp5.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(buildDir));
 
+    // create 2 regular versions (all src, & all src minified)
     return tmp && gulp.src('src/*.js')
         .pipe(concat(pjson.name+'-'+version+'.js'))
         .pipe(gulp.dest(buildDir))
         .pipe(rename(pjson.name+'-'+version+'.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(buildDir));
+        .pipe(gulp.dest(buildDir))
 });
 
 // Concatenate & minify RiTaJS, no renderer

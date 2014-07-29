@@ -1,0 +1,28 @@
+<script src="../js/processing-min.js"></script>
+<script src="../download/rita-latest.min.js"></script>
+<script type="text/processing" data-processing-target="mycanvas ">
+
+  var rt, clicks;
+  
+  void setup() {  
+  	
+	size(400,100);
+	RiText.defaultFont("Arial", 60);
+	rt = RiText("ClickToFade");
+  }  
+  
+  void draw() {
+
+	background(255);
+	rt.draw();
+  } 
+  
+  void mouseClicked() { 
+	if (++clicks%2<1)
+		rt.fadeIn(2);
+	else
+		rt.fadeOut(2); 
+  }
+  
+</script>
+<canvas id="mycanvas " style="border:1px solid #000000;"></canvas>
