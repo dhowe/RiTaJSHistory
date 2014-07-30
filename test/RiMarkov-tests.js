@@ -572,15 +572,23 @@ var runtests = function() {
 
 		var rm = new RiMarkov(3);
 		rm.loadTokens(words);
-		equal(rm.getProbability("The"), 0.2);
+		equal(rm.getProbability("dog"), 0.2);
 
 		var rm = new RiMarkov(3);
 		rm.loadTokens(words);
-		equal(rm.getProbability("the"), 0.2);
+		equal(rm.getProbability("Dhe"), 0);
 
 		var rm = new RiMarkov(3);
 		rm.loadTokens(words);
-		equal(rm.getProbability("the"), 0.2);
+		equal(rm.getProbability("Dog"), 0);
+
+		var rm = new RiMarkov(3);
+		rm.loadTokens(words);
+		equal(rm.getProbability(""), 0);
+
+		var rm = new RiMarkov(3);
+		rm.loadTokens(words);
+		equal(rm.getProbability(" "), 0);
 
 		var rm2 = new RiMarkov(3);
 		rm2.loadTokens(RiTa.tokenize(sample));

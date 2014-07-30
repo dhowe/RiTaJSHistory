@@ -1171,7 +1171,7 @@ var runtests = function() {
 
     });
 
-    test("RiString.substr()", function() { // Duplicated with substring() and slice()?
+    test("RiString.substr()", function() { 
 
         var rs = new RiString(
             "The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");

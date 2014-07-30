@@ -596,11 +596,11 @@ var runtests = function() {
 		
 		
 		//case-insensitive tests
-    	var rs = new RiText(null, "The rain in SPAIN stays mainly in the plain");
+    	var rs = new RiText("The rain in SPAIN stays mainly in the plain");
     	var result = rs.match("ain", Pattern.CASE_INSENSITIVE);
     	deepEqual(result, [  "ain", "AIN", "ain", "ain" ]);
     
-    	var rs = new RiText(null, "The rain in SPAIN stays mainly in the plain");
+    	var rs = new RiText("The rain in SPAIN stays mainly in the plain");
     	var result = rs.match("ain");
     	deepEqual(result, ["ain", "ain", "ain" ]);
     });
