@@ -549,6 +549,38 @@ var runtests = function() {
         var result = rs.match(/r?or?/g);
         deepEqual(result, []);
 
+
+        var rs = new RiString("Letter !>D? hello 213331123");
+        var result = rs.match(/[A-Za-z]/g);     
+        deepEqual(result, ["L", "e", "t", "t", "e", "r", "D", "h", "e", "l", "l", "o"]);
+
+        var rs = new RiString("Letter !>D? hello 213331123");
+        var result = rs.match(/\W/g);
+        deepEqual(result, [" ", "!", ">", "?", " ", " "]);
+
+        var rs = new RiString("Letter !>D? hello 213331123");
+        var result = rs.match(/[^0-9]/g);
+        deepEqual(result, ["L", "e", "t", "t", "e", "r", " ", "!", ">", "D", "?", " ", "h", "e", "l", "l", "o", " "]);
+
+        var rs = new RiString("!@#$%^&*()__+");
+        var result = rs.match(/X|Z/g);
+        deepEqual(result, []);
+
+        var rs = new RiString("!@#$%^&*()__+");
+        var result = rs.match(/!|Z/g);
+        deepEqual(result, ["!"]);
+        
+        
+        //case-insensitive tests
+        var rs = new RiString("The rain in SPAIN stays mainly in the plain");
+        var result = rs.match("ain", Pattern.CASE_INSENSITIVE);
+        deepEqual(result, [  "ain", "AIN", "ain", "ain" ]);
+    
+        var rs = new RiString("The rain in SPAIN stays mainly in the plain");
+        var result = rs.match("ain");
+        deepEqual(result, ["ain", "ain", "ain" ]);
+
+
     });
 
     test("RiString.pos()", function() {
@@ -848,6 +880,45 @@ var runtests = function() {
         var rs = new RiString("");
         equal(rs.replaceAll("", "").text(), "");
 
+
+          //regex
+
+        var rs = new RiString("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/, "ane");
+        equal(rs.text(), "The rane in SPAIN stays manely in the plane");
+
+        var rs = new RiString("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/i, "ane");
+        equal(rs.text(), "The rane in SPane stays manely in the plane");
+
+        var rs = new RiString("Watch out for the rock!");
+        rs.replaceAll(/ ?r/, "wood");
+        equal(rs.text(), "Watch out fowood the woodock!");
+
+        var rs = new RiString("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/in/, "");
+        equal(rs.text(), "The ra  SPAIN stays mainly  the pla");
+
+        var rs = new RiString("Who wuz you?");
+        rs.replaceAll("u?", "?!");
+        equal(rs.text(), "Who wuz yo?!");
+
+        var rs = new RiString("Who are you{1,}");
+        rs.replaceAll("{1,}", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiString("Who are you*");
+        rs.replaceAll("*", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiString("Who are you+");
+        rs.replaceAll("+", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiString("Who are you?");
+        rs.replaceAll("?", "?!");
+        equal(rs.text(), "Who are you?!");
+
     });
 
     test("RiString.removeWord()", function() {
@@ -905,7 +976,7 @@ var runtests = function() {
         equal(rs.text(), "Who are you?");
     });
 
-    test("RiString.slice()", function() { //very similar to substring
+    test("RiString.slice()", function() { 
 
         var rs = new RiString(
             "The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");
@@ -1210,6 +1281,13 @@ var runtests = function() {
         equal(rs.trim().text(), "Start at first character.");
 
         var rs = new RiString("     Start at first character.    "); // spaces/tabs
+        equal(rs.trim().text(), "Start at first character.");
+
+
+        var rs = new RiString( "Start at first character.\t"); //\t
+        equal(rs.trim().text(), "Start at first character.");
+    
+        var rs = new RiString("\t\t\tStart at first character.\t"); //\t
         equal(rs.trim().text(), "Start at first character.");
     });
 
