@@ -1,0 +1,60 @@
+<script src="../../../lib/processing.min.js"></script>
+<script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
+<script>
+function bounds(rts) 
+{	
+	var minX=100000, maxX=0, minY=100000, maxY=0;
+	for (var i = 0, j = rts.length; i < j; i++) {
+		var bb = rts[i].boundingBox();
+		if (bb[0] < minX) minX = bb[0];
+		if (bb[1] < minY) minY = bb[1];
+		if (bb[0]+bb[2] > maxX) maxX = bb[0]+bb[2];
+		if (bb[1]+bb[3] > maxY) maxY = bb[1]+bb[3];
+	}
+	
+	return { x: minX, y: minY, w: maxX-minX, h: maxY-minY };
+}
+</script>
+<script type="text/processing" data-processing-target="mycanvas">
+// =========================== Start Processing =============================== 
+
+
+var b,x=50,y=50,w=400,h=500;
+var txt = "A huge lizard was discovered drinking out of the fountain today. It was not menacing anyone, it was just very thirsty. A small crowd gathered and whispered to one another, as though the lizard would understand them if they spoke in normal voices. The lizard seemed not even a little perturbed by their gathering. It drank and drank, its long forked tongue was like a red river hypnotizing the people, keeping them in a trance-like state. 'It's like a different town,' one of them whispered. 'Change is good,' the other one whispered back.";
+var rts = [];
+
+void setup()
+{
+	size(600, 800);  
+	
+	RiText.defaults.indentFirstParagraph = true;
+	RiText.defaults.paragraphLeading = 5;
+	RiText.defaultFont(createFont("Batang", RiTa.random(8,32)));
+	
+	txt += "<p/>" + txt;   // add a paragraph
+	
+	mouseReleased();
+	
+}
+
+void draw() {
+    
+	background(255);
+	noFill();
+	rect(x, y, w, h);
+	rect(b.x, b.y, b.w, b.h);
+	RiText.drawAll();
+}
+
+void mouseReleased() {
+
+	RiText.disposeAll();
+	rts = RiText.createLines(txt, x, y, w, h);
+	b = bounds(rts);
+	console.log(b);
+}
+
+// ============================ End Processing =================================
+</script>
+<canvas id="mycanvas" style="border: 1px solid #000000;"></canvas>

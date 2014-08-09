@@ -820,6 +820,32 @@
 	  return hits;
 	}
 
+	RiText._disposeOne = function(toDelete) {
+		
+		var items = RiText.instances;
+		
+		while (items.indexOf(toDelete) !== -1) {
+			items.splice(items.indexOf(toDelete), 1);
+		}
+		
+		if (toDelete) {
+
+			delete(toDelete.rs);
+			toDelete = {};
+			toDelete._rs = {};
+		}
+	}  
+	
+	RiText._disposeArray = function(toDelete) {
+		
+		for ( var i = 0; i < toDelete.length; i++) {
+			
+			RiText._disposeOne(toDelete[i]);
+		}
+		
+		toDelete = [];
+	}
+	
 	RiText.dispose = function(toDelete) {
 		
 	   is(toDelete,A) && RiText._disposeArray(toDelete);
@@ -828,16 +854,15 @@
 
 	RiText.disposeAll = function() {
 		
-		for ( var i = 0; i < RiText.instances.length; i++) {
-
-			if (RiText.instances[i]) {
-				
-				delete(RiText.instances[i]._rs);
-				delete(RiText.instances[i]);
-			}
+		if (arguments.length) {
+			
+			RiText.dispose(arguments[0]);
 		}
-		
-		RiText.instances = [];
+		else {
+			
+			RiText._disposeArray(RiText.instances);
+			RiText.instances = [];
+		}
 	}
 	
 	RiText.createWords = function(txt, x, y, w, h, fontObj, leading) {
@@ -1038,6 +1063,28 @@
 	
 		RiText.defaults = RiText._defaults;
 	}
+
+	RiText.boundingBox = function(ritexts) { // add-to-api?
+
+		var rts = ritexts, 
+			minX=Number.MAX_VALUE, 
+			maxX=-Number.MAX_VALUE, 
+			minY=Number.MAX_VALUE, 
+			maxY=-Number.MAX_VALUE;
+			
+		if (!is(rts, A)) rts = [ ritexts ];
+				
+		for (var i = 0, j = rts.length; i < j; i++) {
+			
+			var bb = rts[i].boundingBox();
+			if (bb[0] < minX) minX = bb[0];
+			if (bb[1] < minY) minY = bb[1];
+			if (bb[0]+bb[2] > maxX) maxX = bb[0]+bb[2];
+			if (bb[1]+bb[3] > maxY) maxY = bb[1]+bb[3];
+		}
+		
+		return [ minX, minY, maxX-minX, maxY-minY ];
+	}
 	
 	RiText.createLines = function(txt, x, y, w, h, pfont, leading) {
 	
@@ -1049,9 +1096,9 @@
 			h = a[5], pfont = a[6], leading = a[7];
 		}
 	
-		if (!txt || !txt.length) return EA;
+		if (!txt || !txt.length) return [];
 	
-		h = (h && h > 0) || Number.MAX_VALUE;
+		h = (h && h > 0) ? h : Number.MAX_VALUE;
 		pfont = pfont || RiText.defaultFont();
 	
 		leading = leading || pfont.size * RiText.defaults.leadingFactor;
@@ -1200,14 +1247,16 @@
 	    // strip trailing spaces
         while (s && s.length > 0 && endsWith(s, SP))
             s = s.substring(0, s.length - 1);
-    
-        return RiText(s, xPos, nextY, pf);
+        
+        //s = s.replace(/ *$/,''); TODO: use RE instead
+
+		return new RiText(s, xPos, nextY, pf);
 	}
 	
 	RiText._createRiTexts = function(txt, x, y, w, h, fontObj, lead, splitFun) {  
 	
 		var rlines = RiText.createLines(txt, x, y, w, h, fontObj, lead);
-		if (!rlines || rlines.length < 1) return EA;
+		if (!rlines || rlines.length < 1) return [];
 	
 		var result = [];
 		var font = rlines[0].font();
@@ -1285,32 +1334,6 @@
 		return rts;
 	}
 	
-	RiText._disposeOne = function(toDelete) {
-		
-		var items = RiText.instances;
-		
-		while (items.indexOf(toDelete) !== -1) {
-			items.splice(items.indexOf(toDelete), 1);
-		}
-		
-		if (toDelete) {
-
-			delete(toDelete.rs);
-			toDelete = {};
-			toDelete._rs = {};
-		}
-	}  
-	
-	RiText._disposeArray = function(toDelete) {
-		
-		for ( var i = 0; i < toDelete.length; i++) {
-			
-			RiText._disposeOne(toDelete[i]);
-		}
-		
-		toDelete = [];
-	}
-	
 	// TODO: test this font default across all platforms and browsers
 	
 	RiText._getDefaultFont = function() {
@@ -1345,7 +1368,7 @@
 						
 			if (!RiText.renderer) 
 				err("No graphics context, RiText unavailable");
-			
+
 			this._color = { 
 				r : RiText.defaults.fill.r, 
 				g : RiText.defaults.fill.g, 
@@ -1382,12 +1405,9 @@
 			this.g = RiText.renderer;
 			
 			// handle the arguments
-			args = this._initArgs.apply(this,arguments);
+			args = this._initArgs.apply(this, arguments);
 	
 			this.font(args[3]);
-
-//console.log('font: '+this._font+"/"+this._font.size);
-
 			this.text(args[0]);
 	
 			// center by default
@@ -1399,8 +1419,6 @@
 			//log('RiText: '+this._rs._text +"("+this.x+","+this.y+")"+" / "+ this._font.name);
 	
 			RiText.instances.push(this);
-			
-			return this;
 		},
 		
 		_initArgs : function() {
@@ -1737,7 +1755,34 @@
 			}
 			
 			return this._rs._text;
-		},
+		},		
+		/*text : function(txt) {
+			
+			if (arguments.length) {
+				
+				if (typeof txt === 'undefined')
+					txt = '';
+					
+				var theType = Type.get(txt);
+				
+				if (theType == N) {
+				
+					txt = String.fromCharCode(txt);
+				}
+				else if (theType == O && typeof txt.text == F) { 
+				
+					txt = txt.text();
+				}
+				else if (theType !== S) {
+				
+					warn('Unexpected argument to RiText.text('+theType+')');
+				}
+				
+				return (this._rs = this._rs ? this._rs.text(txt) :  new RiString());
+			}
+			
+			return this._rs ? this._rs.text() : '';
+		},*/
 		
 		match : function(regex) {
 			

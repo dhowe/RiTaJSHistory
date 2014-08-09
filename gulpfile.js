@@ -1,3 +1,16 @@
+// NEXT: need to replace ##VERSION## in files in build-dir
+
+/*
+var replace = require('gulp-replace');
+
+gulp.task('templates', function(){
+  gulp.src(['file.txt'])
+    .pipe(replace(/foo(.{3})/g, '$1foo'))
+    .pipe(gulp.dest('build/file.txt'));
+});
+
+*/
+
 // Configuration options
 var testDir = './test/', 
     buildDir = 'build',
