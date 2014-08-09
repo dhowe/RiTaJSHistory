@@ -7,18 +7,22 @@
 <script>
 var testDir = "./renderer",  tests = [
 
-    new Test("g_Simplest",0),
-    new Test("g_Alignments",0),
-	new Test("g_BoundingBoxAndAlpha",0), 
+	new Test("g_Simplest"),
+	new Test("g_Alignments"),
+	new Test("g_BoundingBoxAndAlpha"), 
 	new Test("g_BoundingBoxFeatures",0),
- 	new Test("g_ColorAndFade",0), 
-	new Test("g_CreateLinesSingle",0),
-	new Test("g_CreateLinesAndLayoutWithBreaks",0),
- 	new Test("g_DefaultFontAndFontVlwTtf",0),
-	new Test("g_DisposeAll",0),
-	new Test("g_MotionTypes",0),
-	new Test("g_RandomColor",0),
- 	new Test("g_Scaling",0),
+	new Test("g_BoundingBoxArray",1), 
+	new Test("g_ColorAndFade"),
+	//new Test("create-letters"),
+	//new Test("create-words"),
+	new Test("g_CreateLinesSingle"),
+	new Test("g_CreateLinesAndLayoutWithBreaks",1),
+	//new Test("layout-with-breaks"),
+	new Test("g_DefaultFontAndFontVlwTtf",0),
+	new Test("g_DisposeAll"),
+	new Test("g_MotionTypes"),
+	new Test("g_RandomColor"),
+	new Test("g_Scaling"),
 	new Test("g_TranslateToAndBehaviors",1),
 	new Test("g_WordsLettersLines",1),
 
@@ -42,7 +46,7 @@ var testDir = "./renderer",  tests = [
  	new Test("text-size"), */
 ];
 
-function Test(url, failP) {
+function Test(url, failP) {//}, failC) {
 	this.url = url;
 	this.fail = typeof failP !== 'undefined' ? failP : false;
 }

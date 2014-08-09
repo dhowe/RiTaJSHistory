@@ -2206,7 +2206,7 @@
 			
 			//TODO: add X,Y ??
 		  if (!arguments.length) 
-			  return this._rotateZ
+			  return [this._rotateZ]	
 		  this._rotateZ = rotate;
 		  return this;
 		},

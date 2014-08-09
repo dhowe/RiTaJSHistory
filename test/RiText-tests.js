@@ -596,13 +596,13 @@ var runtests = function() {
 		
 		
 		//case-insensitive tests
-    	var rs = new RiText(null, "The rain in SPAIN stays mainly in the plain");
+    	var rs = new RiText("The rain in SPAIN stays mainly in the plain");
     	var result = rs.match("ain", Pattern.CASE_INSENSITIVE);
-    	deepEqual(result, new String[] { "ain", "AIN", "ain", "ain" });
+    	deepEqual(result, [  "ain", "AIN", "ain", "ain" ]);
     
-    	var rs = new RiText(null, "The rain in SPAIN stays mainly in the plain");
+    	var rs = new RiText("The rain in SPAIN stays mainly in the plain");
     	var result = rs.match("ain");
-    	deepEqual(result, new String[] { "ain", "ain", "ain" });
+    	deepEqual(result, ["ain", "ain", "ain" ]);
     });
 
     test("RiText.pos()", function() {
@@ -747,11 +747,33 @@ var runtests = function() {
         rs.replaceFirst("", "");
         equal(rs.text(), "Who are you?");
 
+          //regex
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceFirst(/ain/, "ane");
+        equal(rs.text(), "The rane in SPAIN stays mainly in the plain");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceFirst(/ain/i, "oll");
+        equal(rs.text(), "The roll in SPAIN stays mainly in the plain");
+
+        var rs = new RiText("Watch out for the rock!");
+        rs.replaceFirst(/r?or?/, "a");
+        equal(rs.text(), "Watch aut for the rock!");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceFirst(/in/, "d");
+        equal(rs.text(), "The rad in SPAIN stays mainly in the plain");
+
+        var rs = new RiText("Who are you?");
+        rs.replaceFirst("?", "?!");
+        equal(rs.text(), "Who are you?!");
+
 
     });
 
 
-    test("RiText.replaceLast()", function() { //TODO
+    test("RiText.replaceLast()", function() { 
 
         var rs = new RiText("Who are you?");
         rs.replaceLast("e", "E");
@@ -789,6 +811,44 @@ var runtests = function() {
         rs.replaceLast("", "");
         equal(rs.text(), "Who are you?");
 
+         //regex
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceLast(/ain/, "ane");
+        equal(rs.text(), "The rain in SPAIN stays mainly in the plane");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceLast(/ain/i, "ane");
+        equal(rs.text(), "The rain in SPAIN stays mainly in the plane");
+
+        var rs = new RiText("Watch out for the rock!");
+        rs.replaceLast(/ ?r/, "wood");
+        equal(rs.text(), "Watch out for the woodock!");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceLast(/in/, " ");
+        equal(rs.text(), "The rain in SPAIN stays mainly in the pla ");
+
+        var rs = new RiText("Who wuz you?");
+        rs.replaceLast("u?", "?!");
+        equal(rs.text(), "Who wuz yo?!");
+
+        var rs = new RiText("Who are you{1,}");
+        rs.replaceLast("{1,}", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiText("Who are you*");
+        rs.replaceLast("*", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiText("Who are you+");
+        rs.replaceLast("+", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiText("Who are you?");
+        rs.replaceLast("?", "?!");
+        equal(rs.text(), "Who are you?!");
+
     });
 
     test("RiText.replaceAll()", function() {
@@ -819,6 +879,45 @@ var runtests = function() {
 
         var rs = new RiText("");
         equal(rs.replaceAll("", "").text(), "");
+
+
+                  //regex
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/, "ane");
+        equal(rs.text(), "The rane in SPAIN stays manely in the plane");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/i, "ane");
+        equal(rs.text(), "The rane in SPane stays manely in the plane");
+
+        var rs = new RiText("Watch out for the rock!");
+        rs.replaceAll(/ ?r/, "wood");
+        equal(rs.text(), "Watch out fowood the woodock!");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/in/, "");
+        equal(rs.text(), "The ra  SPAIN stays mainly  the pla");
+
+        var rs = new RiText("Who wuz you?");
+        rs.replaceAll("u?", "?!");
+        equal(rs.text(), "Who wuz yo?!");
+
+        var rs = new RiText("Who are you{1,}");
+        rs.replaceAll("{1,}", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiText("Who are you*");
+        rs.replaceAll("*", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiText("Who are you+");
+        rs.replaceAll("+", "!");
+        equal(rs.text(), "Who are you!");
+
+        var rs = new RiText("Who are you?");
+        rs.replaceAll("?", "?!");
+        equal(rs.text(), "Who are you?!");
 
     });
 
@@ -1136,10 +1235,10 @@ var runtests = function() {
         var rs = new RiText("     Start at first character.    "); // spaces/tabs
         equal(rs.trim().text(), "Start at first character.");
 
-    	var rs = new RiText(null, "Start at first character.\t"); //\t
+    	var rs = new RiText("Start at first character.\t"); //\t
     	equal(rs.trim().text(), "Start at first character.");
     
-    	var rs = new RiText(null, "\t\t\tStart at first character.\t"); //\t
+    	var rs = new RiText("\t\t\tStart at first character.\t"); //\t
     	equal(rs.trim().text(), "Start at first character.");
         // no error checks needed
     });
