@@ -2,6 +2,7 @@ var runtests = function() {
 
     var tmp;	 	
     QUnit.module("RiText", {
+    	
 	    setup: function () {
 
             tmp = RiTa.SILENT;
