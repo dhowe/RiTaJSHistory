@@ -560,60 +560,57 @@ var runtests = function() {
     });
 
 
-    test("RiText.match()", function() { //TODO
+    test("RiText.match()", function() { 
 
-		var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-		var result = rs.match(/ain/g);
-		deepEqual(result, ["ain", "ain", "ain"]);
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        var result = rs.match(/ain/g);
+        deepEqual(result, [ "ain", "ain", "ain" ]);
 
-		var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-		var result = rs.match(/ain/gi);
-		deepEqual(result, ["ain", "AIN", "ain", "ain"]);
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        var result = rs.match(/ain/gi);
+        deepEqual(result, [ "ain", "AIN", "ain", "ain" ]);
 
-		var rs = new RiText("Watch out for the rock!");
-		var result = rs.match(/r?or?/g);
-		deepEqual(result, ["o", "or", "ro"]);
+        var rs = new RiText("Watch out for the rock!");
+        var result = rs.match(/r?or?/g);
+        deepEqual(result, [ "o", "or", "ro" ]);
 
-		var rs = new RiText("Letter !>D? hello 213331123");
-		var result = rs.match(/[A-Za-z]/g);		
-		deepEqual(result, ["L", "e", "t", "t", "e", "r", "D", "h", "e", "l", "l", "o"]);
+        var rs = new RiText("abc!");
+        var result = rs.match(/r?or?/g);
+        deepEqual(result, []);
 
-		var rs = new RiText("Letter !>D? hello 213331123");
-		var result = rs.match(/\W/g);
-		deepEqual(result, [" ", "!", ">", "?", " ", " "]);
+        var rs = new RiText("Letter !>D? hello 213331123");
+        var result = rs.match(/[A-Za-z]/g);     
+        deepEqual(result, ["L", "e", "t", "t", "e", "r", "D", "h", "e", "l", "l", "o"]);
 
-		var rs = new RiText("Letter !>D? hello 213331123");
-		var result = rs.match(/[^0-9]/g);
-		deepEqual(result, ["L", "e", "t", "t", "e", "r", " ", "!", ">", "D", "?", " ", "h", "e", "l", "l", "o", " "]);
+        var rs = new RiText("Letter !>D? hello 213331123");
+        var result = rs.match(/\W/g);
+        deepEqual(result, [" ", "!", ">", "?", " ", " "]);
 
-		var rs = new RiText("!@#$%^&*()__+");
-		var result = rs.match(/X|Z/g);
-		deepEqual(result, []);
+        var rs = new RiText("Letter !>D? hello 213331123");
+        var result = rs.match(/[^0-9]/g);
+        deepEqual(result, ["L", "e", "t", "t", "e", "r", " ", "!", ">", "D", "?", " ", "h", "e", "l", "l", "o", " "]);
 
-		var rs = new RiText("!@#$%^&*()__+");
-		var result = rs.match(/!|Z/g);
-		deepEqual(result, ["!"]);
-		
-		
-		//case-insensitive tests
-    	var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-    	var result = rs.match("ain", Pattern.CASE_INSENSITIVE);
-    	deepEqual(result, [  "ain", "AIN", "ain", "ain" ]);
-    
-    	var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-    	var result = rs.match("ain");
-    	deepEqual(result, ["ain", "ain", "ain" ]);
+        var rs = new RiText("!@#$%^&*()__+");
+        var result = rs.match(/X|Z/g);
+        deepEqual(result, []);
+
+        var rs = new RiText("!@#$%^&*()__+");
+        var result = rs.match(/!|Z/g);
+        deepEqual(result, ["!"]);
+       
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        var result = rs.match(/ain/g);
+        deepEqual(result, ["ain", "ain", "ain" ]); 
+        
+        //case-insensitive tests
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        var result = rs.match(/ain/gi);
+        deepEqual(result, [  "ain", "AIN", "ain", "ain" ]);
     });
 
     test("RiText.pos()", function() {
 
-        // check that these are ok ---------------
-        var txt = "The dog"; // tmp: move to RiTa.tests
-        var words = RiTa.tokenize(txt);
-        deepEqual(words, [ "The", "dog" ]);
-
-        var words = RiTa.tokenize("closed"); // tmp: move to RiTa.tests 
-        deepEqual(words, [ "closed" ]);
+        // TODO: check that these are ok --------------
 
         var rs = new RiText("asdfaasd");
         var result = rs.pos();
@@ -630,8 +627,6 @@ var runtests = function() {
         var rs = new RiText("The boy, dressed in red, ate an apple.");
         var result = rs.pos();
         deepEqual([ "dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "." ], result);
-
-
     });
 
     test("RiText.posAt()", function() {
@@ -746,8 +741,12 @@ var runtests = function() {
         var rs = new RiText("Who are you?");
         rs.replaceFirst("", "");
         equal(rs.text(), "Who are you?");
-
-          //regex
+        
+        var rs = new RiText("Who are you?");
+        rs.replaceFirst("?", "?!");
+        equal(rs.text(), "Who are you?!");
+        
+        //regex
 
         var rs = new RiText("The rain in SPAIN stays mainly in the plain");
         rs.replaceFirst(/ain/, "ane");
@@ -765,91 +764,25 @@ var runtests = function() {
         rs.replaceFirst(/in/, "d");
         equal(rs.text(), "The rad in SPAIN stays mainly in the plain");
 
-        var rs = new RiText("Who are you?");
-        rs.replaceFirst("?", "?!");
-        equal(rs.text(), "Who are you?!");
-
-
-    });
-
-
-    test("RiText.replaceLast()", function() { 
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("e", "E");
-        equal(rs.text(), "Who arE you?");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("o", "O");
-        equal(rs.text(), "Who are yOu?");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("Who", "Where");
-        equal(rs.text(), "Where are you?");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("notExist", "Exist");
-        equal(rs.text(), "Who are you?");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("Who are", "Dare");
-        equal(rs.text(), "Dare you?");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("Who aRe", "Dare");
-        equal(rs.text(), "Who are you?");
-
-        var rs = new RiText("Who are you? Who are you?");
-        rs.replaceLast("Who are", "Dare");
-        equal(rs.text(), "Who are you? Dare you?");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("?", "?!");
-        equal(rs.text(), "Who are you?!");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("", "");
-        equal(rs.text(), "Who are you?");
-
-         //regex
+        // global should have not affect
+        
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceFirst(/ain/g, "ane");
+        equal(rs.text(), "The rane in SPAIN stays mainly in the plain");
 
         var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        rs.replaceLast(/ain/, "ane");
-        equal(rs.text(), "The rain in SPAIN stays mainly in the plane");
-
-        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        rs.replaceLast(/ain/i, "ane");
-        equal(rs.text(), "The rain in SPAIN stays mainly in the plane");
+        rs.replaceFirst(/ain/gi, "oll");
+        equal(rs.text(), "The roll in SPAIN stays mainly in the plain");
 
         var rs = new RiText("Watch out for the rock!");
-        rs.replaceLast(/ ?r/, "wood");
-        equal(rs.text(), "Watch out for the woodock!");
+        rs.replaceFirst(/r?or?/g, "a");
+        equal(rs.text(), "Watch aut for the rock!");
 
         var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        rs.replaceLast(/in/, " ");
-        equal(rs.text(), "The rain in SPAIN stays mainly in the pla ");
-
-        var rs = new RiText("Who wuz you?");
-        rs.replaceLast("u?", "?!");
-        equal(rs.text(), "Who wuz yo?!");
-
-        var rs = new RiText("Who are you{1,}");
-        rs.replaceLast("{1,}", "!");
-        equal(rs.text(), "Who are you!");
-
-        var rs = new RiText("Who are you*");
-        rs.replaceLast("*", "!");
-        equal(rs.text(), "Who are you!");
-
-        var rs = new RiText("Who are you+");
-        rs.replaceLast("+", "!");
-        equal(rs.text(), "Who are you!");
-
-        var rs = new RiText("Who are you?");
-        rs.replaceLast("?", "?!");
-        equal(rs.text(), "Who are you?!");
-
+        rs.replaceFirst(/in/g, "d");
+        equal(rs.text(), "The rad in SPAIN stays mainly in the plain");
     });
+
 
     test("RiText.replaceAll()", function() {
 
@@ -861,15 +794,15 @@ var runtests = function() {
         equal(rs.replaceAll("Who", "O").text(), "O are you? O is he? O is it?");
 
         var rs = new RiText("Whom is he? Where is he? What is it?");
-        equal(rs.replaceAll("Wh*", "O").text(), "Oom is he? Oere is he? Oat is it?");
+        equal(rs.replaceAll("Wh*", "O").text(), "Whom is he? Where is he? What is it?");
 
-        //   var rs = new RiText("Who are you? Who is he? Who is it?");
-        //   equal(rs.replaceAll(rs, "Where is the text").text(), "Where is the text");
+	    var rs = new RiText("Whom is he? Where is he? What is it?");
+        equal(rs.replaceAll(/Wh*/, "O").text(), "Oom is he? Oere is he? Oat is it?");
 
-        //  var rs = new RiText("Who are you?");          
-        //  equal(rs.replaceAll(rs, "Where are you!").text(), "Where are you!?");
         var rs = new RiText("%^&%&?");
-        equal(rs.replaceAll("%^&%&?", "!!!").text(), "%^&%&?");
+        equal(rs.replaceAll("%^&%&?", "!!!").text(), "!!!");
+        
+
 
         var rs = new RiText("Who are you?");
         equal(rs.replaceAll("notExist", "Exist").text(), "Who are you?");
@@ -879,25 +812,6 @@ var runtests = function() {
 
         var rs = new RiText("");
         equal(rs.replaceAll("", "").text(), "");
-
-
-                  //regex
-
-        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        rs.replaceAll(/ain/, "ane");
-        equal(rs.text(), "The rane in SPAIN stays manely in the plane");
-
-        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        rs.replaceAll(/ain/i, "ane");
-        equal(rs.text(), "The rane in SPane stays manely in the plane");
-
-        var rs = new RiText("Watch out for the rock!");
-        rs.replaceAll(/ ?r/, "wood");
-        equal(rs.text(), "Watch out fowood the woodock!");
-
-        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
-        rs.replaceAll(/in/, "");
-        equal(rs.text(), "The ra  SPAIN stays mainly  the pla");
 
         var rs = new RiText("Who wuz you?");
         rs.replaceAll("u?", "?!");
@@ -918,7 +832,44 @@ var runtests = function() {
         var rs = new RiText("Who are you?");
         rs.replaceAll("?", "?!");
         equal(rs.text(), "Who are you?!");
+        
+		// regex
 
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/, "ane");
+        equal(rs.text(), "The rane in SPAIN stays manely in the plane");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/i, "ane");
+        equal(rs.text(), "The rane in SPane stays manely in the plane");
+
+
+        var rs = new RiText("Watch out for the rock!");
+        rs.replaceAll(/ ?r/, "wood");
+        equal(rs.text(), "Watch out fowood thewoodock!");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/in/, "");
+        equal(rs.text(), "The ra  SPAIN stays maly  the pla");
+        
+        // global should have not affect
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/g, "ane");
+        equal(rs.text(), "The rane in SPAIN stays manely in the plane");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/ain/ig, "ane");
+        equal(rs.text(), "The rane in SPane stays manely in the plane");
+
+        var rs = new RiText("Watch out for the rock!");
+        rs.replaceAll(/ ?r/g, "wood");
+        equal(rs.text(), "Watch out fowood thewoodock!");
+
+        var rs = new RiText("The rain in SPAIN stays mainly in the plain");
+        rs.replaceAll(/in/g, "");
+        equal(rs.text(), "The ra  SPAIN stays maly  the pla");
+        
     });
 
     test("RiText.replaceWord()", function() {

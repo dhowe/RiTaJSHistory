@@ -351,43 +351,49 @@ test
 		 deepEqual(output, expected);
 		
 		 var input = "The boy screamed, 'Where is my apple?'";
-	     //'Where is one word here, same result as Processing (TODO: THIS IS INCORRECT IN BOTH)
-	     var expected = ["The", "boy", "screamed", ",", "'Where", "is", "my", "apple", "?", "'"]; 
-	     var output = RiTa.tokenize(input);
-	     deepEqual(output, expected);
-	
-	     var input = "why? Me?huh?!";
-	     var expected = ["why", "?", "Me", "?", "huh", "?", "!"];
-	     var output = RiTa.tokenize(input);
-	     deepEqual(output, expected);
-	
-	     var input = "123 123 1 2 3 1,1 1.1 23.45.67 22/05/2012 12th May,2012";
-	     var expected = ["123", "123", "1", "2", "3", "1", ",", "1", "1",".","1", "23",".","45",".","67", "22/05/2012", "12th", "May", ",", "2012"];
-	     var output = RiTa.tokenize(input);
-	     deepEqual(output, expected);
-	
-	     // TODO: check Penn-Treebank tokenizer rules & add some more edge cases
-	     var inputs = ["A simple sentence.",  "that's why this is our place).", ];
+		 //'Where is one word here, same result as Processing (TODO: THIS IS INCORRECT IN BOTH)
+		 var expected = ["The", "boy", "screamed", ",", "'Where", "is", "my", "apple", "?", "'"]; 
+		 var output = RiTa.tokenize(input);
+		 deepEqual(output, expected);
+		
+		 var input = "why? Me?huh?!";
+		 var expected = ["why", "?", "Me", "?", "huh", "?", "!"];
+		 var output = RiTa.tokenize(input);
+		 deepEqual(output, expected);
+		
+		 var input = "123 123 1 2 3 1,1 1.1 23.45.67 22/05/2012 12th May,2012";
+		 var expected = ["123", "123", "1", "2", "3", "1", ",", "1", "1",".","1", "23",".","45",".","67", "22/05/2012", "12th", "May", ",", "2012"];
+		 var output = RiTa.tokenize(input);
+		 deepEqual(output, expected);
+		
+		 // TODO: check Penn-Treebank tokenizer rules & add some more edge cases
+		 var inputs = ["A simple sentence.",  "that's why this is our place).", ];
 		 var outputs = [
 			["A", "simple", "sentence", "."],
 			["that's", "why", "this", "is", "our", "place",")","."],
 		  ];
 
-	
-			ok(inputs.length == outputs.length);
-	
-			for (var i = 0; i < inputs.length; i++) {
-				var result = RiTa.tokenize(inputs[i]);
-				deepEqual(result, outputs[i]);
-			}
+		 ok(inputs.length == outputs.length);
 
-			deepEqual(RiTa.tokenize(""), [""]);
+		 for (var i = 0; i < inputs.length; i++) {
+			var result = RiTa.tokenize(inputs[i]);
+			deepEqual(result, outputs[i]);
+		 }
 
-		     var input = "Dr. Chan is talking slowly with Mr. Cheng, and they're friends."; // strange but same as RiTa-java
-		     //var expected = ["Dr.", "Chan", "is", "talking", "slowly", "with", "Mr.", "Cheng", ",", "and", "they're", "friends", "."];
-		     var expected = ["Dr",".", "Chan", "is", "talking", "slowly", "with", "Mr",".", "Cheng", ",", "and", "they're", "friends", "."];
-		     var output = RiTa.tokenize(input);
-		     deepEqual(output, expected);
+		 deepEqual(RiTa.tokenize(""), [""]);
+
+	     var input = "Dr. Chan is talking slowly with Mr. Cheng, and they're friends."; // strange but same as RiTa-java
+	     //var expected = ["Dr.", "Chan", "is", "talking", "slowly", "with", "Mr.", "Cheng", ",", "and", "they're", "friends", "."];
+	     var expected = ["Dr",".", "Chan", "is", "talking", "slowly", "with", "Mr",".", "Cheng", ",", "and", "they're", "friends", "."];
+	     var output = RiTa.tokenize(input);
+	     deepEqual(output, expected);
+	     
+		var txt = "The dog"; 
+        var words = RiTa.tokenize(txt);
+        deepEqual(words, [ "The", "dog" ]);
+
+        var words = RiTa.tokenize("closed"); 
+        deepEqual(words, [ "closed" ]);
  	});
 
 

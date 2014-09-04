@@ -5,6 +5,7 @@
 	/////////////////////////////////////////////////////
 	
 	// TODO: get rid of these
+	
 	function toColArr(obj, overrideAlpha) {
 		var a = (typeof overrideAlpha === 'undefined') ? obj.a || 255 : overrideAlpha;
 		return [ obj.r, obj.g, obj.b, a ];
@@ -1756,37 +1757,10 @@
 			
 			return this._rs._text;
 		},		
-		/*text : function(txt) {
-			
-			if (arguments.length) {
-				
-				if (typeof txt === 'undefined')
-					txt = '';
-					
-				var theType = Type.get(txt);
-				
-				if (theType == N) {
-				
-					txt = String.fromCharCode(txt);
-				}
-				else if (theType == O && typeof txt.text == F) { 
-				
-					txt = txt.text();
-				}
-				else if (theType !== S) {
-				
-					warn('Unexpected argument to RiText.text('+theType+')');
-				}
-				
-				return (this._rs = this._rs ? this._rs.text(txt) :  new RiString());
-			}
-			
-			return this._rs ? this._rs.text() : '';
-		},*/
 		
-		match : function(regex) {
+		match : function(pattern) {
 			
-			return this._rs.match(regex);
+			return this._rs.match(pattern);
 			
 		},
 	
@@ -1878,75 +1852,52 @@
 	
 		insertChar : function(ind, theChar) { 
 			
-			this._rs.insertChar(ind, theChar);
+			this._rs.insertChar.apply(this._rs, arguments);
 			return this;
 			
 		},
 	
 		removeChar : function(ind) { 
 			
-			this._rs.removeChar(ind);
+			this._rs.removeChar.apply(this._rs, arguments);
 			return this;
 			
 		},
 		
 		replaceChar : function(idx, replaceWith) {
 			
-			this._rs.replaceChar(idx, replaceWith);
+			this._rs.replaceChar.apply(this._rs, arguments);
 			return this;
 		},
 	
 		replaceFirst : function(regex, replaceWith) {
-			
-			if (replaceWith) 
-				this._rs._text = this._rs._text.replace(regex,replaceWith);
+			 
+			this._rs.replaceFirst.apply(this._rs, arguments);
 			return this;
-			
-		},
-		
-		replaceLast : function(regex, replaceWith) {
-		   
-			if (replaceWith) {
-	
-				if (this._rs._text.lastIndexOf(regex) >= 0) { //TODO: this do not work for regex..
-					var ind = this._rs._text.lastIndexOf(regex);
-					var before = this._rs._text.substring(0, ind);
-					var after = this._rs._text.substring(ind + regex.length);
-	
-					var finished = before + replaceWith + after;
-					this._rs._text = finished;
-	
-					return this;
-				}
-			}
 		},
 	
 		replaceAll : function(pattern, replacement) {
-			
-			if (pattern && (replacement || replacement==='')) 
-				this._rs._text = this._rs._text.replace(new RegExp(pattern,'g'), replacement);
-			
+			 
+			this._rs.replaceAll.apply(this._rs, arguments);
 			return this;
-			
 		},
 	
 		replaceWord : function(wordIdx, newWord) {
 	
-			this._rs.replaceWord.apply(this,arguments);
-			
+			this._rs.replaceWord.apply(this._rs, arguments);
 			return this; // TODO: check that all RiText methods use the delegate 
 						//  (like above) for methods that exist in RiString
 		},	 
 	
 		removeWord : function(wordIdx) {
 			
-			this._rs.removeWord.apply(this,arguments);
+			this._rs.removeWord.apply(this._rs, arguments);
 			return this;
 		},   
 	
 		insertWord : function(wordIdx, newWord) {
 			
-			this._rs.insertWord.apply(this, arguments);
+			this._rs.insertWord.apply(this._rs, arguments);
 			return this;            
 		},
 	
@@ -1960,38 +1911,32 @@
 		startsWith : function(substr) {
 			
 			return this._rs.indexOf(substr) === 0;
-			
 		},
 	
 		substring : function(from, to) {
 	
 			return this._rs.text(this._rs._text.substring(from, to));
-			
 		},
 	
 		substr : function(start, length) {
 			
 			var res = this._rs._text.substr(start, length);
 			return this._rs.text(res);
-			
 		},
 	
 		toLowerCase : function() {
 			
 			return this._rs.text(this._rs._text.toLowerCase());
-			
 		},
 	
 		toUpperCase : function() {
 			
 			return this._rs.text(this._rs._text.toUpperCase());
-			
 		},
 	
 		trim : function() {
 			
 			return this._rs.text(trim(this._rs._text));
-			
 		},
 	
 		wordAt : function(index) {
@@ -2000,7 +1945,6 @@
 			if (index < 0 || index >= words.length)
 				return E;
 			return words[index];
-			
 		},
 	
 		wordCount : function() {
@@ -2740,7 +2684,9 @@
 	// Renderer setup
 	////////////////////////////////////////////////////////////////////////////////
 	
-	var context2d, hasProcessing = (typeof Processing !== 'undefined');
+	var context2d,
+		hasP5js = (typeof p5 !== 'undefined'), 
+		hasProcessing = (typeof Processing !== 'undefined');
 		
 	if (hasProcessing) {
 	
@@ -2755,20 +2701,28 @@
 			}
 		})
 	}
+	else if (hasP5js) { // in p5.js
+		
+		console.warn("No support yet for p5.js");
+		//context2d = p5.externals.canvas.getContext("2d");
+		//RiText.renderer = new RiText_P5(p5, context2d);
+	}
 	else if (isNode()) {
 		
 		RiText.renderer = RiText_Node(RiText.defaults.metrics);
 	}
 	else {
 		
-		warn('Unknown Env: not Processing(JS), Node, or Android; renderer is null');
+		warn('Unknown Env: not Processing(JS), p5.js, Node, or Android; rendering unavailable');
 		RiText.renderer = RiText_Node(RiText.defaults.metrics);
 	}
 	
     /*jshint -W069 */
+	
 	// inject into appropriate global scope
 	window && (window['RiText'] = RiText); 
 	isNode() && (module.exports['RiText'] = RiText);
+	
     /*jshint +W069 */
 	
 })(typeof window !== 'undefined' ? window : null);
