@@ -20,3 +20,4 @@ test/CVS
 test/node
 build
 dist
+rita-*.tgz
