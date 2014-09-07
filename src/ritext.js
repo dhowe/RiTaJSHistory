@@ -1,12 +1,24 @@
+/*
+ * Integrate P5.js
+ * 	1) define the API (check with ReadersJS)
+  
+		RiText: _type, _push, _pop, _getBoundingBox, _translate, _rotate, _fill, _noFill, _stroke, _noStroke, _strokeWeight, _textFont, _textAlign, _textAscent, _textDescent, _textWidth, _showBounds, _rect, _createFont, _getGraphics
+		ReadersJS: _width
+		
+ * 	2) remove all other methods from both renderers
+ *  3) perhaps remove renderer classes, and just inject functions into global scope
+ *  
+ */
 (function(window, undefined) {
 	
 	/////////////////////////////////////////////////////
 	// private helpers   
 	/////////////////////////////////////////////////////
 	
-	// TODO: get rid of these
+	// TODO: remove methods that are duplicated in rita.js
 	
 	function toColArr(obj, overrideAlpha) {
+		
 		var a = (typeof overrideAlpha === 'undefined') ? obj.a || 255 : overrideAlpha;
 		return [ obj.r, obj.g, obj.b, a ];
 	}
@@ -889,7 +901,7 @@
 	}
   
 	RiText.defaultFont = function(font, size) {
-
+		
 		var a = arguments;
 		
 		if (a.length > 1 && !Number(a[1])) a = [a[0]]; // if 0 or undefined or NaN, ignore.
@@ -901,7 +913,7 @@
 				
 				if (isNode() && a[0].widths) {// use no-op
 					
-					RiText.renderer.font = a[0];	
+					RiText.renderer._textFont(a[0]);
 				}
 				
 				if (a[0].name) 
@@ -1281,7 +1293,7 @@
 		if (wordIdx < 0 || wordIdx >= words.length)
 			throw new Error("Bad wordIdx=" + wordIdx + " for " + words);
 		
-		rt.g._pushState();
+		rt.g._push();
 	
 		var xPos = rt.x;
 	
@@ -1310,7 +1322,7 @@
 					break;
 			}
 		}
-		rt.g._popState();
+		rt.g._pop();
 	
 		return xPos;
 	}
@@ -1482,6 +1494,7 @@
 		},
 	
 		draw : function() {
+			
 		  this._update()._render();   
 		  if (this.textToCopy)
 			  this.textToCopy.draw();
@@ -1503,7 +1516,7 @@
 			
 			if (this._rs && this._rs.length) {
 			
-				g._pushState();
+				g._push();
 				
 				var bb = g._getBoundingBox(this); // cache this!
 				
@@ -1550,7 +1563,7 @@
 					g._rect(0, bb.y, bb.width, bb.height); // what??
 				}
 				
-				g._popState();
+				g._pop();
 			}
 	
 			return this;
@@ -2088,10 +2101,13 @@
 		},    
 	
 		showBounds : function(trueOrFalse) {
+			
 		   if (arguments.length == 1) {
+		   	
 			   this._showBounds = trueOrFalse;
 			   return this;
 		   }
+		   
 		   return this._showBounds;
 		},
 	
@@ -2195,7 +2211,7 @@
 	
 			var g = this.g, bb = this.g._getBoundingBox(this);
 	
-			g._pushState(); // really, do we need all this here? 
+			g._push(); // really, do we need all this here? 
 			
 			// make function (here and in draw)
 			g._translate(this.x, this.y);
@@ -2205,38 +2221,38 @@
 			g._scale(this._scaleX, this._scaleY, this._scaleZ);
 			 
 			// Set font params
-				g._textFont(this._font);
-				g._textAlign(this._alignment);
-	
-				if (!noTransform) {
-					bb.x += this.x;
-					bb.y += this.y;
-					bb.width *= this._scaleX;
-					bb.height *= this._scaleY;
-				}
-				g._popState();
-	
-				return [bb.x,bb.y,bb.width,bb.height];
-			},
-	
-			textWidth : function() { 
+			g._textFont(this._font);
+			g._textAlign(this._alignment);
+
+			if (!noTransform) {
+				bb.x += this.x;
+				bb.y += this.y;
+				bb.width *= this._scaleX;
+				bb.height *= this._scaleY;
+			}
+			g._pop();
+
+			return [bb.x,bb.y,bb.width,bb.height];
+		},
+
+		textWidth : function() { 
+			
+			return this.g._textWidth(this._font,this._rs._text);
+		},
+
+		textHeight : function() { 
+			
+			return this.g._textHeight(this);
+		},
+
+		fontSize : function(f) {
+ 
+			if (!arguments.length) {
 				
-				return this.g._textWidth(this._font,this._rs._text);
-			},
-	
-			textHeight : function() { 
-				
-				return this.g._textHeight(this);
-			},
-	
-			fontSize : function(f) {
-	 
-				if (!arguments.length) {
-					
-					return this._font ? this._font.size : -1;
-				}
-				
-				// DCH: changed:
+				return this._font ? this._font.size : -1;
+			}
+			
+			// DCH: changed:
 			//return (arguments.length) ? this.scale( sz / this._font.size) 
 				//: (this._font.size * this._scaleX);
 			
@@ -2338,21 +2354,13 @@
 		}
 	}
 	
-	var RiText_P5 = makeClass();
+	var RiText_P5js = makeClass();
 	
-	RiText_P5.prototype = {
+	RiText_P5js.prototype = {  
 	
-		init : function(p, ctx) {
-			
-			this.p = p;
-			if (!ctx) console.error("no canvas-context!");
-			this.ctx = ctx;
-			
-		},
-		
-		_size : function() {
-			
-			return this.p.size.apply(this, arguments);
+		init : function(p5) {
+				
+			this.p = p5;
 		},
 		
 		_getGraphics : function() {
@@ -2360,123 +2368,116 @@
 			return this.p;
 		},
 		
-		
-		_pushState : function() {
-			
-			// TODO: what about the matrix?
-			
-			//this.p.pushStyle(); 
-			this.ctx.save();
-			
-			//this.p.pushMatrix();
-			
+		_push : function() {
+			push();
 			return this;
 		},
 		
-		_popState : function() {
-			
-			
-			//this.p.popMatrix();
-			
-			this.ctx.restore();
-			//this.p.popStyle();
-				
-				return this;
-			},
+		_pop : function() {
+			pop();
+			return this;
+		},
 	
-			_textAlign : function(align) {
-				
-				this.p.textAlign.apply(this,arguments);
-				return this;
-			},
-			
-			_scale : function(sx, sy) {
-				sy = sy || 1;
-				this.p.scale(sx, sy, 1);
-			},
-			
-			_translate : function(tx, ty) {
-				ty = ty || 0;
-				this.p.translate(tx, ty, 0);
-			},
-			
-			_rotate : function(zRot) {
-	 
-				this.p.rotate(zRot);
-			},
-			
-			_text : function(str, x, y) {
-				
-				this.p.text.apply(this, arguments);
-			},
-			
-			_fill : function(r,g,b,a) {
-				
-				this.p.fill.apply(this,arguments);
-			},
-			
-			_stroke : function(r,g,b,a) {
-				
-				this.p.stroke.apply(this,arguments);
-			},
-			
-			_noFill : function() {
-				
-				this.p.noFill();
-			},
-			
-			_rect : function(x,y,w,h) {
-				
-				this.p.rect.apply(this, arguments);
-			},
-			
-			_strokeWeight : function(f) {
-	//console.log("p.strokeWeight: "+f);
-			this.p.strokeWeight.apply(this,arguments);
+		_textAlign : function(align) {
+			textAlign(align);
+			return this;
 		},
 		
-		_background : function(r,g,b,a) {
+		_scale : function(sx, sy) {
+			scale(sx, sy);
+			return this;
+		},
+		
+		_translate : function(tx, ty) {
+			translate(tx, ty);
+			return this;
+		},
+		
+		_rotate : function(zRot) {
+			rotate(zRot);
+			return this;		
+		},
+		
+		_text : function(str, x, y) {
+			text(str, x, y);
+			return this;
+		},
+		
+		_fill : function(r,g,b,a) {
+			fill(r,g,b,a);
+			return this;			
+		},
+		
+		_stroke : function(r,g,b,a) {
+			stroke(r,g,b,a);
+			return this;		
+		},
+		
+		_noFill : function() {
+			noFill();
+			return this;
+		},
+		
+		_noStroke : function() {
+			noStroke();
+			return this;
+		},
+		
+		_strokeWeight : function(sw) {
+			strokeWeight(sw);
+			return this;
+		},
+
+		// actual creation: only called from RiText.createDefaultFont();!
+		_createFont : function(fontName, fontSize) { // p5js
 			
-			this.p.background.apply(this,arguments);
+			textFont(fontName);
+			textSize(fontSize);
+			
+			this.font = {
+			  "name": fontName,
+			  "size": fontSize
+			  // add textAscent,textDescent,widths?
+			}
+
+			return this.font;
 		},
 	
-		// actual creation: only called from RiText.defaultFont()!
-		_createFont : function(fontName, fontSize) {
+		_rect : function(x,y,w,h) {
 			
-			//log("[P5] Creating font: "+fontName+"-"+fontSize);
-			
-			return this.p.createFont(fontName, fontSize);                
+			rect(x,y,w,h);
+			return this;
 		},
-	
+		
 		_textFont : function(fontObj) {
 			
-			if (!is(fontObj,O)) 
+			if (!is(fontObj, O)) 
 				err("_textFont takes object!");
-			this.p.textFont(fontObj, fontObj.size);
+				
+			textFont(fontObj, fontObj.size);
 		},
 		
 		_textSize : function(sz) {
 			
-			this.p.textSize(sz);
+			textSize(sz);
 		},
 		
 		_textWidth : function(fontObj, str) {
 			
-			//this.p.pushStyle(); ////////
-			this.ctx.save(); // ?? why?
-			this.p.textFont(fontObj, fontObj.size); // was _textFont
-			var tw = this.p.textWidth(str);
-			//this.p.popStyle();
-			this.ctx.restore();
+			this._push();
+			textFont(this.font);
+			textSize(this.fontSize);
+			var tw = textWidth(str);
+			this._pop();
 			//log(str+" -> "+tw);
 			return tw;
 		},
 		
 		_textHeight : function(rt) {
 			
-			this.ctx.save();
+			this._push();
 			var h = this._getBoundingBox(rt).height;
-			this.ctx.restore();
+			this._pop();
 			return h;
 		},
 		
@@ -2485,14 +2486,16 @@
 			ignoreContext = ignoreContext || false;
 			
 			if (!ignoreContext) {
-			  //this.p.pushStyle();
-			  this.ctx.save();
-			  this.p.textFont(rt._font, rt._font.size);
+				
+			  this._push();
+			  textFont(rt._font, rt._font.size);
 			}
-			var asc = this.p.textAscent();
+			
+			var asc = textAscent();
+			
 			if (!ignoreContext) {
-			  this.ctx.restore();
-			  //this.p.popStyle();
+				
+			  this._pop();
 			}
 	
 			return asc;
@@ -2500,41 +2503,39 @@
 		
 		_textDescent : function(rt) {
 			
-			//this.p.pushStyle(); ////////
-			this.ctx.save();
-			this.p.textFont(rt._font, rt._font.size);
-			var dsc = this.p.textDescent();
-			//this.p.popStyle();
-			this.ctx.restore();
+			this._push();
+			textFont(rt._font, rt._font.size);
+			var dsc = textDescent();
+			this._pop();
 			return dsc;
 		},
 		
 		// TODO: what about scale?
 		_getBoundingBox : function(rt) {
 			
-			//this.p.pushStyle(); ////////
-			//this.ctx.save();
+			this._push();
+			textFont(rt._font);
+			textSize(rt._font.size);
 	
-			this.ctx.save();
-			this.p.textFont(rt._font, rt._font.size);
+			var ascent  =   textAscent(),
+				descent =   textDescent(),
+				width   =   textWidth(rt.text());
 			
-			//this.p.popStyle(); ////////
-			
-			var ascent  =   this.p.textAscent(),
-				descent =   this.p.textDescent(),
-				width   =   this.p.textWidth(rt.text());
-			
-			this.ctx.restore();		
+			this._pop();
 	
 			return { x: 0, y: -ascent-1, width: width, 
 				height: (ascent+descent+1) };
 		},
+		_width : function() {
+			
+			throw Error('no width in node');
+		},
 		
 		_type : function() {
 			
-			return "Processing";
+			return "P5js";
 		},
-		
+			
 		toString : function() {
 			
 			return "RiText_"+this._type();
@@ -2550,23 +2551,18 @@
 			this.font = metrics;
 		},
 		
-		_size : function() {
-			
-			return this.font.size;
-		},
-		
 		_getGraphics : function() {
 			
 			warn("NodeRenderer._getGraphics() returning null graphics context!");
 			return null;
 		},
 		
-		_pushState : function() {
+		_push : function() {
 			// no-op
 			return this;
 		},
 		
-		_popState : function() {
+		_pop : function() {
 			// no-op
 			return this;
 		},
@@ -2607,11 +2603,7 @@
 		_strokeWeight : function() {
 			// no-op
 		},
-		
-		_background : function(r,g,b,a) {
-			// no-op			
-		},
-	
+
 		// actual creation: only called from RiText.createDefaultFont();!
 		_createFont : function(fontName, fontSize) {
 	
@@ -2623,6 +2615,7 @@
 		},
 		
 		_textFont : function(fontObj) {
+			
 			// TODO: apply one of the (cached?) fonts?
 			this.font = fontObj;
 		},
@@ -2665,8 +2658,17 @@
 		_getBoundingBox : function(rt) {
 			
 			// bc of no translate(), we use the actual x,y
-			return { x: rt.x, y: rt.y-this._textAscent()-1, 
-				width: this._textWidth(), height: this._textHeight()+1 };
+			return { 
+				x: rt.x, 
+				y: rt.y - this._textAscent() - 1, 
+				width: this._textWidth(), 
+				height: this._textAscent() + this._textDescent() + 1
+			};
+		},
+		
+		_width : function() {
+			
+			throw Error('no width in node');
 		},
 		
 		_type : function() {
@@ -2674,6 +2676,201 @@
 			return "Node";
 		},
 			
+		toString : function() {
+			
+			return "RiText_"+this._type();
+		}
+	}
+	
+	var RiText_P5 = makeClass();
+	
+	RiText_P5.prototype = {
+	
+		init : function(p, ctx) {
+			
+			this.p = p;
+			//console.log(p);
+			this.ctx = ctx;
+		},
+		
+		_getGraphics : function() {
+			
+			return this.p;
+		},
+		
+		_push : function() {
+			
+			if (this.ctx)
+				this.ctx.save();
+			else 
+				push(); // injected by p5.js
+				
+			return this;
+		},
+		
+		_pop : function() {
+			
+			if (this.ctx)
+				this.ctx.restore();
+			else 
+				pop(); // injected by p5.js
+				
+			return this;
+		},
+	
+		_textAlign : function(align) {
+			
+			this.p.textAlign.apply(this,arguments);
+			return this;
+		},
+		
+		_scale : function(sx, sy) {
+			
+			sy = sy || 1;
+			this.p.scale(sx, sy, 1);
+		},
+		
+		_translate : function(tx, ty) {
+			
+			ty = ty || 0;
+			this.p.translate(tx, ty, 0);
+		},
+		
+		_rotate : function(zRot) {
+ 
+			this.p.rotate(zRot);
+		},
+		
+		_text : function(str, x, y) {
+			
+			this.p.text.apply(this, arguments);
+		},
+		
+		_fill : function(r,g,b,a) {
+			
+			this.p.fill.apply(this,arguments);
+		},
+		
+		_stroke : function(r,g,b,a) {
+			
+			this.p.stroke.apply(this,arguments);
+		},
+		
+		_noFill : function() {
+			
+			this.p.noFill();
+		},
+		
+		_rect : function(x,y,w,h) {
+			
+			this.p.rect.apply(this, arguments);
+		},
+		
+		_strokeWeight : function(f) {
+
+			this.p.strokeWeight.apply(this,arguments);
+		},
+		
+		_background : function(r,g,b,a) {
+			
+			this.p.background.apply(this,arguments);
+		},
+	
+		// actual creation: only called from RiText.defaultFont()!
+		_createFont : function(fontName, fontSize) {
+			
+			//log("[P5] Creating font: "+fontName+"-"+fontSize);
+			
+			return this.p.createFont && this.p.createFont(fontName, fontSize);                
+		},
+	
+		_textFont : function(fontObj) {
+			
+			if (!is(fontObj,O)) 
+				err("_textFont takes object!");
+			this.p.textFont(fontObj, fontObj.size);
+		},
+		
+		_textSize : function(sz) {
+			
+			this.p.textSize(sz);
+		},
+		
+		_textWidth : function(fontObj, str) {
+			
+			this._push();
+			this.p.textFont(fontObj, fontObj.size); // was _textFont
+			var tw = this.p.textWidth(str);
+			this._pop();
+			//log(str+" -> "+tw);
+			return tw;
+		},
+		
+		_textHeight : function(rt) {
+			
+			this._push();
+			var h = this._getBoundingBox(rt).height;
+			this._pop();
+			return h;
+		},
+		
+		_textAscent : function(rt,ignoreContext) {
+			
+			ignoreContext = ignoreContext || false;
+			
+			if (!ignoreContext) {
+				
+			  this._push();
+			  this.p.textFont(rt._font, rt._font.size);
+			}
+			
+			var asc = this.p.textAscent();
+			
+			if (!ignoreContext) {
+				
+			  this._pop();
+			}
+	
+			return asc;
+		},
+		
+		_textDescent : function(rt) {
+			
+			this._push();
+			this.p.textFont(rt._font, rt._font.size);
+			var dsc = this.p.textDescent();
+			this._pop();
+			return dsc;
+		},
+		
+		// TODO: what about scale?
+		_getBoundingBox : function(rt) {
+			
+			//console.log(this.ctx.measureText(rt.text()).height);
+			
+			this._push();
+			this.p.textFont(rt._font, rt._font.size);
+	
+			var ascent  =   this.p.textAscent(),
+				descent =   this.p.textDescent(),
+				width   =   this.p.textWidth(rt.text());
+			
+			this._pop();
+	
+			return { x: 0, y: -ascent-1, width: width, 
+				height: (ascent+descent+1) };
+		},
+		
+		_width : function() {
+			
+			return this.p.width;
+		},
+		
+		_type : function() {
+			
+			return "Processing";
+		},
+		
 		toString : function() {
 			
 			return "RiText_"+this._type();
@@ -2703,9 +2900,11 @@
 	}
 	else if (hasP5js) { // in p5.js
 		
-		console.warn("No support yet for p5.js");
+		//console.warn("No support yet for p5.js");
+		RiText.renderer = new RiText_P5js(p5);
+		console.log("Renderer: p5.js");
 		//context2d = p5.externals.canvas.getContext("2d");
-		//RiText.renderer = new RiText_P5(p5, context2d);
+		//RiText.renderer = new RiText_P5(p5);
 	}
 	else if (isNode()) {
 		
