@@ -99,7 +99,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   b. Then, from a terminal/shell: 
   <pre><code>$ git clone https://github.com/username/RiTaJS.git</code></pre>
 4. Now navigate into the project folder and install dependencies via npm. <pre>$ cd RiTaJS; npm install</pre>
-5. To create the library from src, use gulp.<pre>$ grunt build</pre>
-6. Run non-graphical tests in node, use gulp.<pre>$ grunt test.node</pre>
-7. Run all tests (in phantomJS), use gulp.<pre>$ grunt test</pre>   
+5. To create the library from src, use gulp.<pre>$ gulp build</pre>
+6. Run non-graphical tests in node, use gulp.<pre>$ gulp test.node</pre>
+7. Run all tests (in phantomJS), use gulp.<pre>$ gulp test</pre>   
 8. Work on an existing <a href="https://github.com/dhowe/RiTaJS/issues?state=open">issue</a>, then <a href="https://help.github.com/articles/creating-a-pull-request">submit a pull request...</a>
