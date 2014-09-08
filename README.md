@@ -9,8 +9,7 @@
 RiTaJS is designed to an easy-to-use toolkit for experiments 
 in natural language and generative literature, based on the RiTa 
 (http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
-works alone or in conjunction with Processing(JS) and/or with 
-its own Canvas renderer, and/or as a NodeJS module.  All RiTa and RiTaJS tools
+works alone or in conjunction with Processing(JS) and/or as a NodeJS module.  All RiTa and RiTaJS tools
 are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
@@ -91,15 +90,14 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 #### Development Setup
 --------
 1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>.
-2. Now install gulp <pre>$ npm install -g gulp</pre> 
-3. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
+2. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
   
   a. First, login to github and fork the project
   
   b. Then, from a terminal/shell: 
   <pre><code>$ git clone https://github.com/dhowe/RiTaJS.git</code></pre>
-4. Now navigate into the project folder and install dependencies via npm. <pre>$ cd RiTaJS; npm install</pre>
-5. To create the library from src, use gulp.<pre>$ gulp build</pre>
-6. Run non-graphical tests in node, use gulp.<pre>$ gulp test.node</pre>
-7. Run all tests (in phantomJS), use gulp.<pre>$ gulp test</pre>   
-8. Work on an existing <a href="https://github.com/dhowe/RiTaJS/issues?state=open">issue</a>, then <a href="https://help.github.com/articles/creating-a-pull-request">submit a pull request...</a>
+3. Now navigate into the project folder and install dependencies via npm. <pre>$ cd RiTaJS; npm install</pre>
+4. To create the library from src, use gulp.<pre>$ gulp build</pre>
+5. Run non-graphical tests in node, use gulp.<pre>$ gulp test.node</pre>
+6. Run all tests (in phantomJS), use gulp.<pre>$ gulp test</pre>   
+7. Work on an existing <a href="https://github.com/dhowe/RiTaJS/issues?state=open">issue</a>, then <a href="https://help.github.com/articles/creating-a-pull-request">submit a pull request...</a>
