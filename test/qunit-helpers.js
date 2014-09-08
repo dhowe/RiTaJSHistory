@@ -4,6 +4,7 @@
 QUnit.checkAPI = function(className, Class, obj) {
 
 	var eles = QUnit.propertiesFromAPI(className); 	
+	
 	if (!eles) {
 		
 		expect(0);
@@ -16,6 +17,7 @@ QUnit.checkAPI = function(className, Class, obj) {
     	//console.log("Checking "+eles[i].name);
     	
     	if (!eles[i] || eles[i]==='undefined') {
+    		
     		console.log("Null element in "+className.json);
     		continue;
     	}
@@ -46,17 +48,19 @@ QUnit.propertiesFromAPI = function(className) {
 	// for now, this only works in Node
 	if (typeof exports != 'undefined') {
 		
-		jsonf = '../docs/json/'+className;
+		jsonf = '../../docs/json/'+className;
 		try{
 			fields = require(jsonf).fields;
 		}
 		catch(e) {
 			
-			console.warn("[WARN] No json file found at: '"+jsonf+"'");
+			console.warn("[WARN] No json file at: '"+jsonf+"?", '  or perhaps the JSON is invalid?', e);
 			return;
 		}
 		                
 	   	for (var i=0,j=fields.length; i<j; i++) {
+			 
+			 if (fields[i].hidden) continue;
 			 
 			 var isVar = fields[i].variable || false,
 			 	isStatic = (new RegExp("^"+className+"\.").test(fields[i].name)),

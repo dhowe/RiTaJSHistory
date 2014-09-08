@@ -2906,13 +2906,11 @@
 		//context2d = p5.externals.canvas.getContext("2d");
 		//RiText.renderer = new RiText_P5(p5);
 	}
-	else if (isNode()) {
-		
-		RiText.renderer = RiText_Node(RiText.defaults.metrics);
-	}
 	else {
 		
-		warn('Unknown Env: not Processing(JS), p5.js, Node, or Android; rendering unavailable');
+		if (!isNode() && !window)
+			warn('Env. is not Processing(JS)/p5.js, Node, or Android; rendering unavailable');
+			
 		RiText.renderer = RiText_Node(RiText.defaults.metrics);
 	}
 	
