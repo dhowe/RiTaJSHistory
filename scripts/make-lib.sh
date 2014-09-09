@@ -28,6 +28,8 @@ INCLUDE_DOCS=1
 UPDATE_BOWER=0
 MINIMIZE_SRC=1
 FAKE_MINIMIZE=0
+
+
 LINE="------------------------------------------------------"
 
 while [ $# -ge 1 ]; do
