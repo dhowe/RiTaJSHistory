@@ -1,5 +1,5 @@
 {
-  "version": "1.0.67",
+  "version": "1.0.677",
   "author": "Daniel C. Howe <daniel@rednoise.org>",
   "name": "rita",
   "description": "RiTa: A toolkit for natural language and computational literature",
@@ -25,8 +25,9 @@
   "ignore": [
     "**/.*",
     "AUTHORS",
-    "LICENSE",
     "README.*",
+    "gulpfile.js",
+    "package.json",
     "build",
     "lib",
     "misc",
@@ -34,7 +35,6 @@
     "node_modules",
     "rita-*",
     "scripts",
-    "src",
     "test"
   ]
 }
