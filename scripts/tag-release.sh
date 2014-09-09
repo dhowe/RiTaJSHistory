@@ -23,4 +23,4 @@ git commit -am "Release v$VERSION"
 git tag -a v$VERSION -m "Release v$VERSION"
 
 # push to GitHub
-git push origin master --tags  
+git push --force origin master --tags  
