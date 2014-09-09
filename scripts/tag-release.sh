@@ -2,6 +2,7 @@
 
 set -e # die on errors 
 
+
 if [ $# -lt "1"  ]
 then
     echo
@@ -12,6 +13,8 @@ then
 fi
 
 VERSION=$1
+
+cd ..
 
 # commit your changes
 git commit -am "Release v$VERSION"
