@@ -1,6 +1,6 @@
 // Configuration options
 var testDir = './test/', 
-    buildDir = 'build',
+    buildDir = 'dist',
     ritaDir = '../',
     tmpDir = '/tmp';
 
@@ -54,7 +54,7 @@ gulp.task('update', function() { // DO WE WANT THIS?
     console.log('Publishing to '+host);
 
 	// publish (4) js files to www/rita/download
-	gulp.src('build/rita-'+version+'*.js')
+	gulp.src(buildDir+'/rita-'+version+'*.js')
 		.pipe(scp({
             host: host,
             path: '~/www/rita/download',	
