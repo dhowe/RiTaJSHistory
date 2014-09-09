@@ -1,8 +1,6 @@
 **/web-export/*
 node_modules
-bower_modules
 **/node_modules/*
-**/bower_modules/*
 .git
 config
 .project
@@ -22,3 +20,4 @@ test/CVS
 test/node
 build
 rita-*.tgz
+bower_components

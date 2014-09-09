@@ -9,7 +9,8 @@
     "natural language",
     "language",
     "writing",
-    "generative"
+    "generative",
+    'web-components'
   ],
   "bugs": {
     "mail": "daniel@rednoise.org",
@@ -29,7 +30,7 @@
     "build",
     "lib",
     "misc",
-    "bower_modules",
+    "bower_components",
     "node_modules",
     "rita-*",
     "scripts",
