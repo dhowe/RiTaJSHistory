@@ -2,14 +2,14 @@
 ### RiTaJS: a generative language toolkit for JavaScript
 
 
-<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo3.png"/></a>
+<a href="https://rednoise.org/rita"><img height=120 src="https://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
-#### <a href="http://rednoise.org/rita/js">The RiTaJS website</a>
+#### <a href="https://rednoise.org/ritas">The RiTa website</a>
 
 RiTaJS is designed to an easy-to-use toolkit for experiments 
 in natural language and generative literature, based on the RiTa 
 (http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
-works alone or in conjunction with Processing(JS) and/or as a NodeJS module.  All RiTa and RiTaJS tools
+works alone or in conjunction with Processing(JS) and/or as a NodeJS or Bower module.  All RiTa and RiTaJS tools
 are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
@@ -32,7 +32,7 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 <pre>
   &lt;html&gt;
   &lt;canvas id="canvas" width=200 height=200&gt;&lt;/canvas&gt;
-  &lt;script src="http://rednoise.org/rita/download/rita-latest.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://rednoise.org/rita/download/rita-latest.min.js"&gt;&lt;/script&gt;
   &lt;script&gt;
 
     window.onload = function() {
