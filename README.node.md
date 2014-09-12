@@ -1,7 +1,7 @@
 
 ## RiTa: a generative language toolkit for JavaScript
 
-<a href="http://rednoise.org/rita"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo2.png"/></a>
+<a href="http://rednoise.org/rita"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
 ### <a href="http://rednoise.org/rita">The RiTa website</a>
 
@@ -63,12 +63,13 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 
 
 
-#### Can I contribute?
+Can I contribute?
 --------
 Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, or follow the instructions below... 
 
 
-#### Development Setup
+
+Development Setup
 --------
 1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>. 
 2. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
