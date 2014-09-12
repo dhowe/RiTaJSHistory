@@ -29,14 +29,14 @@ In NodeJS
  
  To install: $ npm install rita
  
- rita = require('rita');
- rs = rita.RiString("The elephant took a bite.");
- console.log(rs.features());
+   rita = require('rita');
+   rs = rita.RiString("The elephant took a bite.");
+   console.log(rs.features());
  
  To run tests: 	$ cd node_modules/rita/ && npm install && cd - 
  				$ npm test rita 
 
- Or, use Gulp via the 'Development Setup' instructions below...
+   or, use Gulp via the 'Development Setup' instructions below...
 </pre>  
 
 
