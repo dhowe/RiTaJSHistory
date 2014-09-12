@@ -36,7 +36,7 @@ In NodeJS
  To run tests: 	$ cd node_modules/rita/ && npm install && cd - 
  				$ npm test rita 
 
-   or, use Gulp via the 'Development Setup' instructions below...
+ Or, use <a href="https://npmjs.org/">npm</a> via the 'Development Setup' instructions below...
 </pre>  
 
 
