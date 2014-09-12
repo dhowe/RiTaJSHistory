@@ -36,7 +36,7 @@ In NodeJS
  To run tests: 	$ cd node_modules/rita/ && npm install && cd - 
  				$ npm test rita 
 
- Or, use <a href="http://gulpjs.com/" target="new">Gulp</a> via the 'Development Setup' instructions below...
+ Or, use <a href="http://gulpjs.com/" target="new">Gulp</a> via the 'Development setup' instructions below...
 </pre>  
 
 
@@ -68,8 +68,7 @@ Can I contribute?
 Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, or follow the instructions below... 
 
 
-
-Development Setup
+Development setup
 --------
 1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>. 
 2. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
