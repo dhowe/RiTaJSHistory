@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dhowe/RiTaJS.svg?branch=master)](https://travis-ci.org/dhowe/RiTaJS)
+
 ## RiTa: a generative language toolkit for JavaScript
 
 <a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo3.png"/></a>

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dhowe/RiTaJS.svg?branch=master)](https://travis-ci.org/dhowe/RiTaJS)
 
 
 ## RiTa: a generative language toolkit for JavaScript
