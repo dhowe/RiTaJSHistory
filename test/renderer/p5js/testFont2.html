@@ -1,0 +1,254 @@
+<html>
+	<head>
+		<style type="text/css">
+			@font-face {
+				font-family: 'A.C.M.E. Secret Agent';
+				src: url('acmesa.ttf') format('truetype');
+			}
+		</style>
+		<script src="../../../lib/Font.js"></script>
+		<script src="../../../lib/p5.js"></script>
+		<script src="../../../src/rita.js"></script>
+		<script src="../../../src/ritext.js"></script>
+		<script>
+			(function (global) {
+				
+				function clean(css) {
+					return css
+					.replace(/\/\*[\W\w]*?\*\//g, "") // remove comments
+					.replace(/^\s+|\s+$/g, "") // remove trailing spaces
+					.replace(/\s*([:;{}])\s*/g, "$1") // remove trailing separator spaces
+					.replace(/\};+/g, "}") // remove unnecessary separators
+					.replace(/([^:;{}])}/g, "$1;}") // add trailing separators
+				}
+		
+				function refine(css, isBlock) {
+					return /^@/.test(css) ? (css = css.split(" ")) && {
+					"identifier": css.shift().substr(1).toLowerCase(),
+					"parameters": css.join(" ")
+					} : (isBlock ? /:$/ : /:/).test(css) ? (css = css.split(":")) && {
+					"property": css.shift(),
+					"value": css.join(":")
+					} : css;
+				}
+		
+				function parse(css, regExp, object) {
+					for (var m; (m = regExp.exec(css)) != null;) {
+					if (m[2] == "{") object.block.push(object = {
+					"selector": refine(m[1], true),
+					"block": [],
+					"parent": object
+					});
+					else if (m[2] == "}") object = object.parent;
+					else if (m[2] == ";") object.block.push(refine(m[1]));
+					}
+				}
+		
+				global.parseCSS = function (css) {
+					return parse(clean(css), /([^{};]*)([;{}])/g, css = { block: [] }), css;
+				};
+				
+			})(this);
+		</script>
+		<script>
+			
+			console.log(getFonts());
+/*
+			var fontSize = 19;
+	
+			function setup() {
+
+				
+				createCanvas(200, 200);
+
+				// let's load a font!
+				var font = new Font();
+
+				// set up the onload handler
+				font.onload = function() {
+										
+					var fontObj = {
+
+						name : this.fontFamily,
+						ascent : this.metrics.ascent,
+						descent : this.metrics.descent
+					};
+					
+					var tm = font.measureText("Hello World", fontSize);
+					var textObj = {
+
+						fontSize : fontSize,
+						ascent : tm.ascent,
+						descent : tm.descent,
+						bounds : tm.bounds,
+						height : tm.height,
+						width : tm.width,
+						leading :  tm.leading
+					};
+				}
+				
+				// error handler
+				font.onerror = function(err) {
+					alert(err);
+				}
+				
+				// then kick off font loading by assigning the "src" property
+				font.fontFamily = "A.C.M.E. Secret Agent";
+				font.src = "acmesa.ttf";
+			}
+*/		
+			function loadFonts(metafonts) {
+				 
+				// WORKING HERE: how to wait for all these to load, then fire event
+				for(var i=0,j=metafonts.length; i<j; i++){
+					
+				  	var font = new Font();
+				  	
+				  	// error handler
+					font.onerror = function(err) {
+						alert(err);
+					}
+					
+					font.onload = function() {
+										
+						var fontObj = {
+	
+							name : this.fontFamily,
+							ascent : this.metrics.ascent,
+							descent : this.metrics.descent
+						};
+						
+						var tm = font.measureText("Hello World", fontSize);
+						var textObj = {
+	
+							fontSize : fontSize,
+							ascent : tm.ascent,
+							descent : tm.descent,
+							bounds : tm.bounds,
+							height : tm.height,
+							width : tm.width,
+							leading :  tm.leading
+						};
+					}
+					
+					font.fontFamily = metafonts[i].fontFamily;
+					font.src = metafonts[i].src;
+				};
+			}
+			
+			function getFonts() {
+				
+				// Find all the font-face style-sheets
+				var o = [], metas = [], sheet = document.styleSheets, rule = null, i = sheet.length, j;
+				while (0 <= --i) {
+					rule = sheet[i].rules || sheet[i].cssRules || [];
+					//console.log("rule: "+rule + " "+rule.length);
+					j = rule.length;
+					while (0 <= --j) {
+						
+						//console.log(rule[j]);
+						if (rule[j].constructor.name === 'CSSFontFaceRule' || rule[j].cssText.slice(0, 10).toLowerCase() === '@font-face') {
+							
+							//console.log(rule[j].style.fontFamily+": "+rule[j].style.src);
+							o.push(rule[j]);
+						};
+					}
+				}
+				
+				// Now parse the cssText for each and extract the font meta-data 
+		
+				for (var k=0; k < o.length; k++) {
+					
+					var blocks = parseCSS(o[k].cssText).block;
+					for(var i=0,j=blocks.length; i<j; i++) {
+						
+						var meta = {}, parts = blocks[i].block;
+						for (var i=0; i < parts.length; i++) {
+							
+						  	var key = parts[i].property,
+						  		val = parts[i].value;
+						  		
+						    //console.log('key: '+key);
+						    
+						    if (key == 'font-family') {
+						    	
+						    	meta.fontFamily = val;
+						    }
+							else if (key === 'src') {
+
+						    	meta.src = val.replace(/.*url\("([a-z".]+)"\).*/i, '$1');
+						    }
+
+						}; 
+						if (meta.src && meta.fontFamily)
+							metas.push(meta);
+					}
+				}
+				
+				return metas;
+			}
+			
+
+			
+			function FontMetrix(fontName,fontSize) 
+			{
+				function objOff(obj)
+				{
+				    var currleft = currtop = 0;
+				    if( obj.offsetParent )
+				    { do { currleft += obj.offsetLeft; currtop += obj.offsetTop; }
+				      while( obj = obj.offsetParent ); }
+				    else { currleft += obj.offsetLeft; currtop += obj.offsetTop; }
+				    return [currleft,currtop];
+				}
+			
+			    var text = document.createElement("span");
+			    text.style.fontFamily = fontName;
+			    text.style.fontSize = fontSize + "px";
+			    text.innerHTML = "ABCjgq|"; 
+			    // if you will use some weird fonts, like handwriting or symbols, then you need to edit this test string for chars that will have most extreme accend/descend values
+			
+			    var block = document.createElement("div");
+			    block.style.display = "inline-block";
+			    block.style.width = "1px";
+			    block.style.height = "0px";
+			
+			    var div = document.createElement("div");
+			    div.appendChild(text);
+			    div.appendChild(block);
+			
+			    // this test div must be visible otherwise offsetLeft/offsetTop will return 0
+			    // but still let's try to avoid any potential glitches in various browsers
+			    // by making it's height 0px, and overflow hidden
+			    div.style.height = "0px";
+			    div.style.overflow = "hidden";
+			
+			    // I tried without adding it to body - won't work. So we gotta do this one.
+			    document.body.appendChild(div);
+			
+			    block.style.verticalAlign = "baseline";
+			    var bp = objOff(block);
+			    var tp = objOff(text);
+			    var tascent = bp[1] - tp[1];
+			    block.style.verticalAlign = "bottom";
+			    bp = objOff(block);
+			    tp = objOff(text);
+			    var theight = bp[1] - tp[1];
+			    var tdescent = theight - tascent;
+			
+			    // now take it off :-)
+			    document.body.removeChild(div);
+			
+			    // return text ascent, descent and total height
+			    return [tascent,theight,tdescent];
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="fontinfo_ttf"></div>
+		<div id="codeblock_ttf"></div>
+	</body>
+	
+</html>

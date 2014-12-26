@@ -1,0 +1,141 @@
+<html>
+	<head>
+		<!--style type="text/css">
+			@font-face {
+				font-family: 'A.C.M.E. Secret Agent';
+				src: url('acmesa.ttf') format('truetype');
+			}
+		</style-->
+		<script src="../../../lib/Font.js"></script>
+		<script src="../../../lib/p5.js"></script>
+		<script src="../../../src/rita.js"></script>
+		<script src="../../../src/ritext.js"></script>
+		<script>
+
+			var fontSize = 32;
+			var baseline = 40;
+			var fontFamily = "A.C.M.E. Secret Agent";
+			
+			
+			function setup() {
+				
+				createCanvas(300, 300);
+				
+				var pfont = createFont(fontFamily, 'acmesa.ttf', 'truetype');
+				
+				textFont(pfont);
+				textSize(fontSize);
+				text("Times to Change", 40, baseline);
+				
+				var fm = fontMetrix(fontFamily, fontSize);
+				line(0, baseline, width, baseline);
+				line(0, baseline-fm.ascent, width, baseline-fm.ascent);
+				line(0, baseline+fm.descent, width, baseline+fm.descent);
+			}
+			
+			function createFont(fontName, fontUrl, fontFormat) {
+				
+				var newStyle = document.createElement('style');
+				newStyle.appendChild(document.createTextNode(
+						"@font-face {font-family: '" + fontName + "'; src: url('" + 
+							fontUrl + "') format("+fontFormat+"); }"
+				));
+				document.head.appendChild(newStyle);
+				
+				var font = new Font();
+
+				// set up the onload handler
+				font.onload = function() {
+										
+					/*var fontObj = {
+
+						name : this.fontFamily,
+						ascent : this.metrics.ascent,
+						descent : this.metrics.descent
+					};*/
+					console.log(loaded);
+				}
+				
+				// error handler
+				font.onerror = function(err) {
+					alert(err);
+				}
+				
+				// then kick off font loading by assigning the "src" property
+				font.fontFamily = "A.C.M.E. Secret Agent";
+				font.src = "acmesa.ttf";
+				
+				return font;
+			}
+
+			function fontMetrix(fontName, fontSize) 
+			{
+				function objOff(obj)
+				{
+				    var currleft = currtop = 0;
+				    if (obj.offsetParent)
+				    { 
+				    	do { 
+				    		currleft += obj.offsetLeft; 
+				    		currtop += obj.offsetTop; 
+						}
+				      	while (obj = obj.offsetParent); 
+					}  	
+				    else {
+				    	 
+				    	currleft += obj.offsetLeft; currtop += obj.offsetTop; 
+					}
+				    return [currleft, currtop];
+				}
+			
+			    var text = document.createElement("span");
+			    text.style.fontFamily = fontName;
+			    text.style.fontSize = fontSize + "px";
+			    text.innerHTML = "ABCjgq|f"; 
+			    // if you will use some weird fonts, like handwriting or symbols, then you need to edit this test string for chars that will have most extreme accend/descend values
+			
+			    var block = document.createElement("div");
+			    block.style.display = "inline-block";
+			    block.style.width = "1px";
+			    block.style.height = "0px";
+			
+			    var div = document.createElement("div");
+			    div.appendChild(text);
+			    div.appendChild(block);
+			
+			    // this test div must be visible otherwise offsetLeft/offsetTop will return 0
+			    // but still let's try to avoid any potential glitches in various browsers
+			    // by making it's height 0px, and overflow hidden
+			    div.style.height = "0px";
+			    div.style.overflow = "hidden";
+			
+			    // I tried without adding it to body - won't work. So we gotta do this one.
+			    document.body.appendChild(div);
+			
+			    block.style.verticalAlign = "baseline";
+			    var bp = objOff(block);
+			    var tp = objOff(text);
+			    var tascent = bp[1] - tp[1];
+			    
+			    block.style.verticalAlign = "bottom";
+			    bp = objOff(block);
+			    tp = objOff(text);
+			    var theight = bp[1] - tp[1];
+			    var tdescent = theight - tascent;
+			
+			    // now take it off :-)
+			    document.body.removeChild(div);
+			
+			    // return text ascent, descent and total height
+			    return { ascent: tascent, height: theight, descent: tdescent };
+			}
+			
+		</script>
+	</head>
+
+	<body>
+		<div id="fontinfo_ttf"></div>
+		<div id="codeblock_ttf"></div>
+	</body>
+	
+</html>

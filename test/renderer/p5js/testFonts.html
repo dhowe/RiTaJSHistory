@@ -1,0 +1,88 @@
+<html>
+	<head>
+		<style type="text/css">
+			@font-face {
+				font-family: 'A.C.M.E. Secret Agent';
+				src: url('acmesa.ttf') format('truetype');
+			}
+		</style>
+		<script src="../../../lib/Font.js"></script>
+		<script src="../../../lib/p5.js"></script>
+		<script src="../../../src/rita.js"></script>
+		<script src="../../../src/ritext.js"></script>
+		<script>
+			
+			var fontSize = 19;
+			var textString = "Hello World";
+
+			// font-defined metrics
+			function getFontMetrics(metrics) {
+				var s = "font.onload() called - loaded font information:<br>{<br>&nbsp;&nbsp;";
+				var information = [];
+				for (attr in metrics) {
+					information.push(attr + " : " + metrics[attr]);
+				}
+				s += information.join(",<br>&nbsp;&nbsp;") + "<br>}<br>";
+				return s;
+			}
+		
+			// specific metrics
+			function getTextMetrics(metrics) {
+				information = [];
+				for (attr in metrics) {
+					if (attr != 'bounds') {
+						information.push(attr + " : " + metrics[attr]);
+					} else {
+						var s = attr + " : {";
+						var bds = [];
+						for (m in metrics[attr]) {
+							bds.push(m + ":" + metrics[attr][m]);
+						}
+						s += bds.join(", ") + "}";
+						information.push(s);
+					}
+				}
+				var s = "metrics for string \"<span style='color: #669; font-size:" + fontSize + "px;'>" + textString + "</span>\"" + "(at " + fontSize + "px):<br>{<br>&nbsp;&nbsp;";
+				s += information.join(",<br>&nbsp;&nbsp;") + "<br>}";
+				return s;
+			}
+
+	
+			function setup() {
+
+		
+				createCanvas(200, 200);
+
+				// let's load a font!
+				var font = new Font();
+
+				// set up the onload handler
+				font.onload = function() {
+					
+					// create a paragraph of text, styled with this font, showing all metrics
+					var p = document.getElementById("fontinfo_ttf");
+					p.style.fontFamily = "'" + font.fontFamily + "'";
+					p.style.fontSize = "1em";
+
+					// get font-specific as well as text-specific metrics for this font
+					p.innerHTML = getFontMetrics(font.metrics) + getTextMetrics(font.measureText(textString, fontSize));
+				}
+				
+				// error handler
+				font.onerror = function(err) {
+					alert(err);
+				}
+				
+				// then kick off font loading by assigning the "src" property
+				font.fontFamily = "A.C.M.E. Secret Agent";
+				font.src = "acmesa.ttf";
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<div id="fontinfo_ttf"></div>
+		<div id="codeblock_ttf"></div>
+	</body>
+</html>

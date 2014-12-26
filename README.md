@@ -1,22 +1,27 @@
+[![Build Status](https://travis-ci.org/CyrusSUEN/RiTaJS.svg?branch=master)](https://travis-ci.org/CyrusSUEN/RiTaJS)
 
-## RiTa: a generative language toolkit for JavaScript
+### RiTaJS: a generative language toolkit for JavaScript
 
-<a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
-#### <a href="http://rednoise.org/rita">The RiTa website</a>
+<a href="https://rednoise.org/rita"><img height=120 src="https://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
-#### RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative
-literature. It is implemented in Java and JavaScript (with a unified API for both) and optionally
-integrates with Processing(JS), Android, and Node, and is available via Npm and Bower. 
-It is free/libre and open-source according to the GPL license (http://www.gnu.org/licenses/gpl.txt).
+#### <a href="https://rednoise.org/ritas">The RiTa website</a>
+
+RiTaJS is designed to an easy-to-use toolkit for experiments 
+in natural language and generative literature, based on the RiTa 
+(http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS 
+works alone or in conjunction with Processing(JS) and/or as a NodeJS or Bower module.  All RiTa and RiTaJS tools
+are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
+
+
 
 #### About the project
 --------
-* Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
+* Original Author:   Daniel C. Howe (https://rednoise.org/~dhowe)
 * Related:           RiTa -> https://github.com/dhowe/RiTa
 * License: 			 GPL (see included LICENSE file for full license)
 * Maintainers:       See included AUTHORS file for contributor list
-* Web Site:          http://rednoise.org/rita
+* Web Site:          https://rednoise.org/rita
 * Github Repo:       https://github.com/dhowe/RiTaJS/
 * Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
 
@@ -28,7 +33,7 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 <pre>
   &lt;html&gt;
   &lt;canvas id="canvas" width=200 height=200&gt;&lt;/canvas&gt;
-  &lt;script src="http://rednoise.org/rita/download/rita-latest.min.js"&gt;&lt;/script&gt;
+  &lt;script src="https://rednoise.org/rita/download/rita-latest.min.js"&gt;&lt;/script&gt;
   &lt;script&gt;
 
     window.onload = function() {
@@ -90,8 +95,8 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   
   a. First, login to github and fork the project
   
-  b. Then, from a terminal/shell: 
-  <pre><code>$ git clone https://github.com/dhowe/RiTaJS.git</code></pre>
+  b. Then, from a terminal/shell (substitute your github name for $YOUR_GITHUB_LOGIN): 
+  <pre><code>$ git clone https://github.com/$YOUR_GITHUB_LOGIN/RiTaJS.git</code></pre>
 3. Now navigate into the project folder and install dependencies via npm. <pre>$ cd RiTaJS; npm install</pre>
 4. To create the library from src, use gulp.<pre>$ gulp build</pre>
 5. Run non-graphical tests in node, use gulp.<pre>$ gulp test.node</pre>
