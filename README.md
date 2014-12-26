@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/CyrusSUEN/RiTaJS.svg?branch=master)](https://travis-ci.org/CyrusSUEN/RiTaJS)
 
 ### RiTaJS: a generative language toolkit for JavaScript
 
