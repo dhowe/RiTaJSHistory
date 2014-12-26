@@ -14,13 +14,5 @@ fi
 
 VERSION=$1
 
-cd ..
+cd ../dist
 
-# commit your changes
-git commit -am "Release v$VERSION"
-
-# tag the commit
-git tag -a v$VERSION -m "Release v$VERSION"
-
-# push to GitHub
-git push --force origin master --tags  

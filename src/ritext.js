@@ -125,8 +125,7 @@
 	
 	isNode() && (require('./rita'));
 	
-	var RiText = makeClass();
-		
+	RiText = makeClass();
 		
 	/* Static container for properties related to the update/render loop */
 	RiText._animator = {
@@ -725,7 +724,7 @@
 		
 		return RiText.renderer ? RiText.renderer._getGraphics() : null;
 	}
-	
+		
 	RiText.loop = function(callbackFun, fps) {   // TODO: REMOVE?
 		
 		var a = arguments, type,
@@ -1359,7 +1358,7 @@
 		return RiText.defaults._font;
 	}
 	
-	RiText.timer = RiTa.timer;
+	RiText.timer = RiTa.timer; // TODO: these are broken (see renderer/popcessing/simple-timer.html)***
 	RiText.pauseTimer = RiTa.pauseTimer;
 	RiText.stopTimer = RiTa.stopTimer;
 	
@@ -2900,9 +2899,9 @@
 	}
 	else if (hasP5js) { // in p5.js
 		
-		//console.warn("No support yet for p5.js");
-		RiText.renderer = new RiText_P5js(p5);
-		console.log("Renderer: p5.js");
+		console.warn("No support yet for p5.js");
+		//RiText.renderer = new RiText_P5js(p5);
+		//console.log("Renderer: p5.js");
 		//context2d = p5.externals.canvas.getContext("2d");
 		//RiText.renderer = new RiText_P5(p5);
 	}
@@ -2919,7 +2918,16 @@
 	// inject into appropriate global scope
 	window && (window['RiText'] = RiText); 
 	isNode() && (module.exports['RiText'] = RiText);
-	
+	//listFuncs(RiText);
     /*jshint +W069 */
 	
 })(typeof window !== 'undefined' ? window : null);
+
+
+function listFuncs(obj) {
+	for (var p in obj) {
+		if ( typeof obj[p] === "function")
+			console.log(obj[p]);
+	}
+}
+

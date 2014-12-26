@@ -1,6 +1,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <script src="../../../lib/processing.min.js"></script>
 <script src="../../../src/rita.js"></script>
+<script src="../../../src/ritext.js"></script>
 
 <script type="text/processing" data-processing-target="mycanvas">
 // =========================== Start Processing =============================== 
@@ -20,13 +21,16 @@ void setup() {
   rt = new RiText(txt[0], 10, 80);
   rt.font("Courier", 100);
   
-   // set timer to call onRiTaEvent every half sec.
-  id = RiText.timer(.5f);
+  // set timer to call onRiTaEvent every half sec.
+  id = RiTa.timer(.5f);
 }  
 
 void onRiTaEvent(RiTaEvent re) {
     
   rt.text(count++%2==0 ? txt[1]:txt[0]);
+}
+
+void draw() {
   background(221,221,204);
   rt.draw();
 }

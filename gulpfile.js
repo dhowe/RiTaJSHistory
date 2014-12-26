@@ -3,7 +3,7 @@ var testDir = './test/',
     buildDir = 'dist',
     ritaDir = '../',
     tmpDir = '/tmp';
-
+ 
 ///////////////////////////////////////////////////////
 
 // Load package.json & plugins
@@ -22,8 +22,13 @@ var pjson = require('./package.json'),
     rename = require('gulp-rename'),
     clean = require('gulp-rimraf'),
     argv = require('yargs').argv,
-    symlink = require('gulp-symlink'),
+    sym = require('gulp-symlink'),
     version = pjson.version;
+
+var full = pjson.name+'-'+version+'.js';
+	min = pjson.name+'-'+version+'.min.js';
+	micro = pjson.name+'-'+version+'.micro.js';
+	microp5 = pjson.name+'-'+version+'.microp5.js';
 
 // Display gulp task
 gulp.task('help', tasks);
@@ -35,6 +40,19 @@ gulp.task('clean', function () {
 
 	return gulp.src(buildDir, { read: false })
           .pipe(clean());
+});
+
+// Clean the build dir
+gulp.task('symlink', function () {  
+
+	gulp.src(buildDir + '/' + full)
+		.pipe(sym(buildDir + '/' + full.replace(version, 'latest')));
+	gulp.src(buildDir + '/' + min)
+		.pipe(sym(buildDir + '/' + min.replace(version, 'latest')));
+	gulp.src(buildDir + '/' + micro)
+		.pipe(sym(buildDir + '/' + micro.replace(version, 'latest')));
+	gulp.src(buildDir + '/' + microp5)
+		.pipe(sym(buildDir + '/' + microp5.replace(version, 'latest'))); 
 });
 
 /*
@@ -89,7 +107,7 @@ gulp.task('pub.node', function(cb) {
 });
 
 // Concatenate & minify RiTaJS (4)
-gulp.task('build', ['clean'], function() {
+gulp.task('build.js', ['clean'], function() {
 
     // create micro version (only rita.js minified)
     var tmp = gulp.src('src/rita.js')
@@ -268,5 +286,6 @@ gulp.task('test', function() {
     
 //gulp.task('node', [ 'clean','test.node','build.node','copy-node' ]);
 
+gulp.task('build', [ 'build.js', 'build.node' ]);
 gulp.task('default', [ 'help' ]);
 
