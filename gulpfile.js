@@ -42,7 +42,7 @@ gulp.task('clean', function () {
           .pipe(clean());
 });
 
-// Clean the build dir
+// Create links to each 'latest'
 gulp.task('symlink', function () {  
 
 	gulp.src(buildDir + '/' + full)
@@ -194,7 +194,7 @@ gulp.task('watch-src', function() {
 // Lint Task
 gulp.task('lint', function() {
 
-    var opts = { asi: 1, expr: 1, laxbreak: 1, evil: 1 };
+    var opts = { asi: 1, expr: 1, laxbreak: 1 };
     return gulp.src('src/*.js')
         .pipe(jshint(opts))
         .pipe(jshint.reporter('default'));

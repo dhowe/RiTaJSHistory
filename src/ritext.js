@@ -10,6 +10,8 @@
  *  
  */
 (function(window, undefined) {
+
+    /*global RiTa:0, console:0, RiText:true, RiTaEvent:0, RiString:0, Processing:0, window:0 */
 	
 	/////////////////////////////////////////////////////
 	// private helpers   
@@ -59,7 +61,7 @@
 	
 	function err(msg) {
 		
-		console.log("err(msg) :: "+typeof console.trace);
+		console && console.log("err(msg) :: "+msg);
 		
 		(!RiTa.SILENT) && (console && console.trace(this));
 		
@@ -600,7 +602,7 @@
 			if (!easing) err('null easing!!');
 			_easingFunction = easing;
 			return this;
-		}
+		};
 	
 		this.interpolation = function ( interpolation ) {
 	
@@ -676,7 +678,7 @@
 			return true;
 		};
 		
-	} // end TextBehavior
+	}; // end TextBehavior
 	
 	/*  @private Simple type-checking functions */ 
 	var Type = {
@@ -723,14 +725,14 @@
 	RiText._graphics = function() {
 		
 		return RiText.renderer ? RiText.renderer._getGraphics() : null;
-	}
+	};
 		
 	RiText.loop = function(callbackFun, fps) {   // TODO: REMOVE?
 		
 		var a = arguments, type,
 			g = RiText.renderer,  
 			an = RiText._animator, 
-			callback = undef(window) ? null : window.draw;
+			callback = (typeof window != 'undefined') ? window.draw : null;
 		
 		if (g._type() === 'Processing') return; // let P5 do its own loop
 	  
@@ -759,7 +761,7 @@
 					if (type == F) {
 						callback = a[0];
 					}
-					type = Type.get(a[1])
+					type = Type.get(a[1]);
 					if (type == N) {
 						an.targetFPS = a[1];
 					}
@@ -767,7 +769,8 @@
 				break;
 		}
 
-		an.timeSinceLastFPS = Date.now(), an.framesSinceLastFPS = 0, mps =  1E3 / an.targetFPS;
+		an.timeSinceLastFPS = Date.now(), an.framesSinceLastFPS = 0;
+		var mps =  1E3 / an.targetFPS;
 
 		if (callback && !an.callbackDisabled && window) {
 
@@ -805,7 +808,7 @@
 			an.isLooping = true;
 			an.loopStarted = true;
 		}
-		}
+    };
 
 		
 	RiText.randomColor = function(min,max,includeAlpha) {
@@ -814,12 +817,12 @@
 		var col = [RiText.random(min,max),RiText.random(min,max),RiText.random(min,max)];
 		if (includeAlpha) col.push(RiText.random(min,max));
 		return col;
-	}
+	};
 
 	RiText.random = function() {
 		
 		return RiTa.random.apply(this ,arguments);
-	}	
+	};	
 
 	RiText.picked = function(x, y) {
 		
@@ -830,7 +833,7 @@
 		rt.contains(x, y) && hits.push(rt);
 	  }
 	  return hits;
-	}
+	};
 
 	RiText._disposeOne = function(toDelete) {
 		
@@ -846,7 +849,7 @@
 			toDelete = {};
 			toDelete._rs = {};
 		}
-	}  
+	};  
 	
 	RiText._disposeArray = function(toDelete) {
 		
@@ -856,13 +859,13 @@
 		}
 		
 		toDelete = [];
-	}
+	};
 	
 	RiText.dispose = function(toDelete) {
 		
 	   is(toDelete,A) && RiText._disposeArray(toDelete);
 	   is(toDelete,O) && RiText._disposeOne(toDelete);
-	}
+	};
 
 	RiText.disposeAll = function() {
 		
@@ -875,17 +878,17 @@
 			RiText._disposeArray(RiText.instances);
 			RiText.instances = [];
 		}
-	}
+	};
 	
 	RiText.createWords = function(txt, x, y, w, h, fontObj, leading) {
 
 		return RiText._createRiTexts(txt, x, y, w, h, fontObj, leading, RiText.prototype.splitWords);
- 	}
+ 	};
 
 	RiText.createLetters = function(txt, x, y, w, h, fontObj, leading) {
 
 		return RiText._createRiTexts(txt, x, y, w, h, fontObj, leading, RiText.prototype.splitLetters);
-	}
+	};
 	
 	RiText.defaultFontSize = function(size) {
 		
@@ -897,7 +900,7 @@
 			RiText.defaults.fontSize = size;
 			RiText.defaults._font = null;
 		}
-	}
+	};
   
 	RiText.defaultFont = function(font, size) {
 		
@@ -960,7 +963,7 @@
 		}
 	
 		return RiText.defaults._font;
-	}
+	};
 			
 	/*
 	 * Returns json-formatted string representing the font metrics for the default font,
@@ -992,7 +995,7 @@
 	    return  { name: pf.name, size: pf.size, 
 	    	ascent: pf.ascent,  descent: pf.descent, widths: gwidths 
 	   	};
-	}
+	};
 	
 	RiText._createFont = function(fontName, fontSize) {
 		
@@ -1001,7 +1004,7 @@
 		fontSize = fontSize || RiText.defaults.fontSize;
 
 		return RiText.renderer._createFont(fontName, fontSize);
-	}
+	};
 
 	RiText.drawAll = function(array) {
 	    	
@@ -1013,7 +1016,7 @@
 			for ( var j = 0; j < RiText.instances.length; j++)
 				RiText.instances[j] && RiText.instances[j].draw();
 		}   
-	}
+	};
 
 	RiText.defaultFill = function(r, g, b, a) {
  
@@ -1021,7 +1024,7 @@
 			RiText.defaults.fill = parseColor.apply(null, arguments);
 		}
 		return toColArr(RiText.defaults.fill);
-	}
+	};
 		
 		
 		// private statics ///////////////////////////////////////////////////////////////
@@ -1040,7 +1043,7 @@
 	      ritexts.push(RiText(lines[i], x+1, y).font(pfont));
 	
 	    return RiText._constrainLines(ritexts, y, h, leading);
-	}
+	};
 	
 	RiText._constrainLines = function(ritexts, y, h, leading) {
 	
@@ -1069,12 +1072,12 @@
 	 	//log("lastOk="+lastOk+"/"+ritexts.length + " toKill="+toKill.length+" result="+result.length);
 	    
 	 	return result;
-	}
+	};
 	
 	RiText.resetDefaults = function() {
 	
 		RiText.defaults = RiText._defaults;
-	}
+	};
 
 	RiText.boundingBox = function(ritexts) { // add-to-api?
 
@@ -1096,7 +1099,7 @@
 		}
 		
 		return [ minX, minY, maxX-minX, maxY-minY ];
-	}
+	};
 	
 	RiText.createLines = function(txt, x, y, w, h, pfont, leading) {
 	
@@ -1211,7 +1214,7 @@
 	
 					newParagraph = false;
 					forceBreak = false;
-					firstLine = false
+					firstLine = false;
 				} 
 				else {
 	
@@ -1238,21 +1241,21 @@
 		}
 
 		return rlines;
-	}
+	};
 
 	RiText._withinBoundsY = function(currentY, leading, maxY, descent, firstLine) {
 		
     	if (!firstLine) 
     		return currentY + leading <= maxY - descent;
 		return currentY <= maxY - descent;
-  	}
+  	};
   
 	RiText._addToStack = function(txt, words) {
 
-		var tmp = txt.split(SP)
+		var tmp = txt.split(SP);
 		for ( var i = tmp.length - 1; i >= 0; i--)
 			words.push(tmp[i]);
-	}
+	};
 	  
 	RiText._newRiTextLine = function(s, pf, xPos, nextY) {
 		
@@ -1263,7 +1266,7 @@
         //s = s.replace(/ *$/,''); TODO: use RE instead
 
 		return new RiText(s, xPos, nextY, pf);
-	}
+	};
 	
 	RiText._createRiTexts = function(txt, x, y, w, h, fontObj, lead, splitFun) {  
 	
@@ -1284,7 +1287,7 @@
 		}
 	
 		return result;
-	}
+	};
 	
 	// Returns the pixel x-offset for the word at 'wordIdx' 
 	RiText._wordOffsetFor = function(rt, words, wordIdx) { 
@@ -1324,7 +1327,7 @@
 		rt.g._pop();
 	
 		return xPos;
-	}
+	};
 	
 	RiText._handleLeading = function(fontObj, rts, startY) {
 	
@@ -1344,7 +1347,7 @@
 		}
 	
 		return rts;
-	}
+	};
 	
 	// TODO: test this font default across all platforms and browsers
 	
@@ -1356,7 +1359,7 @@
 			RiText.renderer._createFont(RiText.defaults.fontFamily, RiText.defaults.fontSize);
 	
 		return RiText.defaults._font;
-	}
+	};
 	
 	RiText.timer = RiTa.timer; // TODO: these are broken (see renderer/popcessing/simple-timer.html)***
 	RiText.pauseTimer = RiTa.pauseTimer;
@@ -1972,7 +1975,7 @@
 	
 		distanceTo : function(a,b) {
 			
-	      var p2x, p2y, p1 = this.center();
+	      var p2x, p2y, p2, p1 = this.center();
 	       
 	      if (a.length == 1 && is(a.center,F)) {
 		     p2 = a.center();
@@ -2165,7 +2168,7 @@
 			
 			//TODO: add X,Y ??
 		  if (!arguments.length) 
-			  return [this._rotateZ]	
+			  return [this._rotateZ];	
 		  this._rotateZ = rotate;
 		  return this;
 		},
@@ -2351,7 +2354,7 @@
 			var s =  (this._rs && this._rs._text) || 'undef';
 			return '['+Math.round(this.x)+","+Math.round(this.y)+",'"+s+"']";
 		}
-	}
+	};
 	
 	var RiText_P5js = makeClass();
 	
@@ -2437,7 +2440,7 @@
 			  "name": fontName,
 			  "size": fontSize
 			  // add textAscent,textDescent,widths?
-			}
+			};
 
 			return this.font;
 		},
@@ -2539,7 +2542,7 @@
 			
 			return "RiText_"+this._type();
 		}
-	}
+	};
 	
 	var RiText_Node = makeClass();
 	
@@ -2679,7 +2682,7 @@
 			
 			return "RiText_"+this._type();
 		}
-	}
+	};
 	
 	var RiText_P5 = makeClass();
 	
@@ -2874,7 +2877,7 @@
 			
 			return "RiText_"+this._type();
 		}
-	}
+	};
 		
 	////////////////////////////////////////////////////////////////////////////////
 	// Renderer setup
@@ -2895,7 +2898,7 @@
 
 				RiText.renderer = new RiText_P5(p5, context2d);
 			}
-		})
+		});
 	}
 	else if (hasP5js) { // in p5.js
 		

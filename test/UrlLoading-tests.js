@@ -100,7 +100,7 @@ var runtests = function () {
     asyncTest("RiGrammar.loadFrom(Url)", function() {
     	
     	var grammar = new RiGrammar();
-    	grammar.loadFrom("http://localhost/testfiles/haiku.json");
+    	grammar.loadFrom("http://localhost/testfiles/haikuGrammar.json");
     	
     	var ts = +new Date();
     	var id = setInterval(function() {
