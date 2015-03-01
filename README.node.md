@@ -18,8 +18,8 @@ About the project
 * Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
 * License: 			 GPL (see included LICENSE file for full license)
 * Maintainers:       See included AUTHORS file for contributor list
-* Web Site:          http://rednoise.org/rita/js
-* Github Repo:       https://github.com/dhowe/RiTaJS/
+* Web Site:          http://rednoise.org/rita
+* Github Repo:       https://github.com/dhowe/RiTaJS
 * Bug Tracker:       https://github.com/dhowe/RiTa/issues
 
 
