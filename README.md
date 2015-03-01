@@ -5,7 +5,7 @@
 
 <a href="https://rednoise.org/rita"><img height=120 src="https://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
-#### <a href="https://rednoise.org/ritas">The RiTa website</a>
+#### <a href="https://rednoise.org/rita">The RiTa website</a>
 
 RiTaJS is designed to an easy-to-use toolkit for experiments 
 in natural language and generative literature, based on the RiTa 
