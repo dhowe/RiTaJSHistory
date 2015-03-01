@@ -20,7 +20,7 @@ About the project
 * Maintainers:       See included AUTHORS file for contributor list
 * Web Site:          http://rednoise.org/rita/js
 * Github Repo:       https://github.com/dhowe/RiTaJS/
-* Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
+* Bug Tracker:       https://github.com/dhowe/RiTa/issues
 
 
 In NodeJS
