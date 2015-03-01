@@ -23,7 +23,7 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 * Maintainers:       See included AUTHORS file for contributor list
 * Web Site:          https://rednoise.org/rita
 * Github Repo:       https://github.com/dhowe/RiTaJS/
-* Bug Tracker:       https://github.com/dhowe/RiTaJS/issues
+* Bug Tracker:       https://github.com/dhowe/RiTa/issues
 * Documentation:     http://www.rednoise.org/rita/reference/
 
 
