@@ -65,8 +65,8 @@ If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>
 To install: `$ npm install rita`
  
 ```javascript
-rita = require('rita');
-rs = rita.RiString("The elephant took a bite.");
+var rita = require('rita');
+var rs = rita.RiString("The elephant took a bite.");
 console.log(rs.features());
 ```
 

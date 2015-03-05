@@ -28,8 +28,8 @@ In NodeJS
 To install: `$ npm install rita`
  
 ```javascript
-rita = require('rita');
-rs = rita.RiString("The elephant took a bite.");
+var rita = require('rita');
+var rs = rita.RiString("The elephant took a bite.");
 console.log(rs.features());
 ```
  
