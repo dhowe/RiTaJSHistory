@@ -60,7 +60,6 @@ console.log(rs.features());
   <script src="./p5.js"></script>
   <script src="./rita.js"></script>
   <script>
-  ```javascript
   function setup() {
 
     createCanvas(200,200);
@@ -73,7 +72,6 @@ console.log(rs.features());
         text(words[i], 50, 50 + i*20);    
     }
   }
-  ```
   </script>
 </html>
 ```
