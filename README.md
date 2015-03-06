@@ -84,23 +84,26 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   a. First, login to github and fork the project
 
   b. Then, from a terminal/shell: 
-  ```bash
-  $ git clone https://github.com/dhowe/RiTaJS.git
-  ```
+    ```bash
+    $ git clone https://github.com/dhowe/RiTaJS.git
+    ```
 3. Now navigate into the project folder and install dependencies via npm. 
 
   ```bash
   $ cd RiTaJS; npm install
   ```
 4. To create the library from src, use gulp.
+
   ```bash
   $ gulp build
   ```
 5. Run non-graphical tests in node with gulp.
+
   ```bash
   $ gulp test.node
   ```
 6. Run all tests (in phantomJS) with gulp.
+
   ```bash
   $ gulp test
   ```
