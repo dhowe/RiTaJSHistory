@@ -88,6 +88,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   $ git clone https://github.com/dhowe/RiTaJS.git
   ```
 3. Now navigate into the project folder and install dependencies via npm. 
+
   ```bash
   $ cd RiTaJS; npm install
   ```
