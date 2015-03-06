@@ -4,7 +4,7 @@
 
 <a href="http://rednoise.org/rita/js"><img height=120 src="http://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
-#### <a href="http://rednoise.org/rita">The RiTa website</a>
+#### [The RiTa website](http://rednoise.org/rita)
 
 #### RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative
 literature. It is implemented in Java and JavaScript (with a unified API for both) and optionally
@@ -24,44 +24,54 @@ About the project
 In the browser with Bower
 --------
 
-First, to install do: $ bower install rita
+First, to install do: 
+
+```bash
+$ bower install rita
+```
 
 Now, create a file on your desktop called hello.html, add the following lines, save and drag it into a browser:
-<pre>
-  &lt;html&gt;
-  
-  &lt;script src="bower_components/rita/dist/rita.js"&gt;&lt;/script&gt;
-  &lt;script&gt;
 
+```html
+<html>
+  <script src="bower_components/rita/dist/rita.js"></script>
+  <script>
     window.onload = function() {
-    
       $('#content').text(RiTa.tokenize("The elephant took a bite."));
-      
-	};
-
-  &lt;/script&gt;
-  &lt;div id="content" width=200 height=200&gt;&lt;/div&gt;
-  &lt;html&gt;
-</pre>  
-
-
+    };
+  </script>
+  <div id="content" width=200 height=200></div>
+<html>
+```
 
 #### Can I contribute?
 --------
 Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, or follow the instructions below... 
 
-
 #### Development Setup
 --------
-1. Download and install <a href="https://npmjs.org/">npm</a>. The easiest way to do this is to just install <a href="http://nodejs.org/">node</a>. 
-2. <a href="https://help.github.com/articles/fork-a-repo">Fork and clone</a> this library. 
-  
+1. Download and install [npm](https://npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
+2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
   a. First, login to github and fork the project
-  
+
   b. Then, from a terminal/shell: 
-  <pre><code>$ git clone https://github.com/dhowe/RiTaJS.git</code></pre>
-3. Now navigate into the project folder and install dependencies via npm. <pre>$ cd RiTaJS; npm install</pre>
-4. To create the library from src, use gulp.<pre>$ gulp build</pre>
-5. Run non-graphical tests in node with gulp.<pre>$ gulp test.node</pre>
-6. Run all tests (in phantomJS) with gulp.<pre>$ gulp test</pre>   
-7. Work on an existing <a href="https://github.com/dhowe/RiTaJS/issues?state=open">issue</a>, then <a href="https://help.github.com/articles/creating-a-pull-request">submit a pull request...</a>
+  ```bash
+  $ git clone https://github.com/dhowe/RiTaJS.git
+  ```
+3. Now navigate into the project folder and install dependencies via npm. 
+```bash
+$ cd RiTaJS; npm install
+```
+4. To create the library from src, use gulp.
+```bash
+$ gulp build
+```
+5. Run non-graphical tests in node with gulp.
+```bash
+$ gulp test.node
+```
+6. Run all tests (in phantomJS) with gulp.
+```bash
+$ gulp test
+```
+7. Work on an existing [issue](https://github.com/dhowe/RiTaJS/issues?state=open), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
