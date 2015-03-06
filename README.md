@@ -43,13 +43,13 @@ Create a new file on your desktop called hello.html, add the following lines, sa
 <html>
 ```
 
-#### With NodeJS
+#### With [NodeJS](http://nodejs.org/)
 --------
 To install: `$ npm install rita`
  
 ```javascript
 var rita = require('rita');
-var rs = rita.RiString("The elephant took a bite.");
+var rs = rita.RiString("The elephant took a bite!");
 console.log(rs.features());
 ```
 
@@ -60,11 +60,12 @@ console.log(rs.features());
   <script src="./p5.js"></script>
   <script src="./rita.js"></script>
   <script>
+  ```javascript
   function setup() {
 
     createCanvas(200,200);
-    textSize(20);
     background(50);
+    textSize(20);
     noStroke();
     
     var words = RiTa.tokenize("The elephant took a bite!")
@@ -72,6 +73,7 @@ console.log(rs.features());
         text(words[i], 50, 50 + i*20);    
     }
   }
+  ```
   </script>
 </html>
 ```
