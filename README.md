@@ -84,6 +84,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   a. First, login to github and fork the project
 
   b. Then, from a terminal/shell: 
+  
     ```bash
     $ git clone https://github.com/dhowe/RiTaJS.git
     ```
@@ -107,4 +108,4 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   ```bash
   $ gulp test
   ```
-7. Work on an existing [issue](https://github.com/dhowe/RiTaJS/issues?state=open), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
+7. Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
