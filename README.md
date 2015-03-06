@@ -28,7 +28,7 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 
 #### A Simple Sketch
 --------
-Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
+Create a new file on your desktop called 'first.html', add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -55,6 +55,8 @@ console.log(rs.features());
 
 #### With [p5.js](http://p5js.org/)
 --------
+Create a new file on your desktop called 'first.html', add the following lines, save and drag it into a browser:
+
 ```html
 <html>
   <script src="./p5.js"></script>
