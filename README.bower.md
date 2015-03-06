@@ -21,7 +21,7 @@ About the project
 * Bug Tracker:       https://github.com/dhowe/RiTa/issues
 
 
-In the browser with Bower
+In the browser with [Bower](http://bower.io/)
 --------
 
 First, to install do: 
@@ -30,14 +30,14 @@ First, to install do:
 $ bower install rita
 ```
 
-Now, create a file on your desktop called hello.html, add the following lines, save and drag it into a browser:
+Now, create a file on your desktop called 'first.html', add the following lines, save and drag it into a browser:
 
 ```html
 <html>
-  <script src="bower_components/rita/dist/rita.js"></script>
+  <script src="./bower_components/rita/dist/rita.js"></script>
   <script>
     window.onload = function() {
-      $('#content').text(RiTa.tokenize("The elephant took a bite."));
+      $('#content').text(RiTa.tokenize("The elephant took a bite!"));
     };
   </script>
   <div id="content" width=200 height=200></div>
@@ -52,26 +52,32 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 --------
 1. Download and install [npm](https://npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
+
   a. First, login to github and fork the project
 
   b. Then, from a terminal/shell: 
-  ```bash
-  $ git clone https://github.com/dhowe/RiTaJS.git
-  ```
+  
+    ```bash
+    $ git clone https://github.com/dhowe/RiTaJS.git
+    ```
 3. Now navigate into the project folder and install dependencies via npm. 
-```bash
-$ cd RiTaJS; npm install
-```
+
+  ```bash
+  $ cd RiTaJS; npm install
+  ```
 4. To create the library from src, use gulp.
-```bash
-$ gulp build
-```
+
+  ```bash
+  $ gulp build
+  ```
 5. Run non-graphical tests in node with gulp.
-```bash
-$ gulp test.node
-```
+
+  ```bash
+  $ gulp test.node
+  ```
 6. Run all tests (in phantomJS) with gulp.
-```bash
-$ gulp test
-```
-7. Work on an existing [issue](https://github.com/dhowe/RiTaJS/issues?state=open), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
+
+  ```bash
+  $ gulp test
+  ```
+7. Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
