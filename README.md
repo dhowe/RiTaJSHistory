@@ -36,7 +36,7 @@ Create a new file on your desktop called hello.html, add the following lines, sa
   <script src="./rita.js"></script>
   <script>
     window.onload = function() {
-      $('#content').text(RiTa.tokenize("The elephant took a bite."));
+      $('#content').text(RiTa.tokenize("The elephant took a bite!"));
     };
   </script>
   <div id="content" width=200 height=200></div>
@@ -53,22 +53,27 @@ var rs = rita.RiString("The elephant took a bite.");
 console.log(rs.features());
 ```
 
-#### With ProcessingJS
+#### With [p5.js](http://p5js.org/)
 --------
-If you want to use RiTa with <a href="http://processingjs.org/">ProcessingJS</a>, you can simply open Processing and switch to 'JavaScript' mode. If you don't want to use the Processing IDE, you can cimply create an HTML file like this (assuming you've downloaded both libraries to the current directory):
-
 ```html
 <html>
-  <meta charset="utf-8"/>
-  <script src="./processing-min.js"></script>
+  <script src="./p5.js"></script>
   <script src="./rita.js"></script>
-  <script type="text/processing" data-processing-target="mycanvas">
-    size(200,200);
-    background(255);
-    RiText("SIMPLE").fill(200,100,0).draw();
+  <script>
+  function setup() {
+
+    createCanvas(200,200);
+    textSize(20);
+    background(50);
+    noStroke();
+    
+    var words = RiTa.tokenize("The elephant took a bite!")
+    for (var i=0, j = words.length; i<j; i++) {
+        text(words[i], 50, 50 + i*20);    
+    }
+  }
   </script>
-  <canvas id="mycanvas"></canvas>
-<html>
+</html>
 ```
 
 #### Can I contribute?
