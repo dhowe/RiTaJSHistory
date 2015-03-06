@@ -127,6 +127,7 @@ var runtests = function () {
     	
     	var rg1 = new RiGrammar();
     	rg1.loadFrom("./data/sentence1.json");
+    	
 		var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
 		var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
 		    	
@@ -134,6 +135,7 @@ var runtests = function () {
     	var id = setInterval(function() {
     		
     		if (rg1.ready()) { 
+    		    
     			deepEqual(rg1, rg2);
 	        	deepEqual(rg2, rg3);
 	        	ok(rg1);
@@ -181,6 +183,65 @@ var runtests = function () {
     		
     	}, 50);
     });   
+    
+    asyncTest("RiGrammar.loadFrom3(file)", function() {
+        
+        var rg1 = new RiGrammar();
+        rg1.loadFrom("./data/sentence1.yaml");
+        var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
+        var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
+                
+        var ts = +new Date();
+        var id = setInterval(function() {
+            
+            if (rg1.ready()) { 
+                deepEqual(rg1, rg2);
+                deepEqual(rg2, rg3);
+                start();
+                clearInterval(id);
+            }
+            else {
+
+                var now = +new Date();
+                if (now-ts > 5000) {
+                    equal("no result",0);
+                    start();
+                    clearInterval(id);                  
+                }
+            } 
+            
+        }, 50);
+    });  
+
+
+    asyncTest("RiGrammar.loadFrom4(file)", function() {
+        
+        var rg1 = new RiGrammar();
+        rg1.loadFrom("./data/sentence2.yaml");
+        var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
+        var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
+                
+        var ts = +new Date();
+        var id = setInterval(function() {
+            
+            if (rg1.ready()) { 
+                deepEqual(rg1, rg2);
+                deepEqual(rg2, rg3);
+                start();
+                clearInterval(id);
+            }
+            else {
+
+                var now = +new Date();
+                if (now-ts > 5000) {
+                    equal("no result",0);
+                    start();
+                    clearInterval(id);                  
+                }
+            } 
+            
+        }, 50);
+    });  
 
     asyncTest("RiMarkov.loadFromFile", function() {
  
@@ -211,8 +272,18 @@ var runtests = function () {
     });
 
 /*
-
-    // RiMarkov 
+    // RiGrammar
+    test("RiGrammar.expand()", function() {
+    
+        for (var j = 0; j < sentenceGrammarFiles.length; j++)
+        {
+          var rg = new RiGrammar();
+          rg.load(RiTa.loadString(sentenceGrammarFiles[j], null));
+          for (var i = 0; i < 10; i++)
+            ok(rg.expand());
+        }
+        
+            // RiMarkov 
 	asyncTest("RiMarkov.loadFromUrlMulti", function() {
 		
     	if (RiTa.env() == RiTa.NODE) {
