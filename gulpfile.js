@@ -20,9 +20,9 @@ var pjson = require('./package.json'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
-    clean = require('gulp-rimraf'),
     argv = require('yargs').argv,
     sym = require('gulp-symlink'),
+    del = require('del'),
     version = pjson.version;
 
 var full = pjson.name+'-'+version+'.js';
@@ -36,14 +36,13 @@ gulp.task('help', tasks);
 ///////////////////////////////////////////////////////
 
 // Clean the build dir
-gulp.task('clean', function () {  
+gulp.task('clean', function(f) {
 
-	return gulp.src(buildDir, { read: false })
-          .pipe(clean());
+    del(buildDir, f);
 });
 
 // Create links to each 'latest'
-gulp.task('symlink', function () {  
+gulp.task('symlink', function() {  
 
 	gulp.src(buildDir + '/' + full)
 		.pipe(sym(buildDir + '/' + full.replace(version, 'latest')));
@@ -62,7 +61,7 @@ gulp.task('symlink', function () {
  * update node
  * update bower
  */
-gulp.task('update', function() { // DO WE WANT THIS?
+gulp.task('update', function() { // NEEDED?
 
 	return;
 	
@@ -141,8 +140,7 @@ gulp.task('build.node', ['clean'], function(cb) {
     	.pipe(rename('README.md'))
         .pipe(gulp.dest(buildDir+'/node/rita'));
         
-     
-     // copy in other loose files
+    // copy in other loose files
     gulp.src(['./AUTHORS', './package.json', './gulpfile.js'])
         .pipe(gulp.dest(buildDir+'/node/rita'));
     

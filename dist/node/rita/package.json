@@ -30,13 +30,14 @@
     }
   ],
   "dependencies": {},
-  "scripts": { 
-  	"test": "gulp test.node.pkg" 
+  "scripts": {
+    "test": "gulp test.node.pkg"
   },
   "devDependencies": {
     "argsparser": "0.0.6",
+    "del": "^1.1.1",
     "grunt-qunitnode": "^0.1.2",
-    "gulp": "^3.8.6",
+    "gulp": "^3.8.11",
     "gulp-concat": "^2.3.3",
     "gulp-jshint": "^1.7.0",
     "gulp-qunit": "^0.3.3",
