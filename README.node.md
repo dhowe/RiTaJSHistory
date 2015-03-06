@@ -23,13 +23,13 @@ About the project
 * Bug Tracker:       https://github.com/dhowe/RiTa/issues
 
 
-In NodeJS
+In [NodeJS](http://nodejs.org/)
 --------
 To install: `$ npm install rita`
  
 ```javascript
 var rita = require('rita');
-var rs = rita.RiString("The elephant took a bite.");
+var rs = rita.RiString("The elephant took a bite!");
 console.log(rs.features());
 ```
  
@@ -42,54 +42,40 @@ $ npm test rita
 
 Or, see the 'Development Setup' instructions below...
 
-In a browser
---------
-Create a new file on your desktop called hello.html, add the following lines, save and drag it into a browser:
-
-```html
-<html>
-  <canvas id="canvas" width=200 height=200></canvas>
-  <script src="http://rednoise.org/rita/download/rita-latest.min.js"></script>
-  <script>
-    window.onload = function() {
-      // create a RiText and draw it
-      RiText("HelloWorld").draw();
-    };
-  </script>
-<html>
-```
-
 #### Can I contribute?
 --------
 Please! We are looking for more coders to help out... Just press *Fork* at the top of this github page and get started, or follow the instructions below... 
 
-
 #### Development Setup
 --------
 1. Download and install [npm](https://npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
-
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
+
   a. First, login to github and fork the project
 
   b. Then, from a terminal/shell: 
+  
+    ```bash
+    $ git clone https://github.com/dhowe/RiTaJS.git
+    ```
+3. Now navigate into the project folder and install dependencies via npm. 
 
   ```bash
-  $ git clone https://github.com/dhowe/RiTaJS.git
+  $ cd RiTaJS; npm install
   ```
-3. Now navigate into the project folder and install dependencies via npm. 
-```bash
-$ cd RiTaJS; npm install
-```
 4. To create the library from src, use gulp.
-```bash
-$ gulp build
-```
+
+  ```bash
+  $ gulp build
+  ```
 5. Run non-graphical tests in node with gulp.
-```bash
-$ gulp test.node
-```
+
+  ```bash
+  $ gulp test.node
+  ```
 6. Run all tests (in phantomJS) with gulp.
-```bash
-$ gulp test
-```
-7. Work on an existing [issue](https://github.com/dhowe/RiTaJS/issues?state=open), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
+
+  ```bash
+  $ gulp test
+  ```
+7. Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
