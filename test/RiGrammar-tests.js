@@ -66,9 +66,9 @@ var runtests = function() {
     test("RiGrammar.init", function() {
   
         var rg = RiGrammar();
-        //ok(rg._rules); // empty
-        //ok(typeof rg._rules['<start>'] === 'undefined');
-        //ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
+        ok(rg._rules); // empty
+        ok(typeof rg._rules['<start>'] === 'undefined');
+        ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
 
         var rg1 = RiGrammar(sentenceGrammarJSON);
         ok(rg1._rules);
