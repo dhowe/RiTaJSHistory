@@ -10,9 +10,5 @@
 <start>: "<noun_phrase> <verb_phrase>."
 <verb>: shoots
 <verb_phrase>: 
-  - <verb><noun_phrase>
+  - <verb> <noun_phrase> [0.1]
   - <verb>
-<multiline>: >
-  This is
-  my very long string
-  that wraps three lines

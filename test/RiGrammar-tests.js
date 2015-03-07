@@ -38,6 +38,7 @@ var runtests = function() {
 
     var sentenceGrammarYAML = "<start> : <noun_phrase> <verb_phrase>.\n<noun_phrase>: <determiner> <noun>\n<verb_phrase> : <verb> | <verb> <noun_phrase> [.1]\n<noun>: woman | man\n<determiner>: a [.1] | the\n<verb>: shoots";
     var sentenceGrammarYAML2 = "<start> : <noun_phrase> <verb_phrase>.\n<noun_phrase>: <determiner> <noun>\n<verb_phrase> : \n  - <verb> \n  - <verb> <noun_phrase> [.1]\n<noun>: \n  - woman\n  - man\n<determiner>: \n  - a [.1] \n  - the\n<verb>: shoots";
+    var sentenceGrammarYAML3 = "--- <determiner>: a [.1] | the\n#I am a comment\n<noun>: woman | man\n<noun_phrase>: <determiner> <noun>\n<start>: <noun_phrase> <verb_phrase>.\n<verb>: shoots\n<verb_phrase>: <verb> | <verb> <noun_phrase> [.1]\n<multiline>: >\n  This is\n  my very long string\n  that wraps three lines\n";
 
     var sentenceGrammars = [ sentenceGrammarJSON, sentenceGrammarJSON2, sentenceGrammarYAML, sentenceGrammarYAML2 ];
     //var sentenceGrammarFiles = [ "sentence1.json", "sentence2.json", "sentence1.yaml", "sentence2.yaml" ];
@@ -57,6 +58,7 @@ var runtests = function() {
         if (!WITHOUT_YAML) { 
             ok(YAML.parse(sentenceGrammarYAML));
             ok(YAML.parse(sentenceGrammarYAML2));
+            ok(YAML.parse(sentenceGrammarYAML3));
         }
         else ok(1);
     });
@@ -64,9 +66,9 @@ var runtests = function() {
     test("RiGrammar.init", function() {
   
         var rg = RiGrammar();
-        ok(rg._rules); // empty
-        ok(typeof rg._rules['<start>'] === 'undefined');
-        ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
+        //ok(rg._rules); // empty
+        //ok(typeof rg._rules['<start>'] === 'undefined');
+        //ok(typeof rg._rules['<noun_phrase>'] === 'undefined');
 
         var rg1 = RiGrammar(sentenceGrammarJSON);
         ok(rg1._rules);
