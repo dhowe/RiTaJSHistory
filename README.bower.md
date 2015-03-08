@@ -19,6 +19,7 @@ About the project
 * Web Site:          http://rednoise.org/rita
 * Github Repo:       https://github.com/dhowe/RiTaJS
 * Bug Tracker:       https://github.com/dhowe/RiTa/issues
+* Documentation:    https://rednoise.org/rita/reference
 
 
 In the browser with [Bower](http://bower.io/)
