@@ -105,7 +105,7 @@ gulp.task('pub.node', function(cb) {
 
 });
 
-// Concatenate & minify RiTaJS (4)
+// Concatenate & minify RiTaJS (4) into dist
 gulp.task('build.js', ['clean'], function() {
 
     // create micro version (only rita.js minified)
@@ -132,7 +132,7 @@ gulp.task('build.js', ['clean'], function() {
         .pipe(gulp.dest(buildDir))
 });
 
-// Concatenate & minify RiTaJS, no renderer
+// Concatenate & minify RiTaJS, no renderer, into dist
 gulp.task('build.node', ['clean'], function(cb) {
 
 	// copy in the node readme
