@@ -293,6 +293,6 @@ gulp.task('test', function() {
     
 //gulp.task('node', [ 'clean','test.node','build.node','copy-node' ]);
 
-gulp.task('build', [ 'build.js', 'build.node' ]);
+gulp.task('build', [ 'build.js' ]); // 'build.node' ]);
 gulp.task('default', [ 'help' ]);
 
