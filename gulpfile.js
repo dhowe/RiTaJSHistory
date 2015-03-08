@@ -115,13 +115,19 @@ gulp.task('build.js', ['clean'], function() {
         .pipe(uglify())
         .pipe(gulp.dest(buildDir));
         
-    // create micro-render version (rita.js + ritext.js minified)
+    // create micro+render version (rita.js + ritext.js minified)
     tmp = gulp.src(['src/rita.js','src/ritext.js'])
     	.pipe(replace('##version##', version))
         .pipe(concat(pjson.name+'-'+version+'.microp5.js'))
         .pipe(uglify())
         .pipe(gulp.dest(buildDir));
 
+    tmp = gulp.src('src/rita*.js') 
+        .pipe(replace('##version##', version))
+        .pipe(concat(pjson.name+'-'+version+'.node.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(buildDir));
+        
     // create 2 regular versions (all src, & all src minified)
     return tmp && gulp.src('src/*.js')
     	.pipe(replace('##version##', version))
@@ -154,7 +160,7 @@ gulp.task('build.node', ['clean'], function(cb) {
     	.pipe(gulp.dest(buildDir+'/node/rita/doc'));
     	
     // copy in rita.js (min)
-    gulp.src('src/ri*.js') // remove ritext.js when renderers are sorted 
+    gulp.src('src/rita*.js') 
     	.pipe(replace('##version##', version))
         .pipe(concat(pjson.name+'-'+version+'-node.js'))
         .pipe(rename(pjson.name+'.js'))
@@ -163,7 +169,6 @@ gulp.task('build.node', ['clean'], function(cb) {
   
   /* FAILING (tgz is incomplete)
    * 
-   
   	// call npm pack & move the .tgz to build
 	exec("npm pack build/node/rita", function (err, stdout, stderr) {
 		
@@ -225,6 +230,8 @@ gulp.task('test.node', function(cb) {
         cmd += file + ' ';
     }
 
+	//console.log('Running:\n'+cmd+'\n');
+
     exec(cmd, function (err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
@@ -246,7 +253,7 @@ gulp.task('test.node.pkg', function(cb) { // for testing an npm install ('npm ri
         console.log('Running '+tests[0]);
     }
 
-    for (var i=0,j=tests.length; i<j; i++) {
+    for (var i=0, j = tests.length; i < j; i++) {
 
         var file = testDir + tests[i] + '-tests.js';
 
@@ -255,6 +262,8 @@ gulp.task('test.node.pkg', function(cb) { // for testing an npm install ('npm ri
 
         cmd += file + ' ';
     }
+
+    //console.log('Running'+cmd);
 
     exec(cmd, function (err, stdout, stderr) {
         console.log(stdout);

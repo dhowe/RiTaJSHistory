@@ -8,7 +8,7 @@ QUnit.checkAPI = function(className, Class, obj) {
 	if (!eles) {
 		
 		expect(0);
-		console.warn("[WARN] Skipped checkAPI() test for '"+className+"'");
+		//console.warn("[WARN] Skipped checkAPI() test for '"+className+"'");
 		return;
 	}
 	
@@ -45,7 +45,7 @@ QUnit.propertiesFromAPI = function(className) {
 	
 	var jsonf, fields, elements = [];
 	
-	// for now, this only works in Node
+	// for now, this only works in Node (and not from the browser OR an NPM package)
 	if (typeof exports != 'undefined') {
 		
 		jsonf = '../../docs/json/'+className;
@@ -54,7 +54,7 @@ QUnit.propertiesFromAPI = function(className) {
 		}
 		catch(e) {
 			
-			console.warn("[WARN] No json file at: '"+jsonf+"?", '  or perhaps the JSON is invalid?', e);
+			//console.warn("[WARN] No json file at '"+jsonf+".json', or perhaps the JSON is invalid?");
 			return;
 		}
 		                

@@ -86,7 +86,7 @@ cp -r $DOC_DIR/* $NODE_DOC/
 
 echo 4: Copying rita.js to $NODE_LIB
 #minimize everything, no ritext
-cp $DIST_DIR/rita-$VERSION.min.js $NODE_LIB/rita.js
+cp $DIST_DIR/rita-$VERSION.node.js $NODE_LIB/rita.js
 
 echo $LINE
 echo Generating NPM tarball in $DIST_DIR
@@ -117,5 +117,5 @@ fi
 
 
 echo
-ls -l $DIST_DIR
+#ls -l $DIST_DIR
 #tar -tvf $DIST_DIR/$TARBALL | less

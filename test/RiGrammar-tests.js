@@ -46,7 +46,7 @@ var runtests = function() {
     
     if (WITHOUT_YAML) {
         
-        console.warn("[WARN] YAML parser not found -- skipping all YAML tests!!!");
+        console.warn("[WARN] YAML parser not found -- skipping all YAML tests");
         
         sentenceGrammars = [ sentenceGrammarJSON, sentenceGrammarJSON2 ];
         //sentenceGrammarFiles = [ "sentence1.json", "sentence2.json" ];
