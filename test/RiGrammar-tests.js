@@ -485,8 +485,7 @@ var runtests = function() {
 	    rg.addRule("<mammal>", "dogs", 1);
 	    rg.addRule("<action>", "cries | screams | falls", 1);
 	    //rg.print();
-        ok(typeof rg.print === 'function'); // TODO: how to test? need to compare output to Java 
-  
+        ok(typeof rg.print === 'function'); 
     });
 
     test("RiGrammar.expandWith", function() {

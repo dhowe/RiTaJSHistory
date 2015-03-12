@@ -158,6 +158,7 @@ var runtests = function() {
 
         var rg1 = new RiGrammar();
         rg1.loadFrom("./data/sentence1.yaml");
+        
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
 
@@ -165,6 +166,7 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
+                //rg1.print();
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
