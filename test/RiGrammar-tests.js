@@ -252,7 +252,7 @@ var runtests = function() {
         ok(c < 50); // g + ""
     });
 
-    test("RiGrammar.expandOld()", function() {
+    /*test("RiGrammar.expandOld()", function() {
 
         var s, rg = new RiGrammar();
 
@@ -329,7 +329,7 @@ var runtests = function() {
         ok(d < 90 && d > 0,   d + "% (dog =~ 70%)");
         ok(g > 10 && g < 100, g + "% (cat =~ 30%)");
         ok(g < 50 && g > 0,   g + "% (cat =~ 30%)");
-    });
+    });*/
 
     test("RiGrammar.expandFrom", function() {
 

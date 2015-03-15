@@ -166,7 +166,7 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-                //rg1.print();
+                rg1.print();
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
