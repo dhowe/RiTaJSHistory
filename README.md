@@ -98,7 +98,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 3. Now navigate into the project folder and install dependencies via npm. 
 
   ```bash
-  $ cd RiTaJS; npm install
+  $ cd RiTaJS && npm install
   ```
 4. To create the library from src, use gulp.
 

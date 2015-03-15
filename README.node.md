@@ -48,7 +48,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 #### Development Setup
 --------
-1. Download and install [npm](https://npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
+1. Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
 
   a. First, login to github and fork the project
@@ -61,7 +61,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 3. Now navigate into the project folder and install dependencies via npm. 
 
   ```bash
-  $ cd RiTaJS; npm install
+  $ cd RiTaJS && npm install
   ```
 4. To create the library from src, use gulp.
 
