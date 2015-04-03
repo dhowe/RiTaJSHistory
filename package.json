@@ -51,7 +51,7 @@
     "gulp-task-listing": "^0.3.0",
     "gulp-uglify": "^0.3.1",
     "gulp-util": "^2.2.20",
-    "qunit": "^0.6.4",
+    "qunit": "^0.7",
     "qunitjs": "^1.14.0",
     "yargs": "^3.4.5"
   }
