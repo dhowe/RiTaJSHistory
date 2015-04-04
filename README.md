@@ -105,13 +105,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   ```bash
   $ ./node_modules/.bin/gulp build
   ```
-<!--
-5. Run non-graphical tests in node with gulp.
 
-  ```bash
-  $ ./node_modules/.bin/gulp test.node
-  ```
--->
 5. Run all tests (in phantomJS) with gulp.
 
   ```bash
