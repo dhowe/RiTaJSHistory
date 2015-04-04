@@ -105,14 +105,16 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   ```bash
   $ ./node_modules/.bin/gulp build
   ```
+<!--
 5. Run non-graphical tests in node with gulp.
 
   ```bash
   $ ./node_modules/.bin/gulp test.node
   ```
-6. Run all tests (in phantomJS) with gulp.
+-->
+5. Run all tests (in phantomJS) with gulp.
 
   ```bash
   $ ./node_modules/.bin/gulp test
   ```
-7. Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
+6. Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
