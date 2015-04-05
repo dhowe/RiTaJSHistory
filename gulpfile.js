@@ -1,3 +1,4 @@
+
 // Configuration options
 var testDir = './test/', 
     buildDir = 'dist',
@@ -287,7 +288,7 @@ gulp.task('test', function() {
         console.log('Running '+tests);
     }
 
-    return gulp.src(tests).pipe(qunit());
+    return gulp.src(tests).pipe(qunit({ timeout: 100 }));
 });
 
     

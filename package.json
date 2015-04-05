@@ -49,8 +49,8 @@
     "gulp-symlink": "^1.1.0",
     "gulp-task-listing": "^0.3.0",
     "gulp-uglify": "^0.3.1",
-    "qunit": "^0.7",
-    "qunitjs": "^1.14.0",
+    "gulp-util": "^3.0.4",
+    "qunit": "^0.7.5",
     "yargs": "^3.4.5"
   }
 }
