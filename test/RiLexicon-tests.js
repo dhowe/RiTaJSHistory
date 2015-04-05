@@ -13,20 +13,11 @@ var runtests = function() {
 
     var lex;
 
-    test("RiLexicon.checkAPI", function() {
-
-            if (QUnit.checkAPI)
-                QUnit.checkAPI('RiLexicon', RiLexicon, createLex());
-            else {
-                console.log("[TEST] Skipping checkAPI() for RiLexicon");
-                ok("Only check in Node");
-            }
-        });
-
     test("RiLexicon[singleton]", function() {
             lex = RiLexicon();
             var lex2 = RiLexicon();
             ok(lex.data === lex2.data);
+	    lex2 = null;
         });
 
     test("RiLexicon-lookups", function() {
@@ -84,7 +75,7 @@ var runtests = function() {
             lex.addWord("HAHAHA", "hh-aa1 hh-aa1 hh-aa1", "uh");
             equal(lex._getPhonemes("HAHAHA"), "hh-aa-hh-aa-hh-aa");
 
-            lex = createLex();
+            lex = null;
         });
 
     test("RiLexicon.clear()", function() {
@@ -95,14 +86,6 @@ var runtests = function() {
 
             ok(!lex.containsWord("banana"));
 
-            lex.clear();
-            ok(lex.size() < 1);
-
-            lex = createLex();
-
-            ok(lex.containsWord("funny"));
-            var result = lex.lexicalData();
-            ok(Object.keys(result).length > 30000);
 
             var obj = {};
             obj["wonderfullyy"] = ["w-ah1-n-d er-f ax-l iy", "rb"];
@@ -110,8 +93,11 @@ var runtests = function() {
             var result = lex.lexicalData();
             deepEqual(result, obj)
 
-            lex = createLex();
+            lex.clear();
+            ok(lex.size() < 1);
+            lex = null;
         });
+
 
     test("RiLexicon.containsWord()", function() {
 
@@ -129,9 +115,7 @@ var runtests = function() {
 
             RiLexicon.data['hello'] = undefined;
             ok(!lex.containsWord("hello"));
-
-            ok(!lex.containsWord(""));
-
+	    lex = null;
         });
 
     test("RiLexicon.alliterations()", function() {
@@ -161,7 +145,7 @@ var runtests = function() {
 
     test("RiLexicon.alliterations(int)", function() {
 
-            var lex = RiLexicon();
+            lex = RiLexicon();
 
             var result = lex.alliterations("dog", 15);
             ok(result.length == 3);
@@ -169,8 +153,8 @@ var runtests = function() {
             var result = lex.alliterations("cat", 16);
             //for (var i = 0; i < result.length; i++)
             //console.log(i + ") " + result[i]);
-            ok(result.length == 7); // TODO: check this
 
+            ok(result.length == 7); // TODO: check this
         });
 
     test("RiLexicon.lexicalData()", function() {
@@ -181,34 +165,37 @@ var runtests = function() {
             ok(Object.keys(result).length > 1000);
 
             var re = lex.lexicalData();
-            var result = re.a;
+            result = re.a;
             var answer = ["ey1", "dt"];
 
             deepEqual(result, answer);
 
-            var re = lex.lexicalData();
-            var result = re.the;
-            var answer = ["dh-ax", "dt"];
+            re = lex.lexicalData();
+            result = re.the;
+            answer = ["dh-ax", "dt"];
 
             deepEqual(result, answer);
 
             var obj = {};
             obj["wonderfully"] = ["w-ah1-n-d er-f ax-l iy", "rb"];
-            var result = lex.lexicalData(obj);
+            result = lex.lexicalData(obj);
             deepEqual(result.lexicalData(), obj);
 
-            var obj = {};
+            obj = {};
             obj["wonderfullyy"] = ["w-ah1-n-d er-f ax-l iy-y", "rb"];
-            var result = lex.lexicalData(obj);
+            result = lex.lexicalData(obj);
             deepEqual(result.lexicalData().wonderfullyy, ["w-ah1-n-d er-f ax-l iy-y", "rb"]);
 
-            lex = createLex();
+            lex = null;
         });
+
 
     test("RiLexicon.randomWord(1)", function() {
 
-            lex = RiLexicon();
-            //randomWord();, randomWord(targetLength);, randomWord(pos);, randomWord(pos, targetLength);
+            //randomWord(), randomWord(targetLength), randomWord(pos), 
+            //randomWord(pos, targetLength)
+
+            lex = createLex();
 
             var result = lex.randomWord();
             ok(result.length > 0, "randomWord: " + result);
@@ -228,6 +215,7 @@ var runtests = function() {
             result = lex.randomWord("nns", 3);
             ok(result.length > 0, "3 syllableCount + nns: " + result);
         });
+
 
     test("RiLexicon.randomWord(2)", function() {
 
@@ -269,7 +257,6 @@ var runtests = function() {
             // TODO: more tests with both count and pos
         });
 
-
     test("RiLexicon.rhymes()", function() {
 
             lex = RiLexicon();
@@ -290,20 +277,17 @@ var runtests = function() {
             deepEqual(result, answer);
 
             var result = lex.rhymes("goxgle");
-            var answer = [];
-            deepEqual(result, answer);
+            deepEqual(result, []);
 
             var result = lex.rhymes("google");
             var answer = ['bugle', 'frugal'];
             deepEqual(result, answer);
 
             result = lex.rhymes("happens in here");
-            var answer = [];
-            deepEqual(result, answer);
+            deepEqual(result, []);
 
             result = lex.rhymes("");
-            var answer = [];
-            deepEqual(result, answer);
+            deepEqual(result, []);
 
 
         });
@@ -327,13 +311,23 @@ var runtests = function() {
             var result = lex.words("[^A-M]in");
             ok(result.length > 5);
 
+            var result1 = lex.words("colou*r", false);
+            ok(result1.length > 5);
+
+            var result2 = lex.words(false, "colou*r");
+            ok(result2.length > 5);
+
+            // make sure they are 
+            deepEqual(result1, result2);
+            
             var result1 = lex.words("colou*r", true);
             ok(result1.length > 5);
 
             var result2 = lex.words(true, "colou*r");
             ok(result2.length > 5);
 
-            deepEqual(result1, result2);
+            // make sure they are 
+            notDeepEqual(result1, result2);
         });
 
     test("RiLexicon.isAdverb()", function() {
@@ -642,54 +636,45 @@ var runtests = function() {
             lex = createLex();
         });
 
-
-    // TODO: clear() failing may be killing this test ()???)
     test("RiLexicon.similarByLetter()", function() {
 
             lex = RiLexicon();
 
             var result = lex.similarByLetter("banana");
-            var answer = ["banal", "bonanza", "cabana", "lantana", "manna", "wanna"];
-            deepEqual(result, answer);
+            deepEqual(result, ["banal", "bonanza", "cabana", "lantana", "manna", "wanna"]);
 
-            var result = lex.similarByLetter("banana", 1, true);
-            var answer = ["cabana"];
-            deepEqual(result, answer, "true");
+            result = lex.similarByLetter("banana", 1, true);
+            deepEqual(result, ["cabana"]);
 
-            var result = lex.similarByLetter("banana", 1, false);
-            var answer = ["banal", "bonanza", "cabana", "lantana", "manna", "wanna"];
-            deepEqual(result, answer, "false");
+            result = lex.similarByLetter("banana", 1, false);
+            deepEqual(result, ["banal", "bonanza", "cabana", "lantana", "manna", "wanna"]);
 
+            result = lex.similarByLetter("tornado");
+            deepEqual(result, ["torpedo"]);
 
-            var result = lex.similarByLetter("tornado");
-            var answer = ["torpedo"];
-            deepEqual(result, answer);
+            result = lex.similarByLetter("ice");
+            deepEqual(result, ["ace", "dice", "iced", "icy", "ire", "lice", "mice", "nice", "rice", "vice"]);
 
-            var result = lex.similarByLetter("ice");
-            var answer = ["ace", "dice", "iced", "icy", "ire", "lice", "mice", "nice", "rice", "vice"];
-            deepEqual(result, answer);
+            result = lex.similarByLetter("ice", 1);
+            deepEqual(result, ["ace", "dice", "iced", "icy", "ire", "lice", "mice", "nice", "rice", "vice"]);
 
-            var result = lex.similarByLetter("ice", 1);
-            var answer = ["ace", "dice", "iced", "icy", "ire", "lice", "mice", "nice", "rice", "vice"];
-            deepEqual(result, answer);
-
-            var result = lex.similarByLetter("ice", 2, true);
+            result = lex.similarByLetter("ice", 2, true);
             ok(result.length > 10);
 
-            var result = lex.similarByLetter("ice", 0, true);
-            var answer = ["ace", "icy", "ire"];
-            deepEqual(result, answer);
+            result = lex.similarByLetter("ice", 0, true); // defaults to 1
+            deepEqual(result,  ["ace", "icy", "ire"]);
+            
+            result = lex.similarByLetter("ice", 1, true);
+            deepEqual(result,  ["ace", "icy", "ire"]);
 
-            var result = lex.similarByLetter("worngword");
-            var answer = ["foreword", "wormwood"];
-            deepEqual(result, answer);
+            result = lex.similarByLetter("worngword");
+            deepEqual(result, ["foreword", "wormwood"]);
 
-            var result = lex.similarByLetter("123");
+            result = lex.similarByLetter("123");
             ok(result.length > 400);
 
-            var result = lex.similarByLetter("");
-            var answer = [];
-            deepEqual(result, answer);
+            result = lex.similarByLetter("");
+            deepEqual(result,  []);
         });
 
     test("RiLexicon.similarBySound()", function() {
@@ -697,28 +682,20 @@ var runtests = function() {
             lex = RiLexicon();
 
             var result = lex.similarBySound("tornado");
-            var answer = ["torpedo"];
-            deepEqual(result, answer);
+            deepEqual(result, ["torpedo"]);
 
             result = lex.similarBySound("try");
-            answer = ["cry", "dry", "fry", "pry", "rye", "tie", "tray", "tree", "tribe", "tried", "tries", "tripe", "trite", "true", "wry"];
-            deepEqual(result, answer);
-
-            result = lex.similarBySound("try", 1); // same
+            var answer = ["cry", "dry", "fry", "pry", "rye", "tie", "tray", "tree", "tribe", "tried", "tries", "tripe", "trite", "true", "wry"];
             deepEqual(result, answer);
 
             result = lex.similarBySound("try", 2);
             ok(result.length > answer.length); // more
 
             result = lex.similarBySound("worngword");
-            answer = ["watchword", "wayward", "wormwood"];
-            deepEqual(result, answer);
+            deepEqual(result, ["watchword", "wayward", "wormwood"]);
 
             result = lex.similarBySound("happy");
             answer = ["happier", "hippie"];
-            deepEqual(result, answer);
-
-            result = lex.similarBySound("happy", 1); // same
             deepEqual(result, answer);
 
             result = lex.similarBySound("happy", 2);
@@ -728,14 +705,8 @@ var runtests = function() {
             answer = ["at", "bat", "cab", "cache", "calf", "can", "cant", "cap", "capped", "cash", "cashed", "cast", "caste", "catch", "catty", "caught", "chat", "coat", "cot", "curt", "cut", "fat", "hat", "kit", "kite", "mat", "matt", "matte", "pat", "rat", "sat", "tat", "that"];
             deepEqual(result, answer);
 
-            result = lex.similarBySound("cat", 1);
-            ok(result.length == answer.length); // same     
-
             result = lex.similarBySound("cat", 2);
-            ok(result.length > answer.length); // huh?
-
-            result = lex.similarBySound("");
-            deepEqual(result, []);
+            ok(result.length > answer.length);
         });
 
     test("RiLexicon.similarBySoundAndLetter()", function() {
@@ -743,29 +714,19 @@ var runtests = function() {
             lex = RiLexicon();
 
             var result = lex.similarBySoundAndLetter("try");
-            var answer = ["cry", "dry", "fry", "pry", "tray", "wry"];
-            deepEqual(result, answer);
+            deepEqual(result, ["cry", "dry", "fry", "pry", "tray", "wry"]);
 
-            var result = lex.similarBySoundAndLetter("daddy");
-            var answer = ["dandy"];
-            deepEqual(result, answer);
+            result = lex.similarBySoundAndLetter("daddy");
+            deepEqual(result, ["dandy"]);
 
-            var result = lex.similarBySoundAndLetter("banana");
-            var answer = ["bonanza"];
-            deepEqual(result, answer);
+            result = lex.similarBySoundAndLetter("banana");
+            deepEqual(result, ["bonanza"]);
 
-            var result = lex.similarBySoundAndLetter("tornado");
-            var answer = ["torpedo"];
-            deepEqual(result, answer);
+            result = lex.similarBySoundAndLetter("worngword");
+            deepEqual(result, ["wormwood"]);
 
-            //var lex = createLex();
-            var result = lex.similarBySoundAndLetter("worngword");
-            var answer = ["wormwood"];
-            deepEqual(result, answer);
-
-            var result = lex.similarBySoundAndLetter("");
-            var answer = [];
-            deepEqual(result, answer);
+            result = lex.similarBySoundAndLetter("");
+            deepEqual(result, []);
         });
 
     test("RiLexicon.substrings()", function() {
@@ -840,7 +801,7 @@ var runtests = function() {
             var result = lex._getPosData(".");
             deepEqual(result, "");
 
-            var lex = createLex()
+            lex = createLex()
             var result = lex._getPosData("beautiful guy");
             deepEqual(result, "");
 

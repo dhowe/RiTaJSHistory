@@ -8,16 +8,6 @@ var runtests = function() {
             teardown: function() {}
         });
 
-    test("RiTa.checkAPI", function() {
-
-            if (QUnit.checkAPI)
-                QUnit.checkAPI('RiTa', RiTa, RiTa);
-            else {
-                console.log("[TEST] Skipping checkAPI() for RiTa");
-                ok("Only check in Node");
-            }
-        });
-
     test("RiTa.constants", function() {
 
             ok(RiTa.VERSION);

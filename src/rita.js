@@ -1786,8 +1786,9 @@
 			input = input.toLowerCase();
 			minAllowedDist = minAllowedDist || 1;
 			preserveLength = preserveLength || false;
-			
-			var med, inputS = input + 's', inputES = input + 'es', inputLen = input.length;
+
+			var med, inputS = input + 's', inputES = input + 'es', 
+				inputLen = input.length;
 
 			for (var entry in RiLexicon.data) {
 
@@ -1801,8 +1802,6 @@
 					continue;
 
 				med = MinEditDist.computeRaw(entry, input);
-
-				if (!med) continue; // same word (shouldnt happen)
 
 				// we found something even closer
 				if (med >= minAllowedDist && med < minVal) {
@@ -1827,40 +1826,33 @@
 
 			var minVal = Number.MAX_VALUE, entry, result = [], minLen = 2,
 				phonesArr, phones = RiTa.getPhonemes(input), med,
-				targetPhonesArr = phones ? phones.split('-') : [];
+				targetPhonesArr = phones ? phones.split('-') : [],
+                                input_s = input+'s', input_es = input + 'es',
+                                lts = LetterToSound();
 
 			if (!targetPhonesArr[0] || !(input && input.length)) return EA;
 
 			for (entry in RiLexicon.data) {
 
-				if (entry.length < minLen) 
-					continue;
+				if (entry.length < minLen) continue;
 
-				entry = entry.toLowerCase();
+				// entry = entry.toLowerCase(); // all lowercase
 
-				if (entry == input || entry == (input + "s") || entry == (input + "es")) 
+				if (entry == input || entry == input_s || entry == input_es) 
 					continue;
 
 				phones = this._getRawPhones(entry);
-
-				if (!phones.length) {
-
-					phones = RiString._syllabify(LetterToSound().getPhones(entry));
-					if (!phones) return EA;
-				}
-
-				phonesArr = phones.replace(/1/g, E).replace(/ /g, "-").split('-');
-
+				phonesArr = phones.replace(/1/g, E).replace(/ /g, '-').split('-');
+                                 
 				med = MinEditDist.computeRaw(phonesArr, targetPhonesArr);
-
-				if (med === 0) continue; // same phones 
 
 				// found something even closer
 				if (med >= minEditDist && med < minVal) {
 
 					minVal = med;
-					result = [entry];
+					result = [ entry ];
 				}
+
 				// another best to add
 				else if (med == minVal) {
 
@@ -1898,22 +1890,19 @@
 		},
 		
 		similarBySoundAndLetter: function(word) { 
+		        
+			var result = [], 
+                            simSound = this.similarBySound(word),
+    			    simLetter = this.similarByLetter(word);
 			
-			var simSound, simLetter, result = [];
-
-			simSound = this.similarBySound(word);
-			simLetter = this.similarByLetter(word);
-			
-			if (!simSound || !simLetter) 
+			if (!simSound || simSound.length<1 || !simLetter || simLetter.length<1) 
 				return result;
-			
+
+                        // union of two sets
 			for (var i=0; i<simSound.length; i++) {
-				
-				for (var j=0; j<simLetter.length; j++) {
-					
-					if (simSound[i] == simLetter[j]) 
-						result.push(simLetter[j]);
-				}
+
+                            if (simLetter.indexOf(simSound[i])>-1)
+        			result.push(simSound[i]);
 			}
 			
 			return result;
@@ -1921,7 +1910,7 @@
 
 		words : function() {
 			
-			var a = arguments, sorted = false, regex, 
+			var a = arguments, shuffled = false, regex, 
 				wordArr = [], words = okeys(RiLexicon.data);
 			
 			switch (a.length) {
@@ -1929,11 +1918,13 @@
 				case 2:
 					
 					if (is(a[0],B)) {
-						sorted = a[0];
+
+						shuffled = a[0];
 						regex = (is(a[1],R)) ? a[1] : new RegExp(a[1]);
 					} 
 					else {
-						sorted = a[1];
+
+						shuffled = a[1];
 						regex = (is(a[0],R)) ? a[0] : new RegExp(a[0]);
 					}
 
@@ -1942,7 +1933,7 @@
 				case 1:
 										
 					if (is(a[0],B)) {
-						return a[0] ? shuffle(words) : okeys(words);
+						return a[0] ? shuffle(words) : words;
 					}
 					
 					regex = (is(a[0],R)) ? a[0] : new RegExp(a[0]);
@@ -1951,20 +1942,18 @@
 					
 				case 0:
 					
-					return shuffle(words);
+					return words;
 			}
 
 			for (var i = 0; i < words.length; i++) {
 				
-				if (words[i].match(regex)) {
+				if (regex.test(words[i])) {
 					
 					wordArr.push(words[i]);
 				}
 			}
 			
-			// TODO: make sure we have a test for both sorted=false/true
-
-			return sorted ? wordArr : shuffle(wordArr);  
+			return shuffled ? shuffle(wordArr) : wordArr;  
 		},
 
 		_isVowel : function(c) {
@@ -3494,7 +3483,7 @@
 			 * area instead of new'ing up a new one for every word. The name choice is to
 			 * match that in Flite's <code>cst_lts.c</code>.
 			 */
-		   this.fval_buff = [];
+        		this.fval_buff = [];
 	
 			/*
 			 * The LTS state machine. Entries can be String or State. An ArrayList could
@@ -5697,15 +5686,15 @@
 	})();
 	
 	// TODO: remove these eventually
-	Array.prototype._arrayContains = function (searchElement ) {
-		return Array.prototype.indexOf(searchElement) > -1;
+	Array.prototype._arrayContains = function(ele ) {
+		return (Array.prototype.indexOf(ele) > -1);
 	};
 	
 	String.prototype._endsWith = function(suffix) {
 		return this.indexOf(suffix, this.length - suffix.length) !== -1;
 	};
 
-	/*From the PlingStemmer stemmer implementation included in the Java Tools package (see http://mpii.de/yago-naga/javatools). */
+	/* From the PlingStemmer impl in the Java Tools package (see http://mpii.de/yago-naga/javatools). */
 	Stemmer.stem_Pling = (function() {
 		
 		/* Words that are both singular and plural */

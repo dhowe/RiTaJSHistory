@@ -1,5 +1,5 @@
 {
-  "version": "1.0.82",
+  "version": "1.0.84",
   "author": "Daniel C. Howe <daniel@rednoise.org>",
   "name": "rita",
   "description": "RiTa: A toolkit for natural language and computational literature",
@@ -42,7 +42,7 @@
     "gulp": "^3.8.11",
     "gulp-concat": "^2.3.3",
     "gulp-jshint": "^1.7.0",
-    "gulp-qunit": "^1.2",
+    "gulp-qunit": "^1.2.1",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.4.0",
     "gulp-scp": "0.0.3",

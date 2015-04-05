@@ -6,15 +6,6 @@ var runtests = function() {
 	    },
 	    teardown: function () {}
 	}); 
-	
-	test("RiString.checkAPI", function() {
-		if (QUnit.checkAPI)
-    		QUnit.checkAPI('RiString', RiString, new RiString(''));
-  		else {
-    		console.log("[TEST] Skipping checkAPI() for RiString");
-    		ok("Only check in Node");
-    	};
-	});
     
     test("RiString._syllabify(string)", function() {
 

@@ -1,3 +1,6 @@
+/*global console, test, throws, equal, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
+
 var runtests = function() {
 	   
     QUnit.module("LibraryStructure", {
@@ -5,7 +8,26 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    // NOTE: Instances of RiLexicon & RiText are not available on this page
+    // NOTE: Instances of RiText are not available on this page
+
+    test("Public Api Functions", function() {
+    
+        if (QUnit.checkAPI) {
+            
+            var pathToDocs = '../../RiTa/docs/json/';
+            QUnit.checkAPI('RiTaEvent', RiTaEvent, new RiTaEvent(this), pathToDocs);
+            QUnit.checkAPI('RiTa', RiTa, RiTa, pathToDocs);
+            QUnit.checkAPI('RiString', RiString, new RiString(''), pathToDocs);
+            QUnit.checkAPI('RiGrammar', RiGrammar, new RiGrammar(), pathToDocs);
+            QUnit.checkAPI('RiMarkov', RiMarkov, new RiMarkov(2), pathToDocs);
+            QUnit.checkAPI('RiLexicon', RiLexicon, RiLexicon(), pathToDocs);
+        }
+        else {
+        
+            console.log("[TEST] Skipping checkAPI() for LibraryStructure (node-only)");
+            ok("Only check in Node");
+        }
+    });
 
     test("Public Objects", function() {
 
@@ -24,8 +46,10 @@ var runtests = function() {
     test("Private Statics (funs)", function() {
 
         if (typeof window != 'undefined' && window) {
-            equal(typeof RiText._handleLeading, 'function');
-            equal(typeof RiText._disposeOne, 'function');
+            
+            //equal(typeof RiText._handleLeading, 'function');
+            //equal(typeof RiText._disposeOne, 'function');
+            
              // these fail in phantom outside the conditional ??
 			equal(typeof is, 'undefined');
         }
@@ -51,7 +75,7 @@ var runtests = function() {
         equal(typeof rs.charAt, 'function');
         var rg = RiMarkov(3);
         equal(typeof rg.loadTokens, 'function');
-        var rg = new RiMarkov(2);
+        rg = new RiMarkov(2);
         equal(typeof rg.loadTokens, 'function');
     });
 
@@ -72,8 +96,8 @@ var runtests = function() {
 
         if (typeof window != 'undefined') {
             
-            equal(typeof RiText.random, 'function');
-            equal(typeof RiText.timer, 'function');
+            //equal(typeof RiText.random, 'function');
+            //equal(typeof RiText.timer, 'function');
         }
     });
 
@@ -169,6 +193,6 @@ var runtests = function() {
         equal(typeof disposeOne, 'undefined');
     });
 
-}
+};
 
 if (typeof exports != 'undefined')  runtests();

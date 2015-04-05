@@ -1,5 +1,7 @@
 var runtests = function() {
 
+    if (typeof YAML == 'undefined') YAML = require('yamljs');
+
     var SILENT = true,
         WITHOUT_YAML = typeof YAML == 'undefined';
 
@@ -8,15 +10,6 @@ var runtests = function() {
             teardown: function() {},
             temp: function() {
                 return Math.random() < 0.5 ? 'hot' : 'cold';
-            }
-        });
-
-    test("RiGrammar.checkAPI", function() {
-            if (QUnit.checkAPI)
-                QUnit.checkAPI('RiGrammar', RiGrammar, new RiGrammar());
-            else {
-                console.log("[TEST] Skipping checkAPI() for RiGrammar");
-                ok("Only check in Node");
             }
         });
 

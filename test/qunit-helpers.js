@@ -1,14 +1,19 @@
+/*jslint node: true*/
+/*global equal, expect, require, ok, QUnit */
+
+//var QUnitHelpers = {};
+
 /*
  * loads the JSON doc-file and checks that each described field actually exists in the object
  */
-QUnit.checkAPI = function(className, Class, obj) {
+QUnit.checkAPI = function(className, Class, obj, pathToDocs) {
 
-	var eles = QUnit.propertiesFromAPI(className); 	
+	var eles = QUnit.propertiesFromAPI(pathToDocs, className); 	
 	
 	if (!eles) {
 		
 		expect(0);
-		//console.warn("[WARN] Skipped checkAPI() test for '"+className+"'");
+		console.warn("[WARN] Skipped checkAPI() test for '"+className+"'");
 		return;
 	}
 	
@@ -35,26 +40,26 @@ QUnit.checkAPI = function(className, Class, obj) {
     		equal(typeof obj[eles[i].name], 'function', 'function: '+eles[i].name+'()');
     	}
     }        
-}
+};
 
 /*
  * loads the JSON doc-file and populates and array of 'field' objects, where a field
  * contains a 'name' string, and 2 booleans: 'isVar' and 'isStatic'.
  */
-QUnit.propertiesFromAPI = function(className) {
+QUnit.propertiesFromAPI = function(pathToDocs, className) {
 	
 	var jsonf, fields, elements = [];
 	
 	// for now, this only works in Node (and not from the browser OR an NPM package)
 	if (typeof exports != 'undefined') {
 		
-		jsonf = '../../docs/json/'+className;
+		jsonf = pathToDocs + className;
 		try{
 			fields = require(jsonf).fields;
 		}
 		catch(e) {
 			
-			//console.warn("[WARN] No json file at '"+jsonf+".json', or perhaps the JSON is invalid?");
+			console.warn("[WARN] No json file at '"+jsonf+".json', or perhaps the JSON is invalid?");
 			return;
 		}
 		                
@@ -63,7 +68,7 @@ QUnit.propertiesFromAPI = function(className) {
 			 if (fields[i].hidden) continue;
 			 
 			 var isVar = fields[i].variable || false,
-			 	isStatic = (new RegExp("^"+className+"\.").test(fields[i].name)),
+			 	isStatic = (new RegExp("^"+className+".").test(fields[i].name)),
 				name = isStatic ? fields[i].name.substring(className.length+1) : fields[i].name;
 				
 			 elements.push({ name: name, isVar: isVar, isStatic: isStatic });
@@ -71,7 +76,7 @@ QUnit.propertiesFromAPI = function(className) {
 	}
 	
 	return elements;
-}
+};
 
 // Adds some logging to the command-line (Node) test script
 QUnit.moduleStart(function(n) {	
@@ -80,5 +85,6 @@ QUnit.moduleStart(function(n) {
 
 // Adds some logging to the command-line (Node) test script
 QUnit.moduleDone(function(n) {	
-	console.log("[INFO] Completed "+n.name);
+	//console.log("[INFO] Completed "+n.name);
 });    
+

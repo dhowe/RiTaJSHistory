@@ -11,16 +11,6 @@ var runtests = function() {
 
 	var sample2 = "One reason people lie is to achieve personal power. " + "Achieving personal power is helpful for one who pretends to " + "be more confident than he really is. For example, one of my " + "friends threw a party at his house last month. He asked me to " + "come to his party and bring a date. However, I did not have a " + "girlfriend. One of my other friends, who had a date to go to the " + "party with, asked me about my date. I did not want to be embarrassed, " + "so I claimed that I had a lot of work to do. I said I could easily find" + " a date even better than his if I wanted to. I also told him that his " + "date was ugly. I achieved power to help me feel confident; however, I " + "embarrassed my friend and his date. Although this lie helped me at the " + "time, since then it has made me look down on myself. After all, I did " + "occasionally want to be embarrassed.";
 
-	test("RiMarkov.checkAPI", function() {
-
-    	if (QUnit.checkAPI)
-	    	QUnit.checkAPI('RiMarkov', RiMarkov, new RiMarkov(2));
-  		else {
-    		console.log("[TEST] Skipping checkAPI() for RiMarkov");
-    		ok("Only check in Node");
-    	};
-	});
-
 	test("RiMarkov()", function() {
 
 		ok(RiMarkov(4));

@@ -6,16 +6,6 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-	test("RiTaEvent.checkAPI", function() {
-		
-    	if (QUnit.checkAPI)
-			QUnit.checkAPI('RiTaEvent', RiTaEvent, new RiTaEvent(this));
-  		else {
-    		console.log("[TEST] Skipping checkAPI() for RiTaEvent");
-    		ok("Only check in Node");
-    	};
-	});
-	
     test("RiTaEvent()", function() {
         
         ok(RiTaEvent(this));
