@@ -7,7 +7,7 @@
 
 #### [The RiTa website](http://rednoise.org/rita)
 
-##### RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. It is implemented in Java and JavaScript (with a unified API for bothl). It is free/libre and open-source according to the GPL license.
+RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. It is implemented in Java and JavaScript (with a unified API for bothl). It is free/libre and open-source according to the GPL license.
 
 About the project
 --------
@@ -18,7 +18,7 @@ About the project
 * Bug Tracker:       [https://github.com/dhowe/RiTa/issues](https://github.com/dhowe/RiTa/issues)
 * Reference:    https://rednoise.org/rita/reference
 
-In [NodeJS](http://nodejs.org/)
+In [node.js](http://nodejs.org/)
 --------
 To install: `$ npm install rita`
  
@@ -42,7 +42,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 #### Development Setup
 --------
-- Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
+- Download and install [npm](https://www.npmjs.org/). The easiest way to do this is to just install [node](http://nodejs.org/). 
 
 - [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
 
