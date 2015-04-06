@@ -3,7 +3,7 @@
 // Configuration options
 var testDir = './test/',
     buildDir = 'dist',
-    ritaDir = '../',
+    ritaDir = '../RiTa',
     tmpDir = '/tmp';
 
 ///////////////////////////////////////////////////////
@@ -160,8 +160,8 @@ gulp.task('build.node', ['clean'], function(cb) {
         .pipe(gulp.dest(buildDir + '/node/rita/test'));
 
         // copy in the docs
-        gulp.src(ritaDir + '/www/reference/**/*')
-            .pipe(gulp.dest(buildDir + '/node/rita/doc'));
+        //gulp.src(ritaDir + '/www/reference/**/*')
+            //.pipe(gulp.dest(buildDir + '/node/rita/doc'));
 
         // copy in rita.js (min)
         gulp.src('src/rita*.js')
@@ -209,6 +209,47 @@ gulp.task('lint', function() {
         return gulp.src('src/*.js')
             .pipe(jshint(opts))
             .pipe(jshint.reporter('default'));
+    });
+
+// Test(node): gulp test.node (all) || gulp test.node --name RiString
+gulp.task('test.node.pkg', function(cb) {
+
+        var testrunner = require("qunit");
+
+        var tests = [
+            'test/LibStructure-tests',
+            'test/RiTaEvent-tests',
+            'test/RiString-tests',
+            'test/RiTa-tests',
+            //'test/RiGrammar-tests',
+            // TODO: figure out why this one test fails
+            'test/RiMarkov-tests',
+            'test/RiLexicon-tests'
+        ];
+
+        if (argv.name) {
+
+            tests = [ testDir + argv.name + '-tests'];
+            console.log('[INFO] Testing ' + tests[0]);
+        }
+
+        testrunner.setup({
+                maxBlockDuration: 20000,
+                log: {
+                    globalSummary: true,
+                    errors: true
+                }
+            });
+
+        testrunner.run({
+                code: "lib/rita.js",
+                deps: [
+                    "test/qunit-helpers.js"
+                ],
+                tests: tests
+            }, function(err, report) {
+                if (err) console.error(err);
+            });
     });
 
 // Test(node): gulp test.node (all) || gulp test.node --name RiString

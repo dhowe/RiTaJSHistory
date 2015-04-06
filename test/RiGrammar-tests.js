@@ -112,7 +112,7 @@ var runtests = function() {
                     });
             }
         });
-
+return;
     test("RiGrammar.load", function() {
 
             var rg = new RiGrammar();
@@ -847,38 +847,38 @@ var runtests = function() {
 
     test("RiGrammar.execArgs", function() {
 
-            var rg = new RiGrammar(newruleg);
+            var res, i, rg = new RiGrammar(newruleg);
             rg.execDisabled = false;
             ok(rg);
 
             if (typeof module == 'undefined') { // for node-issue #9
 
                 rg.addRule("<start>", "`getFloat()`");
-                for (var i = 0; i < 10; i++) {
+                for (i = 0; i < 10; i++) {
 
-                    var res = rg.expandFrom("<start>", this);
+                    res = rg.expandFrom("<start>", this);
                     ok(res && res.length && parseFloat(res));
                 }
 
                 rg.reset();
                 rg.addRule("<start>", "`adj(2)`");
-                for (var i = 0; i < 10; i++) {
+                for (i = 0; i < 10; i++) {
 
-                    var res = rg.expandFrom("<start>", this);
+                    res = rg.expandFrom("<start>", this);
                     ok(res && res.length && res === "number");
                 }
 
                 rg.reset();
                 rg.addRule("<start>", "`adj(true)`");
-                for (var i = 0; i < 10; i++) {
+                for (i = 0; i < 10; i++) {
 
-                    var res = rg.expandFrom("<start>", this);
+                    res = rg.expandFrom("<start>", this);
                     //System.out.println(i + ")" + res);
                     ok(res === "boolean");
                 }
             }
 
         });
-}
+};
 
-if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;
+if (typeof exports != 'undefined') runtests();

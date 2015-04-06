@@ -7,16 +7,15 @@
 
 #### [The RiTa website](http://rednoise.org/rita)
 
-#### RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. It is implemented in Java and JavaScript (with a unified API for bothl). It is free/libre and open-source according to the GPL license (http://www.gnu.org/licenses/gpl.txt).
-
+### RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. It is implemented in Java and JavaScript (with a unified API for bothl). It is free/libre and open-source according to the GPL license (http://www.gnu.org/licenses/gpl.txt).
 
 About the project
 --------
-* Original Author:   Daniel C. Howe (http://rednoise.org/~dhowe)
+* Author:   [Daniel C. Howe](http://rednoise.org/daniel)
 * License: 			 GPL (see included LICENSE file for full license)
-* Web Site:          http://rednoise.org/rita
-* Github Repo:       https://github.com/dhowe/RiTaJS
-* Bug Tracker:       https://github.com/dhowe/RiTa/issues
+* Web Site:          [http://rednoise.org/rita](http://rednoise.org/rita)
+* Github Repo:       [https://github.com/dhowe/RiTaJS](https://github.com/dhowe/RiTaJS)
+* Bug Tracker:       [https://github.com/dhowe/RiTa/issues](https://github.com/dhowe/RiTa/issues)
 * Reference:    https://rednoise.org/rita/reference
 
 In [NodeJS](http://nodejs.org/)
@@ -32,8 +31,7 @@ console.log(rs.features());
 To run tests: 
 
 ```bash
-$ cd node_modules/rita/ && npm install && cd - 
-$ npm test rita
+$ cd node_modules/rita && npm install && npm test && cd -
 ```
 
 Or, see the 'Development Setup' instructions below...
@@ -46,26 +44,20 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 --------
 1. Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/). 
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
-
   a. First, login to github and fork the project
-
   b. Then, from a terminal/shell: 
-  
   ```bash
   $ git clone https://github.com/dhowe/RiTaJS.git
   ```
 3. Now navigate into the project folder and install dependencies via npm. 
-
   ```bash
   $ cd RiTaJS && npm install
   ```
 4. To create the library from src, use gulp.
-
   ```bash
   $ ./node_modules/.bin/gulp build
   ```
 5. Optionally run tests in node with gulp.
-
   ```bash
   $ ./node_modules/.bin/gulp test.node
   ```
