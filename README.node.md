@@ -13,10 +13,10 @@ About the project
 --------
 * Author:   [Daniel C. Howe](http://rednoise.org/daniel)
 * License: 			 GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file for full license)
-* Web Site:          [http://rednoise.org/rita](http://rednoise.org/rita)
+* Web Site:          [https://rednoise.org/rita](http://rednoise.org/rita)
 * Github Repo:       [https://github.com/dhowe/RiTaJS](https://github.com/dhowe/RiTaJS)
 * Bug Tracker:       [https://github.com/dhowe/RiTa/issues](https://github.com/dhowe/RiTa/issues)
-* Reference:    https://rednoise.org/rita/reference
+* Reference:    [https://rednoise.org/rita/reference](http://rednoise.org/rita/reference))
 
 In [node.js](http://nodejs.org/)
 --------
