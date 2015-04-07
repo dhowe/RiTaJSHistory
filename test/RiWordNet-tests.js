@@ -1,3 +1,5 @@
+/*global console, test, throws, equal, fail, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
 
 var runtests = function() {
 	
@@ -6,7 +8,7 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    test("RiWordNet()", function() {
+    test("testRiWordNet", function() {
 
         throws(function() {
 			RiTa.SILENT = 1;

@@ -1,3 +1,6 @@
+/*global console, test, throws, equal, fail, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
+
 var runtests = function() {
     
     test("Constructors", function() {

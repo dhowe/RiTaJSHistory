@@ -99,14 +99,14 @@ var runtests = function() {
 
 	});
 
-	test("RiMarkov.isRoot", function() {
+	test("testIsRoot", function() {
 		var rm = new RiMarkov(3);
 		ok(rm.root.isRoot());
 		var node = rm.root.addChild('aChild');
 		ok(!node.isRoot());
 	});
 
-	test("RiMarkov.isLeaf", function() {
+	test("testIsLeaf", function() {
 		var rm = new RiMarkov(3);
 		ok(rm.root.isLeaf());
 		var node = rm.root.addChild('aChild');
@@ -114,7 +114,7 @@ var runtests = function() {
 		ok(node.isLeaf());
 	});
 
-	test("RiMarkov.loadTokens", function() {
+	test("testLoadTokens", function() {
 
 		var tokens = RiTa.tokenize(sample);
 		var rm = new RiMarkov(3);
@@ -123,7 +123,7 @@ var runtests = function() {
 		ok(rm.size() == tokens.length);
 	});
 
-	test("RiMarkov.findNode", function() {
+	test("testFindNode", function() {
 
 		var tokens = RiTa.tokenize('the dog ate the boy the');
 		var rm = new RiMarkov(3);
@@ -168,7 +168,7 @@ var runtests = function() {
 
 	//------------------------API TESTS--------------------------
 
-	test("RiMarkov.generateTokens(a)", function() {
+	test("testGenerateTokens(a)", function() {
 
 		var rm = new RiMarkov(4);
 		rm.loadTokens(RiTa.tokenize(sample));
@@ -179,7 +179,7 @@ var runtests = function() {
 		}
 	});
 
-	test("RiMarkov.generateTokens(b)", function() {
+	test("testGenerateTokens(b)", function() {
 
 		var rm = new RiMarkov(4);
 		rm.loadTokens(RiTa.tokenize(sample));
@@ -193,14 +193,14 @@ var runtests = function() {
 		}
 	});
 
-	test("RiMarkov.getSentenceStarts()", function() {
+	test("testGetSentenceStarts()", function() {
 		var rm = new RiMarkov(4);
 		rm.loadText(sample);
 		for (var i = 0; i < 10; i++)
 			ok(rm._getSentenceStart());
 	});
 
-	test("RiMarkov.loadText(sentences)", function() {
+	test("testLoadText(sentences)", function() {
 
 		var rm = new RiMarkov(4, true, false);
 		var sents = rm.loadText(sample).sentenceList;
@@ -239,7 +239,7 @@ var runtests = function() {
 		equal(rm.getProbability("the"), 1 / 6);
 	});
 
-	test("RiMarkov.validateSentence()", function() {
+	test("testValidateSentence()", function() {
 		
 		var rm = new RiMarkov(4, true);
 		var goods = ["The dog ate the cat.", "The dog ate the cat!", "The dog ate the cat?", 'However, I did not have a girlfriend.'];
@@ -252,7 +252,7 @@ var runtests = function() {
 		}
 	});
 
-	test("RiMarkov.generateSentences()", function() {
+	test("testGenerateSentences()", function() {
 
 		var dbug = 0;
 
@@ -300,7 +300,7 @@ var runtests = function() {
 
 	});
 
-	test("RiMarkov.generateUntil()", function() {
+	test("testGenerateUntil()", function() {
 
 		var rm = new RiMarkov(3);
 		rm.loadTokens(RiTa.tokenize(sample));
@@ -330,7 +330,7 @@ var runtests = function() {
 
 	});
 
-	test("RiMarkov.getN()", function() {//TODO
+	test("testGetN()", function() {//TODO
 
 		for (var i = 1; i < 5; i++) {
 			var rm = RiMarkov(i);
@@ -340,7 +340,7 @@ var runtests = function() {
 
 	// WORKING HERE
 
-	test("RiMarkov.getProbabilities[single]", function() {
+	test("testGetProbabilities[single]", function() {
 
 		var rm = new RiMarkov(3);
 		rm.loadTokens(RiTa.tokenize(sample));
@@ -382,7 +382,7 @@ var runtests = function() {
 		deepEqual(res, {});
 	});
 
-	test("RiMarkov.getProbabilities[array]", function() {
+	test("testGetProbabilities[array]", function() {
 
 		var rm = new RiMarkov(4);
 		rm.loadTokens(RiTa.tokenize(sample2));
@@ -440,7 +440,7 @@ var runtests = function() {
 
 	});
 
-	test("RiMarkov.getProbability[single]", function() {
+	test("testGetProbability[single]", function() {
 
 		var tokens = RiTa.tokenize('the dog ate the boy the');
 		var rm = new RiMarkov(3);
@@ -465,7 +465,7 @@ var runtests = function() {
 		equal(rm.getProbability("power"), 0.017045454545454544);
 	});
 
-	test("RiMarkov.getProbability[array]", function() {
+	test("testGetProbability[array]", function() {
 
 		var rm = new RiMarkov(3);
 		rm.loadTokens(RiTa.tokenize(sample));
@@ -482,7 +482,7 @@ var runtests = function() {
 		equal(rm.getProbability([]), 0);
 	});
 
-	test("RiMarkov.size", function() {
+	test("testSize", function() {
 
 		var tokens = RiTa.tokenize(sample);
 		var sents = RiTa.splitSentences(sample);
@@ -501,7 +501,7 @@ var runtests = function() {
 		equal(rm.size(), tokens.length);
 	});
 
-	test("RiMarkov.getCompletions(a)", function() {//TODO:
+	test("testGetCompletions(a)", function() {//TODO:
 
 		var rm = new RiMarkov(4);
 		rm.loadTokens(RiTa.tokenize(sample));
@@ -527,7 +527,7 @@ var runtests = function() {
 		deepEqual(res, []);
 	});
 
-	test("RiMarkov.getCompletions(b)", function() {//TODO:
+	test("testGetCompletions(b)", function() {//TODO:
 
 		var rm = new RiMarkov(4);
 		rm.loadTokens(RiTa.tokenize(sample2));
@@ -552,7 +552,7 @@ var runtests = function() {
 		deepEqual(res, ["not", "occasionally"]);
 	});
 
-	test("RiMarkov.loadTokens", function() {//TODO: revise tests
+	test("testLoadTokens", function() {//TODO: revise tests
 
 		var words = 'The dog ate the cat'.split(' ');
 
@@ -585,7 +585,7 @@ var runtests = function() {
 		notEqual(rm2.getProbability("One"), rm.getProbability("one"));
 	});
 
-	test("RiMarkov.loadText(tokens)", function() {//TODO: revise tests
+	test("testLoadText(tokens)", function() {//TODO: revise tests
 
 		var words = 'The dog ate the cat';
 
@@ -620,7 +620,7 @@ var runtests = function() {
 
 	*/
 
-	//           test("RiMarkov.ignoreCase()", function () {
+	//           test("testIgnoreCase()", function () {
 	//
 	//                 var words = 'The dog ate the cat'.split(' ');
 	//
@@ -645,7 +645,7 @@ var runtests = function() {
 	//                 notEqual(rm2.getProbability("One"), rm.getProbability("one"));
 	//             });    */
 
-	test("RiMarkov.print()", function() { //TODO: how to test this?
+	test("testPrint()", function() { //TODO: how to test this?
 
 		var words = 'The dog ate the cat'.split(' ');
 		var rm = new RiMarkov(3);
@@ -654,7 +654,7 @@ var runtests = function() {
 		equal(rm.getProbability("The"), 0.2);
 	});
 
-	test("RiMarkov.useSmoothing()", function() {
+	test("testUseSmoothing()", function() {
 
 		var rm = new RiMarkov(3);
 		rm.useSmoothing(false);
@@ -673,7 +673,7 @@ var runtests = function() {
 		// more tests?? yes
 	});
 
-	test("RiMarkov.sentenceAware()", function() {
+	test("testSentenceAware()", function() {
 
 		var rm = new RiMarkov(3, false);
 		var x = rm.sentenceAware();

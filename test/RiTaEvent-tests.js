@@ -1,3 +1,9 @@
+/*global console, test, throws, equal, fail, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
+
+/*jshint loopfunc: true */
+
+// Note: Don't need to extract test-results 
 
 var runtests = function() {
 
@@ -6,7 +12,7 @@ var runtests = function() {
 	    teardown: function () {}
 	});
 	
-    test("RiTaEvent()", function() {
+    test("testConstructor", function() {
         
         ok(RiTaEvent(this));
         ok(new RiTaEvent(this));
@@ -41,6 +47,7 @@ var runtests = function() {
         var BAD = [ null, undefined ];
 
         for ( var i = 0; i < BAD.length; i++) {
+        
             throws(function() {
 				RiTa.SILENT = 1;
                 try {
@@ -65,10 +72,9 @@ var runtests = function() {
                 RiTa.SILENT = 0;
             }, BAD[i]);
         }
-
     });
 
-    test("RiTaEvent.source()", function() {
+    test("testSource", function() {
 
         equal(RiTaEvent(this).source(),this);
         equal(new RiTaEvent(this,RiTa.TEXT_TO).source(),this);
@@ -76,7 +82,7 @@ var runtests = function() {
         equal(new RiTaEvent(this, RiTa.FADE_OUT).source(),this);
     });
     
-    test("RiTaEvent.data()", function() {
+    test("testData", function() {
 
 		equal(RiTaEvent(this).data(), null);
 		equal(RiTaEvent(this,RiTa.TEXT_TO).data(), null);
@@ -86,7 +92,7 @@ var runtests = function() {
         equal(new RiTaEvent(this, RiTa.FADE_OUT,this).data(),this);
     });
 
-    test("RiTaEvent.type()", function() {
+    test("testType", function() {
 
         equal(RiTaEvent(this).type(), RiTa.UNKNOWN);
         equal(new RiTaEvent(this, RiTa.TEXT_TO).type(), RiTa.TEXT_TO);
@@ -94,7 +100,7 @@ var runtests = function() {
         equal(new RiTaEvent(this, RiTa.FADE_OUT).type(),RiTa.FADE_OUT );
     });
     
-    test("RiTaEvent.isType()", function() {
+    test("testIsType", function() {
 
         equal(RiTaEvent(this).isType(RiTa.UNKNOWN), true);
         equal(new RiTaEvent(this, RiTa.TEXT_TO).isType(RiTa.TEXT_TO), true);
@@ -102,10 +108,10 @@ var runtests = function() {
         equal(new RiTaEvent(this, RiTa.FADE_OUT).isType(RiTa.COLOR_TO), false);
     });
 
-    test("RiTaEvent.toString()", function() {
+    test("testToString", function() {
     	
     	ok(RiTaEvent(this).toString()); //TODO: compare to RiTa
 	});
-}
+};
 
 if (typeof exports != 'undefined') runtests();

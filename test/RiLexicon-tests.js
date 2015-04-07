@@ -57,7 +57,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.addWord()", function() {
+    test("testAddWord()", function() {
 
             lex = RiLexicon();
 
@@ -78,7 +78,7 @@ var runtests = function() {
             lex = null;
         });
 
-    test("RiLexicon.clear()", function() {
+    test("testClear()", function() {
 
             lex = RiLexicon();
             ok(lex.containsWord("banana"));
@@ -99,7 +99,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.containsWord()", function() {
+    test("testContainsWord()", function() {
 
             lex = RiLexicon();
             ok(lex.containsWord("cat"));
@@ -118,7 +118,7 @@ var runtests = function() {
 	    lex = null;
         });
 
-    test("RiLexicon.alliterations()", function() {
+    test("testAlliterations()", function() {
 
             lex = RiLexicon();
 
@@ -143,7 +143,7 @@ var runtests = function() {
             // TODO: better tests
         });
 
-    test("RiLexicon.alliterations(int)", function() {
+    test("testAlliterations(int)", function() {
 
             lex = RiLexicon();
 
@@ -157,7 +157,7 @@ var runtests = function() {
             ok(result.length == 7); // TODO: check this
         });
 
-    test("RiLexicon.lexicalData()", function() {
+    test("testLexicalData()", function() {
 
             lex = RiLexicon();
 
@@ -190,7 +190,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.randomWord(1)", function() {
+    test("testRandomWord(1)", function() {
 
             //randomWord(), randomWord(targetLength), randomWord(pos), 
             //randomWord(pos, targetLength)
@@ -217,7 +217,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.randomWord(2)", function() {
+    test("testRandomWord(2)", function() {
 
             lex = RiLexicon();
             var pos = ["nn", "nns", "jj", "jjr", "wp"];
@@ -231,7 +231,7 @@ var runtests = function() {
             }
         });
 
-    test("RiLexicon.randomWord(3)", function() {
+    test("testRandomWord(3)", function() {
 
             lex = RiLexicon();
             for (var i = 0; i < 10; i++) {
@@ -243,7 +243,7 @@ var runtests = function() {
             }
         });
 
-    test("RiLexicon.randomWord(4)", function() {
+    test("testRandomWord(4)", function() {
 
             lex = RiLexicon();
             for (var i = 0; i < 10; i++) {
@@ -257,7 +257,7 @@ var runtests = function() {
             // TODO: more tests with both count and pos
         });
 
-    test("RiLexicon.rhymes()", function() {
+    test("testRhymes()", function() {
 
             lex = RiLexicon();
             result = lex.rhymes("apple");
@@ -292,7 +292,7 @@ var runtests = function() {
 
         });
 
-    test("RiLexicon.words()", function() {
+    test("testWords()", function() {
 
             lex = RiLexicon();
 
@@ -330,7 +330,7 @@ var runtests = function() {
             notDeepEqual(result1, result2);
         });
 
-    test("RiLexicon.isAdverb()", function() {
+    test("testIsAdverb()", function() {
             lex = RiLexicon();
 
             ok(!lex.isAdverb("swim"));
@@ -390,7 +390,7 @@ var runtests = function() {
                 });
         });
 
-    test("RiLexicon.isNoun()", function() {
+    test("testIsNoun()", function() {
             lex = RiLexicon();
 
             ok(lex.isNoun("swim"));
@@ -450,7 +450,7 @@ var runtests = function() {
                 });
         });
 
-    test("RiLexicon.isVerb()", function() {
+    test("testIsVerb()", function() {
             lex = RiLexicon();
 
             ok(lex.isVerb("dance"));
@@ -510,7 +510,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.isAdjective()", function() {
+    test("testIsAdjective()", function() {
             lex = RiLexicon();
 
             ok(!lex.isAdjective("swim"));
@@ -571,7 +571,7 @@ var runtests = function() {
                 });
         });
 
-    test("RiLexicon.isAlliteration()", function() {
+    test("testIsAlliteration()", function() {
 
             lex = RiLexicon();
 
@@ -591,7 +591,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.isRhyme()", function() {
+    test("testIsRhyme()", function() {
             lex = RiLexicon();
             ok(!lex.isRhyme("solo ", "tomorrow"));
             ok(!lex.isRhyme("apple", "polo"));
@@ -615,7 +615,7 @@ var runtests = function() {
 
         });
 
-    test("RiLexicon.removeWord()", function() {
+    test("testRemoveWord()", function() {
 
             lex = RiLexicon();
 
@@ -636,7 +636,7 @@ var runtests = function() {
             lex = createLex();
         });
 
-    test("RiLexicon.similarByLetter()", function() {
+    test("testSimilarByLetter()", function() {
 
             lex = RiLexicon();
 
@@ -677,7 +677,7 @@ var runtests = function() {
             deepEqual(result,  []);
         });
 
-    test("RiLexicon.similarBySound()", function() {
+    test("testSimilarBySound()", function() {
 
             lex = RiLexicon();
 
@@ -709,7 +709,7 @@ var runtests = function() {
             ok(result.length > answer.length);
         });
 
-    test("RiLexicon.similarBySoundAndLetter()", function() {
+    test("testSimilarBySoundAndLetter()", function() {
 
             lex = RiLexicon();
 
@@ -729,7 +729,7 @@ var runtests = function() {
             deepEqual(result, []);
         });
 
-    test("RiLexicon.substrings()", function() {
+    test("testSubstrings()", function() {
 
             lex = RiLexicon();
 
@@ -759,7 +759,7 @@ var runtests = function() {
 
         });
 
-    test("RiLexicon.superstrings()", function() {
+    test("testSuperstrings()", function() {
 
             lex = RiLexicon();
 
@@ -777,7 +777,7 @@ var runtests = function() {
 
         });
 
-    test("RiLexicon.getPosData()", function() {
+    test("testGetPosData()", function() {
 
 
             lex = RiLexicon();
@@ -809,7 +809,7 @@ var runtests = function() {
         });
 
 
-    test("RiLexicon.isVowel()", function() {
+    test("testIsVowel()", function() {
 
             lex = RiLexicon();
 
@@ -826,7 +826,7 @@ var runtests = function() {
             ok(!lex._isVowel(""));
         });
 
-    test("RiLexicon.isConsonant()", function() {
+    test("testIsConsonant()", function() {
 
 
             lex = RiLexicon();
@@ -851,7 +851,7 @@ var runtests = function() {
 
         });
 
-    test("RiLexicon.lookupRaw()", function() {
+    test("testLookupRaw()", function() {
 
 
             lex = RiLexicon();
@@ -874,7 +874,7 @@ var runtests = function() {
 
     //For RiTa.getPhonemes() NOT IN RiTa-Java
 
-    test("RiLexicon.getPhonemes()", function() {
+    test("testGetPhonemes()", function() {
 
 
             lex = RiLexicon();
@@ -904,7 +904,7 @@ var runtests = function() {
 
     //For RiTa.getStresses() NOT IN RiTa-Java
 
-    test("RiLexicon.getStresses()", function() {
+    test("testGetStresses()", function() {
 
             lex = RiLexicon();
 
@@ -935,7 +935,7 @@ var runtests = function() {
 
     //For RiTa.getSyllables() NOT IN RiTa-Java
 
-    test("RiLexicon.getSyllables()", function() {
+    test("testGetSyllables()", function() {
 
             lex = RiLexicon();
 

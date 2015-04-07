@@ -1,3 +1,6 @@
+/*global console, test, throws, equal, fail, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
+
 var runtests = function() {
 
     var tmp;	 	
@@ -14,7 +17,7 @@ var runtests = function() {
         }
 	});
     
-    test("RiText.checkAPI", function() { // Can this move to QUnit-Callbacks?
+    test("testCheckAPI", function() { // Can this move to QUnit-Callbacks?
 
     	if (typeof QUnit.propertiesFromAPI != 'function') {
 
@@ -151,7 +154,7 @@ var runtests = function() {
 
     //---------------------------COPY FROM RISTRING TESTS
 
-    test("RiText.analyze()", function() {
+    test("testAnalyze()", function() {
 
         var features = RiText("the laggin dragon").analyze().features();
         ok(features);
@@ -178,7 +181,7 @@ var runtests = function() {
         equal(features.stresses, "0 0 1/0");
     });
 
-    test("RiText.features()", function() {
+    test("testFeatures()", function() {
     	
     	var rs = [ RiText("Returns the array of words."), RiText(this,"Returns the array of words.")];
     	for (var i=0; i < rs.length; i++) {
@@ -198,7 +201,7 @@ var runtests = function() {
 	    
     });
     	
-    test("RiText.charAt()", function() {
+    test("testCharAt()", function() {
 
         var rs = [new RiText("The dog was white"),RiText("The dog was white")];
         
@@ -218,7 +221,7 @@ var runtests = function() {
        }
     });
     
-    test("RiText.concat()", function() { 
+    test("testConcat()", function() { 
 
         var rs = new RiText("The dog was white");
         var rs2 = new RiText("The dog was not white");
@@ -254,7 +257,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.containsWord", function() {
+    test("testContainsWord", function() {
 
         // check that these are ok --- ------------
         var rs = new RiText("The dog was white");
@@ -266,7 +269,7 @@ var runtests = function() {
         ok(!rs.containsWord("brown"));
     });
 
-    test("RiText.endsWith()", function() {
+    test("testEndsWith()", function() {
 
         // check that these are ok --------------
         var rs = new RiText("girls");
@@ -287,7 +290,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.equals()", function() { // compare Object
+    test("testEquals()", function() { // compare Object
 
         // check that these are ok ---------------
         var rs = new RiText("closed");
@@ -332,7 +335,7 @@ var runtests = function() {
     });
 
 
-    test("RiText.equalsIgnoreCase()", function() {
+    test("testEqualsIgnoreCase()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("closed");
@@ -365,7 +368,7 @@ var runtests = function() {
     });
 
     /*
-     * test("RiText.get()", function () {
+     * test("testGet()", function () {
      * 
      * var rs = RiText("The laggin dragon").analyze(); var ph = rs.get(RiTa.PHONEMES); var sy =
      * rs.get(RiTa.SYLLABLES); var st = rs.get(RiTa.STRESSES); equal(ph, "dh-ax l-ae-g-ih-n
@@ -374,7 +377,7 @@ var runtests = function() {
      */
 
 
-    test("RiText.indexOf()", function() {
+    test("testIndexOf()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("Returns the array of words.");
@@ -427,7 +430,7 @@ var runtests = function() {
 
     });
 
-    test( "RiText.insertWord()", function() { 
+    test( "testInsertWord()", function() { 
     	
         var rs = new RiText("Inserts at wordIdx and shifts each subsequent word accordingly.");
         rs.insertWord(4,"then");
@@ -487,7 +490,7 @@ var runtests = function() {
 
 	});
 
-    test("RiText.lastIndexOf()", function() { //TODO revise
+    test("testLastIndexOf()", function() { //TODO revise
 
         // check that these are ok --- ------------
         var rs = new RiText("Start at first character. Start at last character.");
@@ -515,7 +518,7 @@ var runtests = function() {
         equal(result, rs.length()); // should be 50 or -1? 50(DCH)
     });
 
-    test("RiText.length()", function() {
+    test("testLength()", function() {
 
         var rs = new RiText("S");
         var result = rs.length();
@@ -561,7 +564,7 @@ var runtests = function() {
     });
 
 
-    test("RiText.match()", function() { 
+    test("testMatch()", function() { 
 
         var rs = new RiText("The rain in SPAIN stays mainly in the plain");
         var result = rs.match(/ain/g);
@@ -609,7 +612,7 @@ var runtests = function() {
         deepEqual(result, [  "ain", "AIN", "ain", "ain" ]);
     });
 
-    test("RiText.pos()", function() {
+    test("testPos()", function() {
 
         // TODO: check that these are ok --------------
 
@@ -630,7 +633,7 @@ var runtests = function() {
         deepEqual([ "dt", "nn", ",", "vbn", "in", "jj", ",", "vbd", "dt", "nn", "." ], result);
     });
 
-    test("RiText.posAt()", function() {
+    test("testPosAt()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("The emperor had no clothes on.");
@@ -642,7 +645,7 @@ var runtests = function() {
         equal("nn", result);
     });
 
-    test("RiText.removeChar()", function() {
+    test("testRemoveChar()", function() {
 
         var rs = new RiText("The dog was white");
         var result = rs.removeChar(1);
@@ -673,7 +676,7 @@ var runtests = function() {
         equal(rs.text(), "The dog was white");
     });
 
-    test("RiText.replaceChar()", function() {
+    test("testReplaceChar()", function() {
 
         var rs = new RiText("Who are you?");
         rs.replaceChar(2, "");
@@ -705,7 +708,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.replaceFirst()", function() {
+    test("testReplaceFirst()", function() {
 
         var rs = new RiText("Who are you?");
         rs.replaceFirst("e", "E");
@@ -785,7 +788,7 @@ var runtests = function() {
     });
 
 
-    test("RiText.replaceAll()", function() {
+    test("testReplaceAll()", function() {
 
         //replaceAll(regex, replacement);
         var rs = new RiText("Who are you? Who is he? Who is it?");
@@ -873,7 +876,7 @@ var runtests = function() {
         
     });
 
-    test("RiText.replaceWord()", function() {
+    test("testReplaceWord()", function() {
 
         var rs = new RiText("Who are you?");
         equal("Who are What?", rs.replaceWord(2, "What").text());
@@ -895,7 +898,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.slice()", function() { //very similar to substring
+    test("testSlice()", function() { //very similar to substring
 
         var rs = new RiText(
             "The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");
@@ -944,7 +947,7 @@ var runtests = function() {
 
     });
 /*
-    test("RiText.split()", function() {
+    test("testSplit()", function() {
 
         var rs = new RiText("Who are you?");
         var result = rs.split();
@@ -1007,7 +1010,7 @@ var runtests = function() {
     });*/
    
     test(
-        "RiText.startsWith()",
+        "testStartsWith()",
         function() {
 
             var rs = new RiText(
@@ -1044,7 +1047,7 @@ var runtests = function() {
             ok(rs.startsWith("")); // fail here should not be true -- DCH: this is ok -- everything matches ""
         });
 
-    test("RiText.substring()", function() {
+    test("testSubstring()", function() {
 
         var rs = new RiText(
             "The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");
@@ -1088,7 +1091,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.substr()", function() { // Duplicated with substring() and slice()?
+    test("testSubstr()", function() { // Duplicated with substring() and slice()?
 
         var rs = new RiText(
             "The Australian Pavilion at the Venice Biennale is getting a much-needed facelift.");
@@ -1117,7 +1120,7 @@ var runtests = function() {
     });
 
 
-    test("RiText.text()", function() {
+    test("testText()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("this door is closed");
@@ -1143,7 +1146,7 @@ var runtests = function() {
         // no error checks needed ------------
     });
 
-    test("RiText.toLowerCase()", function() {
+    test("testToLowerCase()", function() {
 
         var rs = new RiText("The Australian Pavilion.");
         rs.toLowerCase();
@@ -1160,7 +1163,7 @@ var runtests = function() {
         // no error checks needed
     });
 
-    test("RiText.toUpperCase()", function() {
+    test("testToUpperCase()", function() {
 
         var rs = new RiText("The Australian Pavilion.");
         equal("THE AUSTRALIAN PAVILION.", rs.toUpperCase().text());
@@ -1172,7 +1175,7 @@ var runtests = function() {
         // no error checks needed
     });
 
-    test("RiText.trim()", function() {
+    test("testTrim()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("Start at first character. ");
@@ -1195,7 +1198,7 @@ var runtests = function() {
         // no error checks needed
     });
 
-    test("RiText.wordAt()", function() {
+    test("testWordAt()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("Returns the word at wordIdx using the default WordTokenizer.");
@@ -1220,7 +1223,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.wordCount()", function() {
+    test("testWordCount()", function() {
 
         // check that these are ok --- ------------
         var rs = new RiText("Returns the word at wordIdx using the default WordTokenizer.");
@@ -1244,7 +1247,7 @@ var runtests = function() {
 
     });
 
-    test("RiText.words()", function() {
+    test("testWords()", function() {
 
         // check that these are ok ---------------
         var rs = new RiText("Returns the array of words.");
@@ -1276,7 +1279,7 @@ var runtests = function() {
     });
 
 
-    test("RiText.copy()", function() { 
+    test("testCopy()", function() { 
         var rt = new RiText("hello", 100, 270);
 
     rt.fill(101, 102, 103, 104);

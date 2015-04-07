@@ -1,6 +1,26 @@
+/*global console, test, throws, equal, fail, deepEqual, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
+
+/*jshint loopfunc: true */
+
+var testResults = {
+
+    testGetSyllables : {
+    
+        name  : 'testGetSyllables',
+        tests : [
+            { input: '', output: '' }, 
+            { input: 'The Laggin Dragon', output: 'dh-ax l-ae/g-ih-n d-r-ae-g/ax-n' },
+            { input: 'The emperor had no clothes on.', output: 'dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .' },
+            { input: 'The dog ran faster than the other dog. But the other dog was prettier.', output: 'dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .' }, 
+            { input: '@#$%&*()', output: '@ # $ % ae-n-d * ( )' }
+        ] 
+    }
+};
+
 var runtests = function() {
-    var SILENT = true,
-        WITHOUT_YAML = typeof YAML == 'undefined';
+
+    var SILENT = 1, WITHOUT_YAML = typeof YAML == 'undefined';
 
     QUnit.module("RiTa", {
 
@@ -8,12 +28,54 @@ var runtests = function() {
             teardown: function() {}
         });
 
-    test("RiTa.constants", function() {
+    // ------------------------------------------------------------------------
+    test("testGetSyllables", function() { // new-style
+
+            var func = RiTa.getSyllables,
+                tests = testResults.testGetSyllables.tests;
+                
+            for (var i=0, len = tests.length; i< len; i++) {
+            
+                equal( func(tests[i].input), tests[i].output ); 
+            }
+        });
+        
+    test("testGetSyllablesOrig", function() { // old-style
+
+            var result, txt, answer;
+            
+            result = RiTa.getSyllables('');
+            answer = '';
+            equal(result, answer);
+            
+            txt = 'The dog ran faster than the other dog. But the other dog was prettier.';
+            result = RiTa.getSyllables(txt);
+            answer = 'dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .';
+            equal(result, answer);
+
+            txt = 'The emperor had no clothes on.';
+            result = RiTa.getSyllables(txt);
+            answer = 'dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .';
+            equal(result, answer);
+
+            txt = 'The Laggin Dragon';
+            result = RiTa.getSyllables(txt);
+            answer = 'dh-ax l-ae/g-ih-n d-r-ae-g/ax-n';
+            equal(result, answer);
+
+            result = RiTa.getSyllables('@#$%&*()');
+            answer = '@ # $ % ae-n-d * ( )';
+            equal(result, answer);
+        });
+        
+    // ------------------------------------------------------------------------
+        
+    test("testConstants", function() {
 
             ok(RiTa.VERSION);
         });
 
-    test("RiTa.minEditDist", function() {
+    test("testMinEditDist", function() {
 
             var arr1 = ['The', 'dog', 'ate'],
                 arr2 = ['The', 'cat', 'ate'];
@@ -36,7 +98,7 @@ var runtests = function() {
             equal(RiTa.minEditDist(arr1, arr2, true), 1);
         });
 
-    test("RiTa.env", function() {
+    test("testEnv", function() {
             var mode = RiTa.env();
             var inNode = (typeof module != 'undefined' && module.exports);
             inNode && ok(mode == RiTa.NODE);
@@ -45,7 +107,7 @@ var runtests = function() {
             inBrowser && ok(mode == RiTa.JS);
         });
 
-    test("RiTa.isAbbreviation()", function() {
+    test("testIsAbbreviation", function() {
 
             ok(RiTa.isAbbreviation("Dr."));
             ok(RiTa.isAbbreviation("dr."));
@@ -89,7 +151,7 @@ var runtests = function() {
             ok(!RiTa.isAbbreviation(1));
         });
 
-    test("RiTa.isQuestion()", function() {
+    test("testIsQuestion", function() {
 
             ok(RiTa.isQuestion("what"));
             ok(RiTa.isQuestion("what"));
@@ -117,7 +179,7 @@ var runtests = function() {
         });
 
 
-    test("RiTa.isSentenceEnd()", function() {
+    test("testIsSentenceEnd", function() {
 
             var words = 'The dog ate the small baby. Then it threw up.'.split(' ');
             ok(RiTa.isSentenceEnd(words[5], words[6])); // true
@@ -125,10 +187,11 @@ var runtests = function() {
             ok(!RiTa.isSentenceEnd(words[6], words[7])); // false
             ok(!RiTa.isSentenceEnd('', '')); // false
 
+            // TODO: needs more tests
         });
 
 
-    test("RiTa.isW_Question()", function() {
+    test("testIsW_Question", function() {
 
             ok(RiTa.isW_Question("What the"));
             ok(RiTa.isW_Question("What is it"));
@@ -144,9 +207,7 @@ var runtests = function() {
 
         });
 
-
-
-    test("RiTa.randomOrdering()", function() {
+    test("testRandomOrdering", function() {
 
             var result = RiTa.randomOrdering(5);
             equal(result.length, 5);
@@ -161,20 +222,7 @@ var runtests = function() {
             }
         });
 
-    // test("RiTa.removeRandom()", function () { 
-    //     var result = ["I", "have", "no", "idea", "on", "this", "method"];
-    //     var input = ["I", "have", "no", "idea", "on", "this", "method"];
-    //     RiTa.removeRandom(result);
-    //     equal(result.length , input.length - 1);
-
-    //     var result = ["I", " ", "no", "idea", "*%", "this", "method"];
-    //     var input = ["I", " ", "no", "idea", "*%", "this", "method"];
-    //     RiTa.removeRandom(result);
-    //     equal(result.length , input.length - 1);
-
-    // });
-
-    test("RiTa.splitSentences()", function() {
+    test("testSplitSentences", function() {
 
             // TODO: check Penn-Treebank splitting rules
             var input = "Stealth's Open Frame, OEM style LCD monitors are designed for special mounting applications. The slim profile packaging provides an excellent solution for building into kiosks, consoles, machines and control panels. If you cannot find an off the shelf solution call us today about designing a custom solution to fit your exact needs.";
@@ -210,12 +258,11 @@ var runtests = function() {
             var expected = ["\'Yes, it was a dog that ate the baby\', he said."];
             deepEqual(output, expected);
 
-            // always do these three
             deepEqual(RiTa.splitSentences(""), [""]);
         });
 
 
-    test("RiTa.stripPunctuation()", function() {
+    test("testStripPunctuation", function() {
 
             //strip/trimPunctuation "����������`',;:!?)([].#\"\\!@$%&}<>|+=-_\\/*{^
             var res = RiTa.stripPunctuation("$%He%^&ll,o,");
@@ -260,7 +307,7 @@ var runtests = function() {
         });
 
 
-    test("RiTa.trimPunctuation()", function() {
+    test("testTrimPunctuation", function() {
 
             var res = RiTa.trimPunctuation("$%He&^ll,o,");
             equal(res, "He&^ll,o");
@@ -277,7 +324,7 @@ var runtests = function() {
             deepEqual(RiTa.trimPunctuation(1234), 1234);
         });
 
-    test("RiTa.isPunctuation()", function() {
+    test("testIsPunctuation", function() {
 
             ok(!RiTa.isPunctuation("What the"));
             ok(!RiTa.isPunctuation("What ! the"));
@@ -335,7 +382,7 @@ var runtests = function() {
 
         });
 
-    test("RiTa.tokenize()", function() {
+    test("testTokenize", function() {
 
             var input = "The boy, dressed in red, ate an apple.";
             var expected = ["The", "boy", ",", "dressed", "in", "red", ",", "ate", "an", "apple", "."];
@@ -389,7 +436,7 @@ var runtests = function() {
         });
 
 
-    test("RiTa.trim()", function() {
+    test("testTrim", function() {
 
             equal(RiTa.trim(""), "");
             equal(RiTa.trim(" "), "");
@@ -408,7 +455,7 @@ var runtests = function() {
         });
 
 
-    test("RiTa.distance()", function() {
+    test("testDistance", function() {
 
             equal(1, RiTa.distance(1, 3, 2, 3));
             equal(28, RiTa.distance(30, 1, 2, 1));
@@ -417,7 +464,7 @@ var runtests = function() {
 
         });
 
-    test("RiTa.random()", function() {
+    test("testRandom", function() {
 
             // float random()
             var answer = RiTa.random();
@@ -513,7 +560,7 @@ var runtests = function() {
             ok(answer2 < 5.1);
         });
 
-    test("RiTa.getPhonemes()", function() {
+    test("testGetPhonemes", function() {
 
             var result = RiTa.getPhonemes("The");
             var answer = "dh-ax";
@@ -553,7 +600,7 @@ var runtests = function() {
         });
 
 
-    test("RiTa.getPosTags()", function() {
+    test("testGetPosTags", function() {
 
             var result = RiTa.getPosTags("the boy dances");
             var answer = ["dt", "nn", "vbz"];
@@ -618,7 +665,7 @@ var runtests = function() {
 
         });
 
-    test("RiTa.getPosTags(sns)", function() {
+    test("testGetPosTags(sns)", function() {
 
             var checks = ["emphasis", "stress", "discus", "colossus", "fibrosis", "digitalis", "pettiness", "mess", "cleanliness", "orderliness", "bronchitis", "preparedness", "highness"];
             for (var i = 0, j = checks.length; i < j; i++) {
@@ -628,7 +675,7 @@ var runtests = function() {
             }
         });
 
-    test("RiTa.getPosTagsInline()", function() {
+    test("testGetPosTagsInline", function() {
 
             var result = RiTa.getPosTagsInline("asdfaasd");
             var answer = "asdfaasd/nn";
@@ -657,7 +704,7 @@ var runtests = function() {
 
         });
 
-    test("RiTa.getStresses()", function() {
+    test("testGetStresses", function() {
 
             var result = RiTa.getStresses("The emperor had no clothes on");
             var answer = "0 1/0/0 1 1 1 1";
@@ -690,33 +737,7 @@ var runtests = function() {
 
         });
 
-    test("RiTa.getSyllables()", function() {
-
-            var txt = "The dog ran faster than the other dog. But the other dog was prettier.";
-            var result = RiTa.getSyllables(txt);
-            var answer = "dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .";
-            equal(result, answer);
-
-            var txt = "The emperor had no clothes on.";
-            var result = RiTa.getSyllables(txt);
-            var answer = "dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .";
-            equal(result, answer);
-
-            var txt = "The Laggin Dragon";
-            var result = RiTa.getSyllables(txt);
-            var answer = "dh-ax l-ae/g-ih-n d-r-ae-g/ax-n";
-            equal(result, answer);
-
-            var result = RiTa.getSyllables("@#$%&*()");
-            var answer = "@ # $ % ae-n-d * ( )";
-            equal(result, answer);
-
-            var result = RiTa.getSyllables("");
-            var answer = "";
-            equal(result, answer);
-        });
-
-    test("RiTa.getWordCount()", function() {
+    test("testGetWordCount", function() {
 
             var result = RiTa.getWordCount("123 1231 hi");
             deepEqual(result, 3);
@@ -740,7 +761,7 @@ var runtests = function() {
             deepEqual(result, 15);
         });
 
-    test("RiTa.posToWordNet()", function() {
+    test("testPosToWordNet", function() {
 
             var result = RiTa.posToWordNet("nn");
             equal("n", result);
@@ -786,10 +807,9 @@ var runtests = function() {
 
             var result = RiTa.posToWordNet("");
             equal("", result);
-
         });
 
-    test("RiTa.stem(lancaster)", function() {
+    test("testStem(lancaster)", function() {
 
             var type = 'Lancaster';
             // default
@@ -811,7 +831,7 @@ var runtests = function() {
             equal(RiTa.stem(test, type), result);
         });
 
-    test("RiTa.stem(porter)", function() {
+    test("testStem(porter)", function() {
 
             var type = 'Porter';
 
@@ -833,7 +853,7 @@ var runtests = function() {
             equal(RiTa.stem(test, type), result);
         });
 
-    test("RiTa.stem(pling)", function() {
+    test("testStem(pling)", function() {
 
             var type = 'Pling';
 
@@ -920,7 +940,7 @@ var runtests = function() {
             equal(result, answer);
         });
 
-    test("RiTa.pluralize()", function() {
+    test("testPluralize", function() {
 
             equal("blondes", RiTa.pluralize("blonde"));
             equal("eyes", RiTa.pluralize("eye"));
@@ -972,7 +992,7 @@ var runtests = function() {
             equal("corpora", RiTa.pluralize("corpus"));
         });
 
-    test("RiTa.singularize()", function() {
+    test("testSingularize", function() {
 
             equal("blonde", RiTa.singularize("blondes"));
             equal("eye", RiTa.singularize("eyes"));
@@ -1048,7 +1068,7 @@ var runtests = function() {
             equal("", RiTa.singularize(""));
         });
 
-    test("RiTa.getPastParticiple()", function() {
+    test("testGetPastParticiple", function() {
 
             equal(RiTa.getPastParticiple("sleep"), "slept");
             equal(RiTa.getPastParticiple("withhold"), "withheld");
@@ -1078,7 +1098,7 @@ var runtests = function() {
             equal(RiTa.getPastParticiple("study"), "studied");
         });
 
-    test("RiTa.getPresentParticiple()", function() {
+    test("testGetPresentParticiple", function() {
 
             equal(RiTa.getPresentParticiple("sleep"), "sleeping");
             equal(RiTa.getPresentParticiple("withhold"), "withholding");
@@ -1118,7 +1138,7 @@ var runtests = function() {
 
         });
 
-    test("RiTa.untokenize()", function() {
+    test("testUntokenize", function() {
 
             equal(RiTa.untokenize([""]), "");
 
@@ -1166,7 +1186,7 @@ var runtests = function() {
         });
 
 
-    test("RiTa.conjugate", function() {
+    test("testConjugate", function() {
 
             // TODO: Check against RiTa-java (why are these all doubling?)
 
@@ -1335,7 +1355,8 @@ var runtests = function() {
             }
         });
 
-    asyncTest("RiTa.timerAsync()", function() {
+    // no need to extract
+    asyncTest("testTimerAsync", function() {
 
             var functionToTrigger = function() {
                 functionToTrigger.countInstances++;

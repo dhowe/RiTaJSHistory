@@ -1,3 +1,6 @@
+/*global console, test, throws, equal, fail, notEqual, expect, require, ok,
+    QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
+
 var runtests = function() {
 
     if (typeof YAML == 'undefined') YAML = require('yamljs');
@@ -48,7 +51,7 @@ var runtests = function() {
         //haikuGrammarFiles = [ "haikuGrammar.json", "haikuGrammar2.json" ];
     }
 
-    test("RiGrammar.yaml", function() {
+    test("testYaml", function() {
 
             if (!WITHOUT_YAML) {
                 ok(YAML.parse(sentenceGrammarYAML));
@@ -57,7 +60,7 @@ var runtests = function() {
             } else ok(1);
         });
 
-    test("RiGrammar.init", function() {
+    test("testInit", function() {
 
             var rg = RiGrammar();
             ok(rg._rules); // empty
@@ -113,7 +116,7 @@ var runtests = function() {
             }
         });
 return;
-    test("RiGrammar.load", function() {
+    test("testLoad", function() {
 
             var rg = new RiGrammar();
             ok(rg._rules);
@@ -131,7 +134,7 @@ return;
             ok(typeof rg._rules['<noun_phrase>'] !== 'undefined');
         });
 
-    test("RiGrammar.addRule", function() {
+    test("testAddRule", function() {
 
             var rg = new RiGrammar();
             rg.addRule("<start>", "<pet>");
@@ -142,7 +145,7 @@ return;
             ok(rg.hasRule("<start>"));
         });
 
-    test("RiGrammar.expand()", function() {
+    test("testExpand()", function() {
 
             for (var j = 0; j < sentenceGrammars.length; j++) {
                 var rg = new RiGrammar(sentenceGrammars[j]);
@@ -246,7 +249,7 @@ return;
             ok(c < 50); // g + ""
         });
 
-    /*test("RiGrammar.expandOld()", function() {
+    /*test("testExpandOld()", function() {
 
         var s, rg = new RiGrammar();
 
@@ -325,7 +328,7 @@ return;
         ok(g < 50 && g > 0,   g + "% (cat =~ 30%)");
     });*/
 
-    test("RiGrammar.expandFrom", function() {
+    test("testExpandFrom", function() {
 
             var rg = new RiGrammar();
 
@@ -352,7 +355,7 @@ return;
 
         });
 
-    test("RiGrammar.expandFrom(Weighted)", function() {
+    test("testExpandFrom(Weighted)", function() {
 
             var rg = new RiGrammar();
 
@@ -375,7 +378,7 @@ return;
             ok(hawks > dogs * 2);
         });
 
-    test("RiGrammar.getGrammar", function() {
+    test("testGetGrammar", function() {
 
             var rg = new RiGrammar(sentenceGrammarJSON);
             var rg2 = new RiGrammar(sentenceGrammarJSON2);
@@ -385,7 +388,7 @@ return;
             equal(rg.getGrammar(), e);
         });
 
-    test("RiGrammar.hasRule", function() {
+    test("testHasRule", function() {
 
             var g = [new RiGrammar(sentenceGrammarJSON), new RiGrammar(sentenceGrammarJSON2)];
 
@@ -423,7 +426,7 @@ return;
             }
         });
 
-    test("RiGrammar.reset", function() {
+    test("testReset", function() {
 
             var rg = new RiGrammar();
             ok(rg._rules);
@@ -433,7 +436,7 @@ return;
             deepEqual(rg, RiGrammar());
         });
 
-    test("RiGrammar.removeRule", function() {
+    test("testRemoveRule", function() {
 
             var rg1 = new RiGrammar(sentenceGrammarJSON);
 
@@ -468,7 +471,7 @@ return;
             rg1.removeRule(undefined);
         });
 
-    test("RiGrammar.print", function() {
+    test("testPrint", function() {
 
             var rg = new RiGrammar();
             rg.reset();
@@ -483,7 +486,7 @@ return;
             ok(typeof rg.print === 'function');
         });
 
-    test("RiGrammar.expandWith", function() {
+    test("testExpandWith", function() {
 
             var rg = new RiGrammar();
             rg.addRule("<start>", "the <pet> | the <action> of the <pet>");
@@ -522,7 +525,7 @@ return;
         });
 
 
-    test("RiGrammar.specialChars", function() {
+    test("testSpecialChars", function() {
 
             var rg, res, s
 
@@ -572,7 +575,7 @@ return;
 
         });
 
-    test("RiGrammar.execIgnore", function() {
+    test("testExecIgnore", function() {
 
             var rg = new RiGrammar(); // do nothing
             rg.execDisabled = false;
@@ -637,7 +640,7 @@ return;
             RiTa.SILENT = tmp;
         });
 
-    test("RiGrammar.execRE", function() {
+    test("testExecRE", function() {
 
             var str, res, re = RiGrammar.EXEC_PATT;
 
@@ -795,7 +798,7 @@ return;
 
         });
 
-    test("RiGrammar.exec1", function() {
+    test("testExec1", function() {
 
             var rg = new RiGrammar();
             rg.execDisabled = false;
@@ -830,7 +833,7 @@ return;
     };
 
     // TODO: fails in NODE/phantomJS ?
-    test("RiGrammar.exec2", function() {
+    test("testExec2", function() {
 
             var rg = new RiGrammar(newruleg);
             rg.execDisabled = false;
@@ -845,7 +848,7 @@ return;
             }
         });
 
-    test("RiGrammar.execArgs", function() {
+    test("testExecArgs", function() {
 
             var res, i, rg = new RiGrammar(newruleg);
             rg.execDisabled = false;
