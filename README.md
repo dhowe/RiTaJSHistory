@@ -3,7 +3,7 @@
 ### RiTaJS: a generative language toolkit for JavaScript
 
 
-<a href="https://rednoise.org/rita"><img height=120 src="https://rednoise.org/rita/img/RiTa-logo3.png"/></a>
+<a href="https://rednoise.org/rita"><img height=80 src="https://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
 #### [The RiTa website](http://rednoise.org/rita)
 
