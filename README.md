@@ -58,7 +58,7 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 
 ```html
 <html>
-  <script src="http://cdnjs.com/libraries/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.4.3/p5.min.js"></script>
   <script src="./rita-latest.micro.js"></script>
   <script>
   function setup() {
