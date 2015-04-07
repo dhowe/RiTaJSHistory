@@ -23,13 +23,7 @@ var runtests = function () {
         //equal(rs.text(), "Who are?"); // strange case, not sure
         equal(rs.text(), "Who are ?");
     });
-   
-    test("RiTa.timer()", function () { //TODO: no tests
-        
-        equal("", RiTa.timer("need tests"));
-    });
-        
-    
+
     test("RiGrammar.expandWith()", function () { //TODO: fix impl.
         
         equal("fix impl.");
@@ -53,7 +47,16 @@ var runtests = function () {
         var answer = "";
         equal(result, answer);
     });
-     
+    
+    test("RiLexicon.rhymes", function () { 
+
+        var lex = RiLexicon();
+
+         // Problem: no result
+        var result = lex.rhymes("savage");
+        var answer = [ "average", "ravage", "cabbage" ];
+        deepEqual(result, answer);
+    }); 
 }
 
 if (typeof exports != 'undefined') runtests(); //exports.unwrap = runtests;

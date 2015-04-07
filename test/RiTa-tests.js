@@ -3,11 +3,12 @@
 
 /*jshint loopfunc: true */
 
-var testResults = {
-
-    testGetSyllables : {
-    
-        name  : 'testGetSyllables',
+var testResults = [
+    {
+        testName  : 'testGetSyllables',
+        testMethod  : 'RiTa.getSyllables', // static
+        testClass : 'RiTa', 
+        assertion   : 'equal',
         tests : [
             { input: '', output: '' }, 
             { input: 'The Laggin Dragon', output: 'dh-ax l-ae/g-ih-n d-r-ae-g/ax-n' },
@@ -16,7 +17,7 @@ var testResults = {
             { input: '@#$%&*()', output: '@ # $ % ae-n-d * ( )' }
         ] 
     }
-};
+];
 
 var runtests = function() {
 

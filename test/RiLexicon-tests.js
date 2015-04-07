@@ -1,3 +1,21 @@
+
+var testResults = [
+    {
+        testName    : 'testRhymes',
+        testClass   : 'RiLexicon', 
+        testMethod  : 'rhymes',
+        assertion   : 'deepEqual',
+        tests : [
+            { input: '', output: [] }, 
+            { input: 'apple.', output: [] },
+            { input: 'goxgle', output: [] },
+            { input: 'happens in here', output: [] },
+            { input: 'apple', output: ['chapel', 'grapple', 'pineapple'] },
+            { input: 'bible.', output: ['libel', 'tribal'] }, 
+        ] 
+    }
+];
+
 var runtests = function() {
 
     QUnit.module("RiLexicon", {
@@ -13,51 +31,7 @@ var runtests = function() {
 
     var lex;
 
-    test("RiLexicon[singleton]", function() {
-            lex = RiLexicon();
-            var lex2 = RiLexicon();
-            ok(lex.data === lex2.data);
-	    lex2 = null;
-        });
-
-    test("RiLexicon-lookups", function() {
-
-            lex = RiLexicon();
-
-            ok(typeof RiLexicon.data != 'undefined');
-            ok(typeof RiLexicon != 'undefined', "RiLexicon OK");
-
-            ok(lex._getPhonemes('gonna'));
-            ok(lex._getPhonemes('gotta'));
-
-            ok(lex.isRhyme("cat", "hat"));
-            ok(!lex.isRhyme("cat", "dog"));
-            ok(lex.isAlliteration("cat", "kill"));
-            ok(!lex.isAlliteration("cat", "dog"));
-        });
-
-    test("RiLexicon-gets", function() {
-
-            lex = RiLexicon();
-
-            var word = "aberrations";
-            var output1 = lex._getSyllables(word);
-            var output2 = lex._getPhonemes(word);
-            var output3 = lex._getStresses(word);
-
-            var expected1 = "ae-b/er/ey-sh/ax-n-z";
-            equal(output1, expected1);
-
-            var expected2 = "ae-b-er-ey-sh-ax-n-z";
-            equal(output2, expected2);
-
-            var expected3 = "1/0/1/0";
-            equal(output3, expected3);
-
-        });
-
-
-    test("testAddWord()", function() {
+    test("testAddWord", function() {
 
             lex = RiLexicon();
 
@@ -78,7 +52,7 @@ var runtests = function() {
             lex = null;
         });
 
-    test("testClear()", function() {
+    test("testClear", function() {
 
             lex = RiLexicon();
             ok(lex.containsWord("banana"));
@@ -99,7 +73,7 @@ var runtests = function() {
         });
 
 
-    test("testContainsWord()", function() {
+    test("testContainsWord", function() {
 
             lex = RiLexicon();
             ok(lex.containsWord("cat"));
@@ -118,7 +92,7 @@ var runtests = function() {
 	    lex = null;
         });
 
-    test("testAlliterations()", function() {
+    test("testAlliterations", function() {
 
             lex = RiLexicon();
 
@@ -155,9 +129,11 @@ var runtests = function() {
             //console.log(i + ") " + result[i]);
 
             ok(result.length == 7); // TODO: check this
+            
+            // TODO: better tests
         });
 
-    test("testLexicalData()", function() {
+    test("testLexicalData", function() {
 
             lex = RiLexicon();
 
@@ -257,42 +233,7 @@ var runtests = function() {
             // TODO: more tests with both count and pos
         });
 
-    test("testRhymes()", function() {
-
-            lex = RiLexicon();
-            result = lex.rhymes("apple");
-            var answer = ["chapel", "grapple", "pineapple"];
-            deepEqual(result, answer);
-
-            /* result = lex.rhymes("savage");
-        var answer = [ "average", "ravage", "cabbage" ];
-        deepEqual(result, answer); WHY DOES THIS FAIL? */
-
-            result = lex.rhymes("apple.");
-            var answer = [];
-            deepEqual(result, answer);
-
-            result = lex.rhymes("bible");
-            var answer = ["libel", "tribal"];
-            deepEqual(result, answer);
-
-            var result = lex.rhymes("goxgle");
-            deepEqual(result, []);
-
-            var result = lex.rhymes("google");
-            var answer = ['bugle', 'frugal'];
-            deepEqual(result, answer);
-
-            result = lex.rhymes("happens in here");
-            deepEqual(result, []);
-
-            result = lex.rhymes("");
-            deepEqual(result, []);
-
-
-        });
-
-    test("testWords()", function() {
+    test("testWords", function() {
 
             lex = RiLexicon();
 
@@ -330,7 +271,7 @@ var runtests = function() {
             notDeepEqual(result1, result2);
         });
 
-    test("testIsAdverb()", function() {
+    test("testIsAdverb", function() {
             lex = RiLexicon();
 
             ok(!lex.isAdverb("swim"));
@@ -390,7 +331,7 @@ var runtests = function() {
                 });
         });
 
-    test("testIsNoun()", function() {
+    test("testIsNoun", function() {
             lex = RiLexicon();
 
             ok(lex.isNoun("swim"));
@@ -450,7 +391,7 @@ var runtests = function() {
                 });
         });
 
-    test("testIsVerb()", function() {
+    test("testIsVerb", function() {
             lex = RiLexicon();
 
             ok(lex.isVerb("dance"));
@@ -510,7 +451,7 @@ var runtests = function() {
         });
 
 
-    test("testIsAdjective()", function() {
+    test("testIsAdjective", function() {
             lex = RiLexicon();
 
             ok(!lex.isAdjective("swim"));
@@ -571,7 +512,7 @@ var runtests = function() {
                 });
         });
 
-    test("testIsAlliteration()", function() {
+    test("testIsAlliteration", function() {
 
             lex = RiLexicon();
 
@@ -591,7 +532,7 @@ var runtests = function() {
         });
 
 
-    test("testIsRhyme()", function() {
+    test("testIsRhyme", function() {
             lex = RiLexicon();
             ok(!lex.isRhyme("solo ", "tomorrow"));
             ok(!lex.isRhyme("apple", "polo"));
@@ -615,7 +556,7 @@ var runtests = function() {
 
         });
 
-    test("testRemoveWord()", function() {
+    test("testRemoveWord", function() {
 
             lex = RiLexicon();
 
@@ -636,7 +577,7 @@ var runtests = function() {
             lex = createLex();
         });
 
-    test("testSimilarByLetter()", function() {
+    test("testSimilarByLetter", function() {
 
             lex = RiLexicon();
 
@@ -677,7 +618,7 @@ var runtests = function() {
             deepEqual(result,  []);
         });
 
-    test("testSimilarBySound()", function() {
+    test("testSimilarBySound", function() {
 
             lex = RiLexicon();
 
@@ -709,7 +650,7 @@ var runtests = function() {
             ok(result.length > answer.length);
         });
 
-    test("testSimilarBySoundAndLetter()", function() {
+    test("testSimilarBySoundAndLetter", function() {
 
             lex = RiLexicon();
 
@@ -729,7 +670,7 @@ var runtests = function() {
             deepEqual(result, []);
         });
 
-    test("testSubstrings()", function() {
+    test("testSubstrings", function() {
 
             lex = RiLexicon();
 
@@ -759,7 +700,7 @@ var runtests = function() {
 
         });
 
-    test("testSuperstrings()", function() {
+    test("testSuperstrings", function() {
 
             lex = RiLexicon();
 
@@ -777,7 +718,7 @@ var runtests = function() {
 
         });
 
-    test("testGetPosData()", function() {
+    test("testGetPosData", function() {
 
 
             lex = RiLexicon();
@@ -809,7 +750,7 @@ var runtests = function() {
         });
 
 
-    test("testIsVowel()", function() {
+    test("testIsVowel", function() {
 
             lex = RiLexicon();
 
@@ -826,7 +767,7 @@ var runtests = function() {
             ok(!lex._isVowel(""));
         });
 
-    test("testIsConsonant()", function() {
+    test("testIsConsonant", function() {
 
 
             lex = RiLexicon();
@@ -851,7 +792,7 @@ var runtests = function() {
 
         });
 
-    test("testLookupRaw()", function() {
+    test("testLookupRaw", function() {
 
 
             lex = RiLexicon();
@@ -874,7 +815,7 @@ var runtests = function() {
 
     //For RiTa.getPhonemes() NOT IN RiTa-Java
 
-    test("testGetPhonemes()", function() {
+    test("testGetPhonemes", function() {
 
 
             lex = RiLexicon();
@@ -904,7 +845,7 @@ var runtests = function() {
 
     //For RiTa.getStresses() NOT IN RiTa-Java
 
-    test("testGetStresses()", function() {
+    test("testGetStresses", function() {
 
             lex = RiLexicon();
 
@@ -935,7 +876,7 @@ var runtests = function() {
 
     //For RiTa.getSyllables() NOT IN RiTa-Java
 
-    test("testGetSyllables()", function() {
+    test("testGetSyllables", function() {
 
             lex = RiLexicon();
 
@@ -952,6 +893,50 @@ var runtests = function() {
             equal(result, answer);
         });
 
+    // privates, no need to refactor
+
+    test("RiLexicon[singleton]", function() {
+            lex = RiLexicon();
+            var lex2 = RiLexicon();
+            ok(lex.data === lex2.data);
+        lex2 = null;
+        });
+
+    test("RiLexicon-lookups", function() {
+
+            lex = RiLexicon();
+
+            ok(typeof RiLexicon.data != 'undefined');
+            ok(typeof RiLexicon != 'undefined', "RiLexicon OK");
+
+            ok(lex._getPhonemes('gonna'));
+            ok(lex._getPhonemes('gotta'));
+
+            ok(lex.isRhyme("cat", "hat"));
+            ok(!lex.isRhyme("cat", "dog"));
+            ok(lex.isAlliteration("cat", "kill"));
+            ok(!lex.isAlliteration("cat", "dog"));
+        });
+
+    test("RiLexicon-gets", function() {
+
+            lex = RiLexicon();
+
+            var word = "aberrations";
+            var output1 = lex._getSyllables(word);
+            var output2 = lex._getPhonemes(word);
+            var output3 = lex._getStresses(word);
+
+            var expected1 = "ae-b/er/ey-sh/ax-n-z";
+            equal(output1, expected1);
+
+            var expected2 = "ae-b-er-ey-sh-ax-n-z";
+            equal(output2, expected2);
+
+            var expected3 = "1/0/1/0";
+            equal(output3, expected3);
+
+        });
 }
 
 if (typeof exports != 'undefined') runtests();
