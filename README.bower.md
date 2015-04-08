@@ -33,7 +33,7 @@ Now, create a file on your desktop called 'first.html', add the following lines,
 ```html
 <html>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="./bower_components/rita/dist/rita.js"></script>
+  <script src="./bower_components/rita/dist/rita.min.js"></script>
   <script>
     window.onload = function() {
       $('#content').text(RiTa.tokenize("The elephant took a bite!"));
