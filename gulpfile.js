@@ -111,7 +111,7 @@ return;
     });
 
 // Concatenate & minify RiTaJS (3) into dist
-gulp.task('build.bower', ['clean'], function() {
+gulp.task('bower', ['clean'], function() {
 
         var tmp = gulp.src('src/rita*.js')
             .pipe(replace('##version##', version))
@@ -127,7 +127,7 @@ gulp.task('build.bower', ['clean'], function() {
     });
 
 // Concatenate & minify RiTaJS (3) into dist
-gulp.task('build.js', ['build.bower'], function() {
+gulp.task('build.js', ['bower'], function() {
 
         // create micro version (only rita.js minified)
         var tmp = gulp.src('src/rita.js')
