@@ -10,7 +10,6 @@ var testDir = './test/',
 
 // Load package.json & plugins
 var pjson = require('./package.json'),
-
     gulp = require('gulp'),
     scp = require('gulp-scp'),
     exec = require('child_process').exec,
@@ -47,6 +46,8 @@ gulp.task('clean', function(f) {
 
 // Create links to each 'latest'
 gulp.task('symlink', function() {
+
+    return;
 
         gulp.src(buildDir + '/' + full)
             .pipe(sym(buildDir + '/' + full.replace(version, 'latest')));
@@ -119,7 +120,7 @@ gulp.task('build.bower', ['clean'], function() {
             .pipe(gulp.dest(buildDir))
 
         // update version # in bower.json
-        if (tmp) return gulp.src(['bower.tmpl'])
+        return tmp && gulp.src(['bower.tmpl'])
             .pipe(replace('##version##', version))
             .pipe(concat('bower.json'))
             .pipe(gulp.dest('.'));
