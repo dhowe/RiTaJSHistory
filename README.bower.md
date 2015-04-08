@@ -22,13 +22,13 @@ About the project
 In the browser with [Bower](http://bower.io/)
 --------
 
-First, to install do: 
+To install, choose a directory and do: 
 
 ```bash
 $ bower install rita
 ```
 
-Now, create a file on your desktop called 'first.html', add the following lines, save and drag it into a browser:
+Now, create a file called 'test.html', add the following lines, save, and open in a browser:
 
 ```html
 <html>
