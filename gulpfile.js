@@ -112,8 +112,14 @@ return;
 // Concatenate & minify RiTaJS (3) into dist
 gulp.task('build.bower', ['clean'], function() {
 
+        var tmp = gulp.src('src/rita*.js')
+            .pipe(replace('##version##', version))
+            .pipe(concat(bower))
+            .pipe(uglify())
+            .pipe(gulp.dest(buildDir))
+
         // update version # in bower.json
-        return gulp.src(['bower.tmpl'])
+        if (tmp) return gulp.src(['bower.tmpl'])
             .pipe(replace('##version##', version))
             .pipe(concat('bower.json'))
             .pipe(gulp.dest('.'));
@@ -129,34 +135,20 @@ gulp.task('build.js', ['build.bower'], function() {
             .pipe(uglify())
             .pipe(gulp.dest(buildDir));
 
-        tmp = gulp.src('src/ritext.js')
+        // create ritext version 
+        tmp = tmp && gulp.src('src/ritext.js')
             .pipe(concat(ritext))
             .pipe(uglify())
             .pipe(gulp.dest(buildDir));
 
-        // create micro+render version (rita.js + ritext.js minified)
-        /*tmp = gulp.src(['src/rita.js', 'src/ritext.js'])
-            .pipe(replace('##version##', version))
-            .pipe(concat(pjson.name + '-' + version + '.microp5.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest(buildDir)); 
-
-        tmp = gulp.src('src/rita*.js')
-            .pipe(replace('##version##', version))
-            .pipe(concat(pjson.name + '-' + version + '.node.js'))
-            .pipe(uglify())
-            .pipe(gulp.dest(buildDir));*/
-
         // create 3 regular versions -- full, min & bower(a copy of min)
-        return tmp && gulp.src('src/rita*.js')
+        if (tmp) return gulp.src('src/rita*.js')
             .pipe(replace('##version##', version))
             .pipe(concat(full))
             .pipe(gulp.dest(buildDir))
             .pipe(rename(min))
             .pipe(uglify())
             .pipe(gulp.dest(buildDir))
-            .pipe(rename(bower))
-            .pipe(gulp.dest(buildDir));
     });
 
 // Concatenate & minify RiTaJS + node pkg resources, into dist
