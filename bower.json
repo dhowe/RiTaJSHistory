@@ -30,6 +30,7 @@
     "README.*",
     "gulpfile.js",
     "package.json",
+    "bower.tmpl",
     "build",
     "src",
     "lib",
@@ -37,6 +38,8 @@
     "bower_components",
     "node_modules",
     "rita-*",
+    "LICENSE",
+    "examples",
     "scripts",
     "test"
   ]
