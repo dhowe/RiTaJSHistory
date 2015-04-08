@@ -27,7 +27,7 @@ var pjson = require('./package.json'),
     del = require('del'),
     version = pjson.version;
 
-var bower = 'rita-bower.js',
+var bower = 'rita.min.js',
     full = pjson.name + '-' + version + '.js',
     min = pjson.name + '-' + version + '.min.js',
     micro = pjson.name + '-' + version + '.micro.js',

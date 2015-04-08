@@ -23,7 +23,7 @@
   "devDependencies": {
     "qunit": "~1.15.0"
   },
-  "main": "dist/rita.js",
+  "main": "dist/rita-bower.js",
   "ignore": [
     "**/.*",
     "AUTHORS",
