@@ -1,4 +1,3 @@
-dist/
 **/web-export/*
 .javascript.liclipseprefs
 node_modules/

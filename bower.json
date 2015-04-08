@@ -1,5 +1,5 @@
 {
-  "version": "1.0.677",
+  "version": "1.0.85",
   "author": "Daniel C. Howe <daniel@rednoise.org>",
   "name": "rita",
   "description": "RiTa: A toolkit for natural language and computational literature",
@@ -17,7 +17,9 @@
     "url": "https://github.com/dhowe/RiTa/issues"
   },
   "licenses": "GPL",
-  "dependencies": {},
+  "dependencies": {
+    "yamljs": "~0.1.5"
+  },
   "devDependencies": {
     "qunit": "~1.15.0"
   },
