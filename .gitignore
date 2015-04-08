@@ -14,6 +14,7 @@ CVS
 *.pyc
 *.pyo
 misc
+dist/node
 render-tests
 Render*
 TASKS.txt

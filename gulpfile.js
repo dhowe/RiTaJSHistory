@@ -27,10 +27,12 @@ var pjson = require('./package.json'),
     del = require('del'),
     version = pjson.version;
 
-var full = pjson.name + '-' + version + '.js',
+var bower = 'rita-bower.js',
+    full = pjson.name + '-' + version + '.js',
     min = pjson.name + '-' + version + '.min.js',
     micro = pjson.name + '-' + version + '.micro.js',
-    microp5 = pjson.name + '-' + version + '.microp5.js';
+    ritext = 'ritext' + '-' + version + '.js';
+    //microp5 = pjson.name + '-' + version + '.microp5.js';
 
 // Display gulp task
 gulp.task('help', tasks);
@@ -52,8 +54,8 @@ gulp.task('symlink', function() {
             .pipe(sym(buildDir + '/' + min.replace(version, 'latest')));
         gulp.src(buildDir + '/' + micro)
             .pipe(sym(buildDir + '/' + micro.replace(version, 'latest')));
-        gulp.src(buildDir + '/' + microp5)
-            .pipe(sym(buildDir + '/' + microp5.replace(version, 'latest')));
+        //gulp.src(buildDir + '/' + microp5)
+         //   .pipe(sym(buildDir + '/' + microp5.replace(version, 'latest')));
     });
 
 /*
@@ -61,7 +63,6 @@ gulp.task('symlink', function() {
  * link js on host
  * update index.html on host
  * update node
- * update bower
  */
 gulp.task('update', function() { // NEEDED?
 
@@ -108,41 +109,57 @@ return;
             });
     });
 
-// Concatenate & minify RiTaJS (4) into dist
-gulp.task('build.js', ['clean'], function() {
+// Concatenate & minify RiTaJS (3) into dist
+gulp.task('build.bower', ['clean'], function() {
+
+        // update version # in bower.json
+        return gulp.src(['bower.tmpl'])
+            .pipe(replace('##version##', version))
+            .pipe(concat('bower.json'))
+            .pipe(gulp.dest('.'));
+    });
+
+// Concatenate & minify RiTaJS (3) into dist
+gulp.task('build.js', ['build.bower'], function() {
 
         // create micro version (only rita.js minified)
         var tmp = gulp.src('src/rita.js')
             .pipe(replace('##version##', version))
-            .pipe(concat(pjson.name + '-' + version + '.micro.js'))
+            .pipe(concat(micro))
+            .pipe(uglify())
+            .pipe(gulp.dest(buildDir));
+
+        tmp = gulp.src('src/ritext.js')
+            .pipe(concat(ritext))
             .pipe(uglify())
             .pipe(gulp.dest(buildDir));
 
         // create micro+render version (rita.js + ritext.js minified)
-        tmp = gulp.src(['src/rita.js', 'src/ritext.js'])
+        /*tmp = gulp.src(['src/rita.js', 'src/ritext.js'])
             .pipe(replace('##version##', version))
             .pipe(concat(pjson.name + '-' + version + '.microp5.js'))
             .pipe(uglify())
-            .pipe(gulp.dest(buildDir));
+            .pipe(gulp.dest(buildDir)); 
 
         tmp = gulp.src('src/rita*.js')
             .pipe(replace('##version##', version))
             .pipe(concat(pjson.name + '-' + version + '.node.js'))
             .pipe(uglify())
-            .pipe(gulp.dest(buildDir));
+            .pipe(gulp.dest(buildDir));*/
 
-        // create 2 regular versions (all src, & all src minified)
-        return tmp && gulp.src('src/*.js')
+        // create 3 regular versions -- full, min & bower(a copy of min)
+        return tmp && gulp.src('src/rita*.js')
             .pipe(replace('##version##', version))
-            .pipe(concat(pjson.name + '-' + version + '.js'))
+            .pipe(concat(full))
             .pipe(gulp.dest(buildDir))
-            .pipe(rename(pjson.name + '-' + version + '.min.js'))
+            .pipe(rename(min))
             .pipe(uglify())
+            .pipe(gulp.dest(buildDir))
+            .pipe(rename(bower))
             .pipe(gulp.dest(buildDir));
     });
 
-// TODO: working here
-// Concatenate & minify RiTaJS, no renderer, into dist
+// Concatenate & minify RiTaJS + node pkg resources, into dist
 gulp.task('build.node', ['clean'], function(cb) {
 
         // copy in the node readme
@@ -174,20 +191,16 @@ gulp.task('build.node', ['clean'], function(cb) {
         /* FAILING (tgz is incomplete) */
    
       	// call npm pack & move the .tgz to build
-    	/*exec("npm pack build/node/rita", function (err, stdout, stderr) {
+    	/*exec("cd build/node/rita; npm pack", function (err, stdout, stderr) {
     		
             console.log(stdout);
-            //         
-                    // gulp.src('./rita-'+version+'.tgz')
-            			// .pipe(gulp.dest(buildDir));
-            // 		
-            		// gulp.src('./rita-'+version+'.tgz')
-            			// .pipe(clean());
-            // 			
-                    console.log(stderr);
-                    cb(err);
+            gulp.src('./rita-'+version+'.tgz')
+                .pipe(clean());
+            gulp.src('./rita-'+version+'.tgz')
+                .pipe(gulp.dest(buildDir));
+            console.log(stderr);
+            cb(err);
         });*/
-            
     });
 
 
