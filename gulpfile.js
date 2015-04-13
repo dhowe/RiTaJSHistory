@@ -12,6 +12,9 @@ var testDir = './test/',
 var pjson = require('./package.json'),
     gulp = require('gulp'),
     scp = require('gulp-scp'),
+    browserify = require('browserify'),
+    reactify = require('reactify'),
+    source = require('vinyl-source-stream'),
     exec = require('child_process').exec,
     tasks = require('gulp-task-listing'),
     gutil = require('gulp-util'),
@@ -19,9 +22,9 @@ var pjson = require('./package.json'),
     jshint = require('gulp-jshint'),
     replace = require('gulp-replace'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
     argv = require('yargs').argv,
+    uglify = require('gulp-uglify'),
     sym = require('gulp-symlink'),
     del = require('del'),
     version = pjson.version;
@@ -30,10 +33,12 @@ var bower = 'rita.min.js',
     full = pjson.name + '-' + version + '.js',
     min = pjson.name + '-' + version + '.min.js',
     micro = pjson.name + '-' + version + '.micro.js',
+    mbify = pjson.name + '.micro.browserified.js',
+    bify = pjson.name + '.browserified.js',
     ritext = 'ritext' + '-' + version + '.js';
     //microp5 = pjson.name + '-' + version + '.microp5.js';
 
-// Display gulp task
+// Display gulp tasks
 gulp.task('help', tasks);
 
 ///////////////////////////////////////////////////////
@@ -44,30 +49,39 @@ gulp.task('clean', function(f) {
         del(buildDir, f);
     });
 
-// Create links to each 'latest'
-gulp.task('symlink', function() {
+// create 2 browserify bundles (micro and regular)
+gulp.task('build-browserify', ['build.js'], function() {
 
-    return;
+    var tmp, b = browserify();
+    b.transform(reactify);
+    b.add(['./dist/rita.micro.js']);
+    
+    tmp =  b.bundle()
+        .pipe(source('rita.micro.js'))
+        .pipe(rename(mbify))
+        .pipe(gulp.dest('./dist/'));
+    
+    b = browserify();
+    b.transform(reactify);
+    b.add(['./dist/rita.min.js']);
+    
+    return tmp && b.bundle()
+        .pipe(source('rita.min.js'))
+        .pipe(rename(bify))
+        .pipe(gulp.dest('./dist/'));
+});
 
-        gulp.src(buildDir + '/' + full)
-            .pipe(sym(buildDir + '/' + full.replace(version, 'latest')));
-        gulp.src(buildDir + '/' + min)
-            .pipe(sym(buildDir + '/' + min.replace(version, 'latest')));
-        gulp.src(buildDir + '/' + micro)
-            .pipe(sym(buildDir + '/' + micro.replace(version, 'latest')));
-        //gulp.src(buildDir + '/' + microp5)
-         //   .pipe(sym(buildDir + '/' + microp5.replace(version, 'latest')));
-    });
+
 
 /*
  * publish js to host (red-or-local)
  * link js on host
  * update index.html on host
  * update node
- */
+
 gulp.task('update', function() { // NEEDED?
 
-        return;
+        if (1) return;
 
         var host = argv.host ? argv.host : 'localhost';
         var port = host === 'localhost' ? 22022 : 22;
@@ -93,15 +107,18 @@ gulp.task('update', function() { // NEEDED?
                     user: process.env.USER,
                     port: port
                 }));
-    });
+    }); */
 
-gulp.task('pub.npm', ['build.node'], function(cb) {
+gulp.task('pub-npm', ['build.node'], function(cb) { // not-ready
 
         console.log('gulp: npm publish ');
 
         var tgz = buildDir + '/rita-' + version + '.tgz';
         console.log('npm publish ' + tgz);
-return;
+
+        if (1) return;
+
+
         exec('npm publish ' + tgz, function(err, stdout, stderr) {
 
                 console.log(stdout);
@@ -111,23 +128,19 @@ return;
     });
 
 // Concatenate & minify RiTaJS (3) into dist
-gulp.task('bower', ['clean'], function() {
-
-        var tmp = gulp.src('src/rita*.js')
-            .pipe(replace('##version##', version))
-            .pipe(concat(bower))
-            .pipe(uglify())
-            .pipe(gulp.dest(buildDir))
+gulp.task('bower-update', ['clean' ], function() {
 
         // update version # in bower.json
-        return tmp && gulp.src(['bower.tmpl'])
+        return gulp.src(['bower.tmpl'])
             .pipe(replace('##version##', version))
             .pipe(concat('bower.json'))
             .pipe(gulp.dest('.'));
     });
 
+//gulp.task('build.js', gsync.sync(['build.js-pre', 'symlink-min']));
+
 // Concatenate & minify RiTaJS (3) into dist
-gulp.task('build.js', ['bower'], function() {
+gulp.task('build-pre.js', [ 'bower-update' ], function() {
 
         // create micro version (only rita.js minified)
         var tmp = gulp.src('src/rita.js')
@@ -142,15 +155,24 @@ gulp.task('build.js', ['bower'], function() {
             .pipe(uglify())
             .pipe(gulp.dest(buildDir));
 
-        // create 3 regular versions -- full, min & bower(a copy of min)
-        if (tmp) return gulp.src('src/rita*.js')
-            .pipe(replace('##version##', version))
-            .pipe(concat(full))
-            .pipe(gulp.dest(buildDir))
-            .pipe(rename(min))
-            .pipe(uglify())
-            .pipe(gulp.dest(buildDir))
+        // create 2 regular versions -- full, min 
+        return tmp && gulp.src('src/rita*.js')
+                .pipe(replace('##version##', version))
+                .pipe(concat(full))
+                .pipe(gulp.dest(buildDir))
+                .pipe(rename(min))
+                .pipe(uglify())
+                .pipe(gulp.dest(buildDir));
     });
+
+gulp.task('build.js', ['build-pre.js'], function() {
+
+        var tmp = gulp.src(buildDir + '/' + micro)
+            .pipe(sym(buildDir + '/' + micro.replace('-'+version, '')));
+            
+        return tmp && gulp.src(buildDir + '/' + min)
+            .pipe(sym(buildDir + '/' + min.replace('-'+version, '')));
+});
 
 // Concatenate & minify RiTaJS + node pkg resources, into dist
 gulp.task('build.node', ['clean'], function(cb) {
@@ -171,7 +193,7 @@ gulp.task('build.node', ['clean'], function(cb) {
 
         // copy in the docs
         //gulp.src(ritaDir + '/www/reference/**/*')
-            //.pipe(gulp.dest(buildDir + '/node/rita/doc'));
+        //.pipe(gulp.dest(buildDir + '/node/rita/doc'));
 
         // copy in rita.js (min)
         gulp.src('src/rita*.js')
@@ -182,18 +204,18 @@ gulp.task('build.node', ['clean'], function(cb) {
             .pipe(gulp.dest(buildDir + '/node/rita/lib'));
 
         /* FAILING (tgz is incomplete) */
-   
-      	// call npm pack & move the .tgz to build
-    	/*exec("cd build/node/rita; npm pack", function (err, stdout, stderr) {
-    		
-            console.log(stdout);
-            gulp.src('./rita-'+version+'.tgz')
-                .pipe(clean());
-            gulp.src('./rita-'+version+'.tgz')
-                .pipe(gulp.dest(buildDir));
-            console.log(stderr);
-            cb(err);
-        });*/
+
+        // call npm pack & move the .tgz to build
+        /*exec("cd build/node/rita; npm pack", function (err, stdout, stderr) {
+        
+          console.log(stdout);
+          gulp.src('./rita-'+version+'.tgz')
+          .pipe(clean());
+          gulp.src('./rita-'+version+'.tgz')
+          .pipe(gulp.dest(buildDir));
+          console.log(stderr);
+          cb(err);
+          });*/
     });
 
 
@@ -235,7 +257,7 @@ gulp.task('test.node.pkg', function(cb) {
 
         if (argv.name) {
 
-            tests = [ testDir + argv.name + '-tests'];
+            tests = [testDir + argv.name + '-tests'];
             console.log('[INFO] Testing ' + tests[0]);
         }
 
@@ -275,7 +297,7 @@ gulp.task('test.node', function(cb) {
 
         if (argv.name) {
 
-            tests = [ testDir + argv.name + '-tests'];
+            tests = [testDir + argv.name + '-tests'];
             console.log('[INFO] Testing ' + tests[0]);
         }
 
@@ -289,7 +311,7 @@ gulp.task('test.node', function(cb) {
 
         testrunner.run({
                 code: "src/rita.js",
-                deps: [ 
+                deps: [
                     "src/rita_lts.js",
                     "src/rita_dict.js",
                     "test/qunit-helpers.js"
@@ -304,7 +326,7 @@ gulp.task('test.node', function(cb) {
 // Test(phantom): gulp test (all) || gulp test --name RiString
 gulp.task('test', function() {
 
-        var tests = [ testDir + 'LibStructure-tests.html', testDir + '/Ri*.html' ];
+        var tests = [testDir + 'LibStructure-tests.html', testDir + '/Ri*.html'];
 
         if (argv.name) {
 
@@ -315,8 +337,10 @@ gulp.task('test', function() {
 
             console.log('Running ' + tests);
         }
-    
-        return gulp.src(tests).pipe(qunit({ timeout: 20 }));
+
+        return gulp.src(tests).pipe(qunit({
+                    timeout: 20
+                }));
     });
 
 
