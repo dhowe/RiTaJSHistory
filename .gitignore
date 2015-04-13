@@ -15,6 +15,7 @@ CVS
 *.pyo
 misc
 dist/node
+dist/*browserified*
 dist/rita-*
 dist/ritext-*
 render-tests
