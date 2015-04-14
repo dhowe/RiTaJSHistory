@@ -27,7 +27,7 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 
 #### A Simple Sketch
 --------
-Create a new file HTML file with the following code and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/)
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -54,7 +54,7 @@ console.log(rs.features());
 
 #### With [p5.js](http://p5js.org/)
 --------
-Create a new file HTML file with the following code and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/)
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -79,7 +79,7 @@ Create a new file HTML file with the following code and download the latest rita
 
 #### With [Processing.JS](http://processingjs.org)
 --------
-Create a new file HTML file with the following code and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/)
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
