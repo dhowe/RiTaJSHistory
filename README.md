@@ -27,7 +27,7 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 
 #### A Simple Sketch
 --------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/), add the following lines, save and drag it into a browser:
+Create a new file HTML file with the following code and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/)
 
 ```html
 <html>
@@ -54,7 +54,7 @@ console.log(rs.features());
 
 #### With [p5.js](http://p5js.org/)
 --------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/), add the following lines, save and drag it into a browser:
+Create a new file HTML file with the following code and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/)
 
 ```html
 <html>
@@ -74,6 +74,32 @@ Create a new file on your desktop called 'first.html' and download the latest ri
     }
   }
   </script>
+</html>
+```
+
+#### With [Processing.JS](http://processingjs.org)
+--------
+Create a new file HTML file with the following code and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js/)
+
+```html
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+  <script src="./rita-latest.micro.js"></script>
+  <script type="text/processing" data-processing-target="processing-canvas">
+    void setup() {
+
+      size(200,200);
+      background(50);
+      textSize(20);
+      noStroke();
+
+      String words = RiTa.tokenize("The elephant took a bite!");
+      for (int i=0, j = words.length; i<j; i++) {
+          text(words[i], 50, 50 + i*20);
+      }
+    }
+  </script>
+  <canvas id="processing-canvas"> </canvas>
 </html>
 ```
 
