@@ -105,29 +105,30 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 
 #### With [browserify](http://browserify.org/)
 --------
-Create a file 'main.js' and paste the following code into it
+Install [browserify](https://www.npmjs.com/package/browserify) (if you haven't already)
+```
+$ sudo npm install -g browserify
+```
+Create a file called 'main.js' with the following code:
 ```java
 var rita = require('rita');
 
 var rs = rita.RiString("The elephant took a bite!");
-
 console.log(rs.features());
 ```
-Install the [RiTa](https://www.npmjs.com/package/rita) and [browserify](https://www.npmjs.com/package/browserify) modulewith [npm](https://www.npmjs.com/):
+Install [RiTa](https://www.npmjs.com/package/rita):
 ```
-$ sudo npm install -g rita
-$ sudo npm install -g browserify
+$ npm install rita
 ```
-Now recursively bundle up all the required modules starting at main.js into a single file called bundle.js with the browserify command:
+Now use browserify to bundle up all the required modules into a single bundle.js
 ```
 $ browserify main.js -o bundle.js
 ```
-Browserify parses the AST for require() calls to traverse the entire dependency graph of the project.
-
-Drop a single script tag into html and open it with web browser and inspect the output from developer console
+Create an html file with a single script tag as follows, then open it in a web browser
 ```html
 <script src="bundle.js"></script>
 ```
+
 
 #### Can I contribute?
 --------
