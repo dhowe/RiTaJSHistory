@@ -27,7 +27,7 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 
 #### A Simple Sketch
 --------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/), add the following lines, save and drag it into a browser:
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -54,7 +54,7 @@ console.log(rs.features());
 
 #### With [p5.js](http://p5js.org/)
 --------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/), add the following lines, save and drag it into a browser:
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -75,6 +75,58 @@ Create a new file on your desktop called 'first.html' and download the latest ri
   }
   </script>
 </html>
+```
+
+#### With [Processing.JS](http://processingjs.org)
+--------
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
+
+```html
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+  <script src="./rita-latest.micro.js"></script>
+  <script type="text/processing" data-processing-target="processing-canvas">
+    void setup() {
+
+      size(200,200);
+      background(50);
+      textSize(20);
+      noStroke();
+
+      String words = RiTa.tokenize("The elephant took a bite!");
+      for (int i=0, j = words.length; i<j; i++) {
+          text(words[i], 50, 50 + i*20);
+      }
+    }
+  </script>
+  <canvas id="processing-canvas"> </canvas>
+</html>
+```
+
+#### With [browserify](http://browserify.org/)
+--------
+Create a file 'main.js' and paste the following code into it
+```java
+var rita = require('rita');
+
+var rs = rita.RiString("The elephant took a bite!");
+
+console.log(rs.features());
+```
+Install the [RiTa](https://www.npmjs.com/package/rita) and [browserify](https://www.npmjs.com/package/browserify) modulewith [npm](https://www.npmjs.com/):
+```
+$ sudo npm install -g rita
+$ sudo npm install -g browserify
+```
+Now recursively bundle up all the required modules starting at main.js into a single file called bundle.js with the browserify command:
+```
+$ browserify main.js -o bundle.js
+```
+Browserify parses the AST for require() calls to traverse the entire dependency graph of the project.
+
+Drop a single script tag into html and open it with web browser and inspect the output from developer console
+```html
+<script src="bundle.js"></script>
 ```
 
 #### Can I contribute?
