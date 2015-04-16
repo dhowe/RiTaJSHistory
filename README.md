@@ -25,6 +25,9 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 * Bug Tracker:      https://github.com/dhowe/RiTa/issues
 * Reference:    http://www.rednoise.org/rita/reference/
 
+
+ 
+
 #### A Simple Sketch
 --------
 Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
@@ -124,7 +127,7 @@ Now use browserify to bundle up all the required modules into a single bundle.js
 ```
 $ browserify main.js -o bundle.js
 ```
-Create an html file with a single script tag as follows, then open it in a web browser
+Create an html file with a single script tag as below, then open it in a web browser and check the output in the 'Web Console'
 ```html
 <script src="bundle.js"></script>
 ```
