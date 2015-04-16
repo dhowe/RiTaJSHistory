@@ -80,31 +80,6 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 </html>
 ```
 
-#### With [Processing.JS](http://processingjs.org)
---------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
-
-```html
-<html>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
-  <script src="./rita-latest.micro.js"></script>
-  <script type="text/processing" data-processing-target="processing-canvas">
-    void setup() {
-
-      size(200,200);
-      background(50);
-      textSize(20);
-      noStroke();
-
-      String words = RiTa.tokenize("The elephant took a bite!");
-      for (int i=0, j = words.length; i<j; i++) {
-          text(words[i], 50, 50 + i*20);
-      }
-    }
-  </script>
-  <canvas id="processing-canvas"> </canvas>
-</html>
-```
 
 #### With [browserify](http://browserify.org/)
 --------
@@ -154,6 +129,33 @@ Now, create a file called 'test.html', add the following lines, save, and open i
   </script>
   <div id="content" width=200 height=200></div>
 <html>
+```
+
+
+#### With [Processing.JS](http://processingjs.org)
+--------
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
+
+```html
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+  <script src="./rita-latest.micro.js"></script>
+  <script type="text/processing" data-processing-target="processing-canvas">
+    void setup() {
+
+      size(200,200);
+      background(50);
+      textSize(20);
+      noStroke();
+
+      String words = RiTa.tokenize("The elephant took a bite!");
+      for (int i=0, j = words.length; i<j; i++) {
+          text(words[i], 50, 50 + i*20);
+      }
+    }
+  </script>
+  <canvas id="processing-canvas"> </canvas>
+</html>
 ```
 
 
