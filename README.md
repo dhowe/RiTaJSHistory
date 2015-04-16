@@ -17,15 +17,15 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 
 #### About the project
 --------
-* Author:           Daniel C. Howe (https://rednoise.org/daniel)
-* Related:          RiTa -> https://github.com/dhowe/RiTa
-* License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file for full license)
+* Author:           [Daniel C. Howe](https://rednoise.org/daniel)
+* Related:          [RiTa](https://github.com/dhowe/RiTa)
+* License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file)
 * Web Site:         https://rednoise.org/rita
 * Github Repo:      https://github.com/dhowe/RiTaJS/
 * Bug Tracker:      https://github.com/dhowe/RiTa/issues
 * Reference:    http://www.rednoise.org/rita/reference/
 
-
+&nbsp;
  
 
 #### A Simple Sketch
