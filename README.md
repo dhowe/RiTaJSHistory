@@ -132,6 +132,30 @@ Create an html file with a single script tag as below, then open it in a web bro
 <script src="bundle.js"></script>
 ```
 
+#### With [Bower](http://bower.io/)
+--------
+
+To install, choose a directory and do: 
+
+```bash
+$ bower install rita
+```
+
+Now, create a file called 'test.html', add the following lines, save, and open in a browser:
+
+```html
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="./bower_components/rita/dist/rita.min.js"></script>
+  <script>
+    window.onload = function() {
+      $('#content').text(RiTa.tokenize("The elephant took a bite!"));
+    };
+  </script>
+  <div id="content" width=200 height=200></div>
+<html>
+```
+
 
 #### Can I contribute?
 --------
