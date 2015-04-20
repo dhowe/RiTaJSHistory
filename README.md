@@ -25,7 +25,7 @@ RiTa.js is designed to an easy-to-use toolkit for experiments in natural languag
 &nbsp;
  
 
-#### A Simple Sketch
+#### A simple sketch
 --------
 Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
 
