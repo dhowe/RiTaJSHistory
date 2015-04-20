@@ -1,13 +1,13 @@
 [![Build Status](https://travis-ci.org/dhowe/RiTaJS.svg?branch=master)](https://travis-ci.org/dhowe/RiTaJS)
 
-### RiTaJS: a generative language toolkit for JavaScript
+### RiTa.js: a generative language toolkit for JavaScript
 
 
 <a href="https://rednoise.org/rita"><img height=80 src="https://rednoise.org/rita/img/RiTa-logo3.png"/></a>
 
 #### [The RiTa website](http://rednoise.org/rita)
 
-RiTaJS is designed to an easy-to-use toolkit for experiments in natural language and generative literature, based on the [original RiTa](http://rednoise.org/rita) library for Java. RiTaJS works alone or in conjunction with P5.js, ProcessingJS, Node/NPM, bower, or browserify.  All RiTa and RiTaJS tools are free/libre/open-source according to the [GPL](http://www.gnu.org/licenses/gpl.txt).
+RiTa.js is designed to an easy-to-use toolkit for experiments in natural language and generative literature, based on the [original RiTa](http://rednoise.org/rita) library for Java. RiTa.js works alone or in conjunction with p5.js, processing.js, node.js, bower, or browserify.  All RiTa and RiTa.js tools are free/libre/open-source according to the [GPL](http://www.gnu.org/licenses/gpl.txt).
 
 
 
@@ -42,7 +42,7 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 <html>
 ```
 
-#### With [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/)
+#### With [node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/)
 --------
 To install: `$ npm install rita`
 
@@ -104,7 +104,7 @@ Create an html file with a single script tag as below, then open it in a web bro
 <script src="bundle.js"></script>
 ```
 
-#### With [Bower](http://bower.io/)
+#### With [bower](http://bower.io/)
 --------
 
 To install, choose a directory and do: 
@@ -129,7 +129,7 @@ Now, create a file called 'test.html', add the following lines, save, and open i
 ```
 
 
-#### With [Processing.JS](http://processingjs.org)
+#### With [processing.js](http://processingjs.org)
 --------
 Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
 
