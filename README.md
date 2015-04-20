@@ -42,7 +42,7 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 <html>
 ```
 
-#### With [NodeJS](http://nodejs.org/) and [npm](https://www.npmjs.com/)
+#### With [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/)
 --------
 To install: `$ npm install rita`
 
@@ -163,8 +163,8 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 #### Development Setup
 --------
-1. Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/).
-2. 
+1. Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node.js](http://nodejs.org/).
+
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library.
 
   a. First, login to github and fork the project
