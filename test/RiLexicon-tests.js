@@ -72,6 +72,34 @@ var runtests = function() {
             lex = null;
         });
 
+    test("testSize", function() {
+
+			lex = RiLexicon();			
+			ok(lex.size() > 30000);
+			
+            lex = null;
+        });
+
+    test("testReload", function() {
+
+			lex = RiLexicon();
+			ok(lex.containsWord("are"));
+			lex.removeWord("are");
+			var removeOneWord = lex.size();
+			lex.reload();
+			ok(lex.size() > removeOneWord);
+			
+            ok(lex.containsWord("cat"));
+            lex.removeWord("cat");
+			ok(lex.containsWord("are"));
+			lex.removeWord("are");
+			
+			var removeTwoWord = lex.size();
+			ok(removeTwoWord < removeOneWord);
+			
+			lex.reload();
+            lex = null;
+        });
 
     test("testContainsWord", function() {
 

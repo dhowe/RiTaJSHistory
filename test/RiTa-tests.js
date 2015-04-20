@@ -208,6 +208,25 @@ var runtests = function() {
 
         });
 
+
+    test("testRandomItem", function() {
+
+			var toks = RiTa.tokenize("The boy, dressed in red, ate an apple.!?");
+			for (var i = 0; i < toks.length * 2; i++) {
+			  ok(RiTa.randomItem(toks));
+			}
+
+			toks = RiTa.tokenize("The quick brown fox jumps over the lazy dog.");
+			for (var i = 0; i < toks.length * 2; i++) {
+			  ok(RiTa.randomItem(toks));
+			}
+			
+			toks = RiTa.tokenize("123 123 1 2 3 1,1 1.1 23.45.67 22/05/2012 12th May,2012");
+			for (var i = 0; i < toks.length * 2; i++) {
+			  ok(RiTa.randomItem(toks));
+			}
+        });
+
     test("testRandomOrdering", function() {
 
             var result = RiTa.randomOrdering(5);
