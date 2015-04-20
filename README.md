@@ -17,17 +17,20 @@ are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl
 
 #### About the project
 --------
-* Author:           Daniel C. Howe (https://rednoise.org/daniel)
-* Related:          RiTa -> https://github.com/dhowe/RiTa
-* License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file for full license)
+* Author:           [Daniel C. Howe](https://rednoise.org/daniel)
+* Related:          [RiTa](https://github.com/dhowe/RiTa)
+* License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file)
 * Web Site:         https://rednoise.org/rita
 * Github Repo:      https://github.com/dhowe/RiTaJS/
 * Bug Tracker:      https://github.com/dhowe/RiTa/issues
 * Reference:    http://www.rednoise.org/rita/reference/
 
+&nbsp;
+ 
+
 #### A Simple Sketch
 --------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/), add the following lines, save and drag it into a browser:
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -54,7 +57,7 @@ console.log(rs.features());
 
 #### With [p5.js](http://p5js.org/)
 --------
-Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/), add the following lines, save and drag it into a browser:
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
 
 ```html
 <html>
@@ -76,6 +79,85 @@ Create a new file on your desktop called 'first.html' and download the latest ri
   </script>
 </html>
 ```
+
+
+#### With [browserify](http://browserify.org/)
+--------
+Install [browserify](https://www.npmjs.com/package/browserify) (if you haven't already)
+```
+$ sudo npm install -g browserify
+```
+Create a file called 'main.js' with the following code:
+```java
+var rita = require('rita');
+
+var rs = rita.RiString("The elephant took a bite!");
+console.log(rs.features());
+```
+Install [RiTa](https://www.npmjs.com/package/rita):
+```
+$ npm install rita
+```
+Now use browserify to bundle up all the required modules into a single bundle.js
+```
+$ browserify main.js -o bundle.js
+```
+Create an html file with a single script tag as below, then open it in a web browser and check the output in the 'Web Console'
+```html
+<script src="bundle.js"></script>
+```
+
+#### With [Bower](http://bower.io/)
+--------
+
+To install, choose a directory and do: 
+
+```bash
+$ bower install rita
+```
+
+Now, create a file called 'test.html', add the following lines, save, and open in a browser:
+
+```html
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="./bower_components/rita/dist/rita.min.js"></script>
+  <script>
+    window.onload = function() {
+      $('#content').text(RiTa.tokenize("The elephant took a bite!"));
+    };
+  </script>
+  <div id="content" width=200 height=200></div>
+<html>
+```
+
+
+#### With [Processing.JS](http://processingjs.org)
+--------
+Create a new file on your desktop called 'first.html' and download the latest rita.js from [here](http://rednoise.org/rita/download/rita-latest.micro.js), add the following lines, save and drag it into a browser:
+
+```html
+<html>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+  <script src="./rita-latest.micro.js"></script>
+  <script type="text/processing" data-processing-target="processing-canvas">
+    void setup() {
+
+      size(200,200);
+      background(50);
+      textSize(20);
+      noStroke();
+
+      String words = RiTa.tokenize("The elephant took a bite!");
+      for (int i=0, j = words.length; i<j; i++) {
+          text(words[i], 50, 50 + i*20);
+      }
+    }
+  </script>
+  <canvas id="processing-canvas"> </canvas>
+</html>
+```
+
 
 #### Can I contribute?
 --------
