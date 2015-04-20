@@ -7,18 +7,14 @@
 
 #### [The RiTa website](http://rednoise.org/rita)
 
-RiTaJS is designed to an easy-to-use toolkit for experiments
-in natural language and generative literature, based on the RiTa
-(http://rednoise.org/rita) library for Java. Like the original RiTa, RiTaJS
-works alone or in conjunction with ProcessingJS, P5.js, or as Node or Bower modules.  All RiTa and RiTaJS tools
-are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
+RiTaJS is designed to an easy-to-use toolkit for experiments in natural language and generative literature, based on the [original RiTa](http://rednoise.org/rita) library for Java. RiTaJS works alone or in conjunction with P5.js, ProcessingJS, Node/NPM, bower, or browserify.  All RiTa and RiTaJS tools are free/libre/open-source according to the GPL (http://www.gnu.org/licenses/gpl.txt).
 
 
 
 #### About the project
 --------
 * Author:           [Daniel C. Howe](https://rednoise.org/daniel)
-* Related:          [RiTa](https://github.com/dhowe/RiTa)
+* Related:          [RiTa](https://github.com/dhowe/RiTa) (Java)
 * License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file)
 * Web Site:         https://rednoise.org/rita
 * Github Repo:      https://github.com/dhowe/RiTaJS/
