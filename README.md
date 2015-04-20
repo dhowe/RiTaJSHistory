@@ -14,12 +14,12 @@ RiTaJS is designed to an easy-to-use toolkit for experiments in natural language
 #### About the project
 --------
 * Author:           [Daniel C. Howe](https://rednoise.org/daniel)
-* Related:          [RiTa](https://github.com/dhowe/RiTa) (Java)
-* Reference:    http://www.rednoise.org/rita/reference/
-* License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file)
 * Web Site:         https://rednoise.org/rita
+* Reference:        http://www.rednoise.org/rita/reference/
+* License:          GPL (see included [LICENSE](https://github.com/dhowe/RiTaJS/blob/master/LICENSE) file)
 * Github Repo:      https://github.com/dhowe/RiTaJS/
 * Bug Tracker:      https://github.com/dhowe/RiTa/issues
+* Related:          [RiTa](https://github.com/dhowe/RiTa) (Java)
 
 
 &nbsp;
@@ -42,7 +42,7 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 <html>
 ```
 
-#### With [NodeJS](http://nodejs.org/)
+#### With [NodeJS](http://nodejs.org/) and [npm](https://www.npmjs.com/)
 --------
 To install: `$ npm install rita`
 
@@ -78,7 +78,7 @@ Create a new file on your desktop called 'first.html' and download the latest ri
 ```
 
 
-#### With [browserify](http://browserify.org/)
+#### With [browserify](http://browserify.org/) and [npm](https://www.npmjs.com/)
 --------
 Install [browserify](https://www.npmjs.com/package/browserify) (if you haven't already)
 ```
@@ -91,11 +91,11 @@ var rita = require('rita');
 var rs = rita.RiString("The elephant took a bite!");
 console.log(rs.features());
 ```
-Install [RiTa](https://www.npmjs.com/package/rita):
+Now install RiTa
 ```
 $ npm install rita
 ```
-Now use browserify to bundle up all the required modules into a single bundle.js
+Now use browserify to pack all the required modules into bundle.js
 ```
 $ browserify main.js -o bundle.js
 ```
@@ -164,6 +164,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 #### Development Setup
 --------
 1. Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node](http://nodejs.org/).
+2. 
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library.
 
   a. First, login to github and fork the project
@@ -183,7 +184,6 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
   ```bash
   $ ./node_modules/.bin/gulp build
   ```
-
 5. Run all tests (in phantomJS) with gulp.
 
   ```bash
