@@ -622,6 +622,9 @@ var runtests = function() {
 
             lex = RiLexicon();
 
+            var result = lex.similarBySound("worngword");
+            deepEqual(result, ["watchword", "wayward", "wormwood"]);
+
             var result = lex.similarBySound("tornado");
             deepEqual(result, ["torpedo"]);
 
@@ -632,9 +635,7 @@ var runtests = function() {
             result = lex.similarBySound("try", 2);
             ok(result.length > answer.length); // more
 
-            result = lex.similarBySound("worngword");
-            deepEqual(result, ["watchword", "wayward", "wormwood"]);
-
+          
             result = lex.similarBySound("happy");
             answer = ["happier", "hippie"];
             deepEqual(result, answer);

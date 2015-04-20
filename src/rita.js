@@ -48,6 +48,9 @@
 		/* The current version of the RiTa tools */
 		VERSION : _VERSION_,
 
+        /* Use to disable loading of lexicon */
+        USE_LEXICON : true,
+        
 		/* For tokenization, Can't -> Can not, etc. */
 		SPLIT_CONTRACTIONS : false,
 		
@@ -69,19 +72,19 @@
 		LERP : "Lerp",
 
 	  	JAVA : 1, JS : 2, NODE : 3,
-
-		// :::: RiText Constants  ::::::::: 
-
 		LEFT : 37, UP : 38, RIGHT : 39, DOWN : 40,  CENTER : 3,
 
-		// For Conjugator =================================
+        // For Features =================================
 
-		PHONEMES : 'phonemes',
-		
-		STRESSES : 'stresses',
-		
 		SYLLABLES : 'syllables',
+		PHONEMES : 'phonemes',
+		STRESSES : 'stresses',
+		TOKENS : 'tokens',
+		TEXT : 'text',
+		POS : 'pos',
 		
+        // For Conjugator =================================
+
 		FIRST_PERSON : 1,
 
 		SECOND_PERSON : 2,
@@ -1275,7 +1278,7 @@
 				
 				if (wordsInSentence >= this.maxSentenceLength) { 
 					
-					//System.out.println("MarkovModel.generateSentences().reject:: too long!");
+					//console.log("MarkovModel.generateSentences().reject:: too long!");
 					
 					mn = this._getSentenceStart(); 
 					s = mn.token + SP;
@@ -1417,24 +1420,24 @@
 		    	
 		        pTotal = 0;
 		        selector = Math.random();   
-		        //System.out.println("current="+current+", selector="+selector);
+		        //console.log("current="+current+", selector="+selector);
 		        for(var i=0,j=nodes.length; i<j; i++) {
 		        
 				  var child = nodes[i];
 				 
-		          //System.out.println("child="+child);
+		          //console.log("child="+child);
 		          pTotal += child.probability();
 		          
-		          //System.out.println("pTotal="+pTotal);
+		          //console.log("pTotal="+pTotal);
 		          if (current.isRoot() && (this.isSentenceAware && !child.isSentenceStart())) {
-		            //System.out.println("continuing...");
+		            //console.log("continuing...");
 		            continue;
 		          }
 		          if (selector < pTotal) {
-		            //System.out.println("returning "+child+"\n====================");
+		            //console.log("returning "+child+"\n====================");
 		            return child;
 		          }
-		          //System.out.println("selector >= pTotal\n====================");
+		          //console.log("selector >= pTotal\n====================");
 		        }
 		        
 		        attempts++; 
@@ -1718,7 +1721,9 @@
 	// Static variables
 	// ////////////////////////////////////////////////////////////   
 	
-	RiLexicon.data = undefined; // shared static var
+	RiLexicon.data; // shared static var
+	
+	RiLexicon.emittedWarning = false;
 	
 	// ////////////////////////////////////////////////////////////
 	// Member functions
@@ -1736,9 +1741,9 @@
 		
 		_load : function() {
 			
-			if (typeof _RiTa_DICT != 'undefined') {
+			if (typeof _RiTa_DICT != 'undefined' && RiTa.USE_LEXICON) {
 
-				//log('[RiTa] Loading lexicon data...');
+				console.log('[RiTa] Loading lexicon data...');
 
 				RiLexicon.data = {}; // TODO: test perf. of this
 				for (var word in _RiTa_DICT) {
@@ -1746,8 +1751,10 @@
 				}
 			} 
 			else {
-
-				err("Dictionary not found! Make sure to include it in your sketch...");
+				
+				if (!RiLexicon.emittedWarning)
+					warn("RiTa lexicon appears to be missing! Part-of-speech tagging (at least) will be inaccurate");
+				RiLexicon.emittedWarning = true
 			}
 		},
 		
@@ -1827,10 +1834,12 @@
 			var minVal = Number.MAX_VALUE, entry, result = [], minLen = 2,
 				phonesArr, phones = RiTa.getPhonemes(input), med,
 				targetPhonesArr = phones ? phones.split('-') : [],
-                                input_s = input+'s', input_es = input + 'es',
-                                lts = LetterToSound();
+                input_s = input+'s', input_es = input + 'es',
+                lts = LetterToSound();
 
 			if (!targetPhonesArr[0] || !(input && input.length)) return EA;
+
+console.log("TARGET "+targetPhonesArr);
 
 			for (entry in RiLexicon.data) {
 
@@ -1851,10 +1860,14 @@
 
 					minVal = med;
 					result = [ entry ];
+console.log("BEST "+entry + " "+med + " "+phonesArr);
+
 				}
 
 				// another best to add
 				else if (med == minVal) {
+
+console.log("TIED "+entry + " "+med + " "+phonesArr);
 
 					result.push(entry);
 				}
@@ -2127,10 +2140,6 @@
 			return RiTa.untokenize(raw).replace(/1/g, E).trim();
 		},
 
-		/*
-		 * Returns a String containing all phonemes for the input text, delimited by semi-colons
-		 * @example "dh:ax:d:ao:g:r:ae:n:f:ae:s:t"
-		 */
 		_getPhonemes : function(word) {
 			
 			// TODO: use feature cache?
@@ -2156,10 +2165,6 @@
 			return RiTa.untokenize(raw).replace(/1/g, E).trim(); 
 		},
 
-		/*
-		 * Returns a String containing the stresses for each syllable of the input text, delimited by semi-colons, 
-		 * @example "0:1:0:1", with 1's meaning 'stressed', and 0's meaning 'unstressed'
-		 */
 		_getStresses : function(word) {
 
 			var i, stresses = [], phones, raw = [],
@@ -2236,7 +2241,7 @@
 
 				phones = LetterToSound.getInstance().getPhones(word);
 				
-				//System.out.println("phones="+RiTa.asList(phones));
+				//console.log("phones="+RiTa.asList(phones));
 				if (phones && phones.length)
 					return RiString.syllabify(phones);
 
@@ -2606,6 +2611,7 @@
 				delete this._features.phonemes;
 				delete this._features.syllables;
 				delete this._features.pos;
+				delete this._features.text;
 			}			
 					    
 		    //this._features.mutable = "true";
@@ -2617,7 +2623,7 @@
 	
 			var phonemes = E, syllables = E, stresses = E, slash = '/',  delim = '-',
 				phones, lts, ltsPhones, useRaw, words = RiTa.tokenize(this._text), 
-				stressyls, lex = RiLexicon();//._getInstance(); 
+				stressyls, lex = RiLexicon();
 			
 			if (!this._features) this._initFeatureMap();
 			
@@ -2625,7 +2631,7 @@
 				
 				useRaw = false;
 				
-				phones = lex._getRawPhones(words[i]); 
+				phones = lex && lex._getRawPhones(words[i]); 
 				
 				if (!phones) {
 					
@@ -2746,10 +2752,10 @@
 			
 			var tags = this.pos();
 
-			if (!tags || !tags.length || index < 0 || index >= tags.length)
+			if (!tags || !tags.length)
 				return E;
-			
-			return tags[index];
+				
+			return tags[Math.min(index < 0 ? tags.length + index : index, tags.length - 1)];
 		},
 
 		wordAt : function(index) {
@@ -4542,26 +4548,34 @@
 			
 			for (var i = 0, l = words.length; i < l; i++) {
 	 
-				if (!strOk(words[i])) {
+	            
+				/*if (!words[i]) {
+				    
 					choices2d[i] = [];
 					continue;
-				}
+				}*/
 				
+                if (words[i].length < 1) {
+                    
+                    result.push(E);
+                    continue;
+                }
+
+                if (words[i].length == 1) {
+        
+                    result.push(this._handleSingleLetter(words[i]));
+                    continue;
+                }
+
 				var data = lex._getPosArr(words[i]);
 
 				if (!data || !data.length) {
 					
-					if (words[i].length == 1) {
-						
-						result.push(isNum(words[i].charAt(0)) ? "cd" : words[i]);
-					} 
-					else {
-						
-						result.push("nn");
-					}
-					choices2d[i] = [];  // TODO: OK?
+					choices2d[i] = [];
+                    result.push( (endsWith(words[i], 's') ? 'nns' : 'nn') );
 				} 
 				else {
+				    
 					result.push(data[0]);
 					choices2d[i] = data;
 				}
@@ -4571,6 +4585,22 @@
 			return this._applyContext(words, result, choices2d);	
 		},
 		
+        _handleSingleLetter(c) {
+            
+            var result = c;
+            
+            if (c === 'a' || c === 'A')
+              result = "dt";
+            else if (c === 'I')
+              result = "prp";
+            else if (c >= '0' && c <= '9')
+              result = "cd";
+            
+            //System.out.println("handleSingleLetter("+word+") :: "+result);
+            
+            return result;
+          },
+          
 		// Applies a customized subset of the Brill transformations
 		_applyContext : function(words, result, choices) {
 			
@@ -6973,8 +7003,8 @@
 	function log() {
 	
         if (RiTa.SILENT || !console) return;
-        for (var i = 0; i < arguments.length; i++)
-            console.log(arguments[i]);
+        
+		console.log.apply(console, arguments);
 	}
 
 	function strOk(str) {

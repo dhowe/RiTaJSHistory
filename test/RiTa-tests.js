@@ -11,7 +11,7 @@ var testResults = [
         assertion   : 'equal',
         tests : [
             { input: '', output: '' }, 
-            { input: 'The Laggin Dragon', output: 'dh-ax l-ae/g-ih-n d-r-ae-g/ax-n' },
+            { input: 'The Laggin Dragon', output: 'dh-ax l-ae/g-ih-n d-r-ae-g/aa-n' },
             { input: 'The emperor had no clothes on.', output: 'dh-ax eh-m-p/er/er hh-ae-d n-ow k-l-ow-dh-z aa-n .' },
             { input: 'The dog ran faster than the other dog. But the other dog was prettier.', output: 'dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .' }, 
             { input: '@#$%&*()', output: '@ # $ % ae-n-d * ( )' }
@@ -33,7 +33,7 @@ var runtests = function() {
     test("testGetSyllables", function() { // new-style
 
             var func = RiTa.getSyllables,
-                tests = testResults.testGetSyllables.tests;
+                tests = testResults[0].tests;
                 
             for (var i=0, len = tests.length; i< len; i++) {
             
@@ -61,7 +61,7 @@ var runtests = function() {
 
             txt = 'The Laggin Dragon';
             result = RiTa.getSyllables(txt);
-            answer = 'dh-ax l-ae/g-ih-n d-r-ae-g/ax-n';
+            answer = 'dh-ax l-ae/g-ih-n d-r-ae-g/aa-n';
             equal(result, answer);
 
             result = RiTa.getSyllables('@#$%&*()');

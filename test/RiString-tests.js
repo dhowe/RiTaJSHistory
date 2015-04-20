@@ -7,7 +7,8 @@ var runtests = function() {
 	
     QUnit.module("RiString", {
 	    setup: function () {
-			RiTa.SILENT = true;	
+			//RiTa.SILENT = true;	
+			//RiTa.USE_LEXICON = false;  // UNCOMMENT TO TEST WITHOUT LEXICON, USING ONLY LTS
 	    },
 	    teardown: function () {}
 	}); 
@@ -50,24 +51,28 @@ var runtests = function() {
 
     test("testAnalyze", function() { // same tests as testFeatures() below
 
+        var features = RiString("Mom & Dad, waiting for the car, ate a steak.").analyze().features();
+        ok(features);
+
+        var numWords =  features.tokens.split(" ").length;
+        equal(numWords, features.stresses.split(" ").length);
+        equal(numWords, features.phonemes.split(" ").length);
+        equal(numWords, features.syllables.split(" ").length);
+        equal(numWords, features.pos.split(" ").length);
+        
+        if (!RiTa.USE_LEXICON) return; // Not using lexicon, further tests should fail
+
+        equal(features.phonemes,  "m-aa-m ae-n-d d-ae-d , w-ey-t-ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
+        equal(features.syllables, "m-aa-m ae-n-d d-ae-d , w-ey-t/ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
+        equal(features.stresses,  "1 1 1 , 1/0 1 0 1 , 1 1 1 .");
+        
         var features = RiString("123").analyze().features();
         ok(features);
         equal(features.phonemes, "w-ah-n-t-uw-th-r-iy");
         equal(features.syllables, "w-ah-n/t-uw/th-r-iy");
         equal(features.stresses, "0/0/0");
 
-      	features = RiString("Mom & Dad, waiting for the car, ate a steak.").analyze().features();
-        ok(features);
-        equal(features.phonemes,  "m-aa-m ae-n-d d-ae-d , w-ey-t-ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
-        equal(features.syllables, "m-aa-m ae-n-d d-ae-d , w-ey-t/ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
-        equal(features.stresses,  "1 1 1 , 1/0 1 0 1 , 1 1 1 .");
-        
-		var numWords =  features.tokens.split(" ").length;
-    	equal(numWords, features.stresses.split(" ").length);
-    	equal(numWords, features.phonemes.split(" ").length);
-    	equal(numWords, features.syllables.split(" ").length);
-    	equal(numWords, features.pos.split(" ").length);
-    	
+
     	features = RiString("The dog ran faster than the other dog.  But the other dog was prettier.").analyze().features();
 		ok(features);
         equal(features.phonemes,  "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g . b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er .");
@@ -76,8 +81,8 @@ var runtests = function() {
         
         features = RiString("The laggin dragon").analyze().features();
         ok(features);
-        equal(features.phonemes, "dh-ax l-ae-g-ih-n d-r-ae-g-ax-n");
-        equal(features.syllables, "dh-ax l-ae/g-ih-n d-r-ae-g/ax-n");
+        equal(features.phonemes, "dh-ax l-ae-g-ih-n d-r-ae-g-aa-n");
+        equal(features.syllables, "dh-ax l-ae/g-ih-n d-r-ae-g/aa-n");
         equal(features.stresses, "0 1/1 1/0");
 
         features = RiString(".").analyze().features();
@@ -101,54 +106,22 @@ var runtests = function() {
 
     test("testFeatures", function() { 
 
-      
-        var features = RiString("123").features();
-        ok(features);
-        equal(features.phonemes, "w-ah-n-t-uw-th-r-iy");
-        equal(features.syllables, "w-ah-n/t-uw/th-r-iy");
-        equal(features.stresses, "0/0/0");
-
-        features = RiString("Mom & Dad, waiting for the car, ate a steak.").features();
-        ok(features);
-        equal(features.phonemes, "m-aa-m ae-n-d d-ae-d , w-ey-t-ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
-        equal(features.syllables, "m-aa-m ae-n-d d-ae-d , w-ey-t/ih-ng f-ao-r dh-ax k-aa-r , ey-t ey s-t-ey-k .");
-        equal(features.stresses, "1 1 1 , 1/0 1 0 1 , 1 1 1 .");
-
-        var numWords = features.tokens.split(" ").length;
-        equal(numWords, features.stresses.split(" ").length);
-        equal(numWords, features.phonemes.split(" ").length);
-        equal(numWords, features.syllables.split(" ").length);
-        equal(numWords, features.pos.split(" ").length);
-
-        features = RiString("The dog ran faster than the other dog.  But the other dog was prettier.").features();
-        ok(features);
-        equal(features.phonemes, "dh-ax d-ao-g r-ae-n f-ae-s-t-er dh-ae-n dh-ax ah-dh-er d-ao-g . b-ah-t dh-ax ah-dh-er d-ao-g w-aa-z p-r-ih-t-iy-er .");
-        equal(features.syllables, "dh-ax d-ao-g r-ae-n f-ae-s/t-er dh-ae-n dh-ax ah-dh/er d-ao-g . b-ah-t dh-ax ah-dh/er d-ao-g w-aa-z p-r-ih-t/iy/er .");
-        equal(features.stresses, "0 1 1 1/0 1 0 1/0 1 . 1 0 1/0 1 1 1/0/0 .");
-
-        features = RiString("The laggin dragon").features();
-        ok(features);
-        equal(features.phonemes, "dh-ax l-ae-g-ih-n d-r-ae-g-ax-n");
-        equal(features.syllables, "dh-ax l-ae/g-ih-n d-r-ae-g/ax-n");
-        equal(features.stresses, "0 1/1 1/0");
-
-        features = RiString(".").features();
-        ok(features);
-        equal(features.phonemes, ".");
-        equal(features.syllables, ".");
-        equal(features.stresses, ".");
-
-        features = RiString("1 2 7").features();
-        ok(features);
-        equal(features.phonemes, "w-ah-n t-uw s-eh-v-ax-n");
-        equal(features.syllables, "w-ah-n t-uw s-eh/v-ax-n");
-        equal(features.stresses, "0 0 1/0");
-
-        features = RiString("*").features();
-        ok(features);
-        equal(features.phonemes, "*");
-        equal(features.syllables, "*");
-        equal(features.stresses, "*"); 
+	    var rs = RiString("Returns the array of words.").analyze();
+	   	var features = rs.features();
+	    ok(features);
+	    ok(features[RiTa.TEXT]);
+	    ok(features[RiTa.SYLLABLES]);
+	    ok(features[RiTa.PHONEMES]);
+	    ok(features[RiTa.STRESSES]);
+	    ok(features[RiTa.TOKENS]);
+	    ok(features[RiTa.POS]);
+	    
+	    ok(rs.get(RiTa.SYLLABLES));
+	    ok(rs.get(RiTa.PHONEMES));
+	    ok(rs.get(RiTa.STRESSES));
+	    ok(rs.get(RiTa.TEXT));
+	    ok(rs.get(RiTa.TOKENS));
+	    ok(rs.get(RiTa.POS));
 
     });
     
@@ -582,9 +555,6 @@ var runtests = function() {
         var words = RiTa.tokenize(txt);
         deepEqual(words, [ "The", "dog" ]);
 
-        words = RiTa.tokenize("closed"); // tmp: move to RiTa.tests
-        deepEqual(words, [ "closed" ]);
-
         var rs = new RiString("asdfaasd");
         var result = rs.pos();
         deepEqual(result, [ "nn" ]);
@@ -592,6 +562,8 @@ var runtests = function() {
         rs = new RiString("clothes");
         result = rs.pos();
         deepEqual(result, [ "nns" ]);
+
+        if (!RiTa.USE_LEXICON) return; // Not using lexicon, further tests should fail
 
         rs = new RiString("There is a cat.");
         result = rs.pos();
@@ -614,6 +586,25 @@ var runtests = function() {
         rs = new RiString("There is a cat.");
         result = rs.posAt(3);
         equal("nn", result);
+        
+        rs = new RiString("There is a cat.");
+        result = rs.posAt(2);
+        equal("dt", result);
+    
+        // out of range tests
+    
+        rs = new RiString("There is a cat.");
+        result = rs.posAt(-3);
+        equal("dt", result);
+    
+        rs = new RiString("There is a cat.");
+        result = rs.posAt(-1);
+        equal(".", result);
+    
+        rs = new RiString("There is a cat.");
+        result = rs.posAt(300);
+        // console.log("res="+result);
+        equal(".", result);
     });
 
     test("testRemoveChar", function() {
@@ -1305,8 +1296,12 @@ var runtests = function() {
         var ph = rs.get(RiTa.PHONEMES);
         var sy = rs.get(RiTa.SYLLABLES);
         var st = rs.get(RiTa.STRESSES);
-        equal(ph, "dh-ax l-ae-g-ih-n d-r-ae-g-ax-n");
-        equal(sy, "dh-ax l-ae/g-ih-n d-r-ae-g/ax-n");
+        ok(ph && sy && st);
+    
+        if (!RiTa.USE_LEXICON) return; // Not using lexicon, further tests should fail
+
+        equal(ph, "dh-ax l-ae-g-ih-n d-r-ae-g-aa-n");
+        equal(sy, "dh-ax l-ae/g-ih-n d-r-ae-g/aa-n");
         equal(st, "0 1/1 1/0");
     });
     
@@ -1314,11 +1309,10 @@ var runtests = function() {
 		
       var rs = new RiString("Mom & Dad");
       rs.set("Id", "1000"); // TODO: test that this does not create default features
-      
       equal(rs.get("Id"), "1000");
-      ok(rs.get(RiTa.PHONEMES) !== null);
+
       //console.log(rs.get(RiTa.PHONEMES));
-      
+
       var features = rs.features();
       //console.log(features);
 
