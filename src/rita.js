@@ -1839,7 +1839,7 @@
 
 			if (!targetPhonesArr[0] || !(input && input.length)) return EA;
 
-console.log("TARGET "+targetPhonesArr);
+//console.log("TARGET "+targetPhonesArr);
 
 			for (entry in RiLexicon.data) {
 
@@ -1860,14 +1860,14 @@ console.log("TARGET "+targetPhonesArr);
 
 					minVal = med;
 					result = [ entry ];
-console.log("BEST "+entry + " "+med + " "+phonesArr);
+//console.log("BEST "+entry + " "+med + " "+phonesArr);
 
 				}
 
 				// another best to add
 				else if (med == minVal) {
 
-console.log("TIED "+entry + " "+med + " "+phonesArr);
+//console.log("TIED "+entry + " "+med + " "+phonesArr);
 
 					result.push(entry);
 				}
@@ -4585,7 +4585,7 @@ console.log("TIED "+entry + " "+med + " "+phonesArr);
 			return this._applyContext(words, result, choices2d);	
 		},
 		
-        _handleSingleLetter(c) {
+        _handleSingleLetter : function(c) {
             
             var result = c;
             
@@ -6979,10 +6979,8 @@ console.log("TIED "+entry + " "+med + " "+phonesArr);
 		return keys;
 	}
    
-	function err(msg) {
-		
-		//(!RiTa.SILENT) && console && console.trace(this);
-     
+	function err() {
+
         var msg = "[RiTa] " + arguments[0];
         for (var i = 1; i < arguments.length; i++)
             msg += '\n' + arguments[i];

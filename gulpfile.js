@@ -174,6 +174,21 @@ gulp.task('build.js', ['build-pre.js'], function() {
             .pipe(sym(buildDir + '/' + min.replace('-'+version, '')));
 });
 
+gulp.task('handle-error', ['clean'], function(cb) {
+
+    var combiner = require('stream-combiner2');
+    
+    var combined = combiner.obj( [
+        gulp.src('src/rita*.js'),
+            uglify(),
+            gulp.dest(buildDir + '/node/rita/lib')
+    ] );
+    combined.on('error', console.error.bind(console));
+
+    return combined;
+});
+
+
 // Concatenate & minify RiTaJS + node pkg resources, into dist
 gulp.task('build.node', ['clean'], function(cb) {
 
