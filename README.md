@@ -163,8 +163,17 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 #### Development Setup
 --------
-1. Download and install [npm](https://www.npmjs.org/) The easiest way to do this is to just install [node.js](http://nodejs.org/).
+1. Download and install [git](https://www.git-scm.com/), [npm](https://www.npmjs.org/), and [gulp](). If/once you have them, go to step #2. 
+  
+  a. You can find a version for your OS [here](https://www.git-scm.com/)
+  
+  b. The easiest way to do install npm is to just install [node.js](http://nodejs.org/).
+  
+  c. You can install gulp via npm as follows:
 
+  ```bash
+    $ npm install -g gulp
+    ```
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library.
 
   a. First, login to github and fork the project
