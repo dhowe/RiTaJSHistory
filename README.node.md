@@ -53,9 +53,9 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
     ```
 - [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
 
-    - First, login to github and fork the project
-
-    - Then, from a terminal/shell: 
+    a. First, login to github and fork the project  
+    b. Then, from a terminal/shell:
+    
   ```bash
   $ git clone https://github.com/dhowe/RiTaJS.git
   ```
