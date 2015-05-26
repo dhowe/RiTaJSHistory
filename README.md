@@ -165,8 +165,8 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 --------
 1. Download and install [git](https://www.git-scm.com/), [npm](https://www.npmjs.org/), and [gulp](). If you have them already, move on to step #2. 
   
-  a. You can find a version of __git__ for your OS [here](https://www.git-scm.com/)
-  b. The easiest way to install __npm__ is to install [node.js](http://nodejs.org/).
+  a. You can find a version of __git__ for your OS [here](https://www.git-scm.com/)  
+  b. The easiest way to install __npm__ is to install [node.js](http://nodejs.org/)  
   c. You can install __gulp__ via npm as follows:
 
   ```bash
@@ -174,7 +174,7 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
     ```
 2. [Fork and clone](https://help.github.com/articles/fork-a-repo) this library.
 
-  a. First, login to github and fork the project
+  a. First, login to github and fork the project  
   b. Then, from a terminal/shell:
 
     ```bash
