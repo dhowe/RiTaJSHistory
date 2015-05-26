@@ -163,13 +163,13 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 #### Development Setup
 --------
-1. Download and install [git](https://www.git-scm.com/), [npm](https://www.npmjs.org/), and [gulp](). If/once you have them, go to step #2. 
+1. Download and install [git](https://www.git-scm.com/), [npm](https://www.npmjs.org/), and [gulp](). If you have them already, move on to step #2. 
   
-  a. You can find a version for your OS [here](https://www.git-scm.com/)
+  a. You can find a version of __git__ for your OS [here](https://www.git-scm.com/)
   
-  b. The easiest way to do install npm is to just install [node.js](http://nodejs.org/).
+  b. The easiest way to install __npm__ is to install [node.js](http://nodejs.org/).
   
-  c. You can install gulp via npm as follows:
+  c. You can install __gulp__ via npm as follows:
 
   ```bash
     $ npm install -g gulp
