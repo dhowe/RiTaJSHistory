@@ -191,11 +191,11 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 4. To create the library from src, use gulp.
 
   ```bash
-  $ ./node_modules/.bin/gulp build
+  $ gulp build
   ```
 5. Run all tests (in phantomJS) with gulp.
 
   ```bash
-  $ ./node_modules/.bin/gulp test
+  $ gulp test
   ```
 6. Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
