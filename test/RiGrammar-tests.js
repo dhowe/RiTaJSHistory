@@ -115,7 +115,7 @@ var runtests = function() {
                     });
             }
         });
-return;
+
     test("testLoad", function() {
 
             var rg = new RiGrammar();
@@ -255,13 +255,13 @@ return;
 
         rg.addRule("<start>", "pet");
         equal(s=rg.expand(), "pet");
-        
+
 		//console.log(s);
 
         rg.reset();
         rg.addRule("<start>", "<pet>").addRule("<pet>", "dog");
         equal(s=rg.expand(), "dog");
-        
+
         rg.reset();
 	    rg.addRule("<start>", "the <pet> ran.");
 	    rg.addRule("<pet>", "dog");
@@ -273,7 +273,7 @@ return;
         rg.addRule("<rule1>", "cat", .4);
         rg.addRule("<rule1>", "dog", .6);
         rg.addRule("<rule1>", "boy", .2);
-        
+
 		ok(rg.hasRule("<rule1>"));
 
         var found1 = false, found2 = false, found3 = false;
@@ -284,14 +284,14 @@ return;
                 found1 = true;
             else if (res === "dog")
                 found2 = true;
-            else if (res === "boy") 
+            else if (res === "boy")
             	found3 = true;
         }
-        
+
         ok(found1);
         ok(found2);
         ok(found3);
-        
+
         var fail = false;
         for ( var i = 0; i < 20; i++) {
             var res = rg.expand()
@@ -308,7 +308,7 @@ return;
 	    rg.addRule("<pet>", "dog", .7);
 	    for (var i = 0; i < 10; i++)
 	      equal(rg.expand(), "the dog ran.");
-	      
+
 	        rg.reset();
         rg.addRule("<start>", "the <pet>.");
         rg.addRule("<pet>", "dog", .7);
@@ -320,7 +320,7 @@ return;
             if (r == 'the dog.') d++;
             if (r == 'the cat.') g++;
         }
-        
+
         // delta=20%
         ok(d > 50 && d < 100, d + "%  (dog =~ 70%)");
         ok(d < 90 && d > 0,   d + "% (dog =~ 70%)");
@@ -532,7 +532,7 @@ return;
                 s = "{ \"<start>\": \"hello &#124; name\" }";
             rg = new RiGrammar(s);
             res = rg.expand();
-            //console.log(res); 
+            //console.log(res);
             ok(res === "hello | name");
 
             s = "{ \"<start>\": \"hello: name\" }";

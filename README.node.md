@@ -7,7 +7,7 @@
 
 ### [The RiTa website](http://rednoise.org/rita)
 
-RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. It is implemented in Java and JavaScript (with a unified API for bothl). It is free/libre and open-source according to the GPL license.
+RiTa is designed to be an easy-to-use toolkit for experiments in natural language and generative literature. It is implemented in Java and JavaScript (with a unified API for both). It is free/libre and open-source according to the GPL license.
 
 About the project
 --------

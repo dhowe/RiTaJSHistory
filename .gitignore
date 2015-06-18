@@ -1,4 +1,5 @@
 **/web-export/*
+test/.DS_Store
 .javascript.liclipseprefs
 node_modules/
 **/node_modules/*
