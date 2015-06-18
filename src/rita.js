@@ -3055,11 +3055,13 @@
 
 		load : function(grammar) {
 
+			var yamlParse, ex;
+
 			this.reset();
 
 			if (is(grammar, S)) {
 
-				var yamlParse = this.getYamlParser();
+				yamlParse = this.getYamlParser();
 			  if (yamlParse) {
 
 			    try {
@@ -3078,7 +3080,7 @@
 			      grammar = JSON.parse(grammar);
 			    } catch (e) {
 
-			      var ex = e
+			      ex = e;
 			    }
 			  }
 			}
