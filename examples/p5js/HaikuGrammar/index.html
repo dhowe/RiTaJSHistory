@@ -3,7 +3,8 @@
     <title>Haiku (p5js)</title>
     <script src="../../lib/p5.min.js"></script>
     <script src="../../lib/js-yaml.js"></script>
-    <script src="../../lib/rita-latest.js"></script>
+    <!--script src="../../lib/rita.min.js"></script-->
+    <script src="../../../src/rita.js"></script>
     <script>
         var font, grammar, lines;
 
@@ -11,6 +12,8 @@
         {
             font = loadFont('../../fonts/Resagokr.otf');
             yaml = loadStrings('./data/haiku.yaml');
+
+            // or: http://localhost/RiTaJS/examples/p5js/HaikuGrammar/data/haiku.yaml
         }
 
         function setup()
