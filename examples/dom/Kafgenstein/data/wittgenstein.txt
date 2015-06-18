@@ -1,6 +1,6 @@
 Perhaps this book will be understood only by someone who has himself
-already had the thoughts that are expressed in it--or at least similar
-thoughts.--So it is not a textbook.--Its purpose would be achieved if it
+already had the thoughts that are expressed in it or at least similar
+thoughts. So it is not a textbook. Its purpose would be achieved if it
 gave pleasure to one person who read and understood it.
 
 The book deals with the problems of philosophy, and shows, I believe, that
@@ -9,7 +9,7 @@ is misunderstood. The whole sense of the book might be summed up the
 following words: what can be said at all can be said clearly, and what we
 cannot talk about we must pass over in silence.
 
-Thus the aim of the book is to draw a limit to thought, or rather--not to
+Thus the aim of the book is to draw a limit to thought, or rather not to
 thought, but to the expression of thoughts: for in order to be able to draw
 a limit to thought, we should have to find both sides of the limit
 thinkable i.e. we should have to be able to think what cannot be thought.
@@ -25,10 +25,10 @@ anticipated by someone else.
 
 If this work has any value, it consists in two things: the first is that
 thoughts are expressed in it, and on this score the better the thoughts are
-expressed--the more the nail has been hit on the head--the greater will be
-its value.--Here I am conscious of having fallen a long way short of what
+expressed the more the nail has been hit on the head the greater will be
+its value. Here I am conscious of having fallen a long way short of what
 is possible. Simply because my powers are too slight for the accomplishment
-of the task.--May others come and do it better.
+of the task.
 
 On the other hand the truth of the thoughts that are here communicated
 seems to me unassailable and definitive. I therefore believe myself to have
@@ -54,7 +54,7 @@ The world divides into facts.
 Each item can be the case or not the case while everything else
 remains the same.
 
-What is the case--a fact--is the existence of states of affairs.
+What is the case a fact is the existence of states of affairs.
 
 A state of affairs a state of things is a combination of objects
 things.
@@ -123,13 +123,13 @@ In that case we could not sketch any picture of the world true or
 false.
 
 It is obvious that an imagined world, however difference it may be
-from the real one, must have something-- a form--in common with it.
+from the real one, must have something  a form in common with it.
 
 Objects are just what constitute this unalterable form.
 
 The substance of the world can only determine a form, and not any
 material properties. For it is only by means of propositions that material
-properties are represented--only by the configuration of objects that they
+properties are represented only by the configuration of objects that they
 are produced.
 
 In a manner of speaking, objects are colourless.
@@ -239,7 +239,7 @@ There must be something identical in a picture and what it depicts,
 to enable the one to be a picture of the other at all.
 
 What a picture must have in common with reality, in order to be able
-to depict it--correctly or incorrectly--in the way that it does, is its
+to depict it correctly or incorrectly in the way that it does, is its
 pictorial form.
 
 A picture can depict any reality whose form it has. A spatial picture
@@ -255,7 +255,7 @@ A picture cannot, however, place itself outside its representational
 form.
 
 What any picture, of whatever form, must have in common with reality,
-in order to be able to depict it--correctly or incorrectly--in any way at
+in order to be able to depict it correctly or incorrectly in any way at
 all, is logical form, i.e. the form of reality.
 
 A picture whose pictorial form is logical form is called a logical
@@ -443,7 +443,7 @@ that our arbitrary conventions have given to parts of the original
 proposition. But if all the signs in it that have arbitrarily determined
 meanings are turned into variables, we shall still get a class of this
 kind. This one, however, is not dependent on any convention, but solely on
-the nature of the pro position. It corresponds to a logical form--a logical
+the nature of the pro position. It corresponds to a logical form a logical
 prototype.
 
 What values a propositional variable may take is something that is
@@ -463,7 +463,7 @@ expressions contained in it.
 A sign is what can be perceived of a symbol.
 
 So one and the same sign written or spoken, etc. can be common to
-two different symbols--in which case they will signify in different ways.
+two different symbols in which case they will signify in different ways.
 
 Our use of the same sign to signify two different objects can never
 indicate a common characteristic of the two, if we use it with two
@@ -472,14 +472,14 @@ we could choose two different signs instead, and then what would be left in
 common on the signifying side?
 
 In everyday language it very frequently happens that the same word
-has different modes of signification--and so belongs to different symbols--
+has different modes of signification and so belongs to different symbols
 or that two words that have different modes of signification are employed
 in propositions in what is superficially the same way. Thus the word 'is'
 figures as the copula, as a sign for identity, and as an expression for
 existence; 'exist' figures as an intransitive verb like 'go', and
 'identical' as an adjective; we speak of something, but also of something's
-happening. In the proposition, 'Green is green'--where the first word is
-the proper name of a person and the last an adjective--these words do not
+happening. In the proposition, 'Green is green' where the first word is
+the proper name of a person and the last an adjective these words do not
 merely have different meanings: they are different symbols.
 
 In this way the most fundamental confusions are easily produced the
@@ -489,7 +489,7 @@ In order to avoid such errors we must make use of a sign-language
 that excludes them by not using the same sign for different symbols and by
 not using in a superficially similar way signs that have different modes of
 signification: that is to say, a sign-language that is governed by logical
-grammar--by logical syntax. The conceptual notation of Frege and Russell
+grammar by logical syntax. The conceptual notation of Frege and Russell
 is such a language, though, it is true, it fails to exclude all mistakes.
 
 In order to recognize a symbol by its sign we must observe how it is
@@ -516,7 +516,7 @@ propositional sign cannot be contained in itself that is the whole of the
 
 The reason why a function cannot be its own argument is that the sign
 for a function already contains the prototype of its argument, and it
-cannot contain itself. 
+cannot contain itself.
 
 The rules of logical syntax must go without saying, once we know how
 each individual sign signifies.
@@ -536,7 +536,7 @@ symbols that signified it had in common. Thus, one by one, all kinds of
 composition would prove to be unessential to a name.
 
 Although there is something arbitrary in our notations, this much is
-not arbitrary--that when we have determined one thing arbitrarily,
+not arbitrary that when we have determined one thing arbitrarily,
 something else is necessarily the case. This derives from the essence of
 notation.
 
@@ -562,10 +562,10 @@ way, so that it would have a different resolution every time that it was
 incorporated in a different proposition.
 
 A proposition determines a place in logical space. The existence of
-this logical place is guaranteed by the mere existence of the constituents--
+this logical place is guaranteed by the mere existence of the constituents
 by the existence of the proposition with a sense.
 
-The propositional sign with logical co-ordinates--that is the logical
+The propositional sign with logical co-ordinates that is the logical
 place.
 
 In geometry and logic alike a place is a possibility: something can
@@ -573,7 +573,7 @@ exist in it.
 
 A proposition can determine only one place in logical space:
 nevertheless the whole of logical space must already be given by it.
-Otherwise negation, logical sum, logical product, etc., would introduce
+Otherwise negation, logical sum, logical product, etc , would introduce
 more and more new elements in co-ordination. The logical scaffolding
 surrounding a picture determines logical space. The force of a proposition
 reaches through the whole of logical space.
@@ -586,7 +586,7 @@ The totality of propositions is language.
 
 Man possesses the ability to construct languages capable of
 expressing every sense, without having any idea how each word has meaning
-or what its meaning is--just as people speak without knowing how the
+or what its meaning is just as people speak without knowing how the
 individual sounds are produced. Everyday language is a part of the human
 organism and is no less complicated than it. It is not humanly possible to
 gather immediately from it what the logic of language is. Language
@@ -612,8 +612,8 @@ apparent logical form of a proposition need not be its real one.
 A proposition is a picture of reality. A proposition is a model of
 reality as we imagine it.
 
-At first sight a proposition--one set out on the printed page, for
-example--does not seem to be a picture of the reality with which it is
+At first sight a proposition one set out on the printed page, for
+example does not seem to be a picture of the reality with which it is
 concerned. But neither do written notes seem at first sight to be a picture
 of a piece of music, nor our phonetic notation the alphabet to be a
 picture of our speech. And yet these sign-languages prove to be pictures,
@@ -700,8 +700,8 @@ experiment. Instead of, 'This proposition has such and such a sense, we can
 simply say, 'This proposition represents such and such a situation'.
 
 One name stands for one thing, another for another thing, and they
-are combined with one another. In this way the whole group--like a tableau
-vivant--presents a state of affairs.
+are combined with one another. In this way the whole group like a tableau
+vivant presents a state of affairs.
 
 The possibility of propositions is based on the principle that
 objects have signs as their representatives. My fundamental idea is that
@@ -722,12 +722,12 @@ This mathematical multiplicity, of course, cannot itself be the
 subject of depiction. One cannot get away from it when depicting.
 
 If, for example, we wanted to express what we now write as 'x.
-fx' by putting an affix in front of 'fx'--for instance by writing 'Gen. fx'-
+fx' by putting an affix in front of 'fx' for instance by writing 'Gen. fx'-
 -it would not be adequate: we should not know what was being generalized.
-If we wanted to signalize it with an affix 'g'--for instance by writing
-'fxg'--that would not be adequate either: we should not know the scope of
+If we wanted to signalize it with an affix 'g' for instance by writing
+'fxg' that would not be adequate either: we should not know the scope of
 the generality-sign. If we were to try to do it by introducing a mark into
-the argument-places--for instance by writing 'G,G. FG,G' --it would
+the argument-places for instance by writing 'G,G. FG,G'  it would
 not be adequate: we should not be able to establish the identity of the
 variables. And so on. All these modes of signifying are inadequate because
 they lack the necessary mathematical multiplicity.
@@ -748,8 +748,8 @@ that case one could say, for example, that 'p' signified in the true way
 what 'Pp' signified in the false way, etc.
 
 Can we not make ourselves understood with false propositions just as
-we have done up till now with true ones?--So long as it is known that they
-are meant to be false.--No! For a proposition is true if we use it to say
+we have done up till now with true ones? So long as it is known that they
+are meant to be false. No! For a proposition is true if we use it to say
 that things stand in a certain way, and they do; and if by 'p' we mean Pp
 and things stand as we mean that they do, then, construed in the new way,
 'p' is true and not false.
@@ -831,7 +831,7 @@ be said.
 Everything that can be thought at all can be thought clearly.
 Everything that can be put into words can be put clearly. 4.12 Propositions
 can represent the whole of reality, but they cannot represent what they
-must have in common with reality in order to be able to represent it--
+must have in common with reality in order to be able to represent it
 logical form. In order to be able to represent logical form, we should have
 to be able to station ourselves with propositions somewhere outside logic,
 that is to say outside the world.
@@ -969,7 +969,7 @@ Expressions of the form 'a = b' are, therefore, mere representational
 devices. They state nothing about the meaning of the signs 'a' and 'b'.
 
 Can we understand two names without knowing whether they signify the
-same thing or two different things?--Can we understand a proposition in
+same thing or two different things? Can we understand a proposition in
 which two names occur without knowing whether their meaning is the same or
 different? Suppose I know the meaning of an English word and of a German
 word that means the same: then it is impossible for me to be unaware that
@@ -989,7 +989,7 @@ and non-existence. Of these states of affairs any combination can exist and
 the remainder not exist.
 
 There correspond to these combinations the same number of
-possibilities of truth--and falsity--for n elementary propositions.
+possibilities of truth and falsity for n elementary propositions.
 
 Truth-possibilities of elementary propositions mean Possibilities of
 existence and non-existence of states of affairs.
@@ -1023,7 +1023,7 @@ a proposition. A proposition is the expression of its truth-conditions.
 Thus Frege was quite right to use them as a starting point when he
 explained the signs of his conceptual notation. But the explanation of the
 concept of truth that Frege gives is mistaken: if 'the true' and 'the
-false' were really objects, and were the arguments in Pp etc., then Frege's
+false' were really objects, and were the arguments in Pp etc , then Frege's
 method of determining the sense of 'Pp' would leave it absolutely
 undetermined.
 
@@ -1032,7 +1032,7 @@ possibilities is a propositional sign.
 
 It is clear that a complex of the signs 'F' and 'T' has no object or
 complex of objects corresponding to it, just as there is none
-corresponding to the horizontal and vertical lines or to the brackets.--
+corresponding to the horizontal and vertical lines or to the brackets.
 There are no 'logical objects'. Of course the same applies to all signs
 that express what the schemata of 'T's' and 'F's' express.
 
@@ -1077,7 +1077,7 @@ arithmetic.
 Tautologies and contradictions are not pictures of reality. They do
 not represent any possible situations. For the former admit all possible
 situations, and latter none. In a tautology the conditions of agreement
-with the world--the representational relations--cancel one another, so that
+with the world the representational relations cancel one another, so that
 it does not stand in any representational relation to reality.
 
 The truth-conditions of a proposition determine the range that it
@@ -1085,7 +1085,7 @@ leaves open to the facts. A proposition, a picture, or a model is, in the
 negative sense, like a solid body that restricts the freedom of movement of
 others, and in the positive sense, like a space bounded by solid substance
 in which there is room for a body. A tautology leaves open to reality the
-whole--the infinite whole--of logical space: a contradiction fills the
+whole the infinite whole of logical space: a contradiction fills the
 whole of logical space leaving no point of it for reality. Thus neither of
 them can determine reality in any way.
 
@@ -1106,11 +1106,11 @@ words, propositions that are true for every situation cannot be
 combinations of signs at all, since, if they were, only determinate
 combinations of objects could correspond to them. And what is not a
 logical combination has no combination of objects corresponding to it.
-Tautology and contradiction are the limiting cases--indeed the
-disintegration--of the combination of signs.
+Tautology and contradiction are the limiting cases indeed the
+disintegration of the combination of signs.
 
 Admittedly the signs are still combined with one another even in
-tautologies and contradictions--i.e. they stand in certain relations to one
+tautologies and contradictions i.e. they stand in certain relations to one
 another: but these relations have no meaning, they are not essential to the
 symbol.
 
@@ -1120,7 +1120,7 @@ whatsoever in such a way that every possible sense can be expressed by a
 symbol satisfying the description, and every symbol satisfying the
 description can express a sense, provided that the meanings of the names
 are suitably chosen. It is clear that only what is essential to the most
-general propositional form may be included in its description--for
+general propositional form may be included in its description for
 otherwise it would not be the most general form. The existence of a general
 propositional form is proved by the fact that there cannot be a proposition
 whose form could not have been foreseen i.e. constructed. The general
@@ -1208,7 +1208,7 @@ We cannot infer the events of the future from those of the present.
 
 The freedom of the will consists in the impossibility of knowing
 actions that still lie in the future. We could know them only if causality
-were an inner necessity like that of logical inference.--The connexion
+were an inner necessity like that of logical inference. The connexion
 between knowledge and what is known is that of logical necessity. 'A knows
 that p is the case', has no sense if p is a tautology.
 
@@ -1265,12 +1265,12 @@ the experiment is that the occurrence of the two events is independent of
 the circumstances of which I have no more detailed knowledge.
 
 The minimal unit for a probability proposition is this: The
-circumstances--of which I have no further knowledge--give such and such a
+circumstances of which I have no further knowledge give such and such a
 degree of probability to the occurrence of a particular event.
 
 It is in this way that probability is a generalization. It involves a
 general description of a propositional form. We use probability only in
-default of certainty--if our knowledge of a fact is not indeed complete,
+default of certainty if our knowledge of a fact is not indeed complete,
 but we do know something about its form. A proposition may well be an
 incomplete picture of a certain situation, but it is always a complete
 picture of something. A probability proposition is a sort of excerpt from
@@ -1370,7 +1370,7 @@ fact all the propositions of logic say the same thing, to wit nothing.
 Truth-functions are not material functions. For example, an
 affirmation can be produced by double negation: in such a case does it
 follow that in some sense negation is contained in affirmation? Does 'PPp'
-negate Pp, or does it affirm p--or both? The proposition 'PPp' is not about
+negate Pp, or does it affirm p or both? The proposition 'PPp' is not about
 negation, as if negation were an object: on the other hand, the possibility
 of negation is already written into affirmation. And if there were an
 object called 'P', it would follow that 'PPp' said something different from
@@ -1422,12 +1422,12 @@ and the specific.
 The solutions of the problems of logic must be simple, since they
 set the standard of simplicity. Men have always had a presentiment that
 there must be a realm in which the answers to questions are symmetrically
-combined--a priori--to form a self-contained system. A realm subject to the
+combined a priori to form a self-contained system. A realm subject to the
 law: Simplex sigillum veri.
 
 
 Though it seems unimportant, it is in fact significant that the
-pseudo-relations of logic, such as C and z, need brackets--unlike real
+pseudo-relations of logic, such as C and z, need brackets unlike real
 relations. Indeed, the use of brackets with these apparently primitive
 signs is itself an indication that they are not primitive signs. And surely
 no one is going to believe brackets have an independent meaning. 5.4611
@@ -1460,7 +1460,7 @@ in logic.
 
 Self-evidence, which Russell talked about so much, can become
 dispensable in logic, only because language itself prevents every logical
-mistake.--What makes logic a priori is the impossibility of illogical
+mistake. What makes logic a priori is the impossibility of illogical
 thought.
 
 We cannot give a sign the wrong sense.
@@ -1476,8 +1476,8 @@ and, if it has no sense, that can only be because we have failed to give a
 meaning to some of its constituents. Even if we think that we have done
 so. Thus the reason why 'Socrates is identical' says nothing is that we
 have not given any adjectival meaning to the word 'identical'. For when it
-appears as a sign for identity, it symbolizes in an entirely different way--
-the signifying relation is a different one--therefore the symbols also are
+appears as a sign for identity, it symbolizes in an entirely different way
+the signifying relation is a different one therefore the symbols also are
 entirely different in the two cases: the two symbols have only the sign in
 common, and that is an accident.
 
@@ -1485,19 +1485,19 @@ The number of fundamental operations that are necessary depends
 solely on our notation.
 
 All that is required is that we should construct a system of signs
-with a particular number of dimensions--with a particular mathematical
+with a particular number of dimensions with a particular mathematical
 multiplicity
 
 It is clear that this is not a question of a number of primitive
 ideas that have to be signified, but rather of the expression of a rule.
 
 Every truth-function is a result of successive applications to
-elementary propositions of the operation '-----TE,....'. This
+elementary propositions. This
 operation negates all the propositions in the right-hand pair of brackets,
 and I call it the negation of those propositions.
 
-When a bracketed expression has propositions as its terms--and the
-order of the terms inside the brackets is indifferent--then I indicate it
+When a bracketed expression has propositions as its terms and the
+order of the terms inside the brackets is indifferent then I indicate it
 by a sign of the form 'E'. 'E' is a variable whose values are terms of
 the bracketed expression and the bar over the variable indicates that it is
 the representative of ali its values in the brackets.  What the values of the
@@ -1517,7 +1517,7 @@ constructed with this operation, and how they may not be constructed with
 it; so it must be possible to find an exact expression for this.
 
 
-How can logic--all-embracing logic, which mirrors the world--use such
+How can logic all-embracing logic, which mirrors the world use such
 peculiar crotchets and contrivances? Only because they are all connected
 with one another in an infinitely fine network, the great mirror.
 
@@ -1609,8 +1609,8 @@ infinitely many names with different meanings.
 In the general propositional form propositions occur in other
 propositions only as bases of truth-operations.
 
-This shows too that there is no such thing as the soul--the subject,
-etc.--as it is conceived in the superficial psychology of the present day.
+This shows too that there is no such thing as the soul, as it is conceived in
+the superficial psychology of the present day.
 Indeed a composite soul would no longer be a soul.
 
 The correct explanation of the form of the proposition, 'A makes the
@@ -1637,7 +1637,7 @@ such a problem, that shows that we are on a completely wrong track.
 
 The 'experience' that we need in order to understand logic is not
 that something or other is the state of things, but that something is :
-that, however, is not an experience. Logic is prior to every experience--
+that, however, is not an experience. Logic is prior to every experience
 that something is so.
 
 And if this were not so, how could we apply logic? We might put it
@@ -1646,7 +1646,7 @@ then could there be a logic given that there is a world?
 
 Russell said that there were simple relations between different
 numbers of things individuals. But between what numbers? And how is this
-supposed to be decided?--By experience? There is no pre-eminent number.
+supposed to be decided? By experience? There is no pre-eminent number.
 
 It would be completely arbitrary to give any specific form.
 
@@ -1678,7 +1678,7 @@ propositions, then everyone who understands propositions in their C form
 must know It.
 
 In fact, all the propositions of our everyday language, just as they
-stand, are in perfect logical order.--That utterly simple thing, which we
+stand, are in perfect logical order. That utterly simple thing, which we
 have to formulate here, is not a likeness of the truth, but the truth
 itself in its entirety. Our problems are not abstract, but perhaps the
 most concrete that there are.
@@ -1712,9 +1712,9 @@ The world and life are one.
 There is no such thing as the subject that thinks or entertains
 ideas. If I wrote a book called The World as l found it , I should have to
 include a report on my body, and should have to say which parts were
-subordinate to my will, and which were not, etc., this being a method of
+subordinate to my will, and which were not, etc , this being a method of
 isolating the subject, or rather of showing that in an important sense
-there is no subject; for it alone could not be mentioned in that book.--
+there is no subject; for it alone could not be mentioned in that book.
 
 The subject does not belong to the world: rather, it is a limit of
 the world.
@@ -1740,7 +1740,7 @@ Thus there really is a sense in which philosophy can talk about the
 self in a non-psychological way. What brings the self into philosophy is
 the fact that 'the world is my world'. The philosophical self is not the
 human being, not the human body, or the human soul, with which psychology
-deals, but rather the metaphysical subject, the limit of the world--not a
+deals, but rather the metaphysical subject, the limit of the world not a
 part of it.
 
 What this says is just that every proposition is a result of
@@ -1787,7 +1787,7 @@ fact that the truth or falsity of non-logical propositions cannot be
 recognized from the propositions alone.
 
 The fact that the propositions of logic are tautologies shows the
-formal--logical--properties of language and the world. The fact that a
+formal logical properties of language and the world. The fact that a
 tautology is yielded by this particular way of connecting its constituents
 characterizes the logic of its constituents. If propositions are to yield a
 tautology when they are connected in a certain way, they must have certain
@@ -1860,8 +1860,8 @@ The propositions of logic describe the scaffolding of the world, or
 rather they represent it. They have no 'subject-matter'. They presuppose
 that names have meaning and elementary propositions sense; and that is
 their connexion with the world. It is clear that something about the world
-must be indicated by the fact that certain combinations of symbols--whose
-essence involves the possession of a determinate character--are
+must be indicated by the fact that certain combinations of symbols whose
+essence involves the possession of a determinate character are
 tautologies. This contains the decisive point. We have said that some
 things are arbitrary in the symbols that we use and that some things are
 not. In logic it is only the latter that express: but that means that logic
@@ -1870,8 +1870,8 @@ rather one in which the nature of the absolutely necessary signs speaks for
 itself. If we know the logical syntax of any sign-language, then we have
 already been given all the propositions of logic.
 
-It is possible--indeed possible even according to the old conception
-of logic--to give in advance a description of all 'true' logical
+It is possible indeed possible even according to the old conception
+of logic to give in advance a description of all 'true' logical
 propositions.
 
 Hence there can never be surprises in logic.
@@ -1985,12 +1985,12 @@ equations.
 
 
 The so-called law of induction cannot possibly be a law of logic,
-since it is obviously a proposition with sense.---Nor, therefore, can it be
+since it is obviously a proposition with sense. Nor, therefore, can it be
 an a priori law.
 
 The law of causality is not a law but the form of a law.
 
-'Law of causality'--that is a general name. And just as in mechanics,
+'Law of causality' that is a general name. And just as in mechanics,
 for example, there are 'minimum-principles', such as the law of least
 action, so too in physics there are causal laws, laws of the causal form.
 
@@ -2002,7 +2002,7 @@ We do not have an a priori belief in a law of conservation, but rather
 a priori knowledge of the possibility of a logical form.
 
 All such propositions, including the principle of sufficient reason,
-tile laws of continuity in nature and of least effort in nature, etc. etc.--
+tile laws of continuity in nature and of least effort in nature, etc. etc.
 all these are a priori insights about the forms in which the propositions
 of science can be cast.
 
@@ -2021,7 +2021,7 @@ than with a fine square mesh or conversely, and so on. The different nets
 correspond to different systems for describing the world. Mechanics
 determines one form of description of the world by saying that all
 propositions used in the description of the world must be obtained in a
-given way from a given set of propositions--the axioms of mechanics. It
+given way from a given set of propositions the axioms of mechanics. It
 thus supplies the bricks for building the edifice of science, and it says,
 'Any building that you want to erect, whatever it may be, must somehow be
 constructed with these bricks, and with these alone.' Just as with the
@@ -2066,8 +2066,8 @@ itself manifest.
 One might say, using Hertt:'s terminology, that only connexions that
 are subject to law are thinkable.
 
-We cannot compare a process with 'the passage of time'--there is no
-such thing--but only with another process such as the working of a
+We cannot compare a process with 'the passage of time' there is no
+such thing but only with another process such as the working of a
 chronometer. Hence we can describe the lapse of time only by relying on
 some other process. Something exactly analogous applies to space: e.g. when
 people say that neither of two events which exclude one another can
@@ -2124,7 +2124,7 @@ the only impossibility that exists is logical impossibility.
 For example, the simultaneous presence of two colours at the same
 place in the visual field is impossible, in fact logically impossible,
 since it is ruled out by the logical structure of colour. Let us think how
-this contradiction appears in physics: more or less as follows--a particle
+this contradiction appears in physics: more or less as follows a particle
 cannot have two velocities at the same time; that is to say, it cannot be
 in two places at the same time; that is to say, particles that are in
 different places at the same time cannot be identical. It is clear that
@@ -2136,7 +2136,7 @@ All propositions are of equal value.
 
 The sense of the world must lie outside the world. In the world
 everything is as it is, and everything happens as it does happen: in it no
-value exists--and if it did exist, it would have no value. If there is any
+value exists and if it did exist, it would have no value. If there is any
 value that does have value, it must lie outside the whole sphere of what
 happens and is the case. For all that happens and is the case is
 accidental. What makes it non-accidental cannot lie within the world, since
@@ -2152,7 +2152,7 @@ When an ethical law of the form, 'Thou shalt...' is laid down, one's
 first thought is, 'And what if I do, not do it?' It is clear, however, that
 ethics has nothing to do with punishment and reward in the usual sense of
 the terms. So our question about the consequences of an action must be
-unimportant.--At least those consequences should not be events. For there
+unimportant. At least those consequences should not be events. For there
 must be something right about the question we posed. There must indeed be
 some kind of ethical reward and ethical punishment, but they must reside in
 the action itself. And it is also clear that the reward must be something
@@ -2163,7 +2163,7 @@ subject of ethical attributes. And the will as a phenomenon is of interest
 only to psychology.
 
 If the good or bad exercise of the will does alter the world, it can
-alter only the limits of the world, not the facts--not what can be
+alter only the limits of the world, not the facts not what can be
 expressed by means of language. In short the effect must be that it becomes
 an altogether different world. It must, so to speak, wax and wane as a
 whole. The world of the happy man is a different one from that of the
@@ -2195,8 +2195,8 @@ solution.
 It is not how things are in the world that is mystical, but that it
 exists.
 
-To view the world sub specie aeterni is to view it as a whole--a
-limited whole. Feeling the world as a limited whole--it is this that is
+To view the world sub specie aeterni is to view it as a whole a
+limited whole. Feeling the world as a limited whole it is this that is
 mystical.
 
 When the answer cannot be put into words, neither can the question be
@@ -2221,12 +2221,12 @@ There are, indeed, things that cannot be put into words. They make
 themselves manifest. They are what is mystical.
 
 The correct method in philosophy would really be the following: to say
-nothing except what can be said, i.e. propositions of natural science--i.e.
-something that has nothing to do with philosophy -- and then, whenever
+nothing except what can be said, i.e. propositions of natural science i.e.
+something that has nothing to do with philosophy   and then, whenever
 someone else wanted to say something metaphysical, to demonstrate to him
 that he had failed to give a meaning to certain signs in his propositions.
-Although it would not be satisfying to the other person--he would not have
-the feeling that we were teaching him philosophy--this method would be the
+Although it would not be satisfying to the other person he would not have
+the feeling that we were teaching him philosophy this method would be the
 only strictly correct one.
 
 My propositions are elucidatory in this way: he who understands me

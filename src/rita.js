@@ -1199,11 +1199,12 @@
 
 		loadFrom : function(url, multiplier, regex, callback) {
 
-			// TODO: check multiplier and regex, if function, then use as callback
-
 			var me = this;
 
 			is(url,S) || ok(url,A);
+
+			// TODO: check multiplier and regex, if function, then use as callback
+			//if (is(multiplier,F)) callback = multiplier;
 
 			RiTa.loadString(url, function(data) {
 
