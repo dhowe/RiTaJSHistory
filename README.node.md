@@ -42,13 +42,20 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 #### Development Setup
 --------
-- Download and install [npm](https://www.npmjs.org/). The easiest way to do this is to just install [node](http://nodejs.org/). 
+- Download and install [git](https://www.git-scm.com/), [npm](https://www.npmjs.org/), and [gulp](). If you have them already, move on to step #2. 
+  
+  a. You can find a version of __git__ for your OS [here](https://www.git-scm.com/)  
+  b. The easiest way to install __npm__ is to install [node.js](http://nodejs.org/)  
+  c. You can install __gulp__ via npm as follows:
 
+  ```bash
+    $ npm install -g gulp
+    ```
 - [Fork and clone](https://help.github.com/articles/fork-a-repo) this library. 
 
-    - First, login to github and fork the project
-
-    - Then, from a terminal/shell: 
+    a. First, login to github and fork the project  
+    b. Then, from a terminal/shell:
+    
   ```bash
   $ git clone https://github.com/dhowe/RiTaJS.git
   ```
@@ -60,12 +67,12 @@ Please! We are looking for more coders to help out... Just press *Fork* at the t
 
 - To create the library from src, use gulp.
   ```bash
-  $ ./node_modules/.bin/gulp build
+  $ gulp build
   ```
 
 - Optionally run tests in node with gulp.
   ```bash
-  $ ./node_modules/.bin/gulp test.node
+  $ gulp test.node
   ```
 
 - Work on an existing [issue](https://github.com/dhowe/RiTa/issues?q=is%3Aopen+is%3Aissue+label%3ARiTaJS), then [submit a pull request...](https://help.github.com/articles/creating-a-pull-request)
