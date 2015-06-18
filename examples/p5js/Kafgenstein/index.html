@@ -1,0 +1,52 @@
+<html>
+<head>
+    <title>Kafgenstein (p5js)</title>
+    <script src="../../lib/p5.min.js"></script>
+    <!--script src="../../lib/rita.min.js"></script-->
+    <script src="../../../src/rita.js"></script>
+    <script>
+        var lines, markov, textString1, textString2;
+
+        function preload()
+        {
+            textString1 = loadStrings('./data/wittgenstein.txt');
+            textString2 = loadStrings('./data/kafka.txt');
+        }
+
+        function setup()
+        {
+            createCanvas(500, 500);
+
+            textSize(18);
+            
+            lines = "click to (re)generate!";
+            
+            // create a markov model w' n=3
+            markov = new RiMarkov(4);
+            
+            // load files into the model
+            markov.loadFrom( { textString1, textString2 } );
+        }
+
+        function draw()
+        {
+            background(255);
+            
+            for (var i in lines)
+                text(lines[i], 50, 50, 400, 400);
+        }
+
+        function mouseClicked()
+        {
+            if (!markov.ready()) return; 
+            
+            // RiText.disposeAll(); // clean-up old data
+            
+            lines = markov.generateSentences(10); // String[] 
+            
+            // lay out in rect (x=50 y=50, w=400, h=400)
+            // text(lines.join(''), 50, 50, 400, 400);
+        }
+    </script>
+</head>
+</html>
