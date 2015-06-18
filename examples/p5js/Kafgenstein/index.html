@@ -5,7 +5,7 @@
     <!--script src="../../lib/rita.min.js"></script-->
     <script src="../../../src/rita.js"></script>
     <script>
-        var lines, markov, textString1, textString2;
+        var lines, markov, textString1, textString2, x, y;
 
         function preload()
         {
@@ -19,21 +19,27 @@
 
             textSize(18);
             
-            lines = "click to (re)generate!";
+            textAlign(CENTER);
+            
+            lines = ["click to (re)generate!"];
+            
+            x = 50;
+            y = height / 2;
             
             // create a markov model w' n=3
             markov = new RiMarkov(4);
             
+            console.log("t1: ", typeof textString1);
+            
             // load files into the model
-            markov.loadFrom( { textString1, textString2 } );
+            markov.loadFrom( './data/kafka.txt' );
         }
 
         function draw()
         {
             background(255);
             
-            for (var i in lines)
-                text(lines[i], 50, 50, 400, 400);
+            text(lines, x, y, 400, 400);
         }
 
         function mouseClicked()
@@ -43,6 +49,8 @@
             // RiText.disposeAll(); // clean-up old data
             
             lines = markov.generateSentences(10); // String[] 
+            
+            x = y = 50;
             
             // lay out in rect (x=50 y=50, w=400, h=400)
             // text(lines.join(''), 50, 50, 400, 400);
