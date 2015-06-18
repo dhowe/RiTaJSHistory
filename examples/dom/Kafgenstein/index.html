@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kafgenstein (dom)</title>
+    <script src="../../lib/jquery-1.11.3.min.js"></script>
+    <!--script src="../../lib/rita.min.js"></script-->
+    <script src="../../../src/rita.js"></script>
+    <style>
+        div {
+            width: 500px;
+            height: 500px;
+            font-size: 18px;
+            background-color: rgb(255, 255, 255);
+        }
+     
+    </style>
+    <script>
+        var lines, markov, textString1, textString2;
+        
+        $(document).ready(function()
+        {            
+             $('span').text("click to (re)generate!");
+
+            markov = new RiMarkov(4);
+            
+            markov.loadFrom('./data/wittgenstein.txt', null, null, function(str)
+            {
+                $('div').click(createKafgenstein);
+            });
+
+        });
+        
+        function createKafgenstein() {
+            
+            if (!markov.ready()) return; 
+            
+            lines = markov.generateSentences(10); // String[] 
+             $('span').text(lines);
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        <span></span>
+    
+    </div>
+</body>
+</html>
