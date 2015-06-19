@@ -266,7 +266,8 @@
     getPastParticiple: function(verb) {
 
       // TODO: need to call stem() and try again if first try fails
-      return Conjugator().getPastParticiple(verb);
+      // Cyrus: now it can correctly handle 'playing', 'playable'
+      return Conjugator().getPastParticiple(this.stem(verb));
     },
 
     // TODO: 2 examples
