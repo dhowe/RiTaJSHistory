@@ -15,7 +15,7 @@
             display: flex;
             display: -webkit-flex;
         }
-        
+
         span {
             display: flex;
             display: -webkit-flex;
@@ -23,6 +23,7 @@
             -webkit-justify-content: center;
             align-items: center; /* align vertical */
             -webkit-align-items: center;
+            line-height: 20px;
             width: 400px;
             height: 400px;
             margin: 50px;
@@ -33,9 +34,6 @@
 
         $(document).ready(function()
         {
-            $('div').click(generate);
-            $('span').text("click to (re)generate!");
-
             markov = new RiMarkov(4);
 
             RiTa.loadString('./data/kafka.txt', function(data1)
@@ -46,24 +44,26 @@
                     markov.loadText(data2);
                 });
             });
+
+            $('span').text("click to (re)generate!");
+            $('div').click(generate);
         });
 
         function generate()
         {
             if (!markov.ready()) return;
 
-            lines = markov.generateSentences(10); // String[]
-            
-            $('span').css('align-items', 'stretch'); // Default. Items are stretched to fit the container
-            
+            lines = markov.generateSentences(10);
+
             $('span').text(lines.join(' '));
+            $('span').css('align-items', 'stretch');
         }
     </script>
 </head>
 
 <body>
     <div>
-        <span></span>
+    <span></span>
     </div>
 </body>
 
