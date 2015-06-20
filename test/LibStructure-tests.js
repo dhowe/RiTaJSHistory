@@ -2,18 +2,18 @@
     QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
 
 var runtests = function() {
-	   
+
     QUnit.module("LibraryStructure", {
 	    setup: function () {},
 	    teardown: function () {}
 	});
-	
+
     // NOTE: Instances of RiText are not available on this page
 
     test("Public Api Functions", function() {
-    
+
         if (QUnit.checkAPI) {
-            
+
             var pathToDocs = '../../RiTa/docs/json/';
             QUnit.checkAPI('RiTaEvent', RiTaEvent, new RiTaEvent(this), pathToDocs);
             QUnit.checkAPI('RiTa', RiTa, RiTa, pathToDocs);
@@ -23,7 +23,7 @@ var runtests = function() {
             QUnit.checkAPI('RiLexicon', RiLexicon, RiLexicon(), pathToDocs);
         }
         else {
-        
+
             console.log("[TEST] Skipping checkAPI() for LibraryStructure (node-only)");
             ok("Only check in Node");
         }
@@ -46,10 +46,10 @@ var runtests = function() {
     test("Private Statics (funs)", function() {
 
         if (typeof window != 'undefined' && window) {
-            
+
             //equal(typeof RiText._handleLeading, 'function');
             //equal(typeof RiText._disposeOne, 'function');
-            
+
              // these fail in phantom outside the conditional ??
 			equal(typeof is, 'undefined');
         }
@@ -58,9 +58,9 @@ var runtests = function() {
         equal(typeof _disposeOne, 'undefined');
 
     });
-    
+
     test("Private Statics (vars)", function() {
-			
+
         equal(typeof _VERSION_, 'undefined');
         equal(typeof RiTa._VERSION_, 'undefined');
         equal(typeof timers, 'undefined');
@@ -91,14 +91,7 @@ var runtests = function() {
 
         equal(typeof RiTa.splitSentences, 'function');
         equal(typeof RiTa.getPhonemes, 'function');
-        equal(typeof RiTa.timer, 'function');
         equal(typeof RiTa.random, 'function');
-
-        if (typeof window != 'undefined') {
-            
-            //equal(typeof RiText.random, 'function');
-            //equal(typeof RiText.timer, 'function');
-        }
     });
 
     test("Public Constants", function() {
@@ -140,7 +133,7 @@ var runtests = function() {
         equal(typeof RiString, 'function'); // pub
         equal(typeof RiGrammar, 'function');
         equal(typeof RiLexicon, 'function');
-        
+
         notEqual(typeof RiTa, 'function'); // prv
 
         var rx = new RiString("hello");
@@ -150,13 +143,13 @@ var runtests = function() {
         equal(typeof rx, 'object');
 
         var lr = RiGrammar();
-        equal(typeof lr, 'object'); 
+        equal(typeof lr, 'object');
 
         var lg = new RiGrammar();
         equal(typeof lg, 'object');
-        
+
         if (typeof window != 'undefined') {
-            
+
             equal(typeof RiText, 'function');
 
         }

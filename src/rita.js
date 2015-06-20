@@ -1585,14 +1585,13 @@
 
       if (typeof _RiTa_DICT != 'undefined' && RiTa.USE_LEXICON) {
 
-        console.log('[RiTa] Loading lexicon data...');
+        //console.log('[RiTa] Loading lexicon data...');
+        //RiLexicon.data = _RiTa_DICT;
 
-        RiLexicon.data = _RiTa_DICT;
-
-        /*RiLexicon.data = {}; // changed 6/20/15 DCH
+        RiLexicon.data = {};
         for (var word in _RiTa_DICT) {
           RiLexicon.data[word] = _RiTa_DICT[word]; // needed?
-        }*/
+        }
 
       } else {
 
@@ -6708,6 +6707,7 @@
     window['RiMarkov'] = RiMarkov;
     window['RiTaEvent'] = RiTaEvent;
     window['RiWordNet'] = RiWordNet;
+
   } else if (typeof module != 'undefined' && module.exports) { // for node
 
     module.exports['RiTa'] = RiTa;
@@ -6721,7 +6721,5 @@
   }
 
   /*jshint +W069 */
-
-  RiTa.p5Compatible(false);
 
 })(typeof window !== 'undefined' ? window : null);

@@ -255,7 +255,7 @@ gulp.task('lint', function() {
     });
 
 // Test(node): gulp test.node (all) || gulp test.node --name RiString
-gulp.task('test.node.pkg', function(cb) {
+/*gulp.task('test.node.pkg', function(cb) {
 
         var testrunner = require("qunit");
 
@@ -293,10 +293,10 @@ gulp.task('test.node.pkg', function(cb) {
             }, function(err, report) {
                 if (err) console.error(err);
             });
-    });
+    });*/
 
 // Test(node): gulp test.node (all) || gulp test.node --name RiString
-gulp.task('test.node', function(cb) {
+gulp.task('test', function(cb) {
 
         var testrunner = require("qunit");
 
@@ -339,7 +339,7 @@ gulp.task('test.node', function(cb) {
 
 
 // Test(phantom): gulp test (all) || gulp test --name RiString
-gulp.task('test', function() {
+gulp.task('test.phantom', function() {
 
         var tests = [testDir + 'LibStructure-tests.html', testDir + '/Ri*.html'];
 
@@ -359,7 +359,7 @@ gulp.task('test', function() {
     });
 
 
-//gulp.task('node', [ 'clean','test.node','build.node','copy-node' ]);
+//gulp.task('node', [ 'clean','test','build.node','copy-node' ]);
 
 gulp.task('build', ['build.js']); // 'build.node' ]);
 gulp.task('default', ['help']);

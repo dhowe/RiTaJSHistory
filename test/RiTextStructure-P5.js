@@ -2,7 +2,7 @@
     QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
 
 var runtests = function() {
-    
+
     test("Constructors", function() {
 
         equal(typeof RiText, 'function');
@@ -36,13 +36,13 @@ var runtests = function() {
     });
 
     test("Public Constants", function() {
- 
+
 		ok(RiText.PARAGRAPH_BREAK);
 		ok(RiText.LINE_BREAK);
 		ok(RiTa.LEFT);
 		ok(RiTa.CENTER);
 		ok(RiTa.UNKNOWN);
-		ok(RiTa.TIMER); 
+		ok(RiTa.TIMER);
     });
 
     test("Public Statics", function() {
@@ -132,7 +132,7 @@ var runtests = function() {
     ////////////////////////////////////////////////////////////////////////////
 
     // test("Member Functions[compat]", function() {
-// 
+//
         // RiTa.p5Compatible(1);
         // ok(typeof RiText().fill == 'function');
         // ok(typeof RiText().textAlign == 'function');
@@ -143,18 +143,18 @@ var runtests = function() {
 
     test("Member Functions[!compat]", function() {
 
-        RiTa.p5Compatible(0);
+        //RiTa.p5Compatible(0);
         ok(typeof RiText().fill == 'function');
         ok(typeof RiText().textAlign == 'undefined');
         ok(typeof RiText().textFont == 'undefined');
         ok(typeof RiText().textSize == 'undefined');
         ok(typeof RiText().setColor == 'undefined');
-        RiTa.p5Compatible(1);
+        //RiTa.p5Compatible(1);
     });
 
     test("Global Objects[!compat]", function() {
 
-        RiTa.p5Compatible(0);
+        //RiTa.p5Compatible(0);
         ok(typeof size != 'function');
         ok(typeof background != 'function');
         ok(typeof random != 'function');
@@ -162,9 +162,9 @@ var runtests = function() {
 
     test("Public Statics[!compat]", function() {
 
-        RiTa.p5Compatible(0);
+        //RiTa.p5Compatible(0);
         ok(typeof RiText.setDefaultFont, 'undefined');
         ok(typeof RiText.setDefaultColor, 'undefined');
-        RiTa.p5Compatible(1);
+        //RiTa.p5Compatible(1);
     });
 }
