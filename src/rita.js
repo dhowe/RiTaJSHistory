@@ -4,7 +4,6 @@
 
   var _VERSION_ = '##version##';
 
-  /*  @private Simple type-checking functions */
   var Type = {
 
       N: 'number',
@@ -46,7 +45,7 @@
 
   var RiText = {};
 
-  RiText._graphics = function() {}; // return undef
+  RiText._graphics = function() {};
 
   // ////////////////////////////////////////////////////////////
   // RiTa object (singleton)
@@ -63,7 +62,7 @@
     /* For tokenization, Can't -> Can not, etc. */
     SPLIT_CONTRACTIONS: false,
 
-    // :::: For RiTaEvents :::::::::
+    // For RiTaEvents =================================
 
     MOVE_TO: "MoveTo",
     COLOR_TO: "ColorTo",
@@ -156,8 +155,6 @@
 
     // Start Methods =================================
 
-    start: function() { /* no-op, just for api */ },
-
     untokenize: function(arr, delim, adjustPunctuationSpacing) {
 
       delim = delim || SP;
@@ -205,80 +202,6 @@
       var dx = x1 - x2,
         dy = y1 - y2;
       return Math.sqrt(dx * dx + dy * dy);
-    },
-
-    // TODO: test (with and w'out callback)
-    timer: function(period, callback) {
-
-      var a = arguments,
-        id, timer;
-
-      // if 1st arg is an object (e.g., 'this'), ignore it...
-      if (a.length && is(a[0], O))
-        a = Array.prototype.slice.call(a, 1);
-
-      if (a.length < 1)
-        throw Error("Bad args to RiTa.timer(" + a + ")");
-
-      callback = a.length > 1 ? a[1] : null;
-
-      // TODO: need to pass Id to RiTaEvent here (to match Java-API[or change Java**])
-      timer = new Timer(
-        function() {
-          RiTaEvent(RiTa, 'tick')._fire(callback);
-        }, [a[0]] * 1000, true);
-
-      timer.go();
-      id = timer.id();
-      timers[id] = timer;
-
-      return id;
-    },
-
-    // TODO: test
-    stopTimer: function(id) {
-
-      // TODO: THIS DEFINITELY BROKEN
-      if (timers[id])
-        timers[id].stop();
-      else
-        warn('no timer with id: ' + id);
-    },
-
-    // TODO: test
-    pauseTimer: function(id, pauseSec) {
-
-      //console.log("id: "+id);
-
-      pauseSec = is(pauseSec, N) ? pauseSec : Number.MAX_VALUE;
-
-      if (timers[id]) {
-
-        timers[id].pause();
-
-        var theId = id;
-
-        //console.log("OK-theId: "+theId);
-
-        setTimeout(function() {
-          if (timers[theId])
-            timers[theId].play();
-          else
-            warn("no timer!!!");
-        }, pauseSec * 1000);
-
-        return theId;
-      } else {
-
-        warn('no timer with id: ' + id);
-      }
-
-      return -1;
-    },
-
-    _isPosTag: function(tag) {
-
-      return PosTagger.isTag(tag);
     },
 
     _tagForPENN: function(words) {
@@ -333,25 +256,6 @@
       return sb.trim();
     },
 
-    // TODO: example
-    posToWordNet: function(tag) {
-
-      if (!strOk(tag)) return E;
-
-      if (PosTagger.isNoun(tag))
-        return 'n';
-      else if (PosTagger.isVerb(tag))
-        return 'v';
-      else if (PosTagger.isAdverb(tag))
-        return 'r';
-      else if (PosTagger.isAdj(tag))
-        return 'a';
-      else {
-        warn(tag + " is not a valid pos-tag");
-        return '-';
-      }
-    },
-
     getPresentParticiple: function(verb) {
 
       // TODO: need to call stem() and try again if first try fails
@@ -376,7 +280,8 @@
       return s.charAt(0).toUpperCase() + s.substring(1);
     },
 
-    // TODO: 2 examples (regular & irregular) in javadoc
+    // TODO: 2 examples (regular & irregular) in docs
+
     pluralize: function(word) {
 
       if (!strOk(word)) return E;
@@ -397,13 +302,12 @@
       return DEFAULT_PLURAL_RULE.fire(word);
     },
 
-    // TODO: 2 examples (regular & irregular) in javadoc
+    // TODO: 2 examples (regular & irregular) in docs
 
     singularize: function(word) {
 
       if (!strOk(word)) return E;
 
-      //// TODO: WHY IS THIS NOT IN JAVA? ////
       var i, rule, rules = SINGULAR_RULES;
 
       if (inArray(MODALS, word.toLowerCase())) {
@@ -429,7 +333,8 @@
 
     tokenize: function(words, regex) {
 
-      //TODO: 2 examples for doc comment, one with 1 arg, one with 2 (a regex that splits on spaces)
+      //TODO: 2 examples for doc comment, one with 1 arg,
+      // one with 2 (a regex that splits on spaces)
 
       if (regex) return words.split(regex);
 
@@ -473,39 +378,11 @@
       return trim(words).split(/\s+/); // DCH: fixed bug here, 6/3/12
     },
 
-    // TODO: test and (probably) re-implement from RiTa (RiSplitter.java)
     splitSentences: function(text, regex) {
 
       var arr = text.match(/(\S.+?[.!?])(?=\s+|$)/g);
 
       return (text.length && arr && arr.length) ? arr : [text];
-    },
-
-    /*
-     * Returns true if and only if the string matches 'pattern'
-     *
-     * @param {string} string string to test
-     * @param {string | regex} pattern object containing regular expression
-     * @returns {boolean} true if matched, else false
-     */
-    _regexMatch: function(string, pattern) {
-
-      if (!string || !pattern)
-        return false;
-
-      if (typeof pattern === S)
-        pattern = new RegExp(pattern);
-
-      return pattern.test(string);
-    },
-
-    _regexReplace: function(string, pattern, replacement) {
-
-      if (!string || !pattern)
-        return E;
-      if (typeof pattern === S)
-        pattern = new RegExp(pattern); // TODO: is this necessary?
-      return string.replace(pattern, replacement);
     },
 
     isAbbreviation: function(input, caseSensitive) {
@@ -515,7 +392,6 @@
       return inArray(this.ABBREVIATIONS, input);
     },
 
-    // TODO: make sure this is getting tested
     _loadStringNode: function(url, callback, linebreakChars) {
 
       var data = '',
@@ -540,9 +416,9 @@
           });
         };
 
-        //var req = require('http').get(url, httpcb); // or this?
         var req = require('http').request(url, httpcb);
-        req.on('socket', function(socket) { // shouldnt be needded
+        req.on('socket', function(socket) { // shouldnt be needed
+
           socket.setTimeout(3000); // ?
           socket.on('timeout', function() {
             req.abort();
@@ -550,11 +426,13 @@
           });
         });
         req.end();
+
       } else {
 
         // try with node file-system
         var rq = require('fs');
         rq.readFile(url, function(e, data) {
+
           if (e || !data) {
             err("[Node] Error reading file: " + url + "\n" + e);
             throw e;
@@ -562,6 +440,7 @@
           data = data.toString('utf-8').replace(/[\r\n]+/g, lb).trim();
           me.fireDataLoaded(url, callback, data);
         });
+
       }
     },
 
@@ -609,7 +488,6 @@
         }
 
         data = htmlDecode(data.replace(/[\r\n]+/g, lb).trim());
-
         me.fireDataLoaded(url, callback, data);
       };
     },
@@ -628,7 +506,6 @@
 
     },
 
-    // TODO: add NodeJS tests for all loadXX methods
     loadString: function(url, callback, linebreakChars) {
 
       ok(url, S);
@@ -785,8 +662,12 @@
 
         for (var z = 0; z < num; z++) o.push(z);
 
-        // Array shuffle, from Jonas Raoni Soares Silva (http://jsfromhell.com/array/shuffle)
-        for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x) {}
+        // Array shuffle, from Jonas Raoni Soares Silva
+        // (http://jsfromhell.com/array/shuffle)
+        for (var j, x, i = o.length; i; j = parseInt(Math.random() * i),
+          x = o[--i], o[i] = o[j], o[j] = x) {
+
+          }
       }
 
       return o;
@@ -879,7 +760,7 @@
 
     stem: function(word, type) {
 
-      type = type || 'Lancaster'; // USE CONSTANTS
+      type = type || 'Lancaster';
 
       if (type != 'Lancaster' && type != 'Porter' && type != 'Pling')
         err('Bad stemmer type: ' + type);
@@ -903,57 +784,6 @@
       return res.join(SP);
     },
 
-    p5Compatible: function(value) { // TODO: remove? yes, no one cares (cnage to autoLoop() or similar)
-
-      if (!arguments.callee.setupAndDraw) {
-
-        arguments.callee.setupAndDraw = function() {
-          if (typeof window.setup == F) window.setup();
-          if (typeof window.draw == F && typeof RiText.loop == F) RiText.loop();
-        };
-      }
-
-      if (typeof window != 'undefined' && window) {
-
-        // TODO: add mouse-handling methods here?
-        if (typeof window.mouseClicked == F)
-          window.onmouseup = window.mouseClicked;
-        if (typeof window.mousePressed == F)
-          window.onmousedown = window.mousePressed;
-        if (typeof window.mouseReleased == F)
-          window.onmouseup = window.mouseReleased;
-        if (typeof window.mouseMoved == F)
-          window.onmousemove = window.mouseMoved;
-      }
-
-      if (value) {
-
-        if (typeof window != 'undefined' && window && !hasProcessing) {
-
-          if (!window.UP) window.UP = RiTa.UP;
-          if (!window.DOWN) window.DOWN = RiTa.DOWN;
-          if (!window.LEFT) window.LEFT = RiTa.LEFT;
-          if (!window.RIGHT) window.RIGHT = RiTa.RIGHT;
-          if (!window.CENTER) window.CENTER = RiTa.CENTER;
-
-          if (!window.onload) window.onload = arguments.callee.setupAndDraw;
-        }
-      } else { // non-compatible mode (clear extra stuff)
-
-        if (typeof window != 'undefined' && window && !hasProcessing) {
-
-          // are you sure about this?
-          if (window.UP === RiTa.UP) delete window.UP;
-          if (window.DOWN === RiTa.DOWN) delete window.DOWN;
-          if (window.LEFT === RiTa.LEFT) delete window.LEFT;
-          if (window.RIGHT === RiTa.RIGHT) delete window.RIGHT;
-          if (window.CENTER === RiTa.CENTER) delete window.CENTER;
-          if (window.onload && (window.onload == arguments.callee.setupAndDraw))
-            window.onload = undefined; // ?
-        }
-      }
-    },
-
     // Converts 'input' to Titlecase (1st letter upper, rest lower)
     _titleCase: function(input) {
 
@@ -966,7 +796,7 @@
      * Takes pair of strings or string-arrays and returns the min-edit distance
      * @param normalized based on max-length if 3rd (optional) parameter is true (default=f).
      */
-    minEditDist: function(a, b, adjusted) { // TODO: add to docs/tests
+    minEditDist: function(a, b, adjusted) {
 
       var fun = !adjusted ? MinEditDist.computeRaw : MinEditDist.computeAdjusted;
       return fun.call(MinEditDist, a, b);
@@ -980,12 +810,9 @@
 
   var RiMarkov = makeClass();
 
-  /* constant for max # of tries for a generation */
   RiMarkov.MAX_GENERATION_ATTEMPTS = 1000;
-
   RiMarkov._SSRE = /"?[A-Z][a-z"',;`-]*/;
-
-  RiMarkov._SSDLM = 'D=l1m_'; // TODO:  (OR use HTML-style tag) ??
+  RiMarkov._SSDLM = 'D=l1m_';
 
   RiMarkov.prototype = {
 
@@ -1410,7 +1237,6 @@
 
     _tracePathFromRoot: function(node) {
 
-      // (TODO: change this
       node.pathFromRoot(this.pathTrace);
 
       this.pathTrace.pop(); // ignore the first element
@@ -1419,12 +1245,11 @@
         var search = this.pathTrace.pop();
         mn = mn.lookup(search);
       }
+
       return mn;
     },
 
     _nextNodeForArr: function(previousTokens) {
-
-      //if (!is(previousTokens,A)) return this.root;
 
       // Follow the seed path down the tree
       var firstLookupIdx = Math.max(0, previousTokens.length - (this._n - 1)),
@@ -1444,30 +1269,24 @@
       var attempts = 0,
         selector, pTotal = 0,
         nodes = current.childNodes(),
-        MAX_PROB_MISSES = 1000;
+        maxProbMisses = 1000;
 
       while (true) {
 
         pTotal = 0;
         selector = Math.random();
-        //console.log("current="+current+", selector="+selector);
         for (var i = 0, j = nodes.length; i < j; i++) {
 
           var child = nodes[i];
 
-          //console.log("child="+child);
           pTotal += child.probability();
 
-          //console.log("pTotal="+pTotal);
           if (current.isRoot() && (this.isSentenceAware && !child.isSentenceStart())) {
-            //console.log("continuing...");
             continue;
           }
           if (selector < pTotal) {
-            //console.log("returning "+child+"\n====================");
             return child;
           }
-          //console.log("selector >= pTotal\n====================");
         }
 
         attempts++;
@@ -1475,7 +1294,7 @@
           ' Make sure there are a sufficient\n       # of sentences' +
           ' in the model that are longer than \'minSentenceLength\'');
 
-        if (attempts == MAX_PROB_MISSES) // should never happen
+        if (attempts == maxProbMisses) // should never happen
           err('PROB. MISS' + current + ' total=' + pTotal + ' selector=' + selector);
       }
     },
@@ -1564,11 +1383,7 @@
 
     _addSentenceSequence: function(toAdd) {
 
-      //log("_addSentenceSequence: "+toAdd.length);
-
       var node = this.root;
-
-      //this.root.count += toAdd.length; // here?
 
       for (var i = 0; i < toAdd.length; i++) {
 
@@ -1611,8 +1426,6 @@
     },
 
     _findNode: function(path) {
-
-      //log("RiMarkov.findNode("+path.toString()+")");
 
       if (!path || !is(path, A) || !path.length)
         return null;
@@ -1774,14 +1587,18 @@
 
         console.log('[RiTa] Loading lexicon data...');
 
-        RiLexicon.data = {}; // TODO: test perf. of this
+        RiLexicon.data = _RiTa_DICT;
+
+        /*RiLexicon.data = {}; // changed 6/20/15 DCH
         for (var word in _RiTa_DICT) {
           RiLexicon.data[word] = _RiTa_DICT[word]; // needed?
-        }
+        }*/
+
       } else {
 
         if (!RiLexicon.emittedWarning)
-          warn("RiTa lexicon appears to be missing! Part-of-speech tagging (at least) will be inaccurate");
+          warn('RiTa lexicon appears to be missing! Part-of-speech tagging (at least) will be inaccurate');
+
         RiLexicon.emittedWarning = true
       }
     },
@@ -2268,8 +2085,6 @@
 
     _getRawPhones: function(word, useLTS) {
 
-      // TODO: test this with useLTS=true
-
       var phones, data = this._lookupRaw(word);
       useLTS = useLTS || false;
 
@@ -2310,14 +2125,11 @@
       return (pl.length > 0) ? pl[0] : [];
     },
 
-
-
     _firstConsonant: function(rawPhones) {
 
       if (!strOk(rawPhones)) return E;
 
       var phones = rawPhones.split(RiTa.PHONEME_BOUNDARY);
-      // var phones = rawPhones.split(PHONEME_BOUNDARY);
 
       if (phones) {
 
@@ -2328,7 +2140,6 @@
       }
       return E; // return null?
     },
-
 
     _lastStressedPhoneToEnd: function(word, useLTS) {
 
@@ -3007,16 +2818,12 @@
     substr: function(start, length) {
 
       return this._text.substr(start, length);
-      // return this.text(res);
     },
-
 
     substring: function(from, to) {
 
-      // return this.text(this._text.substring(from, to));
       return this._text.substring(from, to);
     },
-
 
     toLowerCase: function() {
 
@@ -3199,17 +3006,15 @@
 
       delete this._rules[name];
       return this;
-
     },
 
-    _copy: function() { // NIAPI
+    _copy: function() {
 
       var tmp = RiGrammar();
       for (var name in this._rules) {
         tmp._rules[name] = this._rules[name];
       }
       return tmp;
-
     },
 
     reset: function() {
@@ -3446,7 +3251,6 @@
       return null; // no rules matched
     },
 
-    // private?? (add structure test case)
     _getStochasticRule: function(temp) { // map
 
       var name, dbug = false;
@@ -3880,121 +3684,6 @@
 
   ////////////////////////// PRIVATE CLASSES ///////////////////////////////
 
-
-  // ////////////////////////////////////////////////////////////
-  // Timer
-  // ////////////////////////////////////////////////////////////
-
-  var timers = {}; // static
-
-  // Timer - modified from Resig's JQuery-Timer
-  var Timer = function(func, time, autostart) {
-
-    this.timerImpl = isNode() ? require("timers") : window;
-
-    this.set = function(func, time, autostart) {
-
-      this.init = true;
-      if (typeof func == 'function') this.action = func;
-      if (!isNaN(time)) this.intervalTime = time;
-      if (autostart && !this.isActive) {
-        this.isActive = true;
-        this.setTimer();
-      }
-      return this;
-    };
-
-    this.once = function(time) {
-
-      var timer = this;
-      if (isNaN(time)) time = 0;
-      this.timerImpl.setTimeout(function() {
-        timer.action();
-      }, time);
-      return this;
-    };
-
-    this.play = function(reset) {
-
-      if (!this.isActive) {
-        if (reset) this.setTimer();
-        else this.setTimer(this.remaining);
-        this.isActive = true;
-      }
-      return this;
-    };
-
-    this.pause = function() {
-
-      if (this.isActive) {
-        this.isActive = false;
-        this.remaining -= new Date() - this.last;
-        this.clearTimer();
-      }
-      return this;
-    };
-
-    this.stop = function() {
-
-      this.isActive = false;
-      this.remaining = this.intervalTime;
-      this.clearTimer();
-      return this;
-    };
-
-    this.toggle = function(reset) {
-
-      if (this.isActive) this.pause();
-      else if (reset) this.play(true);
-      else this.play();
-      return this;
-    };
-
-    this.reset = function() {
-
-      this.isActive = false;
-      this.play(true);
-      return this;
-    };
-
-    this.id = function() {
-
-      return this.timeoutId;
-    };
-
-    this.clearTimer = function() { // private
-
-      this.timerImpl.clearTimeout(this.timeoutId);
-    };
-
-    this.setTimer = function(time) {
-
-      var timer = this;
-
-      if (typeof this.action != 'function')
-        return;
-
-      if (isNaN(time)) time = this.intervalTime;
-      this.remaining = time;
-      this.last = new Date();
-      this.clearTimer();
-      this.timeoutId = this.timerImpl.setTimeout(function() {
-        timer.go();
-      }, time);
-    };
-
-    this.go = function() {
-
-      if (this.isActive) {
-        this.action();
-        this.setTimer();
-      }
-    };
-
-    return (this.init) ? new Timer(func, time, autostart) :
-      this.set(func, time, autostart);
-  };
-
   // ////////////////////////////////////////////////////////////
   // TextNode
   // ////////////////////////////////////////////////////////////
@@ -4244,8 +3933,6 @@
   Conjugator.prototype = {
 
     init: function() {
-
-      // TODO: get rid of these and make static method ?
 
       this.perfect = this.progressive = this.passive = this.interrogative = false;
       this.tense = RiTa.PRESENT_TENSE;
@@ -5628,7 +5315,6 @@
 
   })();
 
-  // TODO: remove these eventually
   Array.prototype._arrayContains = function(ele) {
     return (Array.prototype.indexOf(ele) > -1);
   };
@@ -5760,6 +5446,7 @@
       // -us to -i
       if (categoryUS_I._arrayContains(s))
         return (cut(s, "i") + "us");
+
       //Wrong plural
       if (s._endsWith("uses") && (categoryUS_I._arrayContains(cut(s, "uses") + "i") || s === ("genuses") || s === ("corpuses")))
         return (cut(s, "es"));
@@ -6150,7 +5837,7 @@
   var C = "[bcdfghjklmnpqrstvwxyz]",
     VL = "[lraeiou]";
 
-  var PLURAL_RULES = [ // TODO: extract all these consts to single file for js/java
+  var PLURAL_RULES = [
       NULL_PLURALS,
       RE("^(piano|photo|solo|ego|tobacco|cargo|golf|grief)$", 0, "s"),
       RE("^(wildlife)$", 0, "s"),
@@ -6935,14 +6622,12 @@
 
     if (!is(str, S)) return false;
     return new RegExp(ending + '$').test(str);
-    //return str.slice(-ending.length) == ending;
   }
 
   function startsWith(str, starting) {
 
     if (!is(str, S)) return false;
     return new RegExp('^' + starting).test(str);
-    //return text.slice(0, substr.length) == substr;
   }
 
   function equalsIgnoreCase(str1, str2) {
