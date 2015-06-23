@@ -681,9 +681,11 @@
     // Trims punctuation from each side of token
     //   (doesnt trim whitespace or internal punctuation).
     trimPunctuation: function(text) {
-
-      return (text === E) ? E : 
-      text.replace(/^[`~\"\/'_\-[\]{}()*+!?%&.,\\^$|#@<>|+=;:]|[`~\"\/'_\-[\]{}()*+!?%&.,\\^$|#@<>|+=;:]$/g, E);
+      
+      var s = '[`~\"\/' + "\\'_[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
+      var regex = new RegExp("^" + s + "|" + s + "$", 'g');
+      
+      return (text === E) ? E : text.replace(regex, E);
     },
 
     isPunctuation: function(text) {
