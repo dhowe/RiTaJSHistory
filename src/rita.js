@@ -681,28 +681,11 @@
     // Trims punctuation from each side of token
     //   (doesnt trim whitespace or internal punctuation).
     trimPunctuation: function(text) {
-
-      // TODO: replace all this with 1 regex
-
-      var c;
-
-      // from the front
-      while (text.length > 0) {
-        c = text.charAt(0);
-        if (!RiTa.isPunctuation(c))
-          break;
-        text = text.substr(1);
-      }
-
-      // from the back
-      while (text.length > 0) {
-        c = text.charAt(text.length - 1);
-        if (!RiTa.isPunctuation(c))
-          break;
-        text = text.substring(0, text.length - 1);
-      }
-
-      return text;
+      
+      var s = '[`~\"\/' + "\\'_[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
+      var regex = new RegExp("^" + s + "|" + s + "$", 'g');
+      
+      return (text === E) ? E : text.replace(regex, E);
     },
 
     isPunctuation: function(text) {
