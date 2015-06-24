@@ -8,6 +8,7 @@ var runtests = function() {
 
     QUnit.module("UrlLoading", {
         setup : function() {
+            RiTa.SILENT = true;
         },
         teardown : function() {
         }
@@ -109,7 +110,7 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-
+                
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
@@ -172,7 +173,7 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-                rg1.print();
+                
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
