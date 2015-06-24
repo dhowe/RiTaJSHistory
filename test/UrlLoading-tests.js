@@ -31,7 +31,7 @@ var runtests = function() {
 
     asyncTest("RiTa.loadString1(url)", function() {
 
-        RiTa.loadString("http://localhost/testfiles/sentence1.json", function(s) {
+        RiTa.loadString("http://localhost/ritajs/test/data/sentence1.json", function(s) {
 
             ok(s && s.length > 100);
             ok(JSON.parse(s));
@@ -41,7 +41,7 @@ var runtests = function() {
 
     asyncTest("RiTa.loadString2(url)", function() {
 
-        RiTa.loadString("http://localhost/testfiles/sentence2.json", function(s) {
+        RiTa.loadString("http://localhost/ritajs/test/data/sentence2.json", function(s) {
             ok(s && s.length > 100);
             ok(JSON.parse(s));
             start();
@@ -54,7 +54,7 @@ var runtests = function() {
     asyncTest("RiGrammar.loadFrom(Url)", function() {
 
         var grammar = new RiGrammar();
-        grammar.loadFrom("http://localhost/testfiles/haikuGrammar.json");
+        grammar.loadFrom("http://localhost/ritajs/test/data/haikuGrammar.json");
 
         var ts = +new Date();
         var id = setInterval(function() {
@@ -233,7 +233,7 @@ var runtests = function() {
         }
 
         var rm = new RiMarkov(3);
-        rm.loadFrom("http://localhost/testfiles/kafka.txt");
+        rm.loadFrom("http://localhost/ritajs/test/data/kafka.txt");
 
         var ts = +new Date();
         var id = setInterval(function() {
@@ -307,7 +307,7 @@ var runtests = function() {
      }
 
      var rm = new RiMarkov(3);
-     rm.loadFrom(["http://localhost/testfiles/kafka.txt", "http://localhost/testfiles/wittgenstein.txt"]);
+     rm.loadFrom(["http://localhost/ritajs/test/data/kafka.txt", "http://localhost/ritajs/test/data/wittgenstein.txt"]);
 
      var ts = +new Date();
      var id = setInterval(function() {
@@ -361,7 +361,7 @@ var runtests = function() {
      });
 
      asyncTest("RiTa.loadStringMulti(url)", function() { // hmm, not sure why this needs to be first for node
-     var urls = ["http://localhost/testfiles/sentence1.json","http://localhost/testfiles/sentence2.json"];
+     var urls = ["http://localhost/ritajs/test/data/sentence1.json","http://localhost/ritajs/test/data/sentence2.json"];
      RiTa.loadString(urls, function(s) {
      ok(s && s.length>500);
      start();
