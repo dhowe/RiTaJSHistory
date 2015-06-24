@@ -2,6 +2,9 @@
     QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
 
 var runtests = function() {
+    
+    var filePath = (typeof module != 'undefined' && module.exports) ? 
+    "./test/data/" : "./data/";
 
     QUnit.module("UrlLoading", {
         setup : function() {
@@ -12,7 +15,7 @@ var runtests = function() {
 
     asyncTest("RiTa.loadString1(file)", function() {
 
-        RiTa.loadString("./data/sentence1.json", function(s) {
+        RiTa.loadString(filePath + "sentence1.json", function(s) {
             ok(s && s.length > 100);
             //console.log(s);
             ok(JSON.parse(s));
@@ -22,7 +25,7 @@ var runtests = function() {
 
     asyncTest("RiTa.loadString2(file)", function() {
 
-        RiTa.loadString("./data/sentence2.json", function(s) {
+        RiTa.loadString(filePath + "sentence2.json", function(s) {
             ok(s && s.length > 100);
             ok(JSON.parse(s));
             start();
@@ -97,7 +100,7 @@ var runtests = function() {
     asyncTest("RiGrammar.loadFrom(file)", function() {
 
         var rg1 = new RiGrammar();
-        rg1.loadFrom("./data/sentence1.json");
+        rg1.loadFrom(filePath + "sentence1.json");
 
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
@@ -129,7 +132,7 @@ var runtests = function() {
     asyncTest("RiGrammar.loadFrom2(file)", function() {
 
         var rg1 = new RiGrammar();
-        rg1.loadFrom("./data/sentence2.json");
+        rg1.loadFrom(filePath + "sentence2.json");
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
 
@@ -160,7 +163,7 @@ var runtests = function() {
     asyncTest("RiGrammar.loadFrom3(file)", function() {
 
         var rg1 = new RiGrammar();
-        rg1.loadFrom("./data/sentence1.yaml");
+        rg1.loadFrom(filePath + "sentence1.yaml");
         
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
@@ -192,7 +195,7 @@ var runtests = function() {
     asyncTest("RiGrammar.loadFrom4(file)", function() {
 
         var rg1 = new RiGrammar();
-        rg1.loadFrom("./data/sentence2.yaml");
+        rg1.loadFrom(filePath + "sentence2.yaml");
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
 
@@ -261,7 +264,7 @@ var runtests = function() {
     asyncTest("RiMarkov.loadFromFile", function() {
 
         var rm = new RiMarkov(3);
-        rm.loadFrom("./data/kafka.txt");
+        rm.loadFrom(filePath + "kafka.txt");
 
         var ts = +new Date();
         var id = setInterval(function() {
@@ -335,7 +338,7 @@ var runtests = function() {
      asyncTest("RiMarkov.loadFromFileMulti", function() {
 
      var rm = new RiMarkov(3);
-     rm.loadFrom(["./data/kafka.txt", "./data/wittgenstein.txt"]);
+     rm.loadFrom([filePath + "kafka.txt", filePath + "wittgenstein.txt"]);
 
      var ts = +new Date();
      var id = setInterval(function() {
@@ -368,7 +371,7 @@ var runtests = function() {
      });
      });
      asyncTest("RiTa.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
-     RiTa.loadString(["./data/sentence1.json","./data/sentence2.json"], function(s) {
+     RiTa.loadString([filePath + "sentence1.json",filePath + "sentence2.json"], function(s) {
      ok(s && s.length>500);
      start();
      });
