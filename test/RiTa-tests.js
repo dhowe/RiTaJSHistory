@@ -842,11 +842,24 @@ var runtests = function() {
       var type = 'Lancaster';
       // default
 
-      equal(RiTa.stem("cakes", type), "cak");
-
       var tests = ["run", "runs", "running"];
       for (var i = 0; i < tests.length; i++) {
         equal(RiTa.stem(tests[i], type), "run");
+      }
+
+      tests = ["hide", "hides", "hiding"];
+      for (var i = 0; i < tests.length; i++) {
+        equal(RiTa.stem(tests[i], type), "hid");
+      }
+
+      tests = ["take", "takes", "taking"];
+      for (var i = 0; i < tests.length; i++) {
+        equal(RiTa.stem(tests[i], type), "tak");
+      }
+
+      tests = ["become", "becomes", "becoming"];
+      for (var i = 0; i < tests.length; i++) {
+        equal(RiTa.stem(tests[i], type), "becom");
       }
 
       equal(RiTa.stem("gases", type), "gas");
@@ -857,6 +870,8 @@ var runtests = function() {
       var test = 'Stemming is funnier than a bummer says the sushi loving computer';
       var result = 'stem is funny than a bum say the sush lov comput';
       equal(RiTa.stem(test, type), result);
+
+      equal(RiTa.stem("cakes", type), "cak");
     });
 
     test("testStem(porter)", function() {
@@ -868,6 +883,16 @@ var runtests = function() {
       var tests = ["run", "runs", "running"];
       for (var i = 0; i < tests.length; i++) {
         equal(RiTa.stem(tests[i], type), "run");
+      }
+
+      tests = ["hide", "hides", "hiding"];
+      for (var i = 0; i < tests.length; i++) {
+        equal(RiTa.stem(tests[i], type), "hide");
+      }
+
+      tests = ["take", "takes", "taking"];
+      for (var i = 0; i < tests.length; i++) {
+        equal(RiTa.stem(tests[i], type), "take");
       }
 
       equal(RiTa.stem("gases", type), "gase");
@@ -887,15 +912,31 @@ var runtests = function() {
 
       equal(RiTa.stem("cakes", type), "cake");
 
-      var tests = ["run", "runs"];
-      for (var i = 0; i < tests.length; i++) {
-        equal(RiTa.stem(tests[i], type), "run");
-      }
+      equal(RiTa.stem("run", type), "run");
+      equal(RiTa.stem("runs", type), "run");
+      equal(RiTa.stem("running", type), "running");
+      
+      equal(RiTa.stem("take", type), "take");
+      equal(RiTa.stem("takes", type), "take");
+      equal(RiTa.stem("taking", type), "taking");
+      
+      equal(RiTa.stem("hide", type), "hide");
+      equal(RiTa.stem("hides", type), "hide");
+      equal(RiTa.stem("hiding", type), "hiding");
+      
+      equal(RiTa.stem("become", type), "become");
+      equal(RiTa.stem("becomes", type), "become");
+      equal(RiTa.stem("becoming", type), "becoming");
 
       equal(RiTa.stem("gases", type), "gas");
       equal(RiTa.stem("buses", type), "bus");
       equal(RiTa.stem("happiness", type), "happiness");
       equal(RiTa.stem("terrible", type), "terrible");
+      
+      var test =  "Stemming is funnier than a bummer";
+      var result = "stemming is funnier than a bummer";
+      // TODO: RiTa.stem(pling) JS decapitalizes input whereas the java version does not
+      equal(RiTa.stem(test, type), result);
     });
 
     test("RiTa.LTSEngine", function() {
