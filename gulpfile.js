@@ -307,7 +307,8 @@ gulp.task('test', function(cb) {
             'test/RiTa-tests',
             'test/RiGrammar-tests',
             'test/RiMarkov-tests',
-            'test/RiLexicon-tests'
+            'test/RiLexicon-tests',
+            'test/UrlLoading-tests'
         ];
 
         if (argv.name) {
