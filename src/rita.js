@@ -153,6 +153,15 @@
     /* Set to true to disable all console output */
     SILENT: false,
 
+    /* Stemmer type: Lancaster */
+    LANCASTER: "Lancaster",
+
+    /* Stemmer type: Porter */
+    PORTER: "Porter",
+
+    /* Stemmer type: Pling */
+    PLING: "Pling",
+
     // Start Methods =================================
 
     untokenize: function(arr, delim, adjustPunctuationSpacing) {

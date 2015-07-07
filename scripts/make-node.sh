@@ -55,9 +55,8 @@ NODE_TEST=$NODE_DIR/rita/test
 DL_DIR=$BUILD/www/download
 TARBALL=rita-$VERSION.tgz
 
-RITA_PROJ=../..
-RITA_DIST=$RITA_PROJ/dist
-DOC_DIR=$RITA_DIST/RiTa/reference
+RITA_PROJ=../../RiTa
+DOC_DIR=$RITA_PROJ/www/reference
 
 
 echo
@@ -73,7 +72,7 @@ mkdir -p $NODE_TEST || die
 mkdir -p $NODE_DOC || die
 
 
-echo 1: Copying package.json/README/gulpfile to $NODE_RITA
+echo 1: Copying package.json,README,gulpfile to $NODE_RITA
 cp ../README.node.md $NODE_RITA/README.md
 cp ../package.json $NODE_RITA/
 cp ../gulpfile.js $NODE_RITA/
@@ -86,7 +85,7 @@ cp -r $DOC_DIR/* $NODE_DOC/
 
 echo 4: Copying rita.js to $NODE_LIB
 #minimize everything, no ritext
-cp $DIST_DIR/rita-$VERSION.node.js $NODE_LIB/rita.js
+cp $DIST_DIR/rita-full-$VERSION.min.js $NODE_LIB/rita.js
 
 echo $LINE
 echo Generating NPM tarball in $DIST_DIR
@@ -94,6 +93,10 @@ echo Generating NPM tarball in $DIST_DIR
 #pwd
 echo
 
+echo $LINE
+ls -l $NODE_RITA
+
+echo $LINE
 $NPM pack $NODE_RITA
 
 mv $TARBALL $DIST_DIR/$TARBALL

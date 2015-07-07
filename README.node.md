@@ -31,7 +31,7 @@ console.log(rs.features());
 To run tests: 
 
 ```bash
-$ cd node_modules/rita && npm install && npm test && cd -
+$ cd node_modules/rita && npm install && npm test
 ```
 
 Or, see the 'Development Setup' instructions below...

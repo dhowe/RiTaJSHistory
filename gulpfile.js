@@ -255,7 +255,7 @@ gulp.task('lint', function() {
     });
 
 // Test(node): gulp test.node (all) || gulp test.node --name RiString
-/*gulp.task('test.node.pkg', function(cb) {
+gulp.task('test.node.pkg', function(cb) {
 
         var testrunner = require("qunit");
 
@@ -293,7 +293,7 @@ gulp.task('lint', function() {
             }, function(err, report) {
                 if (err) console.error(err);
             });
-    });*/
+    });
 
 // Test(node): gulp test.node (all) || gulp test.node --name RiString
 gulp.task('test', function(cb) {
