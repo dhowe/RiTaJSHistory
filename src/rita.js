@@ -690,10 +690,10 @@
     // Trims punctuation from each side of token
     //   (doesnt trim whitespace or internal punctuation).
     trimPunctuation: function(text) {
-      
+
       var s = '[`~\"\/' + "\\'_[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
       var regex = new RegExp("^" + s + "|" + s + "$", 'g');
-      
+
       return (text === E) ? E : text.replace(regex, E);
     },
 
@@ -2250,26 +2250,31 @@
 
   var RiString = makeClass();
 
+  RiString._trackedFeatures = [
+      'tokens', 'stresses', 'phonemes', 'syllables', 'pos', 'text'
+  ];
+
   RiString.phones = {
 
-    consonants: ['b', 'ch', 'd', 'dh', 'f', 'g', 'hh', 'jh', 'k', 'l', 'm', 'n',
-      'ng', 'p', 'r', 's', 'sh', 't', 'th', 'v', 'w', 'y', 'z', 'zh'
+    consonants: ['b', 'ch', 'd', 'dh', 'f', 'g', 'hh', 'jh', 'k', 'l', 'm',
+      'n', 'ng', 'p', 'r', 's', 'sh', 't', 'th', 'v', 'w', 'y', 'z', 'zh'
     ],
 
-    vowels: ['aa', 'ae', 'ah', 'ao', 'aw', 'ax', 'ay', 'eh', 'er', 'ey', 'ih', 'iy',
-      'ow', 'oy', 'uh', 'uw'
+    vowels: ['aa', 'ae', 'ah', 'ao', 'aw', 'ax', 'ay', 'eh', 'er', 'ey', 'ih',
+      'iy', 'ow', 'oy', 'uh', 'uw'
     ],
 
-    onsets: ['p', 't', 'k', 'b', 'd', 'g', 'f', 'v', 'th', 'dh', 's', 'z', 'sh', 'ch', 'jh', 'm',
-      'n', 'r', 'l', 'hh', 'w', 'y', 'p r', 't r', 'k r', 'b r', 'd r', 'g r', 'f r',
-      'th r', 'sh r', 'p l', 'k l', 'b l', 'g l', 'f l', 's l', 't w', 'k w', 'd w',
-      's w', 's p', 's t', 's k', 's f', 's m', 's n', 'g w', 'sh w', 's p r', 's p l',
-      's t r', 's k r', 's k w', 's k l', 'th w', 'zh', 'p y', 'k y', 'b y', 'f y',
-      'hh y', 'v y', 'th y', 'm y', 's p y', 's k y', 'g y', 'hh w', ''
+    onsets: ['p', 't', 'k', 'b', 'd', 'g', 'f', 'v', 'th', 'dh', 's', 'z',
+      'sh', 'ch', 'jh', 'm', 'n', 'r', 'l', 'hh', 'w', 'y', 'p r', 't r',
+      'k r', 'b r', 'd r', 'g r', 'f r', 'th r', 'sh r', 'p l', 'k l', 'b l',
+      'g l', 'f l', 's l', 't w', 'k w', 'd w', 's w', 's p', 's t', 's k',
+      's f', 's m', 's n', 'g w', 'sh w', 's p r', 's p l', 's t r', 's k r',
+      's k w', 's k l', 'th w', 'zh', 'p y', 'k y', 'b y', 'f y', 'hh y',
+      'v y', 'th y', 'm y', 's p y', 's k y', 'g y', 'hh w', ''
     ],
 
-    digits: ['z-ih-r-ow', 'w-ah-n', 't-uw', 'th-r-iy', 'f-ao-r', 'f-ay-v', 's-ih-k-s',
-      's-eh1-v-ax-n', 'ey-t', 'n-ih-n'
+    digits: ['z-ih-r-ow', 'w-ah-n', 't-uw', 'th-r-iy', 'f-ao-r', 'f-ay-v',
+      's-ih-k-s', 's-eh1-v-ax-n', 'ey-t', 'n-ih-n'
     ]
   };
 
@@ -2452,6 +2457,7 @@
       if (!this._features) {
 
         this._features = {};
+
       } else {
         delete this._features.tokens;
         delete this._features.stresses;
@@ -2537,7 +2543,11 @@
 
       this._features || this.analyze();
       var s = this._features[featureName];
-      if (!s && !this._features.hasOwnProperty(featureName)) {
+
+      //console.log(featureName,tracked.indexOf(featureName));
+      if (!s && (RiString._trackedFeatures.indexOf(featureName) > -1) &&
+        (!this._features.hasOwnProperty(featureName)))
+      {
         this.analyze();
         s = this._features[featureName];
       }
