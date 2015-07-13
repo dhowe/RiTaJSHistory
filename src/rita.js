@@ -268,13 +268,15 @@
     getPresentParticiple: function(verb) {
 
       // TODO: need to call stem() and try again if first try fails
-      return Conjugator().getPresentParticiple(verb);
+      // Cyrus: now it can correctly show 'playing', 'playable'
+      return Conjugator().getPresentParticiple(this.stem(verb));
     },
 
     getPastParticiple: function(verb) {
 
       // TODO: need to call stem() and try again if first try fails
-      return Conjugator().getPastParticiple(verb);
+      // Cyrus: now it can correctly handle 'playing', 'playable'
+      return Conjugator().getPastParticiple(this.stem(verb));
     },
 
     // TODO: 2 examples
@@ -1046,7 +1048,16 @@
       is(url, S) || ok(url, A);
 
       // TODO: check multiplier and regex, if function, then use as callback
-      //if (is(multiplier,F)) callback = multiplier;
+      // Cyrus: implemented and tested
+      
+      if (is(multiplier,F)) {
+        callback = multiplier;
+        multiplier = undefined;
+      }
+      else if (is(regex,F)) {
+        callback = regex;
+        regex = undefined;
+      }
 
       RiTa.loadString(url, function(data) {
 
