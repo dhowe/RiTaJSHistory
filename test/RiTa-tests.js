@@ -335,13 +335,19 @@ var runtests = function() {
     });
 
 
+    // TODO: these are failing...
     test("testTrimPunctuation", function() {
+
+      var res = RiTa.trimPunctuation("He&^ll,o,?#!$%");
+      equal(res, "He&^ll,o");
+
+      var res = RiTa.trimPunctuation(",?#!$%He&^ll,o");
+      equal(res, "He&^ll,o");
 
       var res = RiTa.trimPunctuation("$%He&^ll,o,");
       equal(res, "He&^ll,o");
 
-      // fix these strange characters
-      var res = RiTa.trimPunctuation("����������`He&^ll,o\!@$%&}<>|+=-_\\/*{^");
+      var res = RiTa.trimPunctuation("`He&^ll,o\!@$%&}<>|+=-_\\/*{^");
       equal(res, "He&^ll,o");
 
       var res = RiTa.trimPunctuation("\"\\!@$%&}<>|+=-_\\/*{^He&^ll,o\!@$%&}<>|+=-_\\/*{^");
@@ -915,15 +921,15 @@ var runtests = function() {
       equal(RiTa.stem("run", type), "run");
       equal(RiTa.stem("runs", type), "run");
       equal(RiTa.stem("running", type), "running");
-      
+
       equal(RiTa.stem("take", type), "take");
       equal(RiTa.stem("takes", type), "take");
       equal(RiTa.stem("taking", type), "taking");
-      
+
       equal(RiTa.stem("hide", type), "hide");
       equal(RiTa.stem("hides", type), "hide");
       equal(RiTa.stem("hiding", type), "hiding");
-      
+
       equal(RiTa.stem("become", type), "become");
       equal(RiTa.stem("becomes", type), "become");
       equal(RiTa.stem("becoming", type), "becoming");
@@ -932,7 +938,7 @@ var runtests = function() {
       equal(RiTa.stem("buses", type), "bus");
       equal(RiTa.stem("happiness", type), "happiness");
       equal(RiTa.stem("terrible", type), "terrible");
-      
+
       var test =  "Stemming is funnier than a bummer";
       var result = "stemming is funnier than a bummer";
       // TODO: RiTa.stem(pling) JS decapitalizes input whereas the java version does not

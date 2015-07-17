@@ -691,6 +691,11 @@
     //   (doesnt trim whitespace or internal punctuation).
     trimPunctuation: function(text) {
 
+      if (!is(txt,S)) {
+        //console.log('not a string: '+txt);
+        return txt;
+      }
+
       var s = '[`~\"\/' + "\\'_[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
       var regex = new RegExp("^" + s + "|" + s + "$", 'g');
 
