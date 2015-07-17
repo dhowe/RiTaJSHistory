@@ -1049,9 +1049,15 @@
       var me = this;
 
       is(url, S) || ok(url, A);
-
-      // TODO: check multiplier and regex, if function, then use as callback
-      //if (is(multiplier,F)) callback = multiplier;
+      
+      if (is(multiplier, F)) {
+        callback = multiplier;
+        multiplier = undefined;
+      }
+      else if (is(regex, F)) {
+        callback = regex;
+        regex = undefined;
+      }
 
       RiTa.loadString(url, function(data) {
 
