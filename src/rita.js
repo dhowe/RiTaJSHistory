@@ -696,9 +696,9 @@
         return text;
       }
 
-      var s = '[`~\"\/' + "\\'_[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
-      var regex = new RegExp("^" + s + "|" + s + "$", 'g');
-
+      var s = '[�`~\"\/' + "\\'_\\-[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
+      var regex = new RegExp("^" + s + "+|" + s + "+$", 'g');
+      
       return (text === E) ? E : text.replace(regex, E);
     },
 
@@ -5797,7 +5797,7 @@
 
   var W_QUESTION_STARTS = ["Was", "What", "When", "Where", "How", "Which", "Why", "Who", "Will"];
 
-  var PUNCTUATION_CLASS = /[`~\"\/'_\-[\]{}()*+!?%&.,\\^$|#@<>|+=;:]/g; // TODO: add smart-quotes
+  var PUNCTUATION_CLASS = /[�`~\"\/'_\-[\]{}()*+!?%&.,\\^$|#@<>|+=;:]/g; // TODO: add smart-quotes
 
   var ONLY_PUNCT = /^[^0-9A-Za-z\s]*$/,
     RiTextCallbacksDisabled = false,
