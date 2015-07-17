@@ -691,9 +691,9 @@
     //   (doesnt trim whitespace or internal punctuation).
     trimPunctuation: function(text) {
 
-      if (!is(txt,S)) {
+      if (!is(text,S)) {
         //console.log('not a string: '+txt);
-        return txt;
+        return text;
       }
 
       var s = '[`~\"\/' + "\\'_[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
@@ -1049,7 +1049,7 @@
       var me = this;
 
       is(url, S) || ok(url, A);
-      
+
       if (is(multiplier, F)) {
         callback = multiplier;
         multiplier = undefined;
