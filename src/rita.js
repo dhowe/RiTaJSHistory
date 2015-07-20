@@ -698,7 +698,7 @@
 
       var s = '[�`~\"\/' + "\\'_\\-[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
       var regex = new RegExp("^" + s + "+|" + s + "+$", 'g');
-      
+
       return (text === E) ? E : text.replace(regex, E);
     },
 
@@ -2345,6 +2345,7 @@
           //syllables[syllables.length-1][3] = syllables[syllables.length-1][3] || [];
           //log('  len='+syllables[syllables.length-1][3].length);
           extend(syllables[syllables.length - 1][3], coda);
+
           if (dbug) log('  tack: ' + coda + ' -> len=' +
             syllables[syllables.length - 1][3].length + " [" +
             syllables[syllables.length - 1][3] + "]");
@@ -2360,9 +2361,11 @@
 
         // At this point we've processed the internuclei list.
         internuclei = [];
-      } else if (!inArray(RiString.phones.consonants, phoneme) && phoneme != " ") {
+      }
+      else if (!inArray(RiString.phones.consonants, phoneme) && phoneme != " ") {
         throw Error('Invalid phoneme: ' + phoneme);
-      } else { // a consonant
+      }
+      else { // a consonant
 
         //log('inter.push: '+phoneme);
         internuclei.push(phoneme);
@@ -2384,7 +2387,6 @@
 
         extend(syllables[syllables.length - 1][3], internuclei);
       }
-
     }
 
     return RiString._stringify(syllables);
@@ -2438,6 +2440,11 @@
       }
 
       text = text || '';
+
+      // convenience fields, in case we use this object for rendering
+      this.x = 0;
+      this.y = 0;
+      this.z = 0;
 
       this._text = text;
       this._features = undefined;
