@@ -2,15 +2,17 @@
     QUnit, RiTa, RiTaEvent, RiString, RiGrammar, RiMarkov, RiLexicon */
 
 var runtests = function() {
-    
-    var filePath = (typeof module != 'undefined' && module.exports) ? 
-    "./test/data/" : "./data/";
+
+    var filePath = (typeof module != 'undefined' && module.exports) ?
+    "./test/data/" : "./data/", silentOrig;
 
     QUnit.module("UrlLoading", {
         setup : function() {
-            RiTa.SILENT = true;
+          silentOrig = RiTa.SILENT;
+          RiTa.SILENT = true;
         },
         teardown : function() {
+          RiTa.SILENT = silentOrig;
         }
     });
 
@@ -62,13 +64,11 @@ var runtests = function() {
 
         var ts = +new Date();
         var id = setInterval(function() {
-
             if (grammar.ready()) {
                 ok(grammar);
                 start();
                 clearInterval(id);
             } else {
-
                 var now = +new Date();
                 if (now - ts > 5000) {
                     equal("no result", 0);
@@ -88,7 +88,7 @@ var runtests = function() {
         "<noun>" : "woman | man",
         "<verb>" : "shoots"
     };
-    
+
     var sentenceGrammar2 = {
         "<start>" : "<noun_phrase> <verb_phrase>.",
         "<noun_phrase>" : "<determiner> <noun>",
@@ -97,7 +97,7 @@ var runtests = function() {
         "<noun>" : ["woman", "man"],
         "<verb>" : "shoots"
     };
-    
+
     asyncTest("RiGrammar.loadFrom(file)", function() {
 
         var rg1 = new RiGrammar();
@@ -110,13 +110,13 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-                
+
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
                 start();
                 clearInterval(id);
-            } 
+            }
             else {
 
                 var now = +new Date();
@@ -141,13 +141,13 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-                
+
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
                 start();
                 clearInterval(id);
-            } 
+            }
             else {
 
                 var now = +new Date();
@@ -160,12 +160,12 @@ var runtests = function() {
 
         }, 50);
     });
-    
+
     asyncTest("RiGrammar.loadFrom3(file)", function() {
 
         var rg1 = new RiGrammar();
         rg1.loadFrom(filePath + "sentence1.yaml");
-        
+
         var rg2 = RiGrammar(JSON.stringify(sentenceGrammar));
         var rg3 = RiGrammar(JSON.stringify(sentenceGrammar2));
 
@@ -173,13 +173,13 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-                
+
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
                 start();
                 clearInterval(id);
-            } 
+            }
             else {
 
                 var now = +new Date();
@@ -204,14 +204,14 @@ var runtests = function() {
         var id = setInterval(function() {
 
             if (rg1.ready()) {
-                
+
                 ok(rg1);
                 deepEqual(rg1, rg2);
                 deepEqual(rg1, rg3);
-                
+
                 start();
                 clearInterval(id);
-            } 
+            }
             else {
 
                 var now = +new Date();
@@ -288,96 +288,6 @@ var runtests = function() {
 
         }, 50);
     });
-
-    /*
-     // RiGrammar
-     test("RiGrammar.expand()", function() {
-
-     for (var j = 0; j < sentenceGrammarFiles.length; j++)
-     {
-     var rg = new RiGrammar();
-     rg.load(RiTa.loadString(sentenceGrammarFiles[j], null));
-     for (var i = 0; i < 10; i++)
-     ok(rg.expand());
-     }
-
-     // RiMarkov
-     asyncTest("RiMarkov.loadFromUrlMulti", function() {
-
-     if (RiTa.env() == RiTa.NODE) {
-     ok("Not for Node");
-     start();
-     return;
-     }
-
-     var rm = new RiMarkov(3);
-     rm.loadFrom(["http://localhost/ritajs/test/data/kafka.txt", "http://localhost/ritajs/test/data/wittgenstein.txt"]);
-
-     var ts = +new Date();
-     var id = setInterval(function() {
-
-     if (rm.ready()) {
-
-     ok(rm.size());
-     start();
-     clearInterval(id);
-     }
-     else {
-
-     console.log("waiting...");
-     var now = +new Date();
-     if (now-ts > 5000) {
-     equal("no result",0);
-     start();
-     clearInterval(id);
-     }
-     }
-
-     }, 50);
-     });
-
-     asyncTest("RiMarkov.loadFromFileMulti", function() {
-
-     var rm = new RiMarkov(3);
-     rm.loadFrom([filePath + "kafka.txt", filePath + "wittgenstein.txt"]);
-
-     var ts = +new Date();
-     var id = setInterval(function() {
-
-     if (rm.ready()) {
-
-     ok(rm.size());
-     start();
-     clearInterval(id);
-     }
-     else {
-
-     console.log("waiting...");
-     var now = +new Date();
-     if (now-ts > 5000) {
-     equal("no result",0);
-     start();
-     clearInterval(id);
-     }
-     }
-
-     }, 50);
-     });
-
-     asyncTest("RiTa.loadStringMulti(url)", function() { // hmm, not sure why this needs to be first for node
-     var urls = ["http://localhost/ritajs/test/data/sentence1.json","http://localhost/ritajs/test/data/sentence2.json"];
-     RiTa.loadString(urls, function(s) {
-     ok(s && s.length>500);
-     start();
-     });
-     });
-     asyncTest("RiTa.loadStringMulti(file)", function() { // TODO: why occasionally fails?!
-     RiTa.loadString([filePath + "sentence1.json",filePath + "sentence2.json"], function(s) {
-     ok(s && s.length>500);
-     start();
-     });
-     });
-     */
 
 }// end runtests
 if ( typeof exports != 'undefined')

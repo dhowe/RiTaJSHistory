@@ -14,7 +14,6 @@
             font-family: Resagokr;
             src: url(../../fonts/Resagokr.otf);
         }
-
         div {
             background-color: rgb(230, 240, 255);
             font-family: Resagokr;
@@ -23,7 +22,6 @@
             width: 650px;
             height: 200px;
         }
-
         span {
             position: relative;
             top: 25%;
@@ -32,8 +30,8 @@
     <script>
         var grammar, lines;
 
-        $(document).ready(function()
-        {
+        $(document).ready(function() {
+
             lines = [ $('#line1'), $('#line2'), $('#line3') ];
 
             grammar = RiGrammar();
@@ -46,11 +44,9 @@
                 $('#hdiv').click(createHaiku);
 
             });
-
         });
 
-        function createHaiku()
-        {
+        function createHaiku() {
             var result = grammar.expand();
             var haiku = result.split("%");
             for (var i = 0; i < lines.length; i++) {

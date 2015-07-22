@@ -8,28 +8,25 @@ var runtests = function() {
 	});
 
 	var sample = "One reason people lie is to achieve personal power. Achieving personal power is helpful for one who pretends to be more confident than he really is. For example, one of my friends threw a party at his house last month. He asked me to come to his party and bring a date. However, I did not have a girlfriend. One of my other friends, who had a date to go to the party with, asked me about my date. I did not want to be embarrassed, so I claimed that I had a lot of work to do. I said I could easily find a date even better than his if I wanted to. I also told him that his date was ugly. I achieved power to help me feel confident; however, I embarrassed my friend and his date. Although this lie helped me at the time, since then it has made me look down on myself.", SP = ' ', E = ' ';
-
 	var sample2 = "One reason people lie is to achieve personal power. " + "Achieving personal power is helpful for one who pretends to " + "be more confident than he really is. For example, one of my " + "friends threw a party at his house last month. He asked me to " + "come to his party and bring a date. However, I did not have a " + "girlfriend. One of my other friends, who had a date to go to the " + "party with, asked me about my date. I did not want to be embarrassed, " + "so I claimed that I had a lot of work to do. I said I could easily find" + " a date even better than his if I wanted to. I also told him that his " + "date was ugly. I achieved power to help me feel confident; however, I " + "embarrassed my friend and his date. Although this lie helped me at the " + "time, since then it has made me look down on myself. After all, I did " + "occasionally want to be embarrassed.";
 
 	test("RiMarkov()", function() {
 
 		ok(RiMarkov(4));
 		ok(new RiMarkov(3));
-
-		var BAD = [null, undefined, "1"];
+		var BAD = [null, undefined, "3"];
 		for (var i = 0; i < BAD.length; i++) {
 			throws(function() {
-				RiTa.SILENT = 1;
+				//RiTa.SILENT = 1;
 				try {
 					new RiMarkov(BAD[i]);
 				} catch (e) {
 					throw e;
 				}
 				RiTa.SILENT = 0;
-				v
 			});
 			throws(function() {
-				RiTa.SILENT = 1;
+				//RiTa.SILENT = 1;
 				try {
 					RiMarkov(BAD[i]);
 				} catch (e) {
@@ -60,7 +57,7 @@ var runtests = function() {
 
 		var root = RiMarkov(3).root;
 		var i = root.addChild("I");
-		var i2 = root.addChild("I");	
+		var i2 = root.addChild("I");
 		var j = root.addChild("J");
 		equal(i.siblingCount(), 3);
 		equal(i2.siblingCount(), 3);
@@ -96,7 +93,6 @@ var runtests = function() {
 			}
 			RiTa.SILENT = 0;
 		});
-
 	});
 
 	test("testIsRoot", function() {
@@ -240,7 +236,7 @@ var runtests = function() {
 	});
 
 	test("testValidateSentence()", function() {
-		
+
 		var rm = new RiMarkov(4, true);
 		var goods = ["The dog ate the cat.", "The dog ate the cat!", "The dog ate the cat?", 'However, I did not have a girlfriend.'];
 		for (var i = 0; i < goods.length; i++) {
@@ -287,7 +283,7 @@ var runtests = function() {
 
 			var tmp, rm = new RiMarkov(4, false);
 
-			tmp = RiTa.SILENT; 
+			tmp = RiTa.SILENT;
 			RiTa.SILENT = 1;
 			try {
 				rm.generateSentences(10);
@@ -486,16 +482,16 @@ var runtests = function() {
 
 		var tokens = RiTa.tokenize(sample);
 		var sents = RiTa.splitSentences(sample);
-		
+
 		var rm = new RiMarkov(3);
 		rm.loadTokens(tokens);
 		ok(rm.root.count == tokens.length);
 		equal(rm.size(), tokens.length);
-		
+
 		var rm = new RiMarkov(3, true);
 		rm.loadText(sample);
 		equal(rm.size(), tokens.length);
-		
+
 		var rm = new RiMarkov(3, false);
 		rm.loadText(sample);
 		equal(rm.size(), tokens.length);

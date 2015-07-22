@@ -44,7 +44,6 @@ var runtests = function() {
         tests = testResults[0].tests;
 
       for (var i = 0, len = tests.length; i < len; i++) {
-
         equal(func(tests[i].input), tests[i].output);
       }
     });
@@ -84,27 +83,23 @@ var runtests = function() {
       ok(RiTa.VERSION);
     });
 
-    test("testMinEditDist", function() {
+    test("testMinEditDistance", function() {
 
-      var arr1 = ['The', 'dog', 'ate'],
-        arr2 = ['The', 'cat', 'ate'];
-      equal(RiTa.minEditDist(arr1, arr2, false), 1);
-      equal(RiTa.minEditDist(arr1, arr2, true), 1 / 3.0);
+      var arr1 = ['The', 'dog', 'ate'], arr2 = ['The', 'cat', 'ate'];
+      equal(RiTa.minEditDistance(arr1, arr2, false), 1);
+      equal(RiTa.minEditDistance(arr1, arr2, true), 1 / 3.0);
 
-      var arr1 = ['The', 'dog', 'ate'],
-        arr2 = [];
-      equal(RiTa.minEditDist(arr1, arr2, false), 3);
-      equal(RiTa.minEditDist(arr1, arr2, true), 1);
+      var arr1 = ['The', 'dog', 'ate'], arr2 = [];
+      equal(RiTa.minEditDistance(arr1, arr2, false), 3);
+      equal(RiTa.minEditDistance(arr1, arr2, true), 1);
 
-      var arr1 = 'The dog',
-        arr2 = 'The cat';
-      equal(RiTa.minEditDist(arr1, arr2, false), 3);
-      equal(RiTa.minEditDist(arr1, arr2, true), 3 / 7);
+      var arr1 = 'The dog', arr2 = 'The cat';
+      equal(RiTa.minEditDistance(arr1, arr2, false), 3);
+      equal(RiTa.minEditDistance(arr1, arr2, true), 3 / 7);
 
-      var arr1 = 'The dog',
-        arr2 = '';
-      equal(RiTa.minEditDist(arr1, arr2, false), 7);
-      equal(RiTa.minEditDist(arr1, arr2, true), 1);
+      var arr1 = 'The dog', arr2 = '';
+      equal(RiTa.minEditDistance(arr1, arr2, false), 7);
+      equal(RiTa.minEditDistance(arr1, arr2, true), 1);
     });
 
     test("testEnv", function() {
@@ -464,7 +459,7 @@ var runtests = function() {
     });
 
 
-    test("testTrim", function() {
+    /*test("testTrim", function() {
 
       equal(RiTa.trim(""), "");
       equal(RiTa.trim(" "), "");
@@ -480,7 +475,7 @@ var runtests = function() {
       equal(RiTa.trim("  hello    "), "hello");
       //mixed
 
-    });
+    });*/
 
 
     test("testDistance", function() {
@@ -915,15 +910,15 @@ var runtests = function() {
       equal(RiTa.stem("run", type), "run");
       equal(RiTa.stem("runs", type), "run");
       equal(RiTa.stem("running", type), "running");
-      
+
       equal(RiTa.stem("take", type), "take");
       equal(RiTa.stem("takes", type), "take");
       equal(RiTa.stem("taking", type), "taking");
-      
+
       equal(RiTa.stem("hide", type), "hide");
       equal(RiTa.stem("hides", type), "hide");
       equal(RiTa.stem("hiding", type), "hiding");
-      
+
       equal(RiTa.stem("become", type), "become");
       equal(RiTa.stem("becomes", type), "become");
       equal(RiTa.stem("becoming", type), "becoming");
@@ -932,7 +927,7 @@ var runtests = function() {
       equal(RiTa.stem("buses", type), "bus");
       equal(RiTa.stem("happiness", type), "happiness");
       equal(RiTa.stem("terrible", type), "terrible");
-      
+
       var test =  "Stemming is funnier than a bummer";
       var result = "stemming is funnier than a bummer";
       // TODO: RiTa.stem(pling) JS decapitalizes input whereas the java version does not
@@ -1254,6 +1249,42 @@ var runtests = function() {
       deepEqual(output, expected);
     });
 
+    /*test("testConcordance", function() {
+
+      var data = RiTa.concordance("The dog ate the cat");
+      equal(data.length,5);
+      ok(data["the"]==1);
+      ok(data["The"]==1);
+      equal(data["THE"],null);
+
+      args.put("ignoreCase", false);
+      args.put("ignoreStopWords", false);
+      args.put("ignorePunctuation", false);
+      args.put("wordsToIgnore", null);
+
+      data = RiTa.concordance("The dog ate the cat", {
+        ignoreCase: false,
+        ignoreStopWords: false,
+        ignorePunctuation: false,
+        wordsToIgnore: undefined
+      });
+
+      equal(data.length,5);
+      ok(data["the"]==1);
+      ok(data["The"]==1);
+      equal(data["THE"],null);
+
+      data = RiTa.concordance("The dog ate the cat", {
+        ignoreCase: true
+      });
+
+      equal(data.length,4);
+      ok(data["the"]==2);
+      equal(data["The"],null);
+      equal(data["THE"],null);
+
+      // TODO: larger text, plus all combinations of options
+    });*/
 
     test("testConjugate", function() {
 
