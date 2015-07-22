@@ -4,53 +4,6 @@
 
   var _VERSION_ = '##version##';
 
-  var Type = {
-
-      N: 'number',
-      S: 'string',
-      O: 'object',
-      A: 'array',
-      B: 'boolean',
-      R: 'regexp',
-      F: 'function',
-
-      // From: http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
-      get: function(obj) {
-
-        if (typeof obj != 'undefined') // else return undef
-          return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
-      },
-
-      // Returns true if the object is of type 'type', otherwise false
-      is: function(obj, type) {
-
-        return Type.get(obj) === type;
-      },
-
-      // Throws TypeError if not the correct type, else returns true
-      ok: function(obj, type) {
-
-        if (Type.get(obj) != type) {
-
-          throw TypeError('Expected ' + (type ? type.toUpperCase() : type + E) +
-            ", but received " + (obj ? Type.get(obj).toUpperCase() : obj + E));
-        }
-
-        return true;
-      }
-
-    },
-    is = Type.is,
-    ok = Type.ok; // alias
-
-  var RiText = {};
-
-  RiText._graphics = function() {};
-
-  // ////////////////////////////////////////////////////////////
-  // RiTa object (singleton)
-  // ////////////////////////////////////////////////////////////
-
   var RiTa = {
 
     /* The current version of the RiTa tools */
@@ -62,31 +15,7 @@
     /* For tokenization, Can't -> Can not, etc. */
     SPLIT_CONTRACTIONS: false,
 
-    // For RiTaEvents =================================
-
-    MOVE_TO: "MoveTo",
-    COLOR_TO: "ColorTo",
-    FADE_IN: "FadeIn",
-    FADE_OUT: "FadeOut",
-    TEXT_TO: "TextTo",
-    TIMER: "Timer",
-    SCALE_TO: "ScaleTo",
-    ROTATE_TO: "RotateTo",
-    TEXT_ENTERED: "TextEntered",
-    BOUNDING_ALPHA: "BoundingAlpha",
-    DATA_LOADED: "DataLoaded",
-    UNKNOWN: "Unknown",
-    INTERNAL: "Internal",
-    LERP: "Lerp",
-
-    JAVA: 1,
-    JS: 2,
-    NODE: 3,
-    LEFT: 37,
-    UP: 38,
-    RIGHT: 39,
-    DOWN: 40,
-    CENTER: 3,
+    JAVA: 1, JS: 2, NODE: 3,
 
     // For Features =================================
 
@@ -100,39 +29,22 @@
     // For Conjugator =================================
 
     FIRST_PERSON: 1,
-
     SECOND_PERSON: 2,
-
     THIRD_PERSON: 3,
-
     PAST_TENSE: 4,
-
     PRESENT_TENSE: 5,
-
     FUTURE_TENSE: 6,
-
     SINGULAR: 7,
-
     PLURAL: 8,
-
     NORMAL: 9,
-
     FEATURE_DELIM: ':',
-
     STRESSED: '1',
-
     UNSTRESSED: '0',
-
     PHONEME_BOUNDARY: '-',
-
     WORD_BOUNDARY: " ",
-
     SYLLABLE_BOUNDARY: "/",
-
     SENTENCE_BOUNDARY: "|",
-
     VOWELS: "aeiou",
-
     ABBREVIATIONS: ["Adm.", "Capt.", "Cmdr.", "Col.", "Dr.", "Gen.", "Gov.", "Lt.", "Maj.", "Messrs.", "Mr.", "Mrs.", "Ms.", "Prof.", "Rep.", "Reps.", "Rev.", "Sen.", "Sens.", "Sgt.", "Sr.", "St.", "a.k.a.", "c.f.", "i.e.", "e.g.", "vs.", "v.", "Jan.", "Feb.", "Mar.", "Apr.", "Mar.", "Jun.", "Jul.", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."],
 
     /* The infinitive verb form  - 'to eat an apple' */
@@ -162,7 +74,35 @@
     /* Stemmer type: Pling */
     PLING: "Pling",
 
-    // Start Methods =================================
+    DATA_LOADED: 'DataLoaded',
+    INTERNAL: 'Internal',
+    UNKNOWN: 'Unknown',
+
+    NON_BREAKING_SPACE: '<sp/>',
+  	PARAGRAPH_BREAK: '<p/>',  //   regex: /<p\/?>/g;
+  	LINE_BREAK: '<br/>',
+
+    STOP_WORDS: [ ".", ",", "the",
+      "and", "a", "of", "\"", "in", "i", ":", "you", "is", "to",
+      "that", ")", "(", "it", "for", "on", "!", "have", "with", "?",
+      "this", "be", "...", "not", "are", "as", "was", "but", "or", "from",
+      "my", "at", "if", "they", "your", "all", "he", "by", "one",
+      "me", "what", "so", "can", "will", "do", "an", "about", "we", "just",
+      "would", "there", "no", "like", "out", "his", "has", "up", "more", "who",
+      "when", "don't", "some", "had", "them", "any", "their", "it's", "only",
+      ";", "which", "i'm", "been", "other", "were", "how", "then", "now",
+      "her", "than", "she", "well", "also", "us", "very", "because",
+      "am", "here", "could", "even", "him", "into", "our", "much",
+      "too", "did", "should", "over", "want", "these", "may", "where", "most",
+      "many", "those", "does", "why", "please", "off", "going", "its", "i've",
+      "down", "that's", "can't", "you're", "didn't", "another", "around",
+      "must",  "few", "doesn't", "every", "yes", "each", "maybe",
+      "i'll", "away", "doing", "oh", "else", "isn't", "he's", "there's", "hi",
+      "won't", "ok", "they're", "yeah", "mine", "we're", "what's", "shall",
+      "she's", "hello", "okay", "here's", "-", "less"
+    ],
+
+    // Start functions =================================
 
     untokenize: function(arr, delim, adjustPunctuationSpacing) {
 
@@ -182,7 +122,6 @@
             newStr += arr[i];
           }
         }
-
         return newStr.trim();
       }
 
@@ -192,13 +131,9 @@
     random: function() {
 
       var currentRandom = Math.random();
-      if (arguments.length === 0) return currentRandom;
-      if (arguments.length === 1) return currentRandom * arguments[0];
-
-      var aMin = arguments[0],
-        aMax = arguments[1];
-
-      return currentRandom * (aMax - aMin) + aMin;
+      if (!arguments.length) return currentRandom;
+      return (arguments.length === 1) ? currentRandom * arguments[0] :
+        currentRandom * (arguments[1] - arguments[0]) + arguments[0];
     },
 
     randomItem: function(arr) {
@@ -208,8 +143,7 @@
 
     distance: function(x1, y1, x2, y2) {
 
-      var dx = x1 - x2,
-        dy = y1 - y2;
+      var dx = x1 - x2, dy = y1 - y2;
       return Math.sqrt(dx * dx + dy * dy);
     },
 
@@ -266,19 +200,27 @@
     },
 
     getPresentParticiple: function(verb) {
-
-      // TODO: need to call stem() and try again if first try fails
       return Conjugator().getPresentParticiple(verb);
     },
 
     getPastParticiple: function(verb) {
-
-      // TODO: need to call stem() and try again if first try fails
       return Conjugator().getPastParticiple(verb);
     },
 
     // TODO: 2 examples
+    concordance: function(verb, args) {
 
+      return Concorder(text, options).concordance();
+    },
+
+    // TODO: 2 examples
+    kwik: function(text, word, wordCount, options) {
+
+      wordCount = wordCount || 4;
+      return Concorder(text, options).kwik(word, wordCount);
+    },
+
+    // TODO: 2 examples
     conjugate: function(verb, args) {
 
       return Conjugator().conjugate(verb, args);
@@ -290,7 +232,6 @@
     },
 
     // TODO: 2 examples (regular & irregular) in docs
-
     pluralize: function(word) {
 
       if (!strOk(word)) return E;
@@ -372,12 +313,10 @@
         words = words.replace(/'VE /g, " 'VE ");
         words = words.replace(/N'T /g, " N'T ");
       }
-
       words = words.replace(/ ([Cc])an't /g, " $1an not ");
       words = words.replace(/ ([Cc])annot /g, " $1an not ");
       words = words.replace(/ ([Dd])idn't /g, " $1id not ");
       words = words.replace(/ ([CcWw])ouldn't /g, " $1ould not ");
-
 
       // "Nicole I. Kidman" gets tokenized as "Nicole I . Kidman"
       words = words.replace(/ ([A-Z]) \\./g, " $1. ");
@@ -390,7 +329,6 @@
     splitSentences: function(text, regex) {
 
       var arr = text.match(/(\S.+?[.!?])(?=\s+|$)/g);
-
       return (text.length && arr && arr.length) ? arr : [text];
     },
 
@@ -403,10 +341,8 @@
 
     _loadStringNode: function(url, callback, linebreakChars) {
 
-      var data = '',
-        lb = linebreakChars || SP,
-        isUrl = /.+?:\/\/.+/.test(url),
-        me = this;
+      var data = '', lb = linebreakChars || SP,
+        isUrl = /.+?:\/\/.+/.test(url), me = this;
 
       //log("Using Node for: "+url +" isUrl="+isUrl);
 
@@ -428,7 +364,7 @@
         var req = require('http').request(url, httpcb);
         req.on('socket', function(socket) { // shouldnt be needed
 
-          socket.setTimeout(3000); // ?
+          socket.setTimeout(5000); // ?
           socket.on('timeout', function() {
             req.abort();
             throw Error("[RiTa] loadString timed-out and aborted request");
@@ -441,7 +377,6 @@
         // try with node file-system
         var rq = require('fs');
         rq.readFile(url, function(e, data) {
-
           if (e || !data) {
             err("[Node] Error reading file: " + url + "\n" + e);
             throw e;
@@ -449,7 +384,6 @@
           data = data.toString('utf-8').replace(/[\r\n]+/g, lb).trim();
           me.fireDataLoaded(url, callback, data);
         });
-
       }
     },
 
@@ -503,30 +437,23 @@
 
     loadStrings: function(url, callback) {
 
-      if (is(url, A))
-        throw Error("RiTa.loadStrings() does not accept multiple urls");
-
-      var fireDataLoaded = this.fireDataLoaded;
-
+      var fire = this.fireDataLoaded;
       this.loadString(url, function(d) {
-        var lines = d.split('\n');
-        fireDataLoaded(url, callback, lines);
+        fire(url, callback, d.split('\n'));
       }, '\n');
-
     },
 
     loadString: function(url, callback, linebreakChars) {
 
       ok(url, S);
       var lb = linebreakChars || SP,
-        cwin, iframe,
-        fun = isNode() ? this._loadStringNode : this._loadStringDOM;
-      fun.call(this, url, callback, linebreakChars); // single-url
+        func = isNode() ? this._loadStringNode : this._loadStringDOM;
+      func.call(this, url, callback, linebreakChars); // single-url
     },
 
     fireDataLoaded: function(url, callback, data) {
 
-      //log('fireDataLoaded: '+url);
+      //log('fireDataLoaded: '+url, callback);
       return (callback) ? callback(data, url) :
         RiTaEvent({
           name: 'RiTaLoader',
@@ -539,12 +466,10 @@
       var sentenceArr = RiTa.tokenize((sentence));
 
       for (var i = 0; i < QUESTION_STARTS.length; i++) {
-
         if (equalsIgnoreCase(sentenceArr[0], QUESTION_STARTS[i]))
           return true;
       }
       return false;
-
     },
 
     isSentenceEnd: function(currentWord, nextWord) {
@@ -562,7 +487,10 @@
       if (cWL > 1 && cw.indexOf("`'\"([{<") != -1 && RiTa.isAbbreviation(currentWord.substring(1)))
         return false;
 
-      if (cWL > 2 && ((currentWord.charAt(0) == '\'' && currentWord.charAt(1) == '\'') || (currentWord.charAt(0) == '`' && currentWord.charAt(1) == '`')) && RiTa.isAbbreviation(currentWord.substring(2))) {
+      if (cWL > 2 && ((currentWord.charAt(0) == '\'' && currentWord.charAt(1) == '\'') ||
+        (currentWord.charAt(0) == '`' && currentWord.charAt(1) == '`')) &&
+        RiTa.isAbbreviation(currentWord.substring(2)))
+      {
         return false;
       }
 
@@ -604,17 +532,7 @@
       if (cWL == 4 && currentToken2 == '.' && (currentToken1 == currentToken1.toUpperCase() && currentWord.charAt(0) == currentWord.charAt(0).toUpperCase()))
         return false;
 
-      // U.S. or U.N. -> middle of sentence
-      //if (currentToken.equals("U.S.") || currentToken.equals("U.N."))
-      //return false; // dch
-
-      //if (Util.isAbbreviation(currentToken)) return false;
-
-      // (for XML-marked text) next char is < -> end of sentence
-      // if (nextToken0 == '<') return true;
-
       return true;
-
     },
 
     isW_Question: function(sentence) {
@@ -623,19 +541,14 @@
         if (equalsIgnoreCase(sentenceArr[0], W_QUESTION_STARTS[i]))
           return true;
       return false;
-
     },
 
     unescapeHTML: function(input) {
 
       if (!input || !input.length) return input;
 
-      var sfccp = String.fromCharCodePoint,
-        answer = input
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&amp;/g, "&")
-        .replace(/&quot;/g, "\"");
+      var answer = input.replace(/&lt;/g, "<").replace(/&gt;/g, ">")
+        .replace(/&amp;/g, "&").replace(/&quot;/g, "\"");
 
       String.fromCharCodePoint = function() { // uggh
         var codeunits = [];
@@ -658,43 +571,26 @@
         return String.fromCharCodePoint(parseInt(n, 16));
       });
 
-      String.fromCharCodePoint = sfccp; // uggh
-
       return answer;
     },
 
     randomOrdering: function(num) {
 
       var o = [];
-
       if (num) {
-
         for (var z = 0; z < num; z++) o.push(z);
-
-        // Array shuffle, from Jonas Raoni Soares Silva
-        // (http://jsfromhell.com/array/shuffle)
+        // Array shuffle, from http://jsfromhell.com/array/shuffle
         for (var j, x, i = o.length; i; j = parseInt(Math.random() * i),
-          x = o[--i], o[i] = o[j], o[j] = x) {
-
-          }
+          x = o[--i], o[i] = o[j], o[j] = x) { /* no-op */ }
       }
-
       return o;
-    },
-
-    stripPunctuation: function(text) {
-
-      return (text === E) ? E : text.replace(PUNCTUATION_CLASS, E);
     },
 
     // Trims punctuation from each side of token
     //   (doesnt trim whitespace or internal punctuation).
     trimPunctuation: function(text) {
 
-      if (!is(text,S)) {
-        //console.log('not a string: '+txt);
-        return text;
-      }
+      if (!is(text,S)) return text;
 
       var s = '[�`~\"\/' + "\\'_\\-[\\]{}()*+!?%&.,\\\\^$|#@<>|+=;:]";
       var regex = new RegExp("^" + s + "+|" + s + "+$", 'g');
@@ -702,57 +598,42 @@
       return (text === E) ? E : text.replace(regex, E);
     },
 
+    stripPunctuation: function(text) {
+      return (text === E) ? E : text.replace(PUNCTUATION_CLASS, E);
+    },
+
     isPunctuation: function(text) {
-
       if (!text || !text.length) return false;
-
       return ONLY_PUNCT.test(text);
-
     },
 
     hasPunctuation: function(text) {
-
       if (!text || !text.length) return false;
-
       return ONLY_PUNCT.test(text);
     },
 
-    asList: function(o) {
-
-      return (!o) ? '[]' : o.join(', ').trim();
-    },
-
     env: function() {
-
       return isNode() ? RiTa.NODE : RiTa.JS;
     },
 
     chomp: function(txt) {
-
       return txt.replace(/\s+$|^\s+/g, E);
     },
 
     getPhonemes: function(words) {
-
       return RiString(words).analyze().get(RiTa.PHONEMES);
-
     },
 
     getStresses: function(words) {
-
       return RiString(words).analyze().get(RiTa.STRESSES);
     },
 
     getSyllables: function(words) {
-
       return RiString(words).analyze().get(RiTa.SYLLABLES);
-
     },
 
     getWordCount: function(words) {
-
       return RiTa.tokenize(words).length;
-
     },
 
     stem: function(word, type) {
@@ -762,13 +643,12 @@
       if (type != 'Lancaster' && type != 'Porter' && type != 'Pling')
         err('Bad stemmer type: ' + type);
 
-      var stemImpl = Stemmer['stem_' + type];
+      var stemImpl = RiTa['stem_' + type];
 
       if (word.indexOf(SP) < 0) return stemImpl(word);
 
-      // dump non-words && multiple white-space - http://qaa.ath.cx/porter_js_demo.html
-      word = word.replace(/[^\w]/g, SP);
-      word = word.replace(/\s+/g, SP);
+      // remove non-words && white-space chars
+      word = word.replace(/[^\w]/g, SP).replace(/\s+/g, SP);
 
       var res = [],
         words = word.split(SP);
@@ -777,7 +657,6 @@
 
         res.push(stemImpl(words[i]));
       }
-
       return res.join(SP);
     },
 
@@ -785,7 +664,6 @@
     _titleCase: function(input) {
 
       if (!input || !input.length) return input;
-
       return input.substring(0, 1).toUpperCase() + input.substring(1);
     },
 
@@ -793,19 +671,63 @@
      * Takes pair of strings or string-arrays and returns the min-edit distance
      * @param normalized based on max-length if 3rd (optional) parameter is true (default=f).
      */
-    minEditDist: function(a, b, adjusted) {
+    minEditDistance: function(a, b, adjusted) {
 
-      var fun = !adjusted ? MinEditDist.computeRaw : MinEditDist.computeAdjusted;
-      return fun.call(MinEditDist, a, b);
+      var func = adjusted ? MinEditDist.computeAdjusted : MinEditDist.computeRaw;
+      return func.call(MinEditDist, a, b);
+    },
+
+    _makeClass: function() { // By John Resig (MIT Licensed)
+
+      return function(args) {
+        if (this instanceof arguments.callee) {
+          if (typeof this.init == "function") {
+            this.init.apply(this, args && args.callee ? args : arguments);
+          }
+        } else {
+          return new arguments.callee(arguments);
+        }
+      };
     }
-
   }; // end RiTa object
+
+  var Type = {
+
+    N: 'number', S: 'string', O: 'object', A: 'array',
+    B: 'boolean', R: 'regexp', F: 'function',
+
+    // From: http://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
+    get: function(obj) {
+      if (typeof obj != 'undefined') // else return undef
+        return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();
+    },
+
+    // Returns true if the object is of type 'type', otherwise false
+    is: function(obj, type) {
+      return Type.get(obj) === type;
+    },
+
+    // Throws TypeError if not the correct type, else returns true
+    ok: function(obj, type) {
+      if (Type.get(obj) != type) {
+        throw TypeError('Expected ' + (type ? type.toUpperCase() : type + E) +
+          ", but received " + (obj ? Type.get(obj).toUpperCase() : obj + E));
+      }
+      return true;
+    }
+  };
+
+  var N = Type.N, S = Type.S, O = Type.O, A = Type.A, B = Type.B,
+    R = Type.R, F = Type.F, is = Type.is, ok = Type.ok;
+
+  // export these
+  for (var name in Type) Type.hasOwnProperty(name) && (RiTa[name] = Type[name]);
 
   // ////////////////////////////////////////////////////////////
   // RiMarkov
   // ////////////////////////////////////////////////////////////
 
-  var RiMarkov = makeClass();
+  var RiMarkov = RiTa._makeClass();
 
   RiMarkov.MAX_GENERATION_ATTEMPTS = 1000;
   RiMarkov._SSRE = /"?[A-Z][a-z"',;`-]*/;
@@ -814,9 +736,6 @@
   RiMarkov.prototype = {
 
     /*
-     * @function
-     * @name RiMarkov
-     *
      * Construct a Markov chain (or n-gram) model and set its n-Factor
      */
     init: function(nFactor, recognizeSentences, allowDuplicates) {
@@ -841,19 +760,10 @@
 
     _initArgs: function() {
 
-      var a = arguments,
-        t = Type.get(a[0]);
-
-      //console.error("a[0]="+t+" a.length="+a.length+" type="+t+" analyze="+typeof a[0].text);
-
-      if (a.length && (t === O || t === 'global' || t === 'window')) {
-
-        // recurse, ignore 'this'
-        var shifted = Array.prototype.slice.call(a, 1);
-
-        return this._initArgs.apply(this, shifted);
-      }
-
+      var a = arguments, t = Type.get(a[0]);
+      // recurse, ignore 'this'
+      if (a.length && (t === O || t === 'global' || t === 'window'))
+        return this._initArgs.apply(this, Array.prototype.slice.call(a, 1));
       return a;
     },
 
@@ -1029,7 +939,6 @@
     },
 
     getN: function() {
-
       return this._n;
     },
 
@@ -1040,7 +949,6 @@
     },
 
     ready: function(url) {
-
       return this.size() > 0;
     },
 
@@ -1085,8 +993,6 @@
     },
 
     loadTokens: function(tokens, multiplier) {
-
-      //log("loadTokens: smooth="+this.smoothing);
 
       multiplier = multiplier || 1;
 
@@ -1454,113 +1360,19 @@
 
   };
 
-  ///////////////////////////////////////////////////////////////////////////
-  // RiTaEvent class
-  ///////////////////////////////////////////////////////////////////////////
-
-  var RiTaEvent = makeClass();
-
-  RiTaEvent._callbacksDisabled = false;
-
-  RiTaEvent.prototype = {
-
-    init: function(source, eventType, data) {
-
-      is(source, O) || ok(source, S);
-
-      var fn = RiTaEvent.prototype.init;
-      if (!fn.ID) fn.ID = 0;
-      this._id = ++(fn.ID);
-
-      this._data = data;
-      this._source = source;
-      this._type = eventType || RiTa.UNKNOWN;
-    },
-
-    toString: function() {
-
-      var s = 'RiTaEvent[#' + this._id + ' type=' +
-        '(' + this._type + ') source=' + this._source.toString();
-
-      s += !this._data ? s += ' data=null' :
-        (' data-length=' + this._data.toString().length);
-
-      return s + ']';
-    },
-
-    source: function() {
-
-      return this._source;
-    },
-
-    data: function() {
-
-      return this._data;
-    },
-
-    type: function() {
-
-      return this._type;
-    },
-
-    isType: function(t) {
-
-      return this._type === t;
-    },
-
-    _fire: function(callback) {
-
-      callback = callback || window.onRiTaEvent;
-
-      // check if callback is inside a Processing sketch
-      if (!callback) {
-
-        var g = RiText._graphics();
-        if (g && g.onRiTaEvent)
-          callback = g.onRiTaEvent;
-      }
-
-      if (callback && is(callback, F)) {
-
-        try {
-
-          callback(this); // first arg ??
-          return this;
-        } catch (err) {
-
-          RiTaEvent._callbacksDisabled = true;
-          var msg = "RiTaEvent: error calling '" + callback + "': " + err;
-          is(callback, S) && (msg += "**callback must be a function in JS");
-          warn(msg);
-          throw err;
-        }
-      }
-
-      RiTaEvent._callbacksDisabled = true;
-
-      return this;
-    }
-  };
-
   // ////////////////////////////////////////////////////////////
   // RiWordNet (stub)
   // ////////////////////////////////////////////////////////////
 
-  var RiWordNet = makeClass();
-
-  RiWordNet.prototype = {
-
-    init: function() {
-
+  var RiWordNet = function() {
       throw Error("RiWordNet is not yet implemented in JavaScript!");
-    }
   };
 
   // ////////////////////////////////////////////////////////////
   // RiLexicon
   // ////////////////////////////////////////////////////////////
 
-  var RiLexicon = makeClass();
+  var RiLexicon = RiTa._makeClass();
 
   // ////////////////////////////////////////////////////////////
   // Static variables
@@ -1578,29 +1390,21 @@
 
     init: function() {
 
-      if (!RiLexicon.data) {
-
-        this._load();
-      }
+      !RiLexicon.data && this._load();
     },
 
     _load: function() {
 
       if (typeof _RiTa_DICT != 'undefined' && RiTa.USE_LEXICON) {
 
-        //console.log('[RiTa] Loading lexicon data...');
-        //RiLexicon.data = _RiTa_DICT;
-
         RiLexicon.data = {};
-        for (var word in _RiTa_DICT) {
+        for (var word in _RiTa_DICT)
           RiLexicon.data[word] = _RiTa_DICT[word]; // needed?
-        }
 
       } else {
 
         if (!RiLexicon.emittedWarning)
           warn('RiTa lexicon appears to be missing! Part-of-speech tagging (at least) will be inaccurate');
-
         RiLexicon.emittedWarning = true
       }
     },
@@ -1715,14 +1519,12 @@
           minVal = med;
           result = [entry];
           //console.log("BEST "+entry + " "+med + " "+phonesArr);
-
         }
 
         // another best to add
         else if (med == minVal) {
 
           //console.log("TIED "+entry + " "+med + " "+phonesArr);
-
           result.push(entry);
         }
       }
@@ -2259,7 +2061,7 @@
   // RiString
   ////////////////////////////////////////////////////////////////
 
-  var RiString = makeClass();
+  var RiString = RiTa._makeClass();
 
   RiString._trackedFeatures = [
       'tokens', 'stresses', 'phonemes', 'syllables', 'pos', 'text'
@@ -2879,7 +2681,7 @@
   // RiGrammar
   // ////////////////////////////////////////////////////////////
 
-  var RiGrammar = makeClass();
+  var RiGrammar = RiTa._makeClass();
 
   RiGrammar.START_RULE = "<start>";
   RiGrammar.PROB_PATT = /(.*[^\s])\s*\[([0-9.]+)\](.*)/;
@@ -3225,7 +3027,7 @@
 
           var funName = parts[0];
           var argStr = parts[1].replace(/\)/, E);
-          var g = context || RiText._graphics();
+          var g = context || window;
           if (g && g[funName] && is(g[funName], F)) {
 
             var args = argStr.split(',');
@@ -3304,13 +3106,67 @@
 
   }; // end RiGrammar
 
+  var RiTaEvent = RiTa._makeClass();
+
+  RiTaEvent._callbacksDisabled = false;
+  RiTaEvent.ID = 0;
+
+  RiTaEvent.prototype = {
+
+    init: function(source, eventType, data) {
+
+      is(source, O) || ok(source, S);
+
+      this._id = ++RiTaEvent.ID;
+      this._data = data;
+      this._source = source;
+      this._type = eventType || RiTa.UNKNOWN;
+    },
+
+    toString: function() {
+
+      var s = 'RiTaEvent[#' + this._id + ' type=' +
+        '(' + this._type + ') source=' + this._source.toString();
+
+      s += !this._data ? s += ' data=null' :
+        (' data-length=' + this._data.toString().length);
+
+      return s + ']';
+    },
+
+    isType: function(t) {
+
+      return this._type === t;
+    },
+
+    _fire: function(callback) {
+
+      callback = callback || window.onRiTaEvent;
+
+      if (callback && RiTa.is(callback, F)) {
+        try {
+
+          callback(this); // first arg ??
+          return this;
+
+        } catch (err) {
+
+          RiTaEvent._callbacksDisabled = true;
+          var msg = "RiTaEvent: error calling '" + callback + "': " + err;
+          RiTa.is(callback, S) && (msg += " Callback must be a function in JS!");
+          warn(msg);
+          throw err;
+        }
+      }
+    }
+  };
 
 
   /////////////////////////////////////////////////////////////////////////
   // RiLetterToSound (adapted from FreeTTS text-to-speech)
   /////////////////////////////////////////////////////////////////////////
 
-  var LetterToSound = makeClass();
+  var LetterToSound = RiTa._makeClass();
 
   /*
    * Entry in file represents the total number of states in the file. This
@@ -3560,7 +3416,7 @@
   // DecisionState
   /////////////////////////////////////////////////////////////////////////
 
-  var DecisionState = makeClass();
+  var DecisionState = RiTa._makeClass();
 
   DecisionState.TYPE = 1;
 
@@ -3618,7 +3474,7 @@
   // FinalState
   // ///////////////////////////////////////////////////////////////////////
 
-  var FinalState = makeClass();
+  var FinalState = RiTa._makeClass();
 
   FinalState.TYPE = 2;
 
@@ -3683,7 +3539,7 @@
   //StringTokenizer
   /////////////////////////////////////////////////////////////////////////
 
-  var StringTokenizer = makeClass();
+  var StringTokenizer = RiTa._makeClass();
 
   StringTokenizer.prototype = {
 
@@ -3707,12 +3563,11 @@
   // TextNode
   // ////////////////////////////////////////////////////////////
 
-  var TextNode = makeClass();
+  var TextNode = RiTa._makeClass();
 
   TextNode.prototype = {
 
     init: function(parent, token) {
-
       this.count = 0;
       this.children = {};
       this.parent = parent;
@@ -3729,17 +3584,13 @@
     },
 
     selectChild: function(regex, probabalisticSelect) {
-
       var ps = probabalisticSelect || true;
       return this.children ? this._select(this.childNodes(regex), ps) : null;
     },
 
     _select: function(arr, probabalisticSelect) {
-
       if (!arr) throw TypeError("bad arg to '_select()'");
-
       probabalisticSelect = probabalisticSelect || false;
-
       return (probabalisticSelect ? this._probabalisticSelect(arr) : arr[Math.floor((Math.random() * arr.length))]);
     },
 
@@ -3767,15 +3618,14 @@
 
       initialCount = initialCount || 1;
 
-      var key = this._key(newToken),
-        node = this.children[key];
+      var node = this.children[newToken];
 
       //  add first instance of this token
       if (!node) {
 
         node = new TextNode(this, newToken);
         node.count = initialCount;
-        this.children[key] = node;
+        this.children[newToken] = node;
       } else {
 
         node.count++;
@@ -3785,7 +3635,6 @@
     },
 
     asTree: function(sort) {
-
       var s = this.token + " ";
       if (!this.isRoot())
         s += "(" + this.count + ")->";
@@ -3796,28 +3645,21 @@
     },
 
     isRoot: function() {
-
       return !this.parent;
     },
 
     isLeaf: function() {
-
       return this.childCount() === 0;
     },
 
     probability: function() {
-
       //log('probability: '+ this.count+'/'+this.siblingCount());
       return this.count / this.siblingCount();
     },
 
-
     childNodes: function(regex) {
-
       if (!this.children) return EA;
-
       regex = is(regex, S) ? new RegExp(regex) : regex;
-
       var res = [];
       for (var k in this.children) {
         var nd = this.children[k];
@@ -3825,61 +3667,29 @@
           res.push(nd);
         }
       }
-
       return res;
     },
 
     siblingCount: function() {
-
-      if (this.isRoot()) err("Illegal siblingCount on ROOT!");
-
-      if (!this.parent) err("Null parent for: " + this.token);
-
+      if (!this.parent) err("Illegal siblingCount on ROOT!")
       return this.parent.childCount();
     },
 
-    uniqueCount: function() {
-
-      var sum = 0;
-      for (var k in this.children) sum++;
-      return sum;
-    },
-
     childCount: function() {
-
-      //return this.childNodes().length;
-
       if (!this.children) return 0;
-
       var sum = 0;
       for (var k in this.children) {
         if (k && this.children[k])
           sum += this.children[k].count;
       }
-
       return sum;
     },
 
-    /*
-     * takes node or string, returns node
-     */
+    // takes node or string, returns node
     lookup: function(obj) {
-
       if (!obj) return null;
-
       obj = (typeof obj != S && obj.token) ? obj.token : obj;
-
-      var key = this._key(obj);
-
-      //log(this.token+".lookup("+this._key(obj)+") :: "+this.children[key]);
-
-      return obj ? this.children[key] : null;
-    },
-
-
-    _key: function(str) {
-
-      return str; //(str && TextNode.ignoreCase) ? str.toLowerCase() : str;
+      return obj ? this.children[obj] : null;
     },
 
     childrenToString: function(textNode, str, depth, sort) {
@@ -3947,7 +3757,7 @@
   // Conjugator
   // ////////////////////////////////////////////////////////////
 
-  var Conjugator = makeClass();
+  var Conjugator = RiTa._makeClass();
 
   Conjugator.prototype = {
 
@@ -4451,16 +4261,16 @@
     }
   }; // end PosTagger
 
-  var Stemmer = {};
-
   // Stemming demo/comparison - http://text-processing.com/demo/stem/
 
   /*
    *  Porter stemmer in Javascript: from https://github.com/kristopolous/Porter-Stemmer
    *  Ported from Porter, 1980, An algorithm for suffix stripping, Program, Vol. 14,
    *  no. 3, pp 130-137, see also http:www.tartarus.org/~martin/PorterStemmer
+   *
+   *  Porter is default Stemmer: for Lancaster or Pling, include the specific file
    */
-  Stemmer.stem_Porter = (function() {
+  RiTa.stem_Porter = (function() {
 
     var step2list = {
         'ational': 'ate',
@@ -4637,713 +4447,11 @@
 
       return w;
     };
-  })();
-
-  Stemmer.stem_Lancaster = (function() {
-
-    function accept(token) {
-
-      return (token.match(/^[aeiou]/)) ?
-        (token.length > 1) : (token.length > 2 && token.match(/[aeiouy]/));
-    }
-
-    // take a token, look up the applicable rule and do the stem
-    function applyRules(token, intact) {
-
-      var section = token.substr(-1),
-        rules = ruleTable[section],
-        input = token;
-
-      if (rules) {
-
-        for (var i = 0; i < rules.length; i++) {
-
-          // only apply intact rules to intact tokens
-          if ((intact || !rules[i].intact) && token.substr(0 - rules[i].pattern.length) == rules[i].pattern) {
-
-            // hack off only as much as the rule indicates
-            var result = token.substr(0, token.length - rules[i].size);
-
-            // if the rules wants us to apply an appendage do so
-            if (rules[i].appendage) {
-              result += rules[i].appendage;
-            }
-
-            if (accept(result)) {
-
-              token = result;
-
-              // see what the rules wants to do next
-              if (rules[i].continuation) {
-
-                // this rule thinks there still might be stem left. keep at it.
-                // since we've applied a change we'll pass false in for intact
-                return applyRules(result, false);
-
-              } else {
-
-                // the rule thinks we're done stemming. drop out.
-                return result;
-              }
-            }
-          }
-        }
-      }
-      // else // warn('No stemming rules (LancasterImpl) found for: '+input);
-
-      return token;
-    }
-
-    var ruleTable = { // indexed by last character of word
-
-      "a": [{
-        "continuation": false,
-        "intact": true,
-        "pattern": "ia",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": true,
-        "pattern": "a",
-        "size": "1"
-      }],
-      "b": [{
-        "continuation": false,
-        "intact": false,
-        "pattern": "bb",
-        "size": "1"
-      }],
-      "c": [{
-        "appendage": "s",
-        "continuation": false,
-        "intact": false,
-        "pattern": "ytic",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ic",
-        "size": "2"
-      }, {
-        "appendage": "t",
-        "continuation": true,
-        "intact": false,
-        "pattern": "nc",
-        "size": "1"
-      }],
-      "d": [{
-        "continuation": false,
-        "intact": false,
-        "pattern": "dd",
-        "size": "1"
-      }, {
-        "appendage": "y",
-        "continuation": true,
-        "intact": false,
-        "pattern": "ied",
-        "size": "3"
-      }, {
-        "appendage": "s",
-        "continuation": false,
-        "intact": false,
-        "pattern": "ceed",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "eed",
-        "size": "1"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ed",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "hood",
-        "size": "4"
-      }],
-      "e": [{
-        "continuation": true,
-        "intact": false,
-        "pattern": "e",
-        "size": "1"
-      }],
-      "f": [{
-        "appendage": "v",
-        "continuation": false,
-        "intact": false,
-        "pattern": "lief",
-        "size": "1"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "if",
-        "size": "2"
-      }],
-      "g": [{
-        "continuation": true,
-        "intact": false,
-        "pattern": "ing",
-        "size": "3"
-      }, {
-        "appendage": "y",
-        "continuation": false,
-        "intact": false,
-        "pattern": "iag",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ag",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "gg",
-        "size": "1"
-      }],
-      "h": [{
-        "continuation": false,
-        "intact": true,
-        "pattern": "th",
-        "size": "2"
-      }, {
-        "appendage": "c",
-        "continuation": false,
-        "intact": false,
-        "pattern": "guish",
-        "size": "5"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ish",
-        "size": "3"
-      }],
-      "i": [{
-        "continuation": false,
-        "intact": true,
-        "pattern": "i",
-        "size": "1"
-      }, {
-        "appendage": "y",
-        "continuation": true,
-        "intact": false,
-        "pattern": "i",
-        "size": "1"
-      }],
-      "j": [{
-        "appendage": "d",
-        "continuation": false,
-        "intact": false,
-        "pattern": "ij",
-        "size": "1"
-      }, {
-        "appendage": "s",
-        "continuation": false,
-        "intact": false,
-        "pattern": "fuj",
-        "size": "1"
-      }, {
-        "appendage": "d",
-        "continuation": false,
-        "intact": false,
-        "pattern": "uj",
-        "size": "1"
-      }, {
-        "appendage": "d",
-        "continuation": false,
-        "intact": false,
-        "pattern": "oj",
-        "size": "1"
-      }, {
-        "appendage": "r",
-        "continuation": false,
-        "intact": false,
-        "pattern": "hej",
-        "size": "1"
-      }, {
-        "appendage": "t",
-        "continuation": false,
-        "intact": false,
-        "pattern": "verj",
-        "size": "1"
-      }, {
-        "appendage": "t",
-        "continuation": false,
-        "intact": false,
-        "pattern": "misj",
-        "size": "2"
-      }, {
-        "appendage": "d",
-        "continuation": false,
-        "intact": false,
-        "pattern": "nj",
-        "size": "1"
-      }, {
-        "appendage": "s",
-        "continuation": false,
-        "intact": false,
-        "pattern": "j",
-        "size": "1"
-      }],
-      "l": [{
-        "continuation": false,
-        "intact": false,
-        "pattern": "ifiabl",
-        "size": "6"
-      }, {
-        "appendage": "y",
-        "continuation": false,
-        "intact": false,
-        "pattern": "iabl",
-        "size": "4"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "abl",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ibl",
-        "size": "3"
-      }, {
-        "appendage": "l",
-        "continuation": true,
-        "intact": false,
-        "pattern": "bil",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "cl",
-        "size": "1"
-      }, {
-        "appendage": "y",
-        "continuation": false,
-        "intact": false,
-        "pattern": "iful",
-        "size": "4"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ful",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ul",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ial",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ual",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "al",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ll",
-        "size": "1"
-      }],
-      "m": [{
-        "continuation": false,
-        "intact": false,
-        "pattern": "ium",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": true,
-        "pattern": "um",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ism",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "mm",
-        "size": "1"
-      }],
-      "n": [{
-        "appendage": "j",
-        "continuation": true,
-        "intact": false,
-        "pattern": "sion",
-        "size": "4"
-      }, {
-        "appendage": "c",
-        "continuation": false,
-        "intact": false,
-        "pattern": "xion",
-        "size": "4"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ion",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ian",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "an",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "een",
-        "size": "0"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "en",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "nn",
-        "size": "1"
-      }],
-      "p": [{
-        "continuation": true,
-        "intact": false,
-        "pattern": "ship",
-        "size": "4"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "pp",
-        "size": "1"
-      }],
-      "r": [{
-        "continuation": true,
-        "intact": false,
-        "pattern": "er",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ear",
-        "size": "0"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ar",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "or",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ur",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "rr",
-        "size": "1"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "tr",
-        "size": "1"
-      }, {
-        "appendage": "y",
-        "continuation": true,
-        "intact": false,
-        "pattern": "ier",
-        "size": "3"
-      }],
-      "s": [{
-        "appendage": "y",
-        "continuation": true,
-        "intact": false,
-        "pattern": "ies",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "sis",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "is",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ness",
-        "size": "4"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ss",
-        "size": "0"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ous",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": true,
-        "pattern": "us",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": true,
-        "pattern": "s",
-        "size": "1"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "s",
-        "size": "0"
-      }],
-      "t": [{
-        "appendage": "y",
-        "continuation": false,
-        "intact": false,
-        "pattern": "plicat",
-        "size": "4"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "at",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ment",
-        "size": "4"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ent",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ant",
-        "size": "3"
-      }, {
-        "appendage": "b",
-        "continuation": false,
-        "intact": false,
-        "pattern": "ript",
-        "size": "2"
-      }, {
-        "appendage": "b",
-        "continuation": false,
-        "intact": false,
-        "pattern": "orpt",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "duct",
-        "size": "1"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "sumpt",
-        "size": "2"
-      }, {
-        "appendage": "i",
-        "continuation": false,
-        "intact": false,
-        "pattern": "cept",
-        "size": "2"
-      }, {
-        "appendage": "v",
-        "continuation": false,
-        "intact": false,
-        "pattern": "olut",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "sist",
-        "size": "0"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ist",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "tt",
-        "size": "1"
-      }],
-      "u": [{
-        "continuation": false,
-        "intact": false,
-        "pattern": "iqu",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ogu",
-        "size": "1"
-      }],
-      "v": [{
-        "appendage": "j",
-        "continuation": true,
-        "intact": false,
-        "pattern": "siv",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "eiv",
-        "size": "0"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "iv",
-        "size": "2"
-      }],
-      "y": [{
-        "continuation": true,
-        "intact": false,
-        "pattern": "bly",
-        "size": "1"
-      }, {
-        "appendage": "y",
-        "continuation": true,
-        "intact": false,
-        "pattern": "ily",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ply",
-        "size": "0"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ly",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ogy",
-        "size": "1"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "phy",
-        "size": "1"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "omy",
-        "size": "1"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "opy",
-        "size": "1"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ity",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ety",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "lty",
-        "size": "2"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "istry",
-        "size": "5"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ary",
-        "size": "3"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "ory",
-        "size": "3"
-      }, {
-        "continuation": false,
-        "intact": false,
-        "pattern": "ify",
-        "size": "3"
-      }, {
-        "appendage": "t",
-        "continuation": true,
-        "intact": false,
-        "pattern": "ncy",
-        "size": "2"
-      }, {
-        "continuation": true,
-        "intact": false,
-        "pattern": "acy",
-        "size": "3"
-      }],
-      "z": [{
-        "continuation": true,
-        "intact": false,
-        "pattern": "iz",
-        "size": "2"
-      }, {
-        "appendage": "s",
-        "continuation": false,
-        "intact": false,
-        "pattern": "yz",
-        "size": "1"
-      }]
-    };
-
-    return function(token) {
-
-      return applyRules(token.toLowerCase(), true);
-    };
 
   })();
-
-  Array.prototype._arrayContains = function(ele) {
-    return (Array.prototype.indexOf(ele) > -1);
-  };
-
-  String.prototype._endsWith = function(suffix) {
-    return this.indexOf(suffix, this.length - suffix.length) !== -1;
-  };
 
   /* From the PlingStemmer impl in the Java Tools package (see http://mpii.de/yago-naga/javatools). */
-  Stemmer.stem_Pling = (function() {
+  RiTa.stem_Pling = (function() {
 
     /* Words that are both singular and plural */
     var categorySP = ["acoustics", "aestetics", "aquatics", "basics", "ceramics", "classics", "cosmetics", "dermatoglyphics", "dialectics", "deer", "dynamics", "esthetics", "ethics", "harmonics", "heroics", "isometrics", "mechanics", "metrics", "statistics", "optic", "people", "physics", "polemics", "propaedeutics", "pyrotechnics", "quadratics", "quarters", "statistics", "tactics", "tropics"];
@@ -5430,8 +4538,6 @@
     }
 
     function stem(s) {
-
-      if (!strOk(s)) return E;
 
       // Handle irregular ones
       var irreg = categoryIRR[s];
@@ -5592,6 +4698,14 @@
     };
 
   })();
+
+  Array.prototype._arrayContains = function(ele) {
+    return (Array.prototype.indexOf(ele) > -1);
+  };
+
+  String.prototype._endsWith = function(suffix) {
+    return this.indexOf(suffix, this.length - suffix.length) !== -1;
+  };
 
   /*
    * Minimum-Edit-Distance (or Levenshtein distance) is a measure of the similarity
@@ -5760,38 +4874,153 @@
     }
   };
 
+  ////////////////////////////////////////////////////////////////
+  //////// Concorder
+  ////////////////////////////////////////////////////////////////
+
+  var Concorder = RiTa._makeClass();
+
+  Concorder.prototype = {
+
+    init: function(text, options) {
+
+      this.model = null;
+      this.words = [];
+      this.wordsToIgnore = [];
+      this.ignoreCase = false;
+      this.ignoreStopWords = false;
+      this.ignorePunctuation = false;
+
+      if (options) {
+        options.ignoreCase && (this.ignoreCase = true);
+        options.ignoreStopWords && (this.ignoreStopWords = true);
+        options.ignorePunctuation && (this.ignorePunctuation = true);
+        options.wordsToIgnore && (this.wordsToIgnore = options.wordsToIgnore);
+      }
+
+      if (this.ignoreStopWords)
+        this.wordsToIgnore = concat(this.wordsToIgnore, RiTa.STOP_WORDS);
+
+      this.words = is(text, A) ? text : RiTa.tokenize(text);
+    },
+
+    /*
+     * Returns the # of occurences of <code>word</code> or 0 if the word does
+     * not exist in the model.
+     */
+    count: function(word) {
+
+      var value = lookup(word);
+      return value == null ? 0 : value.count;
+    },
+
+    concordance: function() {
+      if (model == null) this.build();
+      return model;
+    },
+
+    kwik: function(word, numWords) {
+
+      var value = lookup(word),
+        idxs = value.indexes;
+
+      for (var i = 0; i < idxs.length; i++) {
+          var sub = words.slice(Math.max(0,idxs[i]-numWords),
+            Math.min(words.length, idxs[i]+numWords+1));
+  	      result[i] = RiTa.untokenize(sub);
+      }
+      return result;
+    },
+
+    /////////////////// helpers ////////////////////////////
+
+    build: function() {
+
+      var ts = +new Date();
+      model = {};
+
+      for (var j = 0; j < words.length; j++) {
+
+        var word = words[j];
+
+        if (ignorable(word)) continue;
+
+        var lookup = lookup(word);
+        if (!lookup) {
+	         lookup = { word: word, key: compareKey(word), indexes: [] };
+	         model[lookup.key] = lookup;
+        }
+        lookup.indexes.push(j);
+      }
+
+      console.log("KWIC: "+(new Date()-ts)+"ms");
+    },
+
+    // ========================= METHODS =============================
+
+    ignorable: function(key) {
+
+      if (ignorePunctuation && RiTa.isPunctuation(key))
+        return true;
+
+      for (var i = 0; i < wordsToIgnore.length; i++) {
+
+        var word = wordsToIgnore[i];
+
+        if (ignoreCase) {
+
+          if (key.equalsIgnoreCase(word))
+            return true;
+
+        } else { // check case
+
+          if (key.equals(word))
+            return true;
+        }
+      }
+      return false;
+    },
+
+    compareKey: function(word) {
+
+      return ignoreCase ? word.toLowerCase() : word;
+    },
+
+    lookup: function(word) {
+
+      var key = compareKey(word);
+      model || this.build();
+      return model.key;
+    }
+  };
+
   //////////////////////////////////////////////////////////////////
   //////// RE
   ////////////////////////////////////////////////////////////////
 
-  var RE = makeClass(); // TODO: replace with JS RegEx
+  var RE = RiTa._makeClass();
 
   RE.prototype = {
 
     init: function(regex, offset, suffix) {
-
       this.regex = new RegExp(regex);
       this.offset = offset;
       this.suffix = suffix;
     },
 
     applies: function(word) {
-
       return this.regex.test(trim(word));
     },
 
     fire: function(word) {
-
       return this.truncate(trim(word)) + this.suffix;
     },
 
     analyze: function(word) {
-
       return ((this.suffix != E) && endsWith(word, this.suffix)) ? true : false;
     },
 
     truncate: function(word) {
-
       return (this.offset === 0) ? word : word.substr(0, word.length - this.offset);
     }
   };
@@ -5807,21 +5036,9 @@
   var PUNCTUATION_CLASS = /[�`~\"\/'_\-[\]{}()*+!?%&.,\\^$|#@<>|+=;:]/g; // TODO: add smart-quotes
 
   var ONLY_PUNCT = /^[^0-9A-Za-z\s]*$/,
-    RiTextCallbacksDisabled = false,
     DEFAULT_PLURAL_RULE = RE("^((\\w+)(-\\w+)*)(\\s((\\w+)(-\\w+)*))*$", 0, "s"),
     ALL_PUNCT = /^[-[\]{}()*+!?%&.,\\^$|#@<>|+=;:]+$/g,
-    DeLiM = ':DeLiM:',
-    SP = ' ',
-    E = '',
-    N = Type.N,
-    S = Type.S,
-    O = Type.O,
-    A = Type.A,
-    B = Type.B,
-    R = Type.R,
-    F = Type.F,
-    EA = [];
-
+    SP = ' ', E = '', EA = [];
 
   var NULL_PLURALS = RE( // these don't change for plural/singular
     "^(bantu|bengalese|bengali|beninese|boche|bonsai|digitalis|mess|" + "burmese|chinese|colossus|congolese|discus|emphasis|gabonese|guyanese|japanese|javanese|" + "lebanese|maltese|olympics|portuguese|senegalese|siamese|singhalese|innings|" + "sinhalese|sioux|sudanese|swiss|taiwanese|togolese|vietnamese|aircraft|" + "anopheles|apparatus|asparagus|barracks|bellows|bison|bluefish|bob|bourgeois|" + "bream|brill|butterfingers|cargo|carp|catfish|chassis|clothes|chub|cod|codfish|" + "coley|contretemps|corps|crawfish|crayfish|crossroads|cuttlefish|dace|deer|dice|" + "dogfish|doings|dory|downstairs|eldest|earnings|economics|electronics|finnan|" + "firstborn|fish|flatfish|flounder|fowl|fry|fries|works|globefish|goldfish|golf|" + "grand|grief|gudgeon|gulden|haddock|hake|halibut|headquarters|herring|hertz|horsepower|" + "goods|hovercraft|hundredweight|ironworks|jackanapes|kilohertz|kurus|kwacha|ling|lungfish|" + "mackerel|means|megahertz|moorfowl|moorgame|mullet|nepalese|offspring|pampas|parr|pants|" + "patois|pekinese|penn'orth|perch|pickerel|pike|pince-nez|plaice|precis|quid|rand|" + "rendezvous|revers|roach|roux|salmon|samurai|series|seychelles|seychellois|shad|" + "sheep|shellfish|smelt|spacecraft|species|starfish|stockfish|sunfish|superficies|" + "sweepstakes|swordfish|tench|tennis|[a-z]+osis|[a-z]+itis|[a-z]+ness|" + "tobacco|tope|triceps|trout|tuna|tunafish|tunny|turbot|trousers|" + "undersigned|veg|waterfowl|waterworks|waxworks|whiting|wildfowl|woodworm|" + "yen|aries|pisces|forceps|lieder|jeans|physics|mathematics|news|odds|politics|remains|" + "surroundings|thanks|statistics|goods|aids|wildlife)$", 0, E);
@@ -6655,22 +5872,6 @@
       (str1.toLowerCase() === str2.toLowerCase()) : false;
   }
 
-  function makeClass() { // By John Resig (MIT Licensed)
-
-    return function(args) {
-
-      if (this instanceof arguments.callee) {
-
-        if (typeof this.init == "function") {
-
-          this.init.apply(this, args && args.callee ? args : arguments);
-        }
-      } else {
-        return new arguments.callee(arguments);
-      }
-    };
-  }
-
   // Arrays ////////////////////////////////////////////////////////////////////////
 
   function shuffle(oldArray) {
@@ -6704,10 +5905,9 @@
     return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
   }
 
-
   // ///////////////////////////// End Functions ////////////////////////////////////
 
-  var hasProcessing = (typeof Processing !== 'undefined');
+  var hasP5 = (typeof p5 !== 'undefined');
 
   if (!RiTa.SILENT && console)
     console.log('[INFO] RiTaJS.version [' + RiTa.VERSION + ']');
@@ -6725,19 +5925,18 @@
     window['RiLexicon'] = RiLexicon;
     window['RiGrammar'] = RiGrammar;
     window['RiMarkov'] = RiMarkov;
-    window['RiTaEvent'] = RiTaEvent;
     window['RiWordNet'] = RiWordNet;
+    window['RiTaEvent'] = RiTaEvent;
 
   } else if (typeof module != 'undefined' && module.exports) { // for node
 
     module.exports['RiTa'] = RiTa;
-    module.exports['RiText'] = RiText;
     module.exports['RiString'] = RiString;
     module.exports['RiLexicon'] = RiLexicon;
     module.exports['RiGrammar'] = RiGrammar;
     module.exports['RiMarkov'] = RiMarkov;
-    module.exports['RiTaEvent'] = RiTaEvent;
     module.exports['RiWordNet'] = RiWordNet;
+    module.exports['RiTaEvent'] = RiTaEvent;
   }
 
   /*jshint +W069 */
