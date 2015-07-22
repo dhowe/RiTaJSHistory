@@ -1249,42 +1249,39 @@ var runtests = function() {
       deepEqual(output, expected);
     });
 
-    /*test("testConcordance", function() {
+
+    test("testConcordance", function() {
 
       var data = RiTa.concordance("The dog ate the cat");
-      equal(data.length,5);
-      ok(data["the"]==1);
-      ok(data["The"]==1);
-      equal(data["THE"],null);
 
-      args.put("ignoreCase", false);
-      args.put("ignoreStopWords", false);
-      args.put("ignorePunctuation", false);
-      args.put("wordsToIgnore", null);
+      equal( Object.keys(data).length, 5);
+      equal(data["the"],1);
+      equal(data["The"],1);
+      equal(data["THE"],undefined);
 
       data = RiTa.concordance("The dog ate the cat", {
         ignoreCase: false,
         ignoreStopWords: false,
         ignorePunctuation: false,
-        wordsToIgnore: undefined
       });
 
-      equal(data.length,5);
-      ok(data["the"]==1);
-      ok(data["The"]==1);
-      equal(data["THE"],null);
+      equal( Object.keys(data).length, 5); // same results
+      equal(data["the"],1);
+      equal(data["The"],1);
+      equal(data["THE"],undefined);
 
       data = RiTa.concordance("The dog ate the cat", {
         ignoreCase: true
       });
 
-      equal(data.length,4);
-      ok(data["the"]==2);
-      equal(data["The"],null);
-      equal(data["THE"],null);
+      equal( Object.keys(data).length, 4);
+      equal(data["the"],2);
+      equal(data["The"],undefined);
+      equal(data["THE"],undefined);
 
       // TODO: larger text, plus all combinations of options
-    });*/
+      // and test that result is sorted by frequency (as in java)
+    });
 
     test("testConjugate", function() {
 

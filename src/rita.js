@@ -208,15 +208,15 @@
     },
 
     // TODO: 2 examples
-    concordance: function(verb, args) {
+    concordance: function(text, options) {
 
       return Concorder(text, options).concordance();
     },
 
     // TODO: 2 examples
-    kwik: function(text, word, wordCount, options) {
+    kwik: function(text, word, options) {
 
-      wordCount = wordCount || 4;
+      wordCount = (options && options.wordCount) || 4;
       return Concorder(text, options).kwik(word, wordCount);
     },
 
@@ -4910,18 +4910,27 @@
      */
     count: function(word) {
 
-      var value = lookup(word);
+      var value = this.lookup(word);
       return value == null ? 0 : value.count;
     },
 
     concordance: function() {
-      if (model == null) this.build();
-      return model;
+      if (!this.model) this.build();
+      var result = {};
+      for (var name in this.model)
+        result[name] = this.model[name].indexes.length;
+
+      // TODO: need to sort by value here
+      var sortable = [];
+      for (var name in result)
+        sortable.push([name, result[name]])
+      sortable.sort(function(a, b) {return a[1] - b[1]})
+      return result;
     },
 
     kwik: function(word, numWords) {
 
-      var value = lookup(word),
+      var value = this.lookup(word),
         idxs = value.indexes;
 
       for (var i = 0; i < idxs.length; i++) {
@@ -4937,37 +4946,37 @@
     build: function() {
 
       var ts = +new Date();
-      model = {};
+      this.model = {};
 
-      for (var j = 0; j < words.length; j++) {
+      for (var j = 0; j < this.words.length; j++) {
 
-        var word = words[j];
+        var word = this.words[j];
 
-        if (ignorable(word)) continue;
+        if (this.ignorable(word)) continue;
 
-        var lookup = lookup(word);
+        var lookup = this.lookup(word);
         if (!lookup) {
-	         lookup = { word: word, key: compareKey(word), indexes: [] };
-	         model[lookup.key] = lookup;
+	         lookup = { word: word, key: this.compareKey(word), indexes: [] };
+	         this.model[lookup.key] = lookup;
         }
         lookup.indexes.push(j);
       }
 
-      console.log("KWIC: "+(new Date()-ts)+"ms");
+      //console.log("KWIC: "+(new Date()-ts)+"ms");
     },
 
     // ========================= METHODS =============================
 
     ignorable: function(key) {
 
-      if (ignorePunctuation && RiTa.isPunctuation(key))
+      if (this.ignorePunctuation && RiTa.isPunctuation(key))
         return true;
 
-      for (var i = 0; i < wordsToIgnore.length; i++) {
+      for (var i = 0; i < this.wordsToIgnore.length; i++) {
 
-        var word = wordsToIgnore[i];
+        var word = this.wordsToIgnore[i];
 
-        if (ignoreCase) {
+        if (this.ignoreCase) {
 
           if (key.equalsIgnoreCase(word))
             return true;
@@ -4983,14 +4992,14 @@
 
     compareKey: function(word) {
 
-      return ignoreCase ? word.toLowerCase() : word;
+      return this.ignoreCase ? word.toLowerCase() : word;
     },
 
     lookup: function(word) {
 
-      var key = compareKey(word);
-      model || this.build();
-      return model.key;
+      var key = this.compareKey(word);
+      if (!this.model) this.build();
+      return this.model.key;
     }
   };
 
