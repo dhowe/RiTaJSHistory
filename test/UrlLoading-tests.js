@@ -54,6 +54,28 @@ var runtests = function() {
         });
     });
 
+    asyncTest("RiTa.loadString3(url)", function() {
+
+        RiTa.loadString("http://localhost/ritajs/test/data/kafka.txt", function(s) {
+            ok(s && s.length > 65536);
+            start();
+        });
+    });
+
+    asyncTest("testConcordanceLoad", function() {
+
+      RiTa.loadString(filePath + "kafka.txt", function(s) {
+        //console.log('kafka: '+s.length);
+        data = RiTa.concordance(s, {
+          ignoreStopWords: true,
+          ignorePunctuation: true
+        });
+        ok(data["Gregor"] == 199);
+        ok(data["Gregor"] > data["sister"]);
+        start();
+      });
+    });
+
     // RiGrammar
     //////////////////////////////////////////////////////////////////////////////////////
 

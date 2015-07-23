@@ -17,14 +17,7 @@
 
     JAVA: 1, JS: 2, NODE: 3,
 
-    // For Features =================================
-
-    SYLLABLES: 'syllables',
-    PHONEMES: 'phonemes',
-    STRESSES: 'stresses',
-    TOKENS: 'tokens',
-    TEXT: 'text',
-    POS: 'pos',
+    _FEATURES: [ 'tokens', 'stresses', 'phonemes', 'syllables', 'pos', 'text' ],
 
     // For Conjugator =================================
 
@@ -129,7 +122,6 @@
     },
 
     random: function() {
-
       var currentRandom = Math.random();
       if (!arguments.length) return currentRandom;
       return (arguments.length === 1) ? currentRandom * arguments[0] :
@@ -137,18 +129,15 @@
     },
 
     randomItem: function(arr) {
-
       return arr[Math.floor(Math.random() * arr.length)];
     },
 
     distance: function(x1, y1, x2, y2) {
-
       var dx = x1 - x2, dy = y1 - y2;
       return Math.sqrt(dx * dx + dy * dy);
     },
 
     _tagForPENN: function(words) {
-
       if (!words || !words.length) return EA;
       var arr = is(words, S) ? RiTa.tokenize(words) : words;
       return PosTagger.tag(arr);
@@ -173,7 +162,6 @@
     },
 
     getPosTags: function(words, useWordNetTags) {
-
       return (useWordNetTags) ? RiTa._tagForWordNet(words) : RiTa._tagForPENN(words);
     },
 
@@ -209,25 +197,21 @@
 
     // TODO: 2 examples
     concordance: function(text, options) {
-
       return Concorder(text, options).concordance();
     },
 
-    // TODO: 2 examples
-    kwik: function(text, word, options) {
-
+    // TODO: 2 examples (add cache)
+    kwic: function(text, word, options) {
       wordCount = (options && options.wordCount) || 4;
-      return Concorder(text, options).kwik(word, wordCount);
+      return Concorder(text, options).kwic(word, wordCount);
     },
 
     // TODO: 2 examples
     conjugate: function(verb, args) {
-
       return Conjugator().conjugate(verb, args);
     },
 
     upperCaseFirst: function(s) {
-
       return s.charAt(0).toUpperCase() + s.substring(1);
     },
 
@@ -259,11 +243,9 @@
       if (!strOk(word)) return E;
 
       var i, rule, rules = SINGULAR_RULES;
-
       if (inArray(MODALS, word.toLowerCase())) {
         return word;
       }
-
       i = rules.length;
       while (i--) {
         rule = rules[i];
@@ -277,7 +259,6 @@
     },
 
     trim: function(str) {
-
       return trim(str); // delegate to private
     },
 
@@ -285,6 +266,8 @@
 
       //TODO: 2 examples for doc comment, one with 1 arg,
       // one with 2 (a regex that splits on spaces)
+
+      if (!is(words,S)) return [];
 
       if (regex) return words.split(regex);
 
@@ -408,9 +391,12 @@
       }
 
       function htmlDecode(input) {
-        var e = document.createElement('div');
+        var e = document.createElement('div'), s = '';
         e.innerHTML = input;
-        return e.childNodes.length === 0 ? E : e.childNodes[0].nodeValue;
+        if (e.childNodes.length === 0) return E;
+        for (var i = 0; i < e.childNodes.length; i++)
+          s += e.childNodes[i].nodeValue;
+        return s;
       }
 
       document.body.appendChild(iframe);
@@ -419,13 +405,14 @@
 
         var data = "[RiTa] loadString() unexpected error!";
         if (cwin && cwin.document && cwin.document.body &&
-          cwin.document.body.childNodes && cwin.document.body.childNodes.length) {
+          cwin.document.body.childNodes && cwin.document.body.childNodes.length)
+        {
           data = cwin.document.body.childNodes[0].innerHTML;
-        } else
+        }
+        else
           console.error('[RiTa] loadString(' + url + ') failed trying iFrame-load');
 
         if (!data) {
-
           console.error('[RiTa] loadString(' + url + ') unable to load text from: ' + url);
           return E;
         }
@@ -720,8 +707,11 @@
   var N = Type.N, S = Type.S, O = Type.O, A = Type.A, B = Type.B,
     R = Type.R, F = Type.F, is = Type.is, ok = Type.ok;
 
-  // export these
-  for (var name in Type) Type.hasOwnProperty(name) && (RiTa[name] = Type[name]);
+  // set additional properties/functions on RiTa
+  for (var i = 0; i < RiTa._FEATURES.length; i++)
+    RiTa[RiTa._FEATURES[i].toUpperCase()] = RiTa._FEATURES[i];
+
+  for (var name in Type) RiTa[name] = Type[name];// needed?
 
   // ////////////////////////////////////////////////////////////
   // RiMarkov
@@ -2063,10 +2053,6 @@
 
   var RiString = RiTa._makeClass();
 
-  RiString._trackedFeatures = [
-      'tokens', 'stresses', 'phonemes', 'syllables', 'pos', 'text'
-  ];
-
   RiString.phones = {
 
     consonants: ['b', 'ch', 'd', 'dh', 'f', 'g', 'hh', 'jh', 'k', 'l', 'm',
@@ -2365,7 +2351,7 @@
       var s = this._features[featureName];
 
       //console.log(featureName,tracked.indexOf(featureName));
-      if (!s && (RiString._trackedFeatures.indexOf(featureName) > -1) &&
+      if (!s && (RiTa._FEATURES.indexOf(featureName) > -1) &&
         (!this._features.hasOwnProperty(featureName)))
       {
         this.analyze();
@@ -3143,7 +3129,7 @@
 
       callback = callback || window.onRiTaEvent;
 
-      if (callback && RiTa.is(callback, F)) {
+      if (callback && is(callback, F)) {
         try {
 
           callback(this); // first arg ??
@@ -3153,7 +3139,7 @@
 
           RiTaEvent._callbacksDisabled = true;
           var msg = "RiTaEvent: error calling '" + callback + "': " + err;
-          RiTa.is(callback, S) && (msg += " Callback must be a function in JS!");
+          is(callback, S) && (msg += " Callback must be a function in JS!");
           warn(msg);
           throw err;
         }
@@ -4885,7 +4871,6 @@
     init: function(text, options) {
 
       this.model = null;
-      this.words = [];
       this.wordsToIgnore = [];
       this.ignoreCase = false;
       this.ignoreStopWords = false;
@@ -4899,15 +4884,11 @@
       }
 
       if (this.ignoreStopWords)
-        this.wordsToIgnore = concat(this.wordsToIgnore, RiTa.STOP_WORDS);
+        this.wordsToIgnore = this.wordsToIgnore.concat(RiTa.STOP_WORDS);
 
       this.words = is(text, A) ? text : RiTa.tokenize(text);
     },
 
-    /*
-     * Returns the # of occurences of <code>word</code> or 0 if the word does
-     * not exist in the model.
-     */
     count: function(word) {
 
       var value = this.lookup(word);
@@ -4915,28 +4896,27 @@
     },
 
     concordance: function() {
+
       if (!this.model) this.build();
+
       var result = {};
       for (var name in this.model)
         result[name] = this.model[name].indexes.length;
 
       // TODO: need to sort by value here
-      var sortable = [];
-      for (var name in result)
-        sortable.push([name, result[name]])
-      sortable.sort(function(a, b) {return a[1] - b[1]})
       return result;
     },
 
-    kwik: function(word, numWords) {
+    kwic: function(word, numWords) {
 
-      var value = this.lookup(word),
-        idxs = value.indexes;
-
-      for (var i = 0; i < idxs.length; i++) {
-          var sub = words.slice(Math.max(0,idxs[i]-numWords),
-            Math.min(words.length, idxs[i]+numWords+1));
-  	      result[i] = RiTa.untokenize(sub);
+      var value = this.lookup(word), result = [];
+      if (value) {
+        var idxs = value.indexes;
+        for (var i = 0; i < idxs.length; i++) {
+            var sub = this.words.slice(Math.max(0,idxs[i] - numWords),
+              Math.min(this.words.length, idxs[i] + numWords+1));
+    	      result[i] = RiTa.untokenize(sub);
+        }
       }
       return result;
     },
@@ -4945,15 +4925,14 @@
 
     build: function() {
 
-      var ts = +new Date();
-      this.model = {};
+      if (!this.words) throw Error('No text in model');
 
+      this.model = {};
+      var ts = +new Date();
       for (var j = 0; j < this.words.length; j++) {
 
         var word = this.words[j];
-
         if (this.ignorable(word)) continue;
-
         var lookup = this.lookup(word);
         if (!lookup) {
 	         lookup = { word: word, key: this.compareKey(word), indexes: [] };
@@ -4961,11 +4940,8 @@
         }
         lookup.indexes.push(j);
       }
-
       //console.log("KWIC: "+(new Date()-ts)+"ms");
     },
-
-    // ========================= METHODS =============================
 
     ignorable: function(key) {
 
@@ -4973,33 +4949,21 @@
         return true;
 
       for (var i = 0; i < this.wordsToIgnore.length; i++) {
-
         var word = this.wordsToIgnore[i];
-
-        if (this.ignoreCase) {
-
-          if (key.equalsIgnoreCase(word))
+        if ((this.ignoreCase && key.toUpperCase() === word.toUpperCase()) || key===word)
             return true;
-
-        } else { // check case
-
-          if (key.equals(word))
-            return true;
-        }
       }
       return false;
     },
 
     compareKey: function(word) {
-
       return this.ignoreCase ? word.toLowerCase() : word;
     },
 
     lookup: function(word) {
-
       var key = this.compareKey(word);
       if (!this.model) this.build();
-      return this.model.key;
+      return this.model[key];
     }
   };
 
@@ -5806,14 +5770,12 @@
   }
 
   function okeys(obj) {
-
     var keys = []; // replaces Object.keys();
     for (var k in obj) keys.push(k);
     return keys;
   }
 
   function err() {
-
     var msg = "[RiTa] " + arguments[0];
     for (var i = 1; i < arguments.length; i++)
       msg += '\n' + arguments[i];
@@ -5821,9 +5783,7 @@
   }
 
   function warn() {
-
     if (RiTa.SILENT || !console) return;
-
     if (arguments && arguments.length) {
       console.warn("[WARN] " + arguments[0]);
       for (var i = 1; i < arguments.length; i++)
@@ -5832,51 +5792,41 @@
   }
 
   function log() {
-
     if (RiTa.SILENT || !console) return;
-
     console.log.apply(console, arguments);
   }
 
   function strOk(str) {
-
     return (typeof str === S && str.length > 0);
   }
 
   function trim(str) {
-
-    // faster version from: http://blog.stevenlevithan.com/archives/faster-trim-javascript
+    if (!strOk(str)) return str;
+    // from: http://blog.stevenlevithan.com/archives/faster-trim-javascript
     return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
   }
 
   function last(word) { // last char of string
-
     if (!word || !word.length) return E;
     return word.charAt(word.length - 1);
   }
 
   function extend(l1, l2) { // python extend
-
-    for (var i = 0; i < l2.length; i++) {
-
+    for (var i = 0; i < l2.length; i++)
       l1.push(l2[i]);
-    }
   }
 
   function endsWith(str, ending) {
-
     if (!is(str, S)) return false;
     return new RegExp(ending + '$').test(str);
   }
 
   function startsWith(str, starting) {
-
     if (!is(str, S)) return false;
     return new RegExp('^' + starting).test(str);
   }
 
   function equalsIgnoreCase(str1, str2) {
-
     return (is(str1, S) && is(str2, S)) ?
       (str1.toLowerCase() === str2.toLowerCase()) : false;
   }

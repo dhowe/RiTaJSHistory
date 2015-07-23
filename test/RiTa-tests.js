@@ -26,10 +26,13 @@ var testResults = [{
   }]
 }];
 
+var filePath = (typeof module != 'undefined' && module.exports) ? "./test/data/" : "./data/";
+
 var runtests = function() {
 
-    var SILENT = 1,
-      WITHOUT_YAML = typeof YAML == 'undefined';
+    var WITHOUT_YAML = typeof YAML == 'undefined';
+
+    RiTa.SILENT = 1;
 
     QUnit.module("RiTa", {
 
@@ -609,17 +612,6 @@ var runtests = function() {
       var result = RiTa.getPhonemes("");
       var answer = "";
       equal(result, answer);
-
-      throws(function() {
-        RiTa.SILENT = 1;
-        try {
-          RiTa.getPhonemes([]);
-        } catch (e) {
-          throw e;
-        }
-        RiTa.SILENT = 0;
-      });
-
     });
 
 
@@ -1249,7 +1241,6 @@ var runtests = function() {
       deepEqual(output, expected);
     });
 
-
     test("testConcordance", function() {
 
       var data = RiTa.concordance("The dog ate the cat");
@@ -1283,6 +1274,16 @@ var runtests = function() {
       // and test that result is sorted by frequency (as in java)
     });
 
+    test("testKwic", function() {
+      var s = "The dog ate the cat. The bear Ate the honey";
+      var lines = RiTa.kwic(s,"ate");
+      equal(lines.length,1);
+      var opts = { ignoreCase: true };
+      lines = RiTa.kwic(s,"ate",opts);
+      equal(lines.length,2);
+      // TODO: more tests with bigger text and diff. options
+    });
+
     test("testConjugate", function() {
 
       // TODO: Check against RiTa-java (why are these all doubling?)
@@ -1312,7 +1313,6 @@ var runtests = function() {
       for (var i = 0; i < s.length; i++) {
         c = RiTa.conjugate(s[i], args);
         equal(c, a[i]);
-        //return;
       }
 
       /////////////////////////////////////////////////
