@@ -1,0 +1,62 @@
+<html>
+<head>
+    <title>KWIKmodel (p5js)</title>
+    <script src="../../lib/p5.min.js"></script>
+    <!--script src="../../lib/rita-latest.js"></script-->
+    <script src="../../../src/rita.js"></script>
+    <script>
+        var kafkaString;
+        var word = 'window', display;
+
+        function preload()
+        {
+            kafkaString = loadStrings('./data/kafka.txt');
+        }
+
+        function setup() {
+            createCanvas(600, 400);
+            var args = {
+                ignorePunctuation: true,
+                ignoreStopWords: true,
+                storeSentences: true,
+                wordCount: 5
+            };
+/*            args.push("ignorePunctuation", true);
+            args.push("ignoreStopWords", true);
+            args.push("storeSentences", true);
+            args.push("wordCount", 5);*/
+            display = RiTa.kwic(kafkaString, word, args);
+            console.log("display: ", display);
+
+            drawText();
+        }
+
+        function drawText() {
+            
+            background(255);
+            fill(0);
+
+            var tw = textWidth(word) / 2;
+
+            for (var i = 0; i < display.length; i++) {
+
+                console.log(display[i]);
+                var parts = display[i].split(word);
+                var x = width / 2, y = i * 20 + 25;
+
+                fill(0);
+                textAlign(RIGHT);
+                text(parts[0], x - tw, y);
+
+                fill(200, 0, 0);
+                textAlign(CENTER);
+                text(word, x, y);
+
+                fill(0);
+                textAlign(LEFT);
+                text(parts[1], x + tw, y);
+            }
+        }
+    </script>
+</head>
+</html>
