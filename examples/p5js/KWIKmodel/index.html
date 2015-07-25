@@ -2,11 +2,12 @@
 <head>
     <title>KWIKmodel (p5js)</title>
     <script src="../../lib/p5.min.js"></script>
+    <script src="../../lib/p5.dom.js"></script>
     <!--script src="../../lib/rita-latest.js"></script-->
     <script src="../../../src/rita.js"></script>
     <script>
         var kafkaString;
-        var word = 'window', display;
+        var word = 'window', display, opts;
 
         function preload()
         {
@@ -15,19 +16,33 @@
 
         function setup() {
             createCanvas(600, 400);
-            var args = {
+
+            input = createInput(['window']);
+            input.size(50);
+            input.position(width / 2 - 50, 0);
+
+            button = createButton('generate');
+            button.position(width / 2, 0);
+            button.mousePressed(getAndDrawText);
+
+            opts = {
                 ignorePunctuation: true,
                 ignoreStopWords: true,
                 storeSentences: true,
                 wordCount: 5
             };
-/*            args.push("ignorePunctuation", true);
-            args.push("ignoreStopWords", true);
-            args.push("storeSentences", true);
-            args.push("wordCount", 5);*/
-            display = RiTa.kwic(kafkaString, word, args);
-            console.log("display: ", display);
 
+            kafkaString = kafkaString.join('\n');
+            display = RiTa.kwic(kafkaString, word, opts);
+
+            drawText();
+        }
+        
+        function getAndDrawText() {
+            word = input.value();
+            input.value('');
+            
+            display = RiTa.kwic(kafkaString, word, opts);
             drawText();
         }
 
