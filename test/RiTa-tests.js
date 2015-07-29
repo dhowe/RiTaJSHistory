@@ -1284,9 +1284,6 @@ var runtests = function() {
       equal(data["the"],2);
       equal(data["The"],undefined);
       equal(data["THE"],undefined);
-
-      // TODO: larger text, plus all combinations of options
-      // and test that result is sorted by frequency (as in java)
     });
 
     test("testKwic", function() {
@@ -1296,7 +1293,6 @@ var runtests = function() {
       var opts = { ignoreCase: true };
       lines = RiTa.kwic(s,"ate",opts);
       equal(lines.length,2);
-      // TODO: more tests with bigger text and diff. options
     });
 
     test("testConjugate", function() {
