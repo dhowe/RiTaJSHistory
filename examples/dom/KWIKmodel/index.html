@@ -45,7 +45,7 @@
                 wordCount: 5
             };
 
-            RiTa.loadString('./data/kafka.txt', function(data) {
+            RiTa.loadString('../../data/kafka.txt', function(data) {
                 kafkaString = data;
                 display = RiTa.kwic(kafkaString, word, opts);
                 
