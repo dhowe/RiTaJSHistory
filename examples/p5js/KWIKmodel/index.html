@@ -21,7 +21,7 @@
             input.size(50);
             input.position(width / 2 - 50, 0);
 
-            button = createButton('generate');
+            button = createButton('search');
             button.position(width / 2, 0);
             button.mousePressed(getAndDrawText);
 
@@ -37,40 +37,48 @@
 
             drawText();
         }
-        
+
         function getAndDrawText() {
             word = input.value();
             input.value('');
-            
+
             display = RiTa.kwic(kafkaString, word, opts);
             drawText();
         }
 
         function drawText() {
-            
+
             background(255);
             fill(0);
 
-            var tw = textWidth(word) / 2;
+            if (display.length == 0) {
 
-            for (var i = 0; i < display.length; i++) {
-
-                console.log(display[i]);
-                var parts = display[i].split(word);
-                var x = width / 2, y = i * 20 + 25;
-
-                fill(0);
-                textAlign(RIGHT);
-                text(parts[0], x - tw, y);
-
-                fill(200, 0, 0);
                 textAlign(CENTER);
-                text(word, x, y);
-
-                fill(0);
-                textAlign(LEFT);
-                text(parts[1], x + tw, y);
+                text("Word not found", width / 2, height / 2);
             }
+            else {
+              var tw = textWidth(word) / 2;
+
+              for (var i = 0; i < display.length; i++) {
+
+                  console.log(display[i]);
+                  var parts = display[i].split(word);
+                  var x = width / 2, y = i * 20 + 25;
+
+                  fill(0);
+                  textAlign(RIGHT);
+                  text(parts[0], x - tw, y);
+
+                  fill(200, 0, 0);
+                  textAlign(CENTER);
+                  text(word, x, y);
+
+                  fill(0);
+                  textAlign(LEFT);
+                  text(parts[1], x + tw, y);
+              }
+            }
+
         }
     </script>
 </head>
