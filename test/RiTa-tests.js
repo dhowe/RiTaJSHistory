@@ -282,7 +282,77 @@ var runtests = function() {
       var input = "'Yes, it was a dog that ate the baby', he said."
       var output = RiTa.splitSentences(input);
       var expected = ["\'Yes, it was a dog that ate the baby\', he said."];
+      deepEqual(output, expected);    
+      
+      /*
+      // (for XML-marked text) next char is < 
+      input = "<para>Here is an example of how to include some text that contains many <literal><</literal> and <literal>&</literal> symbols. The sample text is a fragment of <acronym>XHTML</acronym>. The surrounding text (<para> and <programlisting>) are from DocBook.</para>";
+      output = RiTa.splitSentences(input);
+      expected =
+      ["<para>Here is an example of how to include some text that contains many <literal><</literal> and <literal>&</literal> symbols.",
+        "The sample text is a fragment of <acronym>XHTML</acronym>.",
+        "The surrounding text (<para> and <programlisting>) are from DocBook.</para>"];
       deepEqual(output, expected);
+      */
+  
+      //  Q: or A: at start of sentence 
+      input = "Q: Do I need a visa to visit Hong Kong? A: Visitors from most countries can enter Hong Kong without a visa for periods of seven to 180 days, depending on nationality.";
+      output = RiTa.splitSentences(input);
+      expected = [
+        "Q: Do I need a visa to visit Hong Kong?",
+        "A: Visitors from most countries can enter Hong Kong without a visa for periods of seven to 180 days, depending on nationality."];
+      deepEqual(output, expected);
+  
+      /*
+      //  Q. or A. at start of sentence 
+      input = "Q. Do I need a visa to visit Hong Kong? A. Visitors from most countries can enter Hong Kong without a visa for periods of seven to 180 days, depending on nationality.";
+      output = RiTa.splitSentences(input);
+      System.out.println(Arrays.asList(output));
+      expected = new String[] { 
+    "Q. Do I need a visa to visit Hong Kong?", 
+    "A. Visitors from most countries can enter Hong Kong without a visa for periods of seven to 180 days, depending on nationality."};
+      deepEqual(output, expected);
+      */
+  
+/*      // double initial (X.Y.) -> middle of sentence
+      input = "Joanne \"Jo\" Rowling, OBE FRSL[2] (born 31 July 1965),[1] pen names J. K. Rowling and Robert Galbraith, is a British novelist best known as the author of the Harry Potter fantasy series.";
+      output = RiTa.splitSentences(input);
+      expected = [
+        "Joanne \"Jo\" Rowling, OBE FRSL[2] (born 31 July 1965),[1] pen names J. K. Rowling and Robert Galbraith, is a British novelist best known as the author of the Harry Potter fantasy series."];
+      deepEqual(output, expected);*/
+  
+      // last char not "." -> middle of sentence
+      input = "Completing Project.D is of the utmost importance!";
+      output = RiTa.splitSentences(input);
+      expected = [
+        "Completing Project.D is of the utmost importance!"];
+      deepEqual(output, expected);
+      
+/*      // last char not "." -> middle of sentence
+      input = "Will there be other factors such as temperature, humidity etc. affect the result?";
+      output = RiTa.splitSentences(input);
+      expected = [
+        "Will there be other factors such as temperature, humidity etc. affect the result?"];
+      deepEqual(output, expected);*/
+      
+      /*
+      // nextToken does not begin with an upper case
+      input = "What did he buy? iPad or iPhone?";
+      output = RiTa.splitSentences(input);
+      expected = new String[] { 
+    "What did he buy?",
+    "iPad or iPhone?"};
+      System.out.println(Arrays.asList(output));
+      deepEqual(output, expected);
+      */
+      
+/*      // single upper-case alpha + "." -> middle of sentence
+      input = "Chopper and Monkey D. Luffy were friends. Now they are not.";
+      output = RiTa.splitSentences(input);
+      expected = [
+        "Chopper and Monkey D. Luffy were friends.",
+        "Now they are not."];
+      deepEqual(output, expected);*/
 
       deepEqual(RiTa.splitSentences(""), [""]);
     });
