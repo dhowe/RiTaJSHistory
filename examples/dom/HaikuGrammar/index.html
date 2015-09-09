@@ -35,7 +35,7 @@
             lines = [ $('#line1'), $('#line2'), $('#line3') ];
 
             grammar = RiGrammar();
-            grammar.loadFrom('./data/haiku.yaml', function(str)
+            grammar.loadFrom('../../data/haiku.yaml', function(str)
             {
                 lines[0].text("click to");
                 lines[1].text("generate");
