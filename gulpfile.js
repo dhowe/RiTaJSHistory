@@ -55,16 +55,16 @@ gulp.task('build-browserify', ['build.js'], function() {
     var tmp, b = browserify();
     b.transform(reactify);
     b.add(['./dist/rita.micro.js']);
-    
+
     tmp =  b.bundle()
         .pipe(source('rita.micro.js'))
         .pipe(rename(mbify))
         .pipe(gulp.dest('./dist/'));
-    
+
     b = browserify();
     b.transform(reactify);
     b.add(['./dist/rita.min.js']);
-    
+
     return tmp && b.bundle()
         .pipe(source('rita.min.js'))
         .pipe(rename(bify))
@@ -97,7 +97,7 @@ gulp.task('update', function() { // NEEDED?
                     port: port
                 }));
 
-        // publish new www/rita/download/index.html with version#	
+        // publish new www/rita/download/index.html with version#
         gulp.src(ritaDir + '/www/download/index.html')
             .pipe(replace('##version##', version))
             .pipe(gulp.dest(tmpDir))
@@ -149,13 +149,13 @@ gulp.task('build-pre.js', [ 'bower-update' ], function() {
             .pipe(uglify())
             .pipe(gulp.dest(buildDir));
 
-        // create ritext version 
+        // create ritext version
         tmp = tmp && gulp.src('src/ritext.js')
             .pipe(concat(ritext))
             .pipe(uglify())
             .pipe(gulp.dest(buildDir));
 
-        // create 2 regular versions -- full, min 
+        // create 2 regular versions -- full, min
         return tmp && gulp.src('src/rita*.js')
                 .pipe(replace('##version##', version))
                 .pipe(concat(full))
@@ -169,7 +169,7 @@ gulp.task('build.js', ['build-pre.js'], function() {
 
         var tmp = gulp.src(buildDir + '/' + micro)
             .pipe(sym(buildDir + '/' + micro.replace('-'+version, '')));
-            
+
         return tmp && gulp.src(buildDir + '/' + min)
             .pipe(sym(buildDir + '/' + min.replace('-'+version, '')));
 });
@@ -177,7 +177,7 @@ gulp.task('build.js', ['build-pre.js'], function() {
 gulp.task('handle-error', ['clean'], function(cb) {
 
     var combiner = require('stream-combiner2');
-    
+
     var combined = combiner.obj( [
         gulp.src('src/rita*.js'),
             uglify(),
@@ -201,7 +201,7 @@ gulp.task('build.node', ['clean'], function(cb) {
         gulp.src(['./AUTHORS', './LICENSE', './package.json', './gulpfile.js'])
             .pipe(gulp.dest(buildDir + '/node/rita'));
 
-        // copy in the tests    
+        // copy in the tests
         gulp.src([testDir + 'LibStructure*.*', testDir + '/Ri*.*', testDir + '/qunit*'])
         //.pipe(gulpIgnore.exclude("KnownIssues*"))
         .pipe(gulp.dest(buildDir + '/node/rita/test'));
@@ -222,7 +222,7 @@ gulp.task('build.node', ['clean'], function(cb) {
 
         // call npm pack & move the .tgz to build
         /*exec("cd build/node/rita; npm pack", function (err, stdout, stderr) {
-        
+
           console.log(stdout);
           gulp.src('./rita-'+version+'.tgz')
           .pipe(clean());

@@ -65,7 +65,7 @@ var runtests = function() {
     asyncTest("testConcordanceLoad", function() {
 
       RiTa.loadString(filePath + "kafka.txt", function(s) {
-        //console.log('kafka: '+s.length);
+        console.log('kafka: '+s.length);
         data = RiTa.concordance(s, {
           ignoreStopWords: true,
           ignorePunctuation: true

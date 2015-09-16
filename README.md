@@ -10,7 +10,6 @@
 RiTa.js is designed to an easy-to-use toolkit for experiments in natural language and generative literature, based on the [original RiTa](http://rednoise.org/rita) library for Java. RiTa.js works alone or in conjunction with p5.js, processing.js, node.js, bower, or browserify.  All RiTa and RiTa.js tools are free/libre/open-source according to the [GPL](http://www.gnu.org/licenses/gpl.txt).
 
 
-
 #### About the project
 --------
 * Author:           [Daniel C. Howe](https://rednoise.org/daniel)

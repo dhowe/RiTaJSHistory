@@ -1387,6 +1387,8 @@
 
       if (typeof _RiTa_DICT != 'undefined' && RiTa.USE_LEXICON) {
 
+console.log("RiTaJS: RiLexicon._load()");
+
         RiLexicon.data = {};
         for (var word in _RiTa_DICT)
           RiLexicon.data[word] = _RiTa_DICT[word]; // needed?
