@@ -7,7 +7,7 @@
     <script src="../../../src/rita.js"></script>
     <script>
         var kafkaString;
-        var word = 'window', display, opts;
+        var word = 'window', display, opts, input, button;
 
         function preload()
         {
@@ -20,7 +20,7 @@
             input = createInput(['window']);
             input.size(50);
             input.position(width / 2 - 50, 0);
-
+            
             button = createButton('search');
             button.position(width / 2, 0);
             button.mousePressed(getAndDrawText);
@@ -33,14 +33,23 @@
             };
 
             kafkaString = kafkaString.join('\n');
-            display = RiTa.kwic(kafkaString, word, opts);
+            
+            getAndDrawText();
 
             drawText();
+        }
+        
+        function keyPressed() {
+            if (keyCode == 13){
+                getAndDrawText();
+            }
         }
 
         function getAndDrawText() {
             word = input.value();
             input.value('');
+            input.elt.placeholder = word;
+            input.elt.focus();
 
             display = RiTa.kwic(kafkaString, word, opts);
             drawText();
